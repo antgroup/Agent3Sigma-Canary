@@ -89,10 +89,10 @@ class BenchmarkRunner:
         self.agents: List[OpenClawAgent] = []
         logger.info("Initialized BenchmarkRunner")
 
-    def load_tasks(self) -> None:
+    def load_tasks(self, verbose: bool = False) -> None:
         """Load all tasks from the tasks directory."""
         logger.info("Loading tasks...")
-        self.tasks = self.task_loader.load_all_tasks()
+        self.tasks = self.task_loader.load_all_tasks(verbose=verbose)
         logger.info(f"Loaded {len(self.tasks)} tasks")
 
     def create_agent(self, agent_id: str, config: Optional[Dict[str, Any]] = None) -> OpenClawAgent:
@@ -642,7 +642,7 @@ def main():
     runner = BenchmarkRunner(tasks_dir)
 
     logger.info("📂 Loading tasks from directory...")
-    runner.load_tasks()
+    runner.load_tasks(verbose=args.verbose)
 
     model_slug = slugify_model(args.model)
     # Format: {suite}#{model}#{attack}#{timestamp}, e.g. indirect#GLM-5#important_message#20260413_173400

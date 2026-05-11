@@ -80,7 +80,7 @@ class TaskLoader:
         self.tasks_dir = tasks_dir
         logger.info(f"Initialized TaskLoader with directory: {tasks_dir}")
     
-    def load_all_tasks(self) -> List[Task]:
+    def load_all_tasks(self, verbose: bool = False) -> List[Task]:
         """Load all task files from the tasks directory and its subdirectories."""
         tasks = []
         # Recursively find all task_*.md files
@@ -92,7 +92,8 @@ class TaskLoader:
             try:
                 task = self.load_task(task_file)
                 tasks.append(task)
-                logger.info(f"Successfully loaded task: {task.task_id}")
+                if verbose:
+                    logger.info(f"Successfully loaded task: {task.task_id}")
             except Exception as e:
                 logger.error(f"Failed to load task from {task_file}: {e}", exc_info=True)
 
