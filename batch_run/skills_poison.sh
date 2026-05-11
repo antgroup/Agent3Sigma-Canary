@@ -2,7 +2,7 @@
 # Batch run: skills poison test (models × images, parallel, no attack methods)
 #
 # Usage:
-#   ./batch_run/skills_poison.sh              # Full skills_poison suite
+#   ./batch_run/skills_poison.sh              # Full skills_poison_EN suite
 #   ./batch_run/skills_poison.sh example      # 10 representative samples
 #   MAX_PARALLEL=4 ./batch_run/skills_poison.sh example
 
@@ -20,9 +20,9 @@ if [ "$1" = "example" ] || [ "$1" = "sample" ]; then
     RUN_TAG="example"
     echo ">>> Mode: sample (10 tasks)"
 else
-    SUITE_ARGS="--suite task_7000-8000"
+    SUITE_ARGS="--suite task_5000-5099"
     RUN_TAG="full"
-    echo ">>> Mode: full (all skills_poison)"
+    echo ">>> Mode: task_5000-5099"
 fi
 
 COMMON_ARGS="$SUITE_ARGS --runs 1 -v --docker"

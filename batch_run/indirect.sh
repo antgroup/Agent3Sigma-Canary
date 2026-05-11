@@ -13,7 +13,7 @@ load_batch_config "$SCRIPT_DIR"
 init_parallel
 
 ## Suite selection
-SAMPLE_SUITE="task_10001,task_10022,task_10044,task_10079,task_10097,task_10124,task_10145,task_10189,task_10215,task_10237,task_10251,task_10313,task_10340,task_10346,task_10378,task_10467,task_10490,task_10534,task_10556,task_10612"
+SAMPLE_SUITE="task_10001,task_10025,task_10052,task_10078,task_10097,task_10124,task_10148,task_10184,task_10215,task_10236,task_10252,task_10313,task_10329,task_10346,task_10380,task_10467,task_10500,task_10534,task_10550,task_10551"
 
 if [ "$1" = "sample" ]; then
     SUITE_ARGS="--suite $SAMPLE_SUITE"

@@ -188,7 +188,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--suite",
         default="all",
-        help='Tasks to run: "all", "automated-only", "direct", "indirect", "non-security", "fptest", "memory", "chain", "skills_poison_EN" or comma-separated IDs',
+        help='Tasks to run: "all", "direct", "indirect", "non-security", "fptest", "memory", "chain", "skills_poison_EN" or comma-separated IDs',
     )
     parser.add_argument(
         "--output-dir",
