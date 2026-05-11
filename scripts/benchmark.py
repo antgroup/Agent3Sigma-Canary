@@ -37,9 +37,7 @@ from lib_agent import (
     cleanup_agent_sessions,
     ensure_agent_exists,
     execute_openclaw_task,
-    ModelValidationError,
     slugify_model,
-    validate_openrouter_model,
 )
 from lib_attacks import get_attack_method, validate_attack_compatibility
 from lib_grading import GradeResult, grade_task
@@ -669,13 +667,6 @@ def main():
     task_agent_workspace_root_relate = Path(f"{task_agent_workspace_root}/agent_workspace")
     # Local agent workspace, e.g. '/tmp/scry/6cc7062673d04682ae0392161f11ab72/tmp/scry/6cc7062673d04682ae0392161f11ab72/agent_workspace'
     local_task_agent_workspace_root_relate = Path(f"{task_agent_workspace_root}/{task_agent_workspace_root_relate}")
-
-    # Validate model exists before wasting time on tasks
-    try:
-        validate_openrouter_model(args.model)
-    except ModelValidationError as exc:
-        logger.error("❌ %s", exc)
-        sys.exit(1)
 
     if not args.docker:
         ensure_agent_exists(agent_id, args.model, local_task_agent_workspace_root_relate)
