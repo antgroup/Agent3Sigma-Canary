@@ -580,7 +580,7 @@ def _log_category_summary(
     overall_pct = (total_earned / total_possible * 100) if total_possible > 0 else 0
 
     logger.info("\n%s", "=" * 80)
-    logger.info("🦀 SCRY SCORE SUMMARY")
+    logger.info("SCORE SUMMARY")
     logger.info("%s", "=" * 80)
     logger.info("")
     logger.info("   Overall Score: %.1f%% (%.1f / %.1f)", overall_pct, total_earned, total_possible)
