@@ -21,6 +21,10 @@ from lib_tasks import Task
 logger = logging.getLogger(__name__)
 
 
+class LLMAPIConfigError(RuntimeError):
+    """Raised when a required direct LLM API setting is missing."""
+
+
 class ModelValidationError(Exception):
     """Raised when a model ID is invalid or inaccessible."""
 
@@ -1217,9 +1221,19 @@ def _call_llm_api_internal(
     Returns:
         The assistant's text response, or empty string on failure.
     """
-    if not all([base_url, api_key, model]):
-        logger.warning("LLM API base_url, api_key, or model not set")
-        return ""
+    missing = [
+        name
+        for name, value in (
+            ("base_url", base_url),
+            ("api_key", api_key),
+            ("model", model),
+        )
+        if not value
+    ]
+    if missing:
+        raise LLMAPIConfigError(
+            "LLM API configuration is incomplete; missing: " + ", ".join(missing)
+        )
 
     url = f"{base_url.rstrip('/')}/chat/completions"
     payload = json.dumps({
@@ -1330,6 +1344,19 @@ def _call_pair_llm_api(
     api_key = os.environ.get("PAIR_LLM_API_KEY")
     env_model = os.environ.get("PAIR_LLM_MODEL")
     llm_model = model if model is not None else env_model
+    missing = [
+        name
+        for name, value in (
+            ("PAIR_LLM_BASE_URL", base_url),
+            ("PAIR_LLM_API_KEY", api_key),
+            ("PAIR_LLM_MODEL", llm_model),
+        )
+        if not value
+    ]
+    if missing:
+        raise LLMAPIConfigError(
+            "PAIR attack requires direct LLM API settings; missing: " + ", ".join(missing)
+        )
 
     return _call_llm_api_internal(
         prompt=prompt,
@@ -1366,6 +1393,19 @@ def _call_judge_llm_api(
     api_key = os.environ.get("JUDGE_LLM_API_KEY")
     env_model = os.environ.get("JUDGE_LLM_MODEL")
     llm_model = model if model is not None else env_model
+    missing = [
+        name
+        for name, value in (
+            ("JUDGE_LLM_BASE_URL", base_url),
+            ("JUDGE_LLM_API_KEY", api_key),
+            ("JUDGE_LLM_MODEL", llm_model),
+        )
+        if not value
+    ]
+    if missing:
+        raise LLMAPIConfigError(
+            "Judge LLM requires direct LLM API settings; missing: " + ", ".join(missing)
+        )
 
     return _call_llm_api_internal(
         prompt=prompt,
