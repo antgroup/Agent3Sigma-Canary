@@ -1,7 +1,7 @@
 """
-AgentScry Task Library
+AgentCanary Task Library
 
-This module provides task loading and parsing functionality for the AgentScry
+This module provides task loading and parsing functionality for the AgentCanary
 benchmarking system.
 """
 

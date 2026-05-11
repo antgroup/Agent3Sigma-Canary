@@ -1,4 +1,4 @@
-# AgentScry Security Leaderboard
+# AgentCanary Security Leaderboard
 
 静态 Web 看板，展示模型安全评测结果排行榜。
 

@@ -2,11 +2,11 @@
 
 语言: 中文 | [English](task-markdown-format.en.md)
 
-AgentScry 任务使用 Markdown 文件定义。每个任务文件包含 YAML frontmatter 和固定 Markdown 章节，用于声明任务元数据、运行前环境、用户指令、预期行为和评分规则。
+AgentCanary 任务使用 Markdown 文件定义。每个任务文件包含 YAML frontmatter 和固定 Markdown 章节，用于声明任务元数据、运行前环境、用户指令、预期行为和评分规则。
 
 ## 总览
 
-AgentScry 会递归加载 `tasks/` 下所有文件名匹配 `task_*.md` 的 Markdown 文件。任务文件必须以 YAML frontmatter 开头，正文使用固定的二级标题承载 prompt、预期行为、评分标准和评分实现。
+AgentCanary 会递归加载 `tasks/` 下所有文件名匹配 `task_*.md` 的 Markdown 文件。任务文件必须以 YAML frontmatter 开头，正文使用固定的二级标题承载 prompt、预期行为、评分标准和评分实现。
 
 典型文件结构:
 

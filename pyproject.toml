@@ -1,7 +1,7 @@
 [project]
-name = "agentscry"
+name = "agentcanary"
 version = "0.1.0"
-description = "AgentScry - OpenClaw Agent Benchmarking System"
+description = "AgentCanary - OpenClaw Agent Benchmarking System"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [

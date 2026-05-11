@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# AgentScry Setup Script
+# AgentCanary Setup Script
 # =============================================================================
 # Generates env.sh and openclaw.json from config.yaml
 # Usage: bash setup.sh
@@ -26,7 +26,7 @@ if [[ ! -f "${SCRIPT_DIR}/config.yaml" ]]; then
     exit 0
 fi
 
-echo "=== AgentScry Configuration Generator ==="
+echo "=== AgentCanary Configuration Generator ==="
 echo ""
 
 uv run python scripts/generate_config.py

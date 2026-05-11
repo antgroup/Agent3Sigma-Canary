@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgentScry Results Analyzer</title>
+    <title>AgentCanary Results Analyzer</title>
     <style>
         * {
             margin: 0;
@@ -351,7 +351,7 @@
         <div class="loading-text" id="loadingText">Loading...</div>
     </div>
     <div class="container">
-        <h1>🦀 AgentScry Results Analyzer</h1>
+        <h1>🦀 AgentCanary Results Analyzer</h1>
         <p class="subtitle">Analyze and visualize your benchmark results</p>
 
         <div class="directory-selector">
@@ -861,7 +861,7 @@
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'agentscry_report.md';
+                a.download = 'agentcanary_report.md';
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);

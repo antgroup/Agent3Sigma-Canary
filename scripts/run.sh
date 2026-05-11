@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Convenience wrapper for running AgentScry
+# Convenience wrapper for running AgentCanary
 # Usage: ./scripts/run.sh --model anthropic/claude-sonnet-4
 
 set -e

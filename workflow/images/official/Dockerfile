@@ -1,10 +1,10 @@
-# AgentScry Runner Image
+# AgentCanary Runner Image
 # Runs OpenClaw agent in isolation for security benchmarks
 # docker build -f Dockerfile -t openclaw-official-v{timestamp} --build-arg http_proxy=... .
 
 FROM node:22-bookworm
 
-LABEL org.opencontainers.image.description="AgentScry benchmark runner with OpenClaw + skills"
+LABEL org.opencontainers.image.description="AgentCanary benchmark runner with OpenClaw + skills"
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     iptables \
     && rm -rf /var/lib/apt/lists/*
 
-# Install uv (Python package manager used by AgentScry)
+# Install uv (Python package manager used by AgentCanary)
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 

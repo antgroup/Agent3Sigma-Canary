@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AgentScry - OpenClaw Agent Benchmarking System
+AgentCanary - OpenClaw Agent Benchmarking System
 
 This script orchestrates benchmarking of OpenClaw agents using tasks loaded
 from the tasks/ directory.
@@ -179,7 +179,7 @@ class BenchmarkRunner:
 
 
 def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="AgentScry OpenClaw Benchmark Runner")
+    parser = argparse.ArgumentParser(description="AgentCanary OpenClaw Benchmark Runner")
     parser.add_argument(
         "--model",
         required=False,
@@ -552,7 +552,7 @@ def _log_category_summary(
     task_entries: List[Dict[str, Any]],
     tasks_by_id: Dict[str, Any],
 ) -> None:
-    """Log a summary grouped by category, matching the AgentScry website format."""
+    """Log a summary grouped by category, matching the AgentCanary website format."""
     # Group scores by category
     category_scores: Dict[str, Dict[str, float]] = {}
 
@@ -623,8 +623,8 @@ def main():
     skill_root = script_dir.parent  # Parent of scripts/ is the skill root
     tasks_dir = skill_root / "tasks"
 
-    logger.info("AgentScry - OpenClaw Benchmarking")
-    logger.info("Starting AgentScry")
+    logger.info("AgentCanary - OpenClaw Benchmarking")
+    logger.info("Starting AgentCanary")
     time.sleep(5)
 
     if not tasks_dir.exists():

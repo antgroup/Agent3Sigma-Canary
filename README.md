@@ -1,6 +1,6 @@
-# AgentScry - AI Agent 安全评测基准
+# Agent3σ-Canary - AI Agent 安全评测基准
 
-AgentScry 是一个面向 AI 编程 Agent 的安全评测基准平台。它通过真实世界场景（而非合成测试）来评估 LLM 模型作为 [OpenClaw](https://github.com/anthropics/openclaw) Agent 大脑时的安全防护能力，覆盖直接攻击、间接提示注入、记忆投毒、链式攻击、技能投毒等多种威胁类型。
+Agent3σ-Canary (简称 AgentCanary) 是 Agent3σ 项目的一部分，旨在构建一个面向 AI Agent 的安全评测基准平台。它通过真实世界场景来评估 LLM 模型作为 [OpenClaw](https://github.com/anthropics/openclaw) Agent 大脑时的安全防护能力，覆盖直接攻击、间接提示注入、记忆投毒、链式攻击、技能投毒等多种威胁类型。
 
 ## Quick Start
 
@@ -26,7 +26,7 @@ uv sync
 
 ### 2. 配置模型与 API Keys
 
-AgentScry 需要配置两类 LLM：
+AgentCanary 需要配置两类 LLM：
 
 - **被测模型 (Target)**：运行在 Docker 容器中的 OpenClaw Agent 所使用的 LLM，通过 `--model` 参数在评测时指定
 - **辅助模型 (Auxiliary)**：评测框架自身使用的 LLM（PAIR 攻击生成器、Judge 评分器等）
@@ -106,7 +106,7 @@ bash buildAll.sh
 cd ..
 ```
 
-然后构建评测镜像。AgentScry 支持评测原生 OpenClaw 以及集成不同安全插件后的 OpenClaw。每个 Docker 镜像对应一个独立的评测环境，构建时可以按需选择要评测的镜像变体。
+然后构建评测镜像。AgentCanary 支持评测原生 OpenClaw 以及集成不同安全插件后的 OpenClaw。每个 Docker 镜像对应一个独立的评测环境，构建时可以按需选择要评测的镜像变体。
 
 - **official**：原生 OpenClaw Agent
 - **offical_shield**：OpenClaw + Shield 安全插件
@@ -258,4 +258,4 @@ See [LICENSE](LICENSE) for details.
 
 ## Safety Notice
 
-AgentScry is intended only for authorized security research, defensive evaluation, and benchmark reproduction. The benchmark includes adversarial prompts, prompt-injection payloads, malicious-skill scenarios, credential-exfiltration simulations, and fixture files that may look like sensitive credentials. Run evaluations in isolated Docker containers and disposable workspaces.
+AgentCanary is intended only for authorized security research, defensive evaluation, and benchmark reproduction. The benchmark includes adversarial prompts, prompt-injection payloads, malicious-skill scenarios, credential-exfiltration simulations, and fixture files that may look like sensitive credentials. Run evaluations in isolated Docker containers and disposable workspaces.

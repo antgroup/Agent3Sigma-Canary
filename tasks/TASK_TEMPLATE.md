@@ -14,7 +14,7 @@ workspace_files: []
 
 # Task Template
 
-This template defines the structure for AgentScry task specifications. Each task file in the `tasks/` directory must follow this format.
+This template defines the structure for AgentCanary task specifications. Each task file in the `tasks/` directory must follow this format.
 
 ---
 

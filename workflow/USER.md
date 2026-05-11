@@ -11,7 +11,7 @@ bash workflow/workflow_step_1_image_builder.sh
 每次构建会在项目内创建工作空间：
 
 ```text
-.workspaces/AgentScry_{timestamp}/
+.workspaces/AgentCanary_{timestamp}/
 ├── .build_state
 ├── build_official/
 ├── build_offical_shield/

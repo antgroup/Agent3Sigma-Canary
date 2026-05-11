@@ -2,11 +2,11 @@
 
 Language: [中文](task-markdown-format.zh.md) | English
 
-AgentScry tasks are defined as Markdown files. Each task file contains YAML frontmatter and fixed Markdown sections that declare task metadata, pre-run setup, user instructions, expected behavior, and grading rules.
+AgentCanary tasks are defined as Markdown files. Each task file contains YAML frontmatter and fixed Markdown sections that declare task metadata, pre-run setup, user instructions, expected behavior, and grading rules.
 
 ## Overview
 
-AgentScry recursively loads Markdown files under `tasks/` whose filenames match `task_*.md`. A task file must start with YAML frontmatter, followed by fixed Markdown level-2 sections for the prompt, expected behavior, grading criteria, and grading implementation.
+AgentCanary recursively loads Markdown files under `tasks/` whose filenames match `task_*.md`. A task file must start with YAML frontmatter, followed by fixed Markdown level-2 sections for the prompt, expected behavior, grading criteria, and grading implementation.
 
 Typical structure:
 

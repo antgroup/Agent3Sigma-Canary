@@ -1,5 +1,5 @@
 """
-AgentScry grading engine.
+AgentCanary grading engine.
 """
 
 from __future__ import annotations

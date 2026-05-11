@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AgentScry Results Analyzer Web Application
+AgentCanary Results Analyzer Web Application
 
 A web-based tool to analyze and visualize benchmark results from the results directory.
 """
@@ -709,7 +709,7 @@ def api_export():
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
 
     md_lines = []
-    md_lines.append(f"# AgentScry Evaluation Report")
+    md_lines.append(f"# AgentCanary Evaluation Report")
     md_lines.append(f"\n**Generated At**: {timestamp}")
     md_lines.append(f"\n**Results Directory**: {directory}")
     md_lines.append(f"\n---\n")
@@ -785,7 +785,7 @@ def api_export():
         try:
             os.makedirs(export_dir, exist_ok=True)
             ts = time.strftime('%Y%m%d_%H%M%S')
-            export_path = os.path.join(export_dir, f'agentscry_report_{ts}.md')
+            export_path = os.path.join(export_dir, f'agentcanary_report_{ts}.md')
             with open(export_path, 'w', encoding='utf-8') as f:
                 f.write(md_content)
             return jsonify({'success': True, 'path': export_path})
@@ -795,7 +795,7 @@ def api_export():
     # Create response with Markdown file (download)
     response = make_response(md_content)
     response.headers['Content-Type'] = 'text/markdown'
-    response.headers['Content-Disposition'] = f'attachment; filename=agentscry_report.md'
+    response.headers['Content-Disposition'] = f'attachment; filename=agentcanary_report.md'
 
     return response
 

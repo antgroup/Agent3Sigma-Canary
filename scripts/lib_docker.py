@@ -1,5 +1,5 @@
 """
-Docker runtime abstraction for AgentScry.
+Docker runtime abstraction for AgentCanary.
 
 Provides a clean interface that lib_agent.py calls for all subprocess and
 transcript operations. When docker mode is inactive, calls pass through
@@ -189,7 +189,7 @@ def start() -> str:
 
     run_args = [
         "docker", "run", "-d",
-        "--name", f"agentscry-{int(time.time())}-{uuid.uuid4().hex[:8]}",
+        "--name", f"agentcanary-{int(time.time())}-{uuid.uuid4().hex[:8]}",
         # "-v", "/tmp/scry:/tmp/scry",
         # Allow iptables for mock-api DNAT rules
         "--cap-add=NET_ADMIN",

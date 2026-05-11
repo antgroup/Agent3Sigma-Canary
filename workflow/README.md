@@ -1,6 +1,6 @@
-# AgentScry Workflow
+# AgentCanary Workflow
 
-`workflow/` 仅负责构建 AgentScry 的 Docker 基础镜像。
+`workflow/` 仅负责构建 AgentCanary 的 Docker 基础镜像。
 
 ## 镜像定位
 
@@ -46,7 +46,7 @@ workflow/
 
 ```text
 workflow_step_1_image_builder.sh
-├── 创建工作目录 .workspaces/AgentScry_{timestamp}
+├── 创建工作目录 .workspaces/AgentCanary_{timestamp}
 ├── 选择镜像类型
 ├── 调用 images/{type}/prepare.sh 准备构建上下文
 └── 执行 docker build
@@ -54,10 +54,10 @@ workflow_step_1_image_builder.sh
 
 构建产物：
 
-- 工作目录：`.workspaces/AgentScry_{timestamp}`
-- 构建上下文：`.workspaces/AgentScry_{timestamp}/build_{type}`
+- 工作目录：`.workspaces/AgentCanary_{timestamp}`
+- 构建上下文：`.workspaces/AgentCanary_{timestamp}/build_{type}`
 - 镜像标签：`openclaw-{type}-v{timestamp}`
-- 状态文件：`.workspaces/AgentScry_{timestamp}/.build_state`
+- 状态文件：`.workspaces/AgentCanary_{timestamp}/.build_state`
 
 ## 使用方式
 

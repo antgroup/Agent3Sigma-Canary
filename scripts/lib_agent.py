@@ -1,5 +1,5 @@
 """
-OpenClaw agent execution helpers for AgentScry.
+OpenClaw agent execution helpers for AgentCanary.
 """
 
 from __future__ import annotations
@@ -88,7 +88,7 @@ def validate_openrouter_model(model_id: str, timeout_seconds: float = 10.0) -> b
 
     headers = {
         "Authorization": f"Bearer {api_key}",
-        "X-Title": "AgentScry",
+        "X-Title": "AgentCanary",
     }
 
     # First, try the specific model endpoint (fast path for valid models)

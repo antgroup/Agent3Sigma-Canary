@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # ============================================================================
-# AgentScry Docker Image Builder
+# AgentCanary Docker Image Builder
 # ============================================================================
 #
 # Builds OpenClaw benchmark Docker images:
@@ -19,7 +19,7 @@
 #                 On Linux, --network host is added to the build command
 #
 # Prerequisites:
-#   - Run from AgentScry project root
+#   - Run from AgentCanary project root
 #   - Docker installed
 #
 # Directory structure:
@@ -160,7 +160,7 @@ is_step_done() {
 }
 
 find_existing_work_dirs() {
-    local pattern="AgentScry_[0-9]*_[0-9]*"
+    local pattern="AgentCanary_[0-9]*_[0-9]*"
     mkdir -p "${WORKSPACES_DIR}"
     ls -d "${WORKSPACES_DIR}"/${pattern} 2>/dev/null | sort -r
 }
@@ -306,7 +306,7 @@ build_image() {
 # ============================================================================
 
 log_info "=========================================="
-log_info "AgentScry Docker Image Builder"
+log_info "AgentCanary Docker Image Builder"
 log_info "=========================================="
 
 if [[ "${DOCKER_PROXY_ENABLED}" == "true" ]]; then
@@ -375,7 +375,7 @@ if [[ -n "${EXISTING_DIRS}" ]]; then
         exit 0
     elif [[ "${dir_choice}" =~ ^[Nn]$ ]]; then
         TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-        WORK_DIR_NAME="AgentScry_${TIMESTAMP}"
+        WORK_DIR_NAME="AgentCanary_${TIMESTAMP}"
         WORK_DIR="${WORKSPACES_DIR}/${WORK_DIR_NAME}"
         STATE_FILE="${WORK_DIR}/.build_state"
         STEP=0
@@ -415,7 +415,7 @@ if [[ -n "${EXISTING_DIRS}" ]]; then
                     if [[ "${confirm}" =~ ^[Yy]$ ]]; then
                         rm -rf "${SELECTED_DIR}"
                         TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-                        WORK_DIR_NAME="AgentScry_${TIMESTAMP}"
+                        WORK_DIR_NAME="AgentCanary_${TIMESTAMP}"
                         WORK_DIR="${WORKSPACES_DIR}/${WORK_DIR_NAME}"
                         STATE_FILE="${WORK_DIR}/.build_state"
                         STEP=0
@@ -450,7 +450,7 @@ if [[ -n "${EXISTING_DIRS}" ]]; then
                     WORK_DIR="${SELECTED_DIR}"
                     STATE_FILE="${WORK_DIR}/.build_state"
                     dir_name=$(basename "${WORK_DIR}")
-                    TIMESTAMP=$(echo "${dir_name}" | sed 's/AgentScry_//')
+                    TIMESTAMP=$(echo "${dir_name}" | sed 's/AgentCanary_//')
                     STEP=0
                     log_info "Using workspace with timestamp: ${TIMESTAMP}"
                     ;;
@@ -460,7 +460,7 @@ if [[ -n "${EXISTING_DIRS}" ]]; then
                     if [[ "${confirm}" =~ ^[Yy]$ ]]; then
                         rm -rf "${SELECTED_DIR}"
                         TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-                        WORK_DIR_NAME="AgentScry_${TIMESTAMP}"
+                        WORK_DIR_NAME="AgentCanary_${TIMESTAMP}"
                         WORK_DIR="${WORKSPACES_DIR}/${WORK_DIR_NAME}"
                         STATE_FILE="${WORK_DIR}/.build_state"
                         STEP=0
@@ -484,7 +484,7 @@ if [[ -n "${EXISTING_DIRS}" ]]; then
     fi
 else
     TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-    WORK_DIR_NAME="AgentScry_${TIMESTAMP}"
+    WORK_DIR_NAME="AgentCanary_${TIMESTAMP}"
     WORK_DIR="${WORKSPACES_DIR}/${WORK_DIR_NAME}"
     STATE_FILE="${WORK_DIR}/.build_state"
     STEP=0

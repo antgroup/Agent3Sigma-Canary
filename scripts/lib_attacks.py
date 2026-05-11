@@ -1,5 +1,5 @@
 """
-Attack methods for AgentScry security evaluation.
+Attack methods for AgentCanary security evaluation.
 
 This module provides attack methods to evaluate OpenClaw's security robustness
 under adversarial conditions. Two categories:

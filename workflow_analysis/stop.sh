@@ -1,7 +1,7 @@
 #!/bin/bash
-# Stop AgentScry Results Analyzer
+# Stop AgentCanary Results Analyzer
 
-echo "Stopping AgentScry Results Analyzer..."
+echo "Stopping AgentCanary Results Analyzer..."
 
 # Kill process on port 5000
 EXISTING_PID=$(lsof -ti:5000 2>/dev/null)

@@ -1,5 +1,5 @@
 #!/bin/bash
-# AgentScry Analysis Server Start Script
+# AgentCanary Analysis Server Start Script
 # Supports repeated restarts, auto-kills existing processes, nohup background running
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -9,7 +9,7 @@ LOG_FILE="$SCRIPT_DIR/nohup.out"
 PID_FILE="$SCRIPT_DIR/app.pid"
 
 echo "============================================"
-echo "  AgentScry Analysis Server Manager"
+echo "  AgentCanary Analysis Server Manager"
 echo "============================================"
 
 # Kill existing process
@@ -49,7 +49,7 @@ kill_existing() {
 
 # Start the application
 start_app() {
-    echo "Starting AgentScry Analysis Server..."
+    echo "Starting AgentCanary Analysis Server..."
 
     # Run with nohup in background (try python3 first, then python)
     if command -v python3 &> /dev/null; then
