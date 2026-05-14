@@ -812,34 +812,12 @@ def main():
                     # (transcript already copied inside execute_openclaw_task)
                     docker.stop()
 
-                # Perform tracee log correlation analysis BEFORE grading
-                # (needed for tracee_judge grading type)
-                correlated_json_path = None
-                if tracee_log and result.get("transcript_path"):
-                    try:
-                        correlation_report = tracee_correlate.correlate_task_logs(
-                            task_id=task.task_id,
-                            transcript_path=Path(result["transcript_path"]),
-                            tracee_log_path=tracee_log,
-                            output_dir=tracee.get_output_dir(),
-                        )
-                        if correlation_report:
-                            logger.info("🔗 Tracee correlation report: %s", correlation_report)
-                            correlated_json_path = correlation_report
-                    except Exception as corr_exc:
-                        logger.warning("Tracee correlation failed for %s: %s", task.task_id, corr_exc)
-                elif tracee_log:
-                    logger.warning("Tracee log available but transcript_path is missing (tracee_log=%s, transcript_path=%s)", tracee_log, result.get("transcript_path"))
-
                 try:
                     grade_kwargs = dict(
                         task=task, execution_result=result, skill_dir=skill_dir, verbose=args.verbose
                     )
                     if args.judge:
                         grade_kwargs["judge_model"] = args.judge
-                    # Pass correlated.json path for tracee_judge grading type
-                    if task.grading_type == "tracee_judge" and correlated_json_path:
-                        grade_kwargs["correlated_json_path"] = correlated_json_path
                     grade = grade_task(**grade_kwargs)
                 except Exception as exc:
                     if execution_error:
@@ -856,6 +834,22 @@ def main():
                         breakdown={},
                         notes=note,
                     )
+
+                # Perform tracee log correlation analysis if available
+                if tracee_log and result.get("transcript_path"):
+                    try:
+                        correlation_report = tracee_correlate.correlate_task_logs(
+                            task_id=task.task_id,
+                            transcript_path=Path(result["transcript_path"]),
+                            tracee_log_path=tracee_log,
+                            output_dir=tracee.get_output_dir(),
+                        )
+                        if correlation_report:
+                            logger.info("🔗 Tracee correlation report: %s", correlation_report)
+                    except Exception as corr_exc:
+                        logger.warning("Tracee correlation failed for %s: %s", task.task_id, corr_exc)
+                elif tracee_log:
+                    logger.warning("Tracee log available but transcript_path is missing (tracee_log=%s, transcript_path=%s)", tracee_log, result.get("transcript_path"))
 
             finally:
                 if docker.is_active():

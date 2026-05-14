@@ -49,7 +49,6 @@ def grade_task(
     judge_agent_prefix: str = "bench-judge",
     judge_timeout_seconds: float = 600,
     verbose: bool = False,
-    correlated_json_path: Path | None = None,
 ) -> GradeResult:
     grading_type = task.grading_type
     if verbose:
@@ -73,18 +72,6 @@ def grade_task(
         )
         if verbose:
             logger.info("   [VERBOSE] LLM judge breakdown: %s", result.breakdown)
-        return result
-    if grading_type == "tracee_judge":
-        result = _grade_tracee_judge(
-            task=task,
-            execution_result=execution_result,
-            judge_model=judge_model,
-            judge_timeout_seconds=judge_timeout_seconds,
-            correlated_json_path=correlated_json_path,
-            verbose=verbose,
-        )
-        if verbose:
-            logger.info("   [VERBOSE] Tracee judge breakdown: %s", result.breakdown)
         return result
     if grading_type == "hybrid":
         auto_result = _grade_automated(task, execution_result, verbose=verbose)
@@ -470,81 +457,5 @@ def _normalize_judge_response(parsed: Dict[str, Any]) -> Dict[str, Any]:
         result["notes"] = str(parsed["justification"])
     elif "reasoning" in parsed:
         result["notes"] = str(parsed["reasoning"])
-
+    
     return result
-
-
-def _grade_tracee_judge(
-    *,
-    task: Task,
-    execution_result: Dict[str, Any],
-    judge_model: str | None,
-    judge_timeout_seconds: float,
-    correlated_json_path: Path | None,
-    verbose: bool = False,
-) -> GradeResult:
-    """
-    Grade task using Tracee system-level correlation analysis.
-
-    This grading type uses LLM to analyze Tracee correlation data,
-    which shows actual system behavior (file access, network, processes)
-    correlated with OpenClaw tool calls.
-
-    Args:
-        task: The task being graded
-        execution_result: Execution result from agent
-        judge_model: Model to use for judging
-        judge_timeout_seconds: Timeout for LLM API call
-        correlated_json_path: Path to correlated.json file
-        verbose: Enable verbose logging
-
-    Returns:
-        GradeResult with scores and analysis
-    """
-    # Lazy import to avoid circular imports
-    from lib_tracee_grading import grade_tracee_correlation
-
-    if not correlated_json_path:
-        # Try to find correlated.json from execution result
-        transcript_path = execution_result.get("transcript_path", "")
-        if transcript_path:
-            transcript_dir = Path(transcript_path).parent
-            correlated_json_path = transcript_dir / "correlated.json"
-        elif execution_result.get("workspace"):
-            # Try workspace-relative path
-            workspace = Path(execution_result["workspace"])
-            correlated_json_path = workspace / "correlated.json"
-
-    if not correlated_json_path or not correlated_json_path.exists():
-        logger.warning("No correlated.json found for tracee_judge grading")
-        return GradeResult(
-            task_id=task.task_id,
-            score=0.0,
-            max_score=1.0,
-            grading_type="tracee_judge",
-            breakdown={},
-            notes="No Tracee correlation data available",
-        )
-
-    if verbose:
-        logger.info("   [VERBOSE] Tracee grading using: %s", correlated_json_path)
-
-    # Call tracee grading
-    tracee_result = grade_tracee_correlation(
-        correlated_json_path=correlated_json_path,
-        task=task,
-        judge_model=judge_model or "gpt-4o",
-        judge_timeout_seconds=judge_timeout_seconds,
-        verbose=verbose,
-    )
-
-    # Convert to GradeResult
-    return GradeResult(
-        task_id=tracee_result.task_id,
-        score=tracee_result.score,
-        max_score=tracee_result.max_score,
-        grading_type="tracee_judge",
-        breakdown=tracee_result.breakdown,
-        notes=tracee_result.notes,
-        transcript_summary=tracee_result.analysis_summary,
-    )
