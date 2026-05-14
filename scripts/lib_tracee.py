@@ -4,6 +4,12 @@ Tracee container management for PinchBench.
 Provides container lifecycle management for tracee monitoring.
 When active, starts a tracee container that monitors the test container
 and outputs logs to the tracee_logs/ directory.
+
+Key functions:
+- start(): Start tracee container to monitor target container
+- stop(): Stop tracee container and collect logs
+- is_active(): Check if tracee container is running
+- rename_log_for_task(): Rename log file with task ID and timestamp
 """
 
 from __future__ import annotations
