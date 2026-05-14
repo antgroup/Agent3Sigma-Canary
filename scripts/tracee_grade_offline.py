@@ -115,15 +115,9 @@ def extract_task_id_from_path(path: Path) -> Optional[str]:
 
 def load_task(task_file: Path) -> Optional[Task]:
     """Load a task from a markdown file."""
-    loader = TaskLoader(str(task_file.parent.parent))
-    tasks = loader.load_tasks()
-    task_id = task_file.stem
-    for task in tasks:
-        if task.task_id == task_id or task_file.name.startswith(task.task_id):
-            return task
-    # Try direct parsing if not found in loader
     try:
-        return Task.from_file(task_file)
+        loader = TaskLoader(task_file.parent.parent)
+        return loader.load_task(task_file)
     except Exception as e:
         logger.warning("Failed to load task from %s: %s", task_file, e)
         return None
