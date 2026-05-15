@@ -1170,8 +1170,9 @@ def correlate_exec_by_process_tree(
 
         call.assigned_pids = matched_pids.copy()
 
-        # Include descendant processes
-        for pid in matched_pids:
+        # Include descendant processes (iterate over a copy to avoid modifying set during iteration)
+        pids_to_check = matched_pids.copy()
+        for pid in pids_to_check:
             descendants = get_all_descendants(process_tree, pid)
             matched_pids.update(descendants)
 

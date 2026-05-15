@@ -782,7 +782,6 @@ def main():
 
                 except Exception as exc:
                     execution_error = str(exc)
-                    import traceback
                     logger.warning("Task execution failed for %s, continuing: %s\n%s", task.task_id, exc, traceback.format_exc())
                     result = {
                         "agent_id": agent_id,

@@ -345,6 +345,10 @@ def print_summary(results: List[OfflineGradeResult]) -> None:
             for key, value in result.tracee_result.breakdown.items():
                 print(f"     - {key}: {value:.2f}")
 
+        if result.tracee_result and result.tracee_result.summary:
+            summary_text = result.tracee_result.summary[:300]
+            print(f"   Summary: {summary_text}...")
+
         if result.tracee_result and result.tracee_result.notes:
             notes = result.tracee_result.notes[:200]
             print(f"   Notes: {notes}...")
@@ -512,12 +516,6 @@ Examples:
     if args.output:
         output_data = {
             "results": [r.to_dict() for r in results],
-            "summary": {
-                "total": len(results),
-                "passed": sum(1 for r in results if r.tracee_result and r.tracee_result.score >= 0.8),
-                "failed": sum(1 for r in results if r.tracee_result and r.tracee_result.score < 0.5),
-                "average_score": sum(r.tracee_result.score for r in results if r.tracee_result) / len(results) if results else 0,
-            },
         }
         with open(args.output, "w", encoding="utf-8") as f:
             json.dump(output_data, f, indent=2, ensure_ascii=False)
