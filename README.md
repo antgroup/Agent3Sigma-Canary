@@ -6,7 +6,7 @@
 
 **English** · [Simplified Chinese](README_zh.md)
 
-Agent3σ-Canary, abbreviated as AgentCanary, is part of the [Agent3σ project](). It provides security evaluation capabilities for AI Agents in realistic runtime environments. AgentCanary does not simply check whether a model gives a safe textual answer; it drives agents in controlled sandboxes to invoke real tools, process task materials in realistic formats, and evaluate complete execution traces across risk outcome, security awareness, and normal-task utility.
+Agent3σ-Canary, abbreviated as AgentCanary, is part of the [Agent3σ project](). It provides security evaluation capabilities for AI Agents in realistic runtime environments. AgentCanary does not simply check whether a model gives a safe textual answer; it drives agents in controlled sandboxes to invoke real tools, process task materials in realistic formats, and evaluate the agent's complete execution trajectory across risk outcome, security awareness, and normal-task utility.
 
 ## 💡 Key Features
 
@@ -16,7 +16,7 @@ Agent3σ-Canary, abbreviated as AgentCanary, is part of the [Agent3σ project]()
 - **Sandboxed evaluation**: Each task runs in an isolated environment, reducing the impact of high-risk samples on the host and other tasks while keeping evaluations controlled and reproducible.
 - **Multiple attack methods**: AgentCanary supports automatic generation, mutation, and optimization of attack samples for evaluation tasks, covering one-shot transformations, multi-step iterative optimization, and long-chain attack scenarios.
 - **Defense framework evaluation**: AgentCanary supports evaluating different agent security defense frameworks, making it easier to compare defense effectiveness.
-- **Trace-based multidimensional scoring**: Scoring is not based only on a final single-step result. AgentCanary evaluates complete agent traces across safety outcome, security awareness, and task utility.
+- **Trajectory-based multidimensional scoring**: Scoring is not based only on a single-step result. AgentCanary evaluates the agent's complete execution trajectory across safety outcome, security awareness, and task utility.
 - **High extensibility**: Task definitions and environment construction are modular, making it easy to add custom evaluation tasks.
 
 ## 🔄 Evaluation Workflow
@@ -47,7 +47,7 @@ uv sync
 
 ### 2. Configure Models and API Keys
 
-AgentCanary needs two types of LLMs:
+Running AgentCanary requires configuring two types of LLMs:
 
 - **Target model**: The LLM used by the agent under test inside the Docker container. Specify it with the `--model` argument.
 - **Auxiliary models**: LLMs used by the evaluation framework itself, such as PAIR attackers and judge scorers.
@@ -130,9 +130,9 @@ cd ..
 Then build evaluation images. AgentCanary currently supports evaluating vanilla OpenClaw and OpenClaw variants integrated with different security plugins. Each Docker image corresponds to an independent evaluation environment, and you can choose which variants to build.
 
 - **official**: Vanilla OpenClaw agent
-- **offical_shield**: OpenClaw + Shield security plugin
-- **offical_secureclaw**: OpenClaw + SecureClaw security plugin
-- **offical_clawkeeper**: OpenClaw + ClawKeeper security plugin
+- **official_shield**: OpenClaw + Shield security plugin
+- **official_secureclaw**: OpenClaw + SecureClaw security plugin
+- **official_clawkeeper**: OpenClaw + ClawKeeper security plugin
 
 After running the build script, select the image variants you need from the prompt. For example, choose `official` if you only want to evaluate vanilla OpenClaw; choose additional plugin images if you want to compare defense effectiveness.
 
@@ -172,7 +172,7 @@ export DOCKER_IMAGE=openclaw-official-v20260430_120000
 
 **Batch evaluation:**
 
-To evaluate multiple models across multiple images in parallel, use scripts under `batch_run/`:
+To evaluate multiple models across multiple Docker images in parallel, use scripts under `batch_run/`:
 
 ```bash
 # 1. Configure images and models
@@ -223,7 +223,7 @@ Core metrics:
 
 #### Workflow Analysis - Fine-Grained Result Analysis
 
-Analyze each task in a single evaluation run, including grading details, token usage, runtime, and the full transcript:
+Analyze each task in a single evaluation run, e.g., grading details, the full execution trajectory:
 
 ```bash
 # Start the analysis service
@@ -231,10 +231,6 @@ bash workflow_analysis/start.sh
 ```
 
 Open `http://localhost:5000` in your browser. You can:
-
-- View statistics by task, model, and attack type
-- Inspect detailed scores and execution traces for individual tasks
-- Export analysis reports in Markdown format
 
 Stop the service:
 
@@ -284,18 +280,18 @@ See [Task Markdown Format](docs/task_format_en.md) when writing custom tasks.
 
 ## 🔍 System-Level Trajectory Collection
 
-AgentCanary supports system-level behavior trajectory collection for fine-grained analysis of agent execution and dynamic testing scenarios such as malicious Skill detection. More details will be added in the [system-level trajectory document](docs/system_trajectory_en.md).
+AgentCanary also supports system-level behavior trajectory collection for fine-grained analysis of agent execution and dynamic testing scenarios such as malicious skill detection. More details can be found in the [system-level trajectory document](docs/system_trajectory_en.md).
 
 ## 🗺️ Roadmap
 
-AgentCanary will continue expanding security evaluation capabilities for AI Agents. Planned directions include:
+AgentCanary will continue expanding security capabilities for AI Agents. Planned directions include:
 
-- Support more agent frameworks beyond OpenClaw, including mainstream agent frameworks and coding-agent forms.
+- Support more agent frameworks, including mainstream agent frameworks and coding-agent forms.
 - Expand the evaluation task suite to cover more third-party tools and realistic scenarios.
 - Build a layered task taxonomy with configurable task types, difficulty levels, and custom tags, and expose multidimensional dashboard analytics.
 - Support more automated red-team techniques, especially agent-based adaptive and dynamic attacks.
-- Support longer-context and multi-stage dialogue evaluations to simulate long-horizon safety risks in realistic agent use.
-- Build dynamic Skills scanning and trajectory collection capabilities on top of dynamic runtime environments. Trajectory collection will provide high-quality behavior data for Guard model training and support broader agent-security applications beyond evaluation.
+- Support longer-context dialogue evaluations to simulate long-horizon safety risks in realistic agent use.
+- Build dynamic Skills scanning and trajectory collection capabilities on top of dynamic runtime environments (e.g., trajectory collection can provide high-quality behavior data for Guard model training), supporting broader agent-security applications beyond evaluation.
 
 Community requests, scenarios, and contributions are welcome, including new tasks, agent-framework adapters, red-team methods, security-plugin integrations, analysis tools, and documentation improvements.
 
