@@ -35,7 +35,7 @@ from typing import Dict, List, Optional, Any
 import lib_docker as docker
 import lib_tracee as tracee
 import tracee_correlate
-from lib_tracee_grading import grade_tracee_correlation, TraceeGradingResult
+from lib_tracee_grading import grade_tracee_correlation, TraceeGradingResult, generate_tracee_grading_report
 from lib_agent import (
     cleanup_agent_sessions,
     ensure_agent_exists,
@@ -872,6 +872,18 @@ def main():
                                     with open(tracee_grade_path, "w", encoding="utf-8") as f:
                                         json.dump(tracee_grade_result.to_dict(), f, indent=2, ensure_ascii=False)
                                     logger.info("📊 Tracee grading saved: %s", tracee_grade_path)
+
+                                    # Generate detailed markdown report
+                                    try:
+                                        with open(correlation_report, "r", encoding="utf-8") as f:
+                                            correlation_data = json.load(f)
+                                        report_content = generate_tracee_grading_report(tracee_grade_result, correlation_data)
+                                        report_path = correlation_report.parent / "grading_report.md"
+                                        with open(report_path, "w", encoding="utf-8") as f:
+                                            f.write(report_content)
+                                        logger.info("📋 Tracee grading report: %s", report_path)
+                                    except Exception as report_exc:
+                                        logger.warning("Failed to generate grading report: %s", report_exc)
                             except Exception as grade_exc:
                                 logger.warning("Tracee grading failed for %s: %s", task.task_id, grade_exc)
                                 logger.debug("Tracee grading traceback: %s", traceback.format_exc())
