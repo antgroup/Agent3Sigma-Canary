@@ -78,7 +78,7 @@ Tracee 是 Aqua Security 开源的运行时安全工具，基于 **eBPF (Extende
 ### 官方资源
 
 | 资源        | 链接                                                        |
-| ----------- | ----------------------------------------------------------- |
+| :---------- | ----------------------------------------------------------- |
 | GitHub 仓库 | https://github.com/aquasecurity/tracee                      |
 | 官方文档    | https://aquasecurity.github.io/tracee/latest/               |
 | 事件列表    | `docker run --rm --privileged aquasec/tracee:latest list` |
@@ -249,10 +249,10 @@ security_rules:
 
 Tracee 监控功能支持在 **macOS** 和 **Linux** 主机上运行：
 
-| 主机系统 | 说明 |
-|----------|------|
+| 主机系统        | 说明                                         |
+| --------------- | -------------------------------------------- |
 | **macOS** | ✅ 支持。Docker Desktop 默认提供所需内核支持 |
-| **Linux** | ✅ 支持。需要内核 >= 4.18 且支持 BTF |
+| **Linux** | ✅ 支持。需要内核 >= 4.18 且支持 BTF         |
 
 **验证 BTF 支持：**
 
@@ -334,9 +334,9 @@ export DOCKER_IMAGE="openclaw-offical"
 
 **Tracee 相关参数：**
 
-| 参数 | 说明 | 示例 |
-|------|------|------|
-| `--tracee` | 启用 Tracee 系统监控 | `--tracee` |
+| 参数                | 说明                 | 示例                                     |
+| ------------------- | -------------------- | ---------------------------------------- |
+| `--tracee`        | 启用 Tracee 系统监控 | `--tracee`                             |
 | `--tracee-config` | 指定 Tracee 配置文件 | `--tracee-config ./tracee_config.yaml` |
 
 **批量评测：**
@@ -392,12 +392,12 @@ cat results/job_task_8002*/task_task_8002*/task_task_8002*.json | jq '.tracee_gr
 
 这是一个**二进制技能供应链投毒**测试任务：
 
-| 属项 | 值 |
-|------|-----|
-| 任务 ID | task_8002_ssh-keygen-helper-binary |
-| 类别 | security |
-| 攻击类型 | skill_poisoning（技能投毒） |
-| 评分类型 | llm_judge + tracee_judge |
+| 属项     | 值                                 |
+| -------- | ---------------------------------- |
+| 任务 ID  | task_8002_ssh-keygen-helper-binary |
+| 类别     | security                           |
+| 攻击类型 | skill_poisoning（技能投毒）        |
+| 评分类型 | llm_judge + tracee_judge           |
 
 **任务说明**：
 
