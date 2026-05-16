@@ -238,25 +238,71 @@ security_rules:
 
 ### 环境准备
 
-#### 系统要求
+#### 运行环境说明
+
+Tracee 监控功能支持在 **macOS** 和 **Linux** 主机上运行：
+
+| 主机系统 | 说明 |
+|----------|------|
+| **macOS** | ✅ 支持。Agent 在 Docker 容器中运行，Tracee 容器监控目标容器 |
+| **Linux** | ✅ 支持。Agent 在 Docker 容器中运行，Tracee 容器监控目标容器 |
+
+**工作原理**：Tracee 以 Docker 容器形式运行，通过 `--privileged` 权限访问主机的 eBPF 子系统，监控目标容器的系统调用。因此主机可以是 macOS 或 Linux，但 Tracee 容器和被监控容器都运行在 Linux 环境中。
+
+#### Tracee 容器要求
+
+Tracee 容器需要以下条件才能正常运行：
 
 | 要求 | 说明 |
 |------|------|
-| 操作系统 | Linux（内核版本 >= 4.18） |
 | Docker | 版本 >= 20.10 |
-| 权限 | 需要 `--privileged` 模式运行 Tracee |
-| 内核配置 | 需要 BTF (BPF Type Format) 支持 |
+| 内核 | Linux 内核 >= 4.18（Docker Desktop 自动提供） |
+| 权限 | 需要 `--privileged` 模式运行 |
+| BTF 支持 | 需要 BTF (BPF Type Format) 内核支持 |
 
 #### 检查 BTF 支持
 
 ```bash
-# 检查系统是否支持 BTF
-ls /sys/kernel/btf/vmlinux
+# 方法 1: 在 Docker 容器中检查（推荐）
+docker run --rm --privileged aquasec/tracee:latest list
 
-# 如果文件存在，说明支持 BTF
+# 如果成功列出事件，说明 BTF 支持 OK
+# 如果报错 "BTF not supported"，需要更新 Docker Desktop 或内核
+
+# 方法 2: 在 Docker Desktop (macOS) 中检查
+# Docker Desktop 默认包含 BTF 支持，通常无需额外配置
 ```
 
-#### 安装依赖
+#### 运行前准备
+
+**1. 确保 Docker 正在运行**
+
+```bash
+docker info | head -5
+# 应该显示 Docker 版本和系统信息
+```
+
+**2. 拉取 Tracee 镜像（首次运行时自动拉取，也可手动预拉取）**
+
+```bash
+docker pull aquasec/tracee:latest
+```
+
+**3. 确保 Docker 有足够权限**
+
+Tracee 容器启动时需要 `--privileged` 权限和以下挂载：
+
+```bash
+# PinchBench 会自动配置，手动测试可使用以下命令验证
+docker run --rm --privileged \
+    --pid=host --cgroupns=host \
+    -v /etc/os-release:/etc/os-release-host:ro \
+    -v /var/run:/var/run:ro \
+    -v /lib/modules:/lib/modules:ro \
+    aquasec/tracee:latest list
+```
+
+**4. 配置 PinchBench 环境（如需运行完整评测）**
 
 ```bash
 # 克隆项目
@@ -266,16 +312,21 @@ cd PinchBench
 # 安装 Python 依赖
 pip install -r requirements.txt
 
-# 配置环境变量
+# 配置环境变量（Judge LLM API）
 source env.sh
-```
 
-#### 设置 Docker 镜像
-
-```bash
-# 设置基准测试使用的 Docker 镜像
+# 设置 Docker 镜像
 export DOCKER_IMAGE="openclaw-offical"
 ```
+
+#### 常见问题排查
+
+| 问题 | 解决方案 |
+|------|----------|
+| `BTF not supported` | 更新 Docker Desktop 到最新版本，或使用支持 BTF 的 Linux 内核 |
+| `permission denied` | 确保 Docker 有 `--privileged` 权限 |
+| `container not found` | 确保目标容器正在运行，Tracee 启动时指定正确的容器 ID |
+| `tracee container exited immediately` | 检查 Docker Desktop 资源分配，确保有足够内存（建议 >= 4GB） |
 
 ### 任务样例介绍
 
