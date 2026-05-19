@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Tracee Log Grading Module for PinchBench.
+Tracee Log Grading Module for AgentCanary.
 
 This module provides LLM-based analysis and grading of Tracee correlation results.
 It analyzes system-level behavior captured by Tracee and correlates it with
@@ -65,7 +65,7 @@ class TraceeGradingResult:
     breakdown: Dict[str, float] = field(default_factory=dict)
     notes: str = ""
     analysis_summary: str = ""
-    summary: str = ""  # 得分/失分原因总结
+    summary: str = ""  # Rationale for the score awarded / withheld
     # System trajectory specific fields
     system_events_count: int = 0
     tool_calls_count: int = 0

@@ -1,5 +1,5 @@
 """
-Tracee container management for PinchBench.
+Tracee container management for AgentCanary.
 
 Provides container lifecycle management for tracee monitoring.
 When active, starts a tracee container that monitors the test container
@@ -339,7 +339,7 @@ def get_log_path(task_id: str) -> Path:
         Path to the tracee log file
     """
     if _output_dir:
-        # 使用任务文件夹结构: tracee_logs/{task_id}/tracee.json
+        # Per-task folder structure: tracee_logs/{task_id}/tracee.json
         task_dir = _output_dir / task_id
         return task_dir / "tracee.json"
     task_dir = DEFAULT_OUTPUT_DIR / task_id
@@ -363,7 +363,7 @@ def get_task_log_dir(task_id: str, timestamp: str | None = None) -> Path:
         from datetime import datetime
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-    # 使用时间戳后缀: tracee_logs/{task_id}_{timestamp}/
+    # Timestamp suffix: tracee_logs/{task_id}_{timestamp}/
     dir_name = f"{task_id}_{timestamp}"
 
     if _output_dir:
@@ -393,7 +393,7 @@ def rename_log_for_task(task_id: str, timestamp: str | None = None) -> Optional[
 
     source_file = _output_dir / "tracee_events.jsonl"
 
-    # 使用任务文件夹结构: tracee_logs/{task_id}_{timestamp}/tracee.json
+    # Per-task folder structure: tracee_logs/{task_id}_{timestamp}/tracee.json
     task_dir = get_task_log_dir(task_id, timestamp)
     target_file = task_dir / "tracee.json"
 
