@@ -1,6 +1,6 @@
 # Agent3σ-Canary
 
-Agent3σ-Canary (简称 AgentCanary) 是 [Agent3σ 项目]()的一部分，旨在基于真实运行环境提供面向 AI Agent 的安全评测能力。AgentCanary 不只简单地评估模型是否给出安全回答，还会在受控沙箱中驱动 Agent 调用真实工具、处理真实格式的任务物料，并基于完整执行轨迹从风险后果、安全意识与正常任务可用性等多维度进行综合评估。
+Agent3σ-Canary (简称 AgentCanary) 是 [Agent3σ 项目](https://github.com/antgroup/Agent3Sigma)的一部分，旨在基于真实运行环境提供面向 AI Agent 的安全评测能力。AgentCanary 不只简单地评估模型是否给出安全回答，还会在受控沙箱中驱动 Agent 调用真实工具、处理真实格式的任务物料，并基于完整执行轨迹从风险后果、安全意识与正常任务可用性等多维度进行综合评估。
 
 ## 💡 关键特性
 
