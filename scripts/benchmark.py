@@ -372,6 +372,41 @@ def _next_run_id(run_root: Path) -> str:
     return f"{next_id:04d}"
 
 
+# Known leaderboard image tags. Used to derive a short tag from DOCKER_IMAGE
+# when DOCKER_IMAGE_TAG is not explicitly set.
+IMAGE_NAMES = ("shield", "agentguard", "secureclaw", "clawkeeper")
+
+
+def _slugify_image_tag(raw: str) -> str:
+    """Sanitize an image tag for use in filenames and JSON identifiers.
+
+    Lowercases and collapses any non-[a-z0-9_-] runs to a single '-'. Guards
+    against DOCKER_IMAGE_TAG values that contain path separators (e.g.
+    'ghcr.io/foo/shield:tag'), which would otherwise break write_text() by
+    creating phantom path segments in run_semantic_id.
+    """
+    s = re.sub(r"[^a-z0-9_-]+", "-", raw.lower()).strip("-")
+    return s or "image"
+
+
+def _resolve_image_tag() -> str:
+    """Resolve a short leaderboard image tag.
+
+    Priority:
+      1. DOCKER_IMAGE_TAG env var (explicit override, slugified)
+      2. DOCKER_IMAGE contains an IMAGE_NAMES token (substring match)
+      3. 'official'
+    """
+    tag = os.environ.get("DOCKER_IMAGE_TAG", "").strip()
+    if tag:
+        return _slugify_image_tag(tag)
+    img = os.environ.get("DOCKER_IMAGE", "")
+    for name in IMAGE_NAMES:
+        if name in img:
+            return name
+    return "official"
+
+
 def _get_git_version(script_dir: Path) -> str:
     try:
         result = subprocess.run(
@@ -667,13 +702,14 @@ def main():
     runner.load_tasks(verbose=args.verbose)
 
     model_slug = slugify_model(args.model)
-    # Format: {suite}#{model}#{attack}#{timestamp}, e.g. indirect#GLM-5#important_message#20260413_173400
+    # Format: {suite}#{model}#{attack}#{context}#{image}#{timestamp}
     suite_slug = args.suite.replace(",", "_").replace(" ", "_")
     attack_slug = args.attack.replace(":", "_").replace(" ", "_") if args.attack else "no-attack"
     from datetime import datetime
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     context_slug = "no_context" if args.no_context else "with_context"
-    run_semantic_id = f"{suite_slug}#{model_slug}#{attack_slug}#{context_slug}#{timestamp}"
+    image_slug = _resolve_image_tag()
+    run_semantic_id = f"{suite_slug}#{model_slug}#{attack_slug}#{context_slug}#{image_slug}#{timestamp}"
     # Define output_dir early so each task can write JSON immediately after completion
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -979,6 +1015,8 @@ def main():
         "suite": args.suite,
         "attack_method": args.attack,
         "no_context": args.no_context,
+        "image": image_slug,
+        "image_uri": os.environ.get("DOCKER_IMAGE") or None,
         "runs_per_task": runs_per_task,
         "tasks": task_entries,
         "efficiency": efficiency,

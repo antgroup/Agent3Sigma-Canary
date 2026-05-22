@@ -158,7 +158,9 @@ def compute_categories(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         job_id = r.get('job_id', '')
         model = r.get('model', 'unknown')
         status = r.get('status', 'unknown')
-        # Extract attack from job_id: indirect#provider-model#important_message#04140936
+        # Extract attack from job_id.
+        # Format: {suite}#{model}#{attack}#{context}#{image}#{timestamp}
+        # (image segment added 2026-05; older runs may have only 5 segments.)
         parts = job_id.split('#')
         attack = parts[2] if len(parts) >= 3 else 'unknown'
 
@@ -458,8 +460,9 @@ def compute_job_stats(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                 bd_items.append(f'<span style="color:{color}; margin-right:8px;" title="{k}: {avg_val:.0f}%">{short_key}:{avg_val:.0f}%</span>')
             breakdown_str = ''.join(bd_items)
 
-        # Parse job_id format: field1#field2#field3#...#timestamp
-        # Split dynamically on #; the last field is the timestamp
+        # Parse job_id format: {suite}#{model}#{attack}#{context}#{image}#{timestamp}
+        # (image segment added 2026-05; older runs have 5 segments.)
+        # Split dynamically on #; the last field is always the timestamp.
         parts = name.split('#')
         n = len(parts)
 
@@ -826,8 +829,9 @@ def api_detail():
         return jsonify({'error': f'File not found for task: {task_id}'})
 
     # First filter files by job_id.
-    # job_id format: indirect#provider-model#ipi_payload_auto#with_context#20260419_152439
-    # File paths include the job_id segment in job_indirect#...#... format.
+    # job_id format: {suite}#{model}#{attack}#{context}#{image}#{timestamp}
+    # (image segment added 2026-05; older runs have 5 segments.)
+    # File paths include the job_id segment in job_{suite}#...#... format.
     filtered_files = []
     for jf in json_files:
         # Check whether the file path contains the job_id.
