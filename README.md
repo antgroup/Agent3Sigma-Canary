@@ -313,10 +313,13 @@ This repository builds on prior open-source work in agent safety. We thank the a
 
 Agent3σ-Canary is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
 
-## Authors
+## 👥 Authors
 
 Peiyang Li, Songping Wang, Yi Huang, Yanhua Shi, Chenhao Zhang, Qi Li, Caifeng Shan, Yueming Lyu, Ding Li, Fengting Li, Chao Feng, Chuanqun Zhu, Liang Chen
 
+## 📝 Citation
+
+Our technical report will be released soon.
 
 ## ⚠️ Safety Notice
 
