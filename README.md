@@ -129,12 +129,14 @@ bash buildAll.sh
 cd ..
 ```
 
-Then build evaluation images. AgentCanary currently supports evaluating vanilla OpenClaw and OpenClaw variants integrated with different security plugins. Each Docker image corresponds to an independent evaluation environment, and you can choose which variants to build.
+Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, OpenClaw variants integrated with different security plugins, and third-party agent frameworks adapted into the same evaluation harness. Each Docker image corresponds to an independent evaluation environment, and you can choose which variants to build.
 
 - **official**: Vanilla OpenClaw agent
 - **official_shield**: OpenClaw + Shield security plugin
 - **official_secureclaw**: OpenClaw + SecureClaw security plugin
 - **official_clawkeeper**: OpenClaw + ClawKeeper security plugin
+- **hermes**: hermes-agent (Nous Research) — a third-party agent framework
+- **nanoclaw**: nanoclaw runtime (Claude Agent SDK) — a third-party agent framework
 
 After running the build script, select the image variants you need from the prompt. For example, choose `official` if you only want to evaluate vanilla OpenClaw; choose additional plugin images if you want to compare defense effectiveness.
 

@@ -123,12 +123,14 @@ bash buildAll.sh
 cd ..
 ```
 
-然后构建评测镜像。AgentCanary 目前支持评测原生 OpenClaw 以及集成不同安全插件后的 OpenClaw。每个 Docker 镜像对应一个独立的评测环境，构建时可以按需选择要评测的镜像变体。
+然后构建评测镜像。AgentCanary 支持评测原生 OpenClaw、集成不同安全插件后的 OpenClaw，以及接入同一评测框架的第三方 Agent 框架。每个 Docker 镜像对应一个独立的评测环境，构建时可以按需选择要评测的镜像变体。
 
 - **official**：原生 OpenClaw Agent
 - **official_shield**：OpenClaw + Shield 安全插件
 - **official_secureclaw**：OpenClaw + SecureClaw 安全插件
 - **official_clawkeeper**：OpenClaw + ClawKeeper 安全插件
+- **hermes**：hermes-agent（Nous Research）—— 第三方 Agent 框架
+- **nanoclaw**：nanoclaw 运行时（Claude Agent SDK）—— 第三方 Agent 框架
 
 运行构建脚本后，根据提示选择需要的镜像即可。例如只评测原生 OpenClaw 时选择 `official`；需要比较安全插件效果时，同时选择对应的插件镜像。
 

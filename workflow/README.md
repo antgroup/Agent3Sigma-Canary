@@ -10,8 +10,10 @@
 | `offical_shield` | `openclaw-offical_shield-v{timestamp}` | `official` + openclaw-shield security plugin |
 | `offical_secureclaw` | `openclaw-offical_secureclaw-v{timestamp}` | `official` + SecureClaw security plugin |
 | `offical_clawkeeper` | `openclaw-offical_clawkeeper-v{timestamp}` | `official` + ClawKeeper security plugin |
+| `hermes` | `openclaw-hermes-v{timestamp}` | hermes-agent (Nous Research) framework wrapped behind an `openclaw` shim + mock-api server |
+| `nanoclaw` | `openclaw-nanoclaw-v{timestamp}` | nanoclaw runtime (Claude Agent SDK) wrapped behind an `openclaw` shim + mock-api server |
 
-Other image variants should extend the capabilities of `official` by adding different security plugins.
+The `offical_*` variants extend `official` by adding different security plugins. The `hermes` and `nanoclaw` variants instead wrap third-party agent frameworks behind an `openclaw` shim so they can be evaluated through the same harness.
 
 ## Directory Layout
 
@@ -34,12 +36,26 @@ workflow/
     │   ├── Dockerfile
     │   ├── openclaw.json
     │   └── prepare.sh
-    └── offical_clawkeeper/
-        ├── ClawKeeper/
+    ├── offical_clawkeeper/
+    │   ├── ClawKeeper/
+    │   ├── Dockerfile
+    │   ├── openclaw.json
+    │   └── prepare.sh
+    ├── hermes/
+    │   ├── Dockerfile
+    │   ├── openclaw.overrides.json
+    │   ├── prepare.sh
+    │   ├── shim/openclaw
+    │   └── mock-api/
+    └── nanoclaw/
         ├── Dockerfile
-        ├── openclaw.json
-        └── prepare.sh
+        ├── openclaw.overrides.json
+        ├── prepare.sh
+        ├── shim/            # openclaw + driver.mjs
+        └── mock-api/
 ```
+
+> `openclaw.json` is not committed for any variant — it is generated from `config.yaml` by `bash setup.sh` (`scripts/generate_config.py`) before the build.
 
 ## Build Flow
 
@@ -164,6 +180,16 @@ You can also specify another local source directory with an environment variable
 CLAWKEEPER_SOURCE_DIR=/path/to/ClawKeeper \
   bash workflow/workflow_step_1_image_builder.sh
 ```
+
+## hermes / nanoclaw Build Contents
+
+`hermes` and `nanoclaw` wrap third-party agent frameworks so they can be evaluated through the same harness as `official`. Each image ships:
+
+- A custom `/usr/local/bin/openclaw` shim (`images/{type}/shim/openclaw`) that translates AgentCanary's `openclaw agent ...` calls into the framework's native entrypoint — hermes via `run_agent.py`, nanoclaw via the Claude Agent SDK `query` API (`shim/driver.mjs`).
+- A `mock-api` sidecar, matching the `official` image.
+- `openclaw.overrides.json` (empty `{}` by default).
+
+As with every variant, `openclaw.json` is not committed: it is generated from `config.yaml` by `bash setup.sh` (`scripts/generate_config.py`) before the build, then copied into the build context by `prepare.sh`.
 
 ## Resume Support
 
