@@ -25,7 +25,7 @@ else
     echo ">>> Mode: full (all chain)"
 fi
 
-COMMON_ARGS="$SUITE_ARGS --runs 1 -v --docker"
+COMMON_ARGS="$SUITE_ARGS --runs 1 -v --docker ${EXTRA_COMMON_ARGS:-}"
 
 ## Run
 LOG_DATE=$(date +"%m%d")

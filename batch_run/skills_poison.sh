@@ -25,7 +25,7 @@ else
     echo ">>> Mode: task_5000-5099,7000-7099"
 fi
 
-COMMON_ARGS="$SUITE_ARGS --runs 1 -v --docker"
+COMMON_ARGS="$SUITE_ARGS --runs 1 -v --docker ${EXTRA_COMMON_ARGS:-}"
 
 ## Run
 LOG_DATE=$(date +"%m%d")

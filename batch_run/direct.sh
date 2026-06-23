@@ -25,7 +25,7 @@ else
     echo ">>> Mode: full (all direct)"
 fi
 
-COMMON_ARGS="$SUITE_ARGS --runs 1 -v --docker"
+COMMON_ARGS="$SUITE_ARGS --runs 1 -v --docker ${EXTRA_COMMON_ARGS:-}"
 
 ## Attack methods (uncomment to enable)
 ATTACKS=(
