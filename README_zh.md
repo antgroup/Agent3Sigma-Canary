@@ -15,6 +15,10 @@ Agent3σ-Canary (简称 AgentCanary) 是 [Agent3σ 项目](https://github.com/an
 - **基于轨迹的多维度评分**：评分不只依赖最终单步结果，而是结合完整 Agent 轨迹，从安全后果、安全意识和任务可用性等维度进行综合评估。
 - **高可扩展性**：评测任务定义与环境构建均采用模块化设计，便于扩展自定义评测任务。
 
+## 📢 最新动态
+
+- **2026-06-23**：新增 **Hermes** 和 **NanoClaw** Agent 框架支持。如果你希望支持其他新框架，欢迎提交 issue 或 pull request！
+
 ## 🔄 评测流程
 
 ![AgentCanary evaluation workflow](images/workflow_zh.png)
@@ -123,14 +127,14 @@ bash buildAll.sh
 cd ..
 ```
 
-然后构建评测镜像。AgentCanary 支持评测原生 OpenClaw、集成不同安全插件后的 OpenClaw，以及接入同一评测框架的第三方 Agent 框架。每个 Docker 镜像对应一个独立的评测环境，构建时可以按需选择要评测的镜像变体。
+然后构建评测镜像。AgentCanary 支持评测原生 OpenClaw、Hermes、NanoClaw，以及集成不同安全插件后的 OpenClaw。每个 Docker 镜像对应一个独立的评测环境，构建时可以按需选择要评测的镜像变体。
 
 - **official**：原生 OpenClaw Agent
 - **official_shield**：OpenClaw + Shield 安全插件
 - **official_secureclaw**：OpenClaw + SecureClaw 安全插件
 - **official_clawkeeper**：OpenClaw + ClawKeeper 安全插件
-- **hermes**：hermes-agent（Nous Research）—— 第三方 Agent 框架
-- **nanoclaw**：nanoclaw 运行时（Claude Agent SDK）—— 第三方 Agent 框架
+- **hermes**：原生 Hermes Agent
+- **nanoclaw**：原生 NanoClaw Agent
 
 运行构建脚本后，根据提示选择需要的镜像即可。例如只评测原生 OpenClaw 时选择 `official`；需要比较安全插件效果时，同时选择对应的插件镜像。
 

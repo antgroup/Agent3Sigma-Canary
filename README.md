@@ -21,6 +21,10 @@ Agent3σ-Canary, abbreviated as AgentCanary, is part of the [Agent3σ project](h
 - **Trajectory-based multidimensional scoring**: Scoring is not based only on a single-step result. AgentCanary evaluates the agent's complete execution trajectory across safety outcome, security awareness, and task utility.
 - **High extensibility**: Task definitions and environment construction are modular, making it easy to add custom evaluation tasks.
 
+## 📢 What's New
+
+- **2026-06-23**: Added support for the **Hermes** and **NanoClaw** agent frameworks. Issues and pull requests for supporting more frameworks are welcome!
+
 ## 🔄 Evaluation Workflow
 
 ![AgentCanary evaluation workflow](images/workflow.png)
@@ -129,14 +133,14 @@ bash buildAll.sh
 cd ..
 ```
 
-Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, OpenClaw variants integrated with different security plugins, and third-party agent frameworks adapted into the same evaluation harness. Each Docker image corresponds to an independent evaluation environment, and you can choose which variants to build.
+Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, Hermes, NanoClaw, and OpenClaw variants integrated with different security plugins. Each Docker image corresponds to an independent evaluation environment, and you can choose which variants to build.
 
 - **official**: Vanilla OpenClaw agent
 - **official_shield**: OpenClaw + Shield security plugin
 - **official_secureclaw**: OpenClaw + SecureClaw security plugin
 - **official_clawkeeper**: OpenClaw + ClawKeeper security plugin
-- **hermes**: hermes-agent (Nous Research) — a third-party agent framework
-- **nanoclaw**: nanoclaw runtime (Claude Agent SDK) — a third-party agent framework
+- **hermes**: Vanilla Hermes agent
+- **nanoclaw**: Vanilla NanoClaw agent
 
 After running the build script, select the image variants you need from the prompt. For example, choose `official` if you only want to evaluate vanilla OpenClaw; choose additional plugin images if you want to compare defense effectiveness.
 
