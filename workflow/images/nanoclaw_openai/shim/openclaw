@@ -1,0 +1,291 @@
+#!/usr/bin/env python3
+"""nanoclaw_openai variant shim — dispatches between two drivers based on
+the model's API protocol in openclaw.json:
+
+  - anthropic-messages → driver.mjs (existing Claude Agent SDK path)
+  - openai-completions → driver_openai.mjs (opencode/OpenAI path)
+
+Other openclaw CLI surface (agents list/add/delete, plugins install no-op)
+matches the nanoclaw shim verbatim."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import shutil
+import subprocess
+import sys
+import uuid
+from pathlib import Path
+from typing import Any, Dict, List
+
+OPENCLAW_HOME = Path("/root/.openclaw")
+CONFIG_PATH = OPENCLAW_HOME / "openclaw.json"
+AGENTS_DIR = OPENCLAW_HOME / "agents"
+STATE_PATH = OPENCLAW_HOME / "shim_state.json"
+DRIVER_CLAUDE = "/opt/nanoclaw-driver/driver.mjs"
+DRIVER_OPENAI = "/opt/nanoclaw-driver/driver_openai.mjs"
+
+
+def _load_state() -> Dict[str, Any]:
+    if STATE_PATH.exists():
+        try:
+            return json.loads(STATE_PATH.read_text())
+        except Exception:
+            pass
+    return {"agents": {}}
+
+
+def _save_state(state: Dict[str, Any]) -> None:
+    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    STATE_PATH.write_text(json.dumps(state, indent=2))
+
+
+def _load_provider_config() -> Dict[str, Any]:
+    if not CONFIG_PATH.exists():
+        return {}
+    return json.loads(CONFIG_PATH.read_text())
+
+
+def _resolve_provider(full_model_id: str, cfg: Dict[str, Any]) -> Dict[str, Any]:
+    if "/" not in full_model_id:
+        raise SystemExit(f"shim: model id must be provider/model, got {full_model_id}")
+    provider_id, model_id = full_model_id.split("/", 1)
+    providers = cfg.get("models", {}).get("providers", {})
+    prov = providers.get(provider_id) or {}
+    model_meta = None
+    for m in prov.get("models", []):
+        if m.get("id") == model_id:
+            model_meta = m
+            break
+    return {
+        "provider_id": provider_id,
+        "model_id": model_id,
+        "base_url": prov.get("baseUrl"),
+        "api_key": prov.get("apiKey"),
+        "api": (model_meta or {}).get("api") or prov.get("api") or "openai-completions",
+    }
+
+
+def cmd_agents_list(args: argparse.Namespace) -> None:
+    state = _load_state()
+    for name, info in state["agents"].items():
+        print(f"- {name}")
+        print(f"    Workspace: {info.get('workspace')}")
+        print(f"    Model: {info.get('model')}")
+
+
+def cmd_agents_add(args: argparse.Namespace) -> None:
+    state = _load_state()
+    agent_id = args.id.replace(":", "-").lower()
+    state["agents"][agent_id] = {
+        "model": args.model,
+        "workspace": str(args.workspace),
+    }
+    _save_state(state)
+    (AGENTS_DIR / agent_id / "sessions").mkdir(parents=True, exist_ok=True)
+    if args.workspace:
+        Path(args.workspace).mkdir(parents=True, exist_ok=True)
+    print(f"Added agent {agent_id}")
+
+
+def cmd_agents_delete(args: argparse.Namespace) -> None:
+    state = _load_state()
+    agent_id = args.id.replace(":", "-").lower()
+    state["agents"].pop(agent_id, None)
+    _save_state(state)
+    agent_dir = AGENTS_DIR / agent_id
+    if agent_dir.exists():
+        shutil.rmtree(agent_dir, ignore_errors=True)
+    print(f"Deleted agent {agent_id}")
+
+
+def _write_minimal_transcript(
+    agent_id: str,
+    session_id: str,
+    user_msg: str,
+    events_from_driver: List[Dict[str, Any]],
+) -> Path:
+    sessions_dir = AGENTS_DIR / agent_id / "sessions"
+    sessions_dir.mkdir(parents=True, exist_ok=True)
+    transcript_path = sessions_dir / f"{session_id}.jsonl"
+
+    out_events: List[Dict[str, Any]] = []
+    out_events.append(
+        {"type": "message", "message": {"role": "user", "content": [{"type": "text", "text": user_msg}]}}
+    )
+
+    for ev in events_from_driver or []:
+        kind = ev.get("kind")
+        if kind == "assistant_text":
+            text = ev.get("text", "")
+            if text.strip():
+                out_events.append(
+                    {
+                        "type": "message",
+                        "message": {"role": "assistant", "content": [{"type": "text", "text": text}]},
+                    }
+                )
+        elif kind == "tool_use":
+            out_events.append(
+                {
+                    "type": "message",
+                    "message": {
+                        "role": "assistant",
+                        "content": [
+                            {
+                                "type": "toolCall",
+                                "name": ev.get("name", ""),
+                                "arguments": ev.get("arguments", {}),
+                            }
+                        ],
+                    },
+                }
+            )
+        elif kind == "tool_result":
+            result = ev.get("result", "")
+            if not isinstance(result, str):
+                result = json.dumps(result)
+            out_events.append(
+                {
+                    "type": "message",
+                    "message": {"role": "toolResult", "content": [result[:10000]]},
+                }
+            )
+
+    with transcript_path.open("w", encoding="utf-8") as f:
+        for ev in out_events:
+            f.write(json.dumps(ev, ensure_ascii=False) + "\n")
+
+    sessions_store = sessions_dir / "sessions.json"
+    sessions_store.write_text(json.dumps({"currentSessionId": session_id}))
+    return transcript_path
+
+
+def cmd_agent_invoke(args: argparse.Namespace) -> None:
+    state = _load_state()
+    agent_id = args.agent.replace(":", "-").lower()
+    info = state["agents"].get(agent_id) or {}
+    model_full = info.get("model") or ""
+    workspace = info.get("workspace") or os.getcwd()
+    if not model_full:
+        print(f"shim: agent {agent_id} not registered", file=sys.stderr)
+        sys.exit(2)
+
+    cfg = _load_provider_config()
+    prov = _resolve_provider(model_full, cfg)
+    base_url = prov["base_url"]
+    api_key = prov["api_key"]
+    model = prov["model_id"]
+    api = prov["api"]
+
+    env = os.environ.copy()
+    env["NANOCLAW_DRIVER_MODEL"] = model
+    env["NANOCLAW_DRIVER_PROMPT"] = args.message
+    env["NANOCLAW_DRIVER_CWD"] = workspace
+    env["NANOCLAW_DRIVER_SKILLS_DIR"] = "/root/.openclaw/skills"
+    env["NANOCLAW_DRIVER_BASE_URL"] = base_url or ""
+    env["NANOCLAW_DRIVER_API_KEY"] = api_key or ""
+
+    if api == "anthropic-messages":
+        driver = DRIVER_CLAUDE
+        # claude driver expects ANTHROPIC_BASE_URL/AUTH_TOKEN
+        env["ANTHROPIC_BASE_URL"] = base_url or ""
+        env["ANTHROPIC_AUTH_TOKEN"] = api_key or ""
+        env["ANTHROPIC_API_KEY"] = api_key or ""
+    else:
+        driver = DRIVER_OPENAI
+        # Provider hint for opencode — default 'openai' for openai-completions
+        # endpoints. Override per-provider via OPENCODE_PROVIDER if needed (e.g.
+        # 'google' for Gemini endpoints if opencode rejects 'openai').
+        env.setdefault("NANOCLAW_DRIVER_OPENCODE_PROVIDER", "openai")
+
+    # Shim-internal timeout — bumped from 600s to 1800s to accommodate the
+    # opencode→gemini path on multi-session / multi-turn tasks (chain, memory
+    # with multiple sessions, indirect). Override via SHIM_TIMEOUT_SECONDS.
+    shim_timeout = int(os.environ.get("SHIM_TIMEOUT_SECONDS", "1800"))
+
+    def _run_driver():
+        return subprocess.run(
+            ["node", driver],
+            cwd=workspace,
+            env=env,
+            capture_output=True,
+            text=True,
+            timeout=shim_timeout,
+        )
+
+    proc = _run_driver()
+    stdout = proc.stdout or ""
+    stderr = proc.stderr or ""
+    # Retry once on transient SDK auth glitch ("Not logged in")
+    if ("Not logged in" in stdout or "Not logged in" in stderr) and "---NANOCLAW-RESULT-BEGIN---" in stdout:
+        print("shim: detected transient 'Not logged in', retrying once", file=sys.stderr)
+        proc = _run_driver()
+        stdout = proc.stdout or ""
+        stderr = proc.stderr or ""
+
+    events: List[Dict[str, Any]] = []
+    if "---NANOCLAW-RESULT-BEGIN---" in stdout:
+        payload = stdout.split("---NANOCLAW-RESULT-BEGIN---", 1)[1].split("---NANOCLAW-RESULT-END---", 1)[0].strip()
+        try:
+            parsed = json.loads(payload)
+            events = parsed.get("events", []) or []
+        except Exception as exc:
+            print(f"shim: failed to parse driver payload: {exc}", file=sys.stderr)
+    else:
+        print(f"shim: no result block ({driver})", file=sys.stderr)
+        print(stdout[-2000:], file=sys.stderr)
+        if stderr:
+            print(stderr[-2000:], file=sys.stderr)
+
+    session_uuid = args.session_id or uuid.uuid4().hex
+    transcript_path = _write_minimal_transcript(agent_id, session_uuid, args.message, events)
+    print(f"shim: wrote transcript {transcript_path}")
+    sys.exit(0 if proc.returncode == 0 else proc.returncode)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(prog="openclaw", description="nanoclaw_openai shim of the openclaw CLI")
+    sub = parser.add_subparsers(dest="cmd", required=True)
+
+    agents = sub.add_parser("agents")
+    agents_sub = agents.add_subparsers(dest="sub", required=True)
+    agents_sub.add_parser("list")
+
+    add = agents_sub.add_parser("add")
+    add.add_argument("id")
+    add.add_argument("--model", required=True)
+    add.add_argument("--workspace", required=True)
+    add.add_argument("--non-interactive", action="store_true")
+
+    delete = agents_sub.add_parser("delete")
+    delete.add_argument("id")
+    delete.add_argument("--force", action="store_true")
+
+    plugins = sub.add_parser("plugins")
+    plugins_sub = plugins.add_subparsers(dest="sub", required=False)
+    plugins_sub.add_parser("install")
+
+    agent_cmd = sub.add_parser("agent")
+    agent_cmd.add_argument("--agent", required=True)
+    agent_cmd.add_argument("--session-id", required=True)
+    agent_cmd.add_argument("--message", required=True)
+
+    args, _ = parser.parse_known_args()
+    if args.cmd == "agents":
+        if args.sub == "list":
+            cmd_agents_list(args)
+        elif args.sub == "add":
+            cmd_agents_add(args)
+        elif args.sub == "delete":
+            cmd_agents_delete(args)
+    elif args.cmd == "agent":
+        cmd_agent_invoke(args)
+    elif args.cmd == "plugins":
+        pass
+
+
+if __name__ == "__main__":
+    main()

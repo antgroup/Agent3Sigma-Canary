@@ -45,7 +45,7 @@ PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 WORKSPACES_DIR="${PROJECT_DIR}/.workspaces"
 IMAGES_DIR="${SCRIPT_DIR}/images"
 
-IMAGE_TYPES=("official" "offical_shield" "offical_secureclaw" "offical_clawkeeper")
+IMAGE_TYPES=("official" "offical_shield" "offical_secureclaw" "offical_clawkeeper" "hermes" "nanoclaw")
 
 DOCKER_PROXY_ENABLED=false
 DOCKER_PROXY_URL=""
@@ -201,6 +201,8 @@ select_image_types() {
     echo "  [2] offical_shield - official + openclaw-shield security plugin"
     echo "  [3] offical_secureclaw - official + SecureClaw security plugin"
     echo "  [4] offical_clawkeeper - official + ClawKeeper security plugin"
+    echo "  [5] hermes - hermes-agent (Nous Research) + custom skills + mock-api"
+    echo "  [6] nanoclaw - nanoclaw runtime (Claude Agent SDK) + custom skills + mock-api"
     echo ""
     echo "  [A] Build all (default)"
     echo "  [Q] Quit"
@@ -228,6 +230,8 @@ select_image_types() {
                 2) SELECTED_TYPES+=("offical_shield") ;;
                 3) SELECTED_TYPES+=("offical_secureclaw") ;;
                 4) SELECTED_TYPES+=("offical_clawkeeper") ;;
+                5) SELECTED_TYPES+=("hermes") ;;
+                6) SELECTED_TYPES+=("nanoclaw") ;;
                 *) log_warn "Skipping invalid choice: ${choice}" ;;
             esac
         done
