@@ -227,6 +227,11 @@ def _parse_args() -> argparse.Namespace:
         help="Continue running all tasks even if sanity check scores 0%%",
     )
     parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume mode: skip tasks whose result JSON already exists in --output-dir for this cell, and merge prior per-task results into the final aggregate. Default is OFF (fresh run, every task re-executed into a new job_<cell>#<ts>/ dir).",
+    )
+    parser.add_argument(
         "--attack",
         type=str,
         default=None,
@@ -374,7 +379,7 @@ def _next_run_id(run_root: Path) -> str:
 
 # Known leaderboard image tags. Used to derive a short tag from DOCKER_IMAGE
 # when DOCKER_IMAGE_TAG is not explicitly set.
-IMAGE_NAMES = ("shield", "agentguard", "secureclaw", "clawkeeper")
+IMAGE_NAMES = ("shield", "agentguard", "secureclaw", "clawkeeper", "hermes", "nanoclaw")
 
 
 def _slugify_image_tag(raw: str) -> str:
@@ -706,13 +711,34 @@ def main():
     suite_slug = args.suite.replace(",", "_").replace(" ", "_")
     attack_slug = args.attack.replace(":", "_").replace(" ", "_") if args.attack else "no-attack"
     from datetime import datetime
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     context_slug = "no_context" if args.no_context else "with_context"
     image_slug = _resolve_image_tag()
-    run_semantic_id = f"{suite_slug}#{model_slug}#{attack_slug}#{context_slug}#{image_slug}#{timestamp}"
-    # Define output_dir early so each task can write JSON immediately after completion
+    cell_prefix = f"{suite_slug}#{model_slug}#{attack_slug}#{context_slug}#{image_slug}"
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Resume: if a prior job dir exists for THIS exact cell, reuse its
+    # timestamp so newly-run tasks land in the same job_<...>#<ts>/ dir as
+    # the existing tasks. Without this, partial reruns would create a NEW
+    # job dir, splitting a cell's task results across multiple dirs and
+    # confusing downstream tools (audit, leaderboard build, etc.).
+    timestamp = None
+    if args.resume:
+        existing = sorted(output_dir.glob(f"job_{cell_prefix}#*"))
+        if existing:
+            existing_dir = existing[-1]  # most recent
+            parts = existing_dir.name.split("#")
+            if len(parts) >= 6:
+                timestamp = parts[-1]
+                logger.info("⏭️  Resume: reusing existing job dir %s (ts=%s)", existing_dir.name, timestamp)
+            if len(existing) > 1:
+                logger.warning(
+                    "⚠️  %d job dirs match this cell — picking most recent. Earlier ones: %s",
+                    len(existing), [e.name for e in existing[:-1]]
+                )
+    if timestamp is None:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    run_semantic_id = f"{cell_prefix}#{timestamp}"
     # Current project directory
     skill_dir = skill_root
     # agent_id naming
@@ -776,9 +802,70 @@ def main():
         logger.info("🔓 Attack method: %s (category: %s)", args.attack, attack.category)
 
     runs_per_task = max(1, args.runs)
+
+    # Resume: scope the "already done" check to THIS cell's job dirs only.
+    # The cell identity is `{suite}#{model}#{attack}#{context}#{image}` (no
+    # timestamp). Multiple cells share the same --output-dir, so scanning
+    # the whole output_dir would falsely cross-skip tasks between different
+    # (model, attack, context, image) combinations.
+    #
+    # Per-task file naming (from _output_single_task):
+    #   - runs_per_task == 1: task_task_<id>/task_<id>.json
+    #   - runs_per_task >  1: task_task_<id>/task_<id>_run_<N>.json (one per run)
+    # Resume must track (task_id, run_index) pairs so a 5-run task that
+    # completed 3 runs can resume the remaining 2.
+    #
+    # Pre-existing per-task data is loaded into `existing_task_results` and
+    # carried into the final aggregate / score summary so leaderboard /
+    # audit / efficiency reports stay consistent across a resume boundary.
+    already_done_runs: Dict[str, set] = {}  # task_id -> set of completed run_index (1-based)
+    existing_task_results: List[Dict[str, Any]] = []  # full task JSON dicts for tasks not run this session
+    if args.resume and output_dir.exists():
+        for job_dir in output_dir.glob(f"job_{cell_prefix}#*"):
+            if not job_dir.is_dir():
+                continue
+            for jp in job_dir.rglob("task_task_*/task_*.json"):
+                fname = jp.name
+                # Skip non-task files (shouldn't be any, but safe)
+                if not fname.startswith("task_"):
+                    continue
+                try:
+                    _d = json.loads(jp.read_text(encoding="utf-8"))
+                except Exception:
+                    continue
+                tid = _d.get("task_id")
+                if not tid:
+                    continue
+                # Derive run_index: prefer the value in the JSON; fall back to filename
+                run_idx = _d.get("run_index")
+                if not isinstance(run_idx, int) or run_idx < 1:
+                    import re as _re
+                    m = _re.search(r"_run_(\d+)\.json$", fname)
+                    run_idx = int(m.group(1)) if m else 1
+                already_done_runs.setdefault(tid, set()).add(run_idx)
+                existing_task_results.append(_d)
+    if already_done_runs:
+        full_skip = sum(1 for t in tasks_to_run if len(already_done_runs.get(t.task_id, set())) >= runs_per_task)
+        partial = sum(1 for t in tasks_to_run if 0 < len(already_done_runs.get(t.task_id, set())) < runs_per_task)
+        logger.info("⏭️  Resume cell %s: %d fully done, %d partial (will continue remaining runs)",
+                    cell_prefix, full_skip, partial)
+    elif not args.resume:
+        logger.debug("Fresh run (default): every task will be executed; pass --resume to skip already-completed tasks")
+
     for i, task in enumerate(tasks_to_run, 1):
+        # A task is fully done only if it has completed all `runs_per_task` runs.
+        if len(already_done_runs.get(task.task_id, set())) >= runs_per_task:
+            logger.info("⏭️  Skip %s/%s: %s (all %d runs already completed)",
+                        i, len(tasks_to_run), task.task_id, runs_per_task)
+            continue
         task_grades = []
+        completed_run_indices = already_done_runs.get(task.task_id, set())
         for run_index in range(runs_per_task):
+            # Skip individual runs that already have results (partial-completion resume)
+            if (run_index + 1) in completed_run_indices:
+                logger.info("⏭️  Skip task %s run %d/%d (already completed)",
+                            task.task_id, run_index + 1, runs_per_task)
+                continue
             logger.info("\n%s", "=" * 80)
             logger.info(
                 "📋 Task %s/%s (Run %s/%s)",
@@ -1004,6 +1091,77 @@ def main():
         }
         for result in results
     ]
+
+    # Resume: merge previously-saved per-task results (from earlier runs of
+    # the same cell) into the aggregate so the cell-level JSON, final score,
+    # category summary, and efficiency report stay correct after a resume.
+    # `existing_task_results` was loaded above from this cell's job dir; it
+    # only contains tasks we did NOT re-run this session.
+    new_task_ids = {entry["task_id"] for entry in task_entries}
+    if existing_task_results:
+        from collections import defaultdict as _dd
+        # For multi-run cells, average run scores per task_id.
+        prior_by_tid = _dd(list)
+        for entry in existing_task_results:
+            tid = entry.get("task_id")
+            if not tid or tid in new_task_ids:
+                continue  # task was re-run this session — use the fresh version
+            prior_by_tid[tid].append(entry)
+        for tid, runs in prior_by_tid.items():
+            if not runs:
+                continue
+            task = tasks_by_id.get(tid)
+            if task is None:
+                continue
+            # Match the aggregate grading shape produced for freshly-run tasks:
+            #   grading = {runs: [<per-run grading>, ...], mean, std, min, max}
+            # Per-run grading is the flat per-task grading from each saved
+            # per-task JSON. mean/std/min/max are computed across runs.
+            base = runs[-1]
+            per_run_gradings = []
+            scores = []
+            for r in runs:
+                g = r.get("grading") or {}
+                per_run_gradings.append(g)
+                s = g.get("score")
+                if isinstance(s, (int, float)):
+                    scores.append(s)
+            if scores:
+                mean_score = sum(scores) / len(scores)
+                min_score = min(scores)
+                max_score = max(scores)
+                if len(scores) > 1:
+                    mean = mean_score
+                    std_score = (sum((s - mean) ** 2 for s in scores) / len(scores)) ** 0.5
+                else:
+                    std_score = 0.0
+            else:
+                mean_score = min_score = max_score = None
+                std_score = None
+            grading = {
+                "runs": per_run_gradings,
+                "mean": mean_score,
+                "std": std_score,
+                "min": min_score,
+                "max": max_score,
+            }
+            grades_by_task_id[tid] = grading
+            task_entries.append({
+                "task_id": tid,
+                "status": base.get("status"),
+                "timed_out": base.get("timed_out"),
+                "execution_time": base.get("execution_time"),
+                "transcript": base.get("transcript", []),
+                "transcript_length": base.get("transcript_length", len(base.get("transcript") or [])),
+                "usage": base.get("usage", {}),
+                "workspace": base.get("workspace"),
+                "grading": grading,
+                "frontmatter": task.frontmatter,
+                "exit_code": base.get("exit_code"),
+                "stdout": base.get("stdout", ""),
+                "stderr": base.get("stderr", ""),
+                "resumed_from_prior_run": True,
+            })
 
     efficiency = _compute_efficiency_summary(task_entries, grades_by_task_id)
 

@@ -231,7 +231,42 @@ def start() -> str:
 
     _container_id = result.stdout.strip()
     logger.info("Started Docker container: %s", _container_id[:12])
+    _wait_for_mock_api_ready(_container_id)
     return _container_id
+
+
+def _wait_for_mock_api_ready(container_id: str, timeout_seconds: int = 20) -> None:
+    """Block until mock_api's HTTP listener answers.
+
+    All eval images run mock_api on :80 (HTTP). The nanoclaw image also runs
+    mock_api on :443 (HTTPS, self-signed cert) to support Claude Agent SDK's
+    WebFetch http→https auto-upgrade — we wait for :443 too iff the active
+    DOCKER_IMAGE tag identifies as nanoclaw. Other images (hermes, official,
+    nanoclaw_openai) don't run HTTPS so we only require :80 there. Without
+    this readiness gate, the agent's first WebFetch / curl can race the
+    listener and get ECONNREFUSED, contaminating http_post tasks.
+    """
+    import time as _t
+    img = os.environ.get("DOCKER_IMAGE", "").lower()
+    require_https = ("nanoclaw" in img) and ("nanoclaw_openai" not in img)
+    deadline = _t.time() + timeout_seconds
+    checks = [
+        ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", "2", "http://127.0.0.1:80/"],
+    ]
+    if require_https:
+        checks.append(["curl", "-sk", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", "2", "https://127.0.0.1:443/"])
+    while _t.time() < deadline:
+        ready = True
+        for cmd in checks:
+            r = subprocess.run(["docker", "exec", container_id] + cmd,
+                               capture_output=True, text=True, timeout=4, check=False)
+            if not (r.returncode == 0 and r.stdout.strip().startswith("2")):
+                ready = False
+                break
+        if ready:
+            return
+        _t.sleep(0.5)
+    logger.warning("mock_api readiness check timed out after %ds — proceeding anyway", timeout_seconds)
 
 
 def stop() -> None:

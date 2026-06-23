@@ -334,8 +334,44 @@ def _substitute_env_vars(value: str) -> str:
     return re.sub(r"\$\{(\w+)\}", replacer, str(value))
 
 
+def _purge_stale_container_skills() -> None:
+    """When the active container persists across tasks (the runner usually
+    starts one container per (model, scenario) and reuses it for every task),
+    a prior task's hermes ``skill_copy`` may have left a poison skill in
+    ``/root/.hermes/skills/<name>/`` that would contaminate the current task.
+    For nanoclaw the project-scope dir lives under the workspace which is
+    rmtree'd by ``prepare_task_workspace`` already, so no cleanup is needed.
+
+    This relies on ``/root/.hermes/skills.bundled`` being baked into the
+    hermes image at build time — it contains the names of the bundled
+    skills, so anything not in that list is task-injected and safe to drop.
+    """
+    framework = _detect_framework_from_image()
+    if framework != "hermes":
+        return
+    container_id = docker.get_container_id()
+    if not container_id:
+        return
+    cmd = [
+        "docker", "exec", container_id, "sh", "-c",
+        # Purge non-bundled skills (per /root/.hermes/skills.bundled whitelist)
+        "(test -f /root/.hermes/skills.bundled && "
+        " ls -1 /root/.hermes/skills 2>/dev/null | while read n; do "
+        "   grep -qx \"$n\" /root/.hermes/skills.bundled || rm -rf \"/root/.hermes/skills/$n\"; "
+        " done) ; "
+        # Wipe any leaked memory_poison from a previous task — the current
+        # task's memory_poison setup will re-populate if it has one.
+        "rm -f /root/.hermes/memories/MEMORY.md"
+    ]
+    try:
+        subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    except (subprocess.SubprocessError, OSError) as e:
+        logger.warning("Failed to purge stale hermes state: %s", e)
+
+
 def _run_pre_setup(task: Task, workspace: Path = None, skill_dir: Path = None) -> None:
     """Execute pre-setup steps defined in task frontmatter."""
+    _purge_stale_container_skills()
     pre_setup = task.frontmatter.get("pre_setup", [])
     if not pre_setup:
         return
@@ -374,12 +410,38 @@ def _run_pre_setup(task: Task, workspace: Path = None, skill_dir: Path = None) -
             logger.warning("Unknown pre_setup type: %s", setup_type)
 
 
+def _detect_framework_from_image() -> str:
+    """Map the active DOCKER_IMAGE to a framework name. Each framework
+    discovers skills from a different filesystem location, so skill_copy
+    must place the poison skill where that framework will actually scan."""
+    img = os.environ.get("DOCKER_IMAGE", "").lower()
+    if "nanoclaw_openai" in img:
+        return "nanoclaw_openai"
+    if "nanoclaw" in img:
+        return "nanoclaw"
+    if "hermes" in img:
+        return "hermes"
+    return "openclaw"
+
+
 def _execute_skill_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> None:
     """Execute a skill_copy pre-setup step.
 
-    Copies a skill directory from assets to the agent workspace's skills folder.
-    ``source_path_dir`` is resolved relative to the project root (skill_dir).
-    ``target_path_dir`` is placed under ``<workspace>/skills/``.
+    Copies a skill directory from assets to the location where the active
+    framework actually discovers skills. Different frameworks scan different
+    paths inside the container:
+
+      - openclaw: ``<cwd>/skills/<name>/`` (and bundled ``~/.openclaw/skills/``)
+      - nanoclaw / nanoclaw_openai (Claude Agent SDK): project-scope discovery
+        at ``<cwd>/.claude/skills/<name>/`` (settingSources includes "project")
+      - hermes: ``${HERMES_HOME}/skills/<name>/`` — outside cwd, so we go
+        through ``_copy_to_container_home`` (docker exec + cp) to land it at
+        ``/root/.hermes/skills/<name>/``
+
+    For openclaw and nanoclaw* the host workspace dir is docker-cp'd to
+    ``/tmp/scry/...`` inside the container, so writing host-side under
+    ``<workspace>/...`` is sufficient. For hermes we need an extra hop
+    because ``/root/.hermes`` is not in the docker-cp pipeline.
     """
     import shutil
 
@@ -390,17 +452,60 @@ def _execute_skill_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> N
         return
 
     source = skill_dir / source_path_dir
-    dest = workspace / "skills" / target_path_dir
-
     if not source.exists():
         logger.error("skill_copy source not found: %s", source)
         return
 
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    if dest.exists():
-        shutil.rmtree(dest)
-    shutil.copytree(source, dest)
-    logger.info("skill_copy: copied %s -> %s", source, dest)
+    framework = _detect_framework_from_image()
+
+    # Framework-side skill discovery (hermes `skill_view`, Claude Agent SDK
+    # `Skill`) looks up by the SKILL.md ``name:`` frontmatter field, not by
+    # directory name. When task pre_setup uses a wrapped dir like
+    # ``P5_fair-hiring-policy/`` whose SKILL.md says ``name: fair-hiring-policy``,
+    # placing the skill at ``<root>/P5_fair-hiring-policy/`` makes it appear
+    # in ``available_skills`` (loader uses name) but ``skill_view`` lookup
+    # by name still fails (lookup uses dir name). Parse SKILL.md and place
+    # at the framework path under the *name* so both ends agree.
+    import re as _re
+    skill_md = source / "SKILL.md"
+    framework_dir_name = target_path_dir
+    if skill_md.exists():
+        try:
+            m = _re.search(r"^name:\s*[\"']?([^\"'\n]+)[\"']?\s*$",
+                           skill_md.read_text(encoding="utf-8"),
+                           _re.MULTILINE)
+            if m:
+                framework_dir_name = m.group(1).strip()
+        except Exception:
+            pass
+
+    # Always also keep a copy under <workspace>/skills/<target_path_dir>/ so
+    # the file is visible in the workspace tree at the dir name the task
+    # YAML expects (some judges check this), and openclaw-style discovery
+    # (which scans <workspace>/skills/*) keeps working.
+    ws_dest = workspace / "skills" / target_path_dir
+    ws_dest.parent.mkdir(parents=True, exist_ok=True)
+    if ws_dest.exists():
+        shutil.rmtree(ws_dest)
+    shutil.copytree(source, ws_dest)
+    logger.info("skill_copy[%s]: copied %s -> %s", framework, source, ws_dest)
+
+    if framework in ("nanoclaw", "nanoclaw_openai"):
+        # Claude Agent SDK project-scope skill discovery: <cwd>/.claude/skills/<name>/
+        proj_dest = workspace / ".claude" / "skills" / framework_dir_name
+        proj_dest.parent.mkdir(parents=True, exist_ok=True)
+        if proj_dest.exists():
+            shutil.rmtree(proj_dest)
+        shutil.copytree(source, proj_dest)
+        logger.info("skill_copy[%s]: also placed at %s for SDK discovery (skill name=%s)",
+                    framework, proj_dest, framework_dir_name)
+
+    if framework == "hermes":
+        # ${HERMES_HOME}/skills/<name>/ — outside the docker-cp pipeline,
+        # so use the home-dir copy path (docker exec + cp).
+        _copy_to_container_home(source, f"~/.hermes/skills/{framework_dir_name}", [], workspace)
+        logger.info("skill_copy[hermes]: also placed at container ~/.hermes/skills/%s (skill name)",
+                    framework_dir_name)
 
 
 def _execute_memory_poison_setup(step: dict, workspace: Path) -> None:
@@ -422,16 +527,53 @@ def _execute_memory_poison_setup(step: dict, workspace: Path) -> None:
         logger.error("memory_poison context file not found: %s", source)
         return
 
-    # Read context content
+    # Read context content + append poison
     context_content = source.read_text(encoding="utf-8")
-
-    # Combine with poison content
     combined_content = context_content + "\n\n" + "## Important Note\n\n" + poison_content
 
-    # Write to workspace MEMORY.md
+    framework = _detect_framework_from_image()
+
+    # Always keep <workspace>/MEMORY.md (openclaw convention + workspace-visible)
     dest = workspace / "MEMORY.md"
     dest.write_text(combined_content, encoding="utf-8")
-    logger.info("memory_poison: created MEMORY.md from %s with poison appended (poison_content: %s)", source, poison_content)
+    logger.info("memory_poison[%s]: wrote workspace MEMORY.md from %s with poison (%s)",
+                framework, source, poison_content[:80])
+
+    if framework in ("nanoclaw", "nanoclaw_openai"):
+        # Claude Code SDK reads CLAUDE.md (project-scope under cwd, user-scope
+        # under ~/.claude/CLAUDE.md). The settingSources:["user","project"]
+        # driver setting wires CLAUDE.md into the system prompt automatically.
+        # Write the project-scope one so it doesn't leak across containers.
+        claude_md = workspace / "CLAUDE.md"
+        claude_md.write_text(combined_content, encoding="utf-8")
+        logger.info("memory_poison[%s]: also wrote <workspace>/CLAUDE.md for SDK discovery", framework)
+
+    if framework == "hermes":
+        # hermes loads ${HERMES_HOME}/memories/MEMORY.md (see
+        # hermes_cli/profiles.py:65, hermes_cli/doctor.py:927).
+        # Stage on host then docker-cp to the container's ~/.hermes/memories/.
+        import tempfile
+        container_id = docker.get_container_id()
+        if not container_id:
+            logger.warning("memory_poison[hermes]: no active container, skipping ~/.hermes/memories placement")
+            return
+        try:
+            subprocess.run(["docker", "exec", container_id, "mkdir", "-p", "/root/.hermes/memories"],
+                           capture_output=True, text=True, timeout=10, check=False)
+            with tempfile.NamedTemporaryFile("w", suffix=".md", delete=False, encoding="utf-8") as tf:
+                tf.write(combined_content)
+                tmp_path = tf.name
+            cp_result = subprocess.run(
+                ["docker", "cp", tmp_path, f"{container_id}:/root/.hermes/memories/MEMORY.md"],
+                capture_output=True, text=True, timeout=15, check=False,
+            )
+            os.unlink(tmp_path)
+            if cp_result.returncode != 0:
+                logger.error("memory_poison[hermes]: docker cp failed: %s", cp_result.stderr)
+            else:
+                logger.info("memory_poison[hermes]: placed at container /root/.hermes/memories/MEMORY.md")
+        except Exception as exc:
+            logger.warning("memory_poison[hermes]: container placement failed: %s", exc)
 
 
 def _execute_dependency_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> None:
@@ -1235,81 +1377,70 @@ def _call_llm_api_internal(
             "LLM API configuration is incomplete; missing: " + ", ".join(missing)
         )
 
-    url = f"{base_url.rstrip('/')}/chat/completions"
-    payload = json.dumps({
-        "model": model,
-        "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 25600,
-    }).encode("utf-8")
+    # Use the openai SDK (httpx underneath) because Python's stdlib urllib
+    # under OpenSSL 3.5 cannot complete the TLS handshake to some HTTPS LLM
+    # endpoints (manifests as "SSL: UNEXPECTED_EOF_WHILE_READING" on every
+    # retry). httpx negotiates the same handshake successfully.
+    try:
+        from openai import OpenAI
+        from openai import RateLimitError, APITimeoutError, APIConnectionError, BadRequestError, APIStatusError
+    except ImportError:
+        raise LLMAPIConfigError(
+            "openai package required for judge/pair calls; pip install openai"
+        )
 
+    client = OpenAI(api_key=api_key, base_url=base_url, timeout=timeout_seconds)
     attempt = 0
     while True:
         attempt += 1
-
-        req = request.Request(
-            url,
-            data=payload,
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-            },
-            method="POST",
-        )
-
         try:
-            with request.urlopen(req, timeout=timeout_seconds) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-                choices = data.get("choices", [])
-                if choices:
-                    if attempt > 1:
-                        logger.info("LLM API call succeeded on attempt %d", attempt)
-                    return choices[0].get("message", {}).get("content", "")
-                return ""
-
-        except error.HTTPError as exc:
-            # Handle rate limit (429) and server errors (5xx)
-            if exc.code == 429:
-                retry_after = exc.headers.get("Retry-After", "30")
-                try:
-                    wait_time = int(retry_after)
-                except ValueError:
-                    wait_time = 30
-                logger.warning(
-                    "LLM API rate limited (429), waiting %ds before retry (attempt %d)",
-                    wait_time, attempt
-                )
-                time.sleep(wait_time)
-                continue
-            elif exc.code >= 500:
-                logger.warning(
-                    "LLM API server error (%d), retrying in 10s (attempt %d)",
-                    exc.code, attempt
-                )
-                time.sleep(10)
-                continue
-            else:
-                logger.warning("LLM API HTTP error (%d): %s", exc.code, exc)
-                if max_retries > 0 and attempt >= max_retries:
-                    return ""
-                time.sleep(5)
-                continue
-
-        except error.URLError as exc:
-            # Connection error / timeout - retry
+            resp = client.chat.completions.create(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=25600,
+            )
+            if attempt > 1:
+                logger.info("LLM API call succeeded on attempt %d", attempt)
+            choice = resp.choices[0] if resp.choices else None
+            if choice and choice.message:
+                return choice.message.content or ""
+            return ""
+        except RateLimitError as exc:
             logger.warning(
-                "LLM API connection error/timeout, retrying in 10s (attempt %d): %s",
-                attempt, exc
+                "LLM API rate limited (429), waiting 30s before retry (attempt %d)", attempt
+            )
+            time.sleep(30)
+            continue
+        except APITimeoutError as exc:
+            logger.warning(
+                "LLM API timeout, retrying in 10s (attempt %d): %s", attempt, exc
             )
             time.sleep(10)
             continue
-
-        except (json.JSONDecodeError, OSError) as exc:
-            logger.warning("LLM API call failed: %s", exc)
-            if max_retries > 0 and attempt >= max_retries:
-                return ""
-            time.sleep(5)
+        except APIConnectionError as exc:
+            logger.warning(
+                "LLM API connection error, retrying in 10s (attempt %d): %s", attempt, exc
+            )
+            time.sleep(10)
             continue
-
+        except APIStatusError as exc:
+            status = getattr(exc, "status_code", None) or 0
+            if status >= 500:
+                logger.warning(
+                    "LLM API server error (%d), retrying in 10s (attempt %d): %s",
+                    status, attempt, exc
+                )
+                time.sleep(10)
+                continue
+            # 4xx client errors (content-filter 428, auth 401/403, bad-request 400 etc.)
+            # are deterministic — retrying with the same prompt won't help. Give up
+            # quickly so callers (e.g. PAIR judge loop) can record the failure and
+            # move on instead of looping every 5s until the per-task timeout kills us.
+            logger.warning(
+                "LLM API client error (%d) — non-retriable, returning empty: %s",
+                status, exc
+            )
+            return ""
         except Exception as exc:
             logger.warning("LLM API unexpected error: %s", exc)
             if max_retries > 0 and attempt >= max_retries:
