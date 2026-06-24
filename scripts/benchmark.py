@@ -202,7 +202,7 @@ def _parse_args() -> argparse.Namespace:
         "--timeout-multiplier",
         type=float,
         default=10.0,
-        help="Scale all task timeouts. Default 6.0 leaves generous margin for "
+        help="Scale all task timeouts. Default 10.0 leaves generous margin for "
              "slower agent frameworks (e.g. hermes) under parallel load; "
              "fast agents still finish well within budget.",
     )
