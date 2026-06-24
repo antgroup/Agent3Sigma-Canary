@@ -24,7 +24,7 @@ Agent3σ-Canary, abbreviated as AgentCanary, is part of the [Agent3σ project](h
 ## 📢 What's New
 
 - **2026-06-23**: Added support for the **Hermes** and **NanoClaw** agent frameworks. Issues and pull requests for supporting more frameworks are welcome!
-- **2026-05-27**: Added the **safety evaluation suite** — no-attacker tasks measuring risky agent behavior under ambiguous, conflicting, or urgent instructions.
+- **2026-06-23**: Added the **safety evaluation suite** — no-attacker tasks measuring risky agent behavior under ambiguous, conflicting, or urgent instructions.
 
 ## 🔄 Evaluation Workflow
 

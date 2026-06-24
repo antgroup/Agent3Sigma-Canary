@@ -18,7 +18,7 @@ Agent3σ-Canary (简称 AgentCanary) 是 [Agent3σ 项目](https://github.com/an
 ## 📢 最新动态
 
 - **2026-06-23**：新增 **Hermes** 和 **NanoClaw** Agent 框架支持。如果你希望支持其他新框架，欢迎提交 issue 或 pull request！
-- **2026-05-27**：新增 **safety 评测套件** —— 无攻击者，衡量 Agent 在模糊、冲突或紧急指令下的风险行为。
+- **2026-06-23**：新增 **safety 评测套件** —— 无攻击者，衡量 Agent 在模糊、冲突或紧急指令下的风险行为。
 
 ## 🔄 评测流程
 
