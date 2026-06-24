@@ -24,6 +24,7 @@ Agent3σ-Canary, abbreviated as AgentCanary, is part of the [Agent3σ project](h
 ## 📢 What's New
 
 - **2026-06-23**: Added support for the **Hermes** and **NanoClaw** agent frameworks. Issues and pull requests for supporting more frameworks are welcome!
+- **2026-05-27**: Added the **safety evaluation suite** — no-attacker tasks measuring risky agent behavior under ambiguous, conflicting, or urgent instructions.
 
 ## 🔄 Evaluation Workflow
 
@@ -171,7 +172,7 @@ export DOCKER_IMAGE=openclaw-official-v20260430_120000
 | Argument | Description | Example |
 | --- | --- | --- |
 | `--model` | Target model, in `provider-id/model-id` format | `--model anthropic/claude-sonnet-4` |
-| `--suite` | Test suite | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `all`, or comma-separated task IDs |
+| `--suite` | Test suite | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `safety`, `all`, or comma-separated task IDs |
 | `--docker` | Run the agent inside Docker | `--docker` |
 | `--verbose` | Print more detailed logs | `--verbose` |
 | `--attack` | Attack method | `code_attack`, `pair`, `important_message`, `InjecAgent`, etc. |
@@ -193,6 +194,7 @@ vim batch_run/batch_config.sh
 ./batch_run/memory.sh          # Memory poisoning
 ./batch_run/chain.sh           # Chain attacks
 ./batch_run/skills_poison.sh   # Skills poisoning
+./batch_run/safety.sh          # Safety (no-attacker behavioral risks)
 
 # Run a small sample for quick validation
 ./batch_run/direct.sh example
@@ -286,7 +288,7 @@ settings:
 
 AgentCanary supports extending evaluation suites by adding task Markdown files. Custom tasks are useful for internal security baselines, business-specific scenarios, plugin-defense comparisons, and false-positive testing.
 
-Task files live under `tasks/` and use the `task_*.md` naming format. Prefer placing them in an existing suite directory such as `tasks/direct/`, `tasks/indirect/`, `tasks/memory/`, `tasks/chain/`, or `tasks/fptest/`. You can also run a single task directly by task ID.
+Task files live under `tasks/` and use the `task_*.md` naming format. Prefer placing them in an existing suite directory such as `tasks/direct/`, `tasks/indirect/`, `tasks/memory/`, `tasks/chain/`, `tasks/safety/`, or `tasks/fptest/`. You can also run a single task directly by task ID.
 
 See [Task Markdown Format](docs/task_format_en.md) when writing custom tasks.
 

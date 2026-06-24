@@ -18,6 +18,7 @@ Agent3σ-Canary (简称 AgentCanary) 是 [Agent3σ 项目](https://github.com/an
 ## 📢 最新动态
 
 - **2026-06-23**：新增 **Hermes** 和 **NanoClaw** Agent 框架支持。如果你希望支持其他新框架，欢迎提交 issue 或 pull request！
+- **2026-05-27**：新增 **safety 评测套件** —— 无攻击者，衡量 Agent 在模糊、冲突或紧急指令下的风险行为。
 
 ## 🔄 评测流程
 
@@ -165,7 +166,7 @@ export DOCKER_IMAGE=openclaw-official-v20260430_120000
 | 参数 | 说明 | 示例 |
 |------|------|------|
 | `--model` | 被测模型（provider-id/model-id） | `--model anthropic/claude-sonnet-4` |
-| `--suite` | 测试套件 | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `all`, 或逗号分隔的 task ID |
+| `--suite` | 测试套件 | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `safety`, `all`, 或逗号分隔的 task ID |
 | `--docker` | 在 Docker 容器中运行 | `--docker` |
 | `--verbose` | 输出更详细的运行日志 | `--verbose` |
 | `--attack` | 攻击方法 | `code_attack`, `pair`, `important_message`, `InjecAgent` 等 |
@@ -187,6 +188,7 @@ vim batch_run/batch_config.sh
 ./batch_run/memory.sh          # 记忆投毒
 ./batch_run/chain.sh           # 链式攻击
 ./batch_run/skills_poison.sh   # 技能投毒
+./batch_run/safety.sh          # 安全行为（无攻击者）
 
 # 运行少量样例快速验证
 ./batch_run/direct.sh example
@@ -279,7 +281,7 @@ settings:
 
 AgentCanary 支持通过新增 task markdown 文件扩展评测集。自定义任务适用于内部安全基线、特定业务场景、插件防护能力对比、误报测试等评估需求。
 
-任务文件统一放在 `tasks/` 目录下，文件名使用 `task_*.md` 格式。建议优先放入已有套件目录，例如 `tasks/direct/`、`tasks/indirect/`、`tasks/memory/`、`tasks/chain/`、`tasks/fptest/`；也可以通过 task ID 直接运行单个任务。
+任务文件统一放在 `tasks/` 目录下，文件名使用 `task_*.md` 格式。建议优先放入已有套件目录，例如 `tasks/direct/`、`tasks/indirect/`、`tasks/memory/`、`tasks/chain/`、`tasks/safety/`、`tasks/fptest/`；也可以通过 task ID 直接运行单个任务。
 
 配置自定义任务时，参考 [Task Markdown 格式参考](docs/task_format_zh.md)。
 
