@@ -201,8 +201,10 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--timeout-multiplier",
         type=float,
-        default=3.0,
-        help="Scale all task timeouts",
+        default=10.0,
+        help="Scale all task timeouts. Default 6.0 leaves generous margin for "
+             "slower agent frameworks (e.g. hermes) under parallel load; "
+             "fast agents still finish well within budget.",
     )
     parser.add_argument(
         "--runs",
