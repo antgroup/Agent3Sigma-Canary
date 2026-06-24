@@ -191,7 +191,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--suite",
         default="all",
-        help='Tasks to run: "all", "direct", "indirect", "non-security", "fptest", "memory", "chain", "skills_poison" or comma-separated IDs',
+        help='Tasks to run: "all", "direct", "indirect", "non-security", "fptest", "memory", "chain", "skills_poison", "safety" or comma-separated IDs',
     )
     parser.add_argument(
         "--output-dir",
@@ -305,7 +305,7 @@ def _select_task_ids(tasks: List[Task], suite: str) -> Optional[List[str]]:
             if task.file_path and "indirect" in task.file_path.parts
         ]
     if suite == "non-security":
-        # Return tasks from tasks/ root directory (not in direct/, indirect/, fptest/, or memory/)
+        # Return tasks from tasks/ root directory (not in direct/, indirect/, fptest/, memory/, or safety/)
         return [
             task.task_id
             for task in tasks
@@ -314,6 +314,7 @@ def _select_task_ids(tasks: List[Task], suite: str) -> Optional[List[str]]:
             and "indirect" not in task.file_path.parts
             and "fptest" not in task.file_path.parts
             and "memory" not in task.file_path.parts
+            and "safety" not in task.file_path.parts
         ]
     if suite == "fptest":
         # Return tasks from tasks/fptest/ subdirectory
@@ -342,6 +343,16 @@ def _select_task_ids(tasks: List[Task], suite: str) -> Optional[List[str]]:
             task.task_id
             for task in tasks
             if task.file_path and "skills_poison" in task.file_path.parts
+        ]
+    if suite == "safety":
+        # Return tasks from tasks/safety/ subdirectory.
+        # The safety suite covers risks that emerge from the agent's own
+        # behavior under ambiguous/conflicting/urgent/long-context user
+        # instructions (no explicit attacker).
+        return [
+            task.task_id
+            for task in tasks
+            if task.file_path and "safety" in task.file_path.parts
         ]
 
     # Parse comma-separated items, supporting ranges like "task30-35" or "30-35"
