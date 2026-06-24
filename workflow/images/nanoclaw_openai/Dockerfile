@@ -23,7 +23,14 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
 # Pull nanoclaw source for reference. Driver code is in workflow/images/.
-RUN git clone --depth 1 https://github.com/nanocoai/nanoclaw.git /opt/nanoclaw
+# Pinned to the same validated upstream commit as the nanoclaw image
+# (committed 2026-05-23) for reproducible builds. Override:
+#   --build-arg NANOCLAW_REF=<sha>
+ARG NANOCLAW_REF=cabc7c0f82ed08a85f763eaa063f162abdc1fa1c
+RUN git init -q /opt/nanoclaw \
+    && git -C /opt/nanoclaw remote add origin https://github.com/nanocoai/nanoclaw.git \
+    && git -C /opt/nanoclaw fetch --depth 1 origin "${NANOCLAW_REF}" \
+    && git -C /opt/nanoclaw checkout --detach FETCH_HEAD
 
 # Install opencode CLI globally (the @opencode-ai/cli npm package is named
 # `opencode-ai`) plus the claude-code SDK for the anthropic path.

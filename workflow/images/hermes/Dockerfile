@@ -23,10 +23,11 @@ RUN apt-get update && apt-get install -y \
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
-# Clone hermes-agent — pin to a recent commit at build time; the install
-# script bootstraps a venv under /opt/hermes-agent/.venv and editable-installs
-# the package so `run_agent.py` and the `hermes` CLI both work.
-RUN git clone --depth 1 https://github.com/NousResearch/hermes-agent.git /opt/hermes-agent
+ARG HERMES_AGENT_REF=9c0807070388c4f612a827230f1314ebbf24e857
+RUN git init -q /opt/hermes-agent \
+    && git -C /opt/hermes-agent remote add origin https://github.com/NousResearch/hermes-agent.git \
+    && git -C /opt/hermes-agent fetch --depth 1 origin "${HERMES_AGENT_REF}" \
+    && git -C /opt/hermes-agent checkout --detach FETCH_HEAD
 
 WORKDIR /opt/hermes-agent
 
