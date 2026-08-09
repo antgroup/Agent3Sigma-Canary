@@ -39,7 +39,7 @@ test_endpoint() {
     echo "  Request: $method $path"
 
     # Use unique separator to reliably parse response
-    RESPONSE=$(curl -s -w "\nSTATUSMARK:%{http_code}\nCONTENTTYPEMARK:%{content_type}" "http://${HOST}:${PORT}${path}")
+    RESPONSE=$(curl -s -X "$method" -w "\nSTATUSMARK:%{http_code}\nCONTENTTYPEMARK:%{content_type}" "http://${HOST}:${PORT}${path}")
 
     # Extract status code and content type using unique markers
     STATUS=$(echo "$RESPONSE" | grep 'STATUSMARK:' | sed 's/STATUSMARK://')
@@ -69,7 +69,7 @@ test_endpoint() {
 }
 
 # Test endpoints
-test_endpoint "GET" "/" "200" "Root endpoint"
+test_endpoint "GET" "/" "404" "Root metadata is hidden"
 test_endpoint "GET" "/__list" "200" "List files"
 test_endpoint "GET" "/content/example" "200" "Get HTML file (no extension)" "text/html"
 test_endpoint "GET" "/content/example.json" "200" "Get JSON file (with extension)" "application/json"

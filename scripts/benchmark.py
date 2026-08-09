@@ -41,6 +41,9 @@ from lib_agent import (
     ensure_agent_exists,
     execute_openclaw_task,
     slugify_model,
+    _resolve_required_skills,
+    _strip_skill_version,
+    _inject_skill_data,
 )
 from lib_attacks import get_attack_method, validate_attack_compatibility
 from lib_grading import GradeResult, grade_task
@@ -249,6 +252,20 @@ def _parse_args() -> argparse.Namespace:
         "--docker",
         action="store_true",
         help="Run OpenClaw agent inside a Docker container for isolation",
+    )
+    parser.add_argument(
+        "--netlock",
+        action="store_true",
+        help=(
+            "Restrict Docker container egress to the configured allowlist. "
+            "Disabled by default; requires --docker."
+        ),
+    )
+    parser.add_argument(
+        "--gateway",
+        action="store_true",
+        help="Start the image's native Gateway after agent creation. "
+             "Only Official OpenClaw image families use this service.",
     )
     parser.add_argument(
         "--tracee",
@@ -713,6 +730,17 @@ def main():
         logger.warning("⚠️ --tracee requires --docker mode. Ignoring --tracee.")
         args.tracee = False
 
+    if args.netlock and not args.docker:
+        logger.warning(
+            "⚠️ --netlock requires --docker mode. Ignoring --netlock."
+        )
+        args.netlock = False
+    docker.configure_egress_lockdown(args.netlock)
+    logger.info(
+        "Network egress policy: %s",
+        "lockdown requested" if args.netlock else "open (default)",
+    )
+
     logger.info("🔧 Initializing BenchmarkRunner...")
     runner = BenchmarkRunner(tasks_dir)
 
@@ -892,8 +920,81 @@ def main():
             tracee_log = None  # Initialize here to avoid UnboundLocalError
             try:
                 if args.docker:
-                    docker.start()
+                    # Resolve which skills this task needs (legacy
+                    # required_skills > pre_setup.skill_mount >
+                    # auto-derived from data pre_setup > all).
+                    # Bind-mount each :ro so the agent sees only its required
+                    # subset, then docker-cp the per-skill data fixtures.
+                    skills_root = skill_root / "_skills_repository" / "skill_dest" / "skills"
+                    skill_data_root = skill_root / "assets" / "skill_data"
+                    required_skills = _resolve_required_skills(task, skills_root)
+                    extra_mounts = [
+                        (str(p), f"/root/.openclaw/skills/{p.name}", "ro")
+                        for p in required_skills
+                    ]
+                    # Compatibility runtimes discover skills in their native
+                    # locations as well as the common OpenClaw mount path.
+                    image_name = docker.DOCKER_IMAGE.lower()
+                    if "hermes" in image_name:
+                        extra_mounts.extend(
+                            (str(p), f"/root/.hermes/skills/{_strip_skill_version(p.name)}", "ro")
+                            for p in required_skills
+                        )
+                    elif "nanoclaw" in image_name:
+                        extra_mounts.extend(
+                            (
+                                str(p),
+                                f"{task_agent_workspace_root_relate}/.claude/skills/"
+                                f"{_strip_skill_version(p.name)}",
+                                "ro",
+                            )
+                            for p in required_skills
+                        )
+                    logger.info(
+                        "Task %s: mounting %d skill(s): %s",
+                        task.task_id, len(required_skills),
+                        [p.name for p in required_skills],
+                    )
+                    docker.start(
+                        extra_mounts=extra_mounts,
+                        defer_image_gateway=args.gateway,
+                    )
+                    _inject_skill_data(required_skills, skill_data_root)
                     ensure_agent_exists(agent_id, args.model, task_agent_workspace_root_relate)
+                    # Tasks flagged with `isolate_session_guard: true` run each
+                    # multi-session entry on its OWN agent (bench-<model>-s{i}).
+                    # Plugins may key per-session state by sessionKey =
+                    # `agent:<agentId>:main` (independent of the --session-id we
+                    # pass); under a shared agentId that state leaks across
+                    # sessions. A distinct agentId per session is the only lever
+                    # giving each session a FRESH plugin context, so cross-session
+                    # behavior is genuinely isolated. These agents must exist
+                    # BEFORE the gateway starts (it only registers agents at startup).
+                    if task.frontmatter.get("isolate_session_guard") and task.frontmatter.get("sessions"):
+                        n_sessions = len(task.frontmatter["sessions"])
+                        logger.info("🔐 isolate_session_guard: pre-creating %d per-session agents", n_sessions)
+                        for s_idx in range(1, n_sessions + 1):
+                            ensure_agent_exists(f"{agent_id}-s{s_idx}", args.model, task_agent_workspace_root_relate)
+                    if args.gateway:
+                        # Start the gateway AFTER the agent exists. The gateway
+                        # registers agents only at startup and ignores agents
+                        # added later.
+                        # Pass pre_setup environment variables to the persistent
+                        # gateway process as well as the client process. Tool
+                        # calls execute in the gateway, so client-only variables
+                        # would otherwise be lost.
+                        gateway_env = {
+                            str(key): str(value)
+                            for step in (
+                                task.frontmatter.get("pre_setup", []) or []
+                            )
+                            if (
+                                isinstance(step, dict)
+                                and step.get("type") == "set_env"
+                            )
+                            for key, value in (step.get("vars", {}) or {}).items()
+                        }
+                        docker.start_image_gateway(env=gateway_env or None)
 
                     # Start tracee monitoring if requested
                     if args.tracee:
@@ -1186,6 +1287,7 @@ def main():
         "suite": args.suite,
         "attack_method": args.attack,
         "no_context": args.no_context,
+        "netlock": args.netlock,
         "image": image_slug,
         "image_uri": os.environ.get("DOCKER_IMAGE") or None,
         "runs_per_task": runs_per_task,

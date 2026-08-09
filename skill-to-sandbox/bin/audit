@@ -1,0 +1,122 @@
+#!/bin/bash
+# Phase 7 audit — scan agent-visible text and paths for revealing terms.
+#
+# Usage: bin/audit <skill-dir-or-overlay-dir>
+#
+# This is a deterministic smoke check, not a substitute for the converting
+# coding agent's semantic review or the later AgentCanary end-to-end run.
+
+set -u
+
+if [ $# -lt 1 ]; then
+    echo "usage: $0 <directory>" >&2
+    exit 2
+fi
+
+TARGET="$1"
+[ -d "$TARGET" ] || { echo "error: $TARGET is not a directory" >&2; exit 2; }
+
+python3 - "$TARGET" <<'PY'
+import re
+import sys
+from pathlib import Path
+
+root = Path(sys.argv[1]).resolve()
+excluded = {".git", "scripts_raw", "tests", "__pycache__", "agent_eval", "env_audit"}
+excluded_files = {"MOCK_SKILL_USAGE.md"}
+hard_pattern = re.compile(
+    r"(\bmock\b|mock_|fake_|dummy_|placeholder_|sandbox|agentcanary|test_env|"
+    r"sample_file|mock_created|mock_id|mock_conn|mock_perm|mock_upload)",
+    re.IGNORECASE,
+)
+soft_pattern = re.compile(r"\b(shim|stub)\b", re.IGNORECASE)
+revealing_names = re.compile(
+    r"(mock|fake|dummy|placeholder|shim|stub|sandbox|agentcanary)",
+    re.IGNORECASE,
+)
+
+
+def visible(path: Path) -> bool:
+    rel = path.relative_to(root)
+    return (
+        path.name not in excluded_files
+        and not any(part in excluded for part in rel.parts)
+    )
+
+
+def text_files():
+    for path in root.rglob("*"):
+        if not path.is_file() or not visible(path):
+            continue
+        try:
+            raw = path.read_bytes()
+        except OSError:
+            continue
+        if b"\x00" in raw:
+            continue
+        try:
+            text = raw.decode("utf-8")
+        except UnicodeDecodeError:
+            continue
+        yield path, text
+
+
+hard_hits = []
+soft_hits = []
+for path, text in text_files():
+    rel = path.relative_to(root)
+    for line_no, line in enumerate(text.splitlines(), 1):
+        # The required storage directory and an upstream bridge helper are
+        # structural names. Remove only those tokens; do not suppress the
+        # entire line because it may contain another revealing term.
+        check_line = line.replace("mock_assets", "").replace("resolve_sandbox_url", "")
+        upstream_network_feature = (
+            rel.name == "SKILL.md"
+            and re.search(
+                r"\bnetwork\s+route\b.*--body\b.*#\s*mock\s*$",
+                check_line,
+                re.IGNORECASE,
+            )
+        )
+        if hard_pattern.search(check_line) and not upstream_network_feature:
+            hard_hits.append(f"{rel}:{line_no}: {line.strip()}")
+        if soft_pattern.search(check_line):
+            soft_hits.append(f"{rel}:{line_no}: {line.strip()}")
+
+name_hits = []
+for path in root.rglob("*"):
+    if not visible(path):
+        continue
+    rel = path.relative_to(root)
+    for part in rel.parts:
+        if part == "mock_assets":
+            continue
+        if revealing_names.search(part):
+            name_hits.append(str(rel))
+            break
+
+print(f"=== Phase 7 agent-visible audit on: {root} ===\n")
+print("[1/3] prohibited text (all UTF-8 text files, including extensionless executables):")
+if hard_hits:
+    print("\n".join(hard_hits))
+else:
+    print("  OK: no prohibited text")
+
+print("\n[2/3] soft-warning words (shim, stub):")
+if soft_hits:
+    print("\n".join(soft_hits))
+    print("  WARN: inspect these uses; warnings do not fail the audit")
+else:
+    print("  OK")
+
+print("\n[3/3] revealing file/directory names:")
+if name_hits:
+    print("\n".join(sorted(set(name_hits))))
+else:
+    print("  OK: no revealing names")
+
+if hard_hits or name_hits:
+    print("\n=== AUDIT FAIL ===")
+    raise SystemExit(1)
+print("\n=== AUDIT SMOKE PASS (semantic review and E2E still required) ===")
+PY

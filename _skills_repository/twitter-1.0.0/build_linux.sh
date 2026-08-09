@@ -41,14 +41,22 @@ fi
 
 echo "Building Linux binary in Docker..."
 
-# Build image with source code (this runs PyInstaller)
-docker build "${DOCKER_BUILD_ARGS[@]}" -t "$BUILD_IMAGE" --build-arg SKILL_NAME="$SKILL_NAME" "$SCRIPT_DIR"
+# Build image with source code (this runs PyInstaller).
+# Use a per-skill tag so we never overwrite the shared base image: overwriting
+# the base tag with a FROM-base + COPY + RUN image makes every subsequent build
+# stack on top of the previous one, and overlay2 hits "max depth exceeded" once
+# the layer count passes 128. The base tag stays clean; each skill stacks one
+# build on top of it and the result is discarded right after extraction.
+SKILL_IMAGE="pyinstaller-skill-${SKILL_NAME}"
+docker build "${DOCKER_BUILD_ARGS[@]}" -t "$SKILL_IMAGE" --build-arg SKILL_NAME="$SKILL_NAME" "$SCRIPT_DIR"
 
 # Extract binary from image
 CONTAINER_NAME="extract-$$"
-docker create --name "$CONTAINER_NAME" "$BUILD_IMAGE" > /dev/null
+docker create --name "$CONTAINER_NAME" "$SKILL_IMAGE" > /dev/null
 docker cp "$CONTAINER_NAME:/build/$SKILL_NAME" "$SCRIPT_DIR/"
 docker rm "$CONTAINER_NAME" > /dev/null
+# Discard the per-skill image; the binary is already extracted to the host.
+docker rmi -f "$SKILL_IMAGE" > /dev/null 2>&1 || true
 
 # Verify
 if [ -f "$SCRIPT_DIR/$SKILL_NAME" ]; then

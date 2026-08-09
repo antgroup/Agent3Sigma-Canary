@@ -90,9 +90,14 @@ scripts/skill_poison_task
 _skills_repository/skill_dest
 _skills_repository/*/*_linux
 _skills_repository/*/*_mac
-docker_offical.zip
-docker_offical/
+docker_official.zip
+docker_official/
 tracee_logs/
 
 workflow_web
 workflow_web_local
+
+# Un-ignore skill-to-sandbox/lib (tooling), overriding the generic lib/ rule above.
+!skill-to-sandbox/lib/
+!skill-to-sandbox/lib/**
+skill-to-sandbox/lib/__pycache__/

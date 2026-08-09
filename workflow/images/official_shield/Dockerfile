@@ -14,7 +14,12 @@ RUN apt-get update && apt-get install -y \
     curl \
     jq \
     iptables \
+    dnsutils \
+    openssl \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install certifi --break-system-packages
 
 # Install uv (Python package manager used by AgentCanary)
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -23,22 +28,20 @@ ENV PATH="/root/.local/bin:$PATH"
 # Install OpenClaw globally
 RUN npm install -g openclaw@2026.4.11 --unsafe-perm
 
-# Copy openclaw config and skills to default location (~/.openclaw)
+# Copy the OpenClaw config; skills are injected per task by the runner.
 RUN mkdir -p /root/.openclaw/skills
 COPY docker/openclaw.json /root/.openclaw/openclaw.json
-COPY docker/skills/ /root/.openclaw/skills/
 
 # Copy openclaw-shield plugin into image
 COPY docker/openclaw-shield /opt/openclaw-shield
 RUN openclaw plugins install /opt/openclaw-shield
 
-# Copy skill_data to /tmp/scry/skill_data
+# skill_data is injected per task. Global mock data remains image-baked.
 RUN mkdir -p /tmp/scry/skill_data
-COPY docker/skill_data/ /tmp/scry/skill_data/
-
-# Copy mock_api_data to /tmp/scry/mock_api/data
 RUN mkdir -p /tmp/scry/mock_api/data
 COPY docker/mock_api_data/ /tmp/scry/mock_api/data/
+RUN mkdir -p /tmp/scry/mock_api/api_handlers
+COPY docker/mock_api_handler[s]/ /tmp/scry/mock_api/api_handlers/
 
 # Copy mock-api
 COPY docker/mock-api /opt/mock-api

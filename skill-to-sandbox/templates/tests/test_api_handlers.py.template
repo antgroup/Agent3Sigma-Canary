@@ -1,0 +1,193 @@
+"""Tests for api_handler JSON validity and fixture resolution.
+
+Validates that every handler JSON in mock_assets/api_handlers/ is well-formed,
+has all required fields, and that $fixture references resolve.
+
+Auto-generated for skill: __SLUG__ (__VERSION__)
+Run: python3 -m unittest tests.test_api_handlers -v
+"""
+
+import json
+import unittest
+from pathlib import Path
+
+SKILL_DIR = Path(__file__).resolve().parent.parent
+HANDLERS_DIR = SKILL_DIR / "mock_assets" / "api_handlers"
+
+# Domains that the assembler observed in the api_handler JSONs at build time.
+# An empty set means this skill has no api_handlers (Type B); the domain
+# coverage test will skip.
+EXPECTED_DOMAINS = __EXPECTED_DOMAINS__
+
+
+def _load_handlers():
+    out = []
+    if HANDLERS_DIR.is_dir():
+        for hf in sorted(HANDLERS_DIR.glob("*.json")):
+            out.append((hf, json.loads(hf.read_text(encoding="utf-8"))))
+    return out
+
+
+class TestApiHandlerStructure(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.handlers = _load_handlers()
+
+    def test_at_least_one_handler_when_expected(self):
+        if not EXPECTED_DOMAINS:
+            self.skipTest("Skill has no api_handlers (Type B)")
+        self.assertGreater(len(self.handlers), 0, "No api_handler JSON files found")
+
+    def test_required_top_level_keys(self):
+        for hf, data in self.handlers:
+            with self.subTest(handler=hf.name):
+                self.assertIn("domain", data, f"{hf.name}: missing 'domain'")
+                self.assertIn("routes", data, f"{hf.name}: missing 'routes'")
+
+    def test_domain_is_valid_hostname(self):
+        for hf, data in self.handlers:
+            with self.subTest(handler=hf.name):
+                domain = data.get("domain", "")
+                self.assertTrue(
+                    domain and "." in domain,
+                    f"{hf.name}: domain '{domain}' doesn't look like a hostname",
+                )
+
+    def test_routes_non_empty(self):
+        for hf, data in self.handlers:
+            with self.subTest(handler=hf.name):
+                self.assertGreater(len(data.get("routes", [])), 0, f"{hf.name}: no routes")
+
+    def test_route_required_fields(self):
+        for hf, data in self.handlers:
+            for i, route in enumerate(data.get("routes", [])):
+                with self.subTest(handler=hf.name, route=i):
+                    for key in ("method", "path", "status_code"):
+                        self.assertIn(key, route, f"{hf.name} routes[{i}]: missing '{key}'")
+                    self.assertTrue(
+                        "response" in route or "serve_file" in route,
+                        f"{hf.name} routes[{i}]: missing 'response' "
+                        "(required unless 'serve_file' is present)",
+                    )
+
+    def test_route_method_valid(self):
+        valid_methods = {"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"}
+        for hf, data in self.handlers:
+            for i, route in enumerate(data.get("routes", [])):
+                with self.subTest(handler=hf.name, route=i):
+                    self.assertIn(
+                        route.get("method", ""),
+                        valid_methods,
+                        f"{hf.name} routes[{i}]: invalid method '{route.get('method')}'",
+                    )
+
+    def test_route_status_code_valid(self):
+        for hf, data in self.handlers:
+            for i, route in enumerate(data.get("routes", [])):
+                with self.subTest(handler=hf.name, route=i):
+                    code = route.get("status_code", 0)
+                    self.assertGreaterEqual(code, 100, f"{hf.name} routes[{i}]: status code too low")
+                    self.assertLessEqual(code, 599, f"{hf.name} routes[{i}]: status code too high")
+
+    def test_path_starts_with_slash(self):
+        for hf, data in self.handlers:
+            for i, route in enumerate(data.get("routes", [])):
+                with self.subTest(handler=hf.name, route=i):
+                    path = route.get("path", "")
+                    self.assertTrue(
+                        path.startswith("/"),
+                        f"{hf.name} routes[{i}]: path '{path}' doesn't start with /",
+                    )
+
+
+class TestFixtureResolution(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.handlers = _load_handlers()
+
+    def test_fixture_references_resolve(self):
+        # The mock-api server (workflow/images/official/mock-api/app.py) only
+        # resolves the STRING form "$fixture.<key>". The object form
+        # {"$fixture": "<key>"} is passed through verbatim and reaches the
+        # agent as literal JSON — a silent sandbox break. So: every fixture
+        # reference must be the string form AND resolve to a defined fixture,
+        # and the object form is a hard failure.
+        for hf, data in self.handlers:
+            fixtures = data.get("fixtures", {})
+            for i, route in enumerate(data.get("routes", [])):
+                resp = route.get("response")
+                if isinstance(resp, dict) and "$fixture" in resp:
+                    self.fail(
+                        f"{hf.name} routes[{i}] uses the object form "
+                        f'{{"$fixture": "{resp.get("$fixture")}"}} which the '
+                        f'mock server does NOT resolve — use the string form '
+                        f'"$fixture.{resp.get("$fixture")}" instead'
+                    )
+                if isinstance(resp, str) and resp.startswith("$fixture."):
+                    key = resp[len("$fixture."):]
+                    with self.subTest(handler=hf.name, route=i, fixture=key):
+                        self.assertIn(
+                            key,
+                            fixtures,
+                            f"{hf.name} routes[{i}] references $fixture '{key}' not in fixtures",
+                        )
+
+    def test_fixtures_are_valid_json_values(self):
+        for hf, data in self.handlers:
+            for key, val in data.get("fixtures", {}).items():
+                with self.subTest(handler=hf.name, fixture=key):
+                    try:
+                        json.dumps(val)
+                    except (TypeError, ValueError) as e:
+                        self.fail(f"{hf.name} fixture '{key}' is not JSON-serializable: {e}")
+
+
+class TestHandlerDomainsCoverSkill(unittest.TestCase):
+    """Verify the handler set still covers the domains observed at build time."""
+
+    def test_expected_domains_present(self):
+        if not EXPECTED_DOMAINS:
+            self.skipTest("No expected domains recorded (Type B skill or no handlers)")
+        handler_domains = set()
+        if HANDLERS_DIR.is_dir():
+            for hf in HANDLERS_DIR.glob("*.json"):
+                data = json.loads(hf.read_text(encoding="utf-8"))
+                handler_domains.add(data.get("domain", ""))
+        for domain in EXPECTED_DOMAINS:
+            with self.subTest(domain=domain):
+                self.assertIn(
+                    domain,
+                    handler_domains,
+                    f"Expected handler for domain '{domain}' not found. "
+                    f"Present: {handler_domains}",
+                )
+
+
+class TestNoProhibitedPatternsInHandlers(unittest.TestCase):
+    PATTERN_WORDS = [
+        "mock_", "fake_", "dummy_", "placeholder_",
+        "sandbox", "agentcanary", "test_env", "sample_file",
+        "mock_created", "mock_id", "mock_conn", "mock_perm", "mock_upload",
+    ]
+
+    @classmethod
+    def setUpClass(cls):
+        cls.handlers = []
+        if HANDLERS_DIR.is_dir():
+            for hf in sorted(HANDLERS_DIR.glob("*.json")):
+                cls.handlers.append((hf, hf.read_text(encoding="utf-8")))
+
+    def test_no_prohibited_patterns_in_handler_content(self):
+        for hf, text in self.handlers:
+            with self.subTest(handler=hf.name):
+                for line_no, line in enumerate(text.splitlines(), 1):
+                    lower = line.lower()
+                    for word in self.PATTERN_WORDS:
+                        if word in lower:
+                            self.fail(
+                                f"{hf.name}:{line_no}: prohibited pattern '{word}' found: {line.strip()}"
+                            )
+
+
+if __name__ == "__main__":
+    unittest.main()

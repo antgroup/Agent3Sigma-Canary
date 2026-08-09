@@ -1,6 +1,6 @@
 # AgentCanary Runner Image
 # Runs OpenClaw agent in isolation for security benchmarks
-# docker build -f Dockerfile -t openclaw-offical_clawkeeper-v{timestamp} --build-arg http_proxy=... .
+# docker build -f Dockerfile -t openclaw-official_clawkeeper-v{timestamp} --build-arg http_proxy=... .
 
 FROM node:22-bookworm
 
@@ -14,7 +14,12 @@ RUN apt-get update && apt-get install -y \
     curl \
     jq \
     iptables \
+    dnsutils \
+    openssl \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install certifi --break-system-packages
 
 # Install uv (Python package manager used by AgentCanary)
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -23,10 +28,9 @@ ENV PATH="/root/.local/bin:$PATH"
 # Install OpenClaw globally
 RUN npm install -g openclaw@2026.4.11 --unsafe-perm
 
-# Copy openclaw config and skills to default location (~/.openclaw)
+# Copy the OpenClaw config; skills are injected per task by the runner.
 RUN mkdir -p /root/.openclaw/skills
 COPY docker/openclaw.json /root/.openclaw/openclaw.json
-COPY docker/skills/ /root/.openclaw/skills/
 
 # ClawKeeper stores runtime logs and session permissions under workspace.
 RUN mkdir -p /root/.openclaw/workspace/clawkeeper /root/.openclaw/workspace/log
@@ -35,13 +39,12 @@ RUN mkdir -p /root/.openclaw/workspace/clawkeeper /root/.openclaw/workspace/log
 # because `openclaw plugins install -l .` is blocked by install-time scanning.
 COPY docker/ClawKeeper /opt/ClawKeeper
 
-# Copy skill_data to /tmp/scry/skill_data
+# skill_data is injected per task. Global mock data remains image-baked.
 RUN mkdir -p /tmp/scry/skill_data
-COPY docker/skill_data/ /tmp/scry/skill_data/
-
-# Copy mock_api_data to /tmp/scry/mock_api/data
 RUN mkdir -p /tmp/scry/mock_api/data
 COPY docker/mock_api_data/ /tmp/scry/mock_api/data/
+RUN mkdir -p /tmp/scry/mock_api/api_handlers
+COPY docker/mock_api_handler[s]/ /tmp/scry/mock_api/api_handlers/
 
 # Copy mock-api
 COPY docker/mock-api /opt/mock-api

@@ -155,10 +155,10 @@ bash workflow/workflow_step_1_image_builder.sh
 export DOCKER_IMAGE=openclaw-official-v20260430_120000
 
 # 评测单个模型
-./scripts/run.sh --model <provider-id>/<model-id> --suite <suite> --docker --verbose
+./scripts/run.sh --model <provider-id>/<model-id> --suite <suite> --docker --gateway --verbose
 
 # 示例：使用 openai-compatible provider 下的 gpt-4o 模型，运行 direct 测试套件
-./scripts/run.sh --model openai-compatible/gpt-4o --suite direct --docker --verbose
+./scripts/run.sh --model openai-compatible/gpt-4o --suite direct --docker --gateway --verbose
 ```
 
 **常用参数：**
@@ -168,6 +168,7 @@ export DOCKER_IMAGE=openclaw-official-v20260430_120000
 | `--model` | 被测模型（provider-id/model-id） | `--model anthropic/claude-sonnet-4` |
 | `--suite` | 测试套件 | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `safety`, `all`, 或逗号分隔的 task ID |
 | `--docker` | 在 Docker 容器中运行 | `--docker` |
+| `--gateway` | 为 Official OpenClaw 镜像启动原生 Gateway；默认关闭，其他镜像无需使用 | `--gateway` |
 | `--verbose` | 输出更详细的运行日志 | `--verbose` |
 | `--attack` | 攻击方法 | `code_attack`, `pair`, `important_message`, `InjecAgent` 等 |
 | `--runs` | 每个 task 的重复次数 | `--runs 3` |

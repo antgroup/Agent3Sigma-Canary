@@ -1,0 +1,240 @@
+#!/bin/bash
+# Structural smoke checks on an assembled skill package.
+#
+# Usage: bin/validate <skill-dir>
+#
+# Checks only deterministic package properties:
+#   - SKILL.md exists at the root
+#   - scripts/ exists with at least one .sh
+#   - For Type A/C: mock_assets/api_handlers/*.json is valid JSON with required keys
+#   - For Type A/C: mock_assets/skill_hooks/*.sh is bash-parseable and executable
+#   - For Type B/C: scripts_raw/main.py is parseable Python
+#   - All shell scripts parse with `bash -n`
+#
+# A pass is not conversion approval. The coding agent must still review behavior
+# and the assembled skill must pass its later AgentCanary end-to-end task.
+
+set -u
+
+if [ $# -lt 1 ]; then
+    echo "usage: $0 <skill-dir>" >&2
+    exit 2
+fi
+
+SKILL="$1"
+[ -d "$SKILL" ] || { echo "error: $SKILL is not a directory" >&2; exit 2; }
+
+FAIL=0
+PASS=0
+
+ok()   { PASS=$((PASS+1)); echo "  OK:   $1"; }
+fail() { FAIL=$((FAIL+1)); echo "  FAIL: $1"; }
+
+echo "=== Structural smoke validation on: $SKILL ==="
+echo ""
+
+echo "[1] SKILL.md"
+[ -f "$SKILL/SKILL.md" ] && ok "SKILL.md present" || fail "SKILL.md missing"
+
+echo ""
+echo "[2] scripts/"
+if [ -d "$SKILL/scripts" ]; then
+    sh_count=$(find "$SKILL/scripts" -maxdepth 1 -name '*.sh' | wc -l)
+    if [ "$sh_count" -gt 0 ]; then
+        ok "scripts/ has $sh_count *.sh file(s)"
+        for sh in "$SKILL/scripts"/*.sh; do
+            if bash -n "$sh" 2>/dev/null; then
+                ok "$(basename "$sh") — syntax OK"
+            else
+                fail "$(basename "$sh") — bash -n failed"
+            fi
+        done
+    else
+        echo "  WARN: scripts/ is empty"
+    fi
+else
+    fail "scripts/ directory missing"
+fi
+
+echo ""
+echo "[3] mock_assets/ (checked when this conversion uses an overlay)"
+MA="$SKILL/mock_assets"
+if [ -d "$MA" ]; then
+    ok "mock_assets/ present"
+    # api_handlers
+    if [ -d "$MA/api_handlers" ]; then
+        for hf in "$MA/api_handlers"/*.json; do
+            [ -e "$hf" ] || continue
+            ERR=$(python3 - "$hf" <<'PY' 2>&1
+import json, sys, pathlib
+p = pathlib.Path(sys.argv[1])
+try:
+    d = json.loads(p.read_text(encoding='utf-8'))
+except Exception as e:
+    print(f"json error: {e}"); sys.exit(1)
+for k in ('domain', 'routes'):
+    if k not in d:
+        print(f"missing key: {k}"); sys.exit(1)
+fixtures = d.get('fixtures', {})
+for i, r in enumerate(d.get('routes', [])):
+    for rk in ('method', 'path', 'status_code'):
+        if rk not in r:
+            print(f"routes[{i}] missing {rk}"); sys.exit(1)
+    if 'response' not in r and 'serve_file' not in r:
+        print(f"routes[{i}] missing response (required unless serve_file is present)"); sys.exit(1)
+    response = r.get('response')
+    if isinstance(response, dict) and '$fixture' in response:
+        key = response.get('$fixture')
+        print(
+            f"routes[{i}] uses unsupported object fixture reference; "
+            f'use string form "$fixture.{key}"'
+        ); sys.exit(1)
+    if isinstance(response, str) and response.startswith('$fixture.'):
+        key = response[len('$fixture.'):]
+        if not key or key not in fixtures:
+            print(f"routes[{i}] references undefined fixture: {key!r}"); sys.exit(1)
+print(f"OK domain={d['domain']} routes={len(d.get('routes', []))}")
+PY
+            )
+            if echo "$ERR" | grep -q '^OK'; then
+                ok "$(basename "$hf") — $ERR"
+            else
+                fail "$(basename "$hf") — $ERR"
+            fi
+        done
+    fi
+    # skill_hooks
+    if [ -d "$MA/skill_hooks" ]; then
+        for hk in "$MA/skill_hooks"/*.sh; do
+            [ -e "$hk" ] || continue
+            bash -n "$hk" 2>/dev/null && ok "hook $(basename "$hk") — syntax OK" || fail "hook $(basename "$hk") — bash -n failed"
+            [ -x "$hk" ] && ok "hook $(basename "$hk") — executable" || fail "hook $(basename "$hk") — NOT executable"
+        done
+    fi
+    # bin/ — for whole-CLI replacement pattern
+    if [ -d "$MA/bin" ]; then
+        for b in "$MA/bin"/*; do
+            [ -f "$b" ] || continue
+            [ -x "$b" ] && ok "bin/$(basename "$b") — executable" || fail "bin/$(basename "$b") — NOT executable"
+            # If it's Python, syntax-check it
+            head -1 "$b" | grep -q python && {
+                if python3 -c "import ast; ast.parse(open('$b').read())" 2>/dev/null; then
+                    ok "bin/$(basename "$b") — Python syntax OK"
+                else
+                    fail "bin/$(basename "$b") — Python syntax error"
+                fi
+            }
+        done
+    fi
+else
+    echo "  SKIP: no mock_assets/; the coding agent must confirm this matches the chosen design"
+fi
+
+echo ""
+echo "[4] scripts_raw/ (checked when this conversion compiles a replacement)"
+SR="$SKILL/scripts_raw"
+if [ -d "$SR" ]; then
+    if [ -f "$SR/main.py" ]; then
+        if python3 -c "import ast; ast.parse(open('$SR/main.py').read())" 2>/dev/null; then
+            ok "main.py — syntax OK"
+        else
+            fail "main.py — Python syntax error"
+        fi
+    else
+        fail "scripts_raw/main.py missing"
+    fi
+    [ -f "$SR/binary.py" ] && ok "binary.py present" || fail "binary.py missing"
+else
+    echo "  SKIP: no scripts_raw/; the coding agent must confirm this matches the chosen design"
+fi
+
+echo ""
+echo "[5] agent_eval/ — Phase 8.5 AgentCanary usability task"
+AE="$SKILL/agent_eval"
+if [ -d "$AE" ]; then
+    task_count=$(find "$AE" -maxdepth 1 -name 'task_*_usability.md' | wc -l)
+    if [ "$task_count" -gt 0 ]; then
+        ok "agent_eval/ has $task_count usability task(s)"
+        for tf in "$AE"/task_*_usability.md; do
+            [ -e "$tf" ] || continue
+            # Frontmatter sanity check via python
+            if python3 - "$tf" <<'PY' 2>&1 | head -1 | grep -q '^OK'; then
+import re, sys, pathlib
+p = pathlib.Path(sys.argv[1])
+text = p.read_text(encoding='utf-8', errors='replace')
+m = re.match(r'^---\s*\n(.*?)\n---\s*\n', text, re.DOTALL)
+if not m:
+    print('no frontmatter'); sys.exit(1)
+fm = m.group(1)
+required = ['id:', 'name:', 'category:', 'grading_type:']
+missing = [k for k in required if k not in fm]
+if missing:
+    print(f"missing: {','.join(missing)}"); sys.exit(1)
+if '## Prompt' not in text or '## LLM Judge Rubric' not in text:
+    print('missing sections'); sys.exit(1)
+print(f"OK frontmatter+sections")
+PY
+                ok "$(basename "$tf") — task structure OK"
+            else
+                fail "$(basename "$tf") — task structure invalid"
+            fi
+        done
+    else
+        echo "  WARN: agent_eval/ exists but has no task_*_usability.md"
+    fi
+else
+    echo "  (no agent_eval/ — task generation skipped or pre-8.5 build)"
+fi
+
+echo ""
+echo "[6] agent_eval/last_run.json — end-to-end runtime result (when present)"
+LRJ="$SKILL/agent_eval/last_run.json"
+# HARD GATE: every skill must reach a usability score of >= 0.90. A lower
+# score means the sandbox is broken from the agent's POV — fix the mock, do
+# not lower this. Override only for deliberate experiments.
+USABILITY_MIN="${USABILITY_MIN_SCORE:-0.9}"
+if [ -f "$LRJ" ]; then
+    ERR=$(python3 - "$LRJ" "$USABILITY_MIN" <<'PY' 2>&1
+import json, sys, pathlib
+p = pathlib.Path(sys.argv[1])
+floor = float(sys.argv[2])
+try:
+    d = json.loads(p.read_text(encoding='utf-8'))
+except Exception as e:
+    print(f"json error: {e}"); sys.exit(1)
+score_data = d.get('score') or {}
+score = score_data.get('score')
+maximum = score_data.get('max', 1.0)
+if d.get('ok') is not True:
+    print(f"runtime report is not successful (ok={d.get('ok')}, exit={d.get('exit_code')})"); sys.exit(1)
+if d.get('exit_code') != 0:
+    print(f"runtime process exit={d.get('exit_code')} despite ok={d.get('ok')}"); sys.exit(1)
+try:
+    normalized = d.get('normalized_score')
+    if normalized is None:
+        normalized = float(score) / float(maximum)
+    normalized = float(normalized)
+except (TypeError, ValueError, ZeroDivisionError):
+    print(f"invalid score in last_run.json: score={score}, max={maximum}"); sys.exit(1)
+if normalized + 1e-9 < floor:
+    print(f"normalized score {normalized} < floor {floor} (model={d.get('model')})"); sys.exit(1)
+print(f"OK normalized_score={normalized} model={d.get('model')}")
+PY
+    )
+    if echo "$ERR" | grep -q '^OK'; then
+        ok "last_run.json — $ERR"
+    else
+        fail "last_run.json — $ERR"
+    fi
+else
+    echo "  NOT RUN: no end-to-end result yet; structural smoke can pass, but the conversion is not release-validated"
+fi
+
+echo ""
+if [ "$FAIL" -eq 0 ]; then
+    echo "=== STRUCTURAL SMOKE PASS ($PASS checks; coding-agent review and E2E still required) ==="
+    exit 0
+else
+    echo "=== STRUCTURAL SMOKE FAIL ($FAIL of $((PASS+FAIL)) checks failed) ==="
+    exit 1
+fi

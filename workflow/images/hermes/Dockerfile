@@ -14,10 +14,14 @@ RUN apt-get update && apt-get install -y \
         curl \
         jq \
         iptables \
+        dnsutils \
+        openssl \
         ripgrep \
         ffmpeg \
         ca-certificates \
     && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install certifi --break-system-packages
 
 # uv for the host python tooling (used by AgentCanary's own scripts elsewhere)
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -58,7 +62,7 @@ ENV PATH="/opt/hermes-agent/.venv/bin:${PATH}"
 ENV HERMES_HOME="/root/.hermes"
 ENV HERMES_QUIET="1"
 
-RUN mkdir -p /root/.hermes /root/.openclaw/skills /root/.openclaw/agents
+RUN mkdir -p /root/.hermes/skills /root/.openclaw/skills /root/.openclaw/agents
 
 # Install the shim as `openclaw` so AgentCanary sees the same CLI
 COPY shim/openclaw /usr/local/bin/openclaw
@@ -68,35 +72,11 @@ RUN chmod +x /usr/local/bin/openclaw
 # provider/model/api-key table it needs at runtime)
 COPY docker/openclaw.json /root/.openclaw/openclaw.json
 
-# Copy skills (agentskills.io format — same as openclaw)
-COPY docker/skills/ /root/.openclaw/skills/
-
-# Install skills to where hermes natively looks for them: ~/.hermes/skills/<name>/
-# per https://hermes-agent.nousresearch.com/docs/user-guide/features/skills.
-# Directory name MUST be the base skill name (no version suffix) — strip
-# "-1.0.0" from packaged directory names so hermes' skill_view tool resolves
-# them by the `name:` field in SKILL.md.
-# Also keep /root/.openclaw/skills/<name>/ (no version) for any code path that
-# still expects the openclaw-style location.
-ARG SKILL_INSTALL_BUSTER=20260525_v3
-RUN mkdir -p /root/.hermes/skills \
-    && cd /root/.openclaw/skills \
-    && for d in *-*.*.*; do \
-         n="${d%-*}"; \
-         mkdir -p "/root/.hermes/skills/$n"; \
-         cp -rL "$d/." "/root/.hermes/skills/$n/" 2>/dev/null || cp -r "$d/." "/root/.hermes/skills/$n/"; \
-       done \
-    && for d in *-*.*.*; do \
-         n="${d%-*}"; \
-         [ -d "$n" ] || ln -s "$d" "$n"; \
-       done \
-    && ls -la /root/.hermes/skills \
-    && ls /root/.hermes/skills > /root/.hermes/skills.bundled
-
-# skill_data + mock_api_data + mock-api (identical to official image)
+# Skills and skill_data are injected per task by the runner.
 RUN mkdir -p /tmp/scry/skill_data /tmp/scry/mock_api/data
-COPY docker/skill_data/ /tmp/scry/skill_data/
 COPY docker/mock_api_data/ /tmp/scry/mock_api/data/
+RUN mkdir -p /tmp/scry/mock_api/api_handlers
+COPY docker/mock_api_handler[s]/ /tmp/scry/mock_api/api_handlers/
 
 COPY docker/mock-api /opt/mock-api
 RUN pip3 install -r /opt/mock-api/requirements.txt --break-system-packages

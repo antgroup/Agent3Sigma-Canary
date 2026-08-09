@@ -6,9 +6,9 @@
 #
 # Builds OpenClaw benchmark Docker images:
 #   - official: Base OpenClaw + custom skills + mock-api server
-#   - offical_shield: official + openclaw-shield security plugin
-#   - offical_secureclaw: official + SecureClaw security plugin
-#   - offical_clawkeeper: official + ClawKeeper security plugin
+#   - official_shield: official + openclaw-shield security plugin
+#   - official_secureclaw: official + SecureClaw security plugin
+#   - official_clawkeeper: official + ClawKeeper security plugin
 #
 # Usage:
 #   bash workflow/workflow_step_1_image_builder.sh [--proxy URL]
@@ -28,7 +28,7 @@
 #   │   ├── Dockerfile
 #   │   ├── openclaw.json
 #   │   └── prepare.sh
-#   └── offical_*/            # Security plugin variants
+#   └── official_*/           # Security plugin variants
 #       ├── Dockerfile
 #       ├── openclaw.json
 #       └── prepare.sh
@@ -45,7 +45,7 @@ PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 WORKSPACES_DIR="${PROJECT_DIR}/.workspaces"
 IMAGES_DIR="${SCRIPT_DIR}/images"
 
-IMAGE_TYPES=("official" "offical_shield" "offical_secureclaw" "offical_clawkeeper" "hermes" "nanoclaw")
+IMAGE_TYPES=("official" "official_shield" "official_secureclaw" "official_clawkeeper" "hermes" "nanoclaw")
 
 DOCKER_PROXY_ENABLED=false
 DOCKER_PROXY_URL=""
@@ -198,9 +198,9 @@ select_image_types() {
     echo "Available image types:"
     echo ""
     echo "  [1] official - Base image (OpenClaw + custom skills + mock-api server)"
-    echo "  [2] offical_shield - official + openclaw-shield security plugin"
-    echo "  [3] offical_secureclaw - official + SecureClaw security plugin"
-    echo "  [4] offical_clawkeeper - official + ClawKeeper security plugin"
+    echo "  [2] official_shield - official + openclaw-shield security plugin"
+    echo "  [3] official_secureclaw - official + SecureClaw security plugin"
+    echo "  [4] official_clawkeeper - official + ClawKeeper security plugin"
     echo "  [5] hermes - hermes-agent (Nous Research) + custom skills + mock-api"
     echo "  [6] nanoclaw - nanoclaw runtime (Claude Agent SDK) + custom skills + mock-api"
     echo ""
@@ -227,9 +227,9 @@ select_image_types() {
             choice=$(echo "${choice}" | tr -d ' ')
             case ${choice} in
                 1) SELECTED_TYPES+=("official") ;;
-                2) SELECTED_TYPES+=("offical_shield") ;;
-                3) SELECTED_TYPES+=("offical_secureclaw") ;;
-                4) SELECTED_TYPES+=("offical_clawkeeper") ;;
+                2) SELECTED_TYPES+=("official_shield") ;;
+                3) SELECTED_TYPES+=("official_secureclaw") ;;
+                4) SELECTED_TYPES+=("official_clawkeeper") ;;
                 5) SELECTED_TYPES+=("hermes") ;;
                 6) SELECTED_TYPES+=("nanoclaw") ;;
                 *) log_warn "Skipping invalid choice: ${choice}" ;;

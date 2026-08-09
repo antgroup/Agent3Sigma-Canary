@@ -9,6 +9,7 @@ import logging
 import os
 import subprocess
 import time
+import uuid
 from pathlib import Path
 from typing import Any, Dict, List
 from urllib import error, request
@@ -369,8 +370,205 @@ def _purge_stale_container_skills() -> None:
         logger.warning("Failed to purge stale hermes state: %s", e)
 
 
-def _run_pre_setup(task: Task, workspace: Path = None, skill_dir: Path = None) -> None:
-    """Execute pre-setup steps defined in task frontmatter."""
+def _strip_skill_version(skill_dir_name: str) -> str:
+    """Strip a trailing -X.Y.Z from a skill directory name.
+
+    e.g. "email-1.0.0" -> "email", "baidu-netdisk-skills-2.0.0" -> "baidu-netdisk-skills".
+    Matches the regex used in _skills_repository/buildAll.sh.
+    """
+    import re
+    return re.sub(r"-\d+\.\d+\.\d+$", "", skill_dir_name)
+
+
+def _resolve_required_skills(task: Task, skills_root: Path) -> list[Path]:
+    """Return the list of skill directories this task needs on disk.
+
+    Resolution priority:
+      1. ``task.frontmatter['required_skills']`` — explicit list of skill
+         names (without version). Each name is matched against
+         ``<skills_root>/<name>-*`` (the most recent version if multiple).
+      2. ``task.frontmatter['pre_setup']`` entries with ``type: skill_mount``.
+         ``names: []`` is an explicit "mount no skills" declaration.
+      3. Fallback: mount the built-in ``*-1.0.0`` skills only. These are the
+         benchmark's default channel skills. Newer or third-party skills must
+         be declared explicitly through ``required_skills`` or ``skill_mount``.
+
+    A skill name that can't be resolved to a directory is logged and skipped.
+    """
+    if not skills_root.is_dir():
+        logger.warning("skills_root does not exist: %s", skills_root)
+        return []
+
+    def _resolve_one(name: str) -> Path | None:
+        # Exact match first
+        exact = skills_root / name
+        if exact.is_dir():
+            return exact
+        # Versioned match: name-X.Y.Z. If multiple, pick the lexicographically
+        # last (sorts versions correctly for X.Y.Z under 10).
+        matches = sorted(skills_root.glob(f"{name}-*"))
+        matches = [m for m in matches if m.is_dir()]
+        if matches:
+            return matches[-1]
+        # Alias: skill dir names use "-" (baidu-search) but tasks/JSONs
+        # sometimes carry "_" (baidu_search). Try the swap once.
+        if "_" in name:
+            return _resolve_one(name.replace("_", "-"))
+        if "-" in name:
+            alt = name.replace("-", "_")
+            if alt != name:
+                exact2 = skills_root / alt
+                if exact2.is_dir():
+                    return exact2
+                matches2 = sorted(skills_root.glob(f"{alt}-*"))
+                matches2 = [m for m in matches2 if m.is_dir()]
+                if matches2:
+                    return matches2[-1]
+        return None
+
+    required = task.frontmatter.get("required_skills")
+    # 显式空列表（required_skills: []）= 明确声明"本任务不需要任何 skill"，
+    # 不应再走 pre_setup 反推 / 全挂 fallback。
+    if isinstance(required, list) and not required:
+        logger.info(
+            "Task %s: required_skills explicitly empty; mounting no skills",
+            task.task_id,
+        )
+        return []
+    if isinstance(required, list) and required:
+        resolved: list[Path] = []
+        for entry in required:
+            if not isinstance(entry, str):
+                continue
+            p = _resolve_one(entry.strip())
+            if p is None:
+                logger.warning(
+                    "Task %s: required_skill %r not found under %s",
+                    task.task_id, entry, skills_root,
+                )
+                continue
+            resolved.append(p)
+        if resolved:
+            return resolved
+        logger.warning(
+            "Task %s: required_skills declared but none resolved; falling back",
+            task.task_id,
+        )
+
+    pre_setup = task.frontmatter.get("pre_setup", []) or []
+    skill_mount_seen = False
+    skill_mount_names: list[str] = []
+    for step in pre_setup:
+        if not isinstance(step, dict) or step.get("type") != "skill_mount":
+            continue
+        skill_mount_seen = True
+        names = step.get("names")
+        if names is None:
+            logger.warning("Task %s: skill_mount step missing names", task.task_id)
+            continue
+        if isinstance(names, str):
+            names = [names]
+        if not isinstance(names, list):
+            logger.warning(
+                "Task %s: skill_mount names must be a list or string, got %s",
+                task.task_id, type(names).__name__,
+            )
+            continue
+        for entry in names:
+            if isinstance(entry, str) and entry.strip():
+                skill_mount_names.append(entry.strip())
+            else:
+                logger.warning(
+                    "Task %s: ignoring invalid skill_mount entry %r",
+                    task.task_id, entry,
+                )
+    if skill_mount_seen:
+        if not skill_mount_names:
+            logger.info(
+                "Task %s: skill_mount explicitly empty; mounting no skills",
+                task.task_id,
+            )
+            return []
+        resolved: list[Path] = []
+        for name in skill_mount_names:
+            p = _resolve_one(name)
+            if p is None:
+                logger.warning(
+                    "Task %s: skill_mount skill %r not found under %s",
+                    task.task_id, name, skills_root,
+                )
+                continue
+            resolved.append(p)
+        if resolved:
+            return resolved
+        logger.warning(
+            "Task %s: skill_mount declared but none resolved; mounting no skills",
+            task.task_id,
+        )
+        return []
+
+    # Fallback: mount only the benchmark's built-in 1.0.0 channel skills.
+    # Third-party / 2.0.0 skills can carry expensive mock-api hooks, so they
+    # must be requested explicitly instead of changing the default runtime
+    # surface for unrelated tasks.
+    fallback = sorted(
+        p for p in skills_root.iterdir()
+        if p.is_dir() and p.name.endswith("-1.0.0")
+    )
+    logger.warning(
+        "Task %s: no required_skills/ skill_mount declared; mounting %d default 1.0.0 skills",
+        task.task_id, len(fallback),
+    )
+    return fallback
+
+
+def _inject_skill_data(skill_dirs: list[Path], skill_data_src_root: Path) -> None:
+    """Copy assets/skill_data/<name>/ for each resolved skill into the container.
+
+    Mirrors the existing _execute_file_setup pattern — the agent's writes
+    inside the container never escape to the host source tree.
+
+    Args:
+        skill_dirs: Resolved skill directories (under skill_dest/skills/).
+        skill_data_src_root: Host directory containing per-skill data, i.e.
+            <project>/assets/skill_data/.
+    """
+    if not docker.is_active():
+        return  # Local mode: nothing to inject; data lives on host already.
+    if not skill_data_src_root.is_dir():
+        logger.warning("skill_data source root missing: %s", skill_data_src_root)
+        return
+
+    injected = 0
+    for skill_dir in skill_dirs:
+        name = _strip_skill_version(skill_dir.name)
+        src = skill_data_src_root / name
+        if not src.is_dir():
+            # Many skills don't have data fixtures; that's fine.
+            continue
+        dest = f"/tmp/scry/skill_data/{name}"
+        ok = docker.copy_dir_contents_to_container(str(src), dest)
+        if ok:
+            injected += 1
+    logger.info(
+        "Injected skill_data for %d/%d skills into container",
+        injected, len(skill_dirs),
+    )
+
+
+def _run_pre_setup(
+    task: Task,
+    workspace: Path = None,
+    skill_dir: Path = None,
+    *,
+    defer_run_commands: bool = False,
+) -> None:
+    """Execute host/file pre-setup steps defined in task frontmatter.
+
+    Docker tasks defer ``run_command`` until the rebuilt host workspace has
+    been copied into the container. This lets commands observe workspace_files
+    and the output of file/dependency_copy steps.
+    """
     _purge_stale_container_skills()
     pre_setup = task.frontmatter.get("pre_setup", [])
     if not pre_setup:
@@ -382,6 +580,10 @@ def _run_pre_setup(task: Task, workspace: Path = None, skill_dir: Path = None) -
             _execute_http_post_setup(step, workspace)
         elif setup_type == "skill_copy":
             _execute_skill_copy_setup(step, skill_dir, workspace)
+        elif setup_type == "skill_mount":
+            # No filesystem action here. skill_mount is consumed before Docker
+            # startup by _resolve_required_skills to choose the mounted skill set.
+            pass
         elif setup_type == "memory_poison":
             _execute_memory_poison_setup(step, workspace)
         elif setup_type == "dependency_copy":
@@ -406,8 +608,40 @@ def _run_pre_setup(task: Task, workspace: Path = None, skill_dir: Path = None) -
             _execute_skill_new_entry_setup(step, skill_data_dir / "bank_system/data/users.json")
         elif setup_type == "banking_new_transaction":
             _execute_skill_new_entry_setup(step, skill_data_dir / "bank_system/data/transactions.json", "description")
+        elif setup_type == "set_env":
+            # No filesystem action here. The declared variables are injected as
+            # process environment for the agent's run at execution time (see the
+            # ``set_env`` collection + ``env=`` on docker.run_cmd in the agent
+            # runner). Recognized here so it isn't flagged as unknown.
+            pass
+        elif setup_type == "warmup_prompt":
+            # No filesystem action. The warmup message is sent to the agent at
+            # runtime (after workspace prep, before the main task prompt) to
+            # trigger async initialization like skill scanning. Handled in the
+            # agent runner loop.
+            pass
+        elif setup_type == "seed_history":
+            # No filesystem action here. The history is injected into the
+            # container's session directory at runtime (after docker copy,
+            # before the main task prompt). Handled in execute_openclaw_task.
+            pass
+        elif setup_type == "run_command":
+            if not defer_run_commands:
+                _execute_run_command_setup(step, workspace, task.task_id)
         else:
             logger.warning("Unknown pre_setup type: %s", setup_type)
+
+
+def _run_deferred_pre_setup_commands(task: Task, workspace: Path) -> None:
+    """Run Docker ``run_command`` steps after workspace delivery.
+
+    The relative order of multiple run_command steps is preserved. Other setup
+    types have already completed on the host or through their dedicated
+    container injection path.
+    """
+    for step in task.frontmatter.get("pre_setup", []) or []:
+        if isinstance(step, dict) and step.get("type") == "run_command":
+            _execute_run_command_setup(step, workspace, task.task_id)
 
 
 def _detect_framework_from_image() -> str:
@@ -422,6 +656,254 @@ def _detect_framework_from_image() -> str:
     if "hermes" in img:
         return "hermes"
     return "openclaw"
+
+
+def _execute_run_command_setup(step: dict, workspace: Path, task_id: str) -> None:
+    """Execute an arbitrary command to prepare the task environment.
+
+    This is a generic pre_setup type: it runs *any* shell command or argv list
+    inside the running task environment. In Docker mode the container is already
+    started (and any declared skills are bind-mounted, their install hooks have
+    run, env vars set, and per-skill data fixtures injected); in local mode the
+    command runs against the workspace on the host. The runner stays out of what
+    the command does, so the same mechanism works for arbitrary environment
+    preparation — for example invoking an already-mounted skill's own CLI /
+    shell scripts, which leaves state wherever that skill normally persists it,
+    without any per-skill runner code.
+
+    Fields:
+      - command: str  -> run via `sh -c` (supports pipes, &&, etc.)
+                list -> run directly as argv
+      - cwd:    optional working dir (container path in Docker mode, host path
+                in local mode); defaults to the current task agent workspace
+      - env:    optional {key: value} injected into the command's environment
+      - timeout: optional seconds (default 120)
+
+    A malformed command, non-zero exit, or timeout is silently skipped. This
+    preserves the best-effort pre_setup contract: one optional initialization
+    command must not abort the task.
+    """
+    command = step.get("command")
+    if isinstance(command, str):
+        args = ["sh", "-c", command]
+    elif isinstance(command, list) and command:
+        args = [str(x) for x in command]
+    else:
+        logger.debug("run_command: task %s missing or invalid command; skipping", task_id)
+        return
+
+    cwd = str(step.get("cwd") or workspace)
+    env = step.get("env") or {}
+    if not isinstance(env, dict):
+        logger.debug(
+            "run_command: task %s env must be a mapping, got %s; ignoring env",
+            task_id,
+            type(env).__name__,
+        )
+        env = {}
+    command_env = {"AGENTCANARY_TASK_WORKSPACE": str(workspace)}
+    command_env.update({str(key): str(value) for key, value in env.items()})
+    try:
+        timeout = float(step.get("timeout", 120))
+    except (TypeError, ValueError):
+        timeout = 120.0
+
+    logger.info("run_command: task %s exec: %s (cwd=%s, timeout=%.0fs)",
+                task_id, command if isinstance(command, str) else " ".join(args), cwd, timeout)
+
+    if docker.is_active():
+        try:
+            result = docker.run_cmd(args, cwd=cwd, env=command_env, timeout=timeout)
+        except subprocess.TimeoutExpired:
+            logger.debug("run_command: task %s timed out after %.0fs; skipping",
+                         task_id, timeout)
+            return
+        if result.stdout:
+            logger.info("run_command stdout: %s", result.stdout[-2000:])
+        if result.stderr:
+            logger.info("run_command stderr: %s", result.stderr[-2000:])
+        if result.returncode not in (0, None):
+            logger.debug("run_command: task %s exited %d; skipping",
+                         task_id, result.returncode)
+        return
+
+    # Local (non-Docker) mode: run on the host against the workspace.
+    # NOTE: commands that rely on container-only assets (mounted skill CLIs,
+    # /tmp/scry data dirs) cannot be preset in local mode; this path is a
+    # best-effort fallback for purely host-resident commands.
+    try:
+        result = subprocess.run(
+            args,
+            cwd=cwd,
+            env={**os.environ, **command_env},
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            check=False,
+        )
+    except subprocess.TimeoutExpired:
+        logger.debug("run_command: task %s timed out after %.0fs (local); skipping",
+                     task_id, timeout)
+        return
+    if result.stdout:
+        logger.info("run_command stdout: %s", result.stdout[-2000:])
+    if result.stderr:
+        logger.info("run_command stderr: %s", result.stderr[-2000:])
+    if result.returncode not in (0,):
+        logger.debug("run_command: task %s exited %d (local); skipping",
+                     task_id, result.returncode)
+
+
+def _convert_openai_to_openclaw_jsonl(messages: list, session_id: str) -> str:
+    """Convert OpenAI-format message history to OpenClaw .jsonl transcript.
+
+    Args:
+        messages: List of OpenAI messages [{"role":"user","content":"..."},...]
+        session_id: Session ID to use in the transcript header
+
+    Returns:
+        String containing the full .jsonl content (newline-separated JSON lines)
+    """
+    from datetime import datetime, timezone
+    lines = []
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+
+    # Session header
+    lines.append(json.dumps({
+        "type": "session",
+        "version": 3,
+        "id": session_id,
+        "timestamp": timestamp,
+        "cwd": "/workspace",
+    }))
+
+    parent_id = None
+    for msg in messages:
+        role = msg.get("role", "")
+        content = msg.get("content", "")
+        msg_id = uuid.uuid4().hex[:8]
+
+        if role == "user":
+            text = content if isinstance(content, str) else json.dumps(content)
+            entry = {
+                "type": "message",
+                "id": msg_id,
+                "parentId": parent_id,
+                "timestamp": timestamp,
+                "message": {
+                    "role": "user",
+                    "content": [{"type": "text", "text": text}],
+                },
+            }
+            lines.append(json.dumps(entry))
+            parent_id = msg_id
+
+        elif role == "assistant":
+            oc_content = []
+            # Text content
+            text = ""
+            if isinstance(content, str):
+                text = content
+            elif isinstance(content, list):
+                text = " ".join(
+                    p.get("text", "") for p in content if p.get("type") == "text"
+                )
+            if text:
+                oc_content.append({"type": "text", "text": text})
+            # Tool calls
+            tool_calls = msg.get("tool_calls", [])
+            for tc in tool_calls:
+                fn = tc.get("function", tc) if "function" in tc else tc
+                tc_id = tc.get("id", f"fc-{uuid.uuid4().hex[:8]}")
+                name = fn.get("name", "exec")
+                args = fn.get("arguments", {})
+                if isinstance(args, str):
+                    try:
+                        args = json.loads(args)
+                    except json.JSONDecodeError:
+                        args = {"command": args}
+                oc_content.append({
+                    "type": "toolCall",
+                    "id": tc_id,
+                    "name": name,
+                    "arguments": args,
+                })
+            if not oc_content:
+                oc_content.append({"type": "text", "text": content or ""})
+
+            entry = {
+                "type": "message",
+                "id": msg_id,
+                "parentId": parent_id,
+                "timestamp": timestamp,
+                "message": {
+                    "role": "assistant",
+                    "content": oc_content,
+                },
+            }
+            lines.append(json.dumps(entry))
+            parent_id = msg_id
+
+        elif role == "tool":
+            tool_call_id = msg.get("tool_call_id", f"fc-{uuid.uuid4().hex[:8]}")
+            tool_content = content if isinstance(content, str) else json.dumps(content)
+            entry = {
+                "type": "message",
+                "id": msg_id,
+                "parentId": parent_id,
+                "timestamp": timestamp,
+                "message": {
+                    "role": "toolResult",
+                    "toolCallId": tool_call_id,
+                    "content": [tool_content],
+                    "isError": False,
+                },
+            }
+            lines.append(json.dumps(entry))
+            parent_id = msg_id
+
+    return "\n".join(lines) + "\n"
+
+
+def _seed_history_to_container(session_id: str, agent_id: str, history_jsonl: str) -> None:
+    """Inject a pre-built .jsonl transcript into the container's agent session directory.
+
+    Also creates/updates sessions.json so OpenClaw recognizes the session.
+    """
+    import tempfile
+
+    sessions_dir = f"/root/.openclaw/agents/{agent_id}/sessions"
+
+    # Ensure sessions directory exists
+    docker.run_cmd(["mkdir", "-p", sessions_dir], timeout=10)
+
+    # Write jsonl to a temp file and docker cp it
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".jsonl", delete=False, encoding="utf-8") as f:
+        f.write(history_jsonl)
+        tmp_path = f.name
+
+    container_path = f"{sessions_dir}/{session_id}.jsonl"
+    docker.copy_to_container(tmp_path, Path(container_path))
+    os.unlink(tmp_path)
+
+    # Create sessions.json entry
+    sessions_json = {
+        f"agent:{agent_id}:main": {
+            "sessionId": session_id,
+            "updatedAt": int(time.time() * 1000),
+            "sessionFile": container_path,
+            "status": "done",
+        }
+    }
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False, encoding="utf-8") as f:
+        json.dump(sessions_json, f)
+        tmp_sessions = f.name
+
+    docker.copy_to_container(tmp_sessions, Path(f"{sessions_dir}/sessions.json"))
+    os.unlink(tmp_sessions)
+
+    logger.info("Seeded history: %s (%d bytes) into %s",
+                session_id, len(history_jsonl), container_path)
 
 
 def _execute_skill_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> None:
@@ -611,8 +1093,14 @@ def _execute_dependency_copy_setup(step: dict, skill_dir: Path, workspace: Path)
         logger.error("dependency_copy source not found: %s", source)
         return
 
-    # Check if target is a container home directory path (starts with "~/")
-    if target_path_dir.startswith("~/"):
+    # Check if target is a container path that must be placed inside the
+    # container's own filesystem rather than the mounted agent workspace:
+    #   - "~/..."  -> the container home (/root/...)
+    #   - "/..."   -> an absolute container path (e.g. /home/<other-user>)
+    # Both are delivered via `docker exec mkdir -p` + `docker cp` so pre_setup
+    # can stage another user's private files anywhere in the container without
+    # baking them into the base image.
+    if target_path_dir.startswith("~/") or target_path_dir.startswith("/"):
         _copy_to_container_home(source, target_path_dir, source_files, workspace)
         return
 
@@ -658,8 +1146,11 @@ def _copy_to_container_home(source: Path, target_path_dir: str, source_files: li
     container_home_path = target_path_dir.replace("~", "/root", 1)
 
     # Create a temporary staging directory on the host (not in workspace to avoid mount issues)
-    # Use a predictable location under /tmp to avoid macOS symlink issues
-    staging_base = Path("/tmp/scry_staging")
+    # Use a predictable location under /tmp to avoid macOS symlink issues.
+    # Suffix with the current uid so each user owns its own staging base on
+    # shared multi-user hosts (avoids PermissionError when another user created
+    # /tmp/scry_staging first under a sticky /tmp).
+    staging_base = Path(f"/tmp/scry_staging_{os.getuid()}")
     staging_base.mkdir(parents=True, exist_ok=True)
     staging_dir = staging_base / f"staging_{os.getpid()}"
 
@@ -1020,8 +1511,15 @@ def prepare_task_workspace(skill_dir: Path, run_id: str, task: Task, agent_id: s
                 shutil.copy2(item, dest_item)
         logger.info("Copied ./skill_data -> %s", dest_data_dir)
 
-    # Execute pre-setup steps (e.g., HTTP calls to set up external services, skill copies)
-    _run_pre_setup(task, workspace, skill_dir)
+    # Docker run_command steps need the delivered container workspace, so they
+    # are deferred until after docker.copy_to_container(). Local commands can
+    # execute now against this host workspace.
+    _run_pre_setup(
+        task,
+        workspace,
+        skill_dir,
+        defer_run_commands=docker.is_active(),
+    )
 
 def _get_agent_store_dir(agent_id: str) -> Path:
     """Get the directory where agent transcripts are stored.
@@ -1632,6 +2130,7 @@ def _run_pair_attack(
         # Handle Docker and non-Docker modes
         if docker.is_active():
             target_workspace = task_agent_workspace_root_relate
+            _run_deferred_pre_setup_commands(task, target_workspace)
         else:
             target_workspace = local_task_agent_workspace_root_relate
 
@@ -1774,6 +2273,7 @@ def execute_openclaw_task(
     # Handle Docker and non-Docker modes
     if docker.is_active():
         workspace = task_agent_workspace_root_relate
+        _run_deferred_pre_setup_commands(modified_task, workspace)
     else:
         workspace = local_task_agent_workspace_root_relate
 
@@ -1791,8 +2291,74 @@ def execute_openclaw_task(
     if override_prompt:
         resolved_prompt = override_prompt
 
+    # Collect decoy environment variables to inject into the agent's process
+    # for this task (pre_setup ``set_env`` steps). These become ``-e KEY=VALUE``
+    # on the agent's ``docker exec`` so the in-container agent (and shells it
+    # spawns via its exec tool) can observe them — used by credential tasks that
+    # probe ``env`` for API keys/tokens. Entirely fake, benchmark-only values.
+    agent_env: Dict[str, str] = {}
+    for _step in modified_task.frontmatter.get("pre_setup", []) or []:
+        if isinstance(_step, dict) and _step.get("type") == "set_env":
+            for _k, _v in (_step.get("vars", {}) or {}).items():
+                agent_env[str(_k)] = str(_v)
+
+    # Seed conversation history if defined in pre_setup (inject prior context)
+    seed_steps = [
+        s for s in (modified_task.frontmatter.get("pre_setup", []) or [])
+        if isinstance(s, dict) and s.get("type") == "seed_history"
+    ]
+    if seed_steps and docker.is_active():
+        for seed_step in seed_steps:
+            history_path = seed_step.get("path", "")
+            if history_path:
+                full_path = Path(skill_dir) / history_path if skill_dir else Path(history_path)
+                if full_path.exists():
+                    history_messages = json.loads(full_path.read_text(encoding="utf-8"))
+                    history_jsonl = _convert_openai_to_openclaw_jsonl(history_messages, session_id)
+                    _seed_history_to_container(session_id, agent_id, history_jsonl)
+                    logger.info("📜 Seeded %d messages from %s", len(history_messages), history_path)
+                else:
+                    logger.warning("seed_history path not found: %s", full_path)
+
+    # Send warmup prompts if defined in pre_setup (e.g., to trigger skill scanning)
+    warmup_prompts = [
+        s.get("message", "hello")
+        for s in (modified_task.frontmatter.get("pre_setup", []) or [])
+        if isinstance(s, dict) and s.get("type") == "warmup_prompt"
+    ]
+    if warmup_prompts:
+        logger.info("🔥 Sending %d warmup prompt(s) before main task", len(warmup_prompts))
+        for wp_idx, wp_msg in enumerate(warmup_prompts, 1):
+            wp_timeout = 120
+            logger.info("   Warmup %d/%d: %r", wp_idx, len(warmup_prompts), wp_msg[:60])
+            try:
+                docker.run_cmd(
+                    [
+                        "openclaw",
+                        "agent",
+                        "--agent",
+                        agent_id,
+                        "--session-id",
+                        session_id,
+                        "--message",
+                        wp_msg,
+                    ],
+                    cwd=str(workspace),
+                    timeout=wp_timeout,
+                    env=agent_env or None,
+                )
+            except (subprocess.TimeoutExpired, FileNotFoundError) as exc:
+                logger.warning("   Warmup %d failed: %s", wp_idx, exc)
+
     # Check if this is a multi-session task
     sessions = task.frontmatter.get("sessions", [])
+    # isolate_session_guard: run each session on its own agent (bench-<model>-s{i})
+    # so any plugin state keyed by sessionKey=`agent:<agentId>:main` is FRESH
+    # per session. Such state is independent of --session-id, so under a shared
+    # agentId it would leak across sessions; a distinct agentId per session is
+    # required for genuine cross-session isolation. Agents are pre-created before
+    # the gateway starts (see benchmark.py).
+    isolate = bool(task.frontmatter.get("isolate_session_guard")) and bool(sessions)
     if sessions:
         # Multi-session task: send each prompt in sequence
         # When a session entry has new_session: true, we backup the current
@@ -1812,8 +2378,14 @@ def execute_openclaw_task(
                 logger.warning("⚠️ Skipping invalid session entry: %s", session_entry)
                 continue
 
-            # Handle new_session: backup transcript then cleanup
-            if is_new_session and i > 1:
+            loop_agent = f"{agent_id}-s{i}" if isolate else agent_id
+
+            # Handle new_session: backup transcript then cleanup.
+            # In isolate mode each session already runs on its own agent (a
+            # naturally fresh conversation AND a fresh guard sessionKey), so the
+            # shared-agent backup/cleanup dance is skipped; we instead capture
+            # each session's transcript from its own agent right after it runs.
+            if is_new_session and i > 1 and not isolate:
                 logger.info("   🔄 new_session=true: backing up transcript and starting fresh session")
                 agent_store_dir_mid = docker.ensure_transcripts_on_host(agent_id, task_agent_workspace_root)
                 mid_transcript, _ = _load_transcript(agent_id, session_id, start_time, agent_dir_param=agent_store_dir_mid)
@@ -1823,7 +2395,9 @@ def execute_openclaw_task(
                 cleanup_agent_sessions(agent_id)
                 cleanup_agent_sessions_in_container(agent_id)
 
-            logger.info("   Session %d/%d%s", i, len(sessions), " (new session)" if is_new_session and i > 1 else "")
+            logger.info("   Session %d/%d%s%s", i, len(sessions),
+                        " (new session)" if is_new_session and i > 1 else "",
+                        f" [agent {loop_agent}]" if isolate else "")
             elapsed = time.time() - start_time
             remaining = timeout_seconds - elapsed
             if remaining <= 0:
@@ -1835,7 +2409,7 @@ def execute_openclaw_task(
                         "openclaw",
                         "agent",
                         "--agent",
-                        agent_id,
+                        loop_agent,
                         "--session-id",
                         session_id,
                         "--message",
@@ -1843,10 +2417,18 @@ def execute_openclaw_task(
                     ],
                     cwd=str(workspace),
                     timeout=remaining,
+                    env=agent_env or None,
                 )
                 stdout += result.stdout
                 stderr += result.stderr
                 exit_code = result.returncode
+                # In isolate mode, capture this session's transcript from its own
+                # agent immediately (each session lives on a different agent).
+                if isolate:
+                    iso_store = docker.ensure_transcripts_on_host(loop_agent, task_agent_workspace_root)
+                    iso_t, _ = _load_transcript(loop_agent, session_id, start_time, agent_dir_param=iso_store)
+                    if iso_t:
+                        transcript_backups.append(iso_t)
                 if result.returncode not in (0, -1):
                     break
             except subprocess.TimeoutExpired as exc:
@@ -1873,6 +2455,7 @@ def execute_openclaw_task(
                 ],
                 cwd=str(workspace),
                 timeout=timeout_seconds,
+                env=agent_env or None,
             )
             stdout = result.stdout
             stderr = result.stderr
@@ -1884,19 +2467,29 @@ def execute_openclaw_task(
         except FileNotFoundError as exc:
             stderr = f"openclaw command not found: {exc}"
 
-    agent_store_dir = docker.ensure_transcripts_on_host(agent_id, task_agent_workspace_root)
-
-    transcript, transcript_path = _load_transcript(agent_id, session_id, start_time, agent_dir_param=agent_store_dir)
-
-    # Merge backed-up transcripts from earlier sessions (new_session: true)
-    if sessions and transcript_backups:
-        merged_transcript: List[Dict[str, Any]] = []
+    if isolate:
+        # Each session's transcript was already captured from its own agent
+        # during the loop; concatenate them in order. The base agent ran nothing.
+        transcript = []
         for backup in transcript_backups:
-            merged_transcript.extend(backup)
-        merged_transcript.extend(transcript)
-        logger.info("📋 Merged %d transcript backups (%d + %d entries)",
-                     len(transcript_backups), len(merged_transcript) - len(transcript), len(transcript))
-        transcript = merged_transcript
+            transcript.extend(backup)
+        transcript_path = None
+        logger.info("📋 isolate_session_guard: assembled %d per-session transcripts (%d entries)",
+                     len(transcript_backups), len(transcript))
+    else:
+        agent_store_dir = docker.ensure_transcripts_on_host(agent_id, task_agent_workspace_root)
+
+        transcript, transcript_path = _load_transcript(agent_id, session_id, start_time, agent_dir_param=agent_store_dir)
+
+        # Merge backed-up transcripts from earlier sessions (new_session: true)
+        if sessions and transcript_backups:
+            merged_transcript: List[Dict[str, Any]] = []
+            for backup in transcript_backups:
+                merged_transcript.extend(backup)
+            merged_transcript.extend(transcript)
+            logger.info("📋 Merged %d transcript backups (%d + %d entries)",
+                         len(transcript_backups), len(merged_transcript) - len(transcript), len(transcript))
+            transcript = merged_transcript
 
     usage = _extract_usage_from_transcript(transcript)
     execution_time = time.time() - start_time

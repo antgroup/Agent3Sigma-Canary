@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # ============================================================================
-# offical_shield image data preparation script
+# official_shield image data preparation script
 # ============================================================================
 #
 # Purpose
@@ -32,7 +32,7 @@ if [[ -z "${BUILD_DIR}" ]]; then
     exit 1
 fi
 
-echo "[INFO] Preparing offical_shield image data..."
+echo "[INFO] Preparing official_shield image data..."
 echo "  Build directory: ${BUILD_DIR}"
 echo "  Project directory: ${PROJECT_DIR}"
 echo "  Shield source directory: ${SHIELD_SOURCE_DIR}"
@@ -72,4 +72,4 @@ if [[ -d "${SHIELD_SOURCE_DIR}/docs" ]]; then
     cp -r "${SHIELD_SOURCE_DIR}/docs" "${BUILD_DIR}/docker/openclaw-shield/"
 fi
 
-echo "[INFO] offical_shield image data preparation completed"
+echo "[INFO] official_shield image data preparation completed"

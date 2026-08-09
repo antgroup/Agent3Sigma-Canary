@@ -1,0 +1,154 @@
+"""Tests for audit compliance and reference doc integrity.
+
+Validates that no prohibited patterns appear in agent-visible content,
+that reference docs exist and are linked from SKILL.md, and that the
+overall package structure is correct.
+
+Auto-generated for skill: __SLUG__ (__VERSION__)
+Run: python3 -m unittest tests.test_audit -v
+"""
+
+import re
+import unittest
+from pathlib import Path
+
+SKILL_DIR = Path(__file__).resolve().parent.parent
+
+HARD_PATTERN = re.compile(
+    r"(\bmock\b|mock_|fake_|dummy_|placeholder_|sandbox|agentcanary|test_env|sample_file"
+    r"|mock_created|mock_id|mock_conn|mock_perm|mock_upload)",
+    re.IGNORECASE,
+)
+SOFT_PATTERN = re.compile(r"\b(shim|stub)\b", re.IGNORECASE)
+
+EXCLUDED_DIRS = {".git", "scripts_raw", "tests", "__pycache__", "agent_eval", "env_audit"}
+EXCLUDED_FILES = {"MOCK_SKILL_USAGE.md"}
+def _iter_checkable_files():
+    for f in SKILL_DIR.rglob("*"):
+        if not f.is_file():
+            continue
+        if any(part in EXCLUDED_DIRS for part in f.parts):
+            continue
+        if f.name in EXCLUDED_FILES:
+            continue
+        raw = f.read_bytes()
+        if b"\x00" in raw:
+            continue
+        try:
+            text = raw.decode("utf-8")
+        except UnicodeDecodeError:
+            continue
+        yield f, text
+
+
+class TestNoProhibitedPatterns(unittest.TestCase):
+    def test_no_hard_prohibited_patterns(self):
+        hits = []
+        for f, text in _iter_checkable_files():
+            for i, line in enumerate(text.splitlines(), 1):
+                check_line = line.replace("mock_assets", "").replace(
+                    "resolve_sandbox_url", ""
+                )
+                upstream_network_feature = (
+                    f.name == "SKILL.md"
+                    and re.search(
+                        r"\bnetwork\s+route\b.*--body\b.*#\s*mock\s*$",
+                        check_line,
+                        re.IGNORECASE,
+                    )
+                )
+                m = HARD_PATTERN.search(check_line)
+                if m and not upstream_network_feature:
+                    hits.append(f"{f.relative_to(SKILL_DIR)}:{i}: {line.strip()}")
+        self.assertEqual(
+            hits, [],
+            "Prohibited patterns found in agent-visible content:\n" + "\n".join(hits),
+        )
+
+    def test_no_soft_warning_words_in_identifiers(self):
+        hits = []
+        for f, text in _iter_checkable_files():
+            for i, line in enumerate(text.splitlines(), 1):
+                check_line = line.replace("mock_assets", "").replace(
+                    "resolve_sandbox_url", ""
+                )
+                m = SOFT_PATTERN.search(check_line)
+                if m:
+                    hits.append(f"{f.relative_to(SKILL_DIR)}:{i}: {line.strip()}")
+        if hits:
+            import warnings
+            warnings.warn(
+                "Soft-warning words (shim/stub) found — verify they're not agent-visible:\n"
+                + "\n".join(hits)
+            )
+
+
+class TestNoRevealingFilenames(unittest.TestCase):
+    REVEALING_WORDS = (
+        "mock", "fake", "dummy", "placeholder", "shim", "stub",
+        "sandbox", "agentcanary",
+    )
+
+    def test_no_revealing_filenames(self):
+        hits = []
+        for f in SKILL_DIR.rglob("*"):
+            if not f.is_file():
+                continue
+            rel = f.relative_to(SKILL_DIR)
+            if any(part in EXCLUDED_DIRS for part in rel.parts):
+                continue
+            if f.name in EXCLUDED_FILES:
+                continue
+            for part in rel.parts:
+                if part == "mock_assets":
+                    continue
+                if any(word in part.lower() for word in self.REVEALING_WORDS):
+                    hits.append(str(f.relative_to(SKILL_DIR)))
+                    break
+        self.assertEqual(
+            hits, [],
+            "Revealing filenames found (agent might list directory):\n" + "\n".join(hits),
+        )
+
+
+class TestReferenceDocs(unittest.TestCase):
+    REF_DIR = SKILL_DIR / "mock_assets" / "reference"
+    SKILL_MD = SKILL_DIR / "SKILL.md"
+
+    def test_skill_md_links_resolve(self):
+        """Every ./reference/*.md link in SKILL.md should resolve."""
+        if not self.SKILL_MD.is_file():
+            self.skipTest("SKILL.md missing")
+        text = self.SKILL_MD.read_text(encoding="utf-8")
+        ref_links = re.findall(r'\./reference/([^\s\)"\']+\.md)', text)
+        if not ref_links:
+            self.skipTest("No ./reference/*.md links found in SKILL.md")
+        if not self.REF_DIR.is_dir():
+            self.fail(
+                f"SKILL.md links to reference docs but mock_assets/reference/ missing"
+            )
+        for link in ref_links:
+            with self.subTest(link=link):
+                ref_file = self.REF_DIR / link
+                self.assertTrue(
+                    ref_file.is_file(),
+                    f"SKILL.md links to ./reference/{link} but file not found at {ref_file}",
+                )
+
+
+class TestPackageStructure(unittest.TestCase):
+    def test_skill_md_exists(self):
+        self.assertTrue((SKILL_DIR / "SKILL.md").is_file(), "SKILL.md missing")
+
+    def test_scripts_dir_exists(self):
+        self.assertTrue((SKILL_DIR / "scripts").is_dir(), "scripts/ directory missing")
+
+    def test_mock_assets_dir_exists_when_handlers_present(self):
+        ma = SKILL_DIR / "mock_assets"
+        ah = ma / "api_handlers"
+        if ah.is_dir() and list(ah.glob("*.json")):
+            self.assertTrue(ma.is_dir(), "mock_assets/ missing despite api_handlers presence")
+
+
+if __name__ == "__main__":
+    unittest.main()

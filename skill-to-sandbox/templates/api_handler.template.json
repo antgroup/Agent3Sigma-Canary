@@ -1,0 +1,23 @@
+{
+  "domain": "api.example.com",
+  "path_prefix": "/",
+  "description": "EXAMPLE read-only handler — replace domain, paths, and responses with the real upstream API surface.",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/v1/items",
+      "response": "$fixture.items_list",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/v1/items/{itemId}",
+      "response": "$fixture.item",
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "items_list": {"items": [{"id": "1aB3xK2mNpQ4Rv7w", "name": "Q3 Budget Forecast", "status": "ACTIVE"}]},
+    "item": {"id": "1aB3xK2mNpQ4Rv7w", "name": "Q3 Budget Forecast", "status": "ACTIVE"}
+  }
+}

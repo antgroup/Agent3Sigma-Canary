@@ -14,18 +14,9 @@ fi
 
 echo "[INFO] Preparing nanoclaw image build context..."
 
-mkdir -p "${BUILD_DIR}/docker/skills"
-mkdir -p "${BUILD_DIR}/docker/skill_data"
 mkdir -p "${BUILD_DIR}/docker/mock-api"
 mkdir -p "${BUILD_DIR}/docker/mock_api_data"
 mkdir -p "${BUILD_DIR}/shim"
-
-if [[ -d "${SKILL_DEST_DIR}/skills" ]]; then
-    cp -r "${SKILL_DEST_DIR}/skills/"* "${BUILD_DIR}/docker/skills/"
-else
-    echo "[ERROR] ${SKILL_DEST_DIR}/skills does not exist (run _skills_repository/buildAll.sh first)"
-    exit 1
-fi
 
 cp "${IMAGES_DIR}/openclaw.json" "${BUILD_DIR}/docker/openclaw.json"
 cp -r "${IMAGES_DIR}/mock-api/"* "${BUILD_DIR}/docker/mock-api/"
@@ -34,14 +25,15 @@ cp "${IMAGES_DIR}/shim/openclaw" "${BUILD_DIR}/shim/openclaw"
 cp "${IMAGES_DIR}/shim/driver.mjs" "${BUILD_DIR}/shim/driver.mjs"
 chmod +x "${BUILD_DIR}/shim/openclaw"
 
-ASSETS_SKILL_DATA="${PROJECT_DIR}/assets/skill_data"
-if [[ -d "${ASSETS_SKILL_DATA}" ]]; then
-    cp -r "${ASSETS_SKILL_DATA}/"* "${BUILD_DIR}/docker/skill_data/"
-fi
-
 ASSETS_MOCK_API_DATA="${PROJECT_DIR}/assets/mock_api/data"
 if [[ -d "${ASSETS_MOCK_API_DATA}" ]]; then
     cp -r "${ASSETS_MOCK_API_DATA}/"* "${BUILD_DIR}/docker/mock_api_data/"
+fi
+
+ASSETS_API_HANDLERS="${PROJECT_DIR}/assets/mock_api/api_handlers"
+mkdir -p "${BUILD_DIR}/docker/mock_api_handlers"
+if [[ -d "${ASSETS_API_HANDLERS}" ]] && ls "${ASSETS_API_HANDLERS}"/*.json &>/dev/null; then
+    cp "${ASSETS_API_HANDLERS}"/*.json "${BUILD_DIR}/docker/mock_api_handlers/"
 fi
 
 echo "[INFO] nanoclaw image build context prepared"

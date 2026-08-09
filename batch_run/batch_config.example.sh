@@ -20,9 +20,9 @@
 
 DOCKER_IMAGES=(
     "openclaw-official-v20260430_120000"
-    # "openclaw-offical_shield-v20260430_120000"
-    # "openclaw-offical_secureclaw-v20260430_120000"
-    # "openclaw-offical_clawkeeper-v20260430_120000"
+    # "openclaw-official_shield-v20260430_120000"
+    # "openclaw-official_secureclaw-v20260430_120000"
+    # "openclaw-official_clawkeeper-v20260430_120000"
     # "openclaw-hermes-v20260524_010000"     # Nous Research hermes-agent (Claude Agent SDK + multi-provider)
     # "openclaw-nanoclaw-v20260524_010000"   # nanoclaw runtime (Claude Agent SDK with container-isolation config)
 )

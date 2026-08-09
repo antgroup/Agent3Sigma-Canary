@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+"""Thin CLI shim that defers to lib/exporter.py.
+
+Usage examples (full options: bin/assemble --help):
+
+  # Type A — external API skill (e.g. bdpan, google-drive)
+  bin/assemble --type A --slug bdpan --version 2.0.0 \
+      --original-skill-dir /tmp/bdpan-pkg \
+      --overlay-dir /tmp/bdpan-overlay \
+      --output /tmp/agentcanary_output
+
+"""
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / "lib"))
+import exporter  # noqa: E402
+
+sys.exit(exporter._cli())

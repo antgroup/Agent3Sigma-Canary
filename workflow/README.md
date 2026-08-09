@@ -7,13 +7,13 @@
 | Image Type | Tag Format | Description |
 |------------|------------|-------------|
 | `official` | `openclaw-official-v{timestamp}` | Native OpenClaw + custom skills + mock-api server |
-| `offical_shield` | `openclaw-offical_shield-v{timestamp}` | `official` + openclaw-shield security plugin |
-| `offical_secureclaw` | `openclaw-offical_secureclaw-v{timestamp}` | `official` + SecureClaw security plugin |
-| `offical_clawkeeper` | `openclaw-offical_clawkeeper-v{timestamp}` | `official` + ClawKeeper security plugin |
+| `official_shield` | `openclaw-official_shield-v{timestamp}` | `official` + openclaw-shield security plugin |
+| `official_secureclaw` | `openclaw-official_secureclaw-v{timestamp}` | `official` + SecureClaw security plugin |
+| `official_clawkeeper` | `openclaw-official_clawkeeper-v{timestamp}` | `official` + ClawKeeper security plugin |
 | `hermes` | `openclaw-hermes-v{timestamp}` | hermes-agent (Nous Research) framework wrapped behind an `openclaw` shim + mock-api server |
 | `nanoclaw` | `openclaw-nanoclaw-v{timestamp}` | nanoclaw runtime (Claude Agent SDK) wrapped behind an `openclaw` shim + mock-api server |
 
-The `offical_*` variants extend `official` by adding different security plugins. The `hermes` and `nanoclaw` variants instead wrap third-party agent frameworks behind an `openclaw` shim so they can be evaluated through the same harness.
+The `official_*` variants extend `official` by adding different security plugins. The `hermes` and `nanoclaw` variants instead wrap third-party agent frameworks behind an `openclaw` shim so they can be evaluated through the same harness.
 
 ## Directory Layout
 
@@ -27,16 +27,16 @@ workflow/
     │   ├── openclaw.json
     │   ├── prepare.sh
     │   └── mock-api/
-    ├── offical_shield/
+    ├── official_shield/
     │   ├── Dockerfile
     │   ├── openclaw.json
     │   └── prepare.sh
-    ├── offical_secureclaw/
+    ├── official_secureclaw/
     │   ├── secureclaw/
     │   ├── Dockerfile
     │   ├── openclaw.json
     │   └── prepare.sh
-    ├── offical_clawkeeper/
+    ├── official_clawkeeper/
     │   ├── ClawKeeper/
     │   ├── Dockerfile
     │   ├── openclaw.json
@@ -94,34 +94,41 @@ Interactive prompts:
 
 - `images/official/Dockerfile`
 - `images/official/openclaw.json`
-- `_skills_repository/skill_dest/skills`
-- `assets/skill_data`
 - `assets/mock_api/data`
+- `assets/mock_api/api_handlers`
 - `images/official/mock-api`
 
 `images/official/Dockerfile` installs and configures:
 
 - `openclaw@2026.4.11`
-- Custom skills: `/root/.openclaw/skills`
 - mock-api server: `/opt/mock-api`
 - mock-api data: `/tmp/scry/mock_api/data`
-- Skill data: `/tmp/scry/skill_data`
 
-## offical_shield Build Contents
+Skills are bind-mounted and their `skill_data` is copied into each container
+only for the task that requires them. The same per-task injection path is used
+by every image type; compatibility images additionally receive the mount at
+their native skill-discovery location.
 
-`images/offical_shield/prepare.sh` first reuses `images/official/prepare.sh` to generate a complete official build context, then adds:
+At runtime, benchmark runs keep outbound networking open by default. Passing
+`benchmark.py --netlock` asks `scripts/lib_docker.py` to apply the
+AgentCanary iptables allowlist. Image tags containing `official_safety_research`
+remain open-egress research images and skip that lockdown even when requested.
+
+## official_shield Build Contents
+
+`images/official_shield/prepare.sh` first reuses `images/official/prepare.sh` to generate a complete official build context, then adds:
 
 - `openclaw-shield` source code: `/opt/openclaw-shield`
 - Dockerfile installation step: `openclaw plugins install /opt/openclaw-shield`
 - `tools.profile = "full"` in `openclaw.json`, so `knostic_shield` is included in the agent's actual tool list
 
-`offical_shield/openclaw.json` remains consistent with `official/openclaw.json` and does not manually add plugin configuration.
+`official_shield/openclaw.json` remains consistent with `official/openclaw.json` and does not manually add plugin configuration.
 
 The plugin source code must be cloned in advance. The build does not access GitHub.
 The default source location is:
 
 ```text
-workflow/images/offical_shield/openclaw-shield
+workflow/images/official_shield/openclaw-shield
 ```
 
 You can also specify another local source directory with an environment variable:
@@ -131,9 +138,9 @@ OPENCLAW_SHIELD_SOURCE_DIR=/path/to/openclaw-shield \
   bash workflow/workflow_step_1_image_builder.sh
 ```
 
-## offical_secureclaw Build Contents
+## official_secureclaw Build Contents
 
-`images/offical_secureclaw/prepare.sh` first reuses `images/official/prepare.sh` to generate a complete official build context, then adds:
+`images/official_secureclaw/prepare.sh` first reuses `images/official/prepare.sh` to generate a complete official build context, then adds:
 
 - `secureclaw` repository source code: `/opt/secureclaw`
 - Source installation following `Option C: Plugin from source` in the SecureClaw README:
@@ -143,12 +150,12 @@ OPENCLAW_SHIELD_SOURCE_DIR=/path/to/openclaw-shield \
   - `npx openclaw plugins install -l .`
 - Built-in SecureClaw skill installation: `npx openclaw secureclaw skill install`
 
-`offical_secureclaw/openclaw.json` remains consistent with `official/openclaw.json` and does not manually add plugin configuration.
+`official_secureclaw/openclaw.json` remains consistent with `official/openclaw.json` and does not manually add plugin configuration.
 
 The plugin source code has been cloned to:
 
 ```text
-workflow/images/offical_secureclaw/secureclaw
+workflow/images/official_secureclaw/secureclaw
 ```
 
 You can also specify another local source directory with an environment variable:
@@ -158,9 +165,9 @@ SECURECLAW_SOURCE_DIR=/path/to/secureclaw \
   bash workflow/workflow_step_1_image_builder.sh
 ```
 
-## offical_clawkeeper Build Contents
+## official_clawkeeper Build Contents
 
-`images/offical_clawkeeper/prepare.sh` first reuses `images/official/prepare.sh` to generate a complete official build context, then adds:
+`images/official_clawkeeper/prepare.sh` first reuses `images/official/prepare.sh` to generate a complete official build context, then adds:
 
 - `ClawKeeper` plugin source code: `/opt/ClawKeeper/clawkeeper-plugin`
 - `plugins.load.paths = ["/opt/ClawKeeper/clawkeeper-plugin"]` in `openclaw.json`
@@ -171,7 +178,7 @@ This image therefore loads the local plugin path explicitly through `openclaw.js
 The plugin source code has been cloned to:
 
 ```text
-workflow/images/offical_clawkeeper/ClawKeeper
+workflow/images/official_clawkeeper/ClawKeeper
 ```
 
 You can also specify another local source directory with an environment variable:

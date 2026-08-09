@@ -1,0 +1,176 @@
+"""Tests for lifecycle scripts (install.sh, login.sh, etc.).
+
+Validates that all scripts/*.sh are syntactically valid, and that
+install.sh/login.sh short-circuit when the CLI shim is already in PATH —
+this prevents interactive flows from starting during agent evaluation.
+
+Lifecycle execution is skipped unless ``SKILL_TO_SANDBOX_RUN_EXEC_TESTS=1``.
+Enable it only inside a disposable sandbox container. Syntax checks remain
+safe and run by default.
+
+Auto-generated for skill: __SLUG__ (__VERSION__)
+Run: python3 -m unittest tests.test_lifecycle -v
+"""
+
+import os
+import subprocess
+import tempfile
+import unittest
+from pathlib import Path
+
+SKILL_DIR = Path(__file__).resolve().parent.parent
+SCRIPTS_DIR = SKILL_DIR / "scripts"
+CLI_SRC = SKILL_DIR / "mock_assets" / "bin" / "__CLI_NAME__"
+
+# CLI name shipped under mock_assets/bin/ (empty if no whole-CLI replacement).
+CLI_NAME = "__CLI_NAME__"
+# Keyword install.sh prints when CLI is already present (extracted from script).
+INSTALL_KEYWORD = "__INSTALL_KEYWORD__"
+# Keyword login.sh prints when CLI reports already logged-in.
+LOGIN_KEYWORD = "__LOGIN_KEYWORD__"
+RUN_EXEC_TESTS = os.environ.get("SKILL_TO_SANDBOX_RUN_EXEC_TESTS") == "1"
+SAFE_ENV_KEYS = ("PATH", "LANG", "LC_ALL", "LC_CTYPE", "TZ", "TERM")
+
+
+class TestScriptsSyntax(unittest.TestCase):
+    """Every scripts/*.sh must parse with `bash -n`."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.scripts = sorted(SCRIPTS_DIR.glob("*.sh")) if SCRIPTS_DIR.is_dir() else []
+
+    def test_scripts_dir_exists(self):
+        self.assertTrue(SCRIPTS_DIR.is_dir(), f"scripts/ directory missing at {SCRIPTS_DIR}")
+
+    def test_at_least_one_script(self):
+        # Some ClawHub skills ship only language-native scripts (.py/.js) under
+        # scripts/. Auto-skip rather than fail when no shell entry point exists.
+        if not self.scripts:
+            self.skipTest("scripts/ has no .sh entry points (likely a pure Python/JS skill)")
+
+    def test_all_scripts_parse(self):
+        for sh in self.scripts:
+            with self.subTest(script=sh.name):
+                r = subprocess.run(
+                    ["bash", "-n", str(sh)],
+                    capture_output=True,
+                    text=True,
+                )
+                self.assertEqual(
+                    r.returncode, 0,
+                    f"bash -n failed for {sh.name}: {r.stderr}",
+                )
+
+
+class _LifecycleSetup(unittest.TestCase):
+    """Base class — copies the CLI shim into a temp PATH so we don't need root."""
+
+    def setUp(self):
+        if not RUN_EXEC_TESTS:
+            self.skipTest(
+                "lifecycle execution disabled; opt in only inside a disposable "
+                "sandbox with SKILL_TO_SANDBOX_RUN_EXEC_TESTS=1"
+            )
+        if not CLI_NAME:
+            self.skipTest("Skill does not ship a whole-CLI replacement")
+        if not CLI_SRC.is_file():
+            self.skipTest(f"CLI source not found at {CLI_SRC}")
+        self._tmpdir = tempfile.mkdtemp(prefix="lifecycle_test_")
+        self._state_file = os.path.join(self._tmpdir, "state.json")
+        self._config_dir = os.path.join(self._tmpdir, "config")
+        os.makedirs(self._config_dir, exist_ok=True)
+        self._bin_dir = os.path.join(self._tmpdir, "bin")
+        os.makedirs(self._bin_dir, exist_ok=True)
+
+        import shutil
+        tgt = os.path.join(self._bin_dir, CLI_NAME)
+        shutil.copy2(str(CLI_SRC), tgt)
+        os.chmod(tgt, 0o755)
+
+        self.env = {
+            **{k: os.environ[k] for k in SAFE_ENV_KEYS if k in os.environ},
+            "PATH": f"{self._bin_dir}:{os.environ.get('PATH', '/usr/local/bin:/usr/bin:/bin')}",
+            f"{CLI_NAME.upper()}_STATE_FILE": self._state_file,
+            f"{CLI_NAME.upper()}_CONFIG_DIR": self._config_dir,
+            "HOME": self._tmpdir,
+            "TMPDIR": self._tmpdir,
+        }
+
+    def tearDown(self):
+        if hasattr(self, "_tmpdir"):
+            import shutil
+            shutil.rmtree(self._tmpdir, ignore_errors=True)
+
+
+class TestInstallShortCircuit(_LifecycleSetup):
+    """install.sh should detect the existing CLI in PATH and skip reinstall."""
+
+    def test_install_detects_existing_cli(self):
+        if not INSTALL_KEYWORD:
+            self.skipTest("No install short-circuit keyword detected in install.sh")
+        install = SCRIPTS_DIR / "install.sh"
+        if not install.is_file():
+            self.skipTest("install.sh not present")
+        r = subprocess.run(
+            ["bash", str(install)],
+            input="n\n",
+            capture_output=True,
+            text=True,
+            env=self.env,
+            timeout=15,
+        )
+        combined = r.stdout + r.stderr
+        self.assertIn(
+            INSTALL_KEYWORD, combined,
+            f"install.sh did not short-circuit (looking for {INSTALL_KEYWORD!r}).\n"
+            f"stdout: {r.stdout}\nstderr: {r.stderr}",
+        )
+
+
+class TestLoginShortCircuit(_LifecycleSetup):
+    """login.sh should detect logged-in state from the shim's whoami output."""
+
+    def test_login_detects_logged_in(self):
+        if not LOGIN_KEYWORD:
+            self.skipTest("No login short-circuit keyword detected in login.sh")
+        login = SCRIPTS_DIR / "login.sh"
+        if not login.is_file():
+            self.skipTest("login.sh not present")
+        r = subprocess.run(
+            ["bash", str(login)],
+            capture_output=True,
+            text=True,
+            env=self.env,
+            timeout=15,
+        )
+        combined = r.stdout + r.stderr
+        self.assertIn(
+            LOGIN_KEYWORD, combined,
+            f"login.sh did not short-circuit (looking for {LOGIN_KEYWORD!r}).\n"
+            f"stdout: {r.stdout}\nstderr: {r.stderr}",
+        )
+
+    def test_login_does_not_prompt_for_auth(self):
+        if not LOGIN_KEYWORD:
+            self.skipTest("No login short-circuit keyword detected in login.sh")
+        login = SCRIPTS_DIR / "login.sh"
+        if not login.is_file():
+            self.skipTest("login.sh not present")
+        r = subprocess.run(
+            ["bash", str(login)],
+            capture_output=True,
+            text=True,
+            env=self.env,
+            timeout=15,
+        )
+        combined = r.stdout + r.stderr
+        for forbidden in ("授权链接", "授权码", "Visit the URL", "Paste the code"):
+            self.assertNotIn(
+                forbidden, combined,
+                f"login.sh entered interactive flow (saw {forbidden!r}). "
+                f"This will hang the agent.",
+            )
+
+
+if __name__ == "__main__":
+    unittest.main()

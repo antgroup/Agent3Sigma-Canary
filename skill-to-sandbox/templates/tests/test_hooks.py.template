@@ -1,0 +1,219 @@
+"""Tests for skill_hook scripts.
+
+Validates hook syntax, executability, and the self-locating pattern.
+Full hook execution tests require the Phase 8 disposable-container layer.
+
+Auto-generated for skill: __SLUG__ (__VERSION__)
+Run: python3 -m unittest tests.test_hooks -v
+"""
+
+import os
+import re
+import subprocess
+import unittest
+from pathlib import Path
+
+SKILL_DIR = Path(__file__).resolve().parent.parent
+HOOKS_DIR = SKILL_DIR / "mock_assets" / "skill_hooks"
+BIN_DIR = SKILL_DIR / "mock_assets" / "bin"
+
+# Set to the CLI binary name (without path) when this skill ships a whole-CLI
+# replacement under mock_assets/bin/. Empty string disables the bin-shim tests.
+CLI_NAME = "__CLI_NAME__"
+RUN_EXEC_TESTS = os.environ.get("SKILL_TO_SANDBOX_RUN_EXEC_TESTS") == "1"
+SAFE_ENV_KEYS = ("PATH", "LANG", "LC_ALL", "LC_CTYPE", "TZ", "TERM")
+
+
+class TestHookSyntaxAndPermissions(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.hooks = sorted(HOOKS_DIR.glob("*.sh")) if HOOKS_DIR.is_dir() else []
+
+    def test_hooks_dir_or_no_hooks_required(self):
+        if self.hooks:
+            return
+        if CLI_NAME:
+            self.fail("Skill ships a CLI binary but has no installation hook")
+        self.skipTest("No hooks; valid for a skill that uses direct HTTPS only")
+
+    def test_hooks_are_executable(self):
+        for hk in self.hooks:
+            with self.subTest(hook=hk.name):
+                self.assertTrue(
+                    os.access(hk, os.X_OK),
+                    f"{hk.name} is not executable",
+                )
+
+    def test_hooks_bash_parse(self):
+        for hk in self.hooks:
+            with self.subTest(hook=hk.name):
+                r = subprocess.run(
+                    ["bash", "-n", str(hk)],
+                    capture_output=True,
+                    text=True,
+                )
+                self.assertEqual(
+                    r.returncode, 0,
+                    f"bash -n failed for {hk.name}: {r.stderr}",
+                )
+
+    def test_hooks_have_shebang(self):
+        for hk in self.hooks:
+            with self.subTest(hook=hk.name):
+                first_line = hk.read_text(encoding="utf-8").splitlines()[0]
+                self.assertTrue(
+                    first_line.startswith("#!/"),
+                    f"{hk.name}: missing shebang line, got: {first_line!r}",
+                )
+
+    def test_hooks_use_set_e(self):
+        for hk in self.hooks:
+            with self.subTest(hook=hk.name):
+                text = hk.read_text(encoding="utf-8")
+                self.assertIn(
+                    "set -e",
+                    text,
+                    f"{hk.name}: missing 'set -e' for error propagation",
+                )
+
+
+class TestHookSelfLocatingPattern(unittest.TestCase):
+    """Hooks must derive SKILL_NAME from their staged filename, not hardcode paths.
+
+    Hooks that don't reference the skill directory at all (e.g. pure DNS
+    sanity probes) are exempt — only flag hooks that DO read from the skill
+    directory but hardcode the path.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.hooks = sorted(HOOKS_DIR.glob("*.sh")) if HOOKS_DIR.is_dir() else []
+
+    def test_hooks_with_skill_dir_use_self_locating(self):
+        for hk in self.hooks:
+            text = hk.read_text(encoding="utf-8")
+            if "/root/.openclaw/skills/" not in text and "SKILL_DIR" not in text:
+                continue
+            with self.subTest(hook=hk.name):
+                self.assertIn(
+                    'HOOK_BASENAME="$(basename "$0")"',
+                    text,
+                    f"{hk.name} references the skill dir but lacks self-locating HOOK_BASENAME pattern",
+                )
+                self.assertIn(
+                    "SKILL_NAME=",
+                    text,
+                    f"{hk.name}: missing SKILL_NAME derivation",
+                )
+
+
+class TestBinShim(unittest.TestCase):
+    """Whole-CLI replacement (Type A.2). Skipped if no CLI is bundled."""
+
+    def setUp(self):
+        if not CLI_NAME:
+            self.skipTest("Skill does not ship a whole-CLI replacement")
+        self.cli_path = BIN_DIR / CLI_NAME
+
+    def test_cli_binary_exists(self):
+        self.assertTrue(BIN_DIR.is_dir(), "mock_assets/bin/ directory missing")
+        self.assertTrue(self.cli_path.is_file(), f"mock_assets/bin/{CLI_NAME} not found")
+
+    def test_cli_binary_executable(self):
+        if not self.cli_path.is_file():
+            self.skipTest(f"{CLI_NAME} binary not found")
+        self.assertTrue(
+            os.access(self.cli_path, os.X_OK),
+            f"{CLI_NAME} is not executable",
+        )
+
+    def test_cli_version_smoke(self):
+        if not RUN_EXEC_TESTS:
+            self.skipTest(
+                "CLI execution disabled; opt in only inside a disposable sandbox "
+                "with SKILL_TO_SANDBOX_RUN_EXEC_TESTS=1"
+            )
+        if not self.cli_path.is_file():
+            self.skipTest(f"{CLI_NAME} binary not found")
+        # Use the binary in isolation: temp state file, do not pollute host
+        import tempfile, sys
+        tmp = tempfile.mkdtemp(prefix=f"{CLI_NAME}_hooks_test_")
+        env = {
+            **{k: os.environ[k] for k in SAFE_ENV_KEYS if k in os.environ},
+            f"{CLI_NAME.upper()}_STATE_FILE": os.path.join(tmp, "state.json"),
+            f"{CLI_NAME.upper()}_CONFIG_DIR": tmp,
+            "HOME": tmp,
+            "TMPDIR": tmp,
+        }
+        try:
+            r = subprocess.run(
+                [sys.executable, str(self.cli_path), "--version"],
+                capture_output=True,
+                text=True,
+                env=env,
+                timeout=10,
+            )
+            self.assertEqual(r.returncode, 0, f"--version failed: {r.stderr}")
+            self.assertRegex(r.stdout.strip(), r"\d+\.\d+\.\d+")
+        finally:
+            import shutil
+            shutil.rmtree(tmp, ignore_errors=True)
+
+
+class TestInstallHookReferencesCLI(unittest.TestCase):
+    """If a CLI binary ships under mock_assets/bin/, at least one hook must install it."""
+
+    def test_some_hook_installs_cli(self):
+        if not CLI_NAME:
+            self.skipTest("Skill does not ship a whole-CLI replacement")
+        if not HOOKS_DIR.is_dir():
+            self.fail("Skill ships a CLI binary but has no skill_hooks/ to install it")
+        for hk in HOOKS_DIR.glob("*.sh"):
+            text = hk.read_text(encoding="utf-8")
+            literal_source = f"mock_assets/bin/{CLI_NAME}" in text
+            variable_source = any(
+                source in text
+                for source in (
+                    "mock_assets/bin/${CLI_NAME}",
+                    "mock_assets/bin/$CLI_NAME",
+                )
+            )
+            cli_assignment = re.search(
+                rf"(?m)^\s*CLI_NAME\s*=\s*(?:\"{re.escape(CLI_NAME)}\"|"
+                rf"'{re.escape(CLI_NAME)}'|{re.escape(CLI_NAME)})\s*(?:#.*)?$",
+                text,
+            )
+            source_matches_cli = literal_source or (
+                variable_source and cli_assignment is not None
+            )
+            if source_matches_cli and "/usr/local/bin" in text:
+                return
+        self.fail(
+            f"No hook installs mock_assets/bin/{CLI_NAME} to /usr/local/bin/ "
+            "(a matching CLI_NAME variable is also accepted)"
+        )
+
+
+class TestReferenceHook(unittest.TestCase):
+    """If SKILL.md links to ./reference/*.md, a hook must restore those docs."""
+
+    def test_reference_hook_present_when_needed(self):
+        skill_md = SKILL_DIR / "SKILL.md"
+        if not skill_md.is_file():
+            self.skipTest("SKILL.md missing")
+        text = skill_md.read_text(encoding="utf-8")
+        if not re.search(r'\./reference/[^\s\)"\']+\.md', text):
+            self.skipTest("SKILL.md does not link to ./reference/*.md")
+        if not HOOKS_DIR.is_dir():
+            self.fail("SKILL.md links to ./reference/* but no skill_hooks/ to restore them")
+        for hk in HOOKS_DIR.glob("*.sh"):
+            txt = hk.read_text(encoding="utf-8")
+            if "mock_assets/reference" in txt and "/reference" in txt:
+                return
+        self.fail(
+            "No hook copies mock_assets/reference/ back into the skill dir's reference/"
+        )
+
+
+if __name__ == "__main__":
+    unittest.main()

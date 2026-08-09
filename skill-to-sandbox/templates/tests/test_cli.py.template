@@ -1,0 +1,194 @@
+"""Smoke tests for the bundled CLI shim (mock_assets/bin/__CLI_NAME__).
+
+Auto-generated from the shim's `--help` output at assembly time. These
+tests verify that:
+
+  * the binary runs at all (Python imports succeed)
+  * `--version` returns a semver-shaped string
+  * every subcommand discovered in `--help` accepts `--help`
+  * read-only / status subcommands (whoami/list/ls/status) produce output
+
+Domain-specific stateful tests (mkdir → ls → rm composition, share-link
+shape, etc.) are NOT generated here — they're skill-specific and should be
+hand-written in tests/test_<skill>_stateful.py if you need them.
+
+Execution is also skipped unless ``SKILL_TO_SANDBOX_RUN_EXEC_TESTS=1``. Run
+that opt-in layer only inside a disposable sandbox container: the CLI is
+skill-supplied code, not a safe host-side parser.
+
+Run: python3 -m unittest tests.test_cli -v
+"""
+
+import json
+import os
+import re
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+SKILL_DIR = Path(__file__).resolve().parent.parent
+CLI_NAME = "__CLI_NAME__"
+CLI_SRC = SKILL_DIR / "mock_assets" / "bin" / CLI_NAME if CLI_NAME else None
+STATE_ENV = f"{CLI_NAME.upper()}_STATE_FILE" if CLI_NAME else ""
+CONFIG_ENV = f"{CLI_NAME.upper()}_CONFIG_DIR" if CLI_NAME else ""
+RUN_EXEC_TESTS = os.environ.get("SKILL_TO_SANDBOX_RUN_EXEC_TESTS") == "1"
+SAFE_ENV_KEYS = ("PATH", "LANG", "LC_ALL", "LC_CTYPE", "TZ", "TERM")
+
+# Subcommands the assembler discovered in the shim's `--help` output at
+# build time. Used to generate one --help smoke test per subcommand.
+DISCOVERED_SUBCOMMANDS = __SUBCOMMANDS__
+
+
+def _have_cli():
+    return bool(CLI_NAME) and CLI_SRC is not None and CLI_SRC.is_file()
+
+
+class CLITestBase(unittest.TestCase):
+    """Provides an isolated state file + config dir per test."""
+
+    def setUp(self):
+        if not RUN_EXEC_TESTS:
+            self.skipTest(
+                "CLI execution disabled; opt in only inside a disposable sandbox "
+                "with SKILL_TO_SANDBOX_RUN_EXEC_TESTS=1"
+            )
+        if not _have_cli():
+            self.skipTest("Skill does not ship a whole-CLI replacement")
+        self._tmpdir = tempfile.mkdtemp(prefix=f"{CLI_NAME}_cli_test_")
+        self._state_file = os.path.join(self._tmpdir, "state.json")
+        self._config_dir = os.path.join(self._tmpdir, "config")
+        os.makedirs(self._config_dir, exist_ok=True)
+        self.env = {
+            **{k: os.environ[k] for k in SAFE_ENV_KEYS if k in os.environ},
+            STATE_ENV: self._state_file,
+            CONFIG_ENV: self._config_dir,
+            "HOME": self._tmpdir,
+            "TMPDIR": self._tmpdir,
+        }
+
+    def tearDown(self):
+        if hasattr(self, "_tmpdir"):
+            import shutil
+            shutil.rmtree(self._tmpdir, ignore_errors=True)
+
+    def _run(self, *args, json_mode=False, stdin_data=None, timeout=15):
+        # argparse with --json registered on both main and subparsers means
+        # the flag must follow the subcommand. We append it last for safety.
+        cmd = [sys.executable, str(CLI_SRC)]
+        cmd.extend(args)
+        if json_mode:
+            cmd.append("--json")
+        return subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            env=self.env,
+            input=stdin_data,
+            timeout=timeout,
+        )
+
+
+class TestCLIStartup(CLITestBase):
+    def test_help_exits_zero(self):
+        r = self._run("--help")
+        self.assertEqual(
+            r.returncode, 0,
+            f"`{CLI_NAME} --help` failed: rc={r.returncode}\nstderr: {r.stderr}",
+        )
+
+    def test_version_flag(self):
+        r = self._run("--version")
+        # Some CLIs put version on argparse --version, others on `version`
+        if r.returncode != 0:
+            r = self._run("version")
+        self.assertEqual(r.returncode, 0, f"--version / version failed: {r.stderr}")
+        self.assertRegex(r.stdout.strip(), r"\d+\.\d+\.\d+")
+
+
+class TestSubcommandHelp(CLITestBase):
+    """Each discovered subcommand must accept --help without error."""
+
+    def test_all_subcommands_help(self):
+        if not DISCOVERED_SUBCOMMANDS:
+            self.skipTest("No subcommands discovered at build time")
+        for sub in DISCOVERED_SUBCOMMANDS:
+            with self.subTest(subcommand=sub):
+                r = self._run(sub, "--help")
+                self.assertEqual(
+                    r.returncode, 0,
+                    f"`{CLI_NAME} {sub} --help` failed.\nstderr: {r.stderr}",
+                )
+
+
+class TestReadOnlySubcommands(CLITestBase):
+    """Read-only / status subcommands should run cleanly on default state."""
+
+    READ_ONLY_CANDIDATES = ("whoami", "status", "ls", "list", "version")
+
+    def test_status_subcommands_run(self):
+        if not _have_cli():
+            self.skipTest("no CLI")
+        ran = False
+        for sub in self.READ_ONLY_CANDIDATES:
+            if sub not in DISCOVERED_SUBCOMMANDS:
+                continue
+            ran = True
+            with self.subTest(subcommand=sub):
+                r = self._run(sub)
+                self.assertEqual(
+                    r.returncode, 0,
+                    f"`{CLI_NAME} {sub}` failed on default state.\n"
+                    f"stdout: {r.stdout}\nstderr: {r.stderr}",
+                )
+        if not ran:
+            self.skipTest("No read-only candidates in this CLI's subcommands")
+
+
+class TestJSONMode(CLITestBase):
+    """If the shim advertises --json, every read-only subcommand should emit JSON."""
+
+    def test_json_mode_parses(self):
+        if not _have_cli():
+            self.skipTest("no CLI")
+        # Check whether --json is advertised on main --help
+        r = self._run("--help")
+        if "--json" not in (r.stdout + r.stderr):
+            self.skipTest("CLI does not advertise --json")
+        json_capable = []
+        for sub in ("whoami", "ls", "list", "status", "search", "version"):
+            if sub in DISCOVERED_SUBCOMMANDS:
+                json_capable.append(sub)
+        if not json_capable:
+            self.skipTest("No read-only JSON-capable subcommands")
+        for sub in json_capable:
+            with self.subTest(subcommand=sub):
+                r = self._run(sub, json_mode=True)
+                if r.returncode != 0:
+                    # Some subcommands require args; skip those gracefully
+                    continue
+                try:
+                    json.loads(r.stdout)
+                except json.JSONDecodeError as e:
+                    self.fail(
+                        f"`{CLI_NAME} {sub} --json` did not emit JSON: {e}\n"
+                        f"stdout: {r.stdout[:200]}"
+                    )
+
+
+class TestPathTraversalBlocked(CLITestBase):
+    """ls / cd / etc. should refuse paths that escape the root."""
+
+    def test_ls_path_traversal(self):
+        if "ls" not in DISCOVERED_SUBCOMMANDS:
+            self.skipTest("CLI has no 'ls' subcommand")
+        r = self._run("ls", "../../etc/passwd", json_mode=True)
+        self.assertNotEqual(
+            r.returncode, 0,
+            "ls accepted a path-traversal argument — should reject",
+        )
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -208,6 +208,7 @@ The current code supports the following `pre_setup` types.
 | `file` | `dest`, plus `path` or `injection_goal` | If `injection_goal` is present, writes it to `dest` under the workspace. Otherwise copies `path` to `dest`. |
 | `http_post` | `uid`, `file_type`, plus `context` or `injection_goal` | Writes `{uid}.{file_type}` into the mock API data directory. `file_type` defaults to `html`. If `injection_goal` is present, writes it directly. Otherwise copies `context`. |
 | `memory_poison` | `context`, `poison` | Reads `context`, appends `poison` under an “Important Note” heading, and writes workspace `MEMORY.md`. |
+| `skill_mount` | `names` | Declares which real skills this task mounts at runtime; `names: []` explicitly mounts no skills. |
 | `skill_copy` | `source_path_dir`, `target_path_dir` | Copies a skill directory from the repository root into workspace `skills/{target_path_dir}`. |
 | `dependency_copy` | `source_path_dir`, `target_path_dir`, `source_files` | Copies dependencies from `assets/skills_dependency/{source_path_dir}` into workspace `target_path_dir`; `source_files` can restrict the copied files. |
 | `twitter_new_follower` | JSON entry fields, optional `injection_goal` | Appends a row to `skill_data/twitter/data/followers.json`; `injection_goal` overwrites `bio`. |
@@ -219,10 +220,37 @@ The current code supports the following `pre_setup` types.
 | `calendar_new_event` | JSON entry fields, optional `injection_goal` | Appends a calendar event; `injection_goal` overwrites `description`. |
 | `banking_new_user` | JSON entry fields | Appends a bank user; there is no dedicated injection target. |
 | `banking_new_transaction` | JSON entry fields, optional `injection_goal` | Appends a bank transaction; `injection_goal` overwrites `description`. |
+| `run_command` | `command`, optional `cwd` / `env` / `timeout` | Runs a command after workspace delivery to prepare state; failures and timeouts are silently skipped. See below. |
 
 For `dependency_copy`, if `target_path_dir` starts with `~/`, the code tries to copy into `/root/...` in Docker mode. Avoid this target form for local non-Docker runs.
 
-Current `_run_pre_setup` does not handle `run_command`. Some legacy tasks may contain it, but new tasks should not rely on it. Unknown setup types are logged as warnings and skipped.
+`run_command` is a generic, skill-agnostic setup type: it runs *any* shell command (or argv list) in the already-started task environment after `workspace_files` and file setup outputs have been delivered. It is best-effort: malformed commands, non-zero exits, and timeouts are silently skipped without aborting the task.
+
+| field | type | default | notes |
+| --- | --- | --- | --- |
+| `command` | `str` or `list` | required | `str` runs via `sh -c` (pipes, `&&`, redirection all work); `list` runs directly as argv. |
+| `cwd` | `str` | Current task agent workspace | Working directory (container path in Docker mode). |
+| `env` | `dict` | none | Extra environment variables merged into the command's environment. `AGENTCANARY_TASK_WORKSPACE` is always provided with the real workspace path. |
+| `timeout` | `number` | `120` | Seconds; on timeout the command is killed and silently skipped. |
+
+Example — mount the `email` skill and pre-seed a sent email before the task starts:
+
+```yaml
+pre_setup:
+  - type: skill_mount
+    names:
+      - email
+  - type: run_command
+    command: >
+      cd /root/.openclaw/skills/email-1.0.0 &&
+      ./scripts/send_email.sh colleague@example.com 'Welcome' 'Welcome to the team'
+```
+
+`run_command` extends the earlier fixed skill-specific setup types so converted skills of any kind can change their initial state, making task authoring easier.
+
+For the full list of commands a converted sandbox skill exposes, see the `MOCK_SKILL_USAGE.md` that `skill-to-sandbox` auto-generates in each skill's own directory (e.g. `_skills_repository/<slug>-<version>/MOCK_SKILL_USAGE.md`).
+
+Unknown setup types are logged as warnings and skipped.
 
 ## Attack Fields
 
@@ -405,6 +433,5 @@ Hand-written tasks should follow the stricter generation-script format even thou
 - `workspace_files.source` is relative to `assets/`, while `pre_setup.file.path` typically uses a repository-root-relative path such as `assets/...`.
 - When `sessions` is non-empty, the executor sends session prompts instead of the `## Prompt` text.
 - Setting only `multi_session: true` does not enable multi-turn execution.
-- `run_command` is not a currently supported `pre_setup` type.
 - Indirect attacks modify only `pre_setup` steps that contain `injection_goal`.
 - Checklist order does not determine final weights; final weights should be written in `LLM Judge Rubric`.

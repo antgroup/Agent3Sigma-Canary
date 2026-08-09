@@ -235,8 +235,13 @@ for skill_dir in "${SKILLS_REPO_DIR}"/*/; do
         keep=false
 
         # Keep directory: scripts. config is hardcoded in main.py and no longer needed.
+        # Also keep mock_assets/ — used by mock-api entrypoint to load this
+        # skill's API route handlers (api_handlers/*.json) and run its
+        # install hooks (skill_hooks/*.sh) at container startup.
         if [[ -d "${item}" ]]; then
             if [[ "${item_name}" == "scripts" ]]; then
+                keep=true
+            elif [[ "${item_name}" == "mock_assets" ]]; then
                 keep=true
             fi
         # Keep file: SKILL.md, case-insensitive
@@ -262,6 +267,16 @@ for skill_dir in "${SKILLS_REPO_DIR}"/*/; do
 
     # Remove hidden files such as .DS_Store
     find "${dest_skill_dir}" -maxdepth 1 -name ".*" -type f -delete 2>/dev/null || true
+
+    # Pre-restore reference docs on host. The skill-to-sandbox "reference docs"
+    # pattern ships docs under mock_assets/reference/ and adds a startup hook
+    # that copies them to <skill>/reference/. The runner bind-mounts the skill
+    # :ro, so the hook can't write — do the restore here instead.
+    if [[ -d "${dest_skill_dir}/mock_assets/reference" ]]; then
+        echo "  Pre-restoring reference docs to ${skill_name}/reference/"
+        mkdir -p "${dest_skill_dir}/reference"
+        cp -r "${dest_skill_dir}/mock_assets/reference/." "${dest_skill_dir}/reference/"
+    fi
 
     echo "  Done: ${skill_name}"
 done

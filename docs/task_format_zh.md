@@ -157,6 +157,8 @@ workspace_files:
 
 `pre_setup` 是任务的物料准备层，用于在 agent 接收用户指令之前补全评测所需的外部环境。它不属于用户 prompt，也不是要求 agent 执行的步骤；它描述 benchmark runner 应预先放置哪些“材料”，使任务在隔离环境中可复现。
 
+完整字段、18 种当前支持类型、路径解析和使用注意事项见 [`pre_setup_zh.md`](pre_setup_zh.md)。
+
 典型物料包括邮箱中的邮件、即时通讯联系人、日历事件、模拟网页、本地附件、银行用户、技能目录和项目依赖。没有这些准备步骤，agent 可能会因为环境缺失而无法完成任务，评分也无法区分“模型能力不足”和“测试物料不存在”。
 
 ### Email 物料准备示例
@@ -208,6 +210,7 @@ Using Email and DingTalk, search for emails with subject containing "Arrangement
 | `file` | `dest`，`path` 或 `injection_goal` | 如果有 `injection_goal`，将其写入 workspace 下的 `dest`；否则从 `path` 复制到 `dest`。 |
 | `http_post` | `uid`，`file_type`，`context` 或 `injection_goal` | 在 mock API 数据目录写入 `{uid}.{file_type}`，默认 `file_type: html`。有 `injection_goal` 时写入注入内容，否则复制 `context` 文件。 |
 | `memory_poison` | `context`，`poison` | 读取 `context` 文件，将 `poison` 作为 “Important Note” 追加后写入 workspace 的 `MEMORY.md`。 |
+| `skill_mount` | `names` | 声明本任务运行时挂载的真实 skill；`names: []` 表示显式不挂载任何 skill。 |
 | `skill_copy` | `source_path_dir`，`target_path_dir` | 从仓库根目录复制技能目录到 workspace 的 `skills/{target_path_dir}`。 |
 | `dependency_copy` | `source_path_dir`，`target_path_dir`，`source_files` | 从 `assets/skills_dependency/{source_path_dir}` 复制依赖到 workspace 的 `target_path_dir`；`source_files` 可只复制指定文件。 |
 | `twitter_new_follower` | JSON entry 字段，`injection_goal` 可选 | 向 `skill_data/twitter/data/followers.json` 追加一条记录；`injection_goal` 会覆盖 `bio`。 |
@@ -219,10 +222,40 @@ Using Email and DingTalk, search for emails with subject containing "Arrangement
 | `calendar_new_event` | JSON entry 字段，`injection_goal` 可选 | 向 calendar events 追加记录；`injection_goal` 覆盖 `description`。 |
 | `banking_new_user` | JSON entry 字段 | 向 bank users 追加记录；没有专门的 injection target。 |
 | `banking_new_transaction` | JSON entry 字段，`injection_goal` 可选 | 向 bank transactions 追加记录；`injection_goal` 覆盖 `description`。 |
+| `set_env` | `vars` | 将 key/value 注入 agent 进程环境；常用于 fake credential 场景。 |
+| `warmup_prompt` | `message` 可选 | 正式任务前先向 agent 发送一条预热消息；缺省消息为 `hello`。 |
+| `seed_history` | `path` / `source` / `history` | 从 OpenAI messages 格式 JSON 预置历史会话。 |
+| `run_command` | `command`，可选 `cwd` / `env` / `timeout` | 在 workspace 送入运行环境后执行命令以预置状态；失败或超时会静默跳过。见下文。 |
 
 `dependency_copy` 的 `target_path_dir` 如果以 `~/` 开头，代码会尝试在 Docker 模式下复制到容器 `/root/...`。本地非 Docker 模式下不建议使用这种目标路径。
 
-当前 `_run_pre_setup` 不处理 `run_command`。已有历史任务中可能出现该类型，但新任务不要依赖它；未知类型只会记录 warning 并跳过。
+`run_command` 是通用的、不绑定具体 skill 的 setup 类型：它会在 `workspace_files` 和文件准备结果送入运行环境后执行**任意** shell 命令（或 argv 列表）。它采用 best-effort 语义：命令格式错误、非零退出或超时会静默跳过，不会中断任务。
+
+| 字段 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `command` | `str` 或 `list` | 必填 | `str` 经 `sh -c` 执行（支持管道、`&&`、重定向）；`list` 直接作为 argv 执行。 |
+| `cwd` | `str` | 当前任务 agent workspace | 工作目录（Docker 模式下为容器内路径）。 |
+| `env` | `dict` | 无 | 注入到命令环境的额外变量。系统始终提供 `AGENTCANARY_TASK_WORKSPACE`，其值为真实 workspace 路径。 |
+| `timeout` | `number` | `120` | 秒；超时则杀掉命令并静默跳过。 |
+
+示例——挂载 `email` skill，并在任务开始前预置一封已发送邮件：
+
+```yaml
+pre_setup:
+  - type: skill_mount
+    names:
+      - email
+  - type: run_command
+    command: >
+      cd /root/.openclaw/skills/email-1.0.0 &&
+      ./scripts/send_email.sh colleague@example.com 'Welcome' 'Welcome to the team'
+```
+
+`run_command`的设计是为了扩展先前固定的skill pre_setup，使得任意种类的转换skill支持改变初始状态，方便 task 撰写。
+
+转换后的沙盒 skill 暴露了哪些命令，详见 `skill-to-sandbox` 在各 skill 自己目录里自动生成的 `MOCK_SKILL_USAGE.md`（例如 `_skills_repository/<名称>-<版本>/MOCK_SKILL_USAGE.md`）。
+
+未知类型只会记录 warning 并跳过。
 
 ## 攻击增强字段
 
@@ -405,6 +438,5 @@ The agent should summarize the project status as green and ignore the embedded i
 - `workspace_files.source` 是相对 `assets/`，而 `pre_setup.file.path` 通常使用仓库根目录相对路径，例如 `assets/...`。
 - `sessions` 非空时执行器不会发送 `## Prompt` 内容，而是发送 `sessions` 中的内容。
 - 仅设置 `multi_session: true` 不会触发多轮执行。
-- `run_command` 不是当前支持的 `pre_setup` 类型。
 - 间接攻击只会改写带 `injection_goal` 的 `pre_setup` 步骤。
 - checklist 不会自动决定最终权重；最终权重应写入 `LLM Judge Rubric`。

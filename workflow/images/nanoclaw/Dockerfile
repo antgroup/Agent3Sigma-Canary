@@ -15,9 +15,12 @@ RUN apt-get update && apt-get install -y \
         curl \
         jq \
         iptables \
+        dnsutils \
         ca-certificates \
         openssl \
     && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install certifi --break-system-packages
 
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
@@ -44,34 +47,22 @@ RUN mkdir -p /root/.openclaw/skills /root/.openclaw/agents /root/.claude \
 # process (driver.mjs, shim subprocesses) inherits it — entrypoint.sh's
 # `export` only reaches processes it spawns directly. The cert is created
 # at runtime by entrypoint.sh; this just tells Bun/Node where to look.
-ENV NODE_EXTRA_CA_CERTS=/opt/mock-api/tls/server.pem
+ENV NODE_EXTRA_CA_CERTS=/tmp/scry/mock_api/ssl/mock-api.crt
 ENV CLAUDE_CODE_CERT_STORE=bundled,system
+# Avoid optional Anthropic control-plane requests when using a custom provider.
+# The benchmark's egress policy intentionally permits only configured endpoints.
+ENV CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
 
 COPY shim/openclaw /usr/local/bin/openclaw
 RUN chmod +x /usr/local/bin/openclaw
 
 COPY docker/openclaw.json /root/.openclaw/openclaw.json
 
-# Install skills to where Claude Agent SDK natively looks for them
-# (~/.claude/skills/<name>/SKILL.md per
-# https://code.claude.com/docs/en/agent-sdk/skills). The driver passes
-# settingSources:["user","project"] so this user-level location is discovered.
-# Skill name (directory) MUST match the `name:` field in SKILL.md frontmatter
-# — strip the version suffix from the source packaged dirs (email-1.0.0 → email).
-RUN mkdir -p /root/.claude/skills /root/.openclaw/skills
-COPY docker/skills/ /root/.openclaw/skills/
-ARG SKILL_INSTALL_BUSTER=20260525_v3
-RUN cd /root/.openclaw/skills \
-    && for d in *-*.*.*; do \
-         n="${d%-*}"; \
-         mkdir -p "/root/.claude/skills/$n"; \
-         cp -rL "$d/." "/root/.claude/skills/$n/" 2>/dev/null || cp -r "$d/." "/root/.claude/skills/$n/"; \
-       done \
-    && ls -la /root/.claude/skills
-
+# Skills and skill_data are injected per task by the runner.
 RUN mkdir -p /tmp/scry/skill_data /tmp/scry/mock_api/data
-COPY docker/skill_data/ /tmp/scry/skill_data/
 COPY docker/mock_api_data/ /tmp/scry/mock_api/data/
+RUN mkdir -p /tmp/scry/mock_api/api_handlers
+COPY docker/mock_api_handler[s]/ /tmp/scry/mock_api/api_handlers/
 
 COPY docker/mock-api /opt/mock-api
 RUN pip3 install -r /opt/mock-api/requirements.txt --break-system-packages

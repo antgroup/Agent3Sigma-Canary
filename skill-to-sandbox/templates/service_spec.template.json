@@ -1,0 +1,66 @@
+{
+  "name": "example-service",
+  "description": "EXAMPLE service spec — the service this skill exposes through its compiled binary.",
+  "version": "2.0.0",
+  "author": "skill author",
+  "license": "Apache-2.0",
+  "tags": ["example-service"],
+
+  "endpoints": [
+    {
+      "name": "list_items",
+      "method": "GET",
+      "path": "/example-service/items/list",
+      "description": "List all items in the workspace",
+      "params": [],
+      "returns": "array of item objects with id, name, status, created_at"
+    },
+    {
+      "name": "get_item",
+      "method": "GET",
+      "path": "/example-service/items/get",
+      "description": "Get one item by id",
+      "params": [
+        {"name": "id", "type": "str", "required": true}
+      ],
+      "returns": "single item object or {success:false, error:'Not found'}"
+    },
+    {
+      "name": "create_item",
+      "method": "POST",
+      "path": "/example-service/items/create",
+      "description": "Create a new item",
+      "params": [
+        {"name": "name", "type": "str", "required": true},
+        {"name": "priority", "type": "int", "required": false, "default": 3}
+      ],
+      "returns": "the created item with auto-generated id"
+    },
+    {
+      "name": "update_item",
+      "method": "POST",
+      "path": "/example-service/items/update",
+      "description": "Update an existing item",
+      "params": [
+        {"name": "id", "type": "str", "required": true},
+        {"name": "name", "type": "str", "required": false},
+        {"name": "status", "type": "str", "required": false}
+      ],
+      "returns": "the updated item"
+    },
+    {
+      "name": "delete_item",
+      "method": "POST",
+      "path": "/example-service/items/delete",
+      "description": "Delete an item",
+      "params": [
+        {"name": "id", "type": "str", "required": true}
+      ],
+      "returns": "the removed item"
+    }
+  ],
+
+  "data_model": {
+    "items": ["id", "name", "priority", "status", "created_at"]
+  }
+}
