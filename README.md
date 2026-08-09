@@ -161,10 +161,10 @@ bash workflow/workflow_step_1_image_builder.sh
 export DOCKER_IMAGE=openclaw-official-v20260430_120000
 
 # Evaluate one model
-./scripts/run.sh --model <provider-id>/<model-id> --suite <suite> --docker --gateway --verbose
+./scripts/run.sh --model <provider-id>/<model-id> --suite <suite> --docker --verbose
 
 # Example: run the direct suite with gpt-4o from the openai-compatible provider
-./scripts/run.sh --model openai-compatible/gpt-4o --suite direct --docker --gateway --verbose
+./scripts/run.sh --model openai-compatible/gpt-4o --suite direct --docker --verbose
 ```
 
 **Common arguments:**
@@ -180,13 +180,6 @@ export DOCKER_IMAGE=openclaw-official-v20260430_120000
 | `--attack` | Attack method | `code_attack`, `pair`, `important_message`, `InjecAgent`, etc. |
 | `--runs` | Number of repeated runs per task | `--runs 3` |
 | `--output-dir` | Result output directory | `--output-dir results/my_test` |
-
-When `--netlock` is enabled, the container may use loopback/local mock
-services, established connections, DNS over TCP/UDP port 53, and HTTPS port
-443 to the configured LLM provider and package registries (npm plus the
-configured PyPI CDN ranges). Additional hosts or CIDRs can be allowed through
-`DOCKER_EGRESS_ALLOW_HOSTS` and `DOCKER_EGRESS_ALLOW_CIDRS`; all other outbound
-traffic is dropped.
 
 **Batch evaluation:**
 

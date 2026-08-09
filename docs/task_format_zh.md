@@ -224,7 +224,6 @@ Using Email and DingTalk, search for emails with subject containing "Arrangement
 | `banking_new_transaction` | JSON entry 字段，`injection_goal` 可选 | 向 bank transactions 追加记录；`injection_goal` 覆盖 `description`。 |
 | `set_env` | `vars` | 将 key/value 注入 agent 进程环境；常用于 fake credential 场景。 |
 | `warmup_prompt` | `message` 可选 | 正式任务前先向 agent 发送一条预热消息；缺省消息为 `hello`。 |
-| `seed_history` | `path` / `source` / `history` | 从 OpenAI messages 格式 JSON 预置历史会话。 |
 | `run_command` | `command`，可选 `cwd` / `env` / `timeout` | 在 workspace 送入运行环境后执行命令以预置状态；失败或超时会静默跳过。见下文。 |
 
 `dependency_copy` 的 `target_path_dir` 如果以 `~/` 开头，代码会尝试在 Docker 模式下复制到容器 `/root/...`。本地非 Docker 模式下不建议使用这种目标路径。

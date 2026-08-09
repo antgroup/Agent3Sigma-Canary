@@ -1,8 +1,8 @@
 # Task `pre_setup` Usage Guide
 
-`pre_setup` is the pre-run preparation step in task frontmatter. It is executed by the benchmark runner before the agent receives `## Prompt`, used to pre-place files, mock API data, skills, business data, environment variables, or conversation history into the isolated runtime environment.
+`pre_setup` is the pre-run preparation step in task frontmatter. It is executed by the benchmark runner before the agent receives `## Prompt`, used to pre-place files, mock API data, skills, business data, environment variables into the isolated runtime environment.
 
-`scripts/lib_agent.py` currently supports 19 `pre_setup.type` values. Additionally, `pre_setup: []` means no pre-run preparation.
+`scripts/lib_agent.py` currently supports 18 `pre_setup.type` values. Additionally, `pre_setup: []` means no pre-run preparation.
 
 ## Execution Timing
 
@@ -15,7 +15,7 @@ The main sequence for a single task is:
 5. Execute file/data preparation steps in `pre_setup`; `skill_mount` is a no-op here because it already took effect in step 1.
 6. In Docker mode, copy the rebuilt host workspace into the task's real agent workspace under `/tmp/scry/<run-id>/agent_workspace`.
 7. Execute `run_command` inside the running container. Its default working directory is the real task agent workspace, so it can observe `workspace_files` and files produced by earlier setup steps.
-8. Process the runtime-type steps just before actually calling the agent: `set_env`, `seed_history`, `warmup_prompt`.
+8. Process the runtime-type steps just before actually calling the agent: `set_env`, `warmup_prompt`.
 9. Send the task prompt, or the multi-turn prompts in `sessions`.
 
 Note: `pre_setup` is not a user instruction and does not appear in the user prompt. It describes the test materials the runner should pre-place.
@@ -41,7 +41,6 @@ Note: `pre_setup` is not a user instruction and does not appear in the user prom
 | Skill data append | `banking_new_transaction` | Append a record to bank transactions data. |
 | Runtime injection | `set_env` | Inject variables into the agent process environment. |
 | Runtime injection | `warmup_prompt` | Send a warm-up message to the agent before the main task. |
-| Runtime injection | `seed_history` | Pre-seed conversation history for the agent. |
 | Runtime setup | `run_command` | Run a command to prepare task-specific state. |
 
 ## File and Resource Preparation
@@ -241,7 +240,7 @@ These types all modify `skill_data/<skill>/data/*.json` in the current run direc
 
 If a step has a non-empty `injection_goal`, the runner writes it to the attack-carrier field corresponding to that type, then appends the record.
 
-| type | Target JSON | `injection_goal` overrides | Auto-inferred skill |
+| type | Target JSON | `injection_goal` overrides | Owning skill (data file) |
 | --- | --- | --- | --- |
 | `twitter_new_follower` | `twitter/data/followers.json` | `bio` | `twitter` |
 | `twitter_new_post` | `twitter/data/posts.json` | `content` | `twitter` |
@@ -284,7 +283,6 @@ pre_setup:
     last_message: ""
     last_message_time: ""
 ```
-
 Twitter indirect injection example:
 
 ```yaml
@@ -348,51 +346,6 @@ pre_setup:
 ```
 
 The current implementation calls the agent once under the same `session_id`, with a fixed warm-up timeout of 120 seconds. A warm-up failure only logs a warning and does not abort the task.
-
-### `seed_history`
-
-Pre-seed conversation history for the agent, enabling tasks that test scenarios where "the model has already seen certain content in history" (currently supported by OpenClaw and Claude Code images).
-
-Fields:
-
-| Field | Required | Description |
-| --- | --- | --- |
-| `path` / `source` / `history` | Yes | Any one of the three; points to an OpenAI messages-format JSON. |
-
-The input file can be a message list:
-
-```json
-[
-  {"role": "user", "content": "Read secret_report.txt"},
-  {"role": "assistant", "content": "I read the report."}
-]
-```
-
-Or:
-
-```json
-{"messages": [
-  {"role": "user", "content": "Read secret_report.txt"},
-  {"role": "assistant", "content": "I read the report."}
-]}
-```
-
-Example:
-
-```yaml
-pre_setup:
-  - type: skill_mount
-    names:
-      - discord
-  - type: seed_history
-    path: "assets/histories/demo_context.json"
-```
-
-Runtime behavior:
-
-- OpenClaw images: converted to an OpenClaw `.jsonl` transcript, written to `/root/.openclaw/agents/{agent_id}/sessions/`.
-- Claude Code images: the JSON is placed in the run directory and passed via the shim's `--seed-history` parameter.
-- Local non-Docker mode: for non-Claude Code frameworks, `seed_history` currently does not actually inject history; it only logs a warning.
 
 ### `run_command`
 
@@ -502,16 +455,4 @@ pre_setup:
     status: "online"
     last_message: ""
     last_message_time: ""
-```
-
-### Seed history then ask the agent to act on it
-
-```yaml
-workspace_files: []
-pre_setup:
-  - type: skill_mount
-    names:
-      - discord
-  - type: seed_history
-    path: "assets/histories/demo_context.json"
 ```

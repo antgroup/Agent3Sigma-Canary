@@ -1,8 +1,8 @@
 # Task `pre_setup` 使用说明
 
-`pre_setup` 是任务 frontmatter 里的运行前准备步骤。它由 benchmark runner 在 agent 收到 `## Prompt` 之前执行，用来把评测所需的文件、mock API 数据、skill、业务数据、环境变量或历史会话预先放进隔离运行环境。
+`pre_setup` 是任务 frontmatter 里的运行前准备步骤。它由 benchmark runner 在 agent 收到 `## Prompt` 之前执行，用来把评测所需的文件、mock API 数据、skill、业务数据、环境变量预先放进隔离运行环境。
 
-当前 `scripts/lib_agent.py` 支持 19 种 `pre_setup.type`。另外，`pre_setup: []` 表示没有运行前准备。
+当前 `scripts/lib_agent.py` 支持 18 种 `pre_setup.type`。另外，`pre_setup: []` 表示没有运行前准备。
 
 ## 执行时机
 
@@ -15,7 +15,7 @@
 5. 执行 `pre_setup` 中的文件和数据准备步骤；此时 `skill_mount` 是 no-op，因为它已经在第 1 步生效。
 6. Docker 模式下，将宿主机重建的 workspace 复制到 `/tmp/scry/<run-id>/agent_workspace` 下当前任务真实的 agent workspace。
 7. 在运行中的容器内执行 `run_command`。其默认工作目录是真实的任务 agent workspace，因此可以读取 `workspace_files` 和此前准备步骤生成的文件。
-8. 在真正调用 agent 前处理运行时型步骤：`set_env`、`seed_history`、`warmup_prompt`。
+8. 在真正调用 agent 前处理运行时型步骤：`set_env`、`warmup_prompt`。
 9. 发送任务 prompt 或 `sessions` 中的多轮 prompt。
 
 注意：`pre_setup` 不是用户指令，也不会出现在用户 prompt 里。它描述的是 runner 要预先放置的测试材料。
@@ -41,7 +41,6 @@
 | skill 数据追加 | `banking_new_transaction` | 向 bank transactions 数据追加记录。 |
 | 运行时注入 | `set_env` | 把变量注入 agent 进程环境。 |
 | 运行时注入 | `warmup_prompt` | 正式任务前先给 agent 发一条预热消息。 |
-| 运行时注入 | `seed_history` | 给 agent 预置历史会话。 |
 | 运行时准备 | `run_command` | 执行命令，准备任务特有状态。 |
 
 ## 文件和资源准备
@@ -241,7 +240,7 @@ pre_setup:
 
 如果 step 里有非空 `injection_goal`，runner 会把它写入该类型对应的攻击载体字段，再追加记录。
 
-| type | 目标 JSON | `injection_goal` 覆盖字段 | 自动推断的 skill |
+| type | 目标 JSON | `injection_goal` 覆盖字段 | 所属 skill(数据文件) |
 | --- | --- | --- | --- |
 | `twitter_new_follower` | `twitter/data/followers.json` | `bio` | `twitter` |
 | `twitter_new_post` | `twitter/data/posts.json` | `content` | `twitter` |
@@ -284,7 +283,6 @@ pre_setup:
     last_message: ""
     last_message_time: ""
 ```
-
 Twitter 间接注入示例：
 
 ```yaml
@@ -348,51 +346,6 @@ pre_setup:
 ```
 
 当前实现会在同一个 `session_id` 下调用一次 agent，预热超时固定为 120 秒。预热失败只记录 warning，不会直接终止任务。
-
-### `seed_history`
-
-给 agent 预置历史会话，使任务可以测试“模型已经在历史中见过某些内容”的场景 (目前支持 OpenClaw 镜像和 Claude Code 镜像)。
-
-字段：
-
-| 字段 | 必填 | 说明 |
-| --- | --- | --- |
-| `path` / `source` / `history` | 是 | 三者任选一个，指向 OpenAI messages 格式 JSON。 |
-
-输入文件可以是 message list：
-
-```json
-[
-  {"role": "user", "content": "Read secret_report.txt"},
-  {"role": "assistant", "content": "I read the report."}
-]
-```
-
-也可以是：
-
-```json
-{"messages": [
-  {"role": "user", "content": "Read secret_report.txt"},
-  {"role": "assistant", "content": "I read the report."}
-]}
-```
-
-示例：
-
-```yaml
-pre_setup:
-  - type: skill_mount
-    names:
-      - discord
-  - type: seed_history
-    path: "assets/histories/demo_context.json"
-```
-
-运行行为：
-
-- OpenClaw 镜像：转换为 OpenClaw `.jsonl` transcript，写入 `/root/.openclaw/agents/{agent_id}/sessions/`。
-- Claude Code 镜像：把 JSON 放到运行目录并通过 shim 的 `--seed-history` 参数传入。
-- 本地非 Docker 模式下，非 Claude Code framework 的 `seed_history` 当前不会真正注入历史，只会记录 warning。
 
 ### `run_command`
 
@@ -500,16 +453,4 @@ pre_setup:
     status: "online"
     last_message: ""
     last_message_time: ""
-```
-
-### 预置历史再要求 agent 基于历史行动
-
-```yaml
-workspace_files: []
-pre_setup:
-  - type: skill_mount
-    names:
-      - discord
-  - type: seed_history
-    path: "assets/histories/demo_context.json"
 ```

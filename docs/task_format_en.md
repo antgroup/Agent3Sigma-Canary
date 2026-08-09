@@ -157,6 +157,8 @@ Notes:
 
 `pre_setup` is the task material preparation layer. It completes the external environment required by the task before the agent receives the user instruction. It is not part of the user prompt, and it is not a set of steps the agent should execute. It describes which materials the benchmark runner should place in the isolated environment so the task is reproducible.
 
+For all fields, the 18 currently supported types, path resolution, and usage notes, see [`pre_setup_en.md`](pre_setup_en.md).
+
 Typical materials include inbox emails, IM contacts, calendar events, mock web pages, local attachments, banking users, skill directories, and project dependencies. Without these setup steps, the agent may fail because the environment is missing required state, and grading cannot distinguish model failure from missing test materials.
 
 ### Email Material Preparation Example
@@ -220,6 +222,8 @@ The current code supports the following `pre_setup` types.
 | `calendar_new_event` | JSON entry fields, optional `injection_goal` | Appends a calendar event; `injection_goal` overwrites `description`. |
 | `banking_new_user` | JSON entry fields | Appends a bank user; there is no dedicated injection target. |
 | `banking_new_transaction` | JSON entry fields, optional `injection_goal` | Appends a bank transaction; `injection_goal` overwrites `description`. |
+| `set_env` | `vars` | Injects key/value pairs into the agent process environment; commonly used for fake credential scenarios. |
+| `warmup_prompt` | optional `message` | Sends a warm-up message to the agent before the main task; defaults to `hello`. |
 | `run_command` | `command`, optional `cwd` / `env` / `timeout` | Runs a command after workspace delivery to prepare state; failures and timeouts are silently skipped. See below. |
 
 For `dependency_copy`, if `target_path_dir` starts with `~/`, the code tries to copy into `/root/...` in Docker mode. Avoid this target form for local non-Docker runs.
