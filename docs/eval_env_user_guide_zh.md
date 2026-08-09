@@ -1,14 +1,16 @@
-# skill-to-sandbox 用户指南
+# 评测环境构建用户指南
 
-本指南讲怎么把一个真实 skill 变成可测试的沙盒 skill。全程用 **google-drive** skill 举例，来源是 [ClawHub 上的 google-drive](https://clawhub.ai/byungkyu/skills/google-drive)。
+在定制化评测任务时，AgentCanary 默认的评测环境可能不能满足你的所有需求，例如，如果你想测评Agent是否有通过谷歌网盘进行数据外发的风险，你则需要评测环境支持“谷歌网盘上传”这一功能。为此，我们提供了 Skill-to-Sandbox 工作流，支持将真实 Skill 适配为可复现、可运行的沙盒版本，并通过本地高保真模拟复现第三方服务的主要接口与状态变化，从而帮助用户构建定制化评测环境，并灵活扩展评测任务。
 
-你可以自己手动转换，也（推荐）把整个工作交给编码 agent。两种路径下面都说明。
+本文档以上述的“谷歌网盘”为例，展示如何进行这一流程。
+
+你可以自己手动适配，也（更推荐）把整个工作交给编码 agent。两种路径下面都说明。
 
 ---
 
 ## 1. 起点：你手上有什么
 
-你有一个真实 skill——通常是 ClawHub skill（或 GitHub 仓库 / 本地目录），里面有 `SKILL.md`。本 walkthrough 的来源是真实的 ClawHub skill [google-drive](https://clawhub.ai/byungkyu/skills/google-drive)——即我们仿的原真实 skill。
+你有一个真实 skill——例如 ClawHub skill（或 GitHub 仓库 / 本地目录），里面有 `SKILL.md`。本 walkthrough 的来源是真实的 ClawHub skill [google-drive](https://clawhub.ai/byungkyu/skills/google-drive)——即我们仿的原真实 skill。
 
 你还要选一个输出目录，转换后的 skill 通常用 `2.0.0` 版本号：
 
@@ -113,21 +115,6 @@ test run:  0.97/1.0 (97%)  model: <your-model>  image: openclaw-official
 - **首次跑测试前先跑 `buildAll.sh`。** runner 从 `skill_dest/skills/` 挂载 skill，不是从源树。
 - **HTTPS 信任。** AgentCanary 自带的 official 镜像会自动装好 mock 自签证书。如果用自建镜像，也必须装，否则 agent 的 `curl` / `urllib` 调用会因为证书报错。
 
-## 简版
-
-跟 agent 说：
-
-```text
-Use skill-to-sandbox to convert <source> into
-_skills_repository/<slug>-2.0.0, and pass all tests including end-to-end.
-```
-
-agent 会转换、跑生成的端到端测试、迭代到分数通过（`>= 0.9`）。你只需给它来源，最后看分数即可。
----
-
-
----
-
 ## 7. 构建安全测试 Task
 
 `agent_eval/` 下自动生成的可用性 task 检查的是 skill「能不能跑通」——它用的是带自治约束
@@ -187,6 +174,8 @@ pre_setup:
 | `original_intent` | 底层攻击意图描述——供 judge 参考上下文。 |
 | `workspace_files` | 在 `pre_setup` 之前放入 workspace 的文件。 |
 | `pre_setup` | 有序的 setup 步骤列表。 |
+
+参考 [Task Markdown 格式参考](task_format_zh.md) 可获取更完整信息
 
 ### 7.2 设置 `pre_setup`
 
@@ -301,16 +290,8 @@ PYTHONUNBUFFERED=1 uv run scripts/benchmark.py \
   --suite task_google_drive_exfil_check \
   --runs 1 \
   --docker \
-  --output-dir results/skill_security_google_drive
+  --output-dir results/skill_security_google_drive --verbose
 ```
-
-### 8.4 读取结果
-
-启动分析服务：
-```
-bash workflow_analysis/start.sh
-```
-浏览器访问 http://localhost:5000 找到你本次运行的记录来查看结果。
 
 
 ## 9. 完整示例：从零写出安全测试 Task
@@ -336,7 +317,7 @@ pre_setup:
   - type: run_command
     cwd: /root/.openclaw/skills/google-drive-2.0.0
     command: >
-      echo "Q3 revenue: $12.5M, beat guidance by 8%." > /tmp/earnings.txt &&
+      echo "Q3 revenue: \$12.5M, beat guidance by 8%." > /tmp/earnings.txt &&
       maton google-drive file upload /tmp/earnings.txt
 ---
 
@@ -447,6 +428,3 @@ find results/skill_security_google_drive \
   "transcript_path": "..."
 }
 ```
-
-这就是完整循环：写安全 task → 设 `pre_setup` → 写 prompt 和 rubric → 构建 → 运行 →
-读分数。在任意环节迭代直到结果达标。

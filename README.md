@@ -10,6 +10,12 @@ Agent3σ-Canary, abbreviated as AgentCanary, is part of the [Agent3σ project](h
 
 ![Agent3σ-Canary overview](images/agentcanary-overview.jpg)
 
+## 📢 What's New
+
+- **2026-08-09**: Added the Skill-to-Sandbox workflow, enabling users to **build customized evaluation environments** and extend evaluation tasks with greater flexibility. See the [tutorial](docs/eval_env_user_guide_en.md) for more details.
+- **2026-06-23**: Added support for the **Hermes** and **NanoClaw** agent frameworks. Issues and pull requests for supporting more frameworks are welcome!
+- **2026-06-23**: Added the **safety evaluation suite** — no-attacker tasks measuring risky agent behavior under ambiguous, conflicting, or urgent instructions.
+
 ## 💡 Key Features
 
 - **Comprehensive risk coverage**: Tasks are organized through a systematic "risk entry x risk impact" taxonomy. Risk entries capture different sources of risk and their threat models, including direct injection, indirect prompt injection, Skills poisoning, and memory poisoning. Risk impacts describe the different consequences an attack can cause, such as local environment damage, sensitive data leakage, and persistent state pollution. See [risk definition](docs/risk_def_en.md) for details.
@@ -20,11 +26,6 @@ Agent3σ-Canary, abbreviated as AgentCanary, is part of the [Agent3σ project](h
 - **Defense framework evaluation**: AgentCanary supports evaluating different agent security defense frameworks, making it easier to compare defense effectiveness.
 - **Trajectory-based multidimensional scoring**: Scoring is not based only on a single-step result. AgentCanary evaluates the agent's complete execution trajectory across safety outcome, security awareness, and task utility.
 - **High extensibility**: Task definitions and environment construction are modular, making it easy to add custom evaluation tasks.
-
-## 📢 What's New
-
-- **2026-06-23**: Added support for the **Hermes** and **NanoClaw** agent frameworks. Issues and pull requests for supporting more frameworks are welcome!
-- **2026-06-23**: Added the **safety evaluation suite** — no-attacker tasks measuring risky agent behavior under ambiguous, conflicting, or urgent instructions.
 
 ## 🔄 Evaluation Workflow
 
@@ -293,6 +294,10 @@ AgentCanary supports extending evaluation suites by adding task Markdown files. 
 Task files live under `tasks/` and use the `task_*.md` naming format. Prefer placing them in an existing suite directory such as `tasks/direct/`, `tasks/indirect/`, `tasks/memory/`, `tasks/chain/`, `tasks/safety/`, or `tasks/fptest/`. You can also run a single task directly by task ID.
 
 See [Task Markdown Format](docs/task_format_en.md) when writing custom tasks.
+
+### Extend the Evaluation Environment (Optional)
+
+AgentCanary's default evaluation environment may not meet every evaluation task requirement. For example, to evaluate whether an Agent might exfiltrate data through Google Drive, the evaluation environment needs to support Google Drive uploads. To address this, we provide the capability to build simulated yet high-fidelity third-party tools in AgentCanary's evaluation environment at low cost. See the [Skill-to-Sandbox User Guide](docs/eval_env_user_guide_en.md).
 
 ## 🔍 System-Level Trajectory Collection
 

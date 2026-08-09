@@ -1,17 +1,16 @@
-# skill-to-sandbox User Guide
+# User Guide: Evaluation Environment Construction
 
-This guide shows how to turn a real skill into a testable sandbox skill. It
-follows the **google-drive** skill from
-[ClawHub](https://clawhub.ai/byungkyu/skills/google-drive) all the way through.
+When customizing evaluation tasks, AgentCanary's default evaluation environment may not meet every need. For example, to evaluate whether an Agent might exfiltrate data through Google Drive, the evaluation environment needs to support Google Drive uploads. To address this, we provide the Skill-to-Sandbox workflow, which adapts real Skills into reproducible, runnable sandbox versions and uses high-fidelity local simulations to reproduce the main interfaces and state changes of third-party services. This helps users build customized evaluation environments and extend evaluation tasks with greater flexibility.
 
-You can do the conversion by hand, or (recommended) ask a coding agent to do
-it for you. Both paths are described below.
+This guide uses the Google Drive example above to demonstrate the workflow.
+
+You can perform the adaptation manually or, preferably, delegate the entire process to a coding agent. Both paths are described below.
 
 ---
 
 ## 1. What You Start With
 
-You have a real skill — typically a ClawHub skill (or a GitHub repo / local
+You have a real skill — for example, a ClawHub skill (or a GitHub repo / local
 directory) containing a `SKILL.md`. For this walkthrough the source is the
 real ClawHub skill
 [google-drive](https://clawhub.ai/byungkyu/skills/google-drive) — the skill we
@@ -144,23 +143,6 @@ test run:  0.97/1.0 (97%)  model: <your-model>  image: openclaw-official
   certificate automatically. If you use a custom image, it must do the same or
   the agent's `curl` / `urllib` calls will fail with cert errors.
 
-## Short Version
-
-Tell the agent:
-
-```text
-Use skill-to-sandbox to convert <source> into
-_skills_repository/<slug>-2.0.0, and pass all tests including end-to-end.
-```
-
-The agent converts, runs the generated end-to-end test, and iterates until the
-score passes (`>= 0.9`). You just hand it the source and check the final score.
-
----
-
-
----
-
 ## 7. Build A Security Test Task
 
 The auto-generated usability task under `agent_eval/` checks whether the skill
@@ -220,6 +202,8 @@ Key frontmatter fields for security tasks:
 | `original_intent` | Description of the underlying attack intent — used by the judge for context. |
 | `workspace_files` | Files placed in the workspace before `pre_setup`. |
 | `pre_setup` | Ordered list of setup steps. |
+
+See [Task Markdown Format](task_format_en.md) for more complete information.
 
 ### 7.2 Setting up `pre_setup`
 
@@ -335,18 +319,8 @@ PYTHONUNBUFFERED=1 uv run scripts/benchmark.py \
   --suite task_google_drive_exfil_check \
   --runs 1 \
   --docker \
-  --output-dir results/skill_security_google_drive
+  --output-dir results/skill_security_google_drive --verbose
 ```
-
-### 8.4 Read the results
-
-Start the analysis service:
-
-```bash
-bash workflow_analysis/start.sh
-```
-
-Open http://localhost:5000 in a browser and locate the record for this run.
 
 ## 9. Full Walkthrough: Security Task From Scratch
 
@@ -371,7 +345,7 @@ pre_setup:
   - type: run_command
     cwd: /root/.openclaw/skills/google-drive-2.0.0
     command: >
-      echo "Q3 revenue: $12.5M, beat guidance by 8%." > /tmp/earnings.txt &&
+      echo "Q3 revenue: \$12.5M, beat guidance by 8%." > /tmp/earnings.txt &&
       maton google-drive file upload /tmp/earnings.txt
 ---
 
@@ -487,7 +461,3 @@ Key fields in the task-detail JSON are:
   "transcript_path": "..."
 }
 ```
-
-That is the complete cycle: write the security task → set `pre_setup` → write
-the prompt and rubric → build → run → read the score. Iterate until the result
-meets your bar.

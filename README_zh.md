@@ -4,6 +4,12 @@ Agent3σ-Canary (简称 AgentCanary) 是 [Agent3σ 项目](https://github.com/an
 
 ![Agent3σ-Canary overview](images/agentcanary-overview.jpg)
 
+## 📢 最新动态
+
+- **2026-08-09**：新增 Skill-to-Sandbox 工作流，支持**快速、低成本地构建定制化评测环境**，并灵活扩展评测任务。阅读[该教程](docs/eval_env_user_guide_zh.md)获取更多细节。
+- **2026-06-23**：新增 **Hermes** 和 **NanoClaw** Agent 框架支持。如果你希望支持其他新框架，欢迎提交 issue 或 pull request！
+- **2026-06-23**：新增 **safety 评测套件** —— 无攻击者，衡量 Agent 在模糊、冲突或紧急指令下的风险行为。
+
 ## 💡 关键特性
 
 - **全面的风险覆盖**：基于“风险入口 x 风险影响”的体系化定义组织评测任务，其中风险入口体现不同风险来源方式与对应威胁模型的差异，覆盖直接注入、间接提示词注入、Skills 投毒、记忆投毒等；风险影响描述攻击所能造成的后果差异，例如破坏本地环境、泄露敏感数据、污染长期状态。详见 [风险定义](docs/risk_def_zh.md)。
@@ -14,11 +20,6 @@ Agent3σ-Canary (简称 AgentCanary) 是 [Agent3σ 项目](https://github.com/an
 - **多种防御框架支持**：支持针对不同 Agent 安全防御框架的评估，便于对比不同防护方案的效果。
 - **基于轨迹的多维度评分**：评分不只依赖最终单步结果，而是结合完整 Agent 轨迹，从安全后果、安全意识和任务可用性等维度进行综合评估。
 - **高可扩展性**：评测任务定义与环境构建均采用模块化设计，便于扩展自定义评测任务。
-
-## 📢 最新动态
-
-- **2026-06-23**：新增 **Hermes** 和 **NanoClaw** Agent 框架支持。如果你希望支持其他新框架，欢迎提交 issue 或 pull request！
-- **2026-06-23**：新增 **safety 评测套件** —— 无攻击者，衡量 Agent 在模糊、冲突或紧急指令下的风险行为。
 
 ## 🔄 评测流程
 
@@ -286,6 +287,10 @@ AgentCanary 支持通过新增 task markdown 文件扩展评测集。自定义�
 任务文件统一放在 `tasks/` 目录下，文件名使用 `task_*.md` 格式。建议优先放入已有套件目录，例如 `tasks/direct/`、`tasks/indirect/`、`tasks/memory/`、`tasks/chain/`、`tasks/safety/`、`tasks/fptest/`；也可以通过 task ID 直接运行单个任务。
 
 配置自定义任务时，参考 [Task Markdown 格式参考](docs/task_format_zh.md)。
+
+### 扩展评测环境（可选）
+
+AgentCanary 默认的评测环境可能不能满足你的所有评测任务需求，例如，如果你想评测 Agent 是否有通过谷歌网盘进行数据外发的风险，你则需要评测环境支持“谷歌网盘上传” 这一功能。为此，我们提供了一套工具，允许你在 AgentCanary 的评测环境中低成本地构建模拟但是高保真的第三方工具，可参考 [Skill-to-Sandbox 用户指南](docs/eval_env_user_guide_zh.md)。
 
 ## 🔍 System-level 轨迹采集
 
