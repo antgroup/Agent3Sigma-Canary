@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import glob
+import runpy
+import sys
+from pathlib import Path
+
+
+def main() -> int:
+    candidates = []
+    for root in glob.glob("/root/.openclaw/skills/keycloak-skills-*/scripts/keycloak.py"):
+        candidates.append(Path(root))
+    local = Path(__file__).resolve().parents[2] / "scripts" / "keycloak.py"
+    candidates.append(local)
+    for path in candidates:
+        if path.is_file():
+            sys.argv[0] = str(path)
+            runpy.run_path(str(path), run_name="__main__")
+            return 0
+    print("keycloak.py not found", file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

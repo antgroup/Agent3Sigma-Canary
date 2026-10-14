@@ -43,22 +43,6 @@ config = {}
 _api_handlers: dict[str, dict] = {}  # domain → handler config
 _audit_log: list[dict] = []          # audit trail of all API calls
 
-def _not_found_response() -> tuple:
-    """Return a neutral 404 without exposing mock implementation details."""
-    return jsonify({"error": "Not Found"}), 404
-
-
-def _internal_error_response() -> tuple:
-    """Return a neutral 500 without exposing storage or filesystem details."""
-    return jsonify({"error": "Internal Server Error"}), 500
-
-
-@app.errorhandler(500)
-def handle_internal_server_error(_error):
-    """Sanitize unexpected Flask failures as well as explicit storage errors."""
-    return _internal_error_response()
-
-
 import uuid
 import mimetypes as _mimetypes
 
@@ -337,15 +321,17 @@ def _serve_storage_file(sf, route: dict, handler: dict, path: str) -> tuple:
     if not filename:
         filename = _resolve_storage_filename(sf, handler)
     if not filename:
-        return _internal_error_response()
+        return jsonify({"error": "Mock storage",
+                         "message": "serve_file resolved to an empty filename"}), 500
     safe = Path(filename).name  # prevent traversal — basename only
     fp = _storage_dir_for(handler) / safe
     if not fp.is_file():
-        return _not_found_response()
+        return jsonify({"error": "Mock storage",
+                         "message": f"serve_file: not found in storage: {safe}"}), 404
     try:
         content = fp.read_bytes()
-    except OSError:
-        return _internal_error_response()
+    except OSError as exc:
+        return jsonify({"error": "Mock storage", "message": str(exc)}), 500
     resp = Response(content, mimetype=get_content_type(safe))
     resp.headers["Content-Disposition"] = f'attachment; filename="{safe}"'
     return resp, status_code
@@ -370,8 +356,8 @@ def _store_upload(route: dict, handler: dict, path: str) -> tuple:
     body = request.get_data() or b""
     try:
         (sdir / safe).write_bytes(body)
-    except OSError:
-        return _internal_error_response()
+    except OSError as exc:
+        return jsonify({"error": "Mock storage", "message": str(exc)}), 500
 
     now = time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime())
     file_id = "1" + uuid.uuid4().hex[:20]
@@ -428,7 +414,7 @@ def _dispatch_registered_api_handler():
     """Dispatch the current request when its Host has a registered handler.
 
     Return ``None`` only for an unregistered Host, allowing Flask to continue
-    to local data routes such as /upload and /content.
+    to local service routes such as /upload, /content, and /__api_handlers.
     A registered Host always receives a handler response (including a handler
     404), so local control/data endpoints cannot shadow upstream API paths.
     """
@@ -473,7 +459,15 @@ def _dispatch_registered_api_handler():
         return resp, status
 
     call_record["status_code"] = 404
-    return _not_found_response()
+    return jsonify({
+        "error": "Not Found",
+        "message": f"No mock route for {method} {full_path} on domain {host}",
+        "domain": host,
+        "available_routes": [
+            {"method": r.get("method", "GET"), "path": r.get("path", "/")}
+            for r in handler.get("routes", [])
+        ],
+    }), 404
 
 
 @app.before_request
@@ -559,7 +553,10 @@ def serve_content(filename):
     file_path = find_file(filename)
 
     if file_path is None:
-        return _not_found_response()
+        return jsonify({
+            "error": "Not Found",
+            "message": f"File not found: {filename}"
+        }), 404
 
     # Security check: ensure file is within data directory
     try:
@@ -623,7 +620,10 @@ def download_file(filename):
 
     # Check if file exists and is a file
     if not file_path.exists() or not file_path.is_file():
-        return _not_found_response()
+        return jsonify({
+            "error": "Not Found",
+            "message": f"File not found: {filename}"
+        }), 404
 
     # Security check: ensure file is within data directory
     try:
@@ -664,7 +664,10 @@ def serve_site(filepath):
 
     # Check if file exists and is a file
     if not file_path.exists() or not file_path.is_file():
-        return _not_found_response()
+        return jsonify({
+            "error": "Not Found",
+            "message": f"File not found: {filepath}"
+        }), 404
 
     # Security check: ensure file is within data directory
     try:
@@ -810,13 +813,36 @@ def api_mock_catchall(path):
             except Exception:
                 pass
 
-    return _not_found_response()
+    return jsonify({
+        "error": "Not Found",
+        "message": f"No mock handler for domain '{host}' and no static file at '{full_path}'",
+        "hint": "Register API handlers in /tmp/scry/mock_api/api_handlers/ or use /content/ for static files",
+        "registered_domains": list(_api_handlers.keys()),
+    }), 404
 
 
 @app.route('/')
 def root():
-    """Do not expose service metadata for an unregistered Host."""
-    return _not_found_response()
+    """Root endpoint — service info"""
+    handler_info = {domain: len(h.get("routes", [])) for domain, h in _api_handlers.items()}
+    return jsonify({
+        "service": "Mock API",
+        "version": "3.0.0",
+        "status": "running",
+        "api_handlers": handler_info,
+        "endpoints": {
+            "/content/<filename>": "Serve file from data directory (without extension)",
+            "/download/<filename>": "Download file by exact filename (with extension)",
+            "/site/<path>": "Serve file with full path support (for website testing)",
+            "/__list": "List available files",
+            "/__reload": "Reload configuration",
+            "/__reload_handlers": "Reload API mock handlers",
+            "/__api_handlers": "List registered API mock handlers",
+            "/__api_audit": "GET: API call audit log, DELETE: clear log",
+            "/upload": "Upload a file (POST multipart/form-data)",
+            "/<path> (catch-all)": "API mock proxy — routes by Host header to skill handlers",
+        },
+    })
 
 
 def start_https_server(host: str, https_port: int):

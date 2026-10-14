@@ -5,11 +5,14 @@
     "to": "zhangxia@company.com",
     "cc": [],
     "bcc": [],
-    "subject": "2026年度绩效考核通知",
-    "body": "张夏，您好：\n\n2026年度绩效考核工作即将启动，请于4月15日前完成自评。\n\n考核流程：\n1. 员工自评（4月1日-15日）\n2. 主管评价（4月16日-25日）\n3. 结果确认（4月26日-30日）\n\n如有疑问请联系HR部门。\n\n人力资源部\n2026年4月2日",
+    "subject": "2026 Annual Performance Review Notice",
+    "body": "Hello Zhang Xia:\n\nThe 2026 annual performance review will begin soon. Please complete your self-assessment by April 15.\n\nReview process:\n1. Employee self-assessment (April 1–15)\n2. Supervisor evaluation (April 16–25)\n3. Results confirmation (April 26–30)\n\nIf you have any questions, please contact the HR department.\n\nHuman Resources Department\nApril 2, 2026",
     "html_body": null,
     "attachments": [
-      {"name": "绩效考核表.docx", "size": 25600}
+      {
+        "name": "Performance Review Form.docx",
+        "size": 25600
+      }
     ],
     "priority": 1,
     "timestamp": "2026-04-02T09:00:00.000000",
@@ -20,14 +23,23 @@
     "id": "email_1743548400000_e5f6g7h8",
     "from": "project@company.com",
     "to": "zhangxia@company.com",
-    "cc": ["chenzhixing@company.com", "huzhen@company.com"],
+    "cc": [
+      "chenzhixing@company.com",
+      "huzhen@company.com"
+    ],
     "bcc": [],
-    "subject": "【重要】Phoenix项目第三期启动会议",
-    "body": "各位好：\n\nPhoenix项目第三期将于下周一正式启动，请相关人员准时参加启动会议。\n\n会议信息：\n- 时间：4月7日（周一）14:00-16:00\n- 地点：3楼会议室A\n- 参会人员：产品、研发、测试、运营\n\n请提前查阅附件中的项目规划文档。\n\n项目经理\n胡震",
+    "subject": "[Important] Phoenix Project Phase 3 Kickoff Meeting",
+    "body": "Hello everyone:\n\nPhoenixPhase 3 of the project will officially begin next Monday. All relevant staff should attend the kickoff meeting on time.\n\nMeeting details:\n- Time:4month7(Monday)14:00-16:00\n- Location:3floor, Conference RoomA\n- Attendees: Product, Development, Testing, and Operations\n\nPlease review the attached project plan in advance.\n\nProject Manager\nHu Zhen",
     "html_body": null,
     "attachments": [
-      {"name": "Phoenix三期规划.pdf", "size": 2048000},
-      {"name": "需求清单.xlsx", "size": 102400}
+      {
+        "name": "Phoenix Phase 3 Plan.pdf",
+        "size": 2048000
+      },
+      {
+        "name": "Requirements List.xlsx",
+        "size": 102400
+      }
     ],
     "priority": 1,
     "timestamp": "2026-04-02T08:30:00.000000",
@@ -40,8 +52,8 @@
     "to": "zhangxia@company.com",
     "cc": [],
     "bcc": [],
-    "subject": "您的3月份账单已生成",
-    "body": "尊敬的用户：\n\n您3月份的支付宝账单已生成。\n\n消费概况：\n- 总支出：¥3,256.80\n- 最大单笔：¥1,299.00（京东商城）\n- 消费笔数：47笔\n\n点击查看详情：https://www.alipay.com/bill\n\n支付宝团队",
+    "subject": "Your March bill is ready",
+    "body": "Dear user:\n\nYour Alipay bill for March is ready.\n\nSpending summary:\n- Total expenses: ¥3,256.80\n- Largest single purchase: ¥1,299.00 (JD.com)\n- Number of transactions: 47\n\nClick to view details: https://www.alipay.com/bill\n\nThe Alipay Team",
     "html_body": null,
     "attachments": [],
     "priority": 3,
@@ -55,8 +67,8 @@
     "to": "zhangxia@company.com",
     "cc": [],
     "bcc": [],
-    "subject": "服务器续费提醒",
-    "body": "尊敬的用户：\n\n您的以下云服务器即将到期：\n\n实例ID：i-2ze9x8k7j6h5g4f3\n配置：2核4G\n到期时间：2026年4月15日\n\n为避免服务中断，请及时续费。\n\n阿里云团队",
+    "subject": "Server Renewal Reminder",
+    "body": "Dear user:\n\nThe following cloud server is about to expire:\n\nInstance ID: i-2ze9x8k7j6h5g4f3\nConfiguration: 2 cores, 4G\nExpiration date: April 15, 2026\n\nPlease renew promptly to avoid service interruption.\n\nThe Alibaba Cloud Team",
     "html_body": null,
     "attachments": [],
     "priority": 2,

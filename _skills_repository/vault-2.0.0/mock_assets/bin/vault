@@ -1,0 +1,221 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import secrets
+import subprocess
+import sys
+from pathlib import Path
+from typing import Dict, List, Optional
+
+
+VERSION = "2.0.0"
+KEY_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
+
+
+def first_env(*names: str) -> Optional[str]:
+    for name in names:
+        value = os.environ.get(name)
+        if value:
+            return value
+    return None
+
+
+STATE_FILE = Path(
+    first_env("VAULT_STATE_FILE", "VAULT-STATE_FILE")
+    or str(Path.home() / ".vault" / "passwords.json")
+)
+CONFIG_DIR = Path(
+    first_env("VAULT_CONFIG_DIR", "VAULT-CONFIG_DIR")
+    or str(Path.home() / ".vault")
+)
+
+
+def runtime_file() -> Path:
+    configured = os.environ.get("VAULT_RUNTIME_FILE")
+    if configured:
+        return Path(configured)
+    installed = Path("/usr/local/lib/vault/vault_runtime.mjs")
+    if installed.is_file():
+        return installed
+    return Path(__file__).resolve().parent.parent / "lib" / "vault_runtime.mjs"
+
+
+def master_key() -> str:
+    configured = os.environ.get("VAULT_MASTER_KEY")
+    if configured:
+        return configured
+    key_file = CONFIG_DIR / "master.key"
+    if key_file.is_file():
+        value = key_file.read_text(encoding="utf-8").strip()
+        if value:
+            return value
+    CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+    value = "vlt_" + secrets.token_hex(32)
+    key_file.write_text(value + "\n", encoding="utf-8")
+    key_file.chmod(0o600)
+    return value
+
+
+def validate_key(key: str) -> bool:
+    if not KEY_PATTERN.fullmatch(key):
+        print(
+            "Key names must use letters, digits, dots, underscores, or hyphens.",
+            file=sys.stderr,
+        )
+        return False
+    return True
+
+
+def run_runtime(payload: Dict[str, object]) -> Dict[str, object]:
+    helper = runtime_file()
+    if not helper.is_file():
+        raise RuntimeError(f"Vault runtime not found: {helper}")
+    request = {
+        **payload,
+        "stateFile": str(STATE_FILE),
+        "masterKey": master_key(),
+    }
+    result = subprocess.run(
+        ["node", str(helper)],
+        input=json.dumps(request),
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    if result.returncode != 0:
+        detail = result.stderr.strip() or result.stdout.strip() or "vault operation failed"
+        raise RuntimeError(detail)
+    try:
+        response = json.loads(result.stdout)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError("Vault runtime returned invalid output") from exc
+    if not isinstance(response, dict):
+        raise RuntimeError("Vault runtime returned an invalid result")
+    return response
+
+
+def command_list() -> int:
+    response = run_runtime({"operation": "list"})
+    entries = response.get("entries")
+    if not isinstance(entries, list) or not entries:
+        print("No passwords stored.")
+        return 0
+    print("Stored passwords:")
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        print(
+            f"• {entry.get('key')} "
+            f"(created: {entry.get('createdAt')}, updated: {entry.get('updatedAt')})"
+        )
+    return 0
+
+
+def command_set(key: str, password: str, created_at: Optional[str] = None) -> int:
+    if not validate_key(key):
+        return 2
+    payload: Dict[str, object] = {
+        "operation": "set",
+        "key": key,
+        "password": password,
+    }
+    if created_at:
+        payload["createdAt"] = created_at
+    run_runtime(payload)
+    print(f"Password for '{key}' saved.")
+    return 0
+
+
+def command_show(key: str) -> int:
+    if not validate_key(key):
+        return 2
+    response = run_runtime({"operation": "get", "key": key})
+    if not response.get("found"):
+        print(f"Password for '{key}' not found.", file=sys.stderr)
+        return 1
+    print(f"Password for '{key}': {response.get('password')}")
+    return 0
+
+
+def command_remove(key: str) -> int:
+    if not validate_key(key):
+        return 2
+    response = run_runtime({"operation": "remove", "key": key})
+    if not response.get("removed"):
+        print(f"Password for '{key}' not found.", file=sys.stderr)
+        return 1
+    print(f"Password for '{key}' removed.")
+    return 0
+
+
+def command_dev_put(argv: List[str]) -> int:
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("key")
+    parser.add_argument("password")
+    parser.add_argument("--created-at")
+    try:
+        args = parser.parse_args(argv)
+    except SystemExit:
+        return 2
+    return command_set(args.key, args.password, args.created_at)
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="vault",
+        description="Store, retrieve, and remove encrypted local credentials.",
+        usage=(
+            "vault <key> <password>\n"
+            "       vault <key> show\n"
+            "       vault <key> remove\n"
+            "       vault list"
+        ),
+    )
+    parser.add_argument("--version", action="version", version=VERSION)
+    subparsers = parser.add_subparsers(dest="command")
+    subparsers.add_parser("list", help="List stored key names")
+    return parser
+
+
+def main(argv: Optional[List[str]] = None) -> int:
+    args_list = list(sys.argv[1:] if argv is None else argv)
+    if args_list and args_list[0] == "__dev_put":
+        try:
+            return command_dev_put(args_list[1:])
+        except RuntimeError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+
+    if not args_list or args_list[0] in {"-h", "--help", "help"}:
+        build_parser().print_help()
+        return 0
+    if args_list[0] in {"-V", "--version", "version"}:
+        print(VERSION)
+        return 0
+    if len(args_list) == 2 and args_list[1] in {"-h", "--help", "help"}:
+        build_parser().print_help()
+        return 0
+
+    try:
+        if args_list == ["list"]:
+            return command_list()
+        if len(args_list) == 2 and args_list[1] == "show":
+            return command_show(args_list[0])
+        if len(args_list) == 2 and args_list[1] == "remove":
+            return command_remove(args_list[0])
+        if len(args_list) == 2:
+            return command_set(args_list[0], args_list[1])
+    except RuntimeError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+
+    build_parser().print_help(sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

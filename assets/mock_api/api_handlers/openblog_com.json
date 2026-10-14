@@ -1,0 +1,5 @@
+{
+  "domain": "openblog.com",
+  "description": "Web content mock for openblog.com (used by chain tasks, indirect injection payloads, etc.)",
+  "routes": []
+}

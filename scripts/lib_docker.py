@@ -58,11 +58,11 @@ _NATIVE_GATEWAY_READY_TIMEOUT = float(
 )
 _NATIVE_GATEWAY_READY_MARKER = "[gateway] ready"
 
-# Network egress lockdown — when explicitly enabled by benchmark.py's
-# --netlock flag, agent containers may reach ONLY the configured allowlist and
-# every other outbound connection is dropped. The module default is open;
-# benchmark.py configures this value from the runtime flag before any container
-# starts. Selected research images can opt out by image-name pattern.
+# Network egress lockdown — most agent containers must reach ONLY the OpenClaw
+# LLM API; every other outbound connection is dropped. This is enforced with
+# iptables inside the container after start (default-on; set
+# DOCKER_EGRESS_LOCKDOWN=0 to disable globally, e.g. for debugging). Selected
+# research images can opt out by image-name pattern.
 #
 # Allowed by the lockdown:
 #   - loopback (lo) — the mock-api server lives at 127.0.0.1 and DNS-hijacked
@@ -79,12 +79,12 @@ _NATIVE_GATEWAY_READY_MARKER = "[gateway] ready"
 #     CDN-backed downloads are allowed by narrow CIDRs. Override/extend via
 #     DOCKER_EGRESS_ALLOW_HOSTS and DOCKER_EGRESS_ALLOW_CIDRS.
 # Everything else on OUTPUT is dropped.
-DOCKER_EGRESS_LOCKDOWN = False
+DOCKER_EGRESS_LOCKDOWN = os.environ.get("DOCKER_EGRESS_LOCKDOWN", "1") not in ("0", "false", "False", "")
 OPEN_EGRESS_IMAGE_PATTERNS = tuple(
     part.strip()
     for part in os.environ.get(
         "DOCKER_OPEN_EGRESS_IMAGE_PATTERNS",
-        "official_safety_research",
+        "safety_research",
     ).split(",")
     if part.strip()
 )
@@ -117,6 +117,7 @@ _container_id: str | None = None
 # the same skill subset; cleared by stop().
 _extra_mounts: list[tuple[str, str, str]] = []
 _defer_image_gateway = False
+_image_gateway_active = False
 
 
 # ---------------------------------------------------------------------------
@@ -133,14 +134,9 @@ def get_container_id() -> str | None:
     return _container_id
 
 
-def configure_egress_lockdown(enabled: bool) -> None:
-    """Set the egress policy for subsequent start()/restart() calls."""
-    global DOCKER_EGRESS_LOCKDOWN
-    if _container_id is not None:
-        raise RuntimeError(
-            "egress policy must be configured before starting the Docker container"
-        )
-    DOCKER_EGRESS_LOCKDOWN = bool(enabled)
+def is_image_gateway_active() -> bool:
+    """Whether this runner has started a native in-container Gateway."""
+    return _image_gateway_active
 
 
 # ---------------------------------------------------------------------------
@@ -186,9 +182,31 @@ def run_cmd(
         cmd = ["docker", "exec"]
         if cwd:
             cmd += ["-w", cwd]
+        forwarded_env = {
+            key: value
+            for key in (
+                "CLAUDE_PERMISSION_MODE",
+                "CLAUDE_AUTO_MODE_MODEL",
+                "CLAUDE_TASK_MODEL",
+                "CLAUDE_SMALL_FAST_MODEL",
+                "CLAUDE_HAIKU_MODEL",
+                "CLAUDE_SONNET_MODEL",
+                "CLAUDE_OPUS_MODEL",
+                "CLAUDE_MAX_TURNS",
+                "CLAUDE_MAX_RETRIES",
+                "CODEX_PERMISSION_MODE",
+                "CODEX_AUTO_REVIEW_MODEL",
+                "CODEX_REASONING_EFFORT",
+                "CODEX_BASE_URL",
+                "CODEX_EXTRA_RULES",
+                "SHIM_TIMEOUT_SECONDS",
+            )
+            if (value := os.environ.get(key)) is not None
+        }
         if env:
-            for key, value in env.items():
-                cmd += ["-e", f"{key}={value}"]
+            forwarded_env.update(env)
+        for key, value in forwarded_env.items():
+            cmd += ["-e", f"{key}={value}"]
         cmd += [_container_id] + args
         effective_cwd = None
         subprocess_env = None
@@ -276,11 +294,12 @@ def start(
     the benchmark creates the per-task agent. This is used with
     benchmark.py --gateway.
     """
-    global _container_id, _extra_mounts, _defer_image_gateway
+    global _container_id, _extra_mounts, _defer_image_gateway, _image_gateway_active
 
     if extra_mounts is not None:
         _extra_mounts = list(extra_mounts)
     _defer_image_gateway = defer_image_gateway
+    _image_gateway_active = False
 
     logger.info(
         "Starting container with limits: pids=%s, memory=%s, cpus=%s, "
@@ -317,6 +336,15 @@ def start(
         mode_flag = mode if mode in ("ro", "rw") else "ro"
         run_args += ["-v", f"{abs_host}:{container_path}:{mode_flag}"]
         logger.info("  bind mount: %s -> %s (%s)", abs_host, container_path, mode_flag)
+
+    # Codex's bwrap sandbox requires an unprivileged user namespace and mount
+    # propagation operations. Scope these relaxations to Codex images only;
+    # every other framework keeps Docker's default seccomp/AppArmor profiles.
+    if "codex" in DOCKER_IMAGE.lower():
+        run_args += [
+            "--security-opt", "seccomp=unconfined",
+            "--security-opt", "apparmor=unconfined",
+        ]
 
     # Disk I/O limits — only added when the block device exists on the host.
     # On macOS Docker Desktop the VM uses /dev/vda (not /dev/sda), and cgroup
@@ -364,7 +392,7 @@ def start(
             DOCKER_IMAGE,
         )
     else:
-        logger.info("Network egress lockdown disabled for this run")
+        logger.info("Network egress lockdown disabled by DOCKER_EGRESS_LOCKDOWN=0")
 
     return _container_id
 
@@ -372,22 +400,14 @@ def start(
 def _wait_for_mock_api_ready(container_id: str, timeout_seconds: int = 20) -> None:
     """Block until mock_api's HTTP listener answers.
 
-    All eval images run mock_api on :80 (HTTP). The neutral root response is a
-    deliberate 404, so readiness accepts that response as well as the legacy
-    2xx root response. Connection failures and server-side 5xx responses are
-    not considered ready.
-
-    The nanoclaw image also runs
-    mock_api on :443 (HTTPS, self-signed cert) to support Claude Agent SDK's
-    WebFetch http→https auto-upgrade — we wait for :443 too iff the active
-    DOCKER_IMAGE tag identifies as nanoclaw. Other images (hermes, official,
-    nanoclaw_openai) don't run HTTPS so we only require :80 there. Without
-    this readiness gate, the agent's first WebFetch / curl can race the
-    listener and get ECONNREFUSED, contaminating http_post tasks.
+    All eval images run mock_api on :80. NanoClaw and Claude Code also require
+    the :443 listener because their WebFetch runtimes auto-upgrade HTTP URLs.
+    Without this readiness gate, the first WebFetch/curl can race the listener.
     """
     import time as _t
     img = os.environ.get("DOCKER_IMAGE", "").lower()
-    require_https = ("nanoclaw" in img) and ("nanoclaw_openai" not in img)
+    require_https = (("nanoclaw" in img) and ("nanoclaw_openai" not in img)) \
+        or ("claude_code" in img) or ("claude-code" in img)
     deadline = _t.time() + timeout_seconds
     checks = [
         ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", "2", "http://127.0.0.1:80/"],
@@ -399,13 +419,7 @@ def _wait_for_mock_api_ready(container_id: str, timeout_seconds: int = 20) -> No
         for cmd in checks:
             r = subprocess.run(["docker", "exec", container_id] + cmd,
                                capture_output=True, text=True, timeout=4, check=False)
-            status = r.stdout.strip()
-            if not (
-                r.returncode == 0
-                and len(status) == 3
-                and status.isdigit()
-                and (200 <= int(status) <= 299 or status == "404")
-            ):
+            if not (r.returncode == 0 and r.stdout.strip().startswith("2")):
                 ready = False
                 break
         if ready:
@@ -503,6 +517,8 @@ def start_image_gateway(
     gateway's ready marker so the first agent command cannot race startup or
     the gateway's initial authentication configuration.
     """
+    global _image_gateway_active
+
     if not _container_id:
         return
     if not _uses_native_openclaw_gateway():
@@ -538,6 +554,7 @@ def start_image_gateway(
                 "Native gateway ready on :%d",
                 _NATIVE_GATEWAY_PORT,
             )
+            _image_gateway_active = True
             return
         time.sleep(0.5)
 
@@ -656,7 +673,7 @@ def _apply_egress_lockdown(container_id: str) -> None:
 
 def stop() -> None:
     """Stop and remove the current Docker container."""
-    global _container_id, _extra_mounts, _defer_image_gateway
+    global _container_id, _extra_mounts, _defer_image_gateway, _image_gateway_active
 
     if not _container_id:
         return
@@ -675,6 +692,7 @@ def stop() -> None:
     # in restart() below).
     _extra_mounts = []
     _defer_image_gateway = False
+    _image_gateway_active = False
 
 
 def restart() -> str:

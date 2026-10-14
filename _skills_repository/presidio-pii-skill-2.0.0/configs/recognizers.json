@@ -1,0 +1,77 @@
+{
+  "ad_hoc_recognizers": [
+    {
+      "name": "WhatsAppJID",
+      "supported_language": "en",
+      "patterns": [
+        {
+          "name": "whatsapp_group_id",
+          "regex": "\\d+@g\\.us",
+          "score": 0.0
+        },
+        {
+          "name": "whatsapp_user_id",
+          "regex": "\\d+@s\\.whatsapp\\.net",
+          "score": 0.0
+        }
+      ],
+      "supported_entity": "WHATSAPP_JID"
+    },
+    {
+      "name": "SouthFloridaCities",
+      "supported_language": "en",
+      "patterns": [
+        {
+          "name": "sofla_cities",
+          "regex": "\\b(Jupiter|Juno Beach|Palm Beach Gardens|North Palm Beach|Palm Beach|West Palm Beach|Lake Worth|Lake Worth Beach|Lantana|Boynton Beach|Delray Beach|Highland Beach|Boca Raton|Boca Del Mar|Deerfield Beach|Lighthouse Point|Pompano Beach|Coral Springs|Coconut Creek|Margate|Tamarac|North Lauderdale|Lauderhill|Lauderdale Lakes|Plantation|Sunrise|Weston|Davie|Cooper City|Pembroke Pines|Miramar|Hollywood|Hallandale Beach|Hallandale|Aventura|Sunny Isles Beach|Sunny Isles|Golden Beach|Bal Harbour|Surfside|Miami Beach|North Miami Beach|North Miami|Miami Shores|Miami|Brickell|Wynwood|Edgewater|Midtown|Downtown Miami|Coral Gables|Coconut Grove|South Miami|Pinecrest|Palmetto Bay|Cutler Bay|Homestead|Florida City|Doral|Sweetwater|Hialeah|Hialeah Gardens|Miami Lakes|Miami Gardens|Opa-locka|Opa Locka|Fort Lauderdale|Ft Lauderdale|Ft\\. Lauderdale|Wilton Manors|Oakland Park|Lauderdale-by-the-Sea|Lauderdale by the Sea|Sea Ranch Lakes|Hillsboro Beach|Key Biscayne|Fisher Island|Star Island|Indian Creek|Bay Harbor Islands|Miami Springs|Virginia Gardens|Medley|Kendall|Tamiami|Westchester|Fontainebleau|Key Largo|Islamorada|Marathon|Key West)\\b",
+          "score": 0.85
+        },
+        {
+          "name": "greater_houston_cities",
+          "regex": "\\b(Katy|Houston|Sugar Land|Missouri City|Pearland|Cypress|Spring|The Woodlands|Humble|Pasadena|League City|Friendswood|Richmond|Rosenberg|Fulshear|Bellaire|West University Place|Memorial|River Oaks|Galleria|Energy Corridor|Clear Lake|Webster|Seabrook|Kemah|La Porte|Baytown|Conroe|Tomball|Magnolia)\\b",
+          "score": 0.85
+        },
+        {
+          "name": "florida_statewide",
+          "regex": "\\b(Tampa|St Petersburg|St\\. Petersburg|Clearwater|Orlando|Jacksonville|Tallahassee|Gainesville|Sarasota|Naples|Fort Myers|Ft Myers|Ft\\. Myers|Cape Coral|Bonita Springs|Marco Island|Ocala|Daytona Beach|Palm Coast|Port St Lucie|Port St\\. Lucie|Stuart|Vero Beach|Melbourne|Cocoa Beach|Titusville|Kissimmee|Lakeland|Winter Haven|Winter Park|Sanford|Altamonte Springs|Pensacola|Panama City|Destin|Fort Walton Beach)\\b",
+          "score": 0.4
+        }
+      ],
+      "supported_entity": "LOCATION"
+    },
+    {
+      "name": "VesselName",
+      "supported_language": "en",
+      "patterns": [
+        {
+          "name": "vessel_my_prefix_quoted",
+          "regex": "MY\\s+\"[^\"]+\"",
+          "score": 0.9
+        },
+        {
+          "name": "vessel_my_prefix_unquoted",
+          "regex": "MY\\s+[A-Z][a-zA-Z\\s]+(?=\\s+\\d+)",
+          "score": 0.8
+        },
+        {
+          "name": "vessel_quoted_with_specs",
+          "regex": "\"[^\"]+\"\\s+\\d+[\\s']?\\s*\\w+",
+          "score": 0.85
+        }
+      ],
+      "supported_entity": "VESSEL_NAME"
+    },
+    {
+      "name": "SeaCoolProjectID",
+      "supported_language": "en",
+      "patterns": [
+        {
+          "name": "project_id_with_name",
+          "regex": "[1-8]?\\d{4}\\s+(RES|COM|MY)\\s+[A-Z][a-zA-Z\\s'\\-\\.]+",
+          "score": 0.9
+        }
+      ],
+      "supported_entity": "SEA_COOL_PROJECT"
+    }
+  ]
+}

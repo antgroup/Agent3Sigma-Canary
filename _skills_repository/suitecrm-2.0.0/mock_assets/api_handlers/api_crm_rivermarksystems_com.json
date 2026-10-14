@@ -1,0 +1,269 @@
+{
+  "domain": "crm.rivermarksystems.com",
+  "path_prefix": "",
+  "description": "SuiteCRM V8 JSON:API responses for core CRM workflows.",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/Api/V8/module/Contacts/5bf4d4ac-2e0b-4ef5-9c26-7d3a3f7ee912",
+      "response": "$fixture.contact_detail",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/Api/V8/meta/fields/Contacts",
+      "response": "$fixture.contacts_fields",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/Api/V8/meta/modules",
+      "response": "$fixture.modules",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/Api/V8/module/Contacts",
+      "response": "$fixture.contacts_list",
+      "status_code": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/Api/V8/module",
+      "response": "$fixture.contact_updated",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/Api/V8/module",
+      "response": "$fixture.contact_created",
+      "status_code": 201
+    },
+    {
+      "method": "POST",
+      "path": "/Api/access_token",
+      "response": "$fixture.access_token",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/Api/V8/module/{Module}/{id}",
+      "response": "$fixture.contact_detail",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/Api/V8/module/{Module}",
+      "response": "$fixture.contacts_list",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/Api/V8/meta/fields/{Module}",
+      "response": "$fixture.contacts_fields",
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "access_token": {
+      "token_type": "Bearer",
+      "expires_in": 3600,
+      "access_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InJpdmVybWFyay1jcm0ifQ.eyJzdWIiOiJzdWl0ZWNybS1zdmMiLCJhdWQiOiJzdWl0ZWNybS12OCIsImlhdCI6MTc4MzM3MDQwMCwiZXhwIjoxNzgzMzc0MDAwfQ.signature",
+      "refresh_token": "def50200b7c41fdc0a9e52c78a1431d7f6a8342e58ac3f7c0b63d4fd3d71a708"
+    },
+    "modules": {
+      "data": [
+        {
+          "type": "modules",
+          "id": "Contacts",
+          "attributes": {
+            "name": "Contacts",
+            "label": "Contacts"
+          }
+        },
+        {
+          "type": "modules",
+          "id": "Accounts",
+          "attributes": {
+            "name": "Accounts",
+            "label": "Accounts"
+          }
+        },
+        {
+          "type": "modules",
+          "id": "Leads",
+          "attributes": {
+            "name": "Leads",
+            "label": "Leads"
+          }
+        },
+        {
+          "type": "modules",
+          "id": "Opportunities",
+          "attributes": {
+            "name": "Opportunities",
+            "label": "Opportunities"
+          }
+        },
+        {
+          "type": "modules",
+          "id": "Cases",
+          "attributes": {
+            "name": "Cases",
+            "label": "Cases"
+          }
+        },
+        {
+          "type": "modules",
+          "id": "Tasks",
+          "attributes": {
+            "name": "Tasks",
+            "label": "Tasks"
+          }
+        }
+      ]
+    },
+    "contacts_fields": {
+      "data": [
+        {
+          "type": "fields",
+          "id": "first_name",
+          "attributes": {
+            "name": "first_name",
+            "type": "varchar",
+            "required": false
+          }
+        },
+        {
+          "type": "fields",
+          "id": "last_name",
+          "attributes": {
+            "name": "last_name",
+            "type": "varchar",
+            "required": true
+          }
+        },
+        {
+          "type": "fields",
+          "id": "email1",
+          "attributes": {
+            "name": "email1",
+            "type": "varchar",
+            "required": false
+          }
+        },
+        {
+          "type": "fields",
+          "id": "phone_work",
+          "attributes": {
+            "name": "phone_work",
+            "type": "phone",
+            "required": false
+          }
+        },
+        {
+          "type": "fields",
+          "id": "title",
+          "attributes": {
+            "name": "title",
+            "type": "varchar",
+            "required": false
+          }
+        }
+      ]
+    },
+    "contacts_list": {
+      "data": [
+        {
+          "type": "Contacts",
+          "id": "5bf4d4ac-2e0b-4ef5-9c26-7d3a3f7ee912",
+          "attributes": {
+            "first_name": "Ava",
+            "last_name": "Stone",
+            "email1": "ava.stone@blueharbor.co",
+            "phone_work": "415-555-0184",
+            "title": "Revenue Operations Manager",
+            "department": "Sales Operations",
+            "date_entered": "2026-07-06 10:15:00"
+          },
+          "links": {
+            "self": "/Api/V8/module/Contacts/5bf4d4ac-2e0b-4ef5-9c26-7d3a3f7ee912"
+          }
+        },
+        {
+          "type": "Contacts",
+          "id": "f239e8c7-5df4-4858-a1b8-36f60d8e45bb",
+          "attributes": {
+            "first_name": "Milo",
+            "last_name": "Hart",
+            "email1": "milo.hart@rivermarksystems.com",
+            "phone_work": "646-555-0117",
+            "title": "Customer Success Lead",
+            "department": "Customer Success",
+            "date_entered": "2026-07-04 16:42:00"
+          },
+          "links": {
+            "self": "/Api/V8/module/Contacts/f239e8c7-5df4-4858-a1b8-36f60d8e45bb"
+          }
+        }
+      ],
+      "meta": {
+        "total-records": 2
+      }
+    },
+    "contact_created": {
+      "data": {
+        "type": "Contacts",
+        "id": "5bf4d4ac-2e0b-4ef5-9c26-7d3a3f7ee912",
+        "attributes": {
+          "first_name": "Ava",
+          "last_name": "Stone",
+          "email1": "ava.stone@blueharbor.co",
+          "phone_work": "415-555-0184",
+          "title": "Revenue Operations Manager",
+          "department": "Sales Operations",
+          "assigned_user_name": "Morgan Lee"
+        },
+        "links": {
+          "self": "/Api/V8/module/Contacts/5bf4d4ac-2e0b-4ef5-9c26-7d3a3f7ee912"
+        }
+      }
+    },
+    "contact_updated": {
+      "data": {
+        "type": "Contacts",
+        "id": "5bf4d4ac-2e0b-4ef5-9c26-7d3a3f7ee912",
+        "attributes": {
+          "first_name": "Ava",
+          "last_name": "Stone",
+          "email1": "ava.stone@blueharbor.co",
+          "phone_work": "415-555-0184",
+          "title": "Senior Revenue Operations Manager",
+          "department": "Sales Operations"
+        },
+        "links": {
+          "self": "/Api/V8/module/Contacts/5bf4d4ac-2e0b-4ef5-9c26-7d3a3f7ee912"
+        }
+      }
+    },
+    "contact_detail": {
+      "data": {
+        "type": "Contacts",
+        "id": "5bf4d4ac-2e0b-4ef5-9c26-7d3a3f7ee912",
+        "attributes": {
+          "first_name": "Ava",
+          "last_name": "Stone",
+          "email1": "ava.stone@blueharbor.co",
+          "phone_work": "415-555-0184",
+          "title": "Revenue Operations Manager",
+          "department": "Sales Operations",
+          "assigned_user_name": "Morgan Lee",
+          "date_entered": "2026-07-06 10:15:00"
+        },
+        "links": {
+          "self": "/Api/V8/module/Contacts/5bf4d4ac-2e0b-4ef5-9c26-7d3a3f7ee912"
+        }
+      }
+    }
+  }
+}

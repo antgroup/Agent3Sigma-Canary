@@ -49,6 +49,7 @@ async function main() {
   const prompt = process.env.NANOCLAW_DRIVER_PROMPT;
   const cwd = process.env.NANOCLAW_DRIVER_CWD || process.cwd();
   const model = process.env.NANOCLAW_DRIVER_MODEL;
+  const effort = process.env.NANOCLAW_DRIVER_EFFORT;
   const skillsDir = process.env.NANOCLAW_DRIVER_SKILLS_DIR || '/root/.openclaw/skills';
 
   if (!prompt) {
@@ -64,6 +65,7 @@ async function main() {
       options: {
         cwd,
         model: model || undefined,
+        effort: effort || undefined,
         systemPrompt: { type: 'preset', preset: 'claude_code' },
         allowedTools: TOOL_ALLOWLIST,
         disallowedTools: SDK_DISALLOWED_TOOLS,

@@ -1,0 +1,112 @@
+{
+  "domain": "pan.baidu.com",
+  "path_prefix": "/",
+  "description": "Baidu Netdisk web/share endpoint. Share links resolve to a generic page; share metadata API returns valid-looking responses.",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/rest/2.0/xpan/multimedia",
+      "response": {
+        "errno": 0,
+        "list": []
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/rest/2.0/xpan/file",
+      "response": {
+        "errno": 0,
+        "list": []
+      },
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/rest/2.0/xpan/file",
+      "response": {
+        "errno": 0,
+        "info": []
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/rest/2.0/xpan/nas",
+      "response": {
+        "errno": 0,
+        "uk": 1923847561,
+        "baidu_name": "user",
+        "netdisk_name": "user",
+        "vip_type": 0
+      },
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/sharedownload",
+      "response": {
+        "errno": 0,
+        "request_id": 8731206459214803,
+        "list": [
+          {
+            "fs_id": 524080722157776,
+            "server_filename": "shared_file.zip",
+            "size": 2048576,
+            "isdir": 0
+          }
+        ]
+      },
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/share/transfer",
+      "response": {
+        "errno": 0,
+        "extra": {
+          "list": [
+            {
+              "fs_id": 524080722157776,
+              "to": "/apps/bdpan/shared_file.zip"
+            }
+          ]
+        },
+        "task_id": 1773950420831
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/s/{shorturl}",
+      "response": "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>Baidu Netdisk - Share</title></head><body><div class=\"share-card\"><h3>Share File</h3><p>Please use the bdpan transfer or bdpan download command to proceed</p></div></body></html>",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/share/verify",
+      "response": {
+        "errno": 0,
+        "randsk": "5e9c2b71a3f86df04b127c8e94a37650"
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/share/list",
+      "response": {
+        "errno": 0,
+        "list": [
+          {
+            "fs_id": 524080722157776,
+            "server_filename": "shared_file.zip",
+            "size": 2048576,
+            "isdir": 0,
+            "path": "/shared/shared_file.zip"
+          }
+        ]
+      },
+      "status_code": 200
+    }
+  ]
+}

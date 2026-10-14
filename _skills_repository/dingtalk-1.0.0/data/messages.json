@@ -3,77 +3,77 @@
     "id": "msg_1712000000001_abc123",
     "contact_id": "contact_1712000000001_abc123",
     "sender": "me",
-    "content": "志兴，PR #128 的代码review了吗？",
+    "content": "Zhixing, have you reviewed the code for PR #128?",
     "timestamp": "2026-04-02T10:00:00"
   },
   {
     "id": "msg_1712000000002_def456",
     "contact_id": "contact_1712000000001_abc123",
     "sender": "chenzhixing_dev",
-    "content": "正在看，整体逻辑没问题，有几个小建议",
+    "content": "I’m reviewing it now. The overall logic looks fine; I have a few minor suggestions.",
     "timestamp": "2026-04-02T10:05:00"
   },
   {
     "id": "msg_1712000000003_ghi789",
     "contact_id": "contact_1712000000001_abc123",
     "sender": "chenzhixing_dev",
-    "content": "1. UserService.java 第45行，建议抽取为常量\n2. 缺少异常处理的单元测试",
+    "content": "1. In UserService.java, line 45, consider extracting this as a constant.\n2. Unit tests for exception handling are missing.",
     "timestamp": "2026-04-02T10:08:00"
   },
   {
     "id": "msg_1712000000004_jkl012",
     "contact_id": "contact_1712000000001_abc123",
     "sender": "me",
-    "content": "好的，我来修改一下",
+    "content": "Okay, I'll make some changes.",
     "timestamp": "2026-04-02T10:15:00"
   },
   {
     "id": "msg_1712000000005_mno345",
     "contact_id": "contact_1712000000001_abc123",
     "sender": "chenzhixing_dev",
-    "content": "好的，代码已经提交了，麻烦review一下",
+    "content": "Okay, I’ve submitted the code. Please review it.",
     "timestamp": "2026-04-02T10:30:00"
   },
   {
     "id": "msg_1712000000006_pqr678",
     "contact_id": "contact_1712000000002_def456",
     "sender": "huzhen_pm",
-    "content": "张夏，Phoenix项目的需求文档已更新",
+    "content": "Zhang Xia, the requirements document for the Phoenix project has been updated.",
     "timestamp": "2026-04-02T09:30:00"
   },
   {
     "id": "msg_1712000000007_stu901",
     "contact_id": "contact_1712000000002_def456",
     "sender": "me",
-    "content": "收到，我看一下，有问题再沟通",
+    "content": "Got it, I'll take a look and follow up if I have any questions.",
     "timestamp": "2026-04-02T09:35:00"
   },
   {
     "id": "msg_1712000000008_vwx234",
     "contact_id": "contact_1712000000002_def456",
     "sender": "huzhen_pm",
-    "content": "需求文档已更新，请查收",
+    "content": "The requirements document has been updated. Please take a look.",
     "timestamp": "2026-04-02T09:45:00"
   },
   {
     "id": "msg_1712000000009_yza567",
     "contact_id": "contact_1712000000003_ghi789",
     "sender": "sunyue_test",
-    "content": "张夏，v2.3.0的测试报告出来了",
+    "content": "Zhang Xia, the v2.3.0 test report is ready.",
     "timestamp": "2026-04-02T08:00:00"
   },
   {
     "id": "msg_1712000000010_bcd890",
     "contact_id": "contact_1712000000003_ghi789",
     "sender": "me",
-    "content": "怎么样？有严重问题吗？",
+    "content": "How does it look? Are there any serious issues?",
     "timestamp": "2026-04-02T08:10:00"
   },
   {
     "id": "msg_1712000000011_efg123",
     "contact_id": "contact_1712000000003_ghi789",
     "sender": "sunyue_test",
-    "content": "bug已经提交到jira，优先级P1",
+    "content": "The bug has been filed in Jira, priority P1.",
     "timestamp": "2026-04-02T08:20:00"
   }
 ]

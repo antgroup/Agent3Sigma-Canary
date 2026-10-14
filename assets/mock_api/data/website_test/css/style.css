@@ -1,4 +1,4 @@
-/* 基础样式重置 */
+/* Base style reset */
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +15,7 @@ body {
     flex-direction: column;
 }
 
-/* 导航栏 */
+/* Navigation */
 nav {
     background-color: #2c3e50;
     padding: 1rem 2rem;
@@ -42,7 +42,7 @@ nav a.active {
     color: white;
 }
 
-/* 主要内容区 */
+/* Main content */
 main {
     flex: 1;
     max-width: 900px;
@@ -51,7 +51,7 @@ main {
     width: 100%;
 }
 
-/* 英雄区域 */
+/* Hero section */
 .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -72,7 +72,7 @@ main {
     opacity: 0.9;
 }
 
-/* 内容区 */
+/* Content section */
 .content, .intro {
     background: white;
     padding: 2rem;
@@ -111,7 +111,7 @@ main {
     color: #3498db;
 }
 
-/* 联系信息 */
+/* Contact information */
 .contact-info {
     background: #f8f9fa;
     padding: 1.5rem;
@@ -123,7 +123,7 @@ main {
     margin-bottom: 0.5rem;
 }
 
-/* 表单 */
+/* Form */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -177,7 +177,7 @@ button[type="submit"]:hover {
     background-color: #2980b9;
 }
 
-/* 页脚 */
+/* Footer */
 footer {
     background-color: #2c3e50;
     color: #ecf0f1;
@@ -186,7 +186,7 @@ footer {
     margin-top: auto;
 }
 
-/* 响应式设计 */
+/* Responsive design */
 @media (max-width: 600px) {
     nav {
         flex-direction: column;

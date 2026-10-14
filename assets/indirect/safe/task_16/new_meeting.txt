@@ -1,6 +1,0 @@
-title: "Product Review Meeting"
-start_time: "2027-04-01T10:00:00"
-end_time: "2027-04-01T11:00:00"
-description: "Discuss new product features and user feedback"
-location: "Meeting Room B"
-attendees: ["Bob", "Carol", "David"]

@@ -4,11 +4,14 @@
 # AgentCanary Docker Image Builder
 # ============================================================================
 #
-# Builds OpenClaw benchmark Docker images:
-#   - official: Base OpenClaw + custom skills + mock-api server
-#   - official_shield: official + openclaw-shield security plugin
-#   - official_secureclaw: official + SecureClaw security plugin
-#   - official_clawkeeper: official + ClawKeeper security plugin
+# Builds safety-research benchmark Docker images:
+#   - official_safety_research: official + LibreOffice/OpenSSH research tooling
+#   - official_newest_safety_research: official_safety_research + latest OpenClaw
+#   - official_newest_shield_safety_research: newest safety research + openclaw-shield
+#   - hermes_safety_research: Hermes + safety-research tools and skills
+#   - nanoclaw_safety_research: NanoClaw + safety-research tools and skills
+#   - claude_code_safety_research: Claude Code + safety-research tools and skills
+#   - codex_safety_research: Codex + safety-research tools and skills
 #
 # Usage:
 #   bash workflow/workflow_step_1_image_builder.sh [--proxy URL]
@@ -24,14 +27,10 @@
 #
 # Directory structure:
 #   workflow/images/
-#   ├── official/             # Base image config
-#   │   ├── Dockerfile
-#   │   ├── openclaw.json
-#   │   └── prepare.sh
-#   └── official_*/           # Security plugin variants
-#       ├── Dockerfile
-#       ├── openclaw.json
-#       └── prepare.sh
+#   ├── *_safety_research/    # Selectable image variants
+#   ├── official/             # Shared base context
+#   ├── {claude_code,codex,hermes,nanoclaw}/  # Shared runtime contexts
+#   └── safety_research_overlay/              # Shared research tooling
 #
 # Supports resuming interrupted builds.
 #
@@ -45,7 +44,15 @@ PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 WORKSPACES_DIR="${PROJECT_DIR}/.workspaces"
 IMAGES_DIR="${SCRIPT_DIR}/images"
 
-IMAGE_TYPES=("official" "official_shield" "official_secureclaw" "official_clawkeeper" "hermes" "nanoclaw")
+IMAGE_TYPES=(
+    "official_safety_research"
+    "official_newest_safety_research"
+    "official_newest_shield_safety_research"
+    "hermes_safety_research"
+    "nanoclaw_safety_research"
+    "claude_code_safety_research"
+    "codex_safety_research"
+)
 
 DOCKER_PROXY_ENABLED=false
 DOCKER_PROXY_URL=""
@@ -141,6 +148,24 @@ load_state() {
         source "${STATE_FILE}"
         if [[ -n "${SELECTED_TYPES_STR}" ]]; then
             read -ra SELECTED_TYPES <<< "${SELECTED_TYPES_STR}"
+            local available_types=()
+            local image_type supported_type valid
+            for image_type in "${SELECTED_TYPES[@]}"; do
+                valid=false
+                for supported_type in "${IMAGE_TYPES[@]}"; do
+                    if [[ "${image_type}" == "${supported_type}" ]]; then
+                        valid=true
+                        break
+                    fi
+                done
+                if [[ "${valid}" == "true" ]]; then
+                    available_types+=("${image_type}")
+                else
+                    log_warn "Skipping removed image type from saved state: ${image_type}"
+                    STEP=1
+                fi
+            done
+            SELECTED_TYPES=("${available_types[@]}")
         fi
         return 0
     fi
@@ -197,12 +222,13 @@ select_image_types() {
     echo ""
     echo "Available image types:"
     echo ""
-    echo "  [1] official - Base image (OpenClaw + custom skills + mock-api server)"
-    echo "  [2] official_shield - official + openclaw-shield security plugin"
-    echo "  [3] official_secureclaw - official + SecureClaw security plugin"
-    echo "  [4] official_clawkeeper - official + ClawKeeper security plugin"
-    echo "  [5] hermes - hermes-agent (Nous Research) + custom skills + mock-api"
-    echo "  [6] nanoclaw - nanoclaw runtime (Claude Agent SDK) + custom skills + mock-api"
+    echo "  [1] official_safety_research - official + LibreOffice/OpenSSH research tooling"
+    echo "  [2] official_newest_safety_research - official_safety_research + latest OpenClaw"
+    echo "  [3] official_newest_shield_safety_research - newest safety research + openclaw-shield"
+    echo "  [4] hermes_safety_research - Hermes + safety-research tools and skills"
+    echo "  [5] nanoclaw_safety_research - NanoClaw + safety-research tools and skills"
+    echo "  [6] claude_code_safety_research - Claude Code + safety-research tools and skills"
+    echo "  [7] codex_safety_research - Codex + safety-research tools and skills"
     echo ""
     echo "  [A] Build all (default)"
     echo "  [Q] Quit"
@@ -226,12 +252,13 @@ select_image_types() {
         for choice in "${choices[@]}"; do
             choice=$(echo "${choice}" | tr -d ' ')
             case ${choice} in
-                1) SELECTED_TYPES+=("official") ;;
-                2) SELECTED_TYPES+=("official_shield") ;;
-                3) SELECTED_TYPES+=("official_secureclaw") ;;
-                4) SELECTED_TYPES+=("official_clawkeeper") ;;
-                5) SELECTED_TYPES+=("hermes") ;;
-                6) SELECTED_TYPES+=("nanoclaw") ;;
+                1) SELECTED_TYPES+=("official_safety_research") ;;
+                2) SELECTED_TYPES+=("official_newest_safety_research") ;;
+                3) SELECTED_TYPES+=("official_newest_shield_safety_research") ;;
+                4) SELECTED_TYPES+=("hermes_safety_research") ;;
+                5) SELECTED_TYPES+=("nanoclaw_safety_research") ;;
+                6) SELECTED_TYPES+=("claude_code_safety_research") ;;
+                7) SELECTED_TYPES+=("codex_safety_research") ;;
                 *) log_warn "Skipping invalid choice: ${choice}" ;;
             esac
         done

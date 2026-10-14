@@ -46,12 +46,14 @@ benchmark.log
 htmlcov/
 .tox/
 .hypothesis/
+tests/
 
 # Type checking
 .mypy_cache/
 .dmypy.json
 dmypy.json
 .pytype/
+.pid
 
 # Jupyter Notebook
 .ipynb_checkpoints

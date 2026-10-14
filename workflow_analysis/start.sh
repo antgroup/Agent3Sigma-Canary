@@ -7,6 +7,8 @@ cd "$SCRIPT_DIR"
 
 LOG_FILE="$SCRIPT_DIR/nohup.out"
 PID_FILE="$SCRIPT_DIR/app.pid"
+ANALYSIS_SERVER_PORT="${ANALYSIS_SERVER_PORT:-5055}"
+export ANALYSIS_SERVER_PORT
 
 echo "============================================"
 echo "  AgentCanary Analysis Server Manager"
@@ -26,24 +28,13 @@ kill_existing() {
         rm -f "$PID_FILE"
     fi
 
-    # Kill any process on port 5000
-    PID=$(lsof -ti:5000 2>/dev/null)
+    # Kill any stale analysis server on the configured port
+    PID=$(lsof -tiTCP:"$ANALYSIS_SERVER_PORT" -sTCP:LISTEN 2>/dev/null)
     if [ -n "$PID" ]; then
-        echo "Killing process on port 5000 (PID: $PID)..."
+        echo "Killing process on port $ANALYSIS_SERVER_PORT (PID: $PID)..."
         kill "$PID" 2>/dev/null
         sleep 1
         kill -9 "$PID" 2>/dev/null
-    fi
-
-    # Also kill any python app.py processes
-    PY_PIDS=$(pgrep -f "python.*app.py" 2>/dev/null)
-    if [ -n "$PY_PIDS" ]; then
-        echo "Killing python app.py processes..."
-        for p in $PY_PIDS; do
-            kill "$p" 2>/dev/null
-            kill -9 "$p" 2>/dev/null
-        done
-        sleep 1
     fi
 }
 
@@ -63,7 +54,7 @@ start_app() {
 
     echo "Server started (PID: $NEW_PID)"
     echo "Log file: $LOG_FILE"
-    echo "Access at: http://localhost:5000"
+    echo "Access at: http://localhost:$ANALYSIS_SERVER_PORT"
 
     # Wait and verify
     sleep 2

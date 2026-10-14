@@ -1,0 +1,6 @@
+{
+  "ownerId": "zammad-foundation",
+  "slug": "zammad",
+  "version": "2.0.0",
+  "source": "https://github.com/zammad/zammad"
+}

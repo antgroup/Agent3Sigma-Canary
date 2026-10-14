@@ -455,6 +455,25 @@
                             {% endfor %}
                         </select>
                     </div>
+                    <div class="filter-group" style="min-width:150px; position: relative;">
+                        <label>Tag</label>
+                        <div id="filterTagBtn" onclick="toggleTagDropdown(event)" style="padding: 10px; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(0,0,0,0.3); color: #fff; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;">
+                            <span id="filterTagLabel">All</span>
+                            <span style="margin-left: 6px;">▼</span>
+                        </div>
+                        <div id="filterTagDropdown" style="display: none; position: fixed; min-width: 180px; max-height: 280px; overflow-y: auto; background: #1a1a2e; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.5); padding: 6px;">
+                            <div style="display: flex; gap: 6px; padding: 4px 6px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 4px;">
+                                <button type="button" onclick="setAllTagCheckboxes(true)" style="flex:1; padding: 4px 6px; font-size: 11px; background: rgba(0,212,255,0.15); border: 1px solid rgba(0,212,255,0.3); border-radius: 4px; color: #00d4ff; cursor: pointer;">All</button>
+                                <button type="button" onclick="setAllTagCheckboxes(false)" style="flex:1; padding: 4px 6px; font-size: 11px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; color: #ccc; cursor: pointer;">None</button>
+                            </div>
+                            {% for tag in all_tags %}
+                            <label style="display: flex; align-items: center; gap: 6px; padding: 5px 6px; cursor: pointer; color: #fff; font-size: 13px; border-radius: 4px;" onmouseover="this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" class="filter-tag-checkbox" value="{{ tag }}" onchange="onTagSelectionChange()" style="width: auto; margin: 0;">
+                                <span>{{ tag }}</span>
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
                     <div class="filter-group" style="min-width:90px;">
                         <label>Max Time</label>
                         <select id="filterMaxTime" onchange="applyFilters()">
@@ -928,6 +947,7 @@
             const model = document.getElementById('filterModel').value;
             const status = document.getElementById('filterStatus').value;
             const grading = document.getElementById('filterGrading').value;
+            const selectedTags = getSelectedTags();
             const minScore = parseInt(document.getElementById('filterScoreMin').value);
             const maxScore = parseInt(document.getElementById('filterScoreMax').value);
             const maxTime = document.getElementById('filterMaxTime').value;
@@ -938,6 +958,10 @@
                 if (model && r.model !== model) return false;
                 if (status && r.status !== status) return false;
                 if (grading && r.grading_type !== grading) return false;
+                if (selectedTags.length > 0) {
+                    const tags = Array.isArray(r.tags) ? r.tags : [];
+                    if (!selectedTags.some(t => tags.includes(t))) return false;
+                }
                 if (r.score * 100 < minScore || r.score * 100 > maxScore) return false;
                 if (maxTime && r.execution_time > parseInt(maxTime)) return false;
                 if (exitCode) {
@@ -1129,7 +1153,80 @@
                     dropdown.style.display = 'none';
                 }
             }
+            const tagDropdown = document.getElementById('filterTagDropdown');
+            const tagBtn = document.getElementById('filterTagBtn');
+            if (tagDropdown && tagBtn) {
+                if (tagDropdown.style.display === 'block'
+                    && !tagDropdown.contains(e.target) && !tagBtn.contains(e.target)) {
+                    tagDropdown.style.display = 'none';
+                }
+            }
         });
+
+        function toggleTagDropdown(e) {
+            if (e) e.stopPropagation();
+            const dropdown = document.getElementById('filterTagDropdown');
+            const btn = document.getElementById('filterTagBtn');
+            if (!dropdown || !btn) return;
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+                return;
+            }
+            positionTagDropdown();
+            dropdown.style.display = 'block';
+        }
+
+        function positionTagDropdown() {
+            const dropdown = document.getElementById('filterTagDropdown');
+            const btn = document.getElementById('filterTagBtn');
+            if (!dropdown || !btn) return;
+            const rect = btn.getBoundingClientRect();
+            dropdown.style.top = (rect.bottom + 4) + 'px';
+            dropdown.style.left = rect.left + 'px';
+            dropdown.style.minWidth = rect.width + 'px';
+        }
+
+        // Close the tag dropdown on any scroll/resize so it doesn't detach from its button
+        window.addEventListener('scroll', (e) => {
+            const d = document.getElementById('filterTagDropdown');
+            if (!d || d.style.display !== 'block') return;
+            // Ignore scrolls originating inside the dropdown itself (its own scrollbar)
+            if (e.target && d.contains(e.target)) return;
+            d.style.display = 'none';
+        }, true);
+        window.addEventListener('resize', () => {
+            const d = document.getElementById('filterTagDropdown');
+            if (d && d.style.display === 'block') positionTagDropdown();
+        });
+
+        function getSelectedTags() {
+            return Array.from(document.querySelectorAll('.filter-tag-checkbox'))
+                .filter(cb => cb.checked).map(cb => cb.value);
+        }
+
+        function updateTagLabel() {
+            const label = document.getElementById('filterTagLabel');
+            if (!label) return;
+            const selected = getSelectedTags();
+            if (selected.length === 0) {
+                label.textContent = 'All';
+            } else if (selected.length === 1) {
+                label.textContent = selected[0];
+            } else {
+                label.textContent = selected.length + ' selected';
+            }
+        }
+
+        function onTagSelectionChange() {
+            updateTagLabel();
+            applyFilters();
+        }
+
+        function setAllTagCheckboxes(checked) {
+            document.querySelectorAll('.filter-tag-checkbox').forEach(cb => { cb.checked = checked; });
+            updateTagLabel();
+            applyFilters();
+        }
 
         function createDirItem(name, path, hasSubdirs) {
             const item = document.createElement('div');
@@ -1374,6 +1471,7 @@
             const model = document.getElementById('filterModel').value;
             const status = document.getElementById('filterStatus').value;
             const grading = document.getElementById('filterGrading').value;
+            const selectedTags = getSelectedTags();
             const minScore = parseInt(document.getElementById('filterScoreMin').value);
             const maxScore = parseInt(document.getElementById('filterScoreMax').value);
             const maxTime = document.getElementById('filterMaxTime').value;
@@ -1426,6 +1524,10 @@
                 if (taskMode !== 'regex' && taskValue && r.task_id !== taskValue) return false;
                 if (status && r.status !== status) return false;
                 if (grading && r.grading_type !== grading) return false;
+                if (selectedTags.length > 0) {
+                    const tags = Array.isArray(r.tags) ? r.tags : [];
+                    if (!selectedTags.some(t => tags.includes(t))) return false;
+                }
                 if (r.score * 100 < minScore || r.score * 100 > maxScore) return false;
                 if (maxTime && r.execution_time > parseInt(maxTime)) return false;
                 if (exitCode) {

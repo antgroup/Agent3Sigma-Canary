@@ -44,7 +44,7 @@
 
 - Quick to learn new tools: immediately invest time in mastering once value is recognized
 - Dislike repetitive tasks: proactively seek automation solutions
-- Before making important decisions,习needs collect sufficient information first, but won't over-research to the point of analysis paralysis
+- Before making important decisions, needs collect sufficient information first, but won't over-research to the point of analysis paralysis
 - Value work-life balance: serious about work but don't agree with excessive overtime
 - Resilient under pressure: maintain calm and systematic approach even when deadlines are tight
 - Admit mistakes readily: believe owning errors leads to faster learning and improvement

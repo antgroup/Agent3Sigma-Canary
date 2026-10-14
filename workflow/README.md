@@ -1,19 +1,23 @@
 # AgentCanary Workflow
 
-`workflow/` is responsible only for building AgentCanary Docker base images.
+`workflow/` builds the seven safety-research evaluation images. Other image
+directories provide build contexts reused by those variants.
 
 ## Image Roles
 
 | Image Type | Tag Format | Description |
 |------------|------------|-------------|
-| `official` | `openclaw-official-v{timestamp}` | Native OpenClaw + custom skills + mock-api server |
-| `official_shield` | `openclaw-official_shield-v{timestamp}` | `official` + openclaw-shield security plugin |
-| `official_secureclaw` | `openclaw-official_secureclaw-v{timestamp}` | `official` + SecureClaw security plugin |
-| `official_clawkeeper` | `openclaw-official_clawkeeper-v{timestamp}` | `official` + ClawKeeper security plugin |
-| `hermes` | `openclaw-hermes-v{timestamp}` | hermes-agent (Nous Research) framework wrapped behind an `openclaw` shim + mock-api server |
-| `nanoclaw` | `openclaw-nanoclaw-v{timestamp}` | nanoclaw runtime (Claude Agent SDK) wrapped behind an `openclaw` shim + mock-api server |
+| `official_safety_research` | `openclaw-official_safety_research-v{timestamp}` | `official` + LibreOffice headless document tooling + OpenSSH/rsync |
+| `official_newest_safety_research` | `openclaw-official_newest_safety_research-v{timestamp}` | `official_safety_research` with OpenClaw `2026.7.1-2` |
+| `official_newest_shield_safety_research` | `openclaw-official_newest_shield_safety_research-v{timestamp}` | `official_newest_safety_research` + openclaw-shield |
+| `hermes_safety_research` | `openclaw-hermes_safety_research-v{timestamp}` | Hermes + safety-research tools and skills |
+| `nanoclaw_safety_research` | `openclaw-nanoclaw_safety_research-v{timestamp}` | NanoClaw + safety-research tools and skills |
+| `claude_code_safety_research` | `openclaw-claude_code_safety_research-v{timestamp}` | Claude Code + safety-research tools and skills |
+| `codex_safety_research` | `openclaw-codex_safety_research-v{timestamp}` | Codex + safety-research tools and skills |
 
-The `official_*` variants extend `official` by adding different security plugins. The `hermes` and `nanoclaw` variants instead wrap third-party agent frameworks behind an `openclaw` shim so they can be evaluated through the same harness.
+The `official`, `claude_code`, `codex`, `hermes`, and `nanoclaw` directories
+provide reusable contexts; `safety_research_overlay` adds shared research
+tooling. They are retained as dependencies, not offered in the build menu.
 
 ## Directory Layout
 
@@ -27,35 +31,33 @@ workflow/
     │   ├── openclaw.json
     │   ├── prepare.sh
     │   └── mock-api/
-    ├── official_shield/
+    ├── official_safety_research/
     │   ├── Dockerfile
-    │   ├── openclaw.json
     │   └── prepare.sh
-    ├── official_secureclaw/
-    │   ├── secureclaw/
+    ├── official_newest_safety_research/
     │   ├── Dockerfile
-    │   ├── openclaw.json
     │   └── prepare.sh
-    ├── official_clawkeeper/
-    │   ├── ClawKeeper/
+    ├── official_newest_shield_safety_research/
+    │   ├── openclaw-shield/
+    │   ├── mock-api/
+    │   ├── mock_api_data/
+    │   ├── mock_api_handlers/
+    │   ├── wordpress-runtime-smoke.sh
     │   ├── Dockerfile
-    │   ├── openclaw.json
     │   └── prepare.sh
-    ├── hermes/
-    │   ├── Dockerfile
-    │   ├── openclaw.overrides.json
-    │   ├── prepare.sh
-    │   ├── shim/openclaw
-    │   └── mock-api/
-    └── nanoclaw/
-        ├── Dockerfile
-        ├── openclaw.overrides.json
-        ├── prepare.sh
-        ├── shim/            # openclaw + driver.mjs
-        └── mock-api/
+    ├── claude_code_safety_research/
+    ├── codex_safety_research/
+    ├── hermes_safety_research/
+    ├── nanoclaw_safety_research/
+    ├── claude_code/           # Shared runtime context
+    ├── codex/                 # Shared runtime context
+    ├── hermes/                # Shared runtime context
+    ├── nanoclaw/              # Shared runtime context
+    └── safety_research_overlay/  # Shared research tooling
 ```
 
-> `openclaw.json` is not committed for any variant — it is generated from `config.yaml` by `bash setup.sh` (`scripts/generate_config.py`) before the build.
+`openclaw.json` is generated from `config.yaml` by `bash setup.sh`
+(`scripts/generate_config.py`) before image preparation; it is not committed.
 
 ## Build Flow
 
@@ -104,99 +106,65 @@ Interactive prompts:
 - mock-api server: `/opt/mock-api`
 - mock-api data: `/tmp/scry/mock_api/data`
 
-Skills are bind-mounted and their `skill_data` is copied into each container
-only for the task that requires them. The same per-task injection path is used
-by every image type; compatibility images additionally receive the mount at
-their native skill-discovery location.
+Skills are mounted read-only per task, and each selected skill's `skill_data`
+is copied into the running container separately. Compatibility runtimes also
+receive the same skill at their native discovery path.
 
-At runtime, benchmark runs keep outbound networking open by default. Passing
-`benchmark.py --netlock` asks `scripts/lib_docker.py` to apply the
-AgentCanary iptables allowlist. Image tags containing `official_safety_research`
-remain open-egress research images and skip that lockdown even when requested.
+## official_safety_research Build Contents
 
-## official_shield Build Contents
+`images/official_safety_research/prepare.sh` first reuses `images/official/prepare.sh` to generate a complete official build context, then replaces only the Dockerfile.
 
-`images/official_shield/prepare.sh` first reuses `images/official/prepare.sh` to generate a complete official build context, then adds:
+The image keeps the official OpenClaw, skill injection, and mock-api behavior, bakes in the ClawHub
+`pandoc@1.0.2` skill under `/root/.openclaw/skills/pandoc`, and additionally installs:
 
-- `openclaw-shield` source code: `/opt/openclaw-shield`
-- Dockerfile installation step: `openclaw plugins install /opt/openclaw-shield`
-- `tools.profile = "full"` in `openclaw.json`, so `knostic_shield` is included in the agent's actual tool list
+- `openssh-server`
+- `rsync`
+- `python3`
+- `python3-pip`
+- Python packages: `matplotlib`, `jupyter`
+- PHP CLI and common WordPress PHP extensions
+- WP-CLI (`wp`)
+- WordPress Playground CLI (`wp-playground-cli`)
+- `libreoffice`
+- `pandoc`
+- `weasyprint`
+- `fonts-noto-cjk`
+- `fonts-liberation`
+- `fontconfig`
 
-`official_shield/openclaw.json` remains consistent with `official/openclaw.json` and does not manually add plugin configuration.
+At runtime, `scripts/lib_docker.py` treats image tags containing `official_safety_research`
+as open-egress research images and skips the AgentCanary iptables egress lockdown for them.
+Other images keep the default outbound allowlist.
 
-The plugin source code must be cloned in advance. The build does not access GitHub.
-The default source location is:
+`images/official_newest_safety_research/prepare.sh` reuses this complete build
+context and replaces only the Dockerfile. Its sole runtime difference is the
+OpenClaw pin: `2026.7.1-2` instead of `2026.4.11`.
 
-```text
-workflow/images/official_shield/openclaw-shield
-```
+`images/official_newest_shield_safety_research/` contains its own copy of the
+complete newest safety-research Dockerfile, mock API, WordPress smoke script,
+mock data, and Shield source. Its prepare script does not read another image
+directory. The Dockerfile builds the same OpenClaw `2026.7.1-2` research
+runtime and additionally compiles and installs Shield for the newer plugin
+loader. It does not require a prebuilt safety-research image.
 
-You can also specify another local source directory with an environment variable:
+Select `[3]` in `workflow_step_1_image_builder.sh` to build this variant.
 
-```bash
-OPENCLAW_SHIELD_SOURCE_DIR=/path/to/openclaw-shield \
-  bash workflow/workflow_step_1_image_builder.sh
-```
-
-## official_secureclaw Build Contents
-
-`images/official_secureclaw/prepare.sh` first reuses `images/official/prepare.sh` to generate a complete official build context, then adds:
-
-- `secureclaw` repository source code: `/opt/secureclaw`
-- Source installation following `Option C: Plugin from source` in the SecureClaw README:
-  - `cd /opt/secureclaw/secureclaw`
-  - `npm install`
-  - `npm run build`
-  - `npx openclaw plugins install -l .`
-- Built-in SecureClaw skill installation: `npx openclaw secureclaw skill install`
-
-`official_secureclaw/openclaw.json` remains consistent with `official/openclaw.json` and does not manually add plugin configuration.
-
-The plugin source code has been cloned to:
-
-```text
-workflow/images/official_secureclaw/secureclaw
-```
-
-You can also specify another local source directory with an environment variable:
+The intended use is headless document work through the existing full tool profile, for example:
 
 ```bash
-SECURECLAW_SOURCE_DIR=/path/to/secureclaw \
-  bash workflow/workflow_step_1_image_builder.sh
+libreoffice --headless --convert-to pdf report.docx --outdir /workspace
+soffice --headless --convert-to txt report.docx --outdir /workspace
+wordpress-runtime-smoke
 ```
 
-## official_clawkeeper Build Contents
+## Hermes, NanoClaw, Claude Code, and Codex Build Contents
 
-`images/official_clawkeeper/prepare.sh` first reuses `images/official/prepare.sh` to generate a complete official build context, then adds:
-
-- `ClawKeeper` plugin source code: `/opt/ClawKeeper/clawkeeper-plugin`
-- `plugins.load.paths = ["/opt/ClawKeeper/clawkeeper-plugin"]` in `openclaw.json`
-
-ClawKeeper's `install.sh` runs `npx openclaw plugins install -l .` internally, but OpenClaw's install-time scan blocks installation because the plugin contains `child_process` shell command execution patterns.
-This image therefore loads the local plugin path explicitly through `openclaw.json`.
-
-The plugin source code has been cloned to:
-
-```text
-workflow/images/official_clawkeeper/ClawKeeper
-```
-
-You can also specify another local source directory with an environment variable:
-
-```bash
-CLAWKEEPER_SOURCE_DIR=/path/to/ClawKeeper \
-  bash workflow/workflow_step_1_image_builder.sh
-```
-
-## hermes / nanoclaw Build Contents
-
-`hermes` and `nanoclaw` wrap third-party agent frameworks so they can be evaluated through the same harness as `official`. Each image ships:
-
-- A custom `/usr/local/bin/openclaw` shim (`images/{type}/shim/openclaw`) that translates AgentCanary's `openclaw agent ...` calls into the framework's native entrypoint — hermes via `run_agent.py`, nanoclaw via the Claude Agent SDK `query` API (`shim/driver.mjs`).
-- A `mock-api` sidecar, matching the `official` image.
-- `openclaw.overrides.json` (empty `{}` by default).
-
-As with every variant, `openclaw.json` is not committed: it is generated from `config.yaml` by `bash setup.sh` (`scripts/generate_config.py`) before the build, then copied into the build context by `prepare.sh`.
+Each safety-research variant first runs its matching shared runtime
+`prepare.sh`, then applies `safety_research_overlay/prepare.sh` and its own
+Dockerfile. The overlay also reads
+`official_safety_research/wordpress-runtime-smoke.sh`. The shared runtime
+contexts include the framework shims and mock API files needed by the final
+images. Skills and skill data are injected per task.
 
 ## Resume Support
 

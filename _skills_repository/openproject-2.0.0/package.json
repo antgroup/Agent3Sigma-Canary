@@ -1,0 +1,35 @@
+{
+  "name": "openclaw-skill-openproject",
+  "version": "2.0.0",
+  "description": "OpenClaw skill for OpenProject — CRUD work packages, projects, time entries, comments, attachments, and more via OpenProject API v3",
+  "type": "module",
+  "bin": {
+    "openproject": "./scripts/openproject.mjs"
+  },
+  "scripts": {
+    "start": "node scripts/openproject.mjs",
+    "help": "node scripts/openproject.mjs --help"
+  },
+  "keywords": [
+    "openclaw",
+    "openproject",
+    "project-management",
+    "work-packages",
+    "time-tracking",
+    "ai-skill"
+  ],
+  "author": "Abdelkrim BOUJRAF <clawhub_ai@alt-f1.be> (https://www.alt-f1.be)",
+  "license": "MIT",
+  "homepage": "https://www.alt-f1.be",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ALT-F1-OpenClaw/openclaw-skill-openproject.git"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

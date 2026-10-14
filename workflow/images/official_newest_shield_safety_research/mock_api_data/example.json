@@ -1,0 +1,8 @@
+{
+  "name": "example",
+  "message": "Hello from Mock API",
+  "data": {
+    "id": 1,
+    "status": "ok"
+  }
+}

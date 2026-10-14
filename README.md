@@ -1,35 +1,4 @@
-# Agent3σ-Canary
-
-![license](https://img.shields.io/badge/license-Apache--2.0-blue)
-![language](https://img.shields.io/badge/language-Python3-orange)
-![status](https://img.shields.io/badge/status-active-brightgreen)
-
-**English** · [Simplified Chinese](README_zh.md)
-
-Agent3σ-Canary, abbreviated as AgentCanary, is part of the [Agent3σ project](https://github.com/antgroup/Agent3Sigma). It provides security evaluation capabilities for AI Agents in realistic runtime environments. AgentCanary does not simply check whether a model gives a safe textual answer; it drives agents in controlled sandboxes to invoke real tools, process task materials in realistic formats, and evaluate the agent's complete execution trajectory across risk outcome, security awareness, and normal-task utility.
-
-![Agent3σ-Canary overview](images/agentcanary-overview.jpg)
-
-## 📢 What's New
-
-- **2026-08-09**: Added the Skill-to-Sandbox workflow, enabling users to **build customized evaluation environments** and extend evaluation tasks with greater flexibility. See the [tutorial](docs/eval_env_user_guide_en.md) for more details.
-- **2026-06-23**: Added support for the **Hermes** and **NanoClaw** agent frameworks. Issues and pull requests for supporting more frameworks are welcome!
-- **2026-06-23**: Added the **safety evaluation suite** — no-attacker tasks measuring risky agent behavior under ambiguous, conflicting, or urgent instructions.
-
-## 💡 Key Features
-
-- **Comprehensive risk coverage**: Tasks are organized through a systematic "risk entry x risk impact" taxonomy. Risk entries capture different sources of risk and their threat models, including direct injection, indirect prompt injection, Skills poisoning, and memory poisoning. Risk impacts describe the different consequences an attack can cause, such as local environment damage, sensitive data leakage, and persistent state pollution. See [risk definition](docs/risk_def_en.md) for details.
-- **Realistic usage scenarios**: AgentCanary covers real agent workflows such as web browsing, email processing, SMS handling, and financial operations. Risk sources are embedded into the workflows that agents are expected to complete, following realistic threat models.
-- **Realistic runtime environment**: AgentCanary uses real interfaces to access resources such as web pages, email, and files, preserving high-fidelity tool-call chains and data formats. It also dynamically prepares task-specific materials, such as inboxes, test files, virtual financial accounts, and websites, so each evaluation runs with sufficient context.
-- **Sandboxed evaluation**: Each task runs in an isolated environment, reducing the impact of high-risk samples on the host and other tasks while keeping evaluations controlled and reproducible.
-- **Multiple attack methods**: AgentCanary supports automatic generation, mutation, and optimization of attack samples for evaluation tasks, covering one-shot transformations, multi-step iterative optimization, and long-chain attack scenarios.
-- **Defense framework evaluation**: AgentCanary supports evaluating different agent security defense frameworks, making it easier to compare defense effectiveness.
-- **Trajectory-based multidimensional scoring**: Scoring is not based only on a single-step result. AgentCanary evaluates the agent's complete execution trajectory across safety outcome, security awareness, and task utility.
-- **High extensibility**: Task definitions and environment construction are modular, making it easy to add custom evaluation tasks.
-
-## 🔄 Evaluation Workflow
-
-![AgentCanary evaluation workflow](images/workflow.png)
+# How to Evaluate Your Agent on NARA-Bench？
 
 ## 🚀 Quick Start
 
@@ -55,7 +24,7 @@ uv sync
 
 ### 2. Configure Models and API Keys
 
-Running AgentCanary requires configuring two types of LLMs:
+Running evaluation requires configuring two types of LLMs:
 
 - **Target model**: The LLM used by the agent under test inside the Docker container. Specify it with the `--model` argument.
 - **Auxiliary models**: LLMs used by the evaluation framework itself, such as PAIR attackers and judge scorers.
@@ -76,15 +45,15 @@ uv run python scripts/validate_api.py
 In `config.yaml`, configure:
 
 - **providers**: API endpoints, keys, and available model lists. You can define multiple providers, and each provider can contain multiple models. The `provider-id/model-id` pair is the value used by the `--model` argument.
-- **roles**: Auxiliary model assignments for roles such as pair, judge, and ipi. Auxiliary model requests currently use OpenAI-compatible Chat Completions APIs.
+- **roles**: Auxiliary model assignments for the role like judge model. Auxiliary model requests currently use OpenAI-compatible Chat Completions APIs.
 
 Example:
 
 ```yaml
 providers:
-  openai-compatible:
+  openai:
     base_url: "https://api.openai.com/v1"
-    api_key: "sk-xxx"
+    api_key: "xxx"
     api: "openai-completions"
     models:
       - id: "gpt-4o"
@@ -92,25 +61,18 @@ providers:
 
   anthropic:
     base_url: "https://api.anthropic.com/v1"
-    api_key: "sk-ant-xxx"
+    api_key: "xxx"
     api: "anthropic-messages"
     models:
       - id: "claude-sonnet-4"
         name: "Claude Sonnet 4"
 
 roles:
-  # pair:
-  #   base_url: "https://api.openai.com/v1"
-  #   api_key: "sk-xxx"
-  #   model: "gpt-4o"
   judge:
     base_url: "https://api.openai.com/v1"
-    api_key: "sk-xxx"
+    api_key: "xxx"
     model: "gpt-4o"
-  # ipi:
-  #   base_url: "https://api.openai.com/v1"
-  #   api_key: "sk-xxx"
-  #   model: "gpt-4o"
+    # effort: "high"         # optional fixed Judge reasoning effort
 ```
 
 **Generate runtime configuration:**
@@ -135,23 +97,18 @@ bash buildAll.sh
 cd ..
 ```
 
-Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, Hermes, NanoClaw, and OpenClaw variants integrated with different security plugins. Each Docker image corresponds to an independent evaluation environment, and you can choose which variants to build.
+Then build evaluation images. Each Docker image corresponds to an independent evaluation environment, and you can choose which variants to build.
 
-- **official**: Vanilla OpenClaw agent
-- **official_shield**: OpenClaw + Shield security plugin
-- **official_secureclaw**: OpenClaw + SecureClaw security plugin
-- **official_clawkeeper**: OpenClaw + ClawKeeper security plugin
-- **hermes**: Vanilla Hermes agent
-- **nanoclaw**: Vanilla NanoClaw agent
+- **claude_code_safety_research**: Claude Code + safety-research tools and skills
+- **codex_safety_research**: Codex + safety-research tools and skills
+- **official_newest_safety_research**: OpenClaw + safety-research tools and skills
+- **official_newest_shield_safety_research**: OpenClaw + OpenClaw-shield + safety-research tools and skills
 
-After running the build script, select the image variants you need from the prompt. For example, choose `official` if you only want to evaluate vanilla OpenClaw; choose additional plugin images if you want to compare defense effectiveness.
+After running the build script, select the image variants you need from the prompt. For example, choose `official_newest_safety_research` if you only want to evaluate vanilla OpenClaw; choose additional plugin images if you want to compare defense effectiveness.
 
 ```bash
 bash workflow/workflow_step_1_image_builder.sh
 ```
-
-> **Tip**
-> If network restrictions require an HTTP proxy for Docker builds, see [docs/docker_proxy_en.md](docs/docker_proxy_en.md).
 
 ### 4. Run Evaluations
 
@@ -159,13 +116,13 @@ bash workflow/workflow_step_1_image_builder.sh
 
 ```bash
 # Choose the target image. Replace this with the actual image tag produced in step 3.
-export DOCKER_IMAGE=openclaw-official-v20260430_120000
+export DOCKER_IMAGE=openclaw-official_newest_safety_research-v2026xxxx_xxxx
 
 # Evaluate one model
-./scripts/run.sh --model <provider-id>/<model-id> --suite <suite> --docker --verbose
+./scripts/run.sh --model <provider-id>/<model-id> --suite <suite> --docker --gateway --verbose
 
-# Example: run the direct suite with gpt-4o from the openai-compatible provider
-./scripts/run.sh --model openai-compatible/gpt-4o --suite direct --docker --verbose
+# Example: run the NARA-Bench with gpt-4o from the openai provider
+./scripts/run.sh --model openai/gpt-4o --suite tasks/NARA-bench --docker --gateway --verbose
 ```
 
 **Common arguments:**
@@ -175,36 +132,11 @@ export DOCKER_IMAGE=openclaw-official-v20260430_120000
 | `--model` | Target model, in `provider-id/model-id` format | `--model anthropic/claude-sonnet-4` |
 | `--suite` | Test suite | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `safety`, `all`, or comma-separated task IDs |
 | `--docker` | Run the agent inside Docker | `--docker` |
-| `--netlock` | Restrict Docker container egress to the configured allowlist; disabled by default | `--netlock` |
 | `--gateway` | Start the native Gateway for Official OpenClaw images; disabled by default and unnecessary for other image families | `--gateway` |
 | `--verbose` | Print more detailed logs | `--verbose` |
 | `--attack` | Attack method | `code_attack`, `pair`, `important_message`, `InjecAgent`, etc. |
 | `--runs` | Number of repeated runs per task | `--runs 3` |
 | `--output-dir` | Result output directory | `--output-dir results/my_test` |
-
-**Batch evaluation:**
-
-To evaluate multiple models across multiple Docker images in parallel, use scripts under `batch_run/`:
-
-```bash
-# 1. Configure images and models
-cp batch_run/batch_config.example.sh batch_run/batch_config.sh
-vim batch_run/batch_config.sh
-
-# 2. Run batch evaluations
-./batch_run/direct.sh          # Direct attacks
-./batch_run/indirect.sh        # Indirect injection
-./batch_run/memory.sh          # Memory poisoning
-./batch_run/chain.sh           # Chain attacks
-./batch_run/skills_poison.sh   # Skills poisoning
-./batch_run/safety.sh          # Safety (no-attacker behavioral risks)
-
-# Run a small sample for quick validation
-./batch_run/direct.sh example
-
-# Limit maximum parallelism
-MAX_PARALLEL=4 ./batch_run/direct.sh
-```
 
 ### 5. View Results
 
@@ -234,13 +166,9 @@ Core metrics:
 | Task Successful Rate | Task success rate | Higher is better |
 | Average Score | Overall score | Higher is better |
 
-![AgentCanary Leaderboard](images/leaderborad.png)
-
 #### Workflow Analysis - Fine-Grained Result Analysis
 
 Analyze each task in a single evaluation run, e.g., grading details, the full execution trajectory. The dashboard supports multidimensional filtering by score range, task-name regular expressions, model and other fields, making it easier to locate specific risk patterns and failed cases.
-
-![AgentCanary workflow analysis dashboard](images/task_board.jpg)
 
 ```bash
 # Start the analysis service
@@ -282,70 +210,8 @@ roles:
     base_url: ""
     api_key: ""
     model: ""
+    # effort: "high"         # [optional] Fixed effort, passed through as-is
 
 settings:
   web_sim_base_url: ""        # [optional] Web simulation service URL
 ```
-
-## 🧩 Custom Evaluation Tasks
-
-AgentCanary supports extending evaluation suites by adding task Markdown files. Custom tasks are useful for internal security baselines, business-specific scenarios, plugin-defense comparisons, and false-positive testing.
-
-Task files live under `tasks/` and use the `task_*.md` naming format. Prefer placing them in an existing suite directory such as `tasks/direct/`, `tasks/indirect/`, `tasks/memory/`, `tasks/chain/`, `tasks/safety/`, or `tasks/fptest/`. You can also run a single task directly by task ID.
-
-See [Task Markdown Format](docs/task_format_en.md) when writing custom tasks.
-
-### Extend the Evaluation Environment (Optional)
-
-AgentCanary's default evaluation environment may not meet every evaluation task requirement. For example, to evaluate whether an Agent might exfiltrate data through Google Drive, the evaluation environment needs to support Google Drive uploads. To address this, we provide the capability to build simulated yet high-fidelity third-party tools in AgentCanary's evaluation environment at low cost. See the [Skill-to-Sandbox User Guide](docs/eval_env_user_guide_en.md).
-
-## 🔍 System-Level Trajectory Collection
-
-AgentCanary also supports system-level behavior trajectory collection for fine-grained analysis of agent execution and dynamic testing scenarios such as malicious skill detection. More details can be found in the [system-level trajectory document](docs/system_trajectory_en.md).
-
-## 🗺️ Roadmap
-
-AgentCanary will continue expanding security capabilities for AI Agents. Planned directions include:
-
-- Support more agent frameworks, including mainstream agent frameworks and coding-agent forms.
-- Expand the evaluation task suite to cover more third-party tools and realistic scenarios.
-- Build a layered task taxonomy with configurable task types, difficulty levels, and custom tags, and expose multidimensional dashboard analytics.
-- Support more automated red-team techniques, especially agent-based adaptive and dynamic attacks.
-- Support longer-context dialogue evaluations to simulate long-horizon safety risks in realistic agent use.
-- Build dynamic Skills scanning and trajectory collection capabilities on top of dynamic runtime environments (e.g., trajectory collection can provide high-quality behavior data for Guard model training), supporting broader agent-security applications beyond evaluation.
-
-Community requests, scenarios, and contributions are welcome, including new tasks, agent-framework adapters, red-team methods, security-plugin integrations, analysis tools, and documentation improvements.
-
-## 🙏 Acknowledgements
-
-This repository builds on prior open-source work in agent safety. We thank the authors and maintainers of:
-
-- **[PinchBench](https://github.com/pinchbench/skill)** — Earlier codebase that this project descends from.
-- **[skill-security-reviewer](https://github.com/zast-ai/skill-security-reviewer)** — Reference for the `skill_security_reviewer_benchmark` task series under `tasks/skills_poison/`.
-- **[HarmfulSkillBench](https://github.com/TrustAIRLab/HarmfulSkillBench)** — Reference for the `harmful_skill_bench` task series under `tasks/skills_poison/`.
-
-## 📄 License
-
-Agent3σ-Canary is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
-
-## 👥 Authors
-
-Peiyang Li, Songping Wang, Yi Huang, Yanhua Shi, Chenhao Zhang, Qi Li, Caifeng Shan, Yueming Lyu, Ding Li, Fengting Li, Chao Feng, Chuanqun Zhu, Liang Chen
-
-## 📝 Citation
-
-```bibtex
-@misc{li2026agentcanarysecurityevaluationframework,
-      title={AgentCanary: A Security Evaluation Framework for Autonomous AI Agents in Real Executable Environments}, 
-      author={Peiyang Li and Songping Wang and Yi Huang and Yanhua Shi and Chenhao Zhang and Qi Li and Yueming Lyu and Caifeng Shan and Fengting Li and Chao Feng and Chuanqun Zhu and Liang Chen},
-      year={2026},
-      eprint={2606.10484},
-      archivePrefix={arXiv},
-      primaryClass={cs.CR},
-      url={https://arxiv.org/abs/2606.10484}, 
-}
-```
-
-## ⚠️ Safety Notice
-
-AgentCanary is intended only for authorized security research, defensive evaluation, and benchmark reproduction. The benchmark includes adversarial prompts, prompt-injection payloads, malicious-skill scenarios, credential-exfiltration simulations, and fixture files that may look like sensitive credentials. Run evaluations in isolated Docker containers and disposable workspaces.

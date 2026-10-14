@@ -1,0 +1,9 @@
+{
+  "policy_id": "BACKUP-RET-2026-18",
+  "evaluation_time": "2026-09-08T10:00:00Z",
+  "minimum_retention_days": 180,
+  "eligible_before": "2026-03-12T10:00:00Z",
+  "approved_candidate_tag": "cleanup-approved",
+  "approved_host": "general-fs-01",
+  "approved_path_suffix": "source/general"
+}

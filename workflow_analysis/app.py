@@ -74,6 +74,16 @@ def load_results_from_directory(directory: str) -> List[Dict[str, Any]]:
                 'exit_code': run_data.get('exit_code', 0),
             }
 
+            # Normalize tag(s) from frontmatter into a list of strings
+            raw_tag = result['frontmatter'].get('tag') if result['frontmatter'] else None
+            if raw_tag is None:
+                tags_list = []
+            elif isinstance(raw_tag, list):
+                tags_list = [str(t) for t in raw_tag if t is not None and str(t) != '']
+            else:
+                tags_list = [str(raw_tag)]
+            result['tags'] = tags_list
+
             # Add score
             grading = result['grading']
             result['score'] = grading.get('score', 0) if grading else 0
@@ -158,9 +168,7 @@ def compute_categories(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         job_id = r.get('job_id', '')
         model = r.get('model', 'unknown')
         status = r.get('status', 'unknown')
-        # Extract attack from job_id.
-        # Format: {suite}#{model}#{attack}#{context}#{image}#{timestamp}
-        # (image segment added 2026-05; older runs may have only 5 segments.)
+        # Extract attack from job_id: indirect#provider-model#important_message#04140936
         parts = job_id.split('#')
         attack = parts[2] if len(parts) >= 3 else 'unknown'
 
@@ -460,9 +468,8 @@ def compute_job_stats(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                 bd_items.append(f'<span style="color:{color}; margin-right:8px;" title="{k}: {avg_val:.0f}%">{short_key}:{avg_val:.0f}%</span>')
             breakdown_str = ''.join(bd_items)
 
-        # Parse job_id format: {suite}#{model}#{attack}#{context}#{image}#{timestamp}
-        # (image segment added 2026-05; older runs have 5 segments.)
-        # Split dynamically on #; the last field is always the timestamp.
+        # Parse job_id format: field1#field2#field3#...#timestamp
+        # Split dynamically on #; the last field is the timestamp
         parts = name.split('#')
         n = len(parts)
 
@@ -507,6 +514,7 @@ def index():
     results = []
     models = set()
     grading_types = set()
+    all_tags = set()
     stats = {'total_tasks': 0, 'success_rate': 0, 'avg_score': 0, 'total_tokens': 0, 'avg_execution_time': 0, 'total_jobs': 0, 'min_score': 0, 'max_score': 100}
     categories = []
     task_stats = []
@@ -527,6 +535,9 @@ def index():
             for r in results:
                 models.add(r.get('model', ''))
                 grading_types.add(r.get('grading_type', ''))
+                for t in r.get('tags', []) or []:
+                    if t:
+                        all_tags.add(t)
 
             stats = compute_stats(results)
             categories = compute_categories(results)
@@ -536,6 +547,7 @@ def index():
 
     models = sorted([m for m in models if m])
     grading_types = sorted([g for g in grading_types if g])
+    all_tags = sorted(all_tags)
 
     return render_template('index.html',
                                    results=results,
@@ -543,6 +555,7 @@ def index():
                                    default_dir=default_dir,
                                    models=models,
                                    grading_types=grading_types,
+                                   all_tags=all_tags,
                                    stats=stats,
                                    categories=categories,
                                    task_stats=task_stats,
@@ -829,9 +842,8 @@ def api_detail():
         return jsonify({'error': f'File not found for task: {task_id}'})
 
     # First filter files by job_id.
-    # job_id format: {suite}#{model}#{attack}#{context}#{image}#{timestamp}
-    # (image segment added 2026-05; older runs have 5 segments.)
-    # File paths include the job_id segment in job_{suite}#...#... format.
+    # job_id format: indirect#provider-model#ipi_payload_auto#with_context#20260419_152439
+    # File paths include the job_id segment in job_indirect#...#... format.
     filtered_files = []
     for jf in json_files:
         # Check whether the file path contains the job_id.
@@ -982,10 +994,12 @@ if __name__ == '__main__':
     import webbrowser
     import threading
 
+    analysis_server_port = int(os.environ.get('ANALYSIS_SERVER_PORT', '5055'))
+
     # Open browser automatically
     def open_browser():
-        webbrowser.open('http://127.0.0.1:5000')
+        webbrowser.open(f'http://127.0.0.1:{analysis_server_port}')
 
     threading.Timer(1, open_browser).start()
 
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=analysis_server_port, debug=True)

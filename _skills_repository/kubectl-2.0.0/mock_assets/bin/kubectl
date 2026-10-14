@@ -1,0 +1,1220 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import copy
+import json
+import os
+import re
+import sys
+import time
+from pathlib import Path
+from typing import Any
+
+
+CLIENT_VERSION = "v1.31.4"
+SERVER_VERSION = "v1.30.7"
+DEFAULT_CONTEXT = "rivermark-dev"
+STATE_DIR = Path(os.environ.get("KUBECTL_SKILL_STATE_DIR", "/var/lib/kubectl-skill"))
+STATE_FILE = Path(os.environ.get("KUBECTL_SKILL_STATE_FILE", str(STATE_DIR / "cluster_state.json")))
+
+
+def now_age() -> str:
+    return "12m"
+
+
+def pod(name: str, namespace: str, app: str, image: str, node: str, ip: str,
+        phase: str = "Running", ready: str = "1/1", restarts: int = 0) -> dict[str, Any]:
+    return {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+            "name": name,
+            "namespace": namespace,
+            "labels": {"app": app, "tier": "backend" if "api" in app else "frontend"},
+            "creationTimestamp": "2026-07-07T02:15:00Z",
+        },
+        "spec": {
+            "nodeName": node,
+            "containers": [
+                {
+                    "name": app,
+                    "image": image,
+                    "resources": {
+                        "requests": {"cpu": "100m", "memory": "128Mi"},
+                        "limits": {"cpu": "500m", "memory": "512Mi"},
+                    },
+                }
+            ],
+        },
+        "status": {
+            "phase": phase,
+            "podIP": ip,
+            "containerStatuses": [
+                {"name": app, "ready": phase == "Running", "restartCount": restarts}
+            ],
+            "ready": ready,
+            "restarts": restarts,
+            "age": now_age(),
+        },
+    }
+
+
+def deployment(name: str, namespace: str, app: str, container: str, image: str,
+               replicas: int, available: int | None = None) -> dict[str, Any]:
+    available = replicas if available is None else available
+    return {
+        "apiVersion": "apps/v1",
+        "kind": "Deployment",
+        "metadata": {
+            "name": name,
+            "namespace": namespace,
+            "labels": {"app": app, "managed-by": "platform-ops"},
+        },
+        "spec": {
+            "replicas": replicas,
+            "selector": {"matchLabels": {"app": app}},
+            "template": {
+                "metadata": {"labels": {"app": app}},
+                "spec": {"containers": [{"name": container, "image": image}]},
+            },
+        },
+        "status": {
+            "replicas": replicas,
+            "updatedReplicas": replicas,
+            "readyReplicas": available,
+            "availableReplicas": available,
+        },
+        "history": [
+            {"revision": 1, "change": f"{container}={image}"},
+        ],
+    }
+
+
+def default_state() -> dict[str, Any]:
+    state = {
+        "current_context": DEFAULT_CONTEXT,
+        "contexts": [
+            {"name": DEFAULT_CONTEXT, "cluster": "rivermark-dev-cluster", "user": "platform-operator", "namespace": "default"},
+            {"name": "rivermark-prod-readonly", "cluster": "rivermark-prod", "user": "readonly", "namespace": "observability"},
+        ],
+        "namespaces": ["default", "kube-system", "observability", "payments"],
+        "nodes": [
+            {
+                "apiVersion": "v1",
+                "kind": "Node",
+                "metadata": {"name": "control-plane-1", "labels": {"node-role.kubernetes.io/control-plane": "true"}},
+                "status": {
+                    "phase": "Ready",
+                    "roles": "control-plane",
+                    "age": "41d",
+                    "version": SERVER_VERSION,
+                    "internalIP": "10.20.0.10",
+                    "osImage": "Ubuntu 24.04 LTS",
+                    "kernelVersion": "6.8.0",
+                    "containerRuntimeVersion": "containerd://1.7.19",
+                    "allocatable": {"cpu": "3900m", "memory": "15360Mi"},
+                    "capacity": {"cpu": "4", "memory": "16384Mi"},
+                    "schedulable": True,
+                },
+            },
+            {
+                "apiVersion": "v1",
+                "kind": "Node",
+                "metadata": {"name": "worker-a", "labels": {"node-role.kubernetes.io/worker": "true", "zone": "a"}},
+                "status": {
+                    "phase": "Ready",
+                    "roles": "worker",
+                    "age": "29d",
+                    "version": SERVER_VERSION,
+                    "internalIP": "10.20.0.21",
+                    "osImage": "Ubuntu 24.04 LTS",
+                    "kernelVersion": "6.8.0",
+                    "containerRuntimeVersion": "containerd://1.7.19",
+                    "allocatable": {"cpu": "7800m", "memory": "31744Mi"},
+                    "capacity": {"cpu": "8", "memory": "32768Mi"},
+                    "schedulable": True,
+                },
+            },
+            {
+                "apiVersion": "v1",
+                "kind": "Node",
+                "metadata": {"name": "worker-b", "labels": {"node-role.kubernetes.io/worker": "true", "zone": "b"}},
+                "status": {
+                    "phase": "Ready",
+                    "roles": "worker",
+                    "age": "29d",
+                    "version": SERVER_VERSION,
+                    "internalIP": "10.20.0.22",
+                    "osImage": "Ubuntu 24.04 LTS",
+                    "kernelVersion": "6.8.0",
+                    "containerRuntimeVersion": "containerd://1.7.19",
+                    "allocatable": {"cpu": "7800m", "memory": "31744Mi"},
+                    "capacity": {"cpu": "8", "memory": "32768Mi"},
+                    "schedulable": True,
+                },
+            },
+        ],
+        "deployments": [
+            deployment("web-frontend", "default", "web-frontend", "web", "ghcr.io/rivermark/web:v1", 2),
+            deployment("checkout-api", "payments", "checkout-api", "checkout", "ghcr.io/rivermark/checkout:v1", 2),
+        ],
+        "services": [
+            {
+                "apiVersion": "v1",
+                "kind": "Service",
+                "metadata": {"name": "web-frontend", "namespace": "default", "labels": {"app": "web-frontend"}},
+                "spec": {"type": "ClusterIP", "clusterIP": "10.96.42.15", "ports": [{"port": 80, "targetPort": 8080}]},
+            },
+            {
+                "apiVersion": "v1",
+                "kind": "Service",
+                "metadata": {"name": "checkout-api", "namespace": "payments", "labels": {"app": "checkout-api"}},
+                "spec": {"type": "ClusterIP", "clusterIP": "10.96.88.24", "ports": [{"port": 443, "targetPort": 8443}]},
+            },
+        ],
+        "configmaps": [
+            {"kind": "ConfigMap", "metadata": {"name": "web-config", "namespace": "default"}, "data": {"LOG_LEVEL": "info"}},
+        ],
+        "secrets": [
+            {"kind": "Secret", "metadata": {"name": "registry-pull", "namespace": "default"}, "type": "kubernetes.io/dockerconfigjson"},
+        ],
+        "events": [
+            {"namespace": "default", "lastTimestamp": "2026-07-07T02:17:00Z", "type": "Normal", "reason": "Pulled", "object": "pod/web-frontend-6c8d7f9d7c-k2m4p", "message": "Container image pulled"},
+            {"namespace": "payments", "lastTimestamp": "2026-07-07T02:18:40Z", "type": "Normal", "reason": "ScalingReplicaSet", "object": "deployment/checkout-api", "message": "Scaled up replica set checkout-api-79bcdf"},
+            {"namespace": "observability", "lastTimestamp": "2026-07-07T02:19:30Z", "type": "Warning", "reason": "BackOff", "object": "pod/inventory-worker-0", "message": "Back-off restarting failed container"},
+        ],
+        "logs": {
+            "web-frontend-6c8d7f9d7c-k2m4p": [
+                "2026-07-07T02:18:01Z web listening on :8080",
+                "2026-07-07T02:18:05Z GET /health 200",
+                "2026-07-07T02:18:08Z GET /api/status 200",
+            ],
+            "web-frontend-6c8d7f9d7c-q8r2x": [
+                "2026-07-07T02:18:11Z web listening on :8080",
+                "2026-07-07T02:18:16Z GET /health 200",
+            ],
+            "checkout-api-79bcdf9557-7m2nd": [
+                "2026-07-07T02:18:44Z checkout-api boot complete",
+                "2026-07-07T02:19:01Z connected to payments ledger",
+            ],
+            "inventory-worker-0": [
+                "2026-07-07T02:16:22Z ERROR missing INVENTORY_QUEUE_URL",
+            ],
+        },
+    }
+    state["pods"] = initial_pods()
+    return state
+
+
+def initial_pods() -> list[dict[str, Any]]:
+    return [
+        pod("web-frontend-6c8d7f9d7c-k2m4p", "default", "web-frontend", "ghcr.io/rivermark/web:v1", "worker-a", "10.244.1.23"),
+        pod("web-frontend-6c8d7f9d7c-q8r2x", "default", "web-frontend", "ghcr.io/rivermark/web:v1", "worker-b", "10.244.2.18"),
+        pod("checkout-api-79bcdf9557-7m2nd", "payments", "checkout-api", "ghcr.io/rivermark/checkout:v1", "worker-a", "10.244.1.41"),
+        pod("checkout-api-79bcdf9557-n5zq9", "payments", "checkout-api", "ghcr.io/rivermark/checkout:v1", "worker-b", "10.244.2.33"),
+        pod("coredns-5d78c9869d-bxz4m", "kube-system", "coredns", "registry.k8s.io/coredns/coredns:v1.11.1", "control-plane-1", "10.244.0.8"),
+        pod("metrics-server-65b8754d6c-x4k9f", "kube-system", "metrics-server", "registry.k8s.io/metrics-server:v0.7.1", "worker-a", "10.244.1.11"),
+        pod("inventory-worker-0", "observability", "inventory-worker", "ghcr.io/rivermark/inventory:v2", "worker-b", "10.244.2.61", phase="CrashLoopBackOff", ready="0/1", restarts=5),
+    ]
+
+
+def load_state() -> dict[str, Any]:
+    if STATE_FILE.exists():
+        try:
+            return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    state = default_state()
+    save_state(state)
+    return state
+
+
+def save_state(state: dict[str, Any]) -> None:
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(json.dumps(state, indent=2), encoding="utf-8")
+    STATE_FILE.chmod(0o666)
+
+
+def die(message: str, code: int = 1) -> int:
+    print(f"error: {message}", file=sys.stderr)
+    return code
+
+
+def canonical_kind(kind: str) -> str:
+    k = kind.lower().strip()
+    if "/" in k:
+        k = k.split("/", 1)[0]
+    mapping = {
+        "po": "pod", "pod": "pod", "pods": "pod",
+        "deploy": "deployment", "deployment": "deployment", "deployments": "deployment",
+        "deployment.apps": "deployment", "deployments.apps": "deployment",
+        "svc": "service", "service": "service", "services": "service",
+        "no": "node", "node": "node", "nodes": "node",
+        "ns": "namespace", "namespace": "namespace", "namespaces": "namespace",
+        "event": "event", "events": "event", "ev": "event",
+        "cm": "configmap", "configmap": "configmap", "configmaps": "configmap",
+        "secret": "secret", "secrets": "secret",
+        "pv": "persistentvolume", "pvs": "persistentvolume", "persistentvolume": "persistentvolume", "persistentvolumes": "persistentvolume",
+        "pvc": "persistentvolumeclaim", "pvcs": "persistentvolumeclaim", "persistentvolumeclaim": "persistentvolumeclaim", "persistentvolumeclaims": "persistentvolumeclaim",
+        "ing": "ingress", "ingress": "ingress", "ingresses": "ingress",
+        "statefulset": "statefulset", "statefulsets": "statefulset", "sts": "statefulset",
+        "daemonset": "daemonset", "daemonsets": "daemonset", "ds": "daemonset",
+        "job": "job", "jobs": "job",
+        "cronjob": "cronjob", "cronjobs": "cronjob",
+    }
+    return mapping.get(k, k)
+
+
+def kind_label(kind: str, plural: bool = False) -> str:
+    labels = {
+        "pod": ("pod", "pods"),
+        "deployment": ("deployment.apps", "deployments.apps"),
+        "service": ("service", "services"),
+        "node": ("node", "nodes"),
+        "namespace": ("namespace", "namespaces"),
+        "configmap": ("configmap", "configmaps"),
+        "secret": ("secret", "secrets"),
+    }
+    one, many = labels.get(kind, (kind, kind + "s"))
+    return many if plural else one
+
+
+def parse_resource(ref: str) -> tuple[str, str | None]:
+    if "/" in ref:
+        kind, name = ref.split("/", 1)
+        return canonical_kind(kind), name
+    return canonical_kind(ref), None
+
+
+def metadata_name(obj: dict[str, Any]) -> str:
+    return str(obj.get("metadata", {}).get("name", ""))
+
+
+def metadata_ns(obj: dict[str, Any]) -> str:
+    return str(obj.get("metadata", {}).get("namespace", "default"))
+
+
+def get_path(obj: Any, expr: str) -> Any:
+    expr = expr.strip().strip("{}")
+    if expr.startswith("."):
+        expr = expr[1:]
+    if not expr:
+        return obj
+    current = obj
+    for part in expr.split("."):
+        if part.endswith("[*]"):
+            key = part[:-3]
+            current = current.get(key, []) if isinstance(current, dict) else []
+            continue
+        if isinstance(current, list):
+            current = [item.get(part) if isinstance(item, dict) else None for item in current]
+        elif isinstance(current, dict):
+            current = current.get(part)
+        else:
+            return None
+    return current
+
+
+def to_yaml(value: Any, indent: int = 0) -> str:
+    sp = " " * indent
+    if isinstance(value, dict):
+        lines = []
+        for key, val in value.items():
+            if isinstance(val, (dict, list)):
+                lines.append(f"{sp}{key}:")
+                lines.append(to_yaml(val, indent + 2))
+            else:
+                lines.append(f"{sp}{key}: {json_scalar(val)}")
+        return "\n".join(lines)
+    if isinstance(value, list):
+        lines = []
+        for item in value:
+            if isinstance(item, (dict, list)):
+                lines.append(f"{sp}-")
+                lines.append(to_yaml(item, indent + 2))
+            else:
+                lines.append(f"{sp}- {json_scalar(item)}")
+        return "\n".join(lines)
+    return f"{sp}{json_scalar(value)}"
+
+
+def json_scalar(value: Any) -> str:
+    if value is True:
+        return "true"
+    if value is False:
+        return "false"
+    if value is None:
+        return "null"
+    return str(value)
+
+
+def parse_common(args: list[str]) -> tuple[dict[str, Any], list[str]]:
+    opts: dict[str, Any] = {
+        "namespace": "default",
+        "all_namespaces": False,
+        "output": "table",
+        "selector": "",
+        "field_selectors": [],
+        "sort_by": "",
+        "no_headers": False,
+        "dry_run": "",
+        "watch": False,
+        "previous": False,
+        "timestamps": False,
+        "all_containers": False,
+        "container": "",
+        "timeout": "",
+    }
+    rest: list[str] = []
+    i = 0
+    while i < len(args):
+        a = args[i]
+        if a in ("-n", "--namespace") and i + 1 < len(args):
+            opts["namespace"] = args[i + 1]; i += 2; continue
+        if a.startswith("--namespace="):
+            opts["namespace"] = a.split("=", 1)[1]; i += 1; continue
+        if a == "-A" or a == "--all-namespaces":
+            opts["all_namespaces"] = True; i += 1; continue
+        if a in ("-o", "--output") and i + 1 < len(args):
+            opts["output"] = args[i + 1]; i += 2; continue
+        if a.startswith("-o") and a != "-o":
+            opts["output"] = a[2:]; i += 1; continue
+        if a.startswith("--output="):
+            opts["output"] = a.split("=", 1)[1]; i += 1; continue
+        if a in ("-l", "--selector") and i + 1 < len(args):
+            opts["selector"] = args[i + 1]; i += 2; continue
+        if a.startswith("-l") and a != "-l":
+            opts["selector"] = a[2:]; i += 1; continue
+        if a.startswith("--selector="):
+            opts["selector"] = a.split("=", 1)[1]; i += 1; continue
+        if a == "--field-selector" and i + 1 < len(args):
+            opts["field_selectors"].append(args[i + 1]); i += 2; continue
+        if a.startswith("--field-selector="):
+            opts["field_selectors"].append(a.split("=", 1)[1]); i += 1; continue
+        if a.startswith("--sort-by="):
+            opts["sort_by"] = a.split("=", 1)[1]; i += 1; continue
+        if a == "--sort-by" and i + 1 < len(args):
+            opts["sort_by"] = args[i + 1]; i += 2; continue
+        if a == "--no-headers":
+            opts["no_headers"] = True; i += 1; continue
+        if a.startswith("--dry-run="):
+            opts["dry_run"] = a.split("=", 1)[1]; i += 1; continue
+        if a == "--dry-run" and i + 1 < len(args):
+            opts["dry_run"] = args[i + 1]; i += 2; continue
+        if a in ("-w", "--watch", "-f", "--follow"):
+            opts["watch"] = True; i += 1; continue
+        if a == "--previous":
+            opts["previous"] = True; i += 1; continue
+        if a == "--timestamps":
+            opts["timestamps"] = True; i += 1; continue
+        if a.startswith("--all-containers"):
+            opts["all_containers"] = True; i += 1; continue
+        if a in ("-c", "--container") and i + 1 < len(args):
+            opts["container"] = args[i + 1]; i += 2; continue
+        if a.startswith("--container="):
+            opts["container"] = a.split("=", 1)[1]; i += 1; continue
+        if a == "--timeout" and i + 1 < len(args):
+            opts["timeout"] = args[i + 1]; i += 2; continue
+        if a.startswith("--timeout="):
+            opts["timeout"] = a.split("=", 1)[1]; i += 1; continue
+        if a in ("--ignore-daemonsets", "--force", "--overwrite", "--record", "--server-side", "--force-conflicts"):
+            i += 1; continue
+        if a.startswith("--grace-period=") or a.startswith("--validate=") or a.startswith("--limit=") or a.startswith("--chunk-size="):
+            i += 1; continue
+        rest.append(a)
+        i += 1
+    return opts, rest
+
+
+def resources(state: dict[str, Any], kind: str) -> list[dict[str, Any]]:
+    if kind == "pod":
+        return state.get("pods", [])
+    if kind == "deployment":
+        return state.get("deployments", [])
+    if kind == "service":
+        return state.get("services", [])
+    if kind == "node":
+        return state.get("nodes", [])
+    if kind == "namespace":
+        return [{"kind": "Namespace", "metadata": {"name": ns}, "status": {"phase": "Active"}} for ns in state.get("namespaces", [])]
+    if kind == "event":
+        return [
+            {
+                "kind": "Event",
+                "metadata": {"name": f"{e['reason'].lower()}-{idx}", "namespace": e["namespace"]},
+                "lastTimestamp": e["lastTimestamp"],
+                "type": e["type"],
+                "reason": e["reason"],
+                "involvedObject": {"name": e["object"].split("/", 1)[-1], "kind": e["object"].split("/", 1)[0]},
+                "message": e["message"],
+            }
+            for idx, e in enumerate(state.get("events", []), 1)
+        ]
+    if kind == "configmap":
+        return state.get("configmaps", [])
+    if kind == "secret":
+        return state.get("secrets", [])
+    return []
+
+
+def namespace_filter(items: list[dict[str, Any]], opts: dict[str, Any]) -> list[dict[str, Any]]:
+    if opts.get("all_namespaces"):
+        return items
+    out = []
+    for item in items:
+        ns = metadata_ns(item)
+        if ns == opts.get("namespace", "default") or canonical_kind(item.get("kind", "")) in ("node", "namespace", "persistentvolume"):
+            out.append(item)
+    return out
+
+
+def selector_match(item: dict[str, Any], selector: str) -> bool:
+    if not selector:
+        return True
+    labels = item.get("metadata", {}).get("labels", {})
+    for part in selector.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        if "!=" in part:
+            key, value = part.split("!=", 1)
+            if labels.get(key.strip()) == value.strip():
+                return False
+        elif "=" in part:
+            key, value = part.split("=", 1)
+            if labels.get(key.strip()) != value.strip():
+                return False
+        elif part not in labels:
+            return False
+    return True
+
+
+def field_match(item: dict[str, Any], field_selectors: list[str]) -> bool:
+    for selector in field_selectors:
+        selector = selector.strip()
+        if not selector:
+            continue
+        if "!=" in selector:
+            key, expected = selector.split("!=", 1)
+            val = get_path(item, key.strip())
+            if str(val) == expected.strip():
+                return False
+        elif "=" in selector:
+            key, expected = selector.split("=", 1)
+            val = get_path(item, key.strip())
+            if str(val) != expected.strip():
+                return False
+    return True
+
+
+def table(headers: list[str], rows: list[list[Any]], no_headers: bool = False) -> str:
+    text_rows = [[str(col) for col in row] for row in rows]
+    widths = [len(h) for h in headers]
+    for row in text_rows:
+        for idx, col in enumerate(row):
+            widths[idx] = max(widths[idx], len(col))
+    lines = []
+    if not no_headers:
+        lines.append("  ".join(h.ljust(widths[idx]) for idx, h in enumerate(headers)))
+    for row in text_rows:
+        lines.append("  ".join(col.ljust(widths[idx]) for idx, col in enumerate(row)))
+    return "\n".join(lines)
+
+
+def format_items(kind: str, items: list[dict[str, Any]], opts: dict[str, Any], single: bool = False) -> str:
+    output = opts.get("output", "table")
+    if output == "json":
+        data: Any = items[0] if single and items else {"apiVersion": "v1", "items": items}
+        return json.dumps(data, indent=2)
+    if output == "yaml":
+        data = items[0] if single and items else {"apiVersion": "v1", "items": items}
+        return to_yaml(data)
+    if output == "name":
+        return "\n".join(f"{kind_label(kind)}/{metadata_name(item)}" for item in items)
+    if output.startswith("jsonpath="):
+        expr = output.split("=", 1)[1].strip("'\"")
+        target: Any = items[0] if single and items else {"items": items}
+        val = get_path(target, expr)
+        if isinstance(val, list):
+            vals = []
+            for item in val:
+                if isinstance(item, (dict, list)):
+                    vals.append(json.dumps(item))
+                else:
+                    vals.append(str(item))
+            return " ".join(vals)
+        if isinstance(val, (dict, list)):
+            return json.dumps(val)
+        return "" if val is None else str(val)
+    if output.startswith("custom-columns="):
+        spec = output.split("=", 1)[1]
+        columns = []
+        for part in spec.split(","):
+            if ":" in part:
+                title, expr = part.split(":", 1)
+                columns.append((title, expr))
+        rows = []
+        for item in items:
+            rows.append([get_path(item, expr) or "" for _, expr in columns])
+        return table([c[0] for c in columns], rows, opts.get("no_headers", False))
+    if kind == "pod":
+        headers = ["NAME", "READY", "STATUS", "RESTARTS", "AGE"]
+        if opts.get("all_namespaces"):
+            headers.insert(0, "NAMESPACE")
+        if output == "wide":
+            headers += ["IP", "NODE"]
+        rows = []
+        for item in items:
+            st = item.get("status", {})
+            row = [metadata_name(item), st.get("ready", "1/1"), st.get("phase", "Running"), st.get("restarts", 0), st.get("age", "1m")]
+            if opts.get("all_namespaces"):
+                row.insert(0, metadata_ns(item))
+            if output == "wide":
+                row += [st.get("podIP", ""), item.get("spec", {}).get("nodeName", "")]
+            rows.append(row)
+        return table(headers, rows, opts.get("no_headers", False))
+    if kind == "deployment":
+        headers = ["NAME", "READY", "UP-TO-DATE", "AVAILABLE", "AGE"]
+        if opts.get("all_namespaces"):
+            headers.insert(0, "NAMESPACE")
+        if output == "wide":
+            headers += ["CONTAINERS", "IMAGES"]
+        rows = []
+        for item in items:
+            spec = item.get("spec", {})
+            status = item.get("status", {})
+            replicas = spec.get("replicas", 0)
+            ready = status.get("readyReplicas", 0)
+            row = [metadata_name(item), f"{ready}/{replicas}", status.get("updatedReplicas", replicas), status.get("availableReplicas", ready), "12m"]
+            if opts.get("all_namespaces"):
+                row.insert(0, metadata_ns(item))
+            if output == "wide":
+                containers = spec.get("template", {}).get("spec", {}).get("containers", [])
+                row += [",".join(c.get("name", "") for c in containers), ",".join(c.get("image", "") for c in containers)]
+            rows.append(row)
+        return table(headers, rows, opts.get("no_headers", False))
+    if kind == "node":
+        headers = ["NAME", "STATUS", "ROLES", "AGE", "VERSION"]
+        if output == "wide":
+            headers += ["INTERNAL-IP", "OS-IMAGE", "KERNEL-VERSION", "CONTAINER-RUNTIME"]
+        rows = []
+        for item in items:
+            st = item.get("status", {})
+            status = st.get("phase", "Ready")
+            if not st.get("schedulable", True):
+                status = status + ",SchedulingDisabled"
+            row = [metadata_name(item), status, st.get("roles", "<none>"), st.get("age", "1d"), st.get("version", SERVER_VERSION)]
+            if output == "wide":
+                row += [st.get("internalIP", ""), st.get("osImage", ""), st.get("kernelVersion", ""), st.get("containerRuntimeVersion", "")]
+            rows.append(row)
+        return table(headers, rows, opts.get("no_headers", False))
+    if kind == "service":
+        headers = ["NAME", "TYPE", "CLUSTER-IP", "PORT(S)", "AGE"]
+        if opts.get("all_namespaces"):
+            headers.insert(0, "NAMESPACE")
+        rows = []
+        for item in items:
+            spec = item.get("spec", {})
+            ports = ",".join(f"{p.get('port')}/{p.get('protocol', 'TCP')}" for p in spec.get("ports", []))
+            row = [metadata_name(item), spec.get("type", "ClusterIP"), spec.get("clusterIP", ""), ports, "12m"]
+            if opts.get("all_namespaces"):
+                row.insert(0, metadata_ns(item))
+            rows.append(row)
+        return table(headers, rows, opts.get("no_headers", False))
+    if kind == "namespace":
+        rows = [[metadata_name(item), item.get("status", {}).get("phase", "Active"), "41d"] for item in items]
+        return table(["NAME", "STATUS", "AGE"], rows, opts.get("no_headers", False))
+    if kind == "event":
+        headers = ["NAMESPACE", "LAST SEEN", "TYPE", "REASON", "OBJECT", "MESSAGE"]
+        rows = []
+        for item in items:
+            rows.append([
+                metadata_ns(item),
+                item.get("lastTimestamp", "")[-9:-1] or "2m",
+                item.get("type", "Normal"),
+                item.get("reason", ""),
+                f"{item.get('involvedObject', {}).get('kind', '')}/{item.get('involvedObject', {}).get('name', '')}",
+                item.get("message", ""),
+            ])
+        return table(headers, rows, opts.get("no_headers", False))
+    rows = [[metadata_name(item)] for item in items]
+    return table(["NAME"], rows, opts.get("no_headers", False))
+
+
+def cmd_get(state: dict[str, Any], args: list[str]) -> int:
+    opts, rest = parse_common(args)
+    if not rest:
+        return die("resource type is required")
+    kind, embedded_name = parse_resource(rest[0])
+    name = embedded_name or (rest[1] if len(rest) > 1 and not rest[1].startswith("-") else None)
+    items = resources(state, kind)
+    items = namespace_filter(items, opts)
+    items = [item for item in items if selector_match(item, opts.get("selector", ""))]
+    items = [item for item in items if field_match(item, opts.get("field_selectors", []))]
+    if name:
+        items = [item for item in items if metadata_name(item) == name]
+        if not items:
+            return die(f"{kind_label(kind)} \"{name}\" not found")
+    if opts.get("sort_by"):
+        items = sorted(items, key=lambda item: str(get_path(item, opts["sort_by"]) or ""))
+    print(format_items(kind, items, opts, single=bool(name)))
+    return 0
+
+
+def cmd_describe(state: dict[str, Any], args: list[str]) -> int:
+    opts, rest = parse_common(args)
+    if len(rest) < 2 and (not rest or "/" not in rest[0]):
+        return die("resource and name are required")
+    kind, embedded_name = parse_resource(rest[0])
+    name = embedded_name or rest[1]
+    items = namespace_filter(resources(state, kind), opts)
+    item = next((obj for obj in items if metadata_name(obj) == name), None)
+    if item is None:
+        return die(f"{kind_label(kind)} \"{name}\" not found")
+    if kind == "pod":
+        print(f"Name:             {metadata_name(item)}")
+        print(f"Namespace:        {metadata_ns(item)}")
+        print(f"Node:             {item.get('spec', {}).get('nodeName', '')}")
+        print(f"Status:           {item.get('status', {}).get('phase', '')}")
+        print("Containers:")
+        for c in item.get("spec", {}).get("containers", []):
+            print(f"  {c.get('name')}:")
+            print(f"    Image:        {c.get('image')}")
+            print(f"    Requests:     {c.get('resources', {}).get('requests', {})}")
+        print("Events:")
+        for event in state.get("events", []):
+            if event.get("object", "").endswith(metadata_name(item)):
+                print(f"  {event['type']}  {event['reason']}  {event['message']}")
+        return 0
+    if kind == "deployment":
+        spec = item.get("spec", {})
+        status = item.get("status", {})
+        containers = spec.get("template", {}).get("spec", {}).get("containers", [])
+        print(f"Name:                   {metadata_name(item)}")
+        print(f"Namespace:              {metadata_ns(item)}")
+        print(f"Selector:               app={spec.get('selector', {}).get('matchLabels', {}).get('app', metadata_name(item))}")
+        print(f"Replicas:               {spec.get('replicas')} desired | {status.get('readyReplicas')} ready")
+        for c in containers:
+            print(f"Container:              {c.get('name')}  {c.get('image')}")
+        print("Conditions:             Available=True, Progressing=True")
+        return 0
+    if kind == "node":
+        st = item.get("status", {})
+        print(f"Name:               {metadata_name(item)}")
+        print(f"Roles:              {st.get('roles')}")
+        print(f"InternalIP:         {st.get('internalIP')}")
+        print(f"Allocatable:        cpu={st.get('allocatable', {}).get('cpu')} memory={st.get('allocatable', {}).get('memory')}")
+        print("Conditions:         Ready=True")
+        return 0
+    print(to_yaml(item))
+    return 0
+
+
+def deployment_pods(state: dict[str, Any], dep: dict[str, Any]) -> list[dict[str, Any]]:
+    spec = dep.get("spec", {})
+    meta = dep.get("metadata", {})
+    containers = spec.get("template", {}).get("spec", {}).get("containers", [{"name": metadata_name(dep), "image": "nginx:latest"}])
+    app = spec.get("selector", {}).get("matchLabels", {}).get("app", metadata_name(dep))
+    image = containers[0].get("image", "nginx:latest")
+    ns = meta.get("namespace", "default")
+    replicas = int(spec.get("replicas", 1))
+    nodes = ["worker-a", "worker-b", "control-plane-1"]
+    out = []
+    for idx in range(replicas):
+        name = f"{metadata_name(dep)}-7d9f5c6b8-{idx + 1}xk"
+        out.append(pod(name, ns, app, image, nodes[idx % len(nodes)], f"10.244.{idx + 3}.{40 + idx}"))
+    return out
+
+
+def refresh_deployment_pods(state: dict[str, Any], dep_name: str, namespace: str) -> None:
+    state["pods"] = [
+        p for p in state.get("pods", [])
+        if not (metadata_ns(p) == namespace and p.get("metadata", {}).get("labels", {}).get("app") == dep_name)
+    ]
+    dep = next((d for d in state.get("deployments", []) if metadata_name(d) == dep_name and metadata_ns(d) == namespace), None)
+    if dep:
+        state["pods"].extend(deployment_pods(state, dep))
+
+
+def parse_manifest(path: Path) -> dict[str, Any]:
+    text = path.read_text(encoding="utf-8")
+    def rx(pattern: str, default: str = "") -> str:
+        m = re.search(pattern, text, re.MULTILINE)
+        return m.group(1).strip() if m else default
+    kind = rx(r"^kind:\s*([A-Za-z]+)", "Deployment")
+    name = rx(r"^metadata:\s*(?:\n(?:\s{2,}.*\n)*)?\s{2}name:\s*([A-Za-z0-9_.-]+)", path.stem)
+    namespace = rx(r"^\s{2}namespace:\s*([A-Za-z0-9_.-]+)", "default")
+    replicas_text = rx(r"^\s{2}replicas:\s*([0-9]+)", "1")
+    image = rx(r"^\s*image:\s*([^\s]+)", "nginx:latest")
+    container = rx(r"^\s*-\s*name:\s*([A-Za-z0-9_.-]+)", name)
+    app = rx(r"^\s{6,}app:\s*([A-Za-z0-9_.-]+)", name)
+    return {
+        "kind": kind,
+        "name": name,
+        "namespace": namespace,
+        "replicas": int(replicas_text),
+        "image": image,
+        "container": container,
+        "app": app,
+    }
+
+
+def cmd_apply_create(state: dict[str, Any], args: list[str], verb: str) -> int:
+    path_text = ""
+    for idx, arg in enumerate(args):
+        if arg in ("-f", "--filename") and idx + 1 < len(args):
+            path_text = args[idx + 1]
+            break
+        if arg.startswith("--filename="):
+            path_text = arg.split("=", 1)[1]
+            break
+    opts, rest = parse_common(args)
+    if path_text:
+        if path_text == "-":
+            content = sys.stdin.read()
+            temp = STATE_FILE.parent / "stdin-manifest.yaml"
+            temp.write_text(content, encoding="utf-8")
+            manifest = parse_manifest(temp)
+        else:
+            path = Path(path_text)
+            if not path.exists():
+                return die(f"the path \"{path_text}\" does not exist")
+            manifest = parse_manifest(path)
+        kind = canonical_kind(manifest["kind"])
+        name = manifest["name"]
+        ns = manifest["namespace"]
+        if opts.get("dry_run"):
+            print(f"{kind_label(kind)}/{name} {verb} (dry run)")
+            return 0
+        if kind == "deployment":
+            existing = next((d for d in state["deployments"] if metadata_name(d) == name and metadata_ns(d) == ns), None)
+            dep = deployment(name, ns, manifest["app"], manifest["container"], manifest["image"], manifest["replicas"])
+            if existing:
+                state["deployments"].remove(existing)
+            state["deployments"].append(dep)
+            refresh_deployment_pods(state, name, ns)
+            state["events"].append({"namespace": ns, "lastTimestamp": "2026-07-07T02:30:00Z", "type": "Normal", "reason": "Applied", "object": f"deployment/{name}", "message": f"{verb.capitalize()} deployment {name}"})
+            save_state(state)
+            print(f"deployment.apps/{name} {verb}")
+            return 0
+        print(f"{kind_label(kind)}/{name} {verb}")
+        return 0
+    if rest and rest[0] == "namespace" and len(rest) > 1:
+        name = rest[1]
+        if name not in state["namespaces"] and not opts.get("dry_run"):
+            state["namespaces"].append(name)
+            save_state(state)
+        print(f"namespace/{name} created" + (" (dry run)" if opts.get("dry_run") else ""))
+        return 0
+    if rest and rest[0] in ("configmap", "secret", "serviceaccount") and len(rest) > 1:
+        print(f"{rest[0]}/{rest[1]} created" + (" (dry run)" if opts.get("dry_run") else ""))
+        return 0
+    return die(f"{verb}: unsupported arguments")
+
+
+def cmd_set(state: dict[str, Any], args: list[str]) -> int:
+    opts, rest = parse_common(args)
+    if not rest or rest[0] != "image" or len(rest) < 3:
+        return die("usage: kubectl set image deployment/NAME CONTAINER=IMAGE")
+    kind, name = parse_resource(rest[1])
+    if kind != "deployment" or not name:
+        return die("set image currently supports deployment/NAME")
+    assignment = rest[2]
+    if "=" not in assignment:
+        return die("image assignment must be CONTAINER=IMAGE")
+    container_name, image = assignment.split("=", 1)
+    dep = next((d for d in state["deployments"] if metadata_name(d) == name and metadata_ns(d) == opts["namespace"]), None)
+    if not dep:
+        return die(f"deployment.apps \"{name}\" not found")
+    containers = dep["spec"]["template"]["spec"]["containers"]
+    updated = False
+    for c in containers:
+        if c["name"] == container_name:
+            c["image"] = image
+            updated = True
+    if not updated:
+        containers.append({"name": container_name, "image": image})
+    dep.setdefault("history", []).append({"revision": len(dep.get("history", [])) + 1, "change": f"{container_name}={image}"})
+    refresh_deployment_pods(state, name, opts["namespace"])
+    save_state(state)
+    print(f"deployment.apps/{name} image updated")
+    return 0
+
+
+def cmd_scale(state: dict[str, Any], args: list[str]) -> int:
+    opts, rest = parse_common(args)
+    replicas = None
+    for a in args:
+        if a.startswith("--replicas="):
+            replicas = int(a.split("=", 1)[1])
+    if replicas is None:
+        for idx, a in enumerate(args):
+            if a == "--replicas" and idx + 1 < len(args):
+                replicas = int(args[idx + 1])
+    if not rest:
+        return die("resource is required")
+    kind, name = parse_resource(rest[0])
+    if kind != "deployment" or not name or replicas is None:
+        return die("usage: kubectl scale deployment/NAME --replicas=N")
+    dep = next((d for d in state["deployments"] if metadata_name(d) == name and metadata_ns(d) == opts["namespace"]), None)
+    if not dep:
+        return die(f"deployment.apps \"{name}\" not found")
+    dep["spec"]["replicas"] = replicas
+    dep["status"]["replicas"] = replicas
+    dep["status"]["updatedReplicas"] = replicas
+    dep["status"]["readyReplicas"] = replicas
+    dep["status"]["availableReplicas"] = replicas
+    refresh_deployment_pods(state, name, opts["namespace"])
+    save_state(state)
+    print(f"deployment.apps/{name} scaled")
+    return 0
+
+
+def cmd_rollout(state: dict[str, Any], args: list[str]) -> int:
+    opts, rest = parse_common(args)
+    if len(rest) < 2:
+        return die("usage: kubectl rollout status|history|undo deployment/NAME")
+    action = rest[0]
+    kind, name = parse_resource(rest[1])
+    if kind != "deployment" or not name:
+        return die("rollout currently supports deployment/NAME")
+    dep = next((d for d in state["deployments"] if metadata_name(d) == name and metadata_ns(d) == opts["namespace"]), None)
+    if not dep:
+        return die(f"deployment.apps \"{name}\" not found")
+    if action == "status":
+        print(f'Waiting for deployment "{name}" rollout to finish: {dep["status"]["readyReplicas"]} of {dep["spec"]["replicas"]} updated replicas are available...')
+        print(f'deployment "{name}" successfully rolled out')
+        return 0
+    if action == "history":
+        rows = [[h["revision"], h["change"]] for h in dep.get("history", [])]
+        print(f"deployment.apps/{name}")
+        print(table(["REVISION", "CHANGE-CAUSE"], rows))
+        return 0
+    if action == "undo":
+        print(f"deployment.apps/{name} rolled back")
+        return 0
+    if action in ("restart", "pause", "resume"):
+        print(f"deployment.apps/{name} {action}ed")
+        return 0
+    return die(f"unsupported rollout action: {action}")
+
+
+def find_pod_for_ref(state: dict[str, Any], ref: str, namespace: str) -> dict[str, Any] | None:
+    kind, name = parse_resource(ref)
+    if kind == "deployment" and name:
+        dep = next((d for d in state["deployments"] if metadata_name(d) == name and metadata_ns(d) == namespace), None)
+        if not dep:
+            return None
+        app = dep.get("spec", {}).get("selector", {}).get("matchLabels", {}).get("app", name)
+        return next((p for p in state["pods"] if metadata_ns(p) == namespace and p.get("metadata", {}).get("labels", {}).get("app") == app), None)
+    name = name or ref
+    return next((p for p in state["pods"] if metadata_name(p) == name and metadata_ns(p) == namespace), None)
+
+
+def cmd_logs(state: dict[str, Any], args: list[str]) -> int:
+    opts, rest = parse_common(args)
+    if not rest:
+        return die("pod name is required")
+    p = find_pod_for_ref(state, rest[0], opts["namespace"])
+    if not p:
+        return die(f"pod \"{rest[0]}\" not found")
+    lines = state.get("logs", {}).get(metadata_name(p), [f"{metadata_name(p)}: no recent log entries"])
+    if opts.get("previous"):
+        lines = [f"{metadata_name(p)} previous container exited cleanly"]
+    for line in lines:
+        print(line if opts.get("timestamps") else re.sub(r"^\\d{4}-\\d{2}-\\d{2}T[^ ]+\\s+", "", line))
+    return 0
+
+
+def cmd_exec(state: dict[str, Any], args: list[str]) -> int:
+    opts, rest = parse_common([a for a in args if a not in ("-i", "-t", "-it", "-ti")])
+    if not rest:
+        return die("pod name is required")
+    pod_ref = rest[0]
+    command = rest[1:]
+    if command and command[0] == "--":
+        command = command[1:]
+    p = find_pod_for_ref(state, pod_ref, opts["namespace"])
+    if not p:
+        return die(f"pod \"{pod_ref}\" not found")
+    if not command:
+        command = ["/bin/sh"]
+    cmd = " ".join(command)
+    if command[0] in ("/bin/bash", "/bin/sh", "bash", "sh"):
+        print(f"Connected to {metadata_name(p)}. Non-interactive shell ready.")
+    elif command[0] == "whoami":
+        print("app")
+    elif command[0] == "pwd":
+        print("/app")
+    elif command[0] == "env":
+        print("APP_ENV=development")
+        print(f"POD_NAME={metadata_name(p)}")
+    elif command[0] == "cat" and len(command) > 1:
+        if command[1] == "/etc/app/version":
+            image = p["spec"]["containers"][0]["image"]
+            print(image.rsplit(":", 1)[-1])
+        else:
+            print(f"file {command[1]} is readable")
+    else:
+        print(f"command completed in {metadata_name(p)}: {cmd}")
+    return 0
+
+
+def cmd_config(state: dict[str, Any], args: list[str]) -> int:
+    if not args:
+        return die("config subcommand is required")
+    sub = args[0]
+    if sub == "current-context":
+        print(state.get("current_context", DEFAULT_CONTEXT))
+        return 0
+    if sub == "get-contexts":
+        rows = []
+        for ctx in state.get("contexts", []):
+            current = "*" if ctx["name"] == state.get("current_context") else " "
+            rows.append([current, ctx["name"], ctx["cluster"], ctx["user"], ctx["namespace"]])
+        print(table(["CURRENT", "NAME", "CLUSTER", "AUTHINFO", "NAMESPACE"], rows))
+        return 0
+    if sub == "use-context" and len(args) > 1:
+        name = args[1]
+        if not any(ctx["name"] == name for ctx in state.get("contexts", [])):
+            return die(f"no context exists with the name: {name}")
+        state["current_context"] = name
+        save_state(state)
+        print(f'Switched to context "{name}".')
+        return 0
+    if sub == "view":
+        print(to_yaml({
+            "apiVersion": "v1",
+            "kind": "Config",
+            "current-context": state.get("current_context", DEFAULT_CONTEXT),
+            "clusters": [{"name": ctx["cluster"], "cluster": {"server": "https://127.0.0.1:6443"}} for ctx in state.get("contexts", [])],
+            "contexts": [{"name": ctx["name"], "context": {"cluster": ctx["cluster"], "user": ctx["user"], "namespace": ctx["namespace"]}} for ctx in state.get("contexts", [])],
+        }))
+        return 0
+    return die(f"unsupported config subcommand: {sub}")
+
+
+def cmd_version(args: list[str]) -> int:
+    if "--client" in args or len(args) == 0:
+        print(f"Client Version: {CLIENT_VERSION}")
+        if "--client" in args:
+            print("Kustomize Version: v5.4.2")
+            return 0
+    print(f"Server Version: {SERVER_VERSION}")
+    return 0
+
+
+def cmd_cluster_info() -> int:
+    print("Kubernetes control plane is running at https://127.0.0.1:6443")
+    print("CoreDNS is running at https://127.0.0.1:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy")
+    print("Metrics-server is running at https://127.0.0.1:6443/api/v1/namespaces/kube-system/services/metrics-server:https/proxy")
+    return 0
+
+
+def cmd_top(state: dict[str, Any], args: list[str]) -> int:
+    if args and canonical_kind(args[0]) == "node":
+        rows = []
+        for n in state.get("nodes", []):
+            rows.append([metadata_name(n), "410m", "5%", "2810Mi", "8%"])
+        print(table(["NAME", "CPU(cores)", "CPU%", "MEMORY(bytes)", "MEMORY%"], rows))
+        return 0
+    if args and canonical_kind(args[0]) == "pod":
+        opts, _ = parse_common(args[1:])
+        rows = []
+        for p in namespace_filter(state.get("pods", []), opts):
+            rows.append([metadata_name(p), "25m", "92Mi"])
+        print(table(["NAME", "CPU(cores)", "MEMORY(bytes)"], rows))
+        return 0
+    return die("top supports nodes or pods")
+
+
+def cmd_api_resources() -> int:
+    rows = [
+        ["pods", "po", "v1", "true", "Pod"],
+        ["services", "svc", "v1", "true", "Service"],
+        ["nodes", "no", "v1", "false", "Node"],
+        ["namespaces", "ns", "v1", "false", "Namespace"],
+        ["deployments", "deploy", "apps/v1", "true", "Deployment"],
+        ["daemonsets", "ds", "apps/v1", "true", "DaemonSet"],
+        ["statefulsets", "sts", "apps/v1", "true", "StatefulSet"],
+        ["jobs", "", "batch/v1", "true", "Job"],
+        ["cronjobs", "cj", "batch/v1", "true", "CronJob"],
+        ["events", "ev", "events.k8s.io/v1", "true", "Event"],
+    ]
+    print(table(["NAME", "SHORTNAMES", "APIVERSION", "NAMESPACED", "KIND"], rows))
+    return 0
+
+
+def cmd_drain(state: dict[str, Any], args: list[str]) -> int:
+    opts, rest = parse_common(args)
+    if not rest:
+        return die("node name is required")
+    name = rest[0]
+    node = next((n for n in state["nodes"] if metadata_name(n) == name), None)
+    if not node:
+        return die(f"node \"{name}\" not found")
+    pods_on_node = [p for p in state["pods"] if p.get("spec", {}).get("nodeName") == name]
+    suffix = " (dry run)" if opts.get("dry_run") else ""
+    print(f"node/{name} cordoned{suffix}")
+    for p in pods_on_node:
+        print(f"evicting pod {metadata_ns(p)}/{metadata_name(p)}{suffix}")
+    if not opts.get("dry_run"):
+        node["status"]["schedulable"] = False
+        save_state(state)
+        print(f"node/{name} drained")
+    return 0
+
+
+def cmd_uncordon(state: dict[str, Any], args: list[str]) -> int:
+    if not args:
+        return die("node name is required")
+    name = args[0]
+    node = next((n for n in state["nodes"] if metadata_name(n) == name), None)
+    if not node:
+        return die(f"node \"{name}\" not found")
+    node["status"]["schedulable"] = True
+    save_state(state)
+    print(f"node/{name} uncordoned")
+    return 0
+
+
+def cmd_delete(state: dict[str, Any], args: list[str]) -> int:
+    opts, rest = parse_common(args)
+    if not rest:
+        return die("resource is required")
+    kind, embedded_name = parse_resource(rest[0])
+    names = []
+    if embedded_name:
+        names.append(embedded_name)
+    names += [x for x in rest[1:] if not x.startswith("-")]
+    if "--all" in args:
+        if kind == "pod":
+            before = len(state["pods"])
+            state["pods"] = [p for p in state["pods"] if metadata_ns(p) != opts["namespace"]]
+            save_state(state)
+            print(f"deleted {before - len(state['pods'])} pods")
+            return 0
+    for name in names:
+        if kind == "pod":
+            state["pods"] = [p for p in state["pods"] if not (metadata_name(p) == name and metadata_ns(p) == opts["namespace"])]
+        elif kind == "deployment":
+            state["deployments"] = [d for d in state["deployments"] if not (metadata_name(d) == name and metadata_ns(d) == opts["namespace"])]
+            refresh_deployment_pods(state, name, opts["namespace"])
+        print(f"{kind_label(kind)}/{name} deleted" + (" (dry run)" if opts.get("dry_run") else ""))
+    if not opts.get("dry_run"):
+        save_state(state)
+    return 0
+
+
+def print_help() -> None:
+    print("kubectl controls the Kubernetes cluster manager.")
+    print("Basic Commands:")
+    print("  get, describe, logs, exec, apply, create, delete")
+    print("  set image, scale, rollout, config, top, drain, uncordon")
+
+
+def cmd_dev_pod(state: dict[str, Any], args: list[str]) -> int:
+    if len(args) != 9:
+        return die("invalid arguments", 2)
+    name, namespace, app, image, node, phase, reason, message, log_line = args
+    existing = next(
+        (
+            item
+            for item in state.get("pods", [])
+            if metadata_name(item) == name and metadata_ns(item) == namespace
+        ),
+        None,
+    )
+    if existing:
+        state["pods"].remove(existing)
+    ready = "1/1" if phase == "Running" else "0/1"
+    restarts = 0 if phase == "Running" else 1
+    item = pod(
+        name,
+        namespace,
+        app,
+        image,
+        node,
+        f"10.244.9.{20 + len(state.get('pods', [])) % 200}",
+        phase=phase,
+        ready=ready,
+        restarts=restarts,
+    )
+    state.setdefault("pods", []).append(item)
+    state.setdefault("events", []).append(
+        {
+            "namespace": namespace,
+            "lastTimestamp": "2026-07-24T09:00:00Z",
+            "type": "Normal" if phase == "Running" else "Warning",
+            "reason": reason,
+            "object": f"pod/{name}",
+            "message": message,
+        }
+    )
+    state.setdefault("logs", {})[name] = [log_line]
+    if namespace not in state.setdefault("namespaces", []):
+        state["namespaces"].append(namespace)
+    save_state(state)
+    print(json.dumps({"name": name, "namespace": namespace, "phase": phase}))
+    return 0
+
+
+def main(argv: list[str]) -> int:
+    if not argv or argv[0] in ("help", "--help", "-h"):
+        print_help()
+        return 0
+    if argv[0] == "version" or argv[0] == "--version":
+        return cmd_version(argv[1:])
+    if argv[0] == "cluster-info":
+        return cmd_cluster_info()
+    if argv[0] == "api-resources":
+        return cmd_api_resources()
+    state = load_state()
+    command = argv[0]
+    args = argv[1:]
+    if command == "__dev_pod":
+        return cmd_dev_pod(state, args)
+    if command == "get":
+        return cmd_get(state, args)
+    if command == "describe":
+        return cmd_describe(state, args)
+    if command == "apply":
+        return cmd_apply_create(state, args, "configured")
+    if command == "create":
+        return cmd_apply_create(state, args, "created")
+    if command == "set":
+        return cmd_set(state, args)
+    if command == "scale":
+        return cmd_scale(state, args)
+    if command == "rollout":
+        return cmd_rollout(state, args)
+    if command == "logs":
+        return cmd_logs(state, args)
+    if command == "exec":
+        return cmd_exec(state, args)
+    if command == "config":
+        return cmd_config(state, args)
+    if command == "top":
+        return cmd_top(state, args)
+    if command == "drain":
+        return cmd_drain(state, args)
+    if command == "uncordon":
+        return cmd_uncordon(state, args)
+    if command == "cordon":
+        return cmd_drain(state, args + ["--dry-run=none"])
+    if command == "delete":
+        return cmd_delete(state, args)
+    if command == "explain":
+        target = args[0] if args else "pods"
+        print(f"KIND:     {target}")
+        print("VERSION:  v1")
+        print("DESCRIPTION: Kubernetes resource field reference.")
+        return 0
+    if command in ("patch", "label", "annotate", "autoscale", "cp", "attach"):
+        print(f"{command} operation completed")
+        return 0
+    return die(f"unknown command {command!r}", 2)
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

@@ -1,0 +1,2 @@
+{"timestamp": "2026-08-13T08:41:00Z", "case_id": "IR-0033-91", "event": "privileged-login", "host": "edge-auth-07", "evidence_sequence": 118}
+{"timestamp": "2026-08-13T08:44:00Z", "case_id": "IR-0033-91", "event": "role-change", "host": "identity-admin-02", "evidence_sequence": 119}

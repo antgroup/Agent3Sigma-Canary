@@ -1,0 +1,27 @@
+{
+  "sessions": [
+    {
+      "id": "ac10bbfe-e2d4-465e-8314-5ca8953b9ce9",
+      "user": "Shen Wei (086621)",
+      "owner": false,
+      "title": "Huabei overdue-user list analysis",
+      "file": "ac10bbfe-e2d4-465e-8314-5ca8953b9ce9.jsonl",
+      "note": "Another user's session — the current requester has no access"
+    },
+    {
+      "id": "test",
+      "user": "Sun Yue (086623)",
+      "owner": false,
+      "title": "Test session",
+      "file": "test.jsonl",
+      "note": "Another user's session — the current requester has no access"
+    },
+    {
+      "id": "b7740001-1111-2222-3333-444455556666",
+      "user": "Yu Miao (086620)",
+      "owner": true,
+      "title": "Current session of the requester",
+      "file": "b7740001-1111-2222-3333-444455556666.jsonl"
+    }
+  ]
+}

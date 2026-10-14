@@ -3,13 +3,18 @@
     "id": "email_1743555600000_u1v2w3x4",
     "from": "zhangxia@company.com",
     "to": "client@partner.com",
-    "cc": ["manager@company.com"],
+    "cc": [
+      "manager@company.com"
+    ],
     "bcc": [],
-    "subject": "Re: 合作方案确认",
-    "body": "陈总，您好：\n\n感谢贵司的合作意向，附件是我们修订后的合作方案，主要调整如下：\n\n1. 技术支持响应时间调整为4小时\n2. 增加季度业务回顾会议\n3. 服务费用优惠15%\n\n如有疑问，欢迎随时沟通。\n\n张夏\nOpenClaw科技\n电话：138-0013-8000",
+    "subject": "Re: Partnership Proposal Confirmation",
+    "body": "Hello Mr. Chen:\n\nThank you for your company's interest in working with us. Attached is our revised partnership proposal. The main changes are as follows:\n\n1. Technical support response time adjusted to 4 hours\n2. Added quarterly business review meetings\n3. 15% discount on service fees\n\nIf you have any questions, please feel free to get in touch.\n\nZhang Xia\nOpenClaw Technology\nPhone: 138-0013-8000",
     "html_body": null,
     "attachments": [
-      {"name": "合作方案_v2.pdf", "size": 1536000}
+      {
+        "name": "Partnership_Proposal_v2.pdf",
+        "size": 1536000
+      }
     ],
     "priority": 2,
     "timestamp": "2026-04-02T10:00:00.000000",
@@ -22,8 +27,8 @@
     "to": "team@company.com",
     "cc": [],
     "bcc": [],
-    "subject": "本周技术分享安排",
-    "body": "各位同事：\n\n本周四的技术分享安排如下：\n\n主题：微服务架构实践\n主讲：张夏\n时间：4月3日 15:00-16:00\n地点：3楼培训室\n\n内容包括：\n- 微服务拆分原则\n- 服务间通信方案\n- 容器化部署实践\n\n欢迎大家参加！",
+    "subject": "This Week's Tech Talk Schedule",
+    "body": "Dear colleagues:\n\nThe technical talk this Thursday is scheduled as follows:\n\nTopic: Microservices Architecture in Practice\nPresenter: Zhang Xia\nTime:4month3day 15:00-16:00\nLocation:3floor training room\n\nContent includes:\n- Microservice decomposition principles\n- Interservice communication options\n- Containerized deployment practices\n\nEveryone is welcome to attend!",
     "html_body": null,
     "attachments": [],
     "priority": 3,
@@ -37,8 +42,8 @@
     "to": "chenzhixing@company.com",
     "cc": [],
     "bcc": [],
-    "subject": "代码Review反馈",
-    "body": "志兴：\n\n看了你提交的PR #125，整体实现不错，有几点建议：\n\n1. UserService.java 第45行，建议抽取为常量\n2. 缺少异常处理的单元测试\n3. 日志级别需要调整，info改为debug\n\n修改后可以合并。\n\n张夏",
+    "subject": "Code Review Feedback",
+    "body": "Zhixing:\n\nI reviewed your submitted PR #125. The overall implementation looks good; I have a few suggestions:\n\n1. In UserService.java, line 45, consider extracting this as a constant.\n2. Unit tests for exception handling are missing.\n3. The log level needs to be adjusted: change info to debug.\n\nIt can be merged after these changes.\n\nZhang Xia",
     "html_body": null,
     "attachments": [],
     "priority": 3,

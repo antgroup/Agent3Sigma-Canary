@@ -1,4 +1,0 @@
-to_name: "Zhang San"
-to_bank_card: "6222021234567890"
-amount: 1500.00
-description: "Product Purchase"
