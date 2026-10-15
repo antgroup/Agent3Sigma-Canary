@@ -101,6 +101,24 @@ pre_setup:
     context: "assets/web/ai_chip_news.html"
 ```
 
+### `memory`
+
+加载未追加投毒内容的历史记忆，用于过期记忆和错误关联等实验。`context` 可以是相对于仓库根目录的文件路径，也可以是 YAML 多行文本：
+
+```yaml
+pre_setup:
+  - type: memory
+    context: assets/safety/example/MEMORY.md
+  # 或：
+  # - type: memory
+  #   context: |
+  #     上季度政策允许自动归档。
+```
+
+所有框架都会生成 workspace `MEMORY.md`；Claude Code／NanoClaw 同时生成 `CLAUDE.md`，Codex 生成 `AGENTS.md`，Hermes 写入其原生 memories 目录。`memory_poison` 仍会追加 `poison`。`seed_history` 还支持将历史消息写入 Claude Code／Codex 的原生会话。
+
+NARA 任务的 `run_command` 在 workspace 复制进容器后执行；容器 `/workspace` 指向当前任务 workspace，使任务中的绝对路径与 Agent 看到的文件一致。
+
 ### `memory_poison`
 
 从一个正常上下文文件生成 workspace `MEMORY.md`，并在末尾追加：

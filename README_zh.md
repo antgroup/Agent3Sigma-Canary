@@ -147,6 +147,15 @@ bash workflow/workflow_step_1_image_builder.sh
 > **提示**
 > 如果你因为网络问题需要使用 HTTP 代理来构建 Docker，请参考 [docs/docker_proxy_zh.md](docs/docker_proxy_zh.md) 文档。
 
+支持通过同一个构建入口选择新框架、OpenClaw 版本和共享研究工具层：
+
+```bash
+bash workflow/workflow_step_1_image_builder.sh --images official,official_shield --openclaw-version 2026.7.1-2 --safety-research --non-interactive
+bash workflow/workflow_step_1_image_builder.sh --images claude_code,codex --safety-research --non-interactive
+```
+
+不指定 `--safety-research` 时沿用基础工具环境；OpenClaw 默认版本仍为 `2026.4.11`。`--prepare-only` 只生成构建上下文，`--resume <workspace>` 恢复构建。完整选项和原生 CLI 接口要求见 [workflow 说明](workflow/README.md)。
+
 ### 4. 运行评测
 
 **基本用法：**
@@ -166,6 +175,10 @@ export DOCKER_IMAGE=openclaw-official-v20260430_120000
 
 | 参数 | 说明 | 示例 |
 |------|------|------|
+| `--effort` | 目标 Agent 的推理强度，按框架转发 | `--effort high` |
+| `--trajectory-only` | 跳过所有评分，保存轨迹与未评分结果 | `--trajectory-only` |
+| `--validate-tasks` | 检查任务输入，不需要模型或 Docker | `--suite NARA-Bench --validate-tasks` |
+| `--task-ids` | 在已选套件内按完整 ID 筛选，并行分片也使用此参数 | `--task-ids task_0001_example,task_0002_example` |
 | `--model` | 被测模型（provider-id/model-id） | `--model anthropic/claude-sonnet-4` |
 | `--suite` | 测试套件 | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `safety`, `all`, 或逗号分隔的 task ID |
 | `--docker` | 在 Docker 容器中运行 | `--docker` |
@@ -199,6 +212,24 @@ vim batch_run/batch_config.sh
 # 限制最大并行数
 MAX_PARALLEL=4 ./batch_run/direct.sh
 ```
+
+### NARA-Bench 任务集
+
+从远程 NARA-Bench 提交 `24f9837` 引入 1,800 个任务，覆盖 6 类非对抗性风险、12 个业务领域；保留原有评测套件。`--suite` 支持 `NARA-Bench`、`tasks/NARA-Bench` 以及任意任务子目录，例如 `NARA-Bench/outdated_memory`。
+
+```bash
+./scripts/run.sh --suite tasks/NARA-Bench --validate-tasks
+./scripts/run.sh --model <provider>/<model> --suite tasks/NARA-Bench --docker --effort high
+./scripts/run.sh --model <provider>/<model> --suite NARA-Bench/outdated_memory --docker --trajectory-only
+
+# 多进程分片；每个进程使用独立容器，结果保存在 shard_000 等子目录。
+source env.sh
+uv run python scripts/benchmark_parallel.py --workers 4 --model <provider>/<model> --suite tasks/NARA-Bench --docker
+```
+
+**公开快照存在资源缺口：**当前任务输入预检发现 1,710 个任务缺少输入文件，需要补充原始 `assets/safety` 数据；运行器会在启动评测前报错。53 个任务使用尚未实现的 `llm_reflection`，会保留为未评分结果。没有用生成内容代替缺失数据，也没有把未评分结果当作零分。
+
+`--trajectory-only` 不调用 Judge，输出 `trajectories/job_*/trajectory_*.json`，同时保留原有结果与完整 transcript；不能与需要 Judge 的 PAIR 攻击同时使用。评分仍遵循各任务自己的 rubric，以兼容已有套件。新增 `pre_setup: memory` 支持记忆文件路径或多行内嵌文本，详见 [pre_setup 文档](docs/pre_setup_zh.md)。
 
 ### 5. 查看结果
 

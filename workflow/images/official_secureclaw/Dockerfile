@@ -26,7 +26,12 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
 # Install OpenClaw globally
-RUN npm install -g openclaw@2026.4.11 --unsafe-perm
+ARG OPENCLAW_VERSION=2026.4.11
+RUN if [ "$OPENCLAW_VERSION" = "2026.4.11" ]; then \
+        npm install -g "openclaw@${OPENCLAW_VERSION}" --unsafe-perm; \
+    else \
+        npm install -g "openclaw@${OPENCLAW_VERSION}" --unsafe-perm --ignore-scripts; \
+    fi
 
 # Copy the OpenClaw config; skills are injected per task by the runner.
 RUN mkdir -p /root/.openclaw/skills

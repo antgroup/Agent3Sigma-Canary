@@ -35,6 +35,16 @@ STATE_PATH = OPENCLAW_HOME / "shim_state.json"
 HERMES_RUNNER = "/opt/hermes-agent/run_agent.py"
 
 
+def _build_reasoning_config(thinking: str | None) -> Dict[str, Any] | None:
+    """Build Hermes' provider-aware reasoning override."""
+    if not thinking:
+        return None
+    return {
+        "enabled": thinking not in ("off", "none"),
+        "effort": thinking,
+    }
+
+
 def _load_state() -> Dict[str, Any]:
     if STATE_PATH.exists():
         try:
@@ -234,6 +244,8 @@ def cmd_agent_invoke(args: argparse.Namespace) -> None:
     except Exception:
         shim_dir = "/tmp"  # fallback if /run not writable (shouldn't happen in container)
     result_path = f"{shim_dir}/hermes_result_{args.session_id or uuid.uuid4().hex}.json"
+    reasoning_config = _build_reasoning_config(args.thinking)
+
     driver = f"""
 import json, os, sys
 sys.path.insert(0, '/opt/hermes-agent')
@@ -251,6 +263,7 @@ agent = AIAgent(
     save_trajectories=False,
     verbose_logging=False,
     log_prefix_chars=20,
+    reasoning_config={reasoning_config!r},
 )
 result = agent.run_conversation({json.dumps(args.message)})
 payload = {{
@@ -337,6 +350,7 @@ def main() -> None:
     agent_cmd.add_argument("--agent", required=True)
     agent_cmd.add_argument("--session-id", required=True)
     agent_cmd.add_argument("--message", required=True)
+    agent_cmd.add_argument("--thinking")
 
     args, _ = parser.parse_known_args()
     if args.cmd == "agents":

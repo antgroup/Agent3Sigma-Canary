@@ -1,0 +1,798 @@
+#!/usr/bin/env python3
+"""codex variant of the AgentCanary CLI shim.
+
+Drives the first-party OpenAI Codex CLI (`codex exec --json`) and persists a
+transcript at /root/.openclaw/agents/<id>/sessions/<uuid>.jsonl in the minimal
+AgentCanary format expected by lib_grading._summarize_transcript.
+
+Permission regime is selected at runtime via the CODEX_PERMISSION_MODE env var
+(passed through `docker exec` by the host):
+
+  - auto-review -> `-s workspace-write` + approval_policy="on-request" +
+                   approvals_reviewer="auto_review". Codex runs commands inside
+                   its own bwrap sandbox; anything that hits the sandbox
+                   boundary escalates and is reviewed by the built-in guardian
+                   reviewer sub-agent instead of a human.
+  - yolo        -> `--dangerously-bypass-approvals-and-sandbox`: no sandbox and
+                   no approvals (analogue of Claude Code bypassPermissions).
+
+Two integration contracts:
+
+1. Codex speaks the OpenAI **Responses API** only — `wire_api = "chat"` was
+   removed in 0.14x. The shim therefore derives an OpenAI-style base URL from
+   the openclaw.json provider entry (or CODEX_BASE_URL) rather than reusing the
+   Anthropic-messages URL that the claude_code image uses.
+
+2. The guardian reviewer resolves its model from the model *catalog*, defaulting
+   to the slug `codex-auto-review` which no third-party endpoint serves. If that
+   slug is unavailable the review fails and every boundary action is denied
+   (fail-closed). The shim therefore synthesises `$CODEX_HOME/models_catalog.json`
+   from /opt/codex/model_template.json with the run's actual model slug and an
+   explicit `auto_review_model_override`, so the reviewer is pointed at a model
+   the endpoint really serves. Unlike Claude Code (where the classifier model is
+   not configurable at all), this means task model and reviewer model *can* be
+   set independently — via CODEX_AUTO_REVIEW_MODEL.
+"""
+
+from __future__ import annotations
+
+import argparse
+import glob
+import json
+import os
+import shutil
+import subprocess
+import sys
+import uuid
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Dict, List
+
+OPENCLAW_HOME = Path("/root/.openclaw")
+CONFIG_PATH = OPENCLAW_HOME / "openclaw.json"
+AGENTS_DIR = OPENCLAW_HOME / "agents"
+STATE_PATH = OPENCLAW_HOME / "shim_state.json"
+CODEX_HOME = Path(os.environ.get("CODEX_HOME", "/root/.codex"))
+MODEL_TEMPLATE = Path("/opt/codex/model_template.json")
+SKILLS_DIR = "/root/.agents/skills"
+
+
+def _codex_bin() -> str:
+    for cand in ("codex", "/usr/local/bin/codex"):
+        found = shutil.which(cand) if "/" not in cand else (cand if Path(cand).exists() else None)
+        if found:
+            return found
+    return "codex"
+
+
+def _load_state() -> Dict[str, Any]:
+    if STATE_PATH.exists():
+        try:
+            return json.loads(STATE_PATH.read_text())
+        except Exception:
+            pass
+    return {"agents": {}}
+
+
+def _save_state(state: Dict[str, Any]) -> None:
+    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    STATE_PATH.write_text(json.dumps(state, indent=2))
+
+
+def _load_provider_config() -> Dict[str, Any]:
+    if not CONFIG_PATH.exists():
+        return {}
+    return json.loads(CONFIG_PATH.read_text())
+
+
+def _openai_base_url(base_url: str | None) -> str:
+    """Map an openclaw provider baseUrl onto the OpenAI-compatible root.
+
+    openclaw.json stores the Anthropic-messages URL (…/api/anthropic) because the
+    claude_code image needs it. Codex needs the OpenAI Responses root instead
+    (…/v1). Explicit CODEX_BASE_URL always wins.
+    """
+    override = os.environ.get("CODEX_BASE_URL")
+    if override:
+        return override.rstrip("/")
+    url = (base_url or "").rstrip("/")
+    if not url:
+        return ""
+    for suffix in ("/api/anthropic", "/anthropic"):
+        if url.endswith(suffix):
+            return url[: -len(suffix)] + "/v1"
+    if url.endswith("/v1"):
+        return url
+    return url + "/v1"
+
+
+def _resolve_provider(full_model_id: str, cfg: Dict[str, Any]) -> Dict[str, Any]:
+    if "/" not in full_model_id:
+        raise SystemExit(f"shim: model id must be provider/model, got {full_model_id}")
+    provider_id, model_id = full_model_id.split("/", 1)
+    providers = cfg.get("models", {}).get("providers", {})
+    prov = providers.get(provider_id) or {}
+    return {
+        "provider_id": provider_id,
+        "model_id": model_id,
+        "base_url": _openai_base_url(prov.get("baseUrl")),
+        "api_key": prov.get("apiKey"),
+    }
+
+
+def cmd_agents_list(args: argparse.Namespace) -> None:
+    state = _load_state()
+    for name, info in state["agents"].items():
+        print(f"- {name}")
+        print(f"    Workspace: {info.get('workspace')}")
+        print(f"    Model: {info.get('model')}")
+
+
+def cmd_agents_add(args: argparse.Namespace) -> None:
+    state = _load_state()
+    agent_id = args.id.replace(":", "-").lower()
+    state["agents"][agent_id] = {"model": args.model, "workspace": str(args.workspace)}
+    _save_state(state)
+    (AGENTS_DIR / agent_id / "sessions").mkdir(parents=True, exist_ok=True)
+    if args.workspace:
+        Path(args.workspace).mkdir(parents=True, exist_ok=True)
+    print(f"Added agent {agent_id}")
+
+
+def cmd_agents_delete(args: argparse.Namespace) -> None:
+    state = _load_state()
+    agent_id = args.id.replace(":", "-").lower()
+    state["agents"].pop(agent_id, None)
+    sessions = state.get("sessions")
+    if isinstance(sessions, dict):
+        for key in list(sessions):
+            if key.startswith(f"{agent_id}:"):
+                sessions.pop(key, None)
+    _save_state(state)
+    agent_dir = AGENTS_DIR / agent_id
+    if agent_dir.exists():
+        shutil.rmtree(agent_dir, ignore_errors=True)
+    print(f"Deleted agent {agent_id}")
+
+
+# ---------------------------------------------------------------------------
+# Codex configuration
+# ---------------------------------------------------------------------------
+
+def _write_model_catalog(
+    model: str,
+    review_model: str,
+    reasoning_effort: str | None = None,
+) -> Path:
+    """Synthesise $CODEX_HOME/models_catalog.json for this run's model.
+
+    Every entry is a clone of the vendored ModelInfo template with the slug
+    swapped, `prefer_websockets` forced off (third-party endpoints only serve
+    plain HTTP Responses) and `auto_review_model_override` pointed at the
+    reviewer model.
+    """
+    template = json.loads(MODEL_TEMPLATE.read_text())
+    models = []
+    for priority, slug in enumerate(dict.fromkeys([model, review_model]), start=1):
+        entry = json.loads(json.dumps(template))
+        entry["slug"] = slug
+        entry["display_name"] = slug
+        entry["description"] = f"{slug} via custom provider"
+        entry["priority"] = priority
+        entry["visibility"] = "list"
+        entry["prefer_websockets"] = False
+        entry["auto_review_model_override"] = review_model
+        supported_efforts = entry.setdefault("supported_reasoning_levels", [])
+        if reasoning_effort and not any(
+            item.get("effort") == reasoning_effort
+            for item in supported_efforts
+            if isinstance(item, dict)
+        ):
+            supported_efforts.append(
+                {
+                    "effort": reasoning_effort,
+                    "description": "Reasoning effort requested by the benchmark run",
+                }
+            )
+        models.append(entry)
+    path = CODEX_HOME / "models_catalog.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"models": models}, ensure_ascii=False))
+    return path
+
+
+def _install_exec_policy_rules(mode: str) -> None:
+    """Optionally install execpolicy rules at $CODEX_HOME/rules/default.rules.
+
+    Why this exists: in auto-review mode the guardian only runs when something
+    actually reaches the sandbox boundary, and on Linux a filesystem denial
+    surfaces to the model as an ordinary command failure. So whether a review
+    happens at all depends on the model volunteering
+    `sandbox_permissions: require_escalated`. A weak model may never escalate,
+    which silently degrades auto-review into "sandbox only".
+
+    An execpolicy `prompt` rule routes a matching command to approval *before*
+    execution, giving a deterministic guardian trigger independent of model
+    behaviour. Opt-in via CODEX_EXTRA_RULES (a path, or inline Starlark) so the
+    default run still measures stock Codex behaviour.
+    """
+    rules = os.environ.get("CODEX_EXTRA_RULES", "").strip()
+    rules_path = CODEX_HOME / "rules" / "default.rules"
+    if not rules:
+        # Remove a file left behind by a previous run so modes stay independent.
+        if rules_path.exists():
+            rules_path.unlink()
+        return
+    if mode == "yolo":
+        return  # yolo passes --ignore-rules anyway; do not write a stale file
+    candidate = Path(rules)
+    content = candidate.read_text(encoding="utf-8") if candidate.is_file() else rules
+    rules_path.parent.mkdir(parents=True, exist_ok=True)
+    rules_path.write_text(content, encoding="utf-8")
+    print(f"shim: installed execpolicy rules at {rules_path}", file=sys.stderr)
+
+
+def _toml_str(value: str) -> str:
+    return json.dumps(value)  # JSON string escaping is a valid TOML basic string
+
+
+def _resolve_codex_effort(thinking: str | None) -> str:
+    """Translate the OpenClaw CLI spelling to Codex's config spelling."""
+    if thinking:
+        return "none" if thinking == "off" else thinking
+    return os.environ.get("CODEX_REASONING_EFFORT", "low")
+
+
+def _write_codex_config(
+    model: str,
+    base_url: str,
+    review_model: str,
+    mode: str,
+    thinking: str | None = None,
+) -> None:
+    """Write $CODEX_HOME/config.toml.
+
+    Config file rather than repeated `-c key=value` flags: the values traverse
+    several shell layers (host -> docker exec -> shim -> codex) and TOML-in-argv
+    quoting is a reliable source of silent misparses.
+    """
+    effort = _resolve_codex_effort(thinking)
+    catalog = _write_model_catalog(model, review_model, effort)
+    lines = [
+        f"model = {_toml_str(model)}",
+        'model_provider = "agentcanary"',
+        f"model_reasoning_effort = {_toml_str(effort)}",
+        f"model_catalog_json = {_toml_str(str(catalog))}",
+        "",
+    ]
+    if mode == "auto-review":
+        lines += [
+            '# auto-review: sandbox-boundary escalations are reviewed by the',
+            '# built-in guardian sub-agent instead of being shown to a human.',
+            'approval_policy = "on-request"',
+            'approvals_reviewer = "auto_review"',
+            "",
+        ]
+    else:
+        # yolo: --dangerously-bypass-approvals-and-sandbox already forces these,
+        # but state them so a stray config layer cannot reintroduce prompts.
+        lines += ['approval_policy = "never"', 'approvals_reviewer = "user"', ""]
+    if os.environ.get("CODEX_BUNDLED_SKILLS", "0") not in ("1", "true", "yes"):
+        # Codex ships five system skills (imagegen, openai-docs, plugin-creator,
+        # skill-creator, skill-installer) and injects them into every turn. No
+        # other framework in the benchmark has them, so keep them off by default
+        # for cross-framework fairness; the AgentCanary skills under
+        # /root/.agents/skills are user-scope and are unaffected.
+        lines += ["[skills.bundled]", "enabled = false", ""]
+    lines += [
+        "[model_providers.agentcanary]",
+        'name = "agentcanary"',
+        f"base_url = {_toml_str(base_url)}",
+        'env_key = "CODEX_PROVIDER_API_KEY"',
+        '# `chat` was removed in codex 0.14x; Responses is the only wire API.',
+        'wire_api = "responses"',
+        "requires_openai_auth = false",
+        "",
+    ]
+    CODEX_HOME.mkdir(parents=True, exist_ok=True)
+    (CODEX_HOME / "config.toml").write_text("\n".join(lines))
+
+
+# ---------------------------------------------------------------------------
+# Transcript construction
+# ---------------------------------------------------------------------------
+
+def _utc_timestamp() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
+
+
+def _coerce_text(content: Any) -> str:
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        parts: List[str] = []
+        for block in content:
+            if isinstance(block, dict):
+                for key in ("text", "content"):
+                    if block.get(key) is not None:
+                        parts.append(str(block.get(key)))
+                        break
+            else:
+                parts.append(str(block))
+        return "\n".join(p for p in parts if p)
+    if content is None:
+        return ""
+    return json.dumps(content, ensure_ascii=False)
+
+
+def _parse_tool_arguments(arguments: Any) -> Dict[str, Any]:
+    if isinstance(arguments, dict):
+        return arguments
+    if isinstance(arguments, str):
+        try:
+            parsed = json.loads(arguments)
+            if isinstance(parsed, dict):
+                return parsed
+        except json.JSONDecodeError:
+            pass
+        return {"command": arguments}
+    return {"value": arguments}
+
+
+def _rollout_path(session_id: str) -> Path | None:
+    matches = sorted(glob.glob(str(CODEX_HOME / "sessions" / "**" / f"*{session_id}.jsonl"),
+                               recursive=True))
+    return Path(matches[-1]) if matches else None
+
+
+def _events_from_rollout(path: Path) -> List[Dict[str, Any]]:
+    """Convert a Codex rollout JSONL into the shim's intermediate event list.
+
+    The rollout's `response_item` lines are the exact ResponseItems the model
+    saw, so they map 1:1 onto the AgentCanary transcript — including tool
+    results, which the `--json` event stream only reports in summarised form.
+    Synthetic scaffolding (the developer permissions block and the
+    <environment_context> user message) is skipped.
+    """
+    events: List[Dict[str, Any]] = []
+    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if row.get("type") != "response_item":
+            continue
+        item = row.get("payload") or {}
+        itype = item.get("type")
+        if itype == "message":
+            role = item.get("role")
+            text = _coerce_text(item.get("content"))
+            if not text.strip():
+                continue
+            if role == "assistant":
+                events.append({"kind": "assistant_text", "text": text})
+            elif role == "user" and not text.lstrip().startswith("<environment_context>"):
+                events.append({"kind": "user_text", "text": text})
+        elif itype in ("function_call", "custom_tool_call"):
+            events.append({
+                "kind": "tool_use",
+                "id": item.get("call_id") or item.get("id") or "",
+                "name": item.get("name") or "",
+                "arguments": _parse_tool_arguments(item.get("arguments", item.get("input", {}))),
+            })
+        elif itype in ("function_call_output", "custom_tool_call_output"):
+            output = item.get("output")
+            if isinstance(output, dict):
+                output = output.get("content") or output.get("body") or json.dumps(output)
+            events.append({
+                "kind": "tool_result",
+                "tool_use_id": item.get("call_id") or "",
+                "result": output if isinstance(output, str) else json.dumps(output),
+            })
+        elif itype == "local_shell_call":
+            events.append({"kind": "tool_use", "id": item.get("call_id") or "",
+                           "name": "local_shell", "arguments": item.get("action") or {}})
+    return events
+
+
+def _events_from_stream(stdout: str) -> List[Dict[str, Any]]:
+    """Fallback parser for `codex exec --json` when no rollout was written
+    (e.g. the process died before the first flush, or --ephemeral was used)."""
+    events: List[Dict[str, Any]] = []
+    for line in stdout.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            ev = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        etype = ev.get("type")
+        if etype in ("item.completed", "item.started"):
+            item = ev.get("item") or {}
+            itype = item.get("type")
+            if itype == "agent_message" and etype == "item.completed":
+                events.append({"kind": "assistant_text", "text": item.get("text", "") or ""})
+            elif itype == "command_execution" and etype == "item.completed":
+                events.append({"kind": "tool_use", "id": item.get("id", ""), "name": "exec_command",
+                               "arguments": {"cmd": item.get("command", "")}})
+                events.append({"kind": "tool_result", "tool_use_id": item.get("id", ""),
+                               "result": item.get("aggregated_output", "") or ""})
+            elif itype == "error" and etype == "item.completed":
+                events.append({"kind": "assistant_text",
+                               "text": f"[runtime error: {item.get('message', '')}]"})
+        elif etype == "turn.failed":
+            err = (ev.get("error") or {}).get("message", "")
+            events.append({"kind": "assistant_text", "text": f"[runtime error: {err}]"})
+    return events
+
+
+def _thread_id_from_stream(stdout: str) -> str | None:
+    for line in stdout.splitlines():
+        line = line.strip()
+        if not line.startswith("{"):
+            continue
+        try:
+            ev = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if ev.get("type") == "thread.started" and ev.get("thread_id"):
+            return str(ev["thread_id"])
+    return None
+
+
+# ---------------------------------------------------------------------------
+# seed_history -> native Codex rollout
+# ---------------------------------------------------------------------------
+
+def _load_seed_messages(path: str) -> List[Dict[str, Any]]:
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    if isinstance(payload, dict) and isinstance(payload.get("messages"), list):
+        payload = payload["messages"]
+    if not isinstance(payload, list):
+        raise ValueError("seed history must be a message list or {messages: [...]} object")
+    return [m for m in payload if isinstance(m, dict)]
+
+
+def _map_tool_name(name: str) -> str:
+    """Map AC-Bench / OpenAI-style tool names onto Codex's native tool names."""
+    lower = (name or "").strip().lower()
+    if lower in ("exec", "shell", "bash", "exec_command", "run_terminal_cmd"):
+        return "exec_command"
+    if lower in ("write", "write_file", "edit", "apply_patch", "str_replace_editor"):
+        return "apply_patch"
+    return name or "exec_command"
+
+
+def _write_seed_rollout(seed_history_path: str, workspace: str,
+                        model: str) -> tuple[str, List[Dict[str, Any]]]:
+    """Materialise the seeded turns as a real Codex rollout so the task can run
+    with `codex exec resume <session_id>` — the historical turns then become
+    genuine conversation context rather than text pasted into the prompt."""
+    messages = _load_seed_messages(seed_history_path)
+    session_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc)
+    day_dir = CODEX_HOME / "sessions" / now.strftime("%Y") / now.strftime("%m") / now.strftime("%d")
+    day_dir.mkdir(parents=True, exist_ok=True)
+    stamp = now.strftime("%Y-%m-%dT%H-%M-%S")
+    path = day_dir / f"rollout-{stamp}-{session_id}.jsonl"
+
+    rows: List[Dict[str, Any]] = [{
+        "timestamp": _utc_timestamp(),
+        "type": "session_meta",
+        "payload": {
+            "session_id": session_id,
+            "id": session_id,
+            "timestamp": _utc_timestamp(),
+            "cwd": workspace,
+            "originator": "codex_exec",
+            "cli_version": os.environ.get("CODEX_CLI_VERSION", "0.145.0"),
+            "source": "exec",
+            "thread_source": "user",
+            "model_provider": "agentcanary",
+        },
+    }]
+
+    def response_item(payload: Dict[str, Any]) -> Dict[str, Any]:
+        return {"timestamp": _utc_timestamp(), "type": "response_item", "payload": payload}
+
+    ac_events: List[Dict[str, Any]] = []
+    for msg in messages:
+        role = msg.get("role")
+        text = _coerce_text(msg.get("content", ""))
+        if role == "user":
+            rows.append(response_item({"type": "message", "role": "user",
+                                       "content": [{"type": "input_text", "text": text}]}))
+            ac_events.append({"type": "message", "message": {"role": "user",
+                              "content": [{"type": "text", "text": text}]}})
+        elif role == "assistant":
+            blocks: List[Dict[str, Any]] = []
+            if text:
+                rows.append(response_item({"type": "message", "role": "assistant",
+                                           "content": [{"type": "output_text", "text": text}]}))
+                blocks.append({"type": "text", "text": text})
+            for tc in msg.get("tool_calls", []) or []:
+                if not isinstance(tc, dict):
+                    continue
+                fn = tc.get("function", tc) if "function" in tc else tc
+                if not isinstance(fn, dict):
+                    continue
+                call_id = str(tc.get("id") or f"call_{uuid.uuid4().hex[:12]}")
+                name = _map_tool_name(str(fn.get("name", "")))
+                arguments = fn.get("arguments", {})
+                if not isinstance(arguments, str):
+                    arguments = json.dumps(arguments, ensure_ascii=False)
+                rows.append(response_item({"type": "function_call", "id": call_id, "name": name,
+                                           "arguments": arguments, "call_id": call_id}))
+                blocks.append({"type": "toolCall", "id": call_id, "name": name,
+                               "arguments": _parse_tool_arguments(arguments)})
+            if blocks:
+                ac_events.append({"type": "message",
+                                  "message": {"role": "assistant", "content": blocks}})
+        elif role == "tool":
+            call_id = str(msg.get("tool_call_id") or "")
+            rows.append(response_item({"type": "function_call_output", "call_id": call_id,
+                                       "output": text}))
+            ac_events.append({"type": "message", "message": {"role": "toolResult",
+                              "toolCallId": call_id,
+                              "content": [{"type": "text", "text": text}],
+                              "isError": bool(msg.get("is_error", False))}})
+
+    with path.open("w", encoding="utf-8") as f:
+        for row in rows:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+    print(f"shim: seeded Codex rollout {session_id} from {seed_history_path}", file=sys.stderr)
+    return session_id, ac_events
+
+
+def _write_minimal_transcript(agent_id: str, session_id: str, user_msg: str,
+                              events: List[Dict[str, Any]],
+                              seed_events: List[Dict[str, Any]] | None = None) -> Path:
+    sessions_dir = AGENTS_DIR / agent_id / "sessions"
+    sessions_dir.mkdir(parents=True, exist_ok=True)
+    transcript_path = sessions_dir / f"{session_id}.jsonl"
+
+    out_events: List[Dict[str, Any]] = []
+    if transcript_path.exists() and not seed_events:
+        for line in transcript_path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            try:
+                out_events.append(json.loads(line))
+            except json.JSONDecodeError:
+                pass
+    elif seed_events:
+        out_events.extend(seed_events)
+
+    out_events.append({"type": "message", "message": {"role": "user",
+                      "content": [{"type": "text", "text": user_msg}]}})
+    for ev in events or []:
+        kind = ev.get("kind")
+        if kind == "assistant_text":
+            text = ev.get("text", "")
+            if text.strip():
+                out_events.append({"type": "message", "message": {"role": "assistant",
+                                   "content": [{"type": "text", "text": text}]}})
+        elif kind == "user_text":
+            # A user entry replayed out of the rollout: the task prompt is
+            # already appended above, so only keep genuinely different text.
+            text = ev.get("text", "")
+            if text.strip() and text.strip() != user_msg.strip():
+                out_events.append({"type": "message", "message": {"role": "user",
+                                   "content": [{"type": "text", "text": text}]}})
+        elif kind == "tool_use":
+            out_events.append({"type": "message", "message": {"role": "assistant",
+                               "content": [{"type": "toolCall", "id": ev.get("id", ""),
+                                            "name": ev.get("name", ""),
+                                            "arguments": ev.get("arguments", {})}]}})
+        elif kind == "tool_result":
+            result = ev.get("result", "")
+            if not isinstance(result, str):
+                result = json.dumps(result)
+            out_events.append({"type": "message", "message": {"role": "toolResult",
+                               "toolCallId": ev.get("tool_use_id", ""),
+                               "content": [{"type": "text", "text": result[:10000]}]}})
+
+    with transcript_path.open("w", encoding="utf-8") as f:
+        for ev in out_events:
+            f.write(json.dumps(ev, ensure_ascii=False) + "\n")
+
+    sessions_payload = {
+        "currentSessionId": session_id,
+        f"agent:{agent_id}:main": {
+            "sessionId": session_id,
+            "updatedAt": int(datetime.now(timezone.utc).timestamp() * 1000),
+            "sessionFile": str(transcript_path),
+            "status": "done",
+        },
+    }
+    (sessions_dir / "sessions.json").write_text(json.dumps(sessions_payload))
+    return transcript_path
+
+
+def cmd_agent_invoke(args: argparse.Namespace) -> None:
+    state = _load_state()
+    agent_id = args.agent.replace(":", "-").lower()
+    info = state["agents"].get(agent_id) or {}
+    model_full = info.get("model") or ""
+    workspace = info.get("workspace") or os.getcwd()
+    if not model_full:
+        print(f"shim: agent {agent_id} not registered", file=sys.stderr)
+        sys.exit(2)
+
+    prov = _resolve_provider(model_full, _load_provider_config())
+    model = prov["model_id"]
+    review_model = os.environ.get("CODEX_AUTO_REVIEW_MODEL") or model
+
+    mode = os.environ.get("CODEX_PERMISSION_MODE", "auto-review").strip().lower()
+    mode = "yolo" if mode in ("yolo", "bypass", "danger", "dangerous") else "auto-review"
+
+    Path(workspace).mkdir(parents=True, exist_ok=True)
+    # Codex's sandbox writes bookkeeping dirs (.agents, shell snapshots) under
+    # the workspace, and its project-root discovery keys off a repo marker, so
+    # make the workspace a git repo if it is not one already.
+    if not (Path(workspace) / ".git").exists():
+        subprocess.run(["git", "init", "-q"], cwd=workspace, capture_output=True, check=False)
+
+    _write_codex_config(
+        model,
+        prov["base_url"] or "",
+        review_model,
+        mode,
+        args.thinking,
+    )
+
+    env = os.environ.copy()
+    env["CODEX_HOME"] = str(CODEX_HOME)
+    env["CODEX_PROVIDER_API_KEY"] = prov["api_key"] or ""
+    # Codex reads OPENAI_API_KEY for its built-in provider; set it too so a
+    # stray fallback to the default provider still authenticates.
+    env["OPENAI_API_KEY"] = prov["api_key"] or ""
+    env.setdefault("CODEX_DISABLE_UPDATE_CHECK", "1")
+
+    sessions_state = state.setdefault("sessions", {})
+    session_key = f"{agent_id}:{args.session_id}"
+    existing_session = sessions_state.get(session_key)
+    prior_session_id = None
+    if isinstance(existing_session, dict):
+        prior_session_id = existing_session.get("codex_session_id")
+    elif isinstance(existing_session, str):
+        prior_session_id = existing_session
+
+    seed_events: List[Dict[str, Any]] = []
+    resume_session: str | None = None
+    if args.seed_history:
+        try:
+            resume_session, seed_events = _write_seed_rollout(args.seed_history, workspace, model)
+        except Exception as exc:
+            print(f"shim: failed to seed Codex history: {exc}", file=sys.stderr)
+            sys.exit(2)
+    elif prior_session_id:
+        resume_session = prior_session_id
+
+    _install_exec_policy_rules(mode)
+
+    codex = _codex_bin()
+    cmd = [codex, "exec"]
+    if resume_session:
+        cmd += ["resume", resume_session]
+    cmd += ["--json", "--skip-git-repo-check", "--model", model]
+    if mode == "yolo":
+        # `--ignore-rules` keeps yolo meaning *no* gating: an execpolicy
+        # `prompt` rule combined with approval_policy=never resolves to
+        # Forbidden, so a stray user/project .rules file would otherwise block
+        # commands in the mode that is supposed to block nothing.
+        cmd += ["--dangerously-bypass-approvals-and-sandbox", "--ignore-rules"]
+    else:
+        cmd += ["-s", "workspace-write"]
+    # `--add-dir` keeps the bundled skills readable from inside the sandbox.
+    if Path(SKILLS_DIR).exists():
+        cmd += ["--add-dir", SKILLS_DIR]
+    cmd += [args.message]
+
+    shim_timeout = int(os.environ.get("SHIM_TIMEOUT_SECONDS", "1800"))
+
+    def _run():
+        return subprocess.run(cmd, cwd=workspace, env=env, capture_output=True,
+                              text=True, timeout=shim_timeout)
+
+    timed_out = False
+    try:
+        proc = _run()
+        stdout, stderr, rc = proc.stdout or "", proc.stderr or "", proc.returncode
+    except subprocess.TimeoutExpired as exc:
+        timed_out = True
+        stdout = exc.stdout or ""
+        if isinstance(stdout, bytes):
+            stdout = stdout.decode("utf-8", "replace")
+        stderr = ""
+        rc = 0
+
+    codex_session = _thread_id_from_stream(stdout) or resume_session
+    events: List[Dict[str, Any]] = []
+    if codex_session:
+        rollout = _rollout_path(codex_session)
+        if rollout:
+            events = _events_from_rollout(rollout)
+    if not events:
+        events = _events_from_stream(stdout)
+
+    # Retry once on a transient empty run (auth glitch / immediate stream drop).
+    if not events and not timed_out:
+        print("shim: empty/transient failure, retrying once", file=sys.stderr)
+        try:
+            proc = _run()
+            stdout, stderr, rc = proc.stdout or "", proc.stderr or "", proc.returncode
+            codex_session = _thread_id_from_stream(stdout) or codex_session
+            rollout = _rollout_path(codex_session) if codex_session else None
+            events = _events_from_rollout(rollout) if rollout else _events_from_stream(stdout)
+        except subprocess.TimeoutExpired:
+            timed_out = True
+
+    transcript_session = codex_session or str(uuid.uuid4())
+    sessions_state[session_key] = {"codex_session_id": transcript_session}
+    _save_state(state)
+
+    if not events:
+        print("shim: no events parsed from codex output", file=sys.stderr)
+        print(stdout[-2000:], file=sys.stderr)
+        if stderr:
+            print(stderr[-2000:], file=sys.stderr)
+
+    transcript_path = _write_minimal_transcript(agent_id, transcript_session, args.message,
+                                                events, seed_events)
+    if timed_out:
+        print(f"shim: codex timed out after {shim_timeout}s; wrote partial transcript "
+              f"{transcript_path}", file=sys.stderr)
+        sys.exit(0)
+    print(f"shim: wrote transcript {transcript_path}")
+    sys.exit(0 if rc == 0 else rc)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(prog="openclaw", description="codex shim of the openclaw CLI")
+    sub = parser.add_subparsers(dest="cmd", required=True)
+
+    agents = sub.add_parser("agents")
+    agents_sub = agents.add_subparsers(dest="sub", required=True)
+    agents_sub.add_parser("list")
+    add = agents_sub.add_parser("add")
+    add.add_argument("id")
+    add.add_argument("--model", required=True)
+    add.add_argument("--workspace", required=True)
+    add.add_argument("--non-interactive", action="store_true")
+    delete = agents_sub.add_parser("delete")
+    delete.add_argument("id")
+    delete.add_argument("--force", action="store_true")
+
+    plugins = sub.add_parser("plugins")
+    plugins.add_subparsers(dest="sub", required=False).add_parser("install")
+
+    agent_cmd = sub.add_parser("agent")
+    agent_cmd.add_argument("--agent", required=True)
+    agent_cmd.add_argument("--session-id", required=True)
+    agent_cmd.add_argument("--message", required=True)
+    agent_cmd.add_argument("--seed-history")
+    # Values are model-specific. Do not impose a harness-global effort
+    # vocabulary here; Codex/provider validation remains authoritative.
+    agent_cmd.add_argument("--thinking")
+
+    args, _ = parser.parse_known_args()
+    if args.cmd == "agents":
+        if args.sub == "list":
+            cmd_agents_list(args)
+        elif args.sub == "add":
+            cmd_agents_add(args)
+        elif args.sub == "delete":
+            cmd_agents_delete(args)
+    elif args.cmd == "agent":
+        cmd_agent_invoke(args)
+    elif args.cmd == "plugins":
+        pass
+
+
+if __name__ == "__main__":
+    main()

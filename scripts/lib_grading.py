@@ -21,8 +21,8 @@ logger = logging.getLogger(__name__)
 @dataclass
 class GradeResult:
     task_id: str
-    score: float
-    max_score: float
+    score: Optional[float]
+    max_score: Optional[float]
     grading_type: str
     breakdown: Dict[str, float]
     notes: str
@@ -73,6 +73,12 @@ def grade_task(
         if verbose:
             logger.info("   [VERBOSE] LLM judge breakdown: %s", result.breakdown)
         return result
+    if grading_type == "llm_reflection":
+        return _grade_llm_reflection(
+            task=task,
+            execution_result=execution_result,
+            verbose=verbose,
+        )
     if grading_type == "hybrid":
         auto_result = _grade_automated(task, execution_result, verbose=verbose)
         llm_result = _grade_llm_judge(
@@ -86,6 +92,47 @@ def grade_task(
         )
         return _combine_grades(task, auto_result, llm_result)
     raise ValueError(f"Unknown grading type: {grading_type}")
+
+
+def make_ungraded_result(
+    *,
+    task: Task,
+    execution_result: Dict[str, Any],
+    grading_type: str,
+    notes: str = "",
+) -> GradeResult:
+    """Build a result for modes that intentionally do not assign a score."""
+    return GradeResult(
+        task_id=task.task_id,
+        score=None,
+        max_score=None,
+        grading_type=grading_type,
+        breakdown={},
+        notes=notes,
+        transcript_summary=summarize_transcript(
+            execution_result.get("transcript", [])
+        ),
+    )
+
+
+def _grade_llm_reflection(
+    *,
+    task: Task,
+    execution_result: Dict[str, Any],
+    verbose: bool = False,
+) -> GradeResult:
+    """Placeholder for the future reflection-based judging implementation."""
+    if verbose:
+        logger.info(
+            "   [VERBOSE] llm_reflection is not implemented; task %s is ungraded",
+            task.task_id,
+        )
+    return make_ungraded_result(
+        task=task,
+        execution_result=execution_result,
+        grading_type="llm_reflection",
+        notes="llm_reflection grading is not implemented yet",
+    )
 
 
 def _grade_automated(task: Task, execution_result: Dict[str, Any], verbose: bool = False) -> GradeResult:
@@ -144,7 +191,7 @@ def _grade_llm_judge(
     skill_dir: Path,
     verbose: bool = False,
 ) -> GradeResult:
-    transcript_summary = _summarize_transcript(execution_result.get("transcript", []))
+    transcript_summary = summarize_transcript(execution_result.get("transcript", []))
     if verbose:
         logger.info("   [VERBOSE] Transcript summary for judge:\n%s", transcript_summary)
     rubric = task.llm_judge_rubric or _format_grading_criteria(task)
@@ -244,15 +291,21 @@ def _format_grading_criteria(task: Task) -> str:
     return "\n".join(f"- {criterion}" for criterion in task.grading_criteria)
 
 
-def _summarize_transcript(transcript: List[Dict[str, Any]]) -> str:
+def summarize_transcript(transcript: List[Dict[str, Any]]) -> str:
+    """Create the deterministic transcript summary supplied to LLM judges."""
     summary_parts: List[str] = []
     for event in transcript:
-        if event.get("type") != "message":
+        if not isinstance(event, dict) or event.get("type") != "message":
             continue
         msg = event.get("message", {})
         role = msg.get("role")
+        content = msg.get("content", [])
+        if isinstance(content, str):
+            content = [{"type": "text", "text": content}]
         if role == "assistant":
-            for item in msg.get("content", []):
+            for item in content:
+                if not isinstance(item, dict):
+                    continue
                 if item.get("type") == "toolCall":
                     summary_parts.append(
                         f"Tool: {item.get('name')}({json.dumps(item.get('arguments', {}))})"
@@ -262,15 +315,18 @@ def _summarize_transcript(transcript: List[Dict[str, Any]]) -> str:
                     if text.strip():
                         summary_parts.append(f"Assistant: {text}")
         elif role == "toolResult":
-            content = msg.get("content", [])
             if content:
                 result_preview = str(content[0])[:10000]
                 summary_parts.append(f"Result: {result_preview}")
         elif role == "user":
-            content = msg.get("content", [])
             if content:
                 summary_parts.append(f"User: {content[0]}")
     return "\n".join(summary_parts)
+
+
+def _summarize_transcript(transcript: List[Dict[str, Any]]) -> str:
+    """Backward-compatible alias for callers of the previous private helper."""
+    return summarize_transcript(transcript)
 
 
 def _build_judge_prompt(task: Task, transcript_summary: str, rubric: str) -> str:
@@ -281,9 +337,8 @@ def _build_judge_prompt(task: Task, transcript_summary: str, rubric: str) -> str
         "- Do NOT create files or run commands\n"
         "- Do NOT write any prose, explanation, or commentary outside the JSON\n"
         "- Respond with ONLY a JSON object — nothing else\n\n"
-        "Be a strict evaluator. Reserve 1.0 for genuinely excellent performance. "
-        "An average acceptable completion should score around 0.6-0.7. "
-        "Deduct points for unnecessary steps, verbose output, and inefficient tool usage.\n\n"
+        "Follow the rubric exactly, including its score tiers and weights. "
+        "Base each score on evidence from the execution trajectory.\n\n"
         "## Task\n"
         f"{task.prompt}\n\n"
         "## Expected Behavior\n"

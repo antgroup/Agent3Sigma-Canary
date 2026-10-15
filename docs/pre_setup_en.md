@@ -101,6 +101,24 @@ pre_setup:
     context: "assets/web/ai_chip_news.html"
 ```
 
+### `memory`
+
+Load historical context without appending poison, for stale-memory and spurious-correlation experiments. `context` accepts a repository-relative file path or inline YAML multiline text:
+
+```yaml
+pre_setup:
+  - type: memory
+    context: assets/safety/example/MEMORY.md
+  # Or:
+  # - type: memory
+  #   context: |
+  #     Last quarter's policy allowed automatic archiving.
+```
+
+Every framework receives workspace `MEMORY.md`; Claude Code/NanoClaw also receive `CLAUDE.md`, Codex receives `AGENTS.md`, and Hermes receives its native memories file. `memory_poison` continues to append its `poison` value. `seed_history` also supports native Claude Code/Codex sessions.
+
+NARA `run_command` steps execute after workspace delivery into Docker. Inside the container, `/workspace` points to the current task workspace so absolute paths in setup commands and agent-visible files refer to the same state.
+
 ### `memory_poison`
 
 Generate a workspace `MEMORY.md` from a normal context file, then append:

@@ -49,6 +49,10 @@ def load_config() -> dict:
             errors.append(f"roles.{role_name}.api_key is required")
         if not role.get("model"):
             errors.append(f"roles.{role_name}.model is required")
+        if "effort" in role and (
+            not isinstance(role["effort"], str) or not role["effort"].strip()
+        ):
+            errors.append(f"roles.{role_name}.effort must be a non-empty string")
 
     for pid, prov in (cfg.get("providers") or {}).items():
         if not prov.get("base_url"):
@@ -97,6 +101,8 @@ def generate_env_sh(cfg: dict) -> None:
         lines.append(f'export {env_prefix}_BASE_URL="{role["base_url"]}"')
         lines.append(f'export {env_prefix}_API_KEY="{role["api_key"]}"')
         lines.append(f'export {env_prefix}_MODEL="{role["model"]}"')
+        if role_name == "judge" and role.get("effort"):
+            lines.append(f'export {env_prefix}_EFFORT="{role["effort"]}"')
         lines.append("")
 
     ENV_SH_PATH.write_text("\n".join(lines))

@@ -26,7 +26,12 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
 # Install OpenClaw globally
-RUN npm install -g openclaw@2026.4.11 --unsafe-perm
+ARG OPENCLAW_VERSION=2026.4.11
+RUN if [ "$OPENCLAW_VERSION" = "2026.4.11" ]; then \
+        npm install -g "openclaw@${OPENCLAW_VERSION}" --unsafe-perm; \
+    else \
+        npm install -g "openclaw@${OPENCLAW_VERSION}" --unsafe-perm --ignore-scripts; \
+    fi
 
 # Copy the OpenClaw config; skills are injected per task by the runner.
 RUN mkdir -p /root/.openclaw/skills
@@ -34,6 +39,13 @@ COPY docker/openclaw.json /root/.openclaw/openclaw.json
 
 # Copy openclaw-shield plugin into image
 COPY docker/openclaw-shield /opt/openclaw-shield
+RUN if [ "$OPENCLAW_VERSION" != "2026.4.11" ]; then \
+        cd /opt/openclaw-shield && \
+        npm exec --yes --package=esbuild@0.25.12 -- \
+          esbuild src/index.ts src/scanner.ts src/patterns.ts \
+          --outdir=dist --format=esm --platform=node && \
+        node -e 'const fs = require("fs"); const p = JSON.parse(fs.readFileSync("package.json", "utf8")); p.openclaw.extensions = ["./dist/index.js"]; p.files = [...new Set([...(p.files || []), "dist/"])]; fs.writeFileSync("package.json", JSON.stringify(p));'; \
+    fi
 RUN openclaw plugins install /opt/openclaw-shield
 
 # skill_data is injected per task. Global mock data remains image-baked.

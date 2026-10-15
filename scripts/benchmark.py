@@ -5,6 +5,8 @@ AgentCanary - OpenClaw Agent Benchmarking System
 This script orchestrates benchmarking of OpenClaw agents using tasks loaded
 from the tasks/ directory.
 """
+from __future__ import annotations
+
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
@@ -19,6 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import argparse
+import hashlib
 import json
 import logging
 import os
@@ -42,12 +45,14 @@ from lib_agent import (
     execute_openclaw_task,
     slugify_model,
     _resolve_required_skills,
+    _resolve_framework_skill_mounts,
     _strip_skill_version,
     _inject_skill_data,
 )
-from lib_attacks import get_attack_method, validate_attack_compatibility
-from lib_grading import GradeResult, grade_task
+from lib_attacks import get_attack_method, is_pair_attack, validate_attack_compatibility
+from lib_grading import GradeResult, grade_task, make_ungraded_result
 from lib_tasks import Task, TaskLoader
+from lib_task_validation import missing_task_inputs
 
 
 # Configure logging
@@ -58,6 +63,7 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger("benchmark")
+REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 class OpenClawAgent:
@@ -192,9 +198,19 @@ def _parse_args() -> argparse.Namespace:
         help="Model identifier (e.g., anthropic/claude-sonnet-4)",
     )
     parser.add_argument(
+        "--effort",
+        default=None,
+        help="Model-specific reasoning effort for target-agent turns. The "
+             "value is passed through without a harness-global allowlist.",
+    )
+    parser.add_argument(
         "--suite",
         default="all",
-        help='Tasks to run: "all", "direct", "indirect", "non-security", "fptest", "memory", "chain", "skills_poison", "safety" or comma-separated IDs',
+        help='Tasks to run: a named suite, a directory path relative to tasks/ (for example "skills_poison/harmful_skill_bench"), or comma-separated task IDs',
+    )
+    parser.add_argument(
+        "--task-ids",
+        help="Restrict the selected suite to comma-separated exact task IDs (used by parallel workers)",
     )
     parser.add_argument(
         "--output-dir",
@@ -219,6 +235,17 @@ def _parse_args() -> argparse.Namespace:
         "--judge",
         default=None,
         help="Deprecated compatibility option; configure the judge model with JUDGE_LLM_MODEL via config.yaml/env.sh",
+    )
+    parser.add_argument(
+        "--validate-tasks",
+        action="store_true",
+        help="Check selected task inputs and report unimplemented graders, without a model or Docker",
+    )
+    parser.add_argument(
+        "--trajectory-only",
+        action="store_true",
+        help="Run tasks without automated or LLM grading and write each task's "
+             "self-describing trajectory JSON under trajectories/.",
     )
     parser.add_argument(
         "--verbose",
@@ -304,6 +331,50 @@ def _parse_task_range(range_str: str) -> List[str]:
     return [f"task_{i}" for i in range(start, end + 1)]
 
 
+def _parse_suite_directory(suite: str) -> Optional[tuple[str, ...]]:
+    """Return the normalized tasks-relative parts of a directory suite.
+
+    A slash distinguishes directory selectors from task IDs. Directory suites
+    may optionally start with ``./`` or ``tasks/`` and include a trailing slash.
+    Parent traversal and absolute paths are not valid suite directories.
+    """
+    raw_suite = suite.strip().replace("\\", "/")
+    if raw_suite == "NARA-Bench":
+        return ("NARA-Bench",)
+    if "/" not in raw_suite or "," in raw_suite:
+        return None
+
+    suite_path = Path(raw_suite)
+    if suite_path.is_absolute() or ".." in suite_path.parts:
+        return None
+
+    parts = tuple(part for part in suite_path.parts if part not in ("", "."))
+    if parts and parts[0] == "tasks":
+        parts = parts[1:]
+    return parts or None
+
+
+def _task_directory_parts(task: Task) -> Optional[tuple[str, ...]]:
+    """Return a task's parent directory parts relative to the tasks/ root."""
+    if not task.file_path:
+        return None
+
+    path_parts = task.file_path.parts
+    for index in range(len(path_parts) - 2, -1, -1):
+        if path_parts[index] == "tasks":
+            return tuple(path_parts[index + 1 : -1])
+    return None
+
+
+def _task_is_in_suite_directory(task: Task, directory_parts: tuple[str, ...]) -> bool:
+    """Whether a task is inside the selected tasks-relative directory tree."""
+    task_directory = _task_directory_parts(task)
+    return (
+        task_directory is not None
+        and task_directory[: len(directory_parts)] == directory_parts
+    )
+
+
 def _select_task_ids(tasks: List[Task], suite: str) -> Optional[List[str]]:
     if suite == "all":
         return None
@@ -334,6 +405,7 @@ def _select_task_ids(tasks: List[Task], suite: str) -> Optional[List[str]]:
             and "fptest" not in task.file_path.parts
             and "memory" not in task.file_path.parts
             and "safety" not in task.file_path.parts
+            and "NARA-Bench" not in task.file_path.parts
         ]
     if suite == "fptest":
         # Return tasks from tasks/fptest/ subdirectory
@@ -373,6 +445,21 @@ def _select_task_ids(tasks: List[Task], suite: str) -> Optional[List[str]]:
             for task in tasks
             if task.file_path and "safety" in task.file_path.parts
         ]
+    if suite == "tool":
+        # Return tasks from tasks/tool/ subdirectory.
+        return [
+            task.task_id
+            for task in tasks
+            if task.file_path and "tool" in task.file_path.parts
+        ]
+
+    directory_parts = _parse_suite_directory(suite)
+    if directory_parts is not None:
+        return [
+            task.task_id
+            for task in tasks
+            if _task_is_in_suite_directory(task, directory_parts)
+        ]
 
     # Parse comma-separated items, supporting ranges like "task30-35" or "30-35"
     task_ids = []
@@ -397,6 +484,70 @@ def _select_task_ids(tasks: List[Task], suite: str) -> Optional[List[str]]:
     return task_ids
 
 
+def _select_tasks(tasks: List[Task], suite: str) -> List[Task]:
+    """Select concrete task objects for a suite.
+
+    Directory-backed suites must be filtered by path instead of selecting IDs
+    and matching them globally: generated task sets can legitimately contain
+    the same task ID in more than one directory.
+    """
+    if suite == "all":
+        return tasks
+    if suite == "automated-only":
+        return [task for task in tasks if task.grading_type == "automated"]
+    if suite == "non-security":
+        excluded_directories = {"direct", "indirect", "fptest", "memory", "safety", "NARA-Bench"}
+        return [
+            task
+            for task in tasks
+            if task.file_path
+            and excluded_directories.isdisjoint(task.file_path.parts)
+        ]
+
+    directory_suites = {
+        "direct",
+        "indirect",
+        "fptest",
+        "memory",
+        "chain",
+        "skills_poison",
+        "safety",
+        "tool",
+    }
+    if suite in directory_suites:
+        return [
+            task
+            for task in tasks
+            if task.file_path and suite in task.file_path.parts
+        ]
+
+    directory_parts = _parse_suite_directory(suite)
+    if directory_parts is not None:
+        return [
+            task
+            for task in tasks
+            if _task_is_in_suite_directory(task, directory_parts)
+        ]
+
+    task_ids = _select_task_ids(tasks, suite)
+    if task_ids is None:
+        return tasks
+
+    # Match by prefix: task_31 matches task_31_xxx and task_31 itself.
+    def matches_task(task_id: str) -> bool:
+        for pattern in task_ids:
+            if task_id == pattern or task_id.startswith(pattern + "_"):
+                return True
+            # New task sets use zero-padded IDs; ranges such as 1-25 still work.
+            number = re.fullmatch(r"task_(\d+)", pattern)
+            candidate = re.match(r"task_(\d+)(?:_|$)", task_id)
+            if number and candidate and int(number[1]) == int(candidate[1]):
+                return True
+        return False
+
+    return [task for task in tasks if matches_task(task.task_id)]
+
+
 def _next_run_id(run_root: Path) -> str:
     run_root.mkdir(parents=True, exist_ok=True)
     existing = []
@@ -407,37 +558,52 @@ def _next_run_id(run_root: Path) -> str:
     return f"{next_id:04d}"
 
 
-# Known leaderboard image tags. Used to derive a short tag from DOCKER_IMAGE
-# when DOCKER_IMAGE_TAG is not explicitly set.
-IMAGE_NAMES = ("shield", "agentguard", "secureclaw", "clawkeeper", "hermes", "nanoclaw")
+# Known image tags used to keep result cells from different runner images
+# isolated from one another. More specific names must appear before any name
+# that could be their substring.
+IMAGE_NAMES = (
+    "official_newest_shield_safety_research",
+    "official_newest_safety_research",
+    "claude_code_safety_research",
+    "codex_safety_research",
+    "hermes_safety_research",
+    "nanoclaw_safety_research",
+    "official_safety_research",
+    "antclawguard",
+    "shield",
+    "agentguard",
+    "secureclaw",
+    "clawkeeper",
+    "hermes",
+    "nanoclaw",
+    "claude_code",
+    "codex",
+)
 
 
 def _slugify_image_tag(raw: str) -> str:
-    """Sanitize an image tag for use in filenames and JSON identifiers.
-
-    Lowercases and collapses any non-[a-z0-9_-] runs to a single '-'. Guards
-    against DOCKER_IMAGE_TAG values that contain path separators (e.g.
-    'ghcr.io/foo/shield:tag'), which would otherwise break write_text() by
-    creating phantom path segments in run_semantic_id.
-    """
-    s = re.sub(r"[^a-z0-9_-]+", "-", raw.lower()).strip("-")
-    return s or "image"
+    """Sanitize an image tag for use in filenames and JSON identifiers."""
+    value = re.sub(r"[^a-z0-9_-]+", "-", raw.lower()).strip("-")
+    return value or "image"
 
 
 def _resolve_image_tag() -> str:
-    """Resolve a short leaderboard image tag.
+    """Resolve a short image tag for result-cell identity.
 
-    Priority:
-      1. DOCKER_IMAGE_TAG env var (explicit override, slugified)
-      2. DOCKER_IMAGE contains an IMAGE_NAMES token (substring match)
-      3. 'official'
+    An explicit ``DOCKER_IMAGE_TAG`` takes priority. Otherwise infer a known
+    family from ``DOCKER_IMAGE`` and fall back to ``official``.
     """
-    tag = os.environ.get("DOCKER_IMAGE_TAG", "").strip()
-    if tag:
-        return _slugify_image_tag(tag)
-    img = os.environ.get("DOCKER_IMAGE", "")
+    explicit = os.environ.get("DOCKER_IMAGE_TAG", "").strip()
+    if explicit:
+        return _slugify_image_tag(explicit)
+
+    image = os.environ.get("DOCKER_IMAGE", "").lower()
+    generated = re.search(r"(?:^|/)openclaw-(.+)-v\d{8}_\d{6}(?:_\d+)?(?::[^/]*)?$", image)
+    if generated:
+        # Keep version/profile in the cell identity so resume cannot mix them.
+        return _slugify_image_tag(generated[1])
     for name in IMAGE_NAMES:
-        if name in img:
+        if name in image:
             return name
     return "official"
 
@@ -457,6 +623,13 @@ def _get_git_version(script_dir: Path) -> str:
     if result.returncode != 0:
         return ""
     return result.stdout.strip()
+
+
+def _numeric_score(value: Any) -> Optional[float]:
+    """Return a score as float, preserving the distinction from ungraded/null."""
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    return float(value)
 
 
 def _compute_efficiency_summary(
@@ -482,7 +655,7 @@ def _compute_efficiency_summary(
         usage = entry.get("usage", {})
         task_id = entry["task_id"]
         grading = grades_by_task_id.get(task_id, {})
-        score = float(grading.get("mean", 0.0))
+        score = _numeric_score(grading.get("mean"))
 
         inp = int(usage.get("input_tokens", 0))
         out = int(usage.get("output_tokens", 0))
@@ -504,17 +677,24 @@ def _compute_efficiency_summary(
         per_task_efficiency.append(
             {
                 "task_id": task_id,
-                "score": round(score, 4),
+                "score": round(score, 4) if score is not None else None,
                 "total_tokens": tot,
                 "cost_usd": round(cost, 6),
-                "tokens_per_score_point": round(tot / score, 1) if score > 0 else None,
+                "tokens_per_score_point": (
+                    round(tot / score, 1) if score is not None and score > 0 else None
+                ),
             }
         )
 
     # Aggregate scores
-    all_scores = [float(g.get("mean", 0.0)) for g in grades_by_task_id.values()]
+    all_scores = [
+        score
+        for grading in grades_by_task_id.values()
+        if (score := _numeric_score(grading.get("mean"))) is not None
+    ]
     total_score = sum(all_scores)
-    num_tasks = len(all_scores)
+    num_tasks = len(grades_by_task_id)
+    all_tasks_graded = num_tasks > 0 and len(all_scores) == num_tasks
 
     summary: Dict[str, Any] = {
         "total_tokens": total_tokens,
@@ -524,13 +704,19 @@ def _compute_efficiency_summary(
         "total_requests": total_requests,
         "total_execution_time_seconds": round(total_execution_time, 2),
         "tasks_with_usage_data": tasks_with_usage,
+        "graded_tasks": len(all_scores),
+        "ungraded_tasks": num_tasks - len(all_scores),
         "tokens_per_task": round(total_tokens / num_tasks, 1) if num_tasks > 0 else 0,
         "cost_per_task_usd": round(total_cost_usd / num_tasks, 6) if num_tasks > 0 else 0,
         "score_per_1k_tokens": (
-            round(total_score / (total_tokens / 1000), 6) if total_tokens > 0 else None
+            round(total_score / (total_tokens / 1000), 6)
+            if all_tasks_graded and total_tokens > 0
+            else None
         ),
         "score_per_dollar": (
-            round(total_score / total_cost_usd, 4) if total_cost_usd > 0 else None
+            round(total_score / total_cost_usd, 4)
+            if all_tasks_graded and total_cost_usd > 0
+            else None
         ),
         "per_task": per_task_efficiency,
     }
@@ -542,8 +728,11 @@ def _log_efficiency_summary(
     grades_by_task_id: Dict[str, Dict[str, Any]],
 ) -> None:
     """Log a human-readable token efficiency summary."""
-    all_scores = [float(g.get("mean", 0.0)) for g in grades_by_task_id.values()]
-    mean_score = statistics.mean(all_scores) if all_scores else 0.0
+    all_scores = [
+        score
+        for grading in grades_by_task_id.values()
+        if (score := _numeric_score(grading.get("mean"))) is not None
+    ]
 
     logger.info("\n%s", "=" * 80)
     logger.info("📊 TOKEN EFFICIENCY SUMMARY")
@@ -561,7 +750,10 @@ def _log_efficiency_summary(
         "   Avg tokens/task: %s",
         f"{efficiency['tokens_per_task']:,.0f}",
     )
-    logger.info("   Mean score: %.4f", mean_score)
+    if all_scores:
+        logger.info("   Mean score: %.4f", statistics.mean(all_scores))
+    else:
+        logger.info("   Mean score: N/A (no tasks were graded)")
     if efficiency.get("score_per_1k_tokens") is not None:
         logger.info(
             "   Score per 1K tokens: %.4f (higher = more efficient)",
@@ -615,8 +807,10 @@ def _output_single_task(
         "transcript_path": result.get("transcript_path"),
         "transcript_length": len(result.get("transcript", [])),
         "transcript_summary": grade_dict.pop("transcript_summary", ""),  # Extract to top level
+        "trajectory_summary_path": result.get("trajectory_summary_path"),
         "usage": result.get("usage", {}),
         "workspace": result.get("workspace"),
+        "reasoning_effort": result.get("reasoning_effort"),
         "grading": grade_dict,
         "frontmatter": task.frontmatter,
         # Include execution details
@@ -637,6 +831,50 @@ def _output_single_task(
     task_file.write_text(json.dumps(task_output, indent=2, ensure_ascii=False), encoding="utf-8")
     logger.info("Saved task result: %s", task_file)
 
+
+def _output_trajectory_record(
+    trajectories_dir: Path,
+    run_id: str,
+    task_id: str,
+    task_file: Path,
+    grading_type: str,
+    transcript_summary: str,
+    runs_per_task: int = 1,
+    run_index: int = 0,
+) -> Path:
+    """Write one self-describing trajectory record as JSON."""
+    job_dir = trajectories_dir / f"job_{run_id}"
+    job_dir.mkdir(parents=True, exist_ok=True)
+    safe_task_id = re.sub(r"[^A-Za-z0-9._-]+", "_", task_id)
+    suffix = f"_run_{run_index + 1}" if runs_per_task > 1 else ""
+    trajectory_path = job_dir / f"trajectory_{safe_task_id}{suffix}.json"
+
+    resolved_task_file = task_file.resolve()
+    try:
+        serialized_task_file = str(resolved_task_file.relative_to(REPO_ROOT))
+    except ValueError:
+        serialized_task_file = str(resolved_task_file)
+    record = {
+        "schema_version": 1,
+        "job_id": run_id,
+        "task_id": task_id,
+        "task_file": serialized_task_file,
+        "grading_type": grading_type,
+        "run_index": run_index + 1,
+        "runs_per_task": runs_per_task,
+        "transcript_summary": transcript_summary,
+    }
+    temporary_path = trajectory_path.with_name(
+        f".{trajectory_path.name}.{os.getpid()}.tmp"
+    )
+    temporary_path.write_text(
+        json.dumps(record, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    os.replace(temporary_path, trajectory_path)
+    logger.info("Saved trajectory record: %s", trajectory_path)
+    return trajectory_path
+
 def _log_category_summary(
     task_entries: List[Dict[str, Any]],
     tasks_by_id: Dict[str, Any],
@@ -653,7 +891,9 @@ def _log_category_summary(
 
         category = task.category.upper() if task.category else "UNCATEGORIZED"
         grading = entry.get("grading", {})
-        mean_score = float(grading.get("mean", 0.0))
+        mean_score = _numeric_score(grading.get("mean"))
+        if mean_score is None:
+            continue
         max_score = 1.0  # Each task is scored 0-1
 
         if category not in category_scores:
@@ -671,6 +911,10 @@ def _log_category_summary(
     logger.info("\n%s", "=" * 80)
     logger.info("SCORE SUMMARY")
     logger.info("%s", "=" * 80)
+    if not category_scores:
+        logger.info("   No scored tasks (grading was skipped).")
+        logger.info("%s", "=" * 80)
+        return
     logger.info("")
     logger.info("   Overall Score: %.1f%% (%.1f / %.1f)", overall_pct, total_earned, total_possible)
     logger.info("")
@@ -714,16 +958,33 @@ def main():
 
     logger.info("AgentCanary - OpenClaw Benchmarking")
     logger.info("Starting AgentCanary")
-    time.sleep(5)
 
     if not tasks_dir.exists():
         logger.error(f"❌ Tasks directory not found: {tasks_dir}")
         sys.exit(1)
 
     args = _parse_args()
-    if not args.model:
+    if not args.model and not args.validate_tasks:
         logger.error("Missing required argument: --model")
         sys.exit(2)
+
+    if args.effort:
+        logger.info("Model reasoning effort: %s", args.effort)
+
+    suite_directory_parts = _parse_suite_directory(args.suite)
+    tasks_load_dir = tasks_dir
+    if suite_directory_parts is not None:
+        tasks_load_dir = tasks_dir.joinpath(*suite_directory_parts)
+        if not tasks_load_dir.is_dir():
+            logger.error(
+                "❌ Suite directory not found under tasks/: %s",
+                "/".join(suite_directory_parts),
+            )
+            sys.exit(2)
+        logger.info(
+            "📁 Directory suite selected; recursively loading tasks from %s",
+            tasks_load_dir,
+        )
 
     # Validate tracee arguments
     if args.tracee and not args.docker:
@@ -742,21 +1003,67 @@ def main():
     )
 
     logger.info("🔧 Initializing BenchmarkRunner...")
-    runner = BenchmarkRunner(tasks_dir)
+    runner = BenchmarkRunner(tasks_load_dir)
 
     logger.info("📂 Loading tasks from directory...")
     runner.load_tasks(verbose=args.verbose)
+    if suite_directory_parts is not None and not runner.tasks:
+        logger.error(
+            "❌ No task markdown files found under suite directory: %s",
+            tasks_load_dir,
+        )
+        sys.exit(2)
+
+    tasks_to_run = runner.tasks if suite_directory_parts is not None else _select_tasks(runner.tasks, args.suite)
+    if args.task_ids:
+        exact_ids = set(args.task_ids.split(","))
+        tasks_to_run = [task for task in tasks_to_run if task.task_id in exact_ids]
+    if not tasks_to_run:
+        logger.error("No tasks selected for suite %r", args.suite)
+        sys.exit(2)
+    nara_tasks = [task for task in tasks_to_run if task.file_path and "NARA-Bench" in task.file_path.parts]
+    problems = missing_task_inputs(tasks_to_run if args.validate_tasks else nara_tasks, skill_root)
+    reflection_count = sum(task.grading_type == "llm_reflection" for task in tasks_to_run)
+    if reflection_count and not args.trajectory_only:
+        logger.warning("%d task(s) use the unimplemented llm_reflection grader and will remain ungraded", reflection_count)
+    if problems:
+        logger.error("Missing input files for %d task(s), %d references; supply the original benchmark assets before running",
+                     len(problems), sum(len(paths) for paths in problems.values()))
+        for task_path, paths in list(problems.items())[:10]:
+            logger.error("  %s: %s", Path(task_path).name, ", ".join(paths[:3]))
+        sys.exit(2)
+    if args.validate_tasks:
+        logger.info("Input validation passed for %d task(s)", len(tasks_to_run))
+        return
 
     model_slug = slugify_model(args.model)
-    # Format: {suite}#{model}#{attack}#{context}#{image}#{timestamp}
-    suite_slug = args.suite.replace(",", "_").replace(" ", "_")
+    # Format: {suite}#{model}#{attack}#{timestamp}, e.g. indirect#GLM-5#important_message#20260413_173400
+    suite_slug = (
+        args.suite.replace("/", "_")
+        .replace("\\", "_")
+        .replace(",", "_")
+        .replace(" ", "_")
+    )
+    if len(suite_slug) > 80:
+        suite_slug = suite_slug[:40] + "-" + hashlib.sha256(args.suite.encode()).hexdigest()[:16]
+    if args.task_ids:
+        suite_slug += "-" + hashlib.sha256(args.task_ids.encode()).hexdigest()[:16]
     attack_slug = args.attack.replace(":", "_").replace(" ", "_") if args.attack else "no-attack"
     from datetime import datetime
     context_slug = "no_context" if args.no_context else "with_context"
     image_slug = _resolve_image_tag()
-    cell_prefix = f"{suite_slug}#{model_slug}#{attack_slug}#{context_slug}#{image_slug}"
+    effort_suffix = f"#effort-{_slugify_image_tag(args.effort)}" if args.effort else ""
+    trajectory_suffix = "#trajectory-only" if args.trajectory_only else ""
+    cell_prefix = (
+        f"{suite_slug}#{model_slug}#{attack_slug}#{context_slug}#{image_slug}"
+        f"{effort_suffix}{trajectory_suffix}"
+    )
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
+    trajectories_dir = skill_root / "trajectories"
+    if args.trajectory_only:
+        trajectories_dir.mkdir(parents=True, exist_ok=True)
+        logger.info("Trajectory-only mode enabled; all grading will be skipped")
 
     # Resume: if a prior job dir exists for THIS exact cell, reuse its
     # timestamp so newly-run tasks land in the same job_<...>#<ts>/ dir as
@@ -799,25 +1106,22 @@ def main():
         ensure_agent_exists(agent_id, args.model, local_task_agent_workspace_root_relate)
         cleanup_agent_sessions(agent_id)
 
-    task_ids = _select_task_ids(runner.tasks, args.suite)
     results = []
     grades_by_task_id = {}
     sanity_task_id = "task_00_sanity"
 
-    tasks_to_run = runner.tasks
-    if task_ids is not None:
-        # Match by prefix: task_31 matches task_31_xxx, task_31 matches task_31
-        def matches_task(task_id: str, patterns: List[str]) -> bool:
-            for pattern in patterns:
-                if task_id == pattern:
-                    return True
-                # task_31 should match task_31_xxx (prefix match with underscore)
-                if task_id.startswith(pattern + "_"):
-                    return True
-            return False
-
-        tasks_to_run = [task for task in runner.tasks if matches_task(task.task_id, task_ids)]
+    logger.info("🎯 Selected %d task(s) for suite %r", len(tasks_to_run), args.suite)
     tasks_by_id = {task.task_id: task for task in tasks_to_run}
+
+    # PAIR performs its own iterative JUDGE_LLM calls during task execution,
+    # before the normal grading phase. Reject it only when the run-level switch
+    # explicitly disables every judge.
+    if args.attack and is_pair_attack(args.attack) and args.trajectory_only:
+        logger.error(
+            "❌ PAIR attack is incompatible with --trajectory-only because "
+            "PAIR requires a judge LLM"
+        )
+        sys.exit(2)
 
     # Validate attack compatibility with tasks
     if args.attack:
@@ -928,28 +1232,8 @@ def main():
                     skills_root = skill_root / "_skills_repository" / "skill_dest" / "skills"
                     skill_data_root = skill_root / "assets" / "skill_data"
                     required_skills = _resolve_required_skills(task, skills_root)
-                    extra_mounts = [
-                        (str(p), f"/root/.openclaw/skills/{p.name}", "ro")
-                        for p in required_skills
-                    ]
-                    # Compatibility runtimes discover skills in their native
-                    # locations as well as the common OpenClaw mount path.
-                    image_name = docker.DOCKER_IMAGE.lower()
-                    if "hermes" in image_name:
-                        extra_mounts.extend(
-                            (str(p), f"/root/.hermes/skills/{_strip_skill_version(p.name)}", "ro")
-                            for p in required_skills
-                        )
-                    elif "nanoclaw" in image_name:
-                        extra_mounts.extend(
-                            (
-                                str(p),
-                                f"{task_agent_workspace_root_relate}/.claude/skills/"
-                                f"{_strip_skill_version(p.name)}",
-                                "ro",
-                            )
-                            for p in required_skills
-                        )
+                    docker.load_image_metadata()
+                    extra_mounts = _resolve_framework_skill_mounts(required_skills)
                     logger.info(
                         "Task %s: mounting %d skill(s): %s",
                         task.task_id, len(required_skills),
@@ -1019,6 +1303,7 @@ def main():
                         verbose=args.verbose,
                         attack_method=args.attack,
                         no_context=args.no_context,
+                        effort=args.effort,
                     )
 
 
@@ -1037,6 +1322,7 @@ def main():
                         "execution_time": 0.0,
                         "stdout": "",
                         "stderr": execution_error,
+                        "reasoning_effort": args.effort,
                     }
 
                 if docker.is_active():
@@ -1053,13 +1339,25 @@ def main():
                     # (transcript already copied inside execute_openclaw_task)
                     docker.stop()
 
+                judging_disabled = args.trajectory_only
                 try:
-                    grade_kwargs = dict(
-                        task=task, execution_result=result, skill_dir=skill_dir, verbose=args.verbose
-                    )
-                    if args.judge:
-                        grade_kwargs["judge_model"] = args.judge
-                    grade = grade_task(**grade_kwargs)
+                    if args.trajectory_only:
+                        grade = make_ungraded_result(
+                            task=task,
+                            execution_result=result,
+                            grading_type="trajectory_only",
+                            notes="All grading skipped by --trajectory-only",
+                        )
+                    else:
+                        grade_kwargs = dict(
+                            task=task,
+                            execution_result=result,
+                            skill_dir=skill_dir,
+                            verbose=args.verbose,
+                        )
+                        if args.judge:
+                            grade_kwargs["judge_model"] = args.judge
+                        grade = grade_task(**grade_kwargs)
                 except Exception as exc:
                     if execution_error:
                         note = f"Execution failed: {execution_error}; Grading failed: {exc}"
@@ -1078,7 +1376,7 @@ def main():
 
                 # Perform tracee log correlation analysis if available
                 tracee_grade_result: Optional[TraceeGradingResult] = None
-                if tracee_log and result.get("transcript_path"):
+                if tracee_log and result.get("transcript_path") and not judging_disabled:
                     try:
                         correlation_report = tracee_correlate.correlate_task_logs(
                             task_id=task.task_id,
@@ -1126,6 +1424,11 @@ def main():
                                 logger.debug("Tracee grading traceback: %s", traceback.format_exc())
                     except Exception as corr_exc:
                         logger.warning("Tracee correlation failed for %s: %s", task.task_id, corr_exc)
+                elif tracee_log and judging_disabled:
+                    logger.info(
+                        "Skipping Tracee correlation and LLM grading for ungraded task %s",
+                        task.task_id,
+                    )
                 elif tracee_log:
                     logger.warning("Tracee log available but transcript_path is missing (tracee_log=%s, transcript_path=%s)", tracee_log, result.get("transcript_path"))
 
@@ -1137,6 +1440,20 @@ def main():
             if tracee_grade_result:
                 result["tracee_grading"] = tracee_grade_result.to_dict()
 
+            result["transcript_summary"] = grade.transcript_summary
+            if args.trajectory_only:
+                trajectory_path = _output_trajectory_record(
+                    trajectories_dir=trajectories_dir,
+                    run_id=run_semantic_id,
+                    task_id=task.task_id,
+                    task_file=task.file_path,
+                    grading_type=task.grading_type,
+                    transcript_summary=grade.transcript_summary,
+                    runs_per_task=runs_per_task,
+                    run_index=run_index,
+                )
+                result["trajectory_summary_path"] = str(trajectory_path)
+
             task_grades.append(grade)
             results.append(result)
 
@@ -1146,29 +1463,32 @@ def main():
             _output_single_task(output_dir, current_run_semantic_id, model_slug, result, grade, task, runs_per_task, run_index)
 
             # Log score immediately after grading
-            score_pct = grade.score / grade.max_score * 100 if grade.max_score > 0 else 0
-            status_emoji = (
-                "✅" if grade.score >= grade.max_score else "⚠️" if grade.score > 0 else "❌"
-            )
-            logger.info(
-                "%s Task %s: %.1f/%.1f (%.0f%%) - %s",
-                status_emoji,
-                task.task_id,
-                grade.score,
-                grade.max_score,
-                score_pct,
-                grade.grading_type,
-            )
+            if grade.score is None or grade.max_score is None:
+                logger.info("➖ Task %s: not graded - %s", task.task_id, grade.grading_type)
+            else:
+                score_pct = grade.score / grade.max_score * 100 if grade.max_score > 0 else 0
+                status_emoji = (
+                    "✅" if grade.score >= grade.max_score else "⚠️" if grade.score > 0 else "❌"
+                )
+                logger.info(
+                    "%s Task %s: %.1f/%.1f (%.0f%%) - %s",
+                    status_emoji,
+                    task.task_id,
+                    grade.score,
+                    grade.max_score,
+                    score_pct,
+                    grade.grading_type,
+                )
             if grade.notes:
                 logger.info("   Notes: %s", grade.notes)
 
-        task_scores = [grade.score for grade in task_grades]
+        task_scores = [grade.score for grade in task_grades if grade.score is not None]
         grades_by_task_id[task.task_id] = {
             "runs": [grade.to_dict() for grade in task_grades],
-            "mean": statistics.mean(task_scores),
-            "std": statistics.stdev(task_scores) if len(task_scores) > 1 else 0.0,
-            "min": min(task_scores),
-            "max": max(task_scores),
+            "mean": statistics.mean(task_scores) if task_scores else None,
+            "std": statistics.stdev(task_scores) if len(task_scores) > 1 else (0.0 if task_scores else None),
+            "min": min(task_scores) if task_scores else None,
+            "max": max(task_scores) if task_scores else None,
         }
 
         if (
@@ -1194,8 +1514,11 @@ def main():
             "execution_time": result["execution_time"],
             "transcript": result.get("transcript", []),
             "transcript_length": len(result["transcript"]),
+            "transcript_summary": result.get("transcript_summary", ""),
+            "trajectory_summary_path": result.get("trajectory_summary_path"),
             "usage": result.get("usage", {}),
             "workspace": result["workspace"],
+            "reasoning_effort": result.get("reasoning_effort"),
             "grading": grades_by_task_id[result["task_id"]],
             "frontmatter": tasks_by_id[result["task_id"]].frontmatter,
             # Include execution details
@@ -1267,8 +1590,11 @@ def main():
                 "execution_time": base.get("execution_time"),
                 "transcript": base.get("transcript", []),
                 "transcript_length": base.get("transcript_length", len(base.get("transcript") or [])),
+                "transcript_summary": base.get("transcript_summary", ""),
+                "trajectory_summary_path": base.get("trajectory_summary_path"),
                 "usage": base.get("usage", {}),
                 "workspace": base.get("workspace"),
+                "reasoning_effort": base.get("reasoning_effort"),
                 "grading": grading,
                 "frontmatter": task.frontmatter,
                 "exit_code": base.get("exit_code"),
@@ -1290,6 +1616,9 @@ def main():
         "netlock": args.netlock,
         "image": image_slug,
         "image_uri": os.environ.get("DOCKER_IMAGE") or None,
+        "reasoning_effort": args.effort,
+        "trajectory_only": args.trajectory_only,
+        "trajectories_dir": str(trajectories_dir) if args.trajectory_only else None,
         "runs_per_task": runs_per_task,
         "tasks": task_entries,
         "efficiency": efficiency,
@@ -1301,10 +1630,18 @@ def main():
     # _output_single_task writes each task result as soon as it completes, so _output_structured_tasks is not needed here
 
     # Calculate and log final score summary
-    total_score = sum(grades_by_task_id[tid]["mean"] for tid in grades_by_task_id)
-    max_score = float(len(grades_by_task_id))  # Each task has max_score of 1.0
-    score_pct = (total_score / max_score * 100) if max_score > 0 else 0
-    logger.info("📊 Final score: %.2f/%.0f (%.1f%%)", total_score, max_score, score_pct)
+    final_scores = [
+        score
+        for grading in grades_by_task_id.values()
+        if (score := _numeric_score(grading.get("mean"))) is not None
+    ]
+    if final_scores:
+        total_score = sum(final_scores)
+        max_score = float(len(final_scores))
+        score_pct = total_score / max_score * 100
+        logger.info("📊 Final score: %.2f/%.0f (%.1f%%)", total_score, max_score, score_pct)
+    else:
+        logger.info("📊 Final score: N/A (no tasks were graded)")
 
     logger.info("Saved results to %s", output_path)
     _log_category_summary(task_entries, tasks_by_id)

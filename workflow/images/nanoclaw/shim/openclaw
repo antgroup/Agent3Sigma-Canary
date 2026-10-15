@@ -191,6 +191,8 @@ def cmd_agent_invoke(args: argparse.Namespace) -> None:
     env["NANOCLAW_DRIVER_PROMPT"] = args.message
     env["NANOCLAW_DRIVER_CWD"] = workspace
     env["NANOCLAW_DRIVER_SKILLS_DIR"] = "/root/.openclaw/skills"
+    if args.thinking:
+        env["NANOCLAW_DRIVER_EFFORT"] = args.thinking
 
     # Shim-internal timeout — bumped from 600s to 1800s for multi-session and
     # heavy multi-turn tasks (chain/memory). Override via SHIM_TIMEOUT_SECONDS.
@@ -266,6 +268,7 @@ def main() -> None:
     agent_cmd.add_argument("--agent", required=True)
     agent_cmd.add_argument("--session-id", required=True)
     agent_cmd.add_argument("--message", required=True)
+    agent_cmd.add_argument("--thinking")
 
     args, _ = parser.parse_known_args()
     if args.cmd == "agents":

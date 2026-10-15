@@ -71,6 +71,7 @@ batch_run/batch_config.sh
 # Project specific
 uv.lock
 results/
+trajectories/
 .scry/
 .workspaces/*
 !.workspaces/.gitkeep

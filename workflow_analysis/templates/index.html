@@ -503,7 +503,7 @@
                     <div class="label">Total Tasks</div>
                 </div>
                 <div class="stat-card">
-                    <div class="value">{{ "%.1f"|format(stats.avg_score) }}%</div>
+                    <div class="value">{{ "%.1f%%"|format(stats.avg_score) if stats.graded_tasks else "N/A" }}</div>
                     <div class="label">Average Score</div>
                 </div>
                 <div class="stat-card">
@@ -579,7 +579,8 @@
                                     <td><span style="background:rgba(255,170,0,0.2); color:#ffaa00; padding:2px 6px; border-radius:4px; font-size:10px;">{{ attack }}</span></td>
                                     <td><span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:2px 6px; border-radius:4px; font-size:10px;">{{ runs|length }} runs</span></td>
                                     <td>
-                                        {% set avg_score = runs|sum(attribute='score') / runs|length %}
+                                        {% set scored_runs = runs|rejectattr('score', 'none')|list %}
+                                        {% set avg_score = scored_runs|sum(attribute='score') / scored_runs|length if scored_runs else none %}
                                         {% set avg_time = runs|sum(attribute='execution_time') / runs|length %}
                                         {% set status_counts = {} %}
                                         {% for r in runs %}
@@ -592,9 +593,9 @@
                                         {% set sorted_status = status_counts.items()|sort(attribute=1, reverse=True)|list %}
                                         {% set dominant_status = sorted_status[0][0] if sorted_status else 'unknown' %}
                                         <span class="status-badge status-{{ dominant_status }}">{{ dominant_status }}</span>
-                                        {% set score_pct = (avg_score * 100)|round|int %}
+                                        {% set score_pct = ((avg_score or 0) * 100)|round|int %}
                                         <span class="score-badge {{ 'score-high' if score_pct >= 70 else 'score-medium' if score_pct >= 40 else 'score-low' }}">
-                                            {{ "%.1f"|format(avg_score * 100) }}%
+                                            {{ "%.1f%%"|format(avg_score * 100) if avg_score is not none else 'N/A' }}
                                         </span>
                                         <span style="color:#888; font-size:11px;">{{ "%.1f"|format(avg_time) }}s</span>
                                     </td>
@@ -638,9 +639,9 @@
                                     <td><span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:2px 6px; border-radius:4px; font-size:10px;">Run {{ r.run_index }}/{{ r.runs_per_task }}</span></td>
                                     <td>
                                         <span class="status-badge status-{{ r.status }}">{{ r.status }}</span>
-                                        {% set score_pct = (r.score * 100)|round|int %}
+                                        {% set score_pct = ((r.score or 0) * 100)|round|int %}
                                         <span class="score-badge {{ 'score-high' if score_pct >= 70 else 'score-medium' if score_pct >= 40 else 'score-low' }}">
-                                            {{ "%.1f"|format(r.score * 100) }}%
+                                            {{ "%.1f%%"|format(r.score * 100) if r.score is not none else 'N/A' }}
                                         </span>
                                         <span style="color:#888; font-size:11px;">{{ "%.1f"|format(r.execution_time) }}s</span>
                                     </td>
@@ -671,9 +672,9 @@
                                     <td>-</td>
                                     <td>
                                         <span class="status-badge status-{{ first_run.status }}">{{ first_run.status }}</span>
-                                        {% set score_pct = (first_run.score * 100)|round|int %}
+                                        {% set score_pct = ((first_run.score or 0) * 100)|round|int %}
                                         <span class="score-badge {{ 'score-high' if score_pct >= 70 else 'score-medium' if score_pct >= 40 else 'score-low' }}">
-                                            {{ "%.1f"|format(first_run.score * 100) }}%
+                                            {{ "%.1f%%"|format(first_run.score * 100) if first_run.score is not none else 'N/A' }}
                                         </span>
                                         <span style="color:#888; font-size:11px;">{{ "%.1f"|format(first_run.execution_time) }}s</span>
                                     </td>
@@ -1471,9 +1472,19 @@
             renderJobsTab(filtered);
         }
 
+        function meanScore(rows) {
+            const scores = rows.map(r => r.score).filter(Number.isFinite);
+            return scores.length ? scores.reduce((a, b) => a + b, 0) / scores.length : null;
+        }
+
+        function formatScore(score) {
+            return Number.isFinite(score) ? (score * 100).toFixed(1) + '%' : 'N/A';
+        }
+
         function updateStatsWithData(data) {
             const total = data.length;
-            const avgScore = total > 0 ? (data.reduce((sum, r) => sum + r.score, 0) / total * 100).toFixed(1) : 0;
+            const mean = meanScore(data);
+            const avgScore = mean === null ? 'N/A' : (mean * 100).toFixed(1);
 
             // Collect breakdown scores
             const executionScores = [];
@@ -1503,14 +1514,15 @@
             const avgExec = executionScores.length > 0 ? (executionScores.reduce((a, b) => a + b, 0) / executionScores.length).toFixed(1) : 0;
             const avgSec = securityScores.length > 0 ? (securityScores.reduce((a, b) => a + b, 0) / securityScores.length).toFixed(1) : 0;
             const avgUtil = utilityScores.length > 0 ? (utilityScores.reduce((a, b) => a + b, 0) / utilityScores.length).toFixed(1) : null;
-            const asr = total > 0 ? (asrCount / total * 100).toFixed(1) : 0;
-            const secRate = total > 0 ? (securityAwarenessCount / total * 100).toFixed(1) : 0;
+            const gradedCount = data.filter(r => Number.isFinite(r.score)).length;
+            const asr = gradedCount > 0 ? (asrCount / gradedCount * 100).toFixed(1) : 0;
+            const secRate = gradedCount > 0 ? (securityAwarenessCount / gradedCount * 100).toFixed(1) : 0;
             const taskRate = utilityScores.length > 0 ? (taskSuccessfulCount / utilityScores.length * 100).toFixed(1) : 0;
 
             // Update stat cards
             const statCards = document.querySelectorAll('.stat-card');
             if (statCards[0]) statCards[0].querySelector('.value').textContent = total;
-            if (statCards[1]) statCards[1].querySelector('.value').textContent = avgScore + '%';
+            if (statCards[1]) statCards[1].querySelector('.value').textContent = mean === null ? 'N/A' : avgScore + '%';
             if (statCards[2]) statCards[2].querySelector('.value').textContent = avgExec + '%';
             if (statCards[3]) statCards[3].querySelector('.value').textContent = avgSec + '%';
             if (statCards[4]) statCards[4].querySelector('.value').textContent = avgUtil !== null ? avgUtil + '%' : 'N/A';
@@ -1521,6 +1533,7 @@
 
         // Render By Task tab
         function renderTasksTab(results) {
+            results = results.filter(r => Number.isFinite(r.score));
             const container = document.getElementById('taskList');
             if (!container) return;
 
@@ -1616,6 +1629,7 @@
 
         // Render By Attack tab
         function renderCategoriesTab(results) {
+            results = results.filter(r => Number.isFinite(r.score));
             const container = document.getElementById('categoryList');
             if (!container) return;
 
@@ -1720,6 +1734,7 @@
 
         // Render By Model tab
         function renderModelsTab(results) {
+            results = results.filter(r => Number.isFinite(r.score));
             const container = document.getElementById('modelList');
             if (!container) return;
 
@@ -1795,6 +1810,7 @@
 
         // Render By Job tab
         function renderJobsTab(results) {
+            results = results.filter(r => Number.isFinite(r.score));
             const container = document.getElementById('jobList');
             if (!container) return;
 
@@ -1979,7 +1995,7 @@
                 const isMultiRun = runs.length > 1;
 
                 // Calculate average stats for parent row
-                const avgScore = runs.reduce((sum, r) => sum + r.score, 0) / runs.length;
+                const avgScore = meanScore(runs);
                 const avgTime = runs.reduce((sum, r) => sum + r.execution_time, 0) / runs.length;
                 const successCount = runs.filter(r => r.status === 'success').length;
                 const avgStatus = successCount > 0 ? 'success' : 'failed';
@@ -1999,7 +2015,7 @@
                     <td>${isMultiRun ? `<span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:2px 6px; border-radius:4px; font-size:10px;">${runs.length} runs</span>` : '-'}</td>
                     <td>
                         <span class="status-badge status-${avgStatus}">${avgStatus}</span>
-                        <span class="score-badge ${avgScore*100>=70?'score-high':avgScore*100>=40?'score-medium':'score-low'}">${(avgScore*100).toFixed(1)}%</span>
+                        <span class="score-badge ${avgScore*100>=70?'score-high':avgScore*100>=40?'score-medium':'score-low'}">${formatScore(avgScore)}</span>
                         <span style="color:#888; font-size:11px;">${avgTime.toFixed(1)}s</span>
                     </td>
                     <td>${getBreakdownHtml(firstRun)}</td>
@@ -2019,7 +2035,7 @@
                             <td><span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:1px 4px; border-radius:3px; font-size:9px;">Run ${r.run_index}/${r.runs_per_task}</span></td>
                             <td>
                                 <span class="status-badge status-${r.status}">${r.status}</span>
-                                <span class="score-badge ${r.score*100>=70?'score-high':r.score*100>=40?'score-medium':'score-low'}">${(r.score*100).toFixed(1)}%</span>
+                                <span class="score-badge ${r.score*100>=70?'score-high':r.score*100>=40?'score-medium':'score-low'}">${formatScore(r.score)}</span>
                                 <span style="color:#888; font-size:10px;">${r.execution_time.toFixed(1)}s</span>
                             </td>
                             <td>${getBreakdownHtml(r)}</td>
@@ -2154,7 +2170,7 @@
                     const runs = grouped[key];
                     const isMultiRun = runs.length > 1;
                     const firstRun = runs[0];
-                    const avgScore = runs.reduce((sum, r) => sum + r.score, 0) / runs.length;
+                    const avgScore = meanScore(runs);
                     const avgTime = runs.reduce((sum, r) => sum + r.execution_time, 0) / runs.length;
                     const successCount = runs.filter(r => r.status === 'success').length;
                     const avgStatus = successCount > 0 ? 'success' : 'failed';
@@ -2168,7 +2184,7 @@
                             <td><span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:1px 4px; border-radius:3px; font-size:9px;">${runs.length} runs</span></td>
                             <td>
                                 <span class="status-badge status-${avgStatus}">${avgStatus}</span>
-                                <span class="score-badge ${avgScore*100>=70?'score-high':avgScore*100>=40?'score-medium':'score-low'}">${(avgScore*100).toFixed(1)}%</span>
+                                <span class="score-badge ${avgScore*100>=70?'score-high':avgScore*100>=40?'score-medium':'score-low'}">${formatScore(avgScore)}</span>
                                 <span style="color:#888; font-size:10px;">${avgTime.toFixed(1)}s</span>
                             </td>
                             <td>${getAvgBreakdown(runs)}</td>
@@ -2183,7 +2199,7 @@
                                 <td><span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:1px 4px; border-radius:3px; font-size:9px;">Run ${r.run_index}/${r.runs_per_task}</span></td>
                                 <td>
                                     <span class="status-badge status-${r.status}">${r.status}</span>
-                                    <span class="score-badge ${r.score*100>=70?'score-high':r.score*100>=40?'score-medium':'score-low'}">${(r.score*100).toFixed(1)}%</span>
+                                    <span class="score-badge ${r.score*100>=70?'score-high':r.score*100>=40?'score-medium':'score-low'}">${formatScore(r.score)}</span>
                                     <span style="color:#888; font-size:10px;">${r.execution_time.toFixed(1)}s</span>
                                 </td>
                                 <td>${getBreakdown(r)}</td>
@@ -2199,7 +2215,7 @@
                             <td>-</td>
                             <td>
                                 <span class="status-badge status-${firstRun.status}">${firstRun.status}</span>
-                                <span class="score-badge ${firstRun.score*100>=70?'score-high':firstRun.score*100>=40?'score-medium':'score-low'}">${(firstRun.score*100).toFixed(1)}%</span>
+                                <span class="score-badge ${firstRun.score*100>=70?'score-high':firstRun.score*100>=40?'score-medium':'score-low'}">${formatScore(firstRun.score)}</span>
                                 <span style="color:#888; font-size:10px;">${firstRun.execution_time.toFixed(1)}s</span>
                             </td>
                             <td>${getBreakdown(firstRun)}</td>
@@ -2278,7 +2294,7 @@
                     const runs = grouped[key];
                     const isMultiRun = runs.length > 1;
                     const firstRun = runs[0];
-                    const avgScore = runs.reduce((sum, r) => sum + r.score, 0) / runs.length;
+                    const avgScore = meanScore(runs);
                     const avgTime = runs.reduce((sum, r) => sum + r.execution_time, 0) / runs.length;
                     const successCount = runs.filter(r => r.status === 'success').length;
                     const avgStatus = successCount > 0 ? 'success' : 'failed';
@@ -2291,7 +2307,7 @@
                             <td><span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:1px 4px; border-radius:3px; font-size:9px;">${runs.length} runs</span></td>
                             <td>
                                 <span class="status-badge status-${avgStatus}">${avgStatus}</span>
-                                <span class="score-badge ${avgScore*100>=70?'score-high':avgScore*100>=40?'score-medium':'score-low'}">${(avgScore*100).toFixed(1)}%</span>
+                                <span class="score-badge ${avgScore*100>=70?'score-high':avgScore*100>=40?'score-medium':'score-low'}">${formatScore(avgScore)}</span>
                                 <span style="color:#888; font-size:10px;">${avgTime.toFixed(1)}s</span>
                             </td>
                             <td>${getAvgBreakdown(runs)}</td>
@@ -2305,7 +2321,7 @@
                                 <td><span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:1px 4px; border-radius:3px; font-size:9px;">Run ${r.run_index}/${r.runs_per_task}</span></td>
                                 <td>
                                     <span class="status-badge status-${r.status}">${r.status}</span>
-                                    <span class="score-badge ${r.score*100>=70?'score-high':r.score*100>=40?'score-medium':'score-low'}">${(r.score*100).toFixed(1)}%</span>
+                                    <span class="score-badge ${r.score*100>=70?'score-high':r.score*100>=40?'score-medium':'score-low'}">${formatScore(r.score)}</span>
                                     <span style="color:#888; font-size:10px;">${r.execution_time.toFixed(1)}s</span>
                                 </td>
                                 <td>${getBreakdown(r)}</td>
@@ -2320,7 +2336,7 @@
                             <td>-</td>
                             <td>
                                 <span class="status-badge status-${firstRun.status}">${firstRun.status}</span>
-                                <span class="score-badge ${firstRun.score*100>=70?'score-high':firstRun.score*100>=40?'score-medium':'score-low'}">${(firstRun.score*100).toFixed(1)}%</span>
+                                <span class="score-badge ${firstRun.score*100>=70?'score-high':firstRun.score*100>=40?'score-medium':'score-low'}">${formatScore(firstRun.score)}</span>
                                 <span style="color:#888; font-size:10px;">${firstRun.execution_time.toFixed(1)}s</span>
                             </td>
                             <td>${getBreakdown(firstRun)}</td>
@@ -2402,7 +2418,7 @@
                     const runs = grouped[key];
                     const isMultiRun = runs.length > 1;
                     const firstRun = runs[0];
-                    const avgScore = runs.reduce((sum, r) => sum + r.score, 0) / runs.length;
+                    const avgScore = meanScore(runs);
                     const avgTime = runs.reduce((sum, r) => sum + r.execution_time, 0) / runs.length;
                     const successCount = runs.filter(r => r.status === 'success').length;
                     const avgStatus = successCount > 0 ? 'success' : 'failed';
@@ -2415,7 +2431,7 @@
                             <td><span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:1px 4px; border-radius:3px; font-size:9px;">${runs.length} runs</span></td>
                             <td>
                                 <span class="status-badge status-${avgStatus}">${avgStatus}</span>
-                                <span class="score-badge ${avgScore*100>=70?'score-high':avgScore*100>=40?'score-medium':'score-low'}">${(avgScore*100).toFixed(1)}%</span>
+                                <span class="score-badge ${avgScore*100>=70?'score-high':avgScore*100>=40?'score-medium':'score-low'}">${formatScore(avgScore)}</span>
                                 <span style="color:#888; font-size:10px;">${avgTime.toFixed(1)}s</span>
                             </td>
                             <td>${getAvgBreakdown(runs)}</td>
@@ -2429,7 +2445,7 @@
                                 <td><span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:1px 4px; border-radius:3px; font-size:9px;">Run ${r.run_index}/${r.runs_per_task}</span></td>
                                 <td>
                                     <span class="status-badge status-${r.status}">${r.status}</span>
-                                    <span class="score-badge ${r.score*100>=70?'score-high':r.score*100>=40?'score-medium':'score-low'}">${(r.score*100).toFixed(1)}%</span>
+                                    <span class="score-badge ${r.score*100>=70?'score-high':r.score*100>=40?'score-medium':'score-low'}">${formatScore(r.score)}</span>
                                     <span style="color:#888; font-size:10px;">${r.execution_time.toFixed(1)}s</span>
                                 </td>
                                 <td>${getBreakdown(r)}</td>
@@ -2444,7 +2460,7 @@
                             <td>-</td>
                             <td>
                                 <span class="status-badge status-${firstRun.status}">${firstRun.status}</span>
-                                <span class="score-badge ${firstRun.score*100>=70?'score-high':firstRun.score*100>=40?'score-medium':'score-low'}">${(firstRun.score*100).toFixed(1)}%</span>
+                                <span class="score-badge ${firstRun.score*100>=70?'score-high':firstRun.score*100>=40?'score-medium':'score-low'}">${formatScore(firstRun.score)}</span>
                                 <span style="color:#888; font-size:10px;">${firstRun.execution_time.toFixed(1)}s</span>
                             </td>
                             <td>${getBreakdown(firstRun)}</td>
@@ -2528,7 +2544,7 @@
                     const runs = grouped[key];
                     const isMultiRun = runs.length > 1;
                     const firstRun = runs[0];
-                    const avgScore = runs.reduce((sum, r) => sum + r.score, 0) / runs.length;
+                    const avgScore = meanScore(runs);
                     const avgTime = runs.reduce((sum, r) => sum + r.execution_time, 0) / runs.length;
                     const successCount = runs.filter(r => r.status === 'success').length;
                     const avgStatus = successCount > 0 ? 'success' : 'failed';
@@ -2541,7 +2557,7 @@
                             <td><span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:1px 4px; border-radius:3px; font-size:9px;">${runs.length} runs</span></td>
                             <td>
                                 <span class="status-badge status-${avgStatus}">${avgStatus}</span>
-                                <span class="score-badge ${avgScore*100>=70?'score-high':avgScore*100>=40?'score-medium':'score-low'}">${(avgScore*100).toFixed(1)}%</span>
+                                <span class="score-badge ${avgScore*100>=70?'score-high':avgScore*100>=40?'score-medium':'score-low'}">${formatScore(avgScore)}</span>
                                 <span style="color:#888; font-size:10px;">${avgTime.toFixed(1)}s</span>
                             </td>
                             <td>${getAvgBreakdown(runs)}</td>
@@ -2555,7 +2571,7 @@
                                 <td><span style="background:rgba(0,212,255,0.2); color:#00d4ff; padding:1px 4px; border-radius:3px; font-size:9px;">Run ${r.run_index}/${r.runs_per_task}</span></td>
                                 <td>
                                     <span class="status-badge status-${r.status}">${r.status}</span>
-                                    <span class="score-badge ${r.score*100>=70?'score-high':r.score*100>=40?'score-medium':'score-low'}">${(r.score*100).toFixed(1)}%</span>
+                                    <span class="score-badge ${r.score*100>=70?'score-high':r.score*100>=40?'score-medium':'score-low'}">${formatScore(r.score)}</span>
                                     <span style="color:#888; font-size:10px;">${r.execution_time.toFixed(1)}s</span>
                                 </td>
                                 <td>${getBreakdown(r)}</td>
@@ -2570,7 +2586,7 @@
                             <td>-</td>
                             <td>
                                 <span class="status-badge status-${firstRun.status}">${firstRun.status}</span>
-                                <span class="score-badge ${firstRun.score*100>=70?'score-high':firstRun.score*100>=40?'score-medium':'score-low'}">${(firstRun.score*100).toFixed(1)}%</span>
+                                <span class="score-badge ${firstRun.score*100>=70?'score-high':firstRun.score*100>=40?'score-medium':'score-low'}">${formatScore(firstRun.score)}</span>
                                 <span style="color:#888; font-size:10px;">${firstRun.execution_time.toFixed(1)}s</span>
                             </td>
                             <td>${getBreakdown(firstRun)}</td>

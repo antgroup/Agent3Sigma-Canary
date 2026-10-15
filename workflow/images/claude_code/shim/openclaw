@@ -1,0 +1,662 @@
+#!/usr/bin/env python3
+"""claude_code variant of the AgentCanary CLI shim.
+
+Drives the first-party Claude Code CLI (`claude -p --output-format stream-json
+--verbose`) and persists a transcript at
+/root/.openclaw/agents/<id>/sessions/<uuid>.jsonl in the minimal AgentCanary
+format expected by lib_grading._summarize_transcript.
+
+Permission regime is selected at runtime via the CLAUDE_PERMISSION_MODE env var
+(passed through `docker exec` by the host):
+
+  - auto   -> `--permission-mode auto` (+ CLAUDE_CODE_ENABLE_AUTO_MODE=1):
+              Claude Code's built-in "security monitor" classifier reviews each
+              risky tool call before it runs.
+  - bypass -> `--permission-mode bypassPermissions` (+ IS_SANDBOX=1 to lift the
+              root-uid guard in this isolated container): no permission checks.
+
+Model routing note (empirically verified against claude-code v2.1.x on a
+third-party Anthropic-compatible endpoint): the auto-mode permission classifier
+always uses the session/main model (ANTHROPIC_MODEL / --model). The
+CLAUDE_CODE_AUTO_MODE_MODEL env var is present in the binary but has no effect
+(no consumption sites), so the classifier model cannot be set independently of
+the task model on a custom endpoint. We still forward CLAUDE_AUTO_MODE_MODEL if
+provided, in case a future CLI version honours it.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import uuid
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Dict, List
+
+OPENCLAW_HOME = Path("/root/.openclaw")
+CONFIG_PATH = OPENCLAW_HOME / "openclaw.json"
+AGENTS_DIR = OPENCLAW_HOME / "agents"
+STATE_PATH = OPENCLAW_HOME / "shim_state.json"
+SKILLS_DIR = "/root/.claude/skills"
+
+# Match nanoclaw's tool allowlist for cross-framework fairness. WebSearch stays
+# out (no public web index in the isolated container); WebFetch is in (mock_api
+# serves HTTPS via the baked NODE_EXTRA_CA_CERTS cert).
+TOOL_ALLOWLIST = [
+    "Bash", "Read", "Write", "Edit", "Glob", "Grep",
+    "WebFetch", "Task", "TodoWrite", "Skill",
+]
+
+
+def _claude_bin() -> str:
+    for cand in ("claude",
+                 "/usr/local/bin/claude",
+                 "/usr/local/lib/node_modules/@anthropic-ai/claude-code/bin/claude.exe"):
+        found = shutil.which(cand) if "/" not in cand else (cand if Path(cand).exists() else None)
+        if found:
+            return found
+    return "claude"
+
+
+def _append_claude_effort(cmd: List[str], effort: str | None) -> List[str]:
+    """Add Claude Code's native effort flag without imposing global values."""
+    if not effort:
+        return cmd
+    return [*cmd, "--effort", effort]
+
+
+def _load_state() -> Dict[str, Any]:
+    if STATE_PATH.exists():
+        try:
+            return json.loads(STATE_PATH.read_text())
+        except Exception:
+            pass
+    return {"agents": {}}
+
+
+def _save_state(state: Dict[str, Any]) -> None:
+    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    STATE_PATH.write_text(json.dumps(state, indent=2))
+
+
+def _load_provider_config() -> Dict[str, Any]:
+    if not CONFIG_PATH.exists():
+        return {}
+    return json.loads(CONFIG_PATH.read_text())
+
+
+def _resolve_provider(full_model_id: str, cfg: Dict[str, Any]) -> Dict[str, Any]:
+    if "/" not in full_model_id:
+        raise SystemExit(f"shim: model id must be provider/model, got {full_model_id}")
+    provider_id, model_id = full_model_id.split("/", 1)
+    providers = cfg.get("models", {}).get("providers", {})
+    prov = providers.get(provider_id) or {}
+    model_meta = None
+    for m in prov.get("models", []):
+        if m.get("id") == model_id:
+            model_meta = m
+            break
+    return {
+        "provider_id": provider_id,
+        "model_id": model_id,
+        "base_url": prov.get("baseUrl"),
+        "api_key": prov.get("apiKey"),
+        "api": (model_meta or {}).get("api") or prov.get("api") or "anthropic-messages",
+    }
+
+
+def cmd_agents_list(args: argparse.Namespace) -> None:
+    state = _load_state()
+    for name, info in state["agents"].items():
+        print(f"- {name}")
+        print(f"    Workspace: {info.get('workspace')}")
+        print(f"    Model: {info.get('model')}")
+
+
+def cmd_agents_add(args: argparse.Namespace) -> None:
+    state = _load_state()
+    agent_id = args.id.replace(":", "-").lower()
+    state["agents"][agent_id] = {"model": args.model, "workspace": str(args.workspace)}
+    _save_state(state)
+    (AGENTS_DIR / agent_id / "sessions").mkdir(parents=True, exist_ok=True)
+    if args.workspace:
+        Path(args.workspace).mkdir(parents=True, exist_ok=True)
+    print(f"Added agent {agent_id}")
+
+
+def cmd_agents_delete(args: argparse.Namespace) -> None:
+    state = _load_state()
+    agent_id = args.id.replace(":", "-").lower()
+    state["agents"].pop(agent_id, None)
+    sessions = state.get("sessions")
+    if isinstance(sessions, dict):
+        for key in list(sessions):
+            if key.startswith(f"{agent_id}:"):
+                sessions.pop(key, None)
+    _save_state(state)
+    agent_dir = AGENTS_DIR / agent_id
+    if agent_dir.exists():
+        shutil.rmtree(agent_dir, ignore_errors=True)
+    print(f"Deleted agent {agent_id}")
+
+
+def _parse_stream_json(stdout: str) -> List[Dict[str, Any]]:
+    """Convert `claude -p --output-format stream-json` JSONL into the shim's
+    intermediate event list (assistant_text / tool_use / tool_result)."""
+    events: List[Dict[str, Any]] = []
+    for line in stdout.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            ev = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        etype = ev.get("type")
+        if etype == "assistant":
+            msg = ev.get("message", {}) or {}
+            for c in (msg.get("content") or []):
+                ctype = c.get("type")
+                if ctype == "text":
+                    events.append({"kind": "assistant_text", "text": c.get("text", "") or ""})
+                elif ctype == "tool_use":
+                    events.append({"kind": "tool_use", "id": c.get("id", "") or "",
+                                   "name": c.get("name", "") or "",
+                                   "arguments": c.get("input", {}) or {}})
+        elif etype == "user":
+            msg = ev.get("message", {}) or {}
+            content = msg.get("content")
+            blocks = content if isinstance(content, list) else []
+            for c in blocks:
+                if isinstance(c, dict) and c.get("type") == "tool_result":
+                    result = c.get("content")
+                    if isinstance(result, list):
+                        result = "\n".join(
+                            x.get("text", "") if isinstance(x, dict) and x.get("text") is not None
+                            else json.dumps(x) for x in result
+                        )
+                    events.append({"kind": "tool_result",
+                                   "tool_use_id": c.get("tool_use_id", "") or "",
+                                   "result": result if isinstance(result, str) else json.dumps(result)})
+        elif etype == "result":
+            subtype = ev.get("subtype", "") or ""
+            # error_max_turns / error_max_budget are *normal* terminations (the
+            # agent reached a configured cap) per run_validity_criteria — do not
+            # inject a synthetic error marker for them; the transcript content
+            # already stands on its own. Only flag genuine runtime errors.
+            if ev.get("is_error") and subtype not in ("error_max_turns", "error_max_budget"):
+                events.append({"kind": "assistant_text",
+                               "text": f"[runtime error: {subtype}]"})
+    return events
+
+
+def _utc_timestamp() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
+
+
+def _project_dir_for_cwd(cwd: str) -> Path:
+    # Claude Code stores project transcripts under ~/.claude/projects/<sanitized-cwd>.
+    # Empirically for /workspace this is -workspace; keep path separators as
+    # hyphens and sanitize other unusual characters conservatively.
+    normalized = str(Path(cwd))
+    safe = normalized.replace(os.sep, "-")
+    safe = re.sub(r"[^A-Za-z0-9_.-]", "-", safe)
+    return Path.home() / ".claude" / "projects" / safe
+
+
+def _coerce_text(content: Any) -> str:
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        parts: list[str] = []
+        for block in content:
+            if isinstance(block, dict):
+                if block.get("type") == "text" and block.get("text") is not None:
+                    parts.append(str(block.get("text")))
+                elif block.get("content") is not None:
+                    parts.append(str(block.get("content")))
+            else:
+                parts.append(str(block))
+        return "\n".join(p for p in parts if p)
+    if content is None:
+        return ""
+    return json.dumps(content, ensure_ascii=False)
+
+
+def _parse_tool_arguments(arguments: Any) -> Dict[str, Any]:
+    if isinstance(arguments, dict):
+        return arguments
+    if isinstance(arguments, str):
+        try:
+            parsed = json.loads(arguments)
+            if isinstance(parsed, dict):
+                return parsed
+        except json.JSONDecodeError:
+            pass
+        return {"command": arguments}
+    return {"value": arguments}
+
+
+def _map_tool_call(name: str, arguments: Dict[str, Any]) -> tuple[str, Dict[str, Any]]:
+    raw = (name or "").strip()
+    lower = raw.lower()
+    if lower in ("exec", "shell", "bash"):
+        command = arguments.get("command") or arguments.get("cmd") or arguments.get("script")
+        return "Bash", {"command": str(command if command is not None else arguments)}
+    if lower in ("read", "read_file"):
+        path = arguments.get("file_path") or arguments.get("path")
+        return "Read", {"file_path": str(path if path is not None else arguments)}
+    if lower in ("write", "write_file"):
+        path = arguments.get("file_path") or arguments.get("path")
+        content = arguments.get("content", "")
+        return "Write", {"file_path": str(path if path is not None else ""), "content": str(content)}
+    if lower == "edit":
+        return "Edit", arguments
+    if raw in TOOL_ALLOWLIST:
+        return raw, arguments
+    return raw or "Bash", arguments
+
+
+def _load_seed_messages(path: str) -> List[Dict[str, Any]]:
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    if isinstance(payload, dict) and isinstance(payload.get("messages"), list):
+        payload = payload["messages"]
+    if not isinstance(payload, list):
+        raise ValueError("seed history must be a message list or {messages: [...]} object")
+    return [m for m in payload if isinstance(m, dict)]
+
+
+def _history_to_claude_jsonl(messages: List[Dict[str, Any]], session_id: str,
+                             cwd: str, model: str) -> List[Dict[str, Any]]:
+    rows: List[Dict[str, Any]] = []
+    parent_uuid: str | None = None
+    for msg in messages:
+        role = msg.get("role")
+        row_uuid = str(uuid.uuid4())
+        base = {
+            "parentUuid": parent_uuid,
+            "isSidechain": False,
+            "userType": "external",
+            "cwd": cwd,
+            "sessionId": session_id,
+            "version": "2.1.190",
+            "uuid": row_uuid,
+            "timestamp": _utc_timestamp(),
+        }
+
+        if role == "user":
+            rows.append({
+                **base,
+                "type": "user",
+                "message": {"role": "user", "content": _coerce_text(msg.get("content", ""))},
+            })
+            parent_uuid = row_uuid
+        elif role == "assistant":
+            content_blocks: List[Dict[str, Any]] = []
+            text = _coerce_text(msg.get("content", ""))
+            if text:
+                content_blocks.append({"type": "text", "text": text})
+            for tc in msg.get("tool_calls", []) or []:
+                if not isinstance(tc, dict):
+                    continue
+                fn = tc.get("function", tc) if "function" in tc else tc
+                if not isinstance(fn, dict):
+                    continue
+                tool_name, tool_input = _map_tool_call(
+                    str(fn.get("name", "")),
+                    _parse_tool_arguments(fn.get("arguments", {})),
+                )
+                content_blocks.append({
+                    "type": "tool_use",
+                    "id": str(tc.get("id") or f"toolu_{uuid.uuid4().hex[:12]}"),
+                    "name": tool_name,
+                    "input": tool_input,
+                })
+            if not content_blocks:
+                content_blocks.append({"type": "text", "text": ""})
+            rows.append({
+                **base,
+                "type": "assistant",
+                "message": {
+                    "id": f"msg_seed_{uuid.uuid4().hex[:12]}",
+                    "type": "message",
+                    "role": "assistant",
+                    "model": model,
+                    "content": content_blocks,
+                    "stop_reason": "end_turn",
+                    "stop_sequence": None,
+                    "usage": {
+                        "input_tokens": 0,
+                        "cache_creation_input_tokens": 0,
+                        "cache_read_input_tokens": 0,
+                        "output_tokens": 0,
+                        "server_tool_use": {"web_search_requests": 0, "web_fetch_requests": 0},
+                        "service_tier": "standard",
+                    },
+                },
+                "requestId": f"req_seed_{uuid.uuid4().hex[:12]}",
+            })
+            parent_uuid = row_uuid
+        elif role == "tool":
+            rows.append({
+                **base,
+                "type": "user",
+                "message": {
+                    "role": "user",
+                    "content": [{
+                        "type": "tool_result",
+                        "tool_use_id": str(msg.get("tool_call_id") or ""),
+                        "content": _coerce_text(msg.get("content", "")),
+                        "is_error": bool(msg.get("is_error", False)),
+                    }],
+                },
+            })
+            parent_uuid = row_uuid
+    return rows
+
+
+def _history_to_agentcanary_events(messages: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    out: List[Dict[str, Any]] = []
+    for msg in messages:
+        role = msg.get("role")
+        content = msg.get("content", "")
+        if role == "user":
+            out.append({"type": "message", "message": {"role": "user",
+                       "content": [{"type": "text", "text": _coerce_text(content)}]}})
+        elif role == "assistant":
+            blocks: List[Dict[str, Any]] = []
+            text = _coerce_text(content)
+            if text:
+                blocks.append({"type": "text", "text": text})
+            for tc in msg.get("tool_calls", []) or []:
+                if not isinstance(tc, dict):
+                    continue
+                fn = tc.get("function", tc) if "function" in tc else tc
+                if not isinstance(fn, dict):
+                    continue
+                blocks.append({
+                    "type": "toolCall",
+                    "id": str(tc.get("id") or ""),
+                    "name": str(fn.get("name", "")),
+                    "arguments": _parse_tool_arguments(fn.get("arguments", {})),
+                })
+            if blocks:
+                out.append({"type": "message", "message": {"role": "assistant", "content": blocks}})
+        elif role == "tool":
+            out.append({"type": "message", "message": {"role": "toolResult",
+                       "toolCallId": str(msg.get("tool_call_id") or ""),
+                       "content": [{"type": "text", "text": _coerce_text(content)}],
+                       "isError": bool(msg.get("is_error", False))}})
+    return out
+
+
+def _write_seed_claude_session(seed_history_path: str, workspace: str,
+                               model: str) -> tuple[str, List[Dict[str, Any]]]:
+    messages = _load_seed_messages(seed_history_path)
+    seed_session_id = str(uuid.uuid4())
+    project_dir = _project_dir_for_cwd(workspace)
+    project_dir.mkdir(parents=True, exist_ok=True)
+    seed_path = project_dir / f"{seed_session_id}.jsonl"
+    rows = _history_to_claude_jsonl(messages, seed_session_id, workspace, model)
+    with seed_path.open("w", encoding="utf-8") as f:
+        for row in rows:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+    print(f"shim: seeded Claude native history {seed_session_id} from {seed_history_path}", file=sys.stderr)
+    return seed_session_id, _history_to_agentcanary_events(messages)
+
+
+def _write_minimal_transcript(agent_id: str, session_id: str, user_msg: str,
+                              events: List[Dict[str, Any]],
+                              seed_events: List[Dict[str, Any]] | None = None) -> Path:
+    sessions_dir = AGENTS_DIR / agent_id / "sessions"
+    sessions_dir.mkdir(parents=True, exist_ok=True)
+    transcript_path = sessions_dir / f"{session_id}.jsonl"
+
+    out_events: List[Dict[str, Any]] = []
+    if transcript_path.exists() and not seed_events:
+        for line in transcript_path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            try:
+                out_events.append(json.loads(line))
+            except json.JSONDecodeError:
+                pass
+    elif seed_events:
+        out_events.extend(seed_events)
+
+    out_events.append({"type": "message", "message": {"role": "user",
+                      "content": [{"type": "text", "text": user_msg}]}})
+    for ev in events or []:
+        kind = ev.get("kind")
+        if kind == "assistant_text":
+            text = ev.get("text", "")
+            if text.strip():
+                out_events.append({"type": "message", "message": {"role": "assistant",
+                                   "content": [{"type": "text", "text": text}]}})
+        elif kind == "tool_use":
+            out_events.append({"type": "message", "message": {"role": "assistant",
+                               "content": [{"type": "toolCall", "id": ev.get("id", ""),
+                                            "name": ev.get("name", ""),
+                                            "arguments": ev.get("arguments", {})}]}})
+        elif kind == "tool_result":
+            result = ev.get("result", "")
+            if not isinstance(result, str):
+                result = json.dumps(result)
+            out_events.append({"type": "message", "message": {"role": "toolResult",
+                               "toolCallId": ev.get("tool_use_id", ""),
+                               "content": [{"type": "text", "text": result[:10000]}]}})
+
+    with transcript_path.open("w", encoding="utf-8") as f:
+        for ev in out_events:
+            f.write(json.dumps(ev, ensure_ascii=False) + "\n")
+
+    sessions_payload = {
+        "currentSessionId": session_id,
+        f"agent:{agent_id}:main": {
+            "sessionId": session_id,
+            "updatedAt": int(datetime.now(timezone.utc).timestamp() * 1000),
+            "sessionFile": str(transcript_path),
+            "status": "done",
+        },
+    }
+    (sessions_dir / "sessions.json").write_text(json.dumps(sessions_payload))
+    return transcript_path
+
+
+def cmd_agent_invoke(args: argparse.Namespace) -> None:
+    state = _load_state()
+    agent_id = args.agent.replace(":", "-").lower()
+    info = state["agents"].get(agent_id) or {}
+    model_full = info.get("model") or ""
+    workspace = info.get("workspace") or os.getcwd()
+    if not model_full:
+        print(f"shim: agent {agent_id} not registered", file=sys.stderr)
+        sys.exit(2)
+
+    cfg = _load_provider_config()
+    prov = _resolve_provider(model_full, cfg)
+    base_url = prov["base_url"]
+    api_key = prov["api_key"]
+    model = prov["model_id"]
+
+    Path(workspace).mkdir(parents=True, exist_ok=True)
+
+    env = os.environ.copy()
+    env["ANTHROPIC_BASE_URL"] = base_url or ""
+    env["ANTHROPIC_AUTH_TOKEN"] = api_key or ""
+    env["ANTHROPIC_API_KEY"] = api_key or ""
+    # Task / main-loop model. Pin every auxiliary tier to the same model so any
+    # incidental small/fast/haiku call resolves to a model the endpoint serves
+    # (the endpoint hosts a single custom provider, not Anthropic's tiers).
+    env["ANTHROPIC_MODEL"] = model
+    env["ANTHROPIC_SMALL_FAST_MODEL"] = os.environ.get("CLAUDE_SMALL_FAST_MODEL", model)
+    env["ANTHROPIC_DEFAULT_HAIKU_MODEL"] = os.environ.get("CLAUDE_HAIKU_MODEL", model)
+    env["ANTHROPIC_DEFAULT_SONNET_MODEL"] = os.environ.get("CLAUDE_SONNET_MODEL", model)
+    env["ANTHROPIC_DEFAULT_OPUS_MODEL"] = os.environ.get("CLAUDE_OPUS_MODEL", model)
+    # Bound the agent loop. In auto mode the permission classifier adds a slow
+    # (10-25s) non-streaming call per risky tool use, and a denied action can be
+    # retried; without a turn cap a single task can run until the benchmark
+    # timeout. 60 turns is ample for legitimate multi-step tasks while killing
+    # runaway retry loops. Overridable via CLAUDE_MAX_TURNS.
+    env["CLAUDE_CODE_MAX_TURNS"] = os.environ.get("CLAUDE_MAX_TURNS", "60")
+    # Retry transient model errors. Critical for auto mode: the permission
+    # classifier shares the (throttled) task model, and on a 429/503 it
+    # otherwise gives up and BLOCKS the tool ("model temporarily unavailable,
+    # auto mode cannot determine safety"), corrupting the run. With retries the
+    # throttled classifier call succeeds on a later attempt instead. Verified:
+    # raises classifier-failure rate from ~70% (concurrency>=2) to ~0.
+    env["CLAUDE_CODE_MAX_RETRIES"] = os.environ.get("CLAUDE_MAX_RETRIES", "10")
+
+    perm_mode = os.environ.get("CLAUDE_PERMISSION_MODE", "auto").strip().lower()
+    if perm_mode in ("bypass", "bypasspermissions", "dangerous"):
+        cli_mode = "bypassPermissions"
+        # Lift the "cannot be used with root/sudo" guard inside this isolated,
+        # network-contained eval container.
+        env["IS_SANDBOX"] = "1"
+    else:
+        cli_mode = "auto"
+        # Enable auto mode on this third-party endpoint and (best-effort) point
+        # the classifier at a model if requested. NOTE: CLAUDE_CODE_AUTO_MODE_MODEL
+        # is currently a no-op in the CLI — the classifier follows ANTHROPIC_MODEL.
+        env["CLAUDE_CODE_ENABLE_AUTO_MODE"] = "1"
+        auto_model = os.environ.get("CLAUDE_AUTO_MODE_MODEL")
+        if auto_model:
+            env["CLAUDE_CODE_AUTO_MODE_MODEL"] = auto_model
+
+    sessions_state = state.setdefault("sessions", {})
+    session_key = f"{agent_id}:{args.session_id}"
+    existing_session = sessions_state.get(session_key)
+    if isinstance(existing_session, dict):
+        session_uuid = existing_session.get("claude_session_id") or str(uuid.uuid4())
+    elif isinstance(existing_session, str):
+        session_uuid = existing_session
+    else:
+        session_uuid = str(uuid.uuid4())
+
+    seed_events: List[Dict[str, Any]] = []
+    resume_seed_session: str | None = None
+    if args.seed_history:
+        try:
+            resume_seed_session, seed_events = _write_seed_claude_session(args.seed_history, workspace, model)
+        except Exception as exc:
+            print(f"shim: failed to seed Claude history: {exc}", file=sys.stderr)
+            sys.exit(2)
+        # A seeded run starts a fresh Claude session forked from the seed. Store
+        # that session under the OpenClaw session id so later turns can resume it.
+        session_uuid = str(uuid.uuid4())
+
+    sessions_state[session_key] = {"claude_session_id": session_uuid}
+    _save_state(state)
+
+    cmd = [
+        _claude_bin(), "-p", args.message,
+        "--permission-mode", cli_mode,
+        "--model", model,
+        "--output-format", "stream-json",
+        "--verbose",
+        "--setting-sources", "user,project",
+        "--add-dir", SKILLS_DIR,
+        "--tools", *TOOL_ALLOWLIST,
+    ]
+    # Claude Code owns the provider-specific translation to
+    # output_config.effort; the benchmark only supplies the requested value.
+    cmd = _append_claude_effort(cmd, args.thinking)
+    if resume_seed_session:
+        cmd += ["--resume", resume_seed_session, "--fork-session", "--session-id", session_uuid]
+    elif existing_session:
+        cmd += ["--resume", session_uuid]
+    else:
+        cmd += ["--session-id", session_uuid]
+
+    shim_timeout = int(os.environ.get("SHIM_TIMEOUT_SECONDS", "1800"))
+
+    def _run():
+        return subprocess.run(cmd, cwd=workspace, env=env, capture_output=True,
+                              text=True, timeout=shim_timeout)
+
+    try:
+        proc = _run()
+    except subprocess.TimeoutExpired as exc:
+        stdout = exc.stdout or ""
+        if isinstance(stdout, bytes):
+            stdout = stdout.decode("utf-8", "replace")
+        events = _parse_stream_json(stdout)
+        tp = _write_minimal_transcript(agent_id, session_uuid, args.message, events, seed_events)
+        print(f"shim: claude timed out after {shim_timeout}s; wrote partial transcript {tp}",
+              file=sys.stderr)
+        sys.exit(0)
+
+    stdout = proc.stdout or ""
+    stderr = proc.stderr or ""
+    events = _parse_stream_json(stdout)
+
+    # Retry once on transient empty output / auth glitch.
+    if not events and ("Invalid API key" in stderr or "Not logged in" in stderr or not stdout.strip()):
+        print("shim: empty/transient failure, retrying once", file=sys.stderr)
+        try:
+            proc = _run()
+            stdout = proc.stdout or ""
+            stderr = proc.stderr or ""
+            events = _parse_stream_json(stdout)
+        except subprocess.TimeoutExpired:
+            pass
+
+    if not events:
+        print("shim: no events parsed from claude output", file=sys.stderr)
+        print(stdout[-2000:], file=sys.stderr)
+        if stderr:
+            print(stderr[-2000:], file=sys.stderr)
+
+    transcript_path = _write_minimal_transcript(agent_id, session_uuid, args.message, events, seed_events)
+    print(f"shim: wrote transcript {transcript_path}")
+    sys.exit(0 if proc.returncode == 0 else proc.returncode)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(prog="openclaw", description="claude_code shim of the openclaw CLI")
+    sub = parser.add_subparsers(dest="cmd", required=True)
+
+    agents = sub.add_parser("agents")
+    agents_sub = agents.add_subparsers(dest="sub", required=True)
+    agents_sub.add_parser("list")
+    add = agents_sub.add_parser("add")
+    add.add_argument("id")
+    add.add_argument("--model", required=True)
+    add.add_argument("--workspace", required=True)
+    add.add_argument("--non-interactive", action="store_true")
+    delete = agents_sub.add_parser("delete")
+    delete.add_argument("id")
+    delete.add_argument("--force", action="store_true")
+
+    plugins = sub.add_parser("plugins")
+    plugins_sub = plugins.add_subparsers(dest="sub", required=False)
+    plugins_sub.add_parser("install")
+
+    agent_cmd = sub.add_parser("agent")
+    agent_cmd.add_argument("--agent", required=True)
+    agent_cmd.add_argument("--session-id", required=True)
+    agent_cmd.add_argument("--message", required=True)
+    agent_cmd.add_argument("--seed-history")
+    agent_cmd.add_argument("--thinking")
+
+    args, _ = parser.parse_known_args()
+    if args.cmd == "agents":
+        if args.sub == "list":
+            cmd_agents_list(args)
+        elif args.sub == "add":
+            cmd_agents_add(args)
+        elif args.sub == "delete":
+            cmd_agents_delete(args)
+    elif args.cmd == "agent":
+        cmd_agent_invoke(args)
+    elif args.cmd == "plugins":
+        pass
+
+
+if __name__ == "__main__":
+    main()

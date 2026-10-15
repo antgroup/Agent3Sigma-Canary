@@ -153,6 +153,15 @@ bash workflow/workflow_step_1_image_builder.sh
 > **Tip**
 > If network restrictions require an HTTP proxy for Docker builds, see [docs/docker_proxy_en.md](docs/docker_proxy_en.md).
 
+The same builder also supports Claude Code, Codex, a selectable OpenClaw version, and shared optional research tools:
+
+```bash
+bash workflow/workflow_step_1_image_builder.sh --images official,official_shield --openclaw-version 2026.7.1-2 --safety-research --non-interactive
+bash workflow/workflow_step_1_image_builder.sh --images claude_code,codex --safety-research --non-interactive
+```
+
+Without `--safety-research`, the base tool environment is retained. OpenClaw still defaults to `2026.4.11`. Use `--prepare-only` to stage contexts and `--resume <workspace>` to resume builds. See [workflow documentation](workflow/README.md) for all options and native CLI API requirements.
+
 ### 4. Run Evaluations
 
 **Basic usage:**
@@ -172,6 +181,10 @@ export DOCKER_IMAGE=openclaw-official-v20260430_120000
 
 | Argument | Description | Example |
 | --- | --- | --- |
+| `--effort` | Target agent reasoning effort, forwarded to its runtime | `--effort high` |
+| `--trajectory-only` | Skip all grading and save trajectories plus ungraded results | `--trajectory-only` |
+| `--validate-tasks` | Check task inputs without a model or Docker | `--suite NARA-Bench --validate-tasks` |
+| `--task-ids` | Restrict the selected suite to exact IDs; also used by parallel workers | `--task-ids task_0001_example,task_0002_example` |
 | `--model` | Target model, in `provider-id/model-id` format | `--model anthropic/claude-sonnet-4` |
 | `--suite` | Test suite | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `safety`, `all`, or comma-separated task IDs |
 | `--docker` | Run the agent inside Docker | `--docker` |
@@ -205,6 +218,24 @@ vim batch_run/batch_config.sh
 # Limit maximum parallelism
 MAX_PARALLEL=4 ./batch_run/direct.sh
 ```
+
+### NARA-Bench Tasks
+
+The integration imports 1,800 tasks from upstream commit `24f9837`, covering six non-adversarial risk mechanisms across twelve domains, alongside the existing suites. `--suite` accepts `NARA-Bench`, `tasks/NARA-Bench`, and task subdirectories such as `NARA-Bench/outdated_memory`.
+
+```bash
+./scripts/run.sh --suite tasks/NARA-Bench --validate-tasks
+./scripts/run.sh --model <provider>/<model> --suite tasks/NARA-Bench --docker --effort high
+./scripts/run.sh --model <provider>/<model> --suite NARA-Bench/outdated_memory --docker --trajectory-only
+
+# Each worker uses its own containers; output is partitioned under shard_000, etc.
+source env.sh
+uv run python scripts/benchmark_parallel.py --workers 4 --model <provider>/<model> --suite tasks/NARA-Bench --docker
+```
+
+**Published snapshot limitations:** input validation currently finds missing files for 1,710 tasks. Supply the original `assets/safety` fixtures before running; the runner reports missing inputs before starting evaluations. Another 53 task definitions use the unimplemented `llm_reflection` grader and remain ungraded. Missing data is not synthesized, and ungraded records are not counted as zero scores.
+
+`--trajectory-only` skips all judges and writes `trajectories/job_*/trajectory_*.json` in addition to the normal results and full transcript. It cannot be combined with PAIR, which requires a judge. Normal grading continues to follow each task's own rubric for compatibility with existing suites. The new `pre_setup: memory` accepts a context file or inline multiline text; see [pre_setup documentation](docs/pre_setup_en.md).
 
 ### 5. View Results
 

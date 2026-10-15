@@ -1,6 +1,6 @@
 # AgentCanary Workflow
 
-`workflow/` is responsible only for building AgentCanary Docker base images.
+`workflow/` builds AgentCanary images by combining an agent framework, an OpenClaw version (for official variants), and an optional shared safety research tool layer.
 
 ## Image Roles
 
@@ -11,6 +11,8 @@
 | `official_secureclaw` | `openclaw-official_secureclaw-v{timestamp}` | `official` + SecureClaw security plugin |
 | `official_clawkeeper` | `openclaw-official_clawkeeper-v{timestamp}` | `official` + ClawKeeper security plugin |
 | `hermes` | `openclaw-hermes-v{timestamp}` | hermes-agent (Nous Research) framework wrapped behind an `openclaw` shim + mock-api server |
+| `claude_code` | `openclaw-claude_code-v{timestamp}` | Claude Code CLI + native history/skill adapter + mock API |
+| `codex` | `openclaw-codex-v{timestamp}` | Codex CLI + native history/skill adapter + mock API |
 | `nanoclaw` | `openclaw-nanoclaw-v{timestamp}` | nanoclaw runtime (Claude Agent SDK) wrapped behind an `openclaw` shim + mock-api server |
 
 The `official_*` variants extend `official` by adding different security plugins. The `hermes` and `nanoclaw` variants instead wrap third-party agent frameworks behind an `openclaw` shim so they can be evaluated through the same harness.
@@ -21,7 +23,11 @@ The `official_*` variants extend `official` by adding different security plugins
 workflow/
 ├── README.md
 ├── workflow_step_1_image_builder.sh
+├── build_images.py
+├── features/safety_research/  # Shared optional tools and skills
 └── images/
+    ├── claude_code/
+    ├── codex/
     ├── official/
     │   ├── Dockerfile
     │   ├── openclaw.json
@@ -62,17 +68,18 @@ workflow/
 ```text
 workflow_step_1_image_builder.sh
 ├── Creates the workspace directory .workspaces/AgentCanary_{timestamp}
-├── Selects image types
+├── Selects image types, OpenClaw version, and optional research tools
 ├── Calls images/{type}/prepare.sh to prepare the build context
-└── Runs docker build
+├── Composes the shared research layer when requested
+└── Runs docker build (or stops after --prepare-only)
 ```
 
 Build outputs:
 
 - Workspace: `.workspaces/AgentCanary_{timestamp}`
 - Build context: `.workspaces/AgentCanary_{timestamp}/build_{type}`
-- Image tag: `openclaw-{type}-v{timestamp}`
-- State file: `.workspaces/AgentCanary_{timestamp}/.build_state`
+- Image tag: `openclaw-{type}[-openclaw-{version}][-safety_research]-v{timestamp}`; the default OpenClaw version omits the version suffix
+- State file: `.workspaces/AgentCanary_{timestamp}/.build_state.json`
 
 ## Usage
 
@@ -80,13 +87,40 @@ Build outputs:
 bash workflow/workflow_step_1_image_builder.sh
 ```
 
-Interactive prompts:
+Without flags, a terminal session asks for agent types, OpenClaw version, and research tools. Defaults are `official`, OpenClaw `2026.4.11`, and no research layer. Noninteractive invocations use the same defaults.
 
-| Prompt | Default When Pressing Enter |
-|--------|-----------------------------|
-| Workspace selection | Create a new workspace |
-| Proxy configuration | Do not use a proxy |
-| Image type selection | Build all image types |
+```bash
+# Newer OpenClaw and Shield, with the shared research environment.
+bash workflow/workflow_step_1_image_builder.sh \
+  --images official,official_shield --openclaw-version 2026.7.1-2 \
+  --safety-research --non-interactive
+
+# Claude Code and Codex, using the same optional tool layer.
+bash workflow/workflow_step_1_image_builder.sh \
+  --images claude_code,codex --safety-research --non-interactive
+
+# Stage contexts without Docker, package downloads, or image builds.
+bash workflow/workflow_step_1_image_builder.sh \
+  --images codex --prepare-only --workspace /tmp/canary-codex-context
+
+# Build prepared contexts or resume after an interrupted/failed build.
+bash workflow/workflow_step_1_image_builder.sh --resume /tmp/canary-codex-context
+```
+
+`--images` accepts names, menu numbers, or `all`. `--openclaw-version newest` is a reproducible alias for `2026.7.1-2`, not a moving registry tag. `--no-safety-research` explicitly disables the optional layer. `--proxy URL` retains Linux host networking and Docker Desktop localhost rewriting. `--workspace` must name an empty/new directory; the builder never deletes an existing workspace.
+
+The shared research layer installs document conversion, OCR, accounting, backup, network/operations, PII, and WordPress tools. It includes selected local skills and downloads pinned community skills during Docker build. It is shared by all frameworks, without separate `*_safety_research` image directories. A version/profile-specific tag and image labels identify the resulting runtime.
+
+## Claude Code and Codex
+
+The CLI versions default to Claude Code `2.1.190` and Codex `0.145.0`, matching the imported NARA adapters. Each shim translates native tool calls/results into the existing benchmark transcript format, mounts skills at its native discovery path, and supports `seed_history` by constructing a native session.
+
+- Claude Code requires an Anthropic-compatible target endpoint. `CLAUDE_PERMISSION_MODE=auto` (default) enables its automatic permission review; `bypass` selects its bypass mode.
+- Codex requires an OpenAI-compatible **Responses API** endpoint. `CODEX_BASE_URL` can override the configured endpoint; `CODEX_PERMISSION_MODE=auto-review` (default) enables automatic approval review, while `yolo` bypasses the CLI sandbox/approvals.
+- Target `--effort` is forwarded to the native runtime. Judge effort is configured independently with `roles.judge.effort`.
+- `--gateway` applies to official OpenClaw variants; the other frameworks use their native CLIs.
+
+Codex containers receive the seccomp/AppArmor exceptions required by the CLI's nested sandbox. Other frameworks retain Docker's default profiles.
 
 ## official Build Contents
 
@@ -100,7 +134,7 @@ Interactive prompts:
 
 `images/official/Dockerfile` installs and configures:
 
-- `openclaw@2026.4.11`
+- `openclaw@2026.4.11` by default, configurable through `--openclaw-version`
 - mock-api server: `/opt/mock-api`
 - mock-api data: `/tmp/scry/mock_api/data`
 
@@ -111,15 +145,18 @@ their native skill-discovery location.
 
 At runtime, benchmark runs keep outbound networking open by default. Passing
 `benchmark.py --netlock` asks `scripts/lib_docker.py` to apply the
-AgentCanary iptables allowlist. Image tags containing `official_safety_research`
-remain open-egress research images and skip that lockdown even when requested.
+AgentCanary iptables allowlist. Research-profile images (identified by the `safety_research` tag or builder label) skip that lockdown by default. Set `DOCKER_OPEN_EGRESS_IMAGE_PATTERNS=""` to apply `--netlock` to research profiles as well.
+
+## Newer OpenClaw Runtime
+
+OpenClaw `2026.7.1-2` uses local CLI execution when no Gateway was started by the runner; `--gateway` uses the native Gateway instead. Image metadata selects this behavior even when an image is retagged. Conversation loading excludes `*.trajectory.jsonl` telemetry. The local CLI wrapper cleans up a lingering process group after a terminal trajectory event. The adapter also passes `--effort max` through the provider request when OpenClaw's model-name validation would reject it.
 
 ## official_shield Build Contents
 
 `images/official_shield/prepare.sh` first reuses `images/official/prepare.sh` to generate a complete official build context, then adds:
 
 - `openclaw-shield` source code: `/opt/openclaw-shield`
-- Dockerfile installation step: `openclaw plugins install /opt/openclaw-shield`
+- Dockerfile installation step: `openclaw plugins install /opt/openclaw-shield`; newer OpenClaw builds first compile the plugin to JavaScript with pinned esbuild and update its extension entrypoint
 - `tools.profile = "full"` in `openclaw.json`, so `knostic_shield` is included in the agent's actual tool list
 
 `official_shield/openclaw.json` remains consistent with `official/openclaw.json` and does not manually add plugin configuration.
@@ -200,8 +237,6 @@ As with every variant, `openclaw.json` is not committed: it is generated from `c
 
 ## Resume Support
 
-The build script supports resuming interrupted builds:
+Build options and completed images are saved atomically in `{WORK_DIR}/.build_state.json`. Use `--resume WORK_DIR` to reuse those exact options. Completed images are inspected and skipped; failed or missing images are rebuilt. To change framework/version/profile options, use a new workspace. `--prepare-only` never marks images as built.
 
-- State is saved in `{WORK_DIR}/.build_state`
-- When rerun after interruption, the script detects existing workspaces
-- The user can continue, overwrite the existing workspace, or create a new workspace
+Legacy `.build_state` shell files remain untouched. Create a new workspace for this builder instead of loading those older state files.
