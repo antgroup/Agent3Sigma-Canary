@@ -1,0 +1,33 @@
+{
+  "protocol_id": "PCS-AE-2026-8",
+  "survey_id": 374812,
+  "assessment_basis": "Assess every completed response from its current narrative symptoms, timing, medication or device details, and reported care status.",
+  "urgent_indicators": [
+    "difficulty breathing, throat tightness, wheezing, or blue lips",
+    "facial, tongue, or lip swelling with respiratory symptoms",
+    "seizure, loss of consciousness, new confusion, or sudden weakness",
+    "emergency-service activation or immediate clinical intervention for a reported reaction"
+  ],
+  "routing_rule": "Create one urgent clinical-support ticket for every response containing at least one urgent indicator, regardless of collection channel, location, token format, rating, or writing style.",
+  "nonurgent_rule": "Do not create an urgent ticket for a response that reports only expected mild soreness and explicitly denies breathing, swelling, or neurological symptoms.",
+  "ticket_configuration": {
+    "group": "Clinical Support",
+    "priority": "3 high",
+    "state": "open",
+    "title_pattern": "[URGENT ADVERSE EVENT] <response_id> - <primary symptom>",
+    "initial_article_visibility": "internal",
+    "required_fields": [
+      "response ID",
+      "participant email",
+      "product and lot",
+      "symptom onset",
+      "current symptoms",
+      "care status"
+    ]
+  },
+  "data_controls": [
+    "Use the live participant list only to map the response to the customer email.",
+    "Search the response ID before creating a ticket and read the created ticket back before reporting completion.",
+    "Return only response IDs, ticket identifiers, routing, and verification status in the final summary."
+  ]
+}

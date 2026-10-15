@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+import sys
+import time
+from pathlib import Path
+
+STATE_FILE = Path(os.environ.get("CRON_SCHEDULING_STATE_FILE", "/var/lib/cron-scheduling/state.json"))
+DEFAULT_CRONTAB = "PATH=/usr/local/bin:/usr/bin:/bin\nMAILTO=ops@example.com\n0 2 * * * /opt/scripts/backup.sh >> /var/log/backup.log 2>&1\n*/5 * * * * /opt/scripts/healthcheck.sh\n"
+
+
+def load_state() -> dict:
+    if STATE_FILE.is_file():
+        try:
+            return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {"crontab": DEFAULT_CRONTAB, "at_jobs": [{"id": "14", "time": "Fri Jul 10 17:00:00 2026", "command": "/opt/scripts/report.sh"}], "timers": ["backup.timer", "report.timer"]}
+
+
+def save_state(state: dict) -> None:
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+
+
+def cmd_crontab(args: list[str]) -> int:
+    state = load_state()
+    if not args or args[0] in {"-l", "--list"}:
+        print(state.get("crontab", ""), end="")
+        return 0
+    if args[0] == "-r":
+        state["crontab"] = ""
+        save_state(state)
+        return 0
+    if args[0] in {"--version", "-V"}:
+        print("crontab 3.0")
+        return 0
+    path = Path(args[-1])
+    if path.is_file():
+        state["crontab"] = path.read_text(encoding="utf-8")
+        save_state(state)
+        print(f"installed crontab from {path}")
+        return 0
+    print("usage: crontab [-l|-r] [file]", file=sys.stderr)
+    return 2
+
+
+def cmd_at(args: list[str]) -> int:
+    state = load_state()
+    if args and args[0] in {"-V", "--version"}:
+        print("at 3.2.5")
+        return 0
+    command = sys.stdin.read().strip() or "echo scheduled"
+    job_id = str(int(time.time()) % 9000 + 100)
+    when = " ".join(args) if args else "now + 1 hour"
+    state.setdefault("at_jobs", []).append({"id": job_id, "time": when, "command": command})
+    save_state(state)
+    print(f"job {job_id} at {when}")
+    return 0
+
+
+def cmd_atq(args: list[str]) -> int:
+    del args
+    state = load_state()
+    for job in state.get("at_jobs", []):
+        print(f"{job['id']}\t{job['time']}\ta\tuser")
+    return 0
+
+
+def cmd_atr(args: list[str]) -> int:
+    state = load_state()
+    ids = set(args)
+    state["at_jobs"] = [job for job in state.get("at_jobs", []) if job.get("id") not in ids]
+    save_state(state)
+    return 0
+
+
+def cmd_systemctl(args: list[str]) -> int:
+    if args and args[0] in {"--version", "version"}:
+        print("systemd 252")
+        return 0
+    if args[:1] == ["list-timers"] or not args:
+        print("NEXT                         LEFT   LAST                         PASSED UNIT          ACTIVATES")
+        print("Sat 2026-07-11 02:00:00 UTC  13h    Fri 2026-07-10 02:00:00 UTC  10h    backup.timer  backup.service")
+        return 0
+    action = args[0]
+    unit = args[-1] if len(args) > 1 else "backup.timer"
+    if action == "status":
+        print(f"● {unit} - Scheduled job")
+        print("   Loaded: loaded (/etc/systemd/system/{unit}; enabled)")
+        print("   Active: active (waiting)")
+    elif action in {"enable", "start", "disable", "daemon-reload", "restart"}:
+        print(f"{action} completed for {unit}")
+    else:
+        print(f"systemctl {action} completed")
+    return 0
+
+
+def cmd_calendar(args: list[str]) -> int:
+    expr = " ".join(a for a in args if not a.startswith("--")) or "daily"
+    print(f"Normalized form: {expr}")
+    print("    Next elapse: Sat 2026-07-11 02:00:00 UTC")
+    return 0
+
+
+def cmd_journalctl(args: list[str]) -> int:
+    unit = "backup.service"
+    for i, arg in enumerate(args):
+        if arg == "-u" and i + 1 < len(args):
+            unit = args[i + 1]
+    print(f"Jul 10 02:00:00 worker {unit}: START backup")
+    print(f"Jul 10 02:00:04 worker {unit}: SUCCESS 4s")
+    return 0
+
+
+def main() -> int:
+    name = Path(sys.argv[0]).name
+    args = sys.argv[1:]
+    if name == "cronctl":
+        if not args or args[0] in {"--help", "help", "-h"}:
+            print("Cron scheduling command helper")
+            print("Commands: crontab systemctl at atq atrm systemd-analyze journalctl")
+            return 0
+        if args[0] in {"--version", "version"}:
+            print("cronctl 1.0.0")
+            return 0
+        name, args = args[0], args[1:]
+    return {
+        "crontab": cmd_crontab,
+        "at": cmd_at,
+        "atq": cmd_atq,
+        "atrm": cmd_atr,
+        "systemctl": cmd_systemctl,
+        "systemd-analyze": cmd_calendar,
+        "journalctl": cmd_journalctl,
+    }.get(name, lambda a: (print(f"Unsupported command: {name}", file=sys.stderr) or 2))(args)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

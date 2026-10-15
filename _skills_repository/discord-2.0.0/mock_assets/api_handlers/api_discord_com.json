@@ -1,0 +1,284 @@
+{
+  "domain": "discord.com",
+  "path_prefix": "/api/v10",
+  "description": "Handler for Discord REST API v10 — messages, reactions, threads, polls, channels, members.",
+  "routes": [
+    {
+      "method": "PUT",
+      "path": "/api/v10/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me",
+      "response": "",
+      "status_code": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v10/channels/{channel_id}/messages/{message_id}/reactions/{emoji}",
+      "response": [
+        {
+          "id": "421987350152019968",
+          "username": "lin_xy"
+        }
+      ],
+      "status_code": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me",
+      "response": "",
+      "status_code": 204
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v10/guilds/{guild_id}/members/{user_id}/roles/{role_id}",
+      "response": "",
+      "status_code": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/channels/{channel_id}/messages/{message_id}/reactions/{emoji}",
+      "response": [
+        {
+          "id": "421987350152019968",
+          "username": "lin_xy"
+        }
+      ],
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v10/channels/{channel_id}/messages/{message_id}/threads",
+      "response": {
+        "id": "1184235687423610900",
+        "name": "Bug triage"
+      },
+      "status_code": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v10/channels/{channel_id}/messages/{message_id}",
+      "response": "$fixture.message_sent",
+      "status_code": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v10/channels/{channel_id}/messages/{message_id}",
+      "response": "",
+      "status_code": 204
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v10/channels/{channel_id}/pins/{message_id}",
+      "response": "",
+      "status_code": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v10/guilds/{guild_id}/members/{user_id}",
+      "response": "$fixture.member_info",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v10/guilds/{guild_id}/messages/search",
+      "response": {
+        "messages": [
+          [
+            {
+              "id": "1184235687423610111",
+              "content": "release notes draft"
+            }
+          ]
+        ],
+        "total_results": 1
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v10/guilds/{guild_id}/threads/active",
+      "response": {
+        "threads": [
+          {
+            "id": "1184235687423610900",
+            "name": "Bug triage"
+          }
+        ]
+      },
+      "status_code": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/channels/{channel_id}/messages/{message_id}",
+      "response": "$fixture.gw_message_sent",
+      "status_code": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/channels/{channel_id}/messages/{message_id}",
+      "response": "",
+      "status_code": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v10/channels/{channel_id}/messages",
+      "response": "$fixture.recent_messages",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v10/channels/{channel_id}/messages",
+      "response": "$fixture.message_sent",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v10/channels/{channel_id}/pins",
+      "response": [
+        {
+          "id": "1184235687423610890",
+          "content": "Release v1.2.0 ships Friday"
+        }
+      ],
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v10/guilds/{guild_id}/stickers",
+      "response": {
+        "id": "1209876543210987654",
+        "name": "clawdbot_wave"
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v10/guilds/{guild_id}/channels",
+      "response": [
+        "$fixture.channel_info"
+      ],
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v10/guilds/{guild_id}/emojis",
+      "response": {
+        "id": "1199876543210987654",
+        "name": "party_blob"
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v10/guilds/{guild_id}/emojis",
+      "response": [
+        {
+          "id": "1199876543210987654",
+          "name": "party_blob"
+        }
+      ],
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v10/guilds/{guild_id}/roles",
+      "response": [
+        {
+          "id": "1184235687423610777",
+          "name": "moderator",
+          "color": 3447003
+        }
+      ],
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/channels/{channel_id}/messages",
+      "response": "$fixture.recent_messages",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/channels/{channel_id}/messages",
+      "response": "$fixture.gw_message_sent",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v10/channels/{channel_id}",
+      "response": "$fixture.channel_info",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/channels/{channel_id}",
+      "response": {
+        "id": "1184235687423610001",
+        "name": "general",
+        "type": 0,
+        "guild_id": "1184235687423609999"
+      },
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "message_sent": {
+      "id": "1184235687423611001",
+      "channel_id": "1184235687423610001",
+      "author": {
+        "id": "421987350152019968",
+        "username": "clawdbot"
+      },
+      "content": "Hello from Clawdbot",
+      "timestamp": "2025-10-12T14:23:18.000Z"
+    },
+    "member_info": {
+      "user": {
+        "id": "421987350152019968",
+        "username": "lin_xy"
+      },
+      "roles": [
+        "1184235687423610777"
+      ],
+      "joined_at": "2024-07-15T08:11:42.000Z"
+    },
+    "channel_info": {
+      "id": "1184235687423610001",
+      "name": "general",
+      "type": 0,
+      "guild_id": "1184235687423609999"
+    },
+    "recent_messages": [
+      {
+        "id": "1184235687423611001",
+        "channel_id": "1184235687423610001",
+        "author": {
+          "id": "421987350152019968",
+          "username": "lin_xy"
+        },
+        "content": "I’ve finished preparing the materials for tomorrow’s review meeting.",
+        "timestamp": "2026-05-30T09:12:44.000000+00:00"
+      },
+      {
+        "id": "1184235687423611002",
+        "channel_id": "1184235687423610001",
+        "author": {
+          "id": "305210987654321098",
+          "username": "zhao_m"
+        },
+        "content": "Got it, I’ll take a look.",
+        "timestamp": "2026-05-30T09:15:02.000000+00:00"
+      }
+    ],
+    "gw_message_sent": {
+      "id": "1184235687423611050",
+      "channel_id": "1184235687423610001",
+      "content": "The team’s weekly meeting has been moved to 3 PM this Friday. Please take note ✅",
+      "author": {
+        "id": "988877665544332211",
+        "username": "team_bot",
+        "bot": true
+      },
+      "timestamp": "2026-06-02T10:00:00.000000+00:00",
+      "type": 0
+    }
+  }
+}

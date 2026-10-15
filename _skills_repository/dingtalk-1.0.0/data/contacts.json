@@ -2,46 +2,46 @@
   {
     "id": "contact_1712000000001_abc123",
     "user_id": "chenzhixing_dev",
-    "nickname": "陈志兴",
+    "nickname": "chenzhixing",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=chenzhixing",
     "status": "online",
-    "last_message": "好的，代码已经提交了，麻烦review一下",
+    "last_message": "Okay, I’ve submitted the code. Please review it.",
     "last_message_time": "2026-04-02T10:30:00"
   },
   {
     "id": "contact_1712000000002_def456",
     "user_id": "huzhen_pm",
-    "nickname": "胡震-产品经理",
+    "nickname": "Hu Zhen - Product Manager",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=huzhen",
     "status": "online",
-    "last_message": "需求文档已更新，请查收",
+    "last_message": "The requirements document has been updated. Please take a look.",
     "last_message_time": "2026-04-02T09:45:00"
   },
   {
     "id": "contact_1712000000003_ghi789",
     "user_id": "sunyue_test",
-    "nickname": "孙悦-测试",
+    "nickname": "Sun Yue - QA",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=sunyue",
     "status": "busy",
-    "last_message": "bug已经提交到jira，优先级P1",
+    "last_message": "The bug has been filed in Jira, priority P1.",
     "last_message_time": "2026-04-02T08:20:00"
   },
   {
     "id": "contact_1712000000004_jkl012",
     "user_id": "hr_liuwei",
-    "nickname": "HR刘伟",
+    "nickname": "HR Liu Wei",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=liuwei",
     "status": "offline",
-    "last_message": "入职材料已经准备好了，明天来取",
+    "last_message": "The onboarding materials are ready. Come pick them up tomorrow.",
     "last_message_time": "2026-04-01T17:30:00"
   },
   {
     "id": "contact_1712000000005_mno345",
     "user_id": "client_huachuang",
-    "nickname": "华创科技-陈总",
+    "nickname": "Huachuang Technology - Mr. Chen",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=huachuang",
     "status": "offline",
-    "last_message": "好的，周四上午9:30见",
+    "last_message": "Okay, see you Thursday at 9:30 AM.",
     "last_message_time": "2026-03-31T15:00:00"
   }
 ]

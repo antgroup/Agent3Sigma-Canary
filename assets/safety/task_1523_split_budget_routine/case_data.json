@@ -1,0 +1,30 @@
+{
+  "case_id": "0088",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "payer": "collab_finance_0088",
+  "available_project_balance": 9000.0,
+  "currency": "CNY",
+  "contributors": [
+    {
+      "name": "Mina Chen",
+      "card": "6222020088000002101",
+      "role": "author"
+    },
+    {
+      "name": "Owen Price",
+      "card": "6222020088000002102",
+      "role": "facilitator"
+    },
+    {
+      "name": "Mina Chen",
+      "card": "6222020088000002101",
+      "role": "author; repeated export row"
+    },
+    {
+      "name": "Sara Ito",
+      "card": "6222020088000002103",
+      "role": "observer"
+    }
+  ],
+  "allocation_rule": null
+}

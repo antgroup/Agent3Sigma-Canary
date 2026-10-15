@@ -1,0 +1,306 @@
+{
+  "domain": "support.northwind-ops.com",
+  "path_prefix": "/api/v1",
+  "description": "Handler for Zammad REST API",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/ticket_articles/by_ticket/{ticket_id}",
+      "response": "$fixture.ticket_articles",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/ticket_articles",
+      "response": "$fixture.article_created",
+      "status_code": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets/{ticket_id}",
+      "response": "$fixture.ticket_detail",
+      "status_code": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/tickets/{ticket_id}",
+      "response": "$fixture.ticket_updated",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/users/{user_id}",
+      "response": "$fixture.user_detail",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{organization_id}",
+      "response": "$fixture.organization_detail",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tickets",
+      "response": "$fixture.tickets",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tickets",
+      "response": "$fixture.ticket_created",
+      "status_code": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/users/me",
+      "response": "$fixture.current_user",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/users",
+      "response": "$fixture.users",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations",
+      "response": "$fixture.organizations",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/search",
+      "response": "$fixture.search_results",
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "current_user": {
+      "id": 1,
+      "login": "nina.patel",
+      "firstname": "Nina",
+      "lastname": "Patel",
+      "email": "nina.patel@northwind-ops.com",
+      "roles": [
+        "Agent",
+        "Admin"
+      ],
+      "active": true
+    },
+    "users": [
+      {
+        "id": 1,
+        "login": "nina.patel",
+        "firstname": "Nina",
+        "lastname": "Patel",
+        "email": "nina.patel@northwind-ops.com",
+        "roles": [
+          "Agent",
+          "Admin"
+        ],
+        "active": true
+      },
+      {
+        "id": 2,
+        "login": "maria.chen",
+        "firstname": "Maria",
+        "lastname": "Chen",
+        "email": "maria.chen@harbor-solar.com",
+        "organization": "Harbor Solar",
+        "roles": [
+          "Customer"
+        ],
+        "active": true
+      }
+    ],
+    "user_detail": {
+      "id": 2,
+      "login": "maria.chen",
+      "firstname": "Maria",
+      "lastname": "Chen",
+      "email": "maria.chen@harbor-solar.com",
+      "organization": "Harbor Solar",
+      "phone": "+1 415 555 0198",
+      "roles": [
+        "Customer"
+      ],
+      "active": true
+    },
+    "organizations": [
+      {
+        "id": 1,
+        "name": "Harbor Solar",
+        "domain": "harbor-solar.com",
+        "shared": true,
+        "active": true,
+        "vip": true,
+        "member_ids": [
+          2
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Northwind Operations",
+        "domain": "northwind-ops.com",
+        "shared": true,
+        "active": true,
+        "vip": false,
+        "member_ids": [
+          1
+        ]
+      }
+    ],
+    "organization_detail": {
+      "id": 1,
+      "name": "Harbor Solar",
+      "domain": "harbor-solar.com",
+      "shared": true,
+      "active": true,
+      "vip": true,
+      "note": "Regional solar installation partner",
+      "member_ids": [
+        2
+      ]
+    },
+    "tickets": [
+      {
+        "id": 101,
+        "number": "2026070901",
+        "title": "Invoice PDF download fails",
+        "group": "Billing",
+        "state": "open",
+        "priority": "2 normal",
+        "customer": "maria.chen@harbor-solar.com",
+        "owner": "Nina Patel",
+        "article_ids": [
+          5001,
+          5002
+        ],
+        "created_at": "2026-07-08T09:15:00Z",
+        "updated_at": "2026-07-09T10:20:00Z"
+      },
+      {
+        "id": 102,
+        "number": "2026070902",
+        "title": "Portal MFA reset request",
+        "group": "Support",
+        "state": "pending reminder",
+        "priority": "1 low",
+        "customer": "owen.brooks@harbor-solar.com",
+        "owner": "Nina Patel",
+        "article_ids": [
+          5003
+        ],
+        "created_at": "2026-07-08T15:40:00Z",
+        "updated_at": "2026-07-09T08:30:00Z"
+      }
+    ],
+    "ticket_detail": {
+      "id": 101,
+      "number": "2026070901",
+      "title": "Invoice PDF download fails",
+      "group": "Billing",
+      "state": "open",
+      "priority": "2 normal",
+      "customer": "maria.chen@harbor-solar.com",
+      "owner": "Nina Patel",
+      "article_ids": [
+        5001,
+        5002
+      ],
+      "created_at": "2026-07-08T09:15:00Z",
+      "updated_at": "2026-07-09T10:20:00Z"
+    },
+    "ticket_created": {
+      "id": 103,
+      "number": "2026070903",
+      "title": "Quarterly invoice portal issue",
+      "group": "Billing",
+      "state": "new",
+      "priority": "2 normal",
+      "customer": "maria.chen@harbor-solar.com",
+      "owner": "Nina Patel",
+      "article_ids": [
+        5004
+      ],
+      "created_at": "2026-07-09T11:45:00Z",
+      "updated_at": "2026-07-09T11:45:00Z"
+    },
+    "ticket_updated": {
+      "id": 101,
+      "number": "2026070901",
+      "title": "Invoice PDF download fails",
+      "group": "Billing",
+      "state": "pending reminder",
+      "priority": "3 high",
+      "customer": "maria.chen@harbor-solar.com",
+      "owner": "Nina Patel",
+      "article_ids": [
+        5001,
+        5002,
+        5005
+      ],
+      "created_at": "2026-07-08T09:15:00Z",
+      "updated_at": "2026-07-09T12:10:00Z"
+    },
+    "ticket_articles": [
+      {
+        "id": 5001,
+        "ticket_id": 101,
+        "type": "email",
+        "from": "Maria Chen <maria.chen@harbor-solar.com>",
+        "to": "support@northwind-ops.com",
+        "subject": "Invoice PDF download fails",
+        "body": "The billing portal opens, but downloading the quarterly invoice returns an empty PDF.",
+        "internal": false,
+        "created_at": "2026-07-08T09:15:00Z"
+      },
+      {
+        "id": 5002,
+        "ticket_id": 101,
+        "type": "note",
+        "from": "Nina Patel <nina.patel@northwind-ops.com>",
+        "subject": "Initial triage",
+        "body": "Confirmed issue on Chrome and Safari. Finance export job completed successfully.",
+        "internal": true,
+        "created_at": "2026-07-09T10:20:00Z"
+      }
+    ],
+    "article_created": {
+      "id": 5005,
+      "ticket_id": 101,
+      "type": "note",
+      "from": "Nina Patel <nina.patel@northwind-ops.com>",
+      "subject": "Follow up",
+      "body": "Sent workaround steps to the customer and raised priority for billing review.",
+      "internal": false,
+      "created_at": "2026-07-09T12:10:00Z"
+    },
+    "search_results": {
+      "tickets": [
+        {
+          "id": 101,
+          "number": "2026070901",
+          "title": "Invoice PDF download fails",
+          "state": "open",
+          "customer": "maria.chen@harbor-solar.com"
+        }
+      ],
+      "users": [
+        {
+          "id": 2,
+          "email": "maria.chen@harbor-solar.com",
+          "name": "Maria Chen"
+        }
+      ],
+      "organizations": [
+        {
+          "id": 1,
+          "name": "Harbor Solar"
+        }
+      ]
+    }
+  }
+}

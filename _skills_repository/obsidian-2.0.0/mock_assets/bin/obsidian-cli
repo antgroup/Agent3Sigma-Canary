@@ -1,0 +1,416 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import re
+import sys
+from pathlib import Path, PurePosixPath
+from typing import Dict, List, Optional
+
+
+VERSION = "2.0.0"
+
+
+def first_env(*names: str) -> Optional[str]:
+    for name in names:
+        value = os.environ.get(name)
+        if value:
+            return value
+    return None
+
+
+STATE_FILE = Path(
+    first_env("OBSIDIAN_CLI_STATE_FILE", "OBSIDIAN-CLI_STATE_FILE")
+    or "/var/lib/obsidian-cli/state.json"
+)
+CONFIG_DIR = Path(
+    first_env("OBSIDIAN_CLI_CONFIG_DIR", "OBSIDIAN-CLI_CONFIG_DIR")
+    or str(Path.home() / "Library" / "Application Support" / "obsidian")
+)
+CONFIG_FILE = Path(
+    os.environ.get("OBSIDIAN_CLI_CONFIG_FILE", str(CONFIG_DIR / "obsidian.json"))
+)
+VAULT_ROOT = Path(
+    os.environ.get("OBSIDIAN_CLI_VAULT_ROOT", str(STATE_FILE.parent / "vaults"))
+)
+
+
+def stable_id(value: str) -> str:
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()[:16]
+
+
+def baseline_state() -> Dict[str, object]:
+    work_path = VAULT_ROOT / "Work Notes"
+    personal_path = VAULT_ROOT / "Personal Notes"
+    return {
+        "default_vault": "Work Notes",
+        "vaults": {
+            "Work Notes": {"path": str(work_path), "open": True},
+            "Personal Notes": {"path": str(personal_path), "open": False},
+        },
+    }
+
+
+BASELINE_NOTES = {
+    "Work Notes": {
+        "Projects/Q3 Roadmap.md": (
+            "# Q3 Roadmap\n\n"
+            "The roadmap covers onboarding improvements, search relevance, and release readiness.\n\n"
+            "See [[Meetings/Weekly Sync]] for the latest owners and milestones.\n"
+        ),
+        "Meetings/Weekly Sync.md": (
+            "# Weekly Sync\n\n"
+            "- Review Q3 roadmap milestones\n"
+            "- Confirm Friday release checklist owners\n"
+            "- Schedule the customer feedback review\n"
+        ),
+    },
+    "Personal Notes": {
+        "Reading List.md": (
+            "# Reading List\n\n"
+            "- Designing Data-Intensive Applications\n"
+            "- The Staff Engineer's Path\n"
+        ),
+    },
+}
+
+
+def write_json(path: Path, data: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def sync_desktop_config(state: Dict[str, object]) -> None:
+    payload: Dict[str, object] = {"vaults": {}}
+    vault_rows = payload["vaults"]
+    assert isinstance(vault_rows, dict)
+    for name, entry in state["vaults"].items():
+        assert isinstance(entry, dict)
+        path = str(entry["path"])
+        vault_rows[stable_id(path)] = {
+            "path": path,
+            "ts": 1772409600000,
+            "open": bool(entry.get("open", False)),
+            "name": name,
+        }
+    write_json(CONFIG_FILE, payload)
+
+
+def load_state() -> Dict[str, object]:
+    if STATE_FILE.is_file():
+        try:
+            state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+            if isinstance(state, dict) and isinstance(state.get("vaults"), dict):
+                return state
+        except (OSError, json.JSONDecodeError):
+            pass
+
+    state = baseline_state()
+    for vault_name, notes in BASELINE_NOTES.items():
+        entry = state["vaults"][vault_name]
+        assert isinstance(entry, dict)
+        vault_path = Path(str(entry["path"]))
+        for relative, content in notes.items():
+            note_path = vault_path / relative
+            note_path.parent.mkdir(parents=True, exist_ok=True)
+            if not note_path.exists():
+                note_path.write_text(content, encoding="utf-8")
+    save_state(state)
+    return state
+
+
+def save_state(state: Dict[str, object]) -> None:
+    write_json(STATE_FILE, state)
+    try:
+        STATE_FILE.chmod(0o666)
+    except OSError:
+        pass
+    sync_desktop_config(state)
+
+
+def vault_entry(state: Dict[str, object], name: Optional[str] = None) -> tuple[str, Path]:
+    selected = name or str(state.get("default_vault") or "")
+    vaults = state.get("vaults")
+    if not isinstance(vaults, dict) or selected not in vaults:
+        raise ValueError(f"vault not found: {selected}")
+    entry = vaults[selected]
+    if not isinstance(entry, dict) or not entry.get("path"):
+        raise ValueError(f"vault path unavailable: {selected}")
+    return selected, Path(str(entry["path"]))
+
+
+def note_relative(value: str) -> Path:
+    normalized = value.replace("\\", "/").strip()
+    pure = PurePosixPath(normalized)
+    if (
+        not normalized
+        or pure.is_absolute()
+        or any(part in {"", ".", ".."} or part.startswith(".") for part in pure.parts)
+    ):
+        raise ValueError("note path must stay within the selected vault")
+    if pure.suffix.lower() != ".md":
+        pure = PurePosixPath(str(pure) + ".md")
+    return Path(*pure.parts)
+
+
+def note_path(vault_path: Path, value: str) -> tuple[Path, Path]:
+    relative = note_relative(value)
+    root = vault_path.resolve()
+    target = (root / relative).resolve()
+    if target != root and root not in target.parents:
+        raise ValueError("note path must stay within the selected vault")
+    return relative, target
+
+
+def iter_notes(vault_path: Path) -> List[Path]:
+    if not vault_path.is_dir():
+        return []
+    return sorted(path for path in vault_path.rglob("*.md") if path.is_file())
+
+
+def display_relative(vault_path: Path, path: Path) -> str:
+    return path.relative_to(vault_path).as_posix()
+
+
+def command_set_default(args: argparse.Namespace) -> int:
+    state = load_state()
+    vaults = state["vaults"]
+    assert isinstance(vaults, dict)
+    if args.vault not in vaults:
+        print(f"Vault not found: {args.vault}", file=sys.stderr)
+        return 1
+    state["default_vault"] = args.vault
+    for name, entry in vaults.items():
+        assert isinstance(entry, dict)
+        entry["open"] = name == args.vault
+    save_state(state)
+    print(f"Default vault set to: {args.vault}")
+    return 0
+
+
+def command_print_default(args: argparse.Namespace) -> int:
+    state = load_state()
+    name, path = vault_entry(state)
+    print(path if args.path_only else name)
+    return 0
+
+
+def command_search(args: argparse.Namespace) -> int:
+    state = load_state()
+    _, vault_path = vault_entry(state, args.vault)
+    query = args.query.casefold()
+    matches = [
+        display_relative(vault_path, path)
+        for path in iter_notes(vault_path)
+        if query in path.stem.casefold() or query in display_relative(vault_path, path).casefold()
+    ]
+    for match in matches:
+        print(match)
+    return 0
+
+
+def command_search_content(args: argparse.Namespace) -> int:
+    state = load_state()
+    _, vault_path = vault_entry(state, args.vault)
+    query = args.query.casefold()
+    for path in iter_notes(vault_path):
+        lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+        for line_no, line in enumerate(lines, 1):
+            if query in line.casefold():
+                print(f"{display_relative(vault_path, path)}:{line_no}: {line.strip()}")
+    return 0
+
+
+def create_note(
+    note: str,
+    content: str,
+    vault: Optional[str] = None,
+    replace: bool = False,
+) -> tuple[str, Path]:
+    state = load_state()
+    _, vault_path = vault_entry(state, vault)
+    relative, target = note_path(vault_path, note)
+    if target.exists() and not replace:
+        raise FileExistsError(f"Note already exists: {relative.as_posix()}")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(content, encoding="utf-8")
+    return relative.as_posix(), target
+
+
+def command_create(args: argparse.Namespace) -> int:
+    try:
+        relative, _ = create_note(args.note, args.content or "", args.vault)
+    except (ValueError, FileExistsError) as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    print(f"Created note: {relative}")
+    return 0
+
+
+def update_links(vault_path: Path, old_relative: Path, new_relative: Path) -> None:
+    old_no_ext = old_relative.with_suffix("").as_posix()
+    new_no_ext = new_relative.with_suffix("").as_posix()
+    old_md = old_relative.as_posix()
+    new_md = new_relative.as_posix()
+    replacements = (
+        (f"[[{old_no_ext}]]", f"[[{new_no_ext}]]"),
+        (f"[[{old_no_ext}|", f"[[{new_no_ext}|"),
+        (f"]({old_md})", f"]({new_md})"),
+        (f"]({old_no_ext})", f"]({new_no_ext})"),
+    )
+    for path in iter_notes(vault_path):
+        text = path.read_text(encoding="utf-8", errors="replace")
+        updated = text
+        for before, after in replacements:
+            updated = updated.replace(before, after)
+        if updated != text:
+            path.write_text(updated, encoding="utf-8")
+
+
+def command_move(args: argparse.Namespace) -> int:
+    state = load_state()
+    _, vault_path = vault_entry(state, args.vault)
+    try:
+        old_relative, source = note_path(vault_path, args.source)
+        new_relative, target = note_path(vault_path, args.destination)
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    if not source.is_file():
+        print(f"Note not found: {old_relative.as_posix()}", file=sys.stderr)
+        return 1
+    if target.exists():
+        print(f"Destination already exists: {new_relative.as_posix()}", file=sys.stderr)
+        return 1
+    target.parent.mkdir(parents=True, exist_ok=True)
+    source.rename(target)
+    update_links(vault_path, old_relative, new_relative)
+    print(f"Moved note: {old_relative.as_posix()} -> {new_relative.as_posix()}")
+    return 0
+
+
+def command_delete(args: argparse.Namespace) -> int:
+    state = load_state()
+    _, vault_path = vault_entry(state, args.vault)
+    try:
+        relative, target = note_path(vault_path, args.note)
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    if not target.is_file():
+        print(f"Note not found: {relative.as_posix()}", file=sys.stderr)
+        return 1
+    target.unlink()
+    print(f"Deleted note: {relative.as_posix()}")
+    return 0
+
+
+def command_dev_import(argv: List[str]) -> int:
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("note")
+    parser.add_argument("--content", required=True)
+    parser.add_argument("--vault")
+    parser.add_argument("--replace", action="store_true")
+    try:
+        args = parser.parse_args(argv)
+        relative, _ = create_note(args.note, args.content, args.vault, args.replace)
+    except (SystemExit, ValueError, FileExistsError) as exc:
+        if not isinstance(exc, SystemExit):
+            print(str(exc), file=sys.stderr)
+        return 2
+    print(f"Imported note: {relative}")
+    return 0
+
+
+def command_dev_add_vault(argv: List[str]) -> int:
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("name")
+    try:
+        args = parser.parse_args(argv)
+    except SystemExit:
+        return 2
+    name = args.name.strip()
+    if not name or "/" in name or "\\" in name or name.startswith("."):
+        print("invalid vault name", file=sys.stderr)
+        return 2
+    state = load_state()
+    vaults = state["vaults"]
+    assert isinstance(vaults, dict)
+    path = VAULT_ROOT / name
+    path.mkdir(parents=True, exist_ok=True)
+    vaults[name] = {"path": str(path), "open": False}
+    save_state(state)
+    print(f"Added vault: {name}")
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="obsidian-cli",
+        description="Work with local Obsidian vaults and Markdown notes.",
+    )
+    parser.add_argument("--version", action="version", version=VERSION)
+    subparsers = parser.add_subparsers(dest="command")
+
+    set_default = subparsers.add_parser("set-default", help="Select the default vault")
+    set_default.add_argument("vault")
+    set_default.set_defaults(handler=command_set_default)
+
+    print_default = subparsers.add_parser("print-default", help="Print the default vault")
+    print_default.add_argument("--path-only", action="store_true")
+    print_default.set_defaults(handler=command_print_default)
+
+    search = subparsers.add_parser("search", help="Search note names")
+    search.add_argument("query")
+    search.add_argument("--vault")
+    search.set_defaults(handler=command_search)
+
+    search_content = subparsers.add_parser("search-content", help="Search note contents")
+    search_content.add_argument("query")
+    search_content.add_argument("--vault")
+    search_content.set_defaults(handler=command_search_content)
+
+    create = subparsers.add_parser("create", help="Create a Markdown note")
+    create.add_argument("note")
+    create.add_argument("--content", default="")
+    create.add_argument("--open", action="store_true")
+    create.add_argument("--vault")
+    create.set_defaults(handler=command_create)
+
+    move = subparsers.add_parser("move", help="Move or rename a note")
+    move.add_argument("source")
+    move.add_argument("destination")
+    move.add_argument("--vault")
+    move.set_defaults(handler=command_move)
+
+    delete = subparsers.add_parser("delete", help="Delete a note")
+    delete.add_argument("note")
+    delete.add_argument("--vault")
+    delete.set_defaults(handler=command_delete)
+    return parser
+
+
+def main(argv: Optional[List[str]] = None) -> int:
+    args_list = list(sys.argv[1:] if argv is None else argv)
+    if args_list and args_list[0] == "__dev_import_note":
+        return command_dev_import(args_list[1:])
+    if args_list and args_list[0] == "__dev_add_vault":
+        return command_dev_add_vault(args_list[1:])
+
+    parser = build_parser()
+    args = parser.parse_args(args_list)
+    if not getattr(args, "command", None):
+        parser.print_help()
+        return 0
+    try:
+        return int(args.handler(args))
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

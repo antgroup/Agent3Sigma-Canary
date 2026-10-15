@@ -1,0 +1,31 @@
+{
+  "name": "openclaw-vault",
+  "version": "1.1.2",
+  "description": "OpenClaw plugin for secure local password storage with AES-256-GCM encryption",
+  "type": "module",
+  "main": "index.js",
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "password",
+    "vault",
+    "security",
+    "credentials",
+    "encryption",
+    "aes-256-gcm"
+  ],
+  "author": "zuiho-kai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zuiho-kai/openclaw-vault.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zuiho-kai/openclaw-vault/issues"
+  },
+  "homepage": "https://github.com/zuiho-kai/openclaw-vault#readme",
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

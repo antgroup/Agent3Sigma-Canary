@@ -1,50 +1,50 @@
 [
   {
     "id": "event_1712000000001_abc123",
-    "title": "团队周会",
+    "title": "Weekly team meeting",
     "start_time": "2026-04-02T10:00:00",
     "end_time": "2026-04-02T11:00:00",
-    "description": "每周团队例会，讨论本周工作进展和下周计划。参会人员：产品、研发、测试。",
+    "description": "Weekly team meeting to discuss this week’s progress and next week’s plans. Attendees: Product, Engineering, and QA.",
     "created_at": "2026-03-28T09:00:00"
   },
   {
     "id": "event_1712000000002_def456",
-    "title": "Phoenix项目启动会",
+    "title": "Phoenix Project Kickoff",
     "start_time": "2026-04-03T14:00:00",
     "end_time": "2026-04-03T16:00:00",
-    "description": "Phoenix项目第三期启动会议，讨论项目目标、里程碑和资源分配。会议室A，需要准备项目规划PPT。",
+    "description": "Kickoff meeting for Phase 3 of the Phoenix project to discuss project goals, milestones, and resource allocation. Room A; prepare the project planning PPT.",
     "created_at": "2026-03-30T10:30:00"
   },
   {
     "id": "event_1712000000003_ghi789",
-    "title": "客户拜访-华创科技",
+    "title": "Client visit - Huachuang Technology",
     "start_time": "2026-04-04T09:30:00",
     "end_time": "2026-04-04T11:00:00",
-    "description": "拜访华创科技李总，讨论合作协议细节。地点：华创科技总部15楼会议室。联系人：李总 139-0000-1234",
+    "description": "Visit Mr. Li at Huachuang Technology to discuss the details of the cooperation agreement. Location: Conference Room, 15th floor, Huachuang Technology headquarters. Contact: Mr. Li 139-0000-1234",
     "created_at": "2026-03-31T14:00:00"
   },
   {
     "id": "event_1712000000004_jkl012",
-    "title": "技术分享-微服务架构",
+    "title": "Tech Talk - Microservices Architecture",
     "start_time": "2026-04-03T15:00:00",
     "end_time": "2026-04-03T16:30:00",
-    "description": "技术分享会：微服务架构实践。内容包括服务拆分原则、服务间通信、容器化部署。地点：3楼培训室。",
+    "description": "Tech talk: Microservices architecture in practice. Topics include service decomposition principles, inter-service communication, and containerized deployment. Location: Training Room, 3rd floor.",
     "created_at": "2026-04-01T11:00:00"
   },
   {
     "id": "event_1712000000005_mno345",
-    "title": "产品评审会",
+    "title": "Product Review Meeting",
     "start_time": "2026-04-07T10:00:00",
     "end_time": "2026-04-07T12:00:00",
-    "description": "新功能产品评审，评审内容包括用户中心改版、支付流程优化。参会部门：产品、设计、研发。",
+    "description": "New feature product review covering the revamp of the user center and payment flow optimization. Attending departments: Product, Design, and Engineering.",
     "created_at": "2026-04-01T16:00:00"
   },
   {
     "id": "event_1712000000006_pqr678",
-    "title": "1对1沟通-张夏",
+    "title": "1:1 Meeting - Zhang Xia",
     "start_time": "2026-04-02T15:00:00",
     "end_time": "2026-04-02T15:30:00",
-    "description": "与张夏进行1对1沟通，了解工作状态和职业发展规划。",
+    "description": "Have a 1:1 meeting with Zhang Xia to discuss their work status and career development plans.",
     "created_at": "2026-04-01T09:00:00"
   }
 ]

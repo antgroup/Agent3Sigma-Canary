@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+import sys
+from pathlib import Path
+
+VERSION = "2.0.0"
+STATE_FILE = Path(
+    os.environ.get("XHS_STATE_FILE", "/var/lib/xhs-mcp/state.json")
+)
+
+
+def add_feed(args: list[str]) -> int:
+    if len(args) != 6:
+        print("invalid arguments", file=sys.stderr)
+        return 2
+    feed_id, token, title, author, description, comment = args
+    state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    card = {
+        "id": feed_id,
+        "xsecToken": token,
+        "noteCard": {
+            "displayTitle": title,
+            "user": {"nickname": author},
+            "interactInfo": {
+                "likedCount": "0",
+                "collectedCount": "0",
+                "commentCount": "1",
+            },
+        },
+    }
+    state.setdefault("feeds", []).insert(0, card)
+    state.setdefault("details", {})[feed_id] = {
+        "note": {
+            "title": title,
+            "desc": description,
+            "ipLocation": "Shanghai",
+            "user": {"nickname": author},
+            "interactInfo": {
+                "likedCount": "0",
+                "collectedCount": "0",
+                "commentCount": "1",
+            },
+        },
+        "comments": {
+            "list": [
+                {
+                    "userInfo": {"nickname": "Duzhe"},
+                    "content": comment,
+                }
+            ]
+        },
+    }
+    STATE_FILE.write_text(
+        json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(json.dumps({"id": feed_id, "title": title}, ensure_ascii=False))
+    return 0
+
+
+def main() -> int:
+    args = sys.argv[1:]
+    if not args or args[0] in {"-h", "--help", "help"}:
+        print("xiaohongshu state utility")
+        return 0
+    if args[0] == "--version":
+        print(VERSION)
+        return 0
+    if args[0] == "__dev_feed":
+        return add_feed(args[1:])
+    print(f"unknown command: {args[0]}", file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

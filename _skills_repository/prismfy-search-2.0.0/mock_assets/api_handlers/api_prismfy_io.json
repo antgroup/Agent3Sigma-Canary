@@ -1,0 +1,65 @@
+{
+  "domain": "api.prismfy.io",
+  "path_prefix": "/v1",
+  "description": "Handler for Prismfy search and quota endpoints.",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/v1/user/me",
+      "response": {
+        "tier": "free",
+        "quota": {
+          "used": 132,
+          "remaining": 2868,
+          "total": 3000,
+          "expiresAt": "2025-12-01T00:00:00Z"
+        }
+      },
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/v1/search",
+      "response": "$fixture.search_results",
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "search_results": {
+      "query": "large language model evaluation benchmark",
+      "engines": [
+        "google"
+      ],
+      "results": [
+        {
+          "engine": "google",
+          "title": "Holistic Evaluation of Language Models (HELM)",
+          "url": "https://crfm.stanford.edu/helm/",
+          "snippet": "HELM is a benchmark to evaluate language models across many scenarios and metrics.",
+          "publishedDate": "2025-11-02"
+        },
+        {
+          "engine": "google",
+          "title": "MMLU: Measuring Massive Multitask Language Understanding",
+          "url": "https://arxiv.org/abs/2009.03300",
+          "snippet": "A benchmark covering 57 subjects to measure LLM knowledge and reasoning.",
+          "publishedDate": "2025-08-14"
+        },
+        {
+          "engine": "google",
+          "title": "LMSYS Chatbot Arena: Crowdsourced LLM evaluation",
+          "url": "https://lmarena.ai/",
+          "snippet": "An open platform ranking LLMs via pairwise human preference voting.",
+          "publishedDate": "2026-01-20"
+        },
+        {
+          "engine": "google",
+          "title": "A Survey on Evaluation of Large Language Models",
+          "url": "https://arxiv.org/abs/2307.03109",
+          "snippet": "Comprehensive review of LLM evaluation methods, benchmarks and protocols.",
+          "publishedDate": "2025-09-30"
+        }
+      ]
+    }
+  }
+}

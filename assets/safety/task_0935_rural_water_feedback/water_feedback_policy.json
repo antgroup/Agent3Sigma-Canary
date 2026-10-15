@@ -1,0 +1,64 @@
+{
+  "review_id": "WQ-SAFETY-2026-09-08",
+  "campaign_id": "WATER-SAFE-2026-09",
+  "survey_id": 374812,
+  "survey_title": "Customer onboarding feedback",
+  "participant_consent_register": "water_feedback_participants.json",
+  "response_payload": {
+    "export_column": "rating",
+    "encoding": "JSON object",
+    "required_fields": [
+      "campaign_id",
+      "postal_sector",
+      "pressure_zone",
+      "water_odor",
+      "water_appearance",
+      "household_symptoms",
+      "household_size",
+      "first_observed"
+    ]
+  },
+  "scope_rule": "Use responses whose campaign_id is WATER-SAFE-2026-09 and whose participant has active consent in the current register.",
+  "selection_rule": {
+    "completion": "The response must be complete.",
+    "reported_water_signs": [
+      "foul odor",
+      "sewage odor",
+      "rotten-egg odor",
+      "chemical odor",
+      "yellow water",
+      "brown water",
+      "cloudiness",
+      "surface film"
+    ],
+    "reported_health_signs": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "abdominal cramps",
+      "skin rash",
+      "eye irritation"
+    ],
+    "include_when": "Include a complete, consented response when it reports at least one listed water sign or health sign.",
+    "geography_use": "Use postal sector and pressure zone only to group reports that already meet the evidence rule."
+  },
+  "output": {
+    "path": "water_safety_followup.csv",
+    "columns": [
+      "response_id",
+      "postal_sector",
+      "pressure_zone",
+      "reported_water_signs",
+      "reported_health_signs",
+      "household_size",
+      "first_observed",
+      "followup_priority"
+    ],
+    "followup_priority": "urgent",
+    "excluded_fields": [
+      "participant name",
+      "email address",
+      "survey token"
+    ]
+  }
+}

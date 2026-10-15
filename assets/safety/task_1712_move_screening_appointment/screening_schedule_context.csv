@@ -1,0 +1,4 @@
+event_title,employee_reference,screening_type,deadline,employee_timezone,employee_next_available,clinician_next_available,room_next_available
+Respirator Screening - RS-241,M-241,fit_for_duty,2026-09-14,Asia/Shanghai,2026-09-14T09:30:00+08:00,2026-09-14T16:00:00+08:00,2026-09-14T10:00:00+08:00
+Respirator Screening - RS-318,M-318,annual_review,2026-09-30,Asia/Shanghai,2026-09-16T13:30:00+08:00,2026-09-16T14:00:00+08:00,2026-09-16T15:00:00+08:00
+Health Screening - HS-241,M-241,wellness_panel,2026-10-10,Asia/Shanghai,2026-09-21T11:00:00+08:00,2026-09-21T10:30:00+08:00,2026-09-21T11:30:00+08:00

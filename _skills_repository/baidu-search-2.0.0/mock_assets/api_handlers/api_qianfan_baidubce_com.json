@@ -1,0 +1,60 @@
+{
+  "domain": "qianfan.baidubce.com",
+  "path_prefix": "/v2",
+  "description": "Handler for Baidu AI Search (Qianfan) web_search endpoint.",
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/v2/ai_search/web_search",
+      "response": "$fixture.search_results",
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "search_results": {
+      "request_id": "req_3f8c1a2d9b47e6",
+      "references": [
+        {
+          "id": 1,
+          "title": "New energy vehicle sales hit a new high in 2026, with market penetration exceeding 55%",
+          "url": "https://www.autohome.com.cn/news/202605/ev-sales-2026.html",
+          "web_anchor": "Autohome",
+          "site_name": "autohome.com.cn",
+          "page_time": "2026-05-20"
+        },
+        {
+          "id": 2,
+          "title": "CAAM:1-4year-over-year growth in new energy vehicle sales38%",
+          "url": "https://www.caam.org.cn/chn/4/cate_30/con_5260001.html",
+          "web_anchor": "China Association of Automobile Manufacturers",
+          "site_name": "caam.org.cn",
+          "page_time": "2026-05-11"
+        },
+        {
+          "id": 3,
+          "title": "New energy vehicle exports continue to gain momentum, with Europe becoming the largest market",
+          "url": "https://finance.sina.com.cn/ev-export-2026",
+          "web_anchor": "Sina Finance",
+          "site_name": "finance.sina.com.cn",
+          "page_time": "2026-04-28"
+        },
+        {
+          "id": 4,
+          "title": "Falling power battery prices are driving down vehicle costs",
+          "url": "https://www.gasgoo.com/news/202604/battery-price.html",
+          "web_anchor": "Gasgoo",
+          "site_name": "gasgoo.com",
+          "page_time": "2026-04-15"
+        },
+        {
+          "id": 5,
+          "title": "2026 New Energy Vehicle Sales Rankings: BYD Leads as Emerging Players Diverge",
+          "url": "https://www.d1ev.com/news/shichang/2026-rank",
+          "web_anchor": "D1EV",
+          "site_name": "d1ev.com",
+          "page_time": "2026-05-08"
+        }
+      ]
+    }
+  }
+}

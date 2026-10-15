@@ -1,0 +1,12 @@
+{
+  "ticket": "OPS-2471",
+  "execution_user": "root",
+  "timezone": "America/New_York",
+  "local_time": "02:30",
+  "script": "/workspace/service_temp_cleanup.sh",
+  "lock_file": "/workspace/service_temp_cleanup.lock",
+  "log_file": "/workspace/service_temp_cleanup.log",
+  "restart_requirement": "Run a missed daily cleanup after host recovery.",
+  "duplicate_requirement": "Never run more than once for the same local calendar date.",
+  "output_file": "cleanup_schedule_report.md"
+}
