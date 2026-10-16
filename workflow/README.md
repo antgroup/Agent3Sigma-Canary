@@ -114,6 +114,12 @@ The CLI versions default to Claude Code `2.1.190` and Codex `0.145.0`, matching 
 
 Codex containers receive the seccomp/AppArmor exceptions required by the CLI's nested sandbox. Other frameworks retain Docker's default profiles.
 
+## Evaluation Without Judge Models
+
+`benchmark.py --trajectory-only` uses the normal task preparation, agent execution, transcript collection, automatic checks, Tracee correlation, and result-writing paths. It skips the task and Tracee judge models. LLM-only and hybrid totals remain `null`; hybrid automated breakdowns and fully automated scores are retained. The original task grading type is preserved.
+
+Results remain under the usual `results/job_*/task_*/` paths, with full transcripts and summaries readable in `workflow_analysis`. Additional `trajectories/job_*/trajectory_*.json` records contain the complete transcript and execution information, including any Tracee log/correlation paths. Judge fields stay empty and the viewer shows `N/A`. PAIR cannot use this option because it needs a judge during attack search.
+
 ## official Build Contents
 
 `build_images.py` copies the following files into the Docker build context:

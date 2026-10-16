@@ -50,7 +50,7 @@ from lib_agent import (
     _inject_skill_data,
 )
 from lib_attacks import get_attack_method, is_pair_attack, validate_attack_compatibility
-from lib_grading import GradeResult, grade_task, make_ungraded_result
+from lib_grading import GradeResult, grade_task, summarize_transcript
 from lib_tasks import Task, TaskLoader
 from lib_task_validation import missing_task_inputs, validate_task_toolsets
 
@@ -244,8 +244,8 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--trajectory-only",
         action="store_true",
-        help="Run tasks without automated or LLM grading and write each task's "
-             "self-describing trajectory JSON under trajectories/.",
+        help="Skip judge model calls; preserve task execution, automated checks, Tracee correlation, "
+             "and normal results, plus full trajectory JSON under trajectories/.",
     )
     parser.add_argument(
         "--verbose",
@@ -812,16 +812,15 @@ def _output_single_task(
         "workspace": result.get("workspace"),
         "reasoning_effort": result.get("reasoning_effort"),
         "grading": grade_dict,
+        "tracee_log_path": result.get("tracee_log_path"),
+        "tracee_correlation_path": result.get("tracee_correlation_path"),
+        "tracee_grading": result.get("tracee_grading"),
         "frontmatter": task.frontmatter,
         # Include execution details
         "exit_code": result.get("exit_code"),
         "stdout": result.get("stdout", ""),
         "stderr": result.get("stderr", ""),
     }
-
-    # Include tracee grading result if available
-    if result.get("tracee_grading"):
-        task_output["tracee_grading"] = result["tracee_grading"]
 
     # Save file: use task_{task_id}.json for run=1 and task_{task_id}_run_{N}.json for run>1
     if runs_per_task > 1:
@@ -839,6 +838,8 @@ def _output_trajectory_record(
     task_file: Path,
     grading_type: str,
     transcript_summary: str,
+    execution_result: Dict[str, Any],
+    grade: GradeResult,
     runs_per_task: int = 1,
     run_index: int = 0,
 ) -> Path:
@@ -863,7 +864,14 @@ def _output_trajectory_record(
         "run_index": run_index + 1,
         "runs_per_task": runs_per_task,
         "transcript_summary": transcript_summary,
+        "transcript": execution_result.get("transcript", []),
+        "transcript_length": len(execution_result.get("transcript", [])),
+        "grading": {key: value for key, value in grade.to_dict().items() if key != "transcript_summary"},
     }
+    for key in ("transcript_path", "status", "exit_code", "timed_out", "execution_time",
+                "stdout", "stderr", "usage", "workspace", "reasoning_effort",
+                "tracee_log_path", "tracee_correlation_path", "tracee_grading"):
+        record[key] = execution_result.get(key)
     temporary_path = trajectory_path.with_name(
         f".{trajectory_path.name}.{os.getpid()}.tmp"
     )
@@ -1069,7 +1077,7 @@ def main():
     trajectories_dir = skill_root / "trajectories"
     if args.trajectory_only:
         trajectories_dir.mkdir(parents=True, exist_ok=True)
-        logger.info("Trajectory-only mode enabled; all grading will be skipped")
+        logger.info("Trajectory-only mode enabled; judge models will be skipped, other processing is unchanged")
 
     # Resume: if a prior job dir exists for THIS exact cell, reuse its
     # timestamp so newly-run tasks land in the same job_<...>#<ts>/ dir as
@@ -1347,23 +1355,16 @@ def main():
 
                 judging_disabled = args.trajectory_only
                 try:
-                    if args.trajectory_only:
-                        grade = make_ungraded_result(
-                            task=task,
-                            execution_result=result,
-                            grading_type="trajectory_only",
-                            notes="All grading skipped by --trajectory-only",
-                        )
-                    else:
-                        grade_kwargs = dict(
-                            task=task,
-                            execution_result=result,
-                            skill_dir=skill_dir,
-                            verbose=args.verbose,
-                        )
-                        if args.judge:
-                            grade_kwargs["judge_model"] = args.judge
-                        grade = grade_task(**grade_kwargs)
+                    grade_kwargs = dict(
+                        task=task,
+                        execution_result=result,
+                        skill_dir=skill_dir,
+                        verbose=args.verbose,
+                        skip_judge=judging_disabled,
+                    )
+                    if args.judge:
+                        grade_kwargs["judge_model"] = args.judge
+                    grade = grade_task(**grade_kwargs)
                 except Exception as exc:
                     if execution_error:
                         note = f"Execution failed: {execution_error}; Grading failed: {exc}"
@@ -1373,8 +1374,8 @@ def main():
                     logger.warning("Full traceback:\n%s", traceback.format_exc())
                     grade = GradeResult(
                         task_id=task.task_id,
-                        score=0.0,
-                        max_score=1.0,
+                        score=None if judging_disabled and task.grading_type != "automated" else 0.0,
+                        max_score=None if judging_disabled and task.grading_type != "automated" else 1.0,
                         grading_type=task.grading_type,
                         breakdown={},
                         notes=note,
@@ -1382,7 +1383,7 @@ def main():
 
                 # Perform tracee log correlation analysis if available
                 tracee_grade_result: Optional[TraceeGradingResult] = None
-                if tracee_log and result.get("transcript_path") and not judging_disabled:
+                if tracee_log and result.get("transcript_path"):
                     try:
                         correlation_report = tracee_correlate.correlate_task_logs(
                             task_id=task.task_id,
@@ -1392,16 +1393,19 @@ def main():
                         )
                         if correlation_report:
                             logger.info("🔗 Tracee correlation report: %s", correlation_report)
+                            result["tracee_correlation_path"] = str(correlation_report)
 
                             # Perform tracee grading on the correlation result
                             try:
-                                tracee_grade_result = grade_tracee_correlation(
+                                tracee_grade_result = None if judging_disabled else grade_tracee_correlation(
                                     correlated_json_path=correlation_report,
                                     task=task,
                                     judge_model=args.judge if args.judge else "gpt-4o",
                                     judge_timeout_seconds=120,
                                     verbose=args.verbose,
                                 )
+                                if judging_disabled:
+                                    logger.info("Skipping Tracee judge model; correlation report is preserved")
                                 if tracee_grade_result:
                                     tracee_grade_pct = tracee_grade_result.score * 100
                                     tracee_status = "✅" if tracee_grade_result.score >= 0.8 else "⚠️" if tracee_grade_result.score >= 0.5 else "❌"
@@ -1430,11 +1434,6 @@ def main():
                                 logger.debug("Tracee grading traceback: %s", traceback.format_exc())
                     except Exception as corr_exc:
                         logger.warning("Tracee correlation failed for %s: %s", task.task_id, corr_exc)
-                elif tracee_log and judging_disabled:
-                    logger.info(
-                        "Skipping Tracee correlation and LLM grading for ungraded task %s",
-                        task.task_id,
-                    )
                 elif tracee_log:
                     logger.warning("Tracee log available but transcript_path is missing (tracee_log=%s, transcript_path=%s)", tracee_log, result.get("transcript_path"))
 
@@ -1442,10 +1441,10 @@ def main():
                 if docker.is_active():
                     docker.stop()
 
-            # Add tracee grading result to result dict if available
-            if tracee_grade_result:
-                result["tracee_grading"] = tracee_grade_result.to_dict()
-
+            result["tracee_log_path"] = str(tracee_log) if tracee_log else None
+            result["tracee_grading"] = tracee_grade_result.to_dict() if tracee_grade_result else None
+            # Transcript processing must not depend on whether a judge ran or failed.
+            grade.transcript_summary = grade.transcript_summary or summarize_transcript(result.get("transcript", []))
             result["transcript_summary"] = grade.transcript_summary
             if args.trajectory_only:
                 trajectory_path = _output_trajectory_record(
@@ -1455,6 +1454,8 @@ def main():
                     task_file=task.file_path,
                     grading_type=task.grading_type,
                     transcript_summary=grade.transcript_summary,
+                    execution_result=result,
+                    grade=grade,
                     runs_per_task=runs_per_task,
                     run_index=run_index,
                 )
@@ -1519,12 +1520,16 @@ def main():
             "timed_out": result["timed_out"],
             "execution_time": result["execution_time"],
             "transcript": result.get("transcript", []),
+            "transcript_path": result.get("transcript_path"),
             "transcript_length": len(result["transcript"]),
             "transcript_summary": result.get("transcript_summary", ""),
             "trajectory_summary_path": result.get("trajectory_summary_path"),
             "usage": result.get("usage", {}),
             "workspace": result["workspace"],
             "reasoning_effort": result.get("reasoning_effort"),
+            "tracee_log_path": result.get("tracee_log_path"),
+            "tracee_correlation_path": result.get("tracee_correlation_path"),
+            "tracee_grading": result.get("tracee_grading"),
             "grading": grades_by_task_id[result["task_id"]],
             "frontmatter": tasks_by_id[result["task_id"]].frontmatter,
             # Include execution details
@@ -1595,12 +1600,16 @@ def main():
                 "timed_out": base.get("timed_out"),
                 "execution_time": base.get("execution_time"),
                 "transcript": base.get("transcript", []),
+                "transcript_path": base.get("transcript_path"),
                 "transcript_length": base.get("transcript_length", len(base.get("transcript") or [])),
                 "transcript_summary": base.get("transcript_summary", ""),
                 "trajectory_summary_path": base.get("trajectory_summary_path"),
                 "usage": base.get("usage", {}),
                 "workspace": base.get("workspace"),
                 "reasoning_effort": base.get("reasoning_effort"),
+                "tracee_log_path": base.get("tracee_log_path"),
+                "tracee_correlation_path": base.get("tracee_correlation_path"),
+                "tracee_grading": base.get("tracee_grading"),
                 "grading": grading,
                 "frontmatter": task.frontmatter,
                 "exit_code": base.get("exit_code"),

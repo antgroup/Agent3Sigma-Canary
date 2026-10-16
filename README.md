@@ -190,7 +190,7 @@ export DOCKER_IMAGE=openclaw-official-v20260430_120000
 | Argument | Description | Example |
 | --- | --- | --- |
 | `--effort` | Target agent reasoning effort, forwarded to its runtime | `--effort high` |
-| `--trajectory-only` | Skip all grading and save trajectories plus ungraded results | `--trajectory-only` |
+| `--trajectory-only` | Skip judge models; preserve execution, automated checks, correlation, and results | `--trajectory-only` |
 | `--validate-tasks` | Check task inputs without a model or Docker | `--suite NARA-Bench --validate-tasks` |
 | `--task-ids` | Restrict the selected suite to exact IDs; also used by parallel workers | `--task-ids task_0001_example,task_0002_example` |
 | `--model` | Target model, in `provider-id/model-id` format | `--model anthropic/claude-sonnet-4` |
@@ -249,7 +249,9 @@ uv run python scripts/benchmark_parallel.py --workers 4 --model <provider>/<mode
 
 **Published snapshot limitations:** input validation currently finds missing files for 1,710 tasks. Supply the original `assets/safety` fixtures before running; the runner reports missing inputs before starting evaluations. Another 53 task definitions use the unimplemented `llm_reflection` grader and remain ungraded. Missing data is not synthesized, and ungraded records are not counted as zero scores.
 
-`--trajectory-only` skips all judges and writes `trajectories/job_*/trajectory_*.json` in addition to the normal results and full transcript. It cannot be combined with PAIR, which requires a judge. Normal grading continues to follow each task's own rubric for compatibility with existing suites. Memory initialization uses `pre_setup: memory` with a context file or inline multiline text. Non-empty optional `poison` is appended; otherwise the context is injected unchanged. See [pre_setup documentation](docs/pre_setup_en.md).
+`--trajectory-only` skips only task and Tracee judge model calls. Task preparation, agent execution, multi-session handling, transcript loading, automated checks, Tracee correlation, and normal result output remain enabled. The normal `results/` files retain the full transcript and work with the existing viewer; extra `trajectories/job_*/trajectory_*.json` files also contain the full transcript, summary, execution status, and usage. Judge scores are `null`, displayed as `N/A`. Automated tasks retain their scores; hybrid tasks retain automated breakdowns with a `null` total. PAIR remains incompatible because its search requires a judge.
+
+Normal grading continues to follow each task's own rubric for compatibility with existing suites. Memory initialization uses `pre_setup: memory` with a context file or inline multiline text. Non-empty optional `poison` is appended; otherwise the context is injected unchanged. See [pre_setup documentation](docs/pre_setup_en.md).
 
 ### 5. View Results
 

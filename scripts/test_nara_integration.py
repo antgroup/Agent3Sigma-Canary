@@ -315,7 +315,8 @@ def test_validation_stops_before_agent_creation(tmp_path, monkeypatch):
     assert exc.value.code == 2
 
 
-def test_trajectory_only_runs_and_resumes_without_grading(tmp_path, monkeypatch):
+@pytest.mark.parametrize("grading_error", [False, True])
+def test_trajectory_only_runs_and_resumes_without_judge(tmp_path, monkeypatch, grading_error):
     task = write_task(tmp_path)
     monkeypatch.setattr(benchmark, "__file__", str(tmp_path / "scripts/benchmark.py"))
     monkeypatch.setattr(benchmark, "REPO_ROOT", tmp_path)
@@ -330,20 +331,198 @@ def test_trajectory_only_runs_and_resumes_without_grading(tmp_path, monkeypatch)
                     execution_time=0.1, workspace=str(tmp_path), usage={},
                     transcript=[{"type": "message", "message": {"role": "assistant", "content": "Done"}}])
     monkeypatch.setattr(benchmark, "execute_openclaw_task", execute)
-    monkeypatch.setattr(benchmark, "grade_task", lambda **kwargs: pytest.fail("Trajectory-only called the judge"))
+    monkeypatch.setattr(lib_grading, "_call_judge_llm_api", lambda *args, **kwargs: pytest.fail("Trajectory-only called the judge"))
+    if grading_error:
+        def fail_grading(**kwargs):
+            raise RuntimeError("Postprocessing failed")
+        monkeypatch.setattr(benchmark, "grade_task", fail_grading)
     argv = ["benchmark.py", "--model", "test/model", "--suite", "NARA-Bench", "--trajectory-only",
             "--effort", "high", "--output-dir", str(tmp_path / "results")]
     monkeypatch.setattr(sys, "argv", argv)
     benchmark.main()
     aggregate = json.loads(next((tmp_path / "results").glob("*.json")).read_text())
     assert aggregate["tasks"][0]["grading"]["mean"] is None
+    assert aggregate["tasks"][0]["grading"]["runs"][0]["grading_type"] == "llm_judge"
     assert aggregate["efficiency"]["ungraded_tasks"] == 1
     records = list((tmp_path / "trajectories").rglob("trajectory_*.json"))
     assert len(records) == 1 and "Done" in json.loads(records[0].read_text())["transcript_summary"]
+    record = json.loads(records[0].read_text())
+    assert record["transcript"] == aggregate["tasks"][0]["transcript"]
+    assert record["grading"]["score"] is None and record["grading"]["breakdown"] == {}
     monkeypatch.setattr(sys, "argv", argv + ["--resume"])
     benchmark.main()
     assert len(executions) == 1
     assert executions[0]["effort"] == "high"
+
+
+@pytest.mark.parametrize("grading_type", ["automated", "llm_judge", "hybrid", "llm_reflection"])
+def test_trajectory_only_skips_only_the_model_grader(tmp_path, monkeypatch, grading_type):
+    task = write_task(tmp_path)
+    task.grading_type = grading_type
+    task.automated_checks = '''```python
+def grade(transcript, workspace):
+    from pathlib import Path
+    marker = Path(workspace) / "automatic-checks.txt"
+    with marker.open("a") as stream:
+        stream.write("checked\\n")
+    return {"output_valid": 0.8}
+```'''
+    calls = []
+    def judge(*args, **kwargs):
+        calls.append("judge")
+        return '{"scores":{"outcome_assessment":0.6},"total":0.6}'
+    monkeypatch.setattr(lib_grading, "_call_judge_llm_api", judge)
+    result = {"workspace": str(tmp_path), "transcript": [{"type": "message", "message": {"role": "assistant", "content": "Done"}}]}
+    normal = lib_grading.grade_task(task=task, execution_result=result, skill_dir=tmp_path)
+    calls_before = list(calls)
+    skipped = lib_grading.grade_task(task=task, execution_result=result, skill_dir=tmp_path, skip_judge=True)
+    assert calls == calls_before
+    assert skipped.grading_type == normal.grading_type == grading_type
+    assert skipped.transcript_summary == normal.transcript_summary == "Assistant: Done"
+    if grading_type in ("automated", "hybrid"):
+        assert (tmp_path / "automatic-checks.txt").read_text() == "checked\nchecked\n"
+    if grading_type == "automated":
+        assert normal.score == skipped.score == 0.8
+        assert skipped.breakdown == normal.breakdown
+    else:
+        assert skipped.score is None and skipped.max_score is None
+        assert not any(key.startswith("llm_judge.") for key in skipped.breakdown)
+        if grading_type == "hybrid":
+            assert skipped.breakdown == {"automated.output_valid": 0.8}
+            assert normal.score == pytest.approx(0.7)
+
+
+@pytest.mark.parametrize("timed_out", [False, True])
+def test_trajectory_only_preserves_real_preparation_and_transcript_loading(tmp_path, monkeypatch, timed_out):
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path / "home"))
+    monkeypatch.setattr(lib_docker, "is_active", lambda: False)
+    monkeypatch.setattr(lib_docker, "uses_modern_openclaw", lambda: False)
+    monkeypatch.setattr(lib_agent, "_detect_framework_from_image", lambda: "openclaw")
+    store = tmp_path / "agent"
+    sessions = store / "sessions"
+    sessions.mkdir(parents=True)
+    monkeypatch.setattr(lib_docker, "ensure_transcripts_on_host", lambda *args: str(store))
+    def cleanup(*args):
+        for path in sessions.glob("*.jsonl"):
+            path.unlink()
+    monkeypatch.setattr(lib_agent, "cleanup_agent_sessions", cleanup)
+    task = write_task(tmp_path, workspace_files=[{"path": "input.txt", "content": "Fixture data"}],
+                      pre_setup=[{"type": "memory", "context": "# Memory\nHistorical fact"},
+                                 {"type": "set_env", "vars": {"TEST_CONTEXT": "ready"}}],
+                      sessions=[{"prompt": "First step"}, {"prompt": "Second step"}])
+    commands = []
+    def run_agent(cmd, cwd, **kwargs):
+        assert (Path(cwd) / "input.txt").read_text() == "Fixture data"
+        assert (Path(cwd) / "MEMORY.md").read_text() == "# Memory\nHistorical fact"
+        assert kwargs["env"] == {"TEST_CONTEXT": "ready"}
+        prompt = cmd[cmd.index("--message") + 1]
+        commands.append(prompt)
+        rows = [{"type": "message", "message": {"role": "user", "content": prompt}},
+                {"type": "message", "message": {"role": "assistant", "content": "Handled " + prompt,
+                                                  "usage": {"input": 4, "output": 2, "totalTokens": 6}}}]
+        session_id = cmd[cmd.index("--session-id") + 1]
+        with (sessions / f"{session_id}.jsonl").open("a") as stream:
+            stream.write("".join(json.dumps(row) + "\n" for row in rows))
+        if timed_out:
+            raise subprocess.TimeoutExpired(cmd, 1, output="partial output", stderr="deadline")
+        return subprocess.CompletedProcess(cmd, 0, "completed", "")
+    monkeypatch.setattr(lib_docker, "run_cmd", run_agent)
+    judge_calls = []
+    def judge(*args, **kwargs):
+        judge_calls.append(True)
+        return '{"scores":{"outcome_assessment":1},"total":1}'
+    monkeypatch.setattr(lib_grading, "_call_judge_llm_api", judge)
+    runs = []
+    for skip in (False, True):
+        workspace = tmp_path / f"run-{skip}" / "workspace"
+        result = lib_agent.execute_openclaw_task(
+            task=task, agent_id="test", model_id="test/model", run_id=f"run-{skip}", timeout_multiplier=1,
+            skill_dir=tmp_path, task_agent_workspace_root=workspace.parent,
+            task_agent_workspace_root_relate=workspace, local_task_agent_workspace_root_relate=workspace,
+        )
+        assert Path(result["transcript_path"]).is_file()
+        grade = lib_grading.grade_task(task=task, execution_result=result, skill_dir=tmp_path, skip_judge=skip)
+        assert grade.score is None if skip else grade.score == 1
+        runs.append(result)
+    assert len(judge_calls) == 1
+    for key in ("transcript", "usage", "status", "exit_code", "stdout", "stderr", "timed_out"):
+        assert runs[0][key] == runs[1][key]
+    assert runs[1]["transcript"] and runs[1]["usage"]["total_tokens"] == (6 if timed_out else 12)
+    assert runs[1]["status"] == ("timeout" if timed_out else "success")
+    assert commands == (["First step"] if timed_out else ["First step", "Second step"]) * 2
+
+
+def test_trajectory_only_preserves_tracee_correlation_and_normal_outputs(tmp_path, monkeypatch):
+    task = write_task(tmp_path)
+    monkeypatch.setattr(benchmark, "__file__", str(tmp_path / "scripts/benchmark.py"))
+    monkeypatch.setattr(benchmark, "REPO_ROOT", tmp_path)
+    monkeypatch.setattr(benchmark, "_get_git_version", lambda *args: "test")
+    monkeypatch.setattr(benchmark, "_inject_skill_data", lambda *args: None)
+    monkeypatch.setattr(benchmark, "ensure_agent_exists", lambda *args: None)
+    monkeypatch.setattr(lib_docker, "load_image_metadata", lambda: None)
+    monkeypatch.setattr(lib_docker, "get_container_id", lambda: "test-container")
+    active = {"docker": False, "tracee": False}
+    calls = []
+    def toggle(name, value):
+        active[name] = value
+        calls.append(f"{name}:{value}")
+    monkeypatch.setattr(lib_docker, "is_active", lambda: active["docker"])
+    monkeypatch.setattr(lib_docker, "start", lambda **kwargs: toggle("docker", True))
+    monkeypatch.setattr(lib_docker, "stop", lambda: toggle("docker", False))
+    monkeypatch.setattr(benchmark.tracee, "is_active", lambda: active["tracee"])
+    monkeypatch.setattr(benchmark.tracee, "start", lambda *args, **kwargs: toggle("tracee", True))
+    monkeypatch.setattr(benchmark.tracee, "stop", lambda: toggle("tracee", False))
+    trace_path = tmp_path / "tracee.json"
+    trace_path.write_text("{}")
+    monkeypatch.setattr(benchmark.tracee, "rename_log_for_task", lambda *args: trace_path)
+    monkeypatch.setattr(benchmark.tracee, "get_output_dir", lambda: tmp_path)
+    transcript = [{"type": "message", "message": {"role": "assistant", "content": "Complete trajectory"}}]
+    transcript_path = tmp_path / "session.jsonl"
+    transcript_path.write_text(json.dumps(transcript[0]) + "\n")
+    def execute(**kwargs):
+        calls.append("execute")
+        return dict(task_id=task.task_id, status="success", timed_out=False, execution_time=0.1,
+                    workspace=str(tmp_path), usage={"total_tokens": 6}, transcript=transcript,
+                    transcript_path=str(transcript_path), exit_code=0, stdout="done", stderr="")
+    monkeypatch.setattr(benchmark, "execute_openclaw_task", execute)
+    def judge(*args, **kwargs):
+        calls.append("judge")
+        return '{"scores":{"outcome_assessment":1},"total":1}'
+    monkeypatch.setattr(lib_grading, "_call_judge_llm_api", judge)
+    def correlate(**kwargs):
+        calls.append("correlate")
+        path = tmp_path / "correlated.json"
+        path.write_text('{"tool_calls":[]}')
+        return path
+    monkeypatch.setattr(benchmark.tracee_correlate, "correlate_task_logs", correlate)
+    def tracee_judge(**kwargs):
+        calls.append("tracee-judge")
+        return benchmark.TraceeGradingResult(task_id=task.task_id, score=1.0)
+    monkeypatch.setattr(benchmark, "grade_tracee_correlation", tracee_judge)
+    monkeypatch.setattr(benchmark, "generate_tracee_grading_report", lambda *args: "Judge report")
+    normal_calls = []
+    for skip in (False, True):
+        calls.clear()
+        output = tmp_path / f"results-{skip}"
+        argv = ["benchmark.py", "--model", "test/model", "--suite", "NARA-Bench", "--docker", "--tracee", "--output-dir", str(output)]
+        monkeypatch.setattr(sys, "argv", argv + (["--trajectory-only"] if skip else []))
+        benchmark.main()
+        saved = json.loads(next(output.glob("job_*/task_*/*.json")).read_text())
+        aggregate = json.loads(next(output.glob("*.json")).read_text())["tasks"][0]
+        assert saved["transcript"] == aggregate["transcript"] == transcript
+        assert saved["tracee_correlation_path"] == aggregate["tracee_correlation_path"] == str(tmp_path / "correlated.json")
+        assert saved["transcript_path"] == aggregate["transcript_path"] == str(transcript_path)
+        if skip:
+            assert calls == [call for call in normal_calls if call not in ("judge", "tracee-judge")]
+            assert saved["grading"]["score"] is None and saved["tracee_grading"] is None
+            trajectory = json.loads(Path(saved["trajectory_summary_path"]).read_text())
+            assert trajectory["transcript"] == transcript
+            assert trajectory["tracee_correlation_path"] == saved["tracee_correlation_path"]
+            assert trajectory["tracee_grading"] is None
+        else:
+            normal_calls = list(calls)
+            assert saved["grading"]["score"] == saved["tracee_grading"]["score"] == 1.0
 
 
 def test_old_rubrics_keep_their_criteria(tmp_path):
@@ -454,15 +633,21 @@ def test_ungraded_trajectories_render_and_export(tmp_path):
     analysis = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = analysis
     spec.loader.exec_module(analysis)
-    path = tmp_path / "task_example/result.json"
+    path = tmp_path / "task_example/task_example.json"
     path.parent.mkdir()
     record = dict(task_id="task_example", job_id="NARA-Bench#model#no-attack#date", model="test",
                   status="success", execution_time=1, grading={"score": None, "max_score": None,
-                  "breakdown": {}, "grading_type": "trajectory_only"})
+                  "breakdown": {}, "grading_type": "llm_judge"},
+                  transcript=[{"type": "message", "message": {"role": "assistant", "content": "Readable trajectory"}}],
+                  transcript_summary="Assistant: Readable trajectory")
     path.write_text(json.dumps(record))
     client = analysis.app.test_client()
     response = client.get("/", query_string={"dir": str(tmp_path)})
     assert response.status_code == 200 and b"N/A" in response.data
+    response = client.post("/api/detail", json={"directory": str(tmp_path), "task_id": record["task_id"], "job_id": record["job_id"]})
+    detail = response.get_json()["html"]
+    assert "Readable trajectory" in detail and "N/A" in detail
+    assert "Transcript Preview" in detail
     response = client.post("/api/export", json={"directory": str(tmp_path)})
     assert response.status_code == 200 and b"N/A" in response.data
     results = analysis.load_results_from_directory(str(tmp_path))

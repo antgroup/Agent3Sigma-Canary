@@ -924,11 +924,12 @@ def api_detail():
 
         grading = data.get('grading', {})
         if grading:
+            score_text = "N/A" if grading.get('score') is None else f"{grading.get('score')}/{grading.get('max_score', 1)}"
             html += f'''
             <div style="margin-top: 20px;">
                 <h3>Grading Result</h3>
                 <table style="width: 100%;">
-                    <tr><td style="color: #888;">Score</td><td><span style="color: #00d4ff; font-size: 1.5em;">{grading.get('score', 0)}/{grading.get('max_score', 1)}</span></td></tr>
+                    <tr><td style="color: #888;">Score</td><td><span style="color: #00d4ff; font-size: 1.5em;">{score_text}</span></td></tr>
                     <tr><td style="color: #888;">Type</td><td>{grading.get('grading_type', '')}</td></tr>
                 '''
             breakdown = grading.get('breakdown', {})

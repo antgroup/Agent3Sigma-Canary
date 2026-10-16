@@ -49,6 +49,7 @@ def grade_task(
     judge_agent_prefix: str = "bench-judge",
     judge_timeout_seconds: float = 600,
     verbose: bool = False,
+    skip_judge: bool = False,
 ) -> GradeResult:
     grading_type = task.grading_type
     if verbose:
@@ -57,21 +58,9 @@ def grade_task(
 
     if grading_type == "automated":
         result = _grade_automated(task, execution_result, verbose=verbose)
+        result.transcript_summary = summarize_transcript(execution_result.get("transcript", []))
         if verbose:
             logger.info("   [VERBOSE] Automated grade breakdown: %s", result.breakdown)
-        return result
-    if grading_type == "llm_judge":
-        result = _grade_llm_judge(
-            task=task,
-            execution_result=execution_result,
-            judge_model=judge_model,
-            judge_agent_prefix=judge_agent_prefix,
-            judge_timeout_seconds=judge_timeout_seconds,
-            skill_dir=skill_dir,
-            verbose=verbose,
-        )
-        if verbose:
-            logger.info("   [VERBOSE] LLM judge breakdown: %s", result.breakdown)
         return result
     if grading_type == "llm_reflection":
         return _grade_llm_reflection(
@@ -79,18 +68,26 @@ def grade_task(
             execution_result=execution_result,
             verbose=verbose,
         )
-    if grading_type == "hybrid":
-        auto_result = _grade_automated(task, execution_result, verbose=verbose)
-        llm_result = _grade_llm_judge(
-            task=task,
-            execution_result=execution_result,
-            judge_model=judge_model,
-            judge_agent_prefix=judge_agent_prefix,
-            judge_timeout_seconds=judge_timeout_seconds,
-            skill_dir=skill_dir,
-            verbose=verbose,
-        )
-        return _combine_grades(task, auto_result, llm_result)
+    if grading_type in ("llm_judge", "hybrid"):
+        auto_result = _grade_automated(task, execution_result, verbose=verbose) if grading_type == "hybrid" else None
+        if skip_judge:
+            llm_result = make_ungraded_result(
+                task=task, execution_result=execution_result, grading_type="llm_judge",
+                notes="Judge model skipped by --trajectory-only",
+            )
+        else:
+            llm_result = _grade_llm_judge(
+                task=task,
+                execution_result=execution_result,
+                judge_model=judge_model,
+                judge_agent_prefix=judge_agent_prefix,
+                judge_timeout_seconds=judge_timeout_seconds,
+                skill_dir=skill_dir,
+                verbose=verbose,
+            )
+        if verbose:
+            logger.info("   [VERBOSE] LLM judge breakdown: %s", llm_result.breakdown)
+        return _combine_grades(task, auto_result, llm_result) if auto_result is not None else llm_result
     raise ValueError(f"Unknown grading type: {grading_type}")
 
 
@@ -240,7 +237,9 @@ def _combine_grades(task: Task, auto_result: GradeResult, llm_result: GradeResul
     if total_weight <= 0:
         auto_weight = llm_weight = 0.5
         total_weight = 1.0
-    combined_score = (
+    # A missing judge score leaves the hybrid total unknown, while keeping
+    # the automated check results available in the breakdown.
+    combined_score = None if auto_result.score is None or llm_result.score is None else (
         auto_result.score * auto_weight + llm_result.score * llm_weight
     ) / total_weight
     breakdown = {
@@ -251,7 +250,7 @@ def _combine_grades(task: Task, auto_result: GradeResult, llm_result: GradeResul
     return GradeResult(
         task_id=task.task_id,
         score=combined_score,
-        max_score=1.0,
+        max_score=1.0 if combined_score is not None else None,
         grading_type="hybrid",
         breakdown=breakdown,
         notes=notes,
