@@ -67,8 +67,9 @@ workflow/
 
 ```text
 workflow_step_1_image_builder.sh
+├── Stage 1: selects agent images (and the version for OpenClaw images)
+├── Stage 2: chooses whether to add the shared safety_research toolset
 ├── Creates the workspace directory .workspaces/AgentCanary_{timestamp}
-├── Selects image types, OpenClaw version, and optional research tools
 ├── Calls images/{type}/prepare.sh to prepare the build context
 ├── Composes the shared research layer when requested
 └── Runs docker build (or stops after --prepare-only)
@@ -87,7 +88,12 @@ Build outputs:
 bash workflow/workflow_step_1_image_builder.sh
 ```
 
-Without flags, a terminal session asks for agent types, OpenClaw version, and research tools. Defaults are `official`, OpenClaw `2026.4.11`, and no research layer. Noninteractive invocations use the same defaults.
+Without flags, a terminal session guides you through two stages:
+
+1. **Choose agent images:** OpenClaw (`official` or a security plugin variant), Hermes, NanoClaw, Claude Code, or Codex. Multiple images can be selected. If any OpenClaw image is selected, choose its version within this stage.
+2. **Choose optional tools:** answer `y` to add the shared `safety_research` toolset to every selected image, or press Enter / answer `n` to keep the base toolset.
+
+For example, select `8` for Codex, then answer `y` to build Codex with the research tools, or `n` to build its base image. Defaults are `official`, OpenClaw `2026.4.11`, and no research layer. Command-line options fill in the corresponding choices without prompting; `--non-interactive` uses defaults for any omitted choices. `--resume` reuses the saved choices.
 
 ```bash
 # Newer OpenClaw and Shield, with the shared research environment.

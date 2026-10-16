@@ -129,7 +129,7 @@ bash buildAll.sh
 cd ..
 ```
 
-然后构建评测镜像。AgentCanary 支持评测原生 OpenClaw、Hermes、NanoClaw，以及集成不同安全插件后的 OpenClaw。每个 Docker 镜像对应一个独立的评测环境，构建时可以按需选择要评测的镜像变体。
+然后构建评测镜像。AgentCanary 支持评测原生 OpenClaw、Hermes、NanoClaw、Claude Code、Codex，以及集成不同安全插件后的 OpenClaw。每个 Docker 镜像对应一个独立的评测环境，构建时可以按需选择要评测的镜像变体。
 
 - **official**：原生 OpenClaw Agent
 - **official_shield**：OpenClaw + Shield 安全插件
@@ -137,8 +137,13 @@ cd ..
 - **official_clawkeeper**：OpenClaw + ClawKeeper 安全插件
 - **hermes**：原生 Hermes Agent
 - **nanoclaw**：原生 NanoClaw Agent
+- **claude_code**：原生 Claude Code
+- **codex**：原生 Codex
 
-运行构建脚本后，根据提示选择需要的镜像即可。例如只评测原生 OpenClaw 时选择 `official`；需要比较安全插件效果时，同时选择对应的插件镜像。
+运行构建脚本后，按两个阶段选择：
+
+1. **选择 Agent 镜像**：例如 `codex` 或 `official`（OpenClaw），支持多选；选中 OpenClaw 时，在这个阶段继续选择版本。
+2. **选择是否添加工具集**：输入 `y`，为本次所有选中的镜像添加共享的 `safety_research` 工具集及相关技能；输入 `n` 或直接回车，使用基础工具环境。工具集复用同一份构建配置，不需要为每个框架单独维护研究镜像目录。
 
 ```bash
 bash workflow/workflow_step_1_image_builder.sh
@@ -154,7 +159,7 @@ bash workflow/workflow_step_1_image_builder.sh --images official,official_shield
 bash workflow/workflow_step_1_image_builder.sh --images claude_code,codex --safety-research --non-interactive
 ```
 
-不指定 `--safety-research` 时沿用基础工具环境；OpenClaw 默认版本仍为 `2026.4.11`。`--prepare-only` 只生成构建上下文，`--resume <workspace>` 恢复构建。完整选项和原生 CLI 接口要求见 [workflow 说明](workflow/README.md)。
+交互模式的第二阶段默认不添加工具集；非交互模式下，通过 `--safety-research` 添加工具集，省略该选项则使用基础工具环境。`--no-safety-research` 显式跳过工具集选择并使用基础环境。OpenClaw 默认版本仍为 `2026.4.11`。`--prepare-only` 只生成构建上下文，`--resume <workspace>` 按已保存的选择恢复构建。完整选项和原生 CLI 接口要求见 [workflow 说明](workflow/README.md)。
 
 ### 4. 运行评测
 

@@ -135,7 +135,7 @@ bash buildAll.sh
 cd ..
 ```
 
-Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, Hermes, NanoClaw, and OpenClaw variants integrated with different security plugins. Each Docker image corresponds to an independent evaluation environment, and you can choose which variants to build.
+Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, Hermes, NanoClaw, Claude Code, Codex, and OpenClaw variants integrated with different security plugins. Each Docker image corresponds to an independent evaluation environment, and you can choose which variants to build.
 
 - **official**: Vanilla OpenClaw agent
 - **official_shield**: OpenClaw + Shield security plugin
@@ -143,8 +143,13 @@ Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, 
 - **official_clawkeeper**: OpenClaw + ClawKeeper security plugin
 - **hermes**: Vanilla Hermes agent
 - **nanoclaw**: Vanilla NanoClaw agent
+- **claude_code**: Native Claude Code
+- **codex**: Native Codex
 
-After running the build script, select the image variants you need from the prompt. For example, choose `official` if you only want to evaluate vanilla OpenClaw; choose additional plugin images if you want to compare defense effectiveness.
+The build script guides you through two stages:
+
+1. **Choose agent images:** for example, `codex` or `official` (OpenClaw). You can select multiple images; selecting OpenClaw also prompts for its version within this stage.
+2. **Choose optional tools:** enter `y` to add the shared `safety_research` toolset and related skills to every selected image, or enter `n` / press Enter to keep the base toolset. The toolset uses one shared build configuration across frameworks.
 
 ```bash
 bash workflow/workflow_step_1_image_builder.sh
@@ -160,7 +165,7 @@ bash workflow/workflow_step_1_image_builder.sh --images official,official_shield
 bash workflow/workflow_step_1_image_builder.sh --images claude_code,codex --safety-research --non-interactive
 ```
 
-Without `--safety-research`, the base tool environment is retained. OpenClaw still defaults to `2026.4.11`. Use `--prepare-only` to stage contexts and `--resume <workspace>` to resume builds. See [workflow documentation](workflow/README.md) for all options and native CLI API requirements.
+The second interactive stage defaults to the base toolset. In noninteractive mode, `--safety-research` enables the additional tools; omitting it keeps the base toolset. `--no-safety-research` explicitly keeps the base toolset without prompting. OpenClaw still defaults to `2026.4.11`. Use `--prepare-only` to stage contexts and `--resume <workspace>` to resume builds with their saved choices. See [workflow documentation](workflow/README.md) for all options and native CLI API requirements.
 
 ### 4. Run Evaluations
 

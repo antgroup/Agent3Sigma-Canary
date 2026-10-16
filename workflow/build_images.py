@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compose agent images with optional research tools and a pinned OpenClaw version."""
+"""Build in two stages: choose agent images, then optionally add safety research tools."""
 
 from __future__ import annotations
 
@@ -18,6 +18,16 @@ IMAGE_TYPES = (
     "official", "official_shield", "official_secureclaw", "official_clawkeeper",
     "hermes", "nanoclaw", "claude_code", "codex",
 )
+IMAGE_DESCRIPTIONS = {
+    "official": "OpenClaw",
+    "official_shield": "OpenClaw + Shield",
+    "official_secureclaw": "OpenClaw + SecureClaw",
+    "official_clawkeeper": "OpenClaw + ClawKeeper",
+    "hermes": "Hermes",
+    "nanoclaw": "NanoClaw",
+    "claude_code": "Claude Code",
+    "codex": "Codex",
+}
 DEFAULT_OPENCLAW_VERSION = "2026.4.11"
 NEW_OPENCLAW_VERSION = "2026.7.1-2"
 STATE_NAME = ".build_state.json"
@@ -146,30 +156,48 @@ def main(argv: list[str] | None = None) -> int:
             raise ValueError("Invalid timestamp in saved build state")
     else:
         interactive = sys.stdin.isatty() and not args.non_interactive
+        if interactive:
+            print("\n[1/2] Choose agent images")
         types = args.images
         if types is None and interactive:
-            print("Agent image types:")
             for index, name in enumerate(IMAGE_TYPES, 1):
-                print(f"  [{index}] {name}")
-            types = input("Select types (comma-separated numbers/names, A = all) [1]: ").strip() or "official"
+                print(f"  [{index}] {name} ({IMAGE_DESCRIPTIONS[name]})")
+            types = input("Select images (comma-separated numbers/names, A = all) [1]: ").strip() or "official"
         images = select_types(types or "official")
+        if interactive:
+            print(f"Selected images: {', '.join(images)}")
         version = args.openclaw_version
         if version is None and interactive and any(name.startswith("official") for name in images):
             version = input(f"OpenClaw version [default={DEFAULT_OPENCLAW_VERSION}; newest={NEW_OPENCLAW_VERSION}]: ").strip()
+        version = resolve_version(version or "default")
+        if interactive:
+            print("\n[2/2] Choose optional tools")
+            print("The safety_research toolset adds document/OCR, PII, finance, operations, "
+                  "and WordPress tools with related skills.")
+            print("This choice applies to all selected images. Default: keep the base toolset.")
         research = args.safety_research
         if research is None and interactive:
-            research = input("Install safety research tools? [y/N]: ").strip().lower() in ("y", "yes")
+            while True:
+                answer = input("Add the safety_research toolset? [y/N]: ").strip().lower()
+                if answer in ("", "n", "no", "y", "yes"):
+                    research = answer in ("y", "yes")
+                    break
+                print("Please enter y (add tools) or n (keep the base toolset).")
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         workspace = (args.workspace or PROJECT_ROOT / ".workspaces" / f"AgentCanary_{timestamp}").resolve()
         if workspace.exists() and any(workspace.iterdir()):
             raise ValueError(f"Workspace is not empty: {workspace}; use --resume or a new path")
         state = {
             "schema_version": 1, "timestamp": timestamp, "images": images,
-            "openclaw_version": resolve_version(version or "default"),
+            "openclaw_version": version,
             "safety_research": bool(research), "proxy": args.proxy,
             "completed": [],
         }
 
+    print(f"\nImages: {', '.join(state['images'])}")
+    if any(name.startswith("official") for name in state["images"]):
+        print(f"OpenClaw version: {state['openclaw_version']}")
+    print(f"safety_research toolset: {'enabled' if state['safety_research'] else 'disabled'}", flush=True)
     build_proxy_args = proxy_args(state.get("proxy"))
     if not args.prepare_only and shutil.which("docker") is None:
         raise ValueError("Docker is required; use --prepare-only to stage contexts without it")
