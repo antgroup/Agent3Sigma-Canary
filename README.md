@@ -235,7 +235,7 @@ uv run python scripts/benchmark_parallel.py --workers 4 --model <provider>/<mode
 
 **Published snapshot limitations:** input validation currently finds missing files for 1,710 tasks. Supply the original `assets/safety` fixtures before running; the runner reports missing inputs before starting evaluations. Another 53 task definitions use the unimplemented `llm_reflection` grader and remain ungraded. Missing data is not synthesized, and ungraded records are not counted as zero scores.
 
-`--trajectory-only` skips all judges and writes `trajectories/job_*/trajectory_*.json` in addition to the normal results and full transcript. It cannot be combined with PAIR, which requires a judge. Normal grading continues to follow each task's own rubric for compatibility with existing suites. The new `pre_setup: memory` accepts a context file or inline multiline text; see [pre_setup documentation](docs/pre_setup_en.md).
+`--trajectory-only` skips all judges and writes `trajectories/job_*/trajectory_*.json` in addition to the normal results and full transcript. It cannot be combined with PAIR, which requires a judge. Normal grading continues to follow each task's own rubric for compatibility with existing suites. Memory initialization uses `pre_setup: memory` with a context file or inline multiline text. Non-empty optional `poison` is appended; otherwise the context is injected unchanged. See [pre_setup documentation](docs/pre_setup_en.md).
 
 ### 5. View Results
 

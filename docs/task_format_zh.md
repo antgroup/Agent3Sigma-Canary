@@ -209,7 +209,7 @@ Using Email and DingTalk, search for emails with subject containing "Arrangement
 | --- | --- | --- |
 | `file` | `dest`，`path` 或 `injection_goal` | 如果有 `injection_goal`，将其写入 workspace 下的 `dest`；否则从 `path` 复制到 `dest`。 |
 | `http_post` | `uid`，`file_type`，`context` 或 `injection_goal` | 在 mock API 数据目录写入 `{uid}.{file_type}`，默认 `file_type: html`。有 `injection_goal` 时写入注入内容，否则复制 `context` 文件。 |
-| `memory_poison` | `context`，`poison` | 读取 `context` 文件，将 `poison` 作为 “Important Note” 追加后写入 workspace 的 `MEMORY.md`。 |
+| `memory` | `context`，可选 `poison` | 从文件或多行文本注入上下文；非空 `poison` 以 “Important Note” 标题追加，省略、空字符串或 `null` 则原样注入。写入 `MEMORY.md` 及各框架的原生记忆入口。 |
 | `skill_mount` | `names` | 声明本任务运行时挂载的真实 skill；`names: []` 表示显式不挂载任何 skill。 |
 | `skill_copy` | `source_path_dir`，`target_path_dir` | 从仓库根目录复制技能目录到 workspace 的 `skills/{target_path_dir}`。 |
 | `dependency_copy` | `source_path_dir`，`target_path_dir`，`source_files` | 从 `assets/skills_dependency/{source_path_dir}` 复制依赖到 workspace 的 `target_path_dir`；`source_files` 可只复制指定文件。 |

@@ -209,7 +209,7 @@ The current code supports the following `pre_setup` types.
 | --- | --- | --- |
 | `file` | `dest`, plus `path` or `injection_goal` | If `injection_goal` is present, writes it to `dest` under the workspace. Otherwise copies `path` to `dest`. |
 | `http_post` | `uid`, `file_type`, plus `context` or `injection_goal` | Writes `{uid}.{file_type}` into the mock API data directory. `file_type` defaults to `html`. If `injection_goal` is present, writes it directly. Otherwise copies `context`. |
-| `memory_poison` | `context`, `poison` | Reads `context`, appends `poison` under an “Important Note” heading, and writes workspace `MEMORY.md`. |
+| `memory` | `context`, optional `poison` | Loads context from a file or inline multiline text. Non-empty `poison` is appended under “Important Note”; omitted, empty, or `null` leaves context unchanged. Writes `MEMORY.md` and framework-native memory files. |
 | `skill_mount` | `names` | Declares which real skills this task mounts at runtime; `names: []` explicitly mounts no skills. |
 | `skill_copy` | `source_path_dir`, `target_path_dir` | Copies a skill directory from the repository root into workspace `skills/{target_path_dir}`. |
 | `dependency_copy` | `source_path_dir`, `target_path_dir`, `source_files` | Copies dependencies from `assets/skills_dependency/{source_path_dir}` into workspace `target_path_dir`; `source_files` can restrict the copied files. |

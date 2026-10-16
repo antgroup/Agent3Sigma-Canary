@@ -229,7 +229,7 @@ uv run python scripts/benchmark_parallel.py --workers 4 --model <provider>/<mode
 
 **公开快照存在资源缺口：**当前任务输入预检发现 1,710 个任务缺少输入文件，需要补充原始 `assets/safety` 数据；运行器会在启动评测前报错。53 个任务使用尚未实现的 `llm_reflection`，会保留为未评分结果。没有用生成内容代替缺失数据，也没有把未评分结果当作零分。
 
-`--trajectory-only` 不调用 Judge，输出 `trajectories/job_*/trajectory_*.json`，同时保留原有结果与完整 transcript；不能与需要 Judge 的 PAIR 攻击同时使用。评分仍遵循各任务自己的 rubric，以兼容已有套件。新增 `pre_setup: memory` 支持记忆文件路径或多行内嵌文本，详见 [pre_setup 文档](docs/pre_setup_zh.md)。
+`--trajectory-only` 不调用 Judge，输出 `trajectories/job_*/trajectory_*.json`，同时保留原有结果与完整 transcript；不能与需要 Judge 的 PAIR 攻击同时使用。评分仍遵循各任务自己的 rubric，以兼容已有套件。记忆初始化统一使用 `pre_setup: memory`，支持记忆文件路径或多行内嵌文本；可选 `poison` 非空时追加投毒内容，否则原样注入，详见 [pre_setup 文档](docs/pre_setup_zh.md)。
 
 ### 5. 查看结果
 

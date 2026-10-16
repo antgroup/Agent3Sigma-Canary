@@ -509,7 +509,7 @@ def _purge_stale_container_skills() -> None:
         "   grep -qx \"$n\" /root/.hermes/skills.bundled || rm -rf \"/root/.hermes/skills/$n\"; "
         " done) ; "
         # Wipe any leaked memory file from a previous task — the current
-        # task's memory or memory_poison setup will re-populate if it has one.
+        # task's memory setup will re-populate if it has one.
         "rm -f /root/.hermes/memories/MEMORY.md"
     ]
     try:
@@ -734,8 +734,6 @@ def _run_pre_setup(
             pass
         elif setup_type == "memory":
             _execute_memory_setup(step, workspace)
-        elif setup_type == "memory_poison":
-            _execute_memory_poison_setup(step, workspace)
         elif setup_type == "dependency_copy":
             _execute_dependency_copy_setup(step, skill_dir, workspace)
         elif setup_type == "file":
@@ -1260,47 +1258,26 @@ def _execute_skill_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> N
 
 
 def _execute_memory_setup(step: dict, workspace: Path) -> None:
-    """Create framework-specific memory files from an unchanged context file."""
-    _execute_memory_file_setup(step, workspace, append_poison=False)
+    """Create framework-specific memory files with optional poison appended.
 
-
-def _execute_memory_poison_setup(step: dict, workspace: Path) -> None:
-    """Create framework-specific memory files with poison appended."""
-    _execute_memory_file_setup(step, workspace, append_poison=True)
-
-
-def _execute_memory_file_setup(
-    step: dict,
-    workspace: Path,
-    *,
-    append_poison: bool,
-) -> None:
-    """Execute a memory or memory_poison pre-setup step.
-
-    Creates a MEMORY.md file in the workspace that contains the context
-    file content. For memory_poison, poison content is appended to the end.
-    ``context`` is a direct file path.
-    ``poison`` is the content to append for memory_poison only.
+    ``context`` is a file path or inline multiline text. A non-empty ``poison``
+    is appended under an Important Note heading; otherwise context is unchanged.
     """
-    setup_type = "memory_poison" if append_poison else "memory"
     context_path = step.get("context", "")
     if not context_path:
-        logger.warning("%s step missing context", setup_type)
+        logger.warning("memory step missing context")
         return
 
-    poison_content = step.get("poison", "") if append_poison else ""
-    if append_poison and not poison_content:
-        logger.warning("memory_poison step missing context or poison")
-        return
+    poison_content = step.get("poison") or ""
 
     source = memory_context_path(context_path, Path(__file__).resolve().parent.parent)
     if source is not None and not source.is_file():
-        logger.error("%s context file not found: %s", setup_type, source)
+        logger.error("memory context file not found: %s", source)
         return
 
     context_content = source.read_text(encoding="utf-8") if source is not None else context_path
     combined_content = context_content
-    if append_poison:
+    if poison_content:
         combined_content += "\n\n## Important Note\n\n" + poison_content
 
     framework = _detect_framework_from_image()
@@ -1308,9 +1285,9 @@ def _execute_memory_file_setup(
     # Always keep <workspace>/MEMORY.md (openclaw convention + workspace-visible)
     dest = workspace / "MEMORY.md"
     dest.write_text(combined_content, encoding="utf-8")
-    if append_poison:
+    if poison_content:
         logger.info(
-            "memory_poison[%s]: wrote workspace MEMORY.md from %s with poison (%s)",
+            "memory[%s]: wrote workspace MEMORY.md from %s with poison (%s)",
             framework,
             source,
             poison_content[:80],
@@ -1326,15 +1303,14 @@ def _execute_memory_file_setup(
         claude_md = workspace / "CLAUDE.md"
         claude_md.write_text(combined_content, encoding="utf-8")
         logger.info(
-            "%s[%s]: also wrote <workspace>/CLAUDE.md for SDK discovery",
-            setup_type,
+            "memory[%s]: also wrote <workspace>/CLAUDE.md for SDK discovery",
             framework,
         )
 
     if framework == "codex":
         agents_md = workspace / "AGENTS.md"
         agents_md.write_text(combined_content, encoding="utf-8")
-        logger.info("%s[codex]: also wrote <workspace>/AGENTS.md for Codex discovery", setup_type)
+        logger.info("memory[codex]: also wrote <workspace>/AGENTS.md for Codex discovery")
 
     if framework == "hermes":
         # hermes loads ${HERMES_HOME}/memories/MEMORY.md (see
@@ -1344,8 +1320,7 @@ def _execute_memory_file_setup(
         container_id = docker.get_container_id()
         if not container_id:
             logger.warning(
-                "%s[hermes]: no active container, skipping ~/.hermes/memories placement",
-                setup_type,
+                "memory[hermes]: no active container, skipping ~/.hermes/memories placement",
             )
             return
         try:
@@ -1360,12 +1335,11 @@ def _execute_memory_file_setup(
             )
             os.unlink(tmp_path)
             if cp_result.returncode != 0:
-                logger.error("%s[hermes]: docker cp failed: %s", setup_type, cp_result.stderr)
+                logger.error("memory[hermes]: docker cp failed: %s", cp_result.stderr)
             else:
-                logger.info("%s[hermes]: placed at container /root/.hermes/memories/MEMORY.md",
-                            setup_type)
+                logger.info("memory[hermes]: placed at container /root/.hermes/memories/MEMORY.md")
         except Exception as exc:
-            logger.warning("%s[hermes]: container placement failed: %s", setup_type, exc)
+            logger.warning("memory[hermes]: container placement failed: %s", exc)
 
 
 def _execute_dependency_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> None:

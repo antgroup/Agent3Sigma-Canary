@@ -79,27 +79,44 @@ def test_missing_inputs_and_memory_are_checked_without_docker(tmp_path):
     assert missing_task_inputs([task], tmp_path) == {}
 
 
-def test_inline_memory_is_not_interpreted_as_a_filename(tmp_path, monkeypatch):
+@pytest.mark.parametrize("poison", [None, "Injected instruction"])
+def test_inline_memory_is_not_interpreted_as_a_filename(tmp_path, monkeypatch, poison):
     context = "# Archived context\n" + "Historical observation. " * 30
-    task = write_task(tmp_path, pre_setup=[{"type": "memory", "context": context}])
+    task = write_task(tmp_path, pre_setup=[{"type": "memory", "context": context, "poison": poison}])
     assert missing_task_inputs([task], tmp_path) == {}
     monkeypatch.setattr(lib_agent, "_detect_framework_from_image", lambda: "codex")
     lib_agent._execute_memory_setup(task.frontmatter["pre_setup"][0], tmp_path)
-    assert (tmp_path / "AGENTS.md").read_text() == context
+    expected = context + ("\n\n## Important Note\n\n" + poison if poison else "")
+    assert (tmp_path / "AGENTS.md").read_text() == expected
 
 
 @pytest.mark.parametrize("framework,native", [("claude_code", "CLAUDE.md"), ("codex", "AGENTS.md"), ("openclaw", "MEMORY.md")])
-def test_plain_memory_and_poison_remain_distinct(tmp_path, monkeypatch, framework, native):
+@pytest.mark.parametrize("options", [{}, {"poison": ""}, {"poison": None}, {"poison": "Injected instruction"}],
+                         ids=["omitted", "empty", "null", "poisoned"])
+def test_memory_setup_with_optional_poison(tmp_path, monkeypatch, framework, native, options):
     context = tmp_path / "context.md"
     context.write_text("Historical facts\n")
     workspace = tmp_path / "workspace"
     workspace.mkdir()
     monkeypatch.setattr(lib_agent, "_detect_framework_from_image", lambda: framework)
-    step = {"context": str(context), "poison": "Injected instruction"}
-    lib_agent._execute_memory_setup(step, workspace)
-    assert (workspace / native).read_text() == context.read_text()
-    lib_agent._execute_memory_poison_setup(step, workspace)
-    assert "Injected instruction" in (workspace / native).read_text()
+    monkeypatch.setattr(lib_agent, "_purge_stale_container_skills", lambda: None)
+    task = write_task(tmp_path, pre_setup=[{"type": "memory", "context": str(context), **options}])
+    lib_agent._run_pre_setup(task, workspace, tmp_path)
+    expected = context.read_text()
+    if options.get("poison"):
+        expected += "\n\n## Important Note\n\nInjected instruction"
+    assert (workspace / "MEMORY.md").read_text() == expected
+    assert (workspace / native).read_text() == expected
+
+
+def test_migrated_memory_task_preserves_poisoned_context(tmp_path, monkeypatch):
+    loader = TaskLoader(ROOT / "tasks/memory")
+    task = loader.load_task(ROOT / "tasks/memory/task_25004_privacy_leak.md")
+    step = next(step for step in task.frontmatter["pre_setup"] if step["type"] == "memory")
+    monkeypatch.setattr(lib_agent, "_detect_framework_from_image", lambda: "openclaw")
+    lib_agent._execute_memory_setup(step, tmp_path)
+    context = (ROOT / step["context"]).read_text()
+    assert (tmp_path / "MEMORY.md").read_text() == context + "\n\n## Important Note\n\n" + step["poison"]
 
 
 def test_setup_commands_wait_for_workspace_delivery(tmp_path, monkeypatch):

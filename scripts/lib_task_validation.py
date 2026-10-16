@@ -21,7 +21,7 @@ def missing_task_inputs(tasks: list[Task], project: Path) -> dict[str, list[str]
             if not isinstance(step, dict):
                 continue
             kind = step.get("type")
-            if kind in ("memory", "memory_poison") and step.get("context"):
+            if kind == "memory" and step.get("context"):
                 path = memory_context_path(step["context"], project)
                 if path is not None:
                     paths.append(path)
