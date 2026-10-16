@@ -50,6 +50,7 @@ def main(framework: str) -> None:
             script.chmod(script.stat().st_mode | 0o111)
     native = {
         "claude_code": "/root/.claude/skills", "nanoclaw": "/root/.claude/skills",
+        "nanoclaw_openai": "/root/.claude/skills",
         "codex": "/root/.agents/skills", "hermes": "/root/.hermes/skills",
     }.get(framework)
     if native:

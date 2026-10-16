@@ -1,0 +1,12 @@
+LABEL org.opencontainers.image.description="AgentCanary benchmark runner with OpenClaw + skills + mock-api + openclaw-shield"
+
+# Copy openclaw-shield plugin into image
+COPY docker/openclaw-shield /opt/openclaw-shield
+RUN if [ "$OPENCLAW_VERSION" != "2026.4.11" ]; then \
+        cd /opt/openclaw-shield && \
+        npm exec --yes --package=esbuild@0.25.12 -- \
+          esbuild src/index.ts src/scanner.ts src/patterns.ts \
+          --outdir=dist --format=esm --platform=node && \
+        node -e 'const fs = require("fs"); const p = JSON.parse(fs.readFileSync("package.json", "utf8")); p.openclaw.extensions = ["./dist/index.js"]; p.files = [...new Set([...(p.files || []), "dist/"])]; fs.writeFileSync("package.json", JSON.stringify(p));'; \
+    fi
+RUN openclaw plugins install /opt/openclaw-shield

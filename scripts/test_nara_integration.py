@@ -19,6 +19,7 @@ sys.path.insert(0, str(ROOT / "workflow"))
 import benchmark
 import benchmark_parallel
 import build_images
+import generate_config
 import lib_agent
 import lib_docker
 import lib_grading
@@ -38,7 +39,7 @@ def write_task(root, name="task_0001_example", directory="NARA-Bench/risk/domain
 
 
 def load_shim(name):
-    loader = importlib.machinery.SourceFileLoader(name, str(ROOT / "workflow/images" / name / "shim/openclaw"))
+    loader = importlib.machinery.SourceFileLoader(name, str(ROOT / "workflow/images" / name / "openclaw"))
     module = importlib.util.module_from_spec(importlib.util.spec_from_loader(name, loader))
     loader.exec_module(module)
     return module
@@ -364,10 +365,12 @@ def test_ungraded_trajectories_render_and_export(tmp_path):
 def build_project(tmp_path):
     project = tmp_path / "project"
     shutil.copytree(ROOT / "workflow", project / "workflow", ignore=shutil.ignore_patterns("openclaw.json", "__pycache__"))
-    for dockerfile in (project / "workflow/images").glob("*/Dockerfile"):
-        (dockerfile.parent / "openclaw.json").write_text('{"models":{"providers":{}}}')
+    shutil.copytree(ROOT / "third_party", project / "third_party")
+    (project / "workflow/openclaw.json").write_text('{"models":{"providers":{}}}')
     (project / "assets/mock_api/data").mkdir(parents=True)
     (project / "assets/mock_api/data/example.json").write_text("{}")
+    (project / "assets/mock_api/api_handlers").mkdir()
+    (project / "assets/mock_api/api_handlers/example.json").write_text('{"route":"/example"}')
     for name in ("presidio-pii-skill", "moodle", "trivy-security-scanner", "docker-essentials", "cron-scheduling", "prometheus", "nmap-recon"):
         folder = project / "_skills_repository" / f"{name}-2.0.0"
         folder.mkdir(parents=True)
@@ -375,7 +378,8 @@ def build_project(tmp_path):
     return project
 
 
-@pytest.mark.parametrize("image_type,research", [("official", False), ("official_shield", True), ("claude_code", True), ("codex", True), ("hermes", True), ("nanoclaw", True)])
+@pytest.mark.parametrize("image_type", build_images.IMAGE_TYPES)
+@pytest.mark.parametrize("research", [False, True])
 def test_composed_contexts(build_project, tmp_path, image_type, research):
     context = tmp_path / "context"
     build_images.prepare_context(build_project, context, image_type, "2026.7.1-2", research)
@@ -383,12 +387,52 @@ def test_composed_contexts(build_project, tmp_path, image_type, research):
     assert f'ai.agentcanary.image_type="{image_type}"' in dockerfile
     assert ("/opt/agentcanary-research/install.sh" in dockerfile) == research
     assert (context / "docker/mock-api/entrypoint.sh").exists()
+    assert (context / "docker/mock_api_data/example.json").exists()
+    assert (context / "docker/mock_api_handlers/example.json").exists()
     if image_type.startswith("official"):
         assert "ARG OPENCLAW_VERSION=2026.7.1-2" in dockerfile
     if image_type == "official_shield":
         assert 'p.openclaw.extensions = ["./dist/index.js"]' in dockerfile
-    if image_type in ("claude_code", "codex"):
+    if image_type.startswith("official_"):
+        plugin = image_type.removeprefix("official_")
+        source_name, _, required = build_images.PLUGIN_SOURCES[plugin]
+        assert all((context / "docker" / source_name / name).exists() for name in required)
+    if not image_type.startswith("official"):
         assert (context / "shim/openclaw").exists()
+    if image_type == "nanoclaw_openai":
+        assert (context / "shim/driver_openai.mjs").exists()
+        assert (context / "shim/driver.mjs").read_bytes() == (build_project / "workflow/images/nanoclaw/driver_claude_openai.mjs").read_bytes()
+
+
+def test_shared_config_keeps_plugin_overrides_in_their_own_context(build_project, tmp_path, monkeypatch):
+    monkeypatch.setattr(generate_config, "PROJECT_ROOT", build_project)
+    monkeypatch.setattr(generate_config, "WORKFLOW_DIR", build_project / "workflow")
+    generate_config.generate_openclaw_json({"providers": {"test": {
+        "base_url": "http://example.invalid/v1", "api_key": "test-key", "models": [{"id": "test-model"}],
+    }}})
+    source = (build_project / "workflow/openclaw.json").read_text()
+    for name in ("official_clawkeeper", "official", "codex"):
+        target = tmp_path / name
+        build_images.prepare_context(build_project, target, name, "2026.4.11", False)
+        config = json.loads((target / "docker/openclaw.json").read_text())
+        assert config["models"] == json.loads(source)["models"]
+        assert ("plugins" in config) == (name == "official_clawkeeper")
+        if name == "official_clawkeeper":
+            assert config["plugins"]["load"]["paths"] == ["/opt/ClawKeeper/clawkeeper-plugin"]
+    assert (build_project / "workflow/openclaw.json").read_text() == source
+
+
+def test_plugin_source_override_and_missing_source(build_project, tmp_path, monkeypatch):
+    source = tmp_path / "custom-shield"
+    shutil.move(build_project / "third_party/openclaw-shield", source)
+    (source / "source-marker.txt").write_text("custom checkout")
+    monkeypatch.setenv("OPENCLAW_SHIELD_SOURCE_DIR", str(source))
+    context = tmp_path / "context"
+    build_images.prepare_context(build_project, context, "official_shield", "2026.4.11", False)
+    assert (context / "docker/openclaw-shield/source-marker.txt").read_text() == "custom checkout"
+    monkeypatch.setenv("OPENCLAW_SHIELD_SOURCE_DIR", str(tmp_path / "missing"))
+    with pytest.raises(ValueError, match="Incomplete plugin source"):
+        build_images.prepare_context(build_project, tmp_path / "failed", "official_shield", "2026.4.11", False)
 
 
 def test_build_resume_preserves_options_and_retries_failures(build_project, tmp_path, monkeypatch):

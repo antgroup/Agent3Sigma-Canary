@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 from datetime import datetime
 import json
+import os
 from pathlib import Path
 import re
 import shutil
@@ -16,7 +17,7 @@ from urllib.parse import urlsplit, urlunsplit
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 IMAGE_TYPES = (
     "official", "official_shield", "official_secureclaw", "official_clawkeeper",
-    "hermes", "nanoclaw", "claude_code", "codex",
+    "hermes", "nanoclaw", "claude_code", "codex", "nanoclaw_openai",
 )
 IMAGE_DESCRIPTIONS = {
     "official": "OpenClaw",
@@ -27,6 +28,16 @@ IMAGE_DESCRIPTIONS = {
     "nanoclaw": "NanoClaw",
     "claude_code": "Claude Code",
     "codex": "Codex",
+    "nanoclaw_openai": "NanoClaw + OpenAI via OpenCode",
+}
+PLUGIN_SOURCES = {
+    "shield": ("openclaw-shield", "OPENCLAW_SHIELD_SOURCE_DIR",
+               ("package.json", "openclaw.plugin.json", "src")),
+    "secureclaw": ("secureclaw", "SECURECLAW_SOURCE_DIR",
+                   ("secureclaw/package.json", "secureclaw/openclaw.plugin.json", "secureclaw/src")),
+    "clawkeeper": ("ClawKeeper", "CLAWKEEPER_SOURCE_DIR",
+                   ("clawkeeper-plugin/package.json", "clawkeeper-plugin/openclaw.plugin.json",
+                    "clawkeeper-plugin/install.sh")),
 }
 DEFAULT_OPENCLAW_VERSION = "2026.4.11"
 NEW_OPENCLAW_VERSION = "2026.7.1-2"
@@ -66,20 +77,67 @@ def image_tag(image_type: str, version: str, research: bool, timestamp: str) -> 
 
 def prepare_context(project: Path, context: Path, image_type: str, version: str, research: bool) -> None:
     """Stage locally available inputs; network access happens only during Docker build."""
-    image_dir = project / "workflow" / "images" / image_type
+    if image_type not in IMAGE_TYPES:
+        raise ValueError(f"Unknown image type: {image_type!r}")
+    workflow = project / "workflow"
+    family = "openclaw" if image_type.startswith("official") else image_type.removesuffix("_openai")
+    image_dir = workflow / "images" / family
+    plugin = image_type.removeprefix("official_") if image_type.startswith("official_") else None
+    config_path = workflow / "openclaw.json"
+    if not config_path.is_file():
+        raise ValueError(f"Missing {config_path}; run bash setup.sh first")
+    config = json.loads(config_path.read_text())
+    if plugin:
+        overrides = image_dir / f"{plugin}.overrides.json"
+        if overrides.exists():
+            config.update(json.loads(overrides.read_text()))
     context.mkdir(parents=True, exist_ok=True)
-    subprocess.run(
-        ["bash", "-e", str(image_dir / "prepare.sh"), str(context), "", str(project)],
-        cwd=project, check=True,
-    )
+    docker = context / "docker"
+    docker.mkdir(exist_ok=True)
+    (docker / "openclaw.json").write_text(json.dumps(config, indent=2, ensure_ascii=False) + "\n")
+    shutil.copytree(workflow / "mock-api", docker / "mock-api", dirs_exist_ok=True,
+                    ignore=shutil.ignore_patterns("__pycache__", "*.pyc", ".pid"))
+    for folder, context_name in (("data", "mock_api_data"), ("api_handlers", "mock_api_handlers")):
+        source = project / "assets" / "mock_api" / folder
+        target = docker / context_name
+        target.mkdir(exist_ok=True)
+        if source.is_dir():
+            if folder == "data":
+                shutil.copytree(source, target, dirs_exist_ok=True)
+            else:
+                for handler in source.glob("*.json"):
+                    shutil.copy2(handler, target / handler.name)
+    if family != "openclaw":
+        shim = context / "shim"
+        shim.mkdir(exist_ok=True)
+        legacy_openai = image_type == "nanoclaw_openai"
+        shutil.copy2(image_dir / ("openclaw_openai" if legacy_openai else "openclaw"), shim / "openclaw")
+        (shim / "openclaw").chmod((shim / "openclaw").stat().st_mode | 0o111)
+        if family == "nanoclaw":
+            shutil.copy2(image_dir / ("driver_claude_openai.mjs" if legacy_openai else "driver.mjs"), shim / "driver.mjs")
+            if legacy_openai:
+                shutil.copy2(image_dir / "driver_openai.mjs", shim / "driver_openai.mjs")
+        if family == "codex":
+            shutil.copy2(image_dir / "model_template.json", docker / "model_template.json")
     dockerfile = context / "Dockerfile"
-    content = dockerfile.read_text()
-    if image_type.startswith("official"):
+    template = image_dir / ("Dockerfile.openai" if image_type == "nanoclaw_openai" else "Dockerfile")
+    content = template.read_text()
+    if family == "openclaw":
         content = content.replace(
             f"ARG OPENCLAW_VERSION={DEFAULT_OPENCLAW_VERSION}", f"ARG OPENCLAW_VERSION={version}"
         )
+        fragment = ""
+        if plugin:
+            source_name, env_name, required = PLUGIN_SOURCES[plugin]
+            source = Path(os.environ.get(env_name) or project / "third_party" / source_name)
+            if any(not (source / name).exists() for name in required):
+                raise ValueError(f"Incomplete plugin source: {source}; set {env_name} to a complete local checkout")
+            shutil.copytree(source, docker / source_name, dirs_exist_ok=True,
+                            ignore=shutil.ignore_patterns(".git", "__pycache__", "node_modules"))
+            fragment = (image_dir / f"Dockerfile.{plugin}").read_text()
+        content = content.replace("# OPTIONAL_PLUGIN_LAYER", fragment)
     if research:
-        feature_dir = project / "workflow" / "features" / "safety_research"
+        feature_dir = workflow / "tools"
         shutil.copytree(feature_dir, context / "research", dirs_exist_ok=True)
         local_skills = (
             "presidio-pii-skill", "moodle", "trivy-security-scanner", "docker-essentials",
@@ -223,7 +281,7 @@ def main(argv: list[str] | None = None) -> int:
             if image_type not in state["completed"]:
                 state["completed"].append(image_type)
             save_state(workspace / STATE_NAME, state)
-        except (OSError, subprocess.CalledProcessError) as exc:
+        except (ValueError, OSError, subprocess.CalledProcessError) as exc:
             print(f"Failed to prepare/build {image_type}: {exc}", file=sys.stderr)
             failed.append(image_type)
     print(f"Workspace: {workspace}\nResume: bash workflow/workflow_step_1_image_builder.sh --resume {workspace}")

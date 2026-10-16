@@ -143,6 +143,7 @@ Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, 
 - **official_clawkeeper**: OpenClaw + ClawKeeper security plugin
 - **hermes**: Vanilla Hermes agent
 - **nanoclaw**: Vanilla NanoClaw agent
+- **nanoclaw_openai**: NanoClaw with OpenCode for OpenAI-compatible endpoints
 - **claude_code**: Native Claude Code
 - **codex**: Native Codex
 
@@ -150,6 +151,8 @@ The build script guides you through two stages:
 
 1. **Choose agent images:** for example, `codex` or `official` (OpenClaw). You can select multiple images; selecting OpenClaw also prompts for its version within this stage.
 2. **Choose optional tools:** enter `y` to add the shared `safety_research` toolset and related skills to every selected image, or enter `n` / press Enter to keep the base toolset. The toolset uses one shared build configuration across frameworks.
+
+Build files are grouped into five framework directories under `workflow/images/`. All images share `workflow/mock-api/` and the optional `workflow/tools/` layer; OpenClaw plugins use build fragments and sources in `third_party/`.
 
 ```bash
 bash workflow/workflow_step_1_image_builder.sh

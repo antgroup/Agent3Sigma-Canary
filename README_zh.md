@@ -137,6 +137,7 @@ cd ..
 - **official_clawkeeper**：OpenClaw + ClawKeeper 安全插件
 - **hermes**：原生 Hermes Agent
 - **nanoclaw**：原生 NanoClaw Agent
+- **nanoclaw_openai**：通过 OpenCode 支持 OpenAI 兼容接口的 NanoClaw
 - **claude_code**：原生 Claude Code
 - **codex**：原生 Codex
 
@@ -144,6 +145,8 @@ cd ..
 
 1. **选择 Agent 镜像**：例如 `codex` 或 `official`（OpenClaw），支持多选；选中 OpenClaw 时，在这个阶段继续选择版本。
 2. **选择是否添加工具集**：输入 `y`，为本次所有选中的镜像添加共享的 `safety_research` 工具集及相关技能；输入 `n` 或直接回车，使用基础工具环境。工具集复用同一份构建配置，不需要为每个框架单独维护研究镜像目录。
+
+构建文件按框架收敛为 `workflow/images/` 下的 5 个目录。所有镜像共用 `workflow/mock-api/` 和可选的 `workflow/tools/` 工具层；OpenClaw 插件通过构建片段组合，源码统一放在 `third_party/`。
 
 ```bash
 bash workflow/workflow_step_1_image_builder.sh
