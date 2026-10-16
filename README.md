@@ -195,6 +195,8 @@ export DOCKER_IMAGE=openclaw-official-v20260430_120000
 | `--runs` | Number of repeated runs per task | `--runs 3` |
 | `--output-dir` | Result output directory | `--output-dir results/my_test` |
 
+Omitting `--effort` keeps the framework's defaults. For Codex, an explicit `CODEX_REASONING_EFFORT` takes precedence over its native model default; otherwise no effort override is written. Known model defaults come from the pinned CLI's bundled catalog, and unknown model names leave effort to the endpoint.
+
 **Batch evaluation:**
 
 To evaluate multiple models across multiple Docker images in parallel, use scripts under `batch_run/`:

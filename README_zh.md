@@ -189,6 +189,8 @@ export DOCKER_IMAGE=openclaw-official-v20260430_120000
 | `--runs` | 每个 task 的重复次数 | `--runs 3` |
 | `--output-dir` | 结果输出目录 | `--output-dir results/my_test` |
 
+省略 `--effort` 时沿用框架默认行为。Codex 优先使用显式设置的 `CODEX_REASONING_EFFORT`；未设置时不写入强度覆盖值，已知模型使用固定 CLI 版本内置模型目录中的默认值，未知模型交给服务端决定。
+
 **批量评测：**
 
 如需对多个模型 × 多个镜像进行批量并行评测，使用 `batch_run/` 脚本：

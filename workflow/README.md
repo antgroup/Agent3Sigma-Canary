@@ -118,6 +118,7 @@ The CLI versions default to Claude Code `2.1.190` and Codex `0.145.0`, matching 
 - Claude Code requires an Anthropic-compatible target endpoint. `CLAUDE_PERMISSION_MODE=auto` (default) enables its automatic permission review; `bypass` selects its bypass mode.
 - Codex requires an OpenAI-compatible **Responses API** endpoint. `CODEX_BASE_URL` can override the configured endpoint; `CODEX_PERMISSION_MODE=auto-review` (default) enables automatic approval review, while `yolo` bypasses the CLI sandbox/approvals.
 - Target `--effort` is forwarded to the native runtime. Judge effort is configured independently with `roles.judge.effort`.
+- Codex effort precedence is `--effort`, then an explicit `CODEX_REASONING_EFFORT`, then its native model default. When neither override is set, the shim omits `model_reasoning_effort` and preserves each known model's default from the installed CLI's bundled catalog. Unknown model names have no effort default, leaving that choice to the endpoint. It does not force `low` or copy GPT-5.4's `medium` default onto other models.
 - `--gateway` applies to official OpenClaw variants; the other frameworks use their native CLIs.
 
 Codex containers receive the seccomp/AppArmor exceptions required by the CLI's nested sandbox. Other frameworks retain Docker's default profiles.

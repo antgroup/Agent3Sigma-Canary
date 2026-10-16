@@ -172,6 +172,16 @@ def _write_model_catalog(
     reviewer model.
     """
     template = json.loads(MODEL_TEMPLATE.read_text())
+    # Read the installed binary's bundled defaults without network refresh or
+    # reusing our generated catalog. Custom model names have no native default.
+    bundled = subprocess.run(
+        [_codex_bin(), "debug", "models", "--bundled"],
+        capture_output=True, text=True, timeout=30, check=True,
+    )
+    native_models = {
+        entry["slug"]: entry
+        for entry in json.loads(bundled.stdout)["models"]
+    }
     models = []
     for priority, slug in enumerate(dict.fromkeys([model, review_model]), start=1):
         entry = json.loads(json.dumps(template))
@@ -182,6 +192,10 @@ def _write_model_catalog(
         entry["visibility"] = "list"
         entry["prefer_websockets"] = False
         entry["auto_review_model_override"] = review_model
+        native = native_models.get(slug, {})
+        entry["default_reasoning_level"] = native.get("default_reasoning_level")
+        if "supported_reasoning_levels" in native:
+            entry["supported_reasoning_levels"] = native["supported_reasoning_levels"]
         supported_efforts = entry.setdefault("supported_reasoning_levels", [])
         if reasoning_effort and not any(
             item.get("effort") == reasoning_effort
@@ -236,11 +250,10 @@ def _toml_str(value: str) -> str:
     return json.dumps(value)  # JSON string escaping is a valid TOML basic string
 
 
-def _resolve_codex_effort(thinking: str | None) -> str:
-    """Translate the OpenClaw CLI spelling to Codex's config spelling."""
-    if thinking:
-        return "none" if thinking == "off" else thinking
-    return os.environ.get("CODEX_REASONING_EFFORT", "low")
+def _resolve_codex_effort(thinking: str | None) -> str | None:
+    """Resolve explicit overrides, leaving unspecified effort to native defaults."""
+    effort = thinking or os.environ.get("CODEX_REASONING_EFFORT") or None
+    return "none" if effort == "off" else effort
 
 
 def _write_codex_config(
@@ -261,10 +274,11 @@ def _write_codex_config(
     lines = [
         f"model = {_toml_str(model)}",
         'model_provider = "agentcanary"',
-        f"model_reasoning_effort = {_toml_str(effort)}",
         f"model_catalog_json = {_toml_str(str(catalog))}",
-        "",
     ]
+    if effort is not None:
+        lines.append(f"model_reasoning_effort = {_toml_str(effort)}")
+    lines.append("")
     if mode == "auto-review":
         lines += [
             '# auto-review: sandbox-boundary escalations are reviewed by the',

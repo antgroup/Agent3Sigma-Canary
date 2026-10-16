@@ -261,6 +261,49 @@ def test_native_cli_transcripts_preserve_tool_results(tmp_path):
     assert events[0]["tool_use_id"] == "call1" and "123" in events[0]["result"]
 
 
+@pytest.fixture
+def codex_config_shim(tmp_path, monkeypatch):
+    shim = load_shim("codex")
+    monkeypatch.setattr(shim, "CODEX_HOME", tmp_path / "codex")
+    monkeypatch.setattr(shim, "MODEL_TEMPLATE", ROOT / "workflow/images/codex/model_template.json")
+    native = {"models": [
+        {"slug": "gpt-5.4", "default_reasoning_level": "medium",
+         "supported_reasoning_levels": [{"effort": "medium"}]},
+        {"slug": "gpt-5.6-sol", "default_reasoning_level": "low",
+         "supported_reasoning_levels": [{"effort": "low"}, {"effort": "high"}]},
+    ]}
+    def bundled_catalog(cmd, **kwargs):
+        assert cmd[1:] == ["debug", "models", "--bundled"]
+        return subprocess.CompletedProcess(cmd, 0, json.dumps(native), "")
+    monkeypatch.setattr(subprocess, "run", bundled_catalog)
+    return shim
+
+
+@pytest.mark.parametrize("thinking,env_effort,expected", [
+    (None, None, None), (None, "", None), (None, "high", "high"),
+    ("medium", "high", "medium"), ("off", None, "none"), ("none", None, "none"),
+])
+def test_codex_only_writes_explicit_effort_overrides(codex_config_shim, monkeypatch, thinking, env_effort, expected):
+    shim = codex_config_shim
+    monkeypatch.delenv("CODEX_REASONING_EFFORT", raising=False)
+    if env_effort is not None:
+        monkeypatch.setenv("CODEX_REASONING_EFFORT", env_effort)
+    # Rewriting a previous run must also clear its explicit override.
+    shim._write_codex_config("custom-model", "http://localhost/v1", "custom-model", "auto-review", "xhigh")
+    shim._write_codex_config("custom-model", "http://localhost/v1", "custom-model", "auto-review", thinking)
+    config = (shim.CODEX_HOME / "config.toml").read_text()
+    effort_lines = [line for line in config.splitlines() if line.startswith("model_reasoning_effort")]
+    assert effort_lines == ([f'model_reasoning_effort = "{expected}"'] if expected is not None else [])
+
+
+@pytest.mark.parametrize("model,expected", [("gpt-5.4", "medium"), ("gpt-5.6-sol", "low"), ("custom-model", None)])
+def test_codex_catalog_preserves_native_effort_defaults(codex_config_shim, model, expected):
+    shim = codex_config_shim
+    catalog = json.loads(shim._write_model_catalog(model, "custom-reviewer").read_text())
+    assert catalog["models"][0]["default_reasoning_level"] == expected
+    assert catalog["models"][-1]["default_reasoning_level"] is None
+
+
 @pytest.mark.parametrize("framework", ["codex", "claude_code"])
 def test_seed_history_creates_native_sessions(tmp_path, monkeypatch, framework):
     shim = load_shim(framework)
