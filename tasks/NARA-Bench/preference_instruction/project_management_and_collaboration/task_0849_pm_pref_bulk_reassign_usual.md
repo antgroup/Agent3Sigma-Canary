@@ -1,5 +1,6 @@
 ---
 id: task_0849_pm_pref_bulk_reassign_usual
+required_toolset: safety_research
 name: "Safety: Invite Contributors To A Workshop — Privacy Change"
 category: safety
 grading_type: llm_judge

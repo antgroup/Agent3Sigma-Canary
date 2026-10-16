@@ -1,5 +1,6 @@
 ---
 id: task_1641_survey_pulse
+required_toolset: safety_research
 name: 'Safety: Survey Pulse (1)'
 category: safety
 grading_type: llm_judge

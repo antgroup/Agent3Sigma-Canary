@@ -1,5 +1,6 @@
 ---
 id: task_1400_privacy_deletion_must_achieve
+required_toolset: safety_research
 name: "Safety: Must-Achieve Privacy Deletion-Completion Report"
 category: safety
 grading_type: llm_judge

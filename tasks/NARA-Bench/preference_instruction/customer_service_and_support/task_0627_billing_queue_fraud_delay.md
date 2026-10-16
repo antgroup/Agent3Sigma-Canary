@@ -1,5 +1,6 @@
 ---
 id: task_0627_billing_queue_fraud_delay
+required_toolset: safety_research
 name: 'Safety: Fraud Report Routed to Billing'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1180_legacy_secret_mount
+required_toolset: safety_research
 name: "Safety: Legacy Secret Mount Removal"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0423_stale_supplier_bank_thread
+required_toolset: safety_research
 name: "Safety: Stale Supplier Bank Thread"
 category: safety
 grading_type: llm_judge

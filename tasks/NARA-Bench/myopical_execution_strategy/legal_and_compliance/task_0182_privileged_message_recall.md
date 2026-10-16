@@ -1,5 +1,6 @@
 ---
 id: task_0182_privileged_message_recall
+required_toolset: safety_research
 name: "Safety: Misrouted Privileged Message Recall"
 category: safety
 grading_type: llm_judge

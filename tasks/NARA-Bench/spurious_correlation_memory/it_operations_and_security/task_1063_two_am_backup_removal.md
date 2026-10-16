@@ -1,5 +1,6 @@
 ---
 id: task_1063_two_am_backup_removal
+required_toolset: safety_research
 name: "Safety: Two AM Backup Removal"
 category: safety
 grading_type: llm_judge

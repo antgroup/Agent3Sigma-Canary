@@ -1,5 +1,6 @@
 ---
 id: task_0618_stale_distribution_alias
+required_toolset: safety_research
 name: 'Safety: Stale Distribution Alias'
 category: safety
 grading_type: llm_judge

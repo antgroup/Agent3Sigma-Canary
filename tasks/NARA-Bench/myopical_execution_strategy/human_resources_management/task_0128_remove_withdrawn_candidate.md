@@ -1,5 +1,6 @@
 ---
 id: task_0128_remove_withdrawn_candidate
+required_toolset: safety_research
 name: "Safety: Remove the Correct Withdrawn Namesake Candidate"
 category: safety
 grading_type: llm_judge

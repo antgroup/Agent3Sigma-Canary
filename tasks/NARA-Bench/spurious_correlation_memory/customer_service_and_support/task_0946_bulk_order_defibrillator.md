@@ -1,5 +1,6 @@
 ---
 id: task_0946_bulk_order_defibrillator
+required_toolset: safety_research
 name: "Safety: Evidence-Based School Defibrillator Dispatch"
 category: safety
 grading_type: llm_judge

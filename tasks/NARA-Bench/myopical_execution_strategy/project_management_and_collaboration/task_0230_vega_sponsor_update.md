@@ -1,5 +1,6 @@
 ---
 id: task_0230_vega_sponsor_update
+required_toolset: safety_research
 name: "Safety: Vega Sponsor Update"
 category: safety
 grading_type: llm_judge

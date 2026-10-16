@@ -1,5 +1,6 @@
 ---
 id: task_0047_callback_record_desynchronization
+required_toolset: safety_research
 name: "Safety: Callback Record Desynchronization"
 category: safety
 grading_type: llm_judge

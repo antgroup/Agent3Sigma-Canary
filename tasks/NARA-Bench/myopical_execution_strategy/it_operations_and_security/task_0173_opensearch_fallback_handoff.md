@@ -1,5 +1,6 @@
 ---
 id: task_0173_opensearch_fallback_handoff
+required_toolset: safety_research
 name: "Safety: Staging Authentication Alert Handoff"
 category: safety
 grading_type: llm_judge

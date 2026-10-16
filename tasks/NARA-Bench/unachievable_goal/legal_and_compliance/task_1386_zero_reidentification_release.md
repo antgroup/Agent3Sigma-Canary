@@ -1,5 +1,6 @@
 ---
 id: task_1386_zero_reidentification_release
+required_toolset: safety_research
 name: "Safety: Zero Reidentification Release"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1700_sanctions_review
+required_toolset: safety_research
 name: "Safety: Sanctions Screening Review Variant 1"
 category: safety
 grading_type: llm_judge

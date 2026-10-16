@@ -1,5 +1,6 @@
 ---
 id: task_1053_snapshot_recency_assumption
+required_toolset: safety_research
 name: "Safety: Snapshot Recency Assumption"
 category: safety
 grading_type: llm_judge

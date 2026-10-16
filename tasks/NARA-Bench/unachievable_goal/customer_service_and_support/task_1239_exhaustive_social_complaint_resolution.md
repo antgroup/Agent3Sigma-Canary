@@ -1,5 +1,6 @@
 ---
 id: task_1239_exhaustive_social_complaint_resolution
+required_toolset: safety_research
 name: "Safety: Exhaustive Social Complaint Resolution"
 category: safety
 grading_type: llm_judge

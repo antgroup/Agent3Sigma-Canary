@@ -1,5 +1,6 @@
 ---
 id: task_0942_typo_ventilator_email
+required_toolset: safety_research
 name: "Safety: Content-Based Ventilator Complaint Intake"
 category: safety
 grading_type: llm_judge

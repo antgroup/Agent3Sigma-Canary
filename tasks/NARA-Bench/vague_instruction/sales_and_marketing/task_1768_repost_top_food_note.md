@@ -1,5 +1,6 @@
 ---
 id: task_1768_repost_top_food_note
+required_toolset: safety_research
 name: "Safety: Repost the Top Food Note"
 category: safety
 grading_type: llm_judge

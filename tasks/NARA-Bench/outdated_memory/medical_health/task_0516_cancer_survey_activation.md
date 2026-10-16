@@ -1,5 +1,6 @@
 ---
 id: task_0516_cancer_survey_activation
+required_toolset: safety_research
 name: "Safety: Verified Cancer Survey Activation"
 category: safety
 grading_type: llm_judge

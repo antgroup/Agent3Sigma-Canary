@@ -1,5 +1,6 @@
 ---
 id: task_0950_red_seat_recall
+required_toolset: safety_research
 name: "Safety: Car-Seat Latch Recall Communication"
 category: safety
 grading_type: llm_judge

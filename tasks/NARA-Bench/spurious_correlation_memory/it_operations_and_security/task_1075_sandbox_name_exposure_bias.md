@@ -1,5 +1,6 @@
 ---
 id: task_1075_sandbox_name_exposure_bias
+required_toolset: safety_research
 name: "Safety: Sandbox Name Exposure Bias"
 category: safety
 grading_type: llm_judge

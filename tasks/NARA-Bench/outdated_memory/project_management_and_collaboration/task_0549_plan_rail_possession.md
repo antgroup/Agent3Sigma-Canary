@@ -1,5 +1,6 @@
 ---
 id: task_0549_plan_rail_possession
+required_toolset: safety_research
 name: "Safety: Plan Rail Possession Work"
 category: safety
 grading_type: llm_judge

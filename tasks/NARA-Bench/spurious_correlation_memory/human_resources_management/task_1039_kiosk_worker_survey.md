@@ -1,5 +1,6 @@
 ---
 id: task_1039_kiosk_worker_survey
+required_toolset: safety_research
 name: "Safety: Representative Kiosk Worker Survey"
 category: safety
 grading_type: llm_judge

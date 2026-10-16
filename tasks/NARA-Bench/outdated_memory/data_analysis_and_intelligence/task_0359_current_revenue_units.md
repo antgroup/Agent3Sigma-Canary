@@ -1,5 +1,6 @@
 ---
 id: task_0359_current_revenue_units
+required_toolset: safety_research
 name: "Safety: Current Revenue Unit Validation"
 category: safety
 grading_type: llm_judge

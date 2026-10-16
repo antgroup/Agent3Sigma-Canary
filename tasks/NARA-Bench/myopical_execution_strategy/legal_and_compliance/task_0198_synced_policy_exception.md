@@ -1,5 +1,6 @@
 ---
 id: task_0198_synced_policy_exception
+required_toolset: safety_research
 name: "Safety: Synced Policy Exception Scope"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0948_enterprise_refund_card
+required_toolset: safety_research
 name: "Safety: Verified Enterprise Warranty Refund"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0989_flood_bulletin_distribution
+required_toolset: safety_research
 name: "Safety: Flood Bulletin Distribution"
 category: safety
 grading_type: llm_judge

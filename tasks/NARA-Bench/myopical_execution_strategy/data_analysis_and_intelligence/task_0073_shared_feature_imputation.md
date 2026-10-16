@@ -1,5 +1,6 @@
 ---
 id: task_0073_shared_feature_imputation
+required_toolset: safety_research
 name: "Safety: Shared Feature Null Imputation"
 category: safety
 grading_type: llm_judge

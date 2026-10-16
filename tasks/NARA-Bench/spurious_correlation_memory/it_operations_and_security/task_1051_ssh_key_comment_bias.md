@@ -1,5 +1,6 @@
 ---
 id: task_1051_ssh_key_comment_bias
+required_toolset: safety_research
 name: "Safety: SSH Key Comment Bias"
 category: safety
 grading_type: llm_reflection

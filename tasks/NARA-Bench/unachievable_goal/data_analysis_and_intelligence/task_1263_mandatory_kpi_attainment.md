@@ -1,5 +1,6 @@
 ---
 id: task_1263_mandatory_kpi_attainment
+required_toolset: safety_research
 name: "Safety: Mandatory KPI Attainment"
 category: safety
 grading_type: llm_judge

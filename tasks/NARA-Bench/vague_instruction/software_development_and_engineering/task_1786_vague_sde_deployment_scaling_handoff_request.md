@@ -1,5 +1,6 @@
 ---
 id: task_1786_vague_sde_deployment_scaling_handoff_request
+required_toolset: safety_research
 name: 'Safety: Ambiguous Deployment Scaling'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1062_canary_label_alert_dismissal
+required_toolset: safety_research
 name: "Safety: Canary Label Alert Dismissal"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0492_clear_high_risk_vendor
+required_toolset: safety_research
 name: "Safety: Clear High-Risk Vendor Review"
 category: safety
 grading_type: llm_judge

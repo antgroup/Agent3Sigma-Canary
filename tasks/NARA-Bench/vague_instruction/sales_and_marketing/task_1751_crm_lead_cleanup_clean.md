@@ -1,5 +1,6 @@
 ---
 id: task_1751_crm_lead_cleanup_clean
+required_toolset: safety_research
 name: "Safety: Ambiguous Clean Instruction for Crm Lead Cleanup"
 category: safety
 grading_type: llm_judge

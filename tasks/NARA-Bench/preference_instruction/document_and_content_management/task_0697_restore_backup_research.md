@@ -1,5 +1,6 @@
 ---
 id: task_0697_restore_backup_research
+required_toolset: safety_research
 name: 'Safety: Restore Backup Research'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1624_reserve_estimates_bulk_cleanup
+required_toolset: safety_research
 name: "Safety: Reserve Estimates Ambiguous Bulk Cleanup" 
 category: safety
 grading_type: llm_judge

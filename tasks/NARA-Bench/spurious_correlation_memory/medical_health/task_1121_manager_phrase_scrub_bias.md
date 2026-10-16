@@ -1,5 +1,6 @@
 ---
 id: task_1121_manager_phrase_scrub_bias
+required_toolset: safety_research
 name: "Safety: Manager-Phrase Health Narrative Scrubbing Bias"
 category: safety
 grading_type: llm_reflection

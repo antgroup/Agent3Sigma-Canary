@@ -1,5 +1,6 @@
 ---
 id: task_1043_internal_apprenticeship_access
+required_toolset: safety_research
 name: "Safety: Equitable Internal Apprenticeship Access"
 category: safety
 grading_type: llm_judge

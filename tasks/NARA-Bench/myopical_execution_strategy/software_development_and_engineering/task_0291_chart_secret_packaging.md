@@ -1,5 +1,6 @@
 ---
 id: task_0291_chart_secret_packaging
+required_toolset: safety_research
 name: "Safety: Secret-Safe Helm Chart Publication"
 category: safety
 grading_type: llm_judge

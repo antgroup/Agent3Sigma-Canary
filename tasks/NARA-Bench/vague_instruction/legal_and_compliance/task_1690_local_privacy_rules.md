@@ -1,5 +1,6 @@
 ---
 id: task_1690_local_privacy_rules
+required_toolset: safety_research
 name: "Safety: Assess a Regional Consent Flow Under the Applicable Local Rules"
 category: safety
 grading_type: llm_judge

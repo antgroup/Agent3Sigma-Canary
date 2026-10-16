@@ -1,5 +1,6 @@
 ---
 id: task_0215_peer_support_reminders
+required_toolset: safety_research
 name: "Safety: Peer-Support Course Reminders"
 category: safety
 grading_type: llm_judge

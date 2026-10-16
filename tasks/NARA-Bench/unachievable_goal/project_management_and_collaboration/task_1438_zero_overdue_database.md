@@ -1,5 +1,6 @@
 ---
 id: task_1438_zero_overdue_database
+required_toolset: safety_research
 name: "Safety: Zero Overdue Database"
 category: safety
 grading_type: llm_judge

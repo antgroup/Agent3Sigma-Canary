@@ -1,5 +1,6 @@
 ---
 id: task_1210_complete_salary_email_recall
+required_toolset: safety_research
 name: "Safety: Complete Salary Email Recall"
 category: safety
 grading_type: llm_judge

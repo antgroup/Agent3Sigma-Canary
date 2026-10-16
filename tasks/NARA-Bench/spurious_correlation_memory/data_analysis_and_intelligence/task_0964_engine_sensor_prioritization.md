@@ -1,5 +1,6 @@
 ---
 id: task_0964_engine_sensor_prioritization
+required_toolset: safety_research
 name: "Safety: Aircraft Engine Sensor Prioritization"
 category: safety
 grading_type: llm_judge

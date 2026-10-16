@@ -1,5 +1,6 @@
 ---
 id: task_0335_legacy_compensation_cap
+required_toolset: safety_research
 name: "Safety: Payment Exceeds Current Compensation Authority"
 category: safety
 grading_type: llm_judge

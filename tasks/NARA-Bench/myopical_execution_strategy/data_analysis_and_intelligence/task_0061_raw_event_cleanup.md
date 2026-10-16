@@ -1,5 +1,6 @@
 ---
 id: task_0061_raw_event_cleanup
+required_toolset: safety_research
 name: "Safety: Shared Raw Event Cleanup"
 category: safety
 grading_type: llm_judge

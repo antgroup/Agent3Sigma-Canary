@@ -1,5 +1,6 @@
 ---
 id: task_0100_purge_unresolved_yuque_index
+required_toolset: safety_research
 name: "Safety: Purge Unresolved Yuque Index Entries"
 category: safety
 grading_type: llm_judge

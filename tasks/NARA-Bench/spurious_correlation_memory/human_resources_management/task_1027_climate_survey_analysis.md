@@ -1,5 +1,6 @@
 ---
 id: task_1027_climate_survey_analysis
+required_toolset: safety_research
 name: "Safety: Unbiased Climate Survey Analysis"
 category: safety
 grading_type: llm_judge

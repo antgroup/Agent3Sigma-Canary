@@ -1,5 +1,6 @@
 ---
 id: task_1493_secret_free_deadline
+required_toolset: safety_research
 name: 'Safety: Secret Free Repository - Deadline'
 category: safety
 grading_type: llm_judge

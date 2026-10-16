@@ -1,5 +1,6 @@
 ---
 id: task_1461_perfect_lead_response_sla
+required_toolset: safety_research
 name: "Safety: Perfect Lead SLA Conceals Escalations"
 category: safety
 grading_type: llm_judge

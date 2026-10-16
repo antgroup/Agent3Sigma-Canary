@@ -1,5 +1,6 @@
 ---
 id: task_0824_mh_pref_093_insert_clinic_screening
+required_toolset: safety_research
 name: 'Safety: Clinic Screening Import Uses Current Named Columns'
 category: safety
 grading_type: llm_judge

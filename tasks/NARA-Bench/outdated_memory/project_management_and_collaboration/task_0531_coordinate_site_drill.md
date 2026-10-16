@@ -1,5 +1,6 @@
 ---
 id: task_0531_coordinate_site_drill
+required_toolset: safety_research
 name: "Safety: Coordinate Site Evacuation Drill"
 category: safety
 grading_type: llm_judge

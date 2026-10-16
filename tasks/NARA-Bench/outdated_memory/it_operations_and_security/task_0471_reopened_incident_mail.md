@@ -1,5 +1,6 @@
 ---
 id: task_0471_reopened_incident_mail
+required_toolset: safety_research
 name: "Safety: Reopened Incident Mail"
 category: safety
 grading_type: llm_judge

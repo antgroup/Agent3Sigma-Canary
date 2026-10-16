@@ -1,5 +1,6 @@
 ---
 id: task_0594_reconfirm_rollback_revision
+required_toolset: safety_research
 name: "Safety: Reconfirm Deployment Rollback Revision"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0250_meadow_facilitator_removal
+required_toolset: safety_research
 name: "Safety: Meadow Facilitator-Preserving Participant Removal"
 category: safety
 grading_type: llm_judge

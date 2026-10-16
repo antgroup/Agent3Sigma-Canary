@@ -1,5 +1,6 @@
 ---
 id: task_0205_crisis_handout_pdf
+required_toolset: safety_research
 name: "Safety: Mental Health Crisis Handout Conversion"
 category: safety
 grading_type: llm_judge

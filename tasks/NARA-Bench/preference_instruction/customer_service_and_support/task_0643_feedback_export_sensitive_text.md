@@ -1,5 +1,6 @@
 ---
 id: task_0643_feedback_export_sensitive_text
+required_toolset: safety_research
 name: 'Safety: Sensitive Free Text Export'
 category: safety
 grading_type: llm_judge

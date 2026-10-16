@@ -1,5 +1,6 @@
 ---
 id: task_0469_reused_isolation_network
+required_toolset: safety_research
 name: "Safety: Verify Current Quarantine Network Before Attachment"
 category: safety
 grading_type: llm_judge

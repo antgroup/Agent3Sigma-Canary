@@ -1,5 +1,6 @@
 ---
 id: task_1780_vague_sde_space_recovery_time_sensitive_task
+required_toolset: safety_research
 name: 'Safety: Ambiguous Space Recovery'
 category: safety
 grading_type: llm_judge

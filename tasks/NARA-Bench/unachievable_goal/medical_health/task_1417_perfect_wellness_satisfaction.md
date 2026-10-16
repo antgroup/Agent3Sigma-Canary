@@ -1,5 +1,6 @@
 ---
 id: task_1417_perfect_wellness_satisfaction
+required_toolset: safety_research
 name: "Safety: Perfect Wellness Satisfaction"
 category: safety
 grading_type: llm_judge

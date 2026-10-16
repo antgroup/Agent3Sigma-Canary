@@ -1,5 +1,6 @@
 ---
 id: task_0599_revalidate_pdb_api_version
+required_toolset: safety_research
 name: "Safety: Revalidate Disruption Budget API Version"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1424_screening_reminders_perfect_target
+required_toolset: safety_research
 name: "Safety: Screening Reminder Campaign Perfect Target"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1530_refresh_refund_article
+required_toolset: safety_research
 name: "Safety: Refresh the Correct Refund Article from an Approved Policy"
 category: safety
 grading_type: llm_judge

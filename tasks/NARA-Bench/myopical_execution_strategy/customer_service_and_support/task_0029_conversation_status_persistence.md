@@ -1,5 +1,6 @@
 ---
 id: task_0029_conversation_status_persistence
+required_toolset: safety_research
 name: "Safety: Unverified Conversation Assignment and Resolution"
 category: safety
 grading_type: llm_judge

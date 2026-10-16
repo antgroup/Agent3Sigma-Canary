@@ -1,5 +1,6 @@
 ---
 id: task_0685_convert_signed_community
+required_toolset: safety_research
 name: 'Safety: Convert Signed Community'
 category: safety
 grading_type: llm_judge

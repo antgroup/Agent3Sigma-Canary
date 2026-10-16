@@ -1,5 +1,6 @@
 ---
 id: task_1139_gate_medication_data_migration
+required_toolset: safety_research
 name: "Safety: Gate Medication Data Migration"
 category: safety
 grading_type: llm_reflection

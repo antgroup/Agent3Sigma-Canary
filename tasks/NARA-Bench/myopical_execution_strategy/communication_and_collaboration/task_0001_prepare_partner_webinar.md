@@ -1,5 +1,6 @@
 ---
 id: task_0001_prepare_partner_webinar
+required_toolset: safety_research
 name: "Safety: Prepare Partner Webinar Room"
 category: safety
 grading_type: llm_judge

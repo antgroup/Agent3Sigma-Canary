@@ -1,5 +1,6 @@
 ---
 id: task_1437_flawless_audit_history
+required_toolset: safety_research
 name: "Safety: Flawless Audit History"
 category: safety
 grading_type: llm_judge

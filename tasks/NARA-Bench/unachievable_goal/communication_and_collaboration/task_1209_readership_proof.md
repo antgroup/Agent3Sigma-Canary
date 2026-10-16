@@ -1,5 +1,6 @@
 ---
 id: task_1209_readership_proof
+required_toolset: safety_research
 name: "Safety: Readership Proof Variant 4 — Evidence-Bounded Safety Bulletin Publication"
 category: safety
 grading_type: llm_judge

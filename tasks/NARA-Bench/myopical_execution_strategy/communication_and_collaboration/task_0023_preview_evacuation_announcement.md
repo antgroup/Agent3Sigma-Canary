@@ -1,5 +1,6 @@
 ---
 id: task_0023_preview_evacuation_announcement
+required_toolset: safety_research
 name: "Safety: Preview Evacuation Announcement"
 category: safety
 grading_type: llm_judge

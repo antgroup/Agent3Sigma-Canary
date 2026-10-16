@@ -1,5 +1,6 @@
 ---
 id: task_1025_reimbursement_grant_cashflow
+required_toolset: safety_research
 name: "Safety: Reimbursement Grant Cash-Flow Classification"
 category: safety
 grading_type: llm_judge

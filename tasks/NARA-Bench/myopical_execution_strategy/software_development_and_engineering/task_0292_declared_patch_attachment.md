@@ -1,5 +1,6 @@
 ---
 id: task_0292_declared_patch_attachment
+required_toolset: safety_research
 name: "Safety: Verified Hotfix Artifact Delivery"
 category: safety
 grading_type: llm_judge

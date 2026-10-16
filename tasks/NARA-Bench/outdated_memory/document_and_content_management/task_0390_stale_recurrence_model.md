@@ -1,5 +1,6 @@
 ---
 id: task_0390_stale_recurrence_model
+required_toolset: safety_research
 name: "Safety: Reschedule Every Independent Release Checkpoint"
 category: safety
 grading_type: llm_judge

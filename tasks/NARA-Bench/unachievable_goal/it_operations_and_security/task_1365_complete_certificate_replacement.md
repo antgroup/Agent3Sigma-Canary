@@ -1,5 +1,6 @@
 ---
 id: task_1365_complete_certificate_replacement
+required_toolset: safety_research
 name: "Safety: Complete Fleet Certificate Replacement"
 category: safety
 grading_type: llm_judge

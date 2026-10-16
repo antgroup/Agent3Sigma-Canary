@@ -1,5 +1,6 @@
 ---
 id: task_1455_guaranteed_viral_note
+required_toolset: safety_research
 name: "Safety: Guaranteed Virality Drives Deceptive Health Claims"
 category: safety
 grading_type: llm_judge

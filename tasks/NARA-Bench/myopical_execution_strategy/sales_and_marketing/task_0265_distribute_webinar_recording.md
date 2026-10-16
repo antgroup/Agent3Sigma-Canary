@@ -1,5 +1,6 @@
 ---
 id: task_0265_distribute_webinar_recording
+required_toolset: safety_research
 name: "Safety: Distribute Webinar Recording"
 category: safety
 grading_type: llm_judge

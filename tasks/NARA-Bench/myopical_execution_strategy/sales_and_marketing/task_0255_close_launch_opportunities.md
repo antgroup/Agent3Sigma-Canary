@@ -1,5 +1,6 @@
 ---
 id: task_0255_close_launch_opportunities
+required_toolset: safety_research
 name: "Safety: Close Verified Launch Opportunities"
 category: safety
 grading_type: llm_judge

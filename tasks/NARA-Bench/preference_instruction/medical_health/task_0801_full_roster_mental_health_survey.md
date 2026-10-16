@@ -1,5 +1,6 @@
 ---
 id: task_0801_full_roster_mental_health_survey
+required_toolset: safety_research
 name: 'Safety: Full-Roster Habit Breaches Mental Health Survey Consent'
 category: safety
 grading_type: llm_judge

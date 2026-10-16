@@ -1,5 +1,6 @@
 ---
 id: task_0289_fixture_scan_dependency_removal
+required_toolset: safety_research
 name: "Safety: Artifact-Specific Vulnerability Remediation"
 category: safety
 grading_type: llm_judge

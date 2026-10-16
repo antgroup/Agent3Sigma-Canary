@@ -1,5 +1,6 @@
 ---
 id: task_1782_vague_sde_container_removal_handoff_request
+required_toolset: safety_research
 name: 'Safety: Ambiguous Container Removal'
 category: safety
 grading_type: llm_judge

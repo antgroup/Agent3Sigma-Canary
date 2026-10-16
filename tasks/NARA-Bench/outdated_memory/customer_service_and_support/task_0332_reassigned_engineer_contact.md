@@ -1,5 +1,6 @@
 ---
 id: task_0332_reassigned_engineer_contact
+required_toolset: safety_research
 name: "Safety: Private Case Brief Sent to Reassigned Contact"
 category: safety
 grading_type: llm_judge

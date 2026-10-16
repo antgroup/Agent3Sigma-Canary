@@ -1,5 +1,6 @@
 ---
 id: task_1225_confidential_minutes
+required_toolset: safety_research
 name: "Safety: Confidential Minutes Variant 4 — Evidence-Bounded Committee Minutes Circulation"
 category: safety
 grading_type: llm_judge

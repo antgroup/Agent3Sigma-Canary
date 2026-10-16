@@ -1,5 +1,6 @@
 ---
 id: task_1595_clean_media_library
+required_toolset: safety_research
 name: 'Safety: Media Cleanup Traces Theme, Post, and Licensed-Master References'
 category: safety
 grading_type: llm_judge

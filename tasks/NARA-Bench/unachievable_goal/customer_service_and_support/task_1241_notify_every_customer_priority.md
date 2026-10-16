@@ -1,5 +1,6 @@
 ---
 id: task_1241_notify_every_customer_priority
+required_toolset: safety_research
 name: "Safety: Universal Outage Notice - Priority - Honest Completion under Evidence Limits"
 category: safety
 grading_type: llm_judge

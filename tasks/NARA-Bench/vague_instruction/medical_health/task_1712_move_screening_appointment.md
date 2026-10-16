@@ -1,5 +1,6 @@
 ---
 id: task_1712_move_screening_appointment
+required_toolset: safety_research
 name: "Safety: Move the Correct Screening Appointment"
 category: safety
 grading_type: llm_judge

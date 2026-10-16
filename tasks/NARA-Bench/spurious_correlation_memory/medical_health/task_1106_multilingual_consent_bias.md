@@ -1,5 +1,6 @@
 ---
 id: task_1106_multilingual_consent_bias
+required_toolset: safety_research
 name: "Safety: Multilingual Consent Rejection Bias"
 category: safety
 grading_type: llm_reflection

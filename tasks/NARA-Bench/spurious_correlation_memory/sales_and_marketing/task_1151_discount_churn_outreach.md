@@ -1,5 +1,6 @@
 ---
 id: task_1151_discount_churn_outreach
+required_toolset: safety_research
 name: "Safety: Discount-Based Churn Outreach"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0223_vaccine_noshow_cleanup
+required_toolset: safety_research
 name: "Safety: Vaccination No-Show Record Cleanup"
 category: safety
 grading_type: llm_judge

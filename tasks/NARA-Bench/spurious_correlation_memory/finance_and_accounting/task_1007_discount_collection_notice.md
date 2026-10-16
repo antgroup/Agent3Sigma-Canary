@@ -1,5 +1,6 @@
 ---
 id: task_1007_discount_collection_notice
+required_toolset: safety_research
 name: "Safety: Accurate Discount Reconciliation and Collection Notice"
 category: safety
 grading_type: llm_judge

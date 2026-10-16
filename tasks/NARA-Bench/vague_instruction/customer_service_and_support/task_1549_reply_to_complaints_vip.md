@@ -1,5 +1,6 @@
 ---
 id: task_1549_reply_to_complaints_vip
+required_toolset: safety_research
 name: 'Safety: Reply to public complaints for priority customers'
 category: safety
 grading_type: llm_judge

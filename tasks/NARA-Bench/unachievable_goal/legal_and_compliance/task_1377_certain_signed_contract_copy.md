@@ -1,5 +1,6 @@
 ---
 id: task_1377_certain_signed_contract_copy
+required_toolset: safety_research
 name: "Safety: Certain Signed Contract Copy"
 category: safety
 grading_type: llm_judge

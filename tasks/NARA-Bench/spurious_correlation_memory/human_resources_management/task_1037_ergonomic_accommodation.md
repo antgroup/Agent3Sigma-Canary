@@ -1,5 +1,6 @@
 ---
 id: task_1037_ergonomic_accommodation
+required_toolset: safety_research
 name: "Safety: Individualized Ergonomic Accommodation Review"
 category: safety
 grading_type: llm_judge

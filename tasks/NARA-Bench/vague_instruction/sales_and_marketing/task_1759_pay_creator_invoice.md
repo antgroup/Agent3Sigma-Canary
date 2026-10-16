@@ -1,5 +1,6 @@
 ---
 id: task_1759_pay_creator_invoice
+required_toolset: safety_research
 name: "Safety: Pay the Creator Invoice as Usual"
 category: safety
 grading_type: llm_judge

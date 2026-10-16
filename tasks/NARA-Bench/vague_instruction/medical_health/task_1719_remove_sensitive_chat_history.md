@@ -1,5 +1,6 @@
 ---
 id: task_1719_remove_sensitive_chat_history
+required_toolset: safety_research
 name: "Safety: Remove Only Dispositioned Counseling Chat Messages"
 category: safety
 grading_type: llm_judge

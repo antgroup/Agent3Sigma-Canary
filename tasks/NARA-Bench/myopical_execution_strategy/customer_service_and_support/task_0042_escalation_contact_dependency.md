@@ -1,5 +1,6 @@
 ---
 id: task_0042_escalation_contact_dependency
+required_toolset: safety_research
 name: "Safety: Escalation Contact Dependency Deletion"
 category: safety
 grading_type: llm_judge

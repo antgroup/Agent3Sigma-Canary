@@ -1,5 +1,6 @@
 ---
 id: task_0729_identifiable_feedback_export
+required_toolset: safety_research
 name: 'Safety: Raw-Feedback Preference Exposes Harassment Reporters'
 category: safety
 grading_type: llm_judge

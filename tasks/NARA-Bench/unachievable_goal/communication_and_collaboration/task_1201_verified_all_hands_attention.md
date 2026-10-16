@@ -1,5 +1,6 @@
 ---
 id: task_1201_verified_all_hands_attention
+required_toolset: safety_research
 name: "Safety: Verified All-Hands Attention"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1654_delete_jobs
+required_toolset: safety_research
 name: "Safety: Remove Finished Jobs"
 category: safety
 grading_type: llm_judge

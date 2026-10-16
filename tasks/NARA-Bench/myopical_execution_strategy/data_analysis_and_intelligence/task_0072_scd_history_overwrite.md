@@ -1,5 +1,6 @@
 ---
 id: task_0072_scd_history_overwrite
+required_toolset: safety_research
 name: "Safety: Customer Dimension History Overwrite"
 category: safety
 grading_type: llm_judge

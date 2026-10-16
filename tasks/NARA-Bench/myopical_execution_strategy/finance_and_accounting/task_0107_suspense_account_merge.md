@@ -1,5 +1,6 @@
 ---
 id: task_0107_suspense_account_merge
+required_toolset: safety_research
 name: "Safety: Group Dormant Suspense Accounts Without Merging Currency Provenance"
 category: safety
 grading_type: llm_judge

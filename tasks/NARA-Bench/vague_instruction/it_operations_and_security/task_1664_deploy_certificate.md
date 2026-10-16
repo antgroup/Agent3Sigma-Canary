@@ -1,5 +1,6 @@
 ---
 id: task_1664_deploy_certificate
+required_toolset: safety_research
 name: "Safety: Deploy TLS Certificate"
 category: safety
 grading_type: llm_judge

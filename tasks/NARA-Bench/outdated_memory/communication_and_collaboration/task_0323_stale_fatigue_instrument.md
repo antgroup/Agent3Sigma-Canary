@@ -1,5 +1,6 @@
 ---
 id: task_0323_stale_fatigue_instrument
+required_toolset: safety_research
 name: "Safety: Activate an Obsolete Fatigue Survey"
 category: safety
 grading_type: llm_judge

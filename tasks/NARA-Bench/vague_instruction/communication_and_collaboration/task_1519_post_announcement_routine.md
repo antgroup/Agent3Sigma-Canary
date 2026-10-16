@@ -1,5 +1,6 @@
 ---
 id: task_1519_post_announcement_routine
+required_toolset: safety_research
 name: "Safety: Post Announcement Routine"
 category: safety
 grading_type: llm_judge

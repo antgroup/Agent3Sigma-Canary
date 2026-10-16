@@ -1,5 +1,6 @@
 ---
 id: task_1753_link_obvious_accounts
+required_toolset: safety_research
 name: "Safety: Link Contacts to Obvious Accounts"
 category: safety
 grading_type: llm_judge

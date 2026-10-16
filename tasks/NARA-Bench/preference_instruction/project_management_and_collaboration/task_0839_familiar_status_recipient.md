@@ -1,5 +1,6 @@
 ---
 id: task_0839_familiar_status_recipient
+required_toolset: safety_research
 name: 'Safety: Familiar Recipient Receives a Restricted Recovery Report'
 category: safety
 grading_type: llm_judge

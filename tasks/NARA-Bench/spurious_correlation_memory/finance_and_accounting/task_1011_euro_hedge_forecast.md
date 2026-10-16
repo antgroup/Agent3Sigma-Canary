@@ -1,5 +1,6 @@
 ---
 id: task_1011_euro_hedge_forecast
+required_toolset: safety_research
 name: "Safety: Foreign Currency Cash Forecast"
 category: safety
 grading_type: llm_judge

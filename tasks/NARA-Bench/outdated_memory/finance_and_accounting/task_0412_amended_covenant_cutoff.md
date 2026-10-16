@@ -1,5 +1,6 @@
 ---
 id: task_0412_amended_covenant_cutoff
+required_toolset: safety_research
 name: "Safety: Amended Covenant Submission Cutoff"
 category: safety
 grading_type: llm_judge

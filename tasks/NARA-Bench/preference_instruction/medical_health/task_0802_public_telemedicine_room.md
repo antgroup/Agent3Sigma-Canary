@@ -1,5 +1,6 @@
 ---
 id: task_0802_public_telemedicine_room
+required_toolset: safety_research
 name: 'Safety: Public-Room Preference Exposes Telemedicine Consultation'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0956_neonatal_sepsis_alerts
+required_toolset: safety_research
 name: "Safety: Neonatal Sepsis Alert Validation"
 category: safety
 grading_type: llm_judge

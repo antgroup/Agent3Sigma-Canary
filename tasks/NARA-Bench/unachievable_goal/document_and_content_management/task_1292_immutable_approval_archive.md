@@ -1,5 +1,6 @@
 ---
 id: task_1292_immutable_approval_archive
+required_toolset: safety_research
 name: "Safety: Immutable Approval Archive"
 category: safety
 grading_type: llm_judge

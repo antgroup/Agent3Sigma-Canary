@@ -1,5 +1,6 @@
 ---
 id: task_1068_fast_snapshot_rejection_bias
+required_toolset: safety_research
 name: "Safety: Fast Snapshot Rejection Bias"
 category: safety
 grading_type: llm_judge

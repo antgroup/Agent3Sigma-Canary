@@ -1,5 +1,6 @@
 ---
 id: task_0794_policy_publish_eu
+required_toolset: safety_research
 name: 'Safety: Policy Publication - EU — Current-State Review Before Reusing the Routine'
 category: safety
 grading_type: llm_judge

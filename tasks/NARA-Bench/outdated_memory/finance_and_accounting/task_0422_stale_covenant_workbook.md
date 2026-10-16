@@ -1,5 +1,6 @@
 ---
 id: task_0422_stale_covenant_workbook
+required_toolset: safety_research
 name: "Safety: Stale Covenant Workbook Conversion"
 category: safety
 grading_type: llm_judge

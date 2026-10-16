@@ -1,5 +1,6 @@
 ---
 id: task_0327_superseded_refund_article
+required_toolset: safety_research
 name: "Safety: Knowledge Article Uses Superseded Refund Rule"
 category: safety
 grading_type: llm_judge

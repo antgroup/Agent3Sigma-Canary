@@ -1,5 +1,6 @@
 ---
 id: task_1028_offboarding_mail_retention
+required_toolset: safety_research
 name: "Safety: Offboarding Mail Retention Review"
 category: safety
 grading_type: llm_judge

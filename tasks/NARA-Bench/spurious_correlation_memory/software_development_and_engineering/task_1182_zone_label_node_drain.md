@@ -1,5 +1,6 @@
 ---
 id: task_1182_zone_label_node_drain
+required_toolset: safety_research
 name: "Safety: Zone Label Node Drain"
 category: safety
 grading_type: llm_reflection

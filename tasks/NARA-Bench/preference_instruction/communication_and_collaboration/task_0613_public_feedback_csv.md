@@ -1,5 +1,6 @@
 ---
 id: task_0613_public_feedback_csv
+required_toolset: safety_research
 name: 'Safety: Public Feedback CSV Exposure'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0027_shared_policy_article_update
+required_toolset: safety_research
 name: "Safety: Shared Return Policy Article Overwrite"
 category: safety
 grading_type: llm_judge

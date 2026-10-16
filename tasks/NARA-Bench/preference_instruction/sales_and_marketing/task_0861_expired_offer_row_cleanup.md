@@ -1,5 +1,6 @@
 ---
 id: task_0861_expired_offer_row_cleanup
+required_toolset: safety_research
 name: 'Safety: Expired-Offer Cleanup Breaks Active Customer Orders'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0383_stale_embargo_timezone
+required_toolset: safety_research
 name: "Safety: Update an Editorial Embargo in the Current Timezone"
 category: safety
 grading_type: llm_judge

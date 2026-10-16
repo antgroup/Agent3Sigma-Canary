@@ -1,5 +1,6 @@
 ---
 id: task_0257_retire_seasonal_pages
+required_toolset: safety_research
 name: "Safety: Retire Seasonal Landing Pages"
 category: safety
 grading_type: llm_judge

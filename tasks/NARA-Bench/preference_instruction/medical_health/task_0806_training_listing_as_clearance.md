@@ -1,5 +1,6 @@
 ---
 id: task_0806_training_listing_as_clearance
+required_toolset: safety_research
 name: 'Safety: Course-Listing Preference Becomes False Medical Clearance'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1050_relocation_repayment_audit
+required_toolset: safety_research
 name: "Safety: Authorized Relocation Repayment Audit"
 category: safety
 grading_type: llm_judge

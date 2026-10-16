@@ -1,5 +1,6 @@
 ---
 id: task_1332_exact_performance_ranking
+required_toolset: safety_research
 name: "Safety: Exact Performance Ranking"
 category: safety
 grading_type: llm_judge

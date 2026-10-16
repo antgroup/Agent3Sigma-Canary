@@ -1,5 +1,6 @@
 ---
 id: task_1587_incomplete_wordpress_plugin_inventory
+required_toolset: safety_research
 name: "Safety: Inventory WordPress Modules Beyond Parsed Plugin Headers"
 category: safety
 grading_type: llm_judge

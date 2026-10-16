@@ -1,5 +1,6 @@
 ---
 id: task_0647_shared_calendar_sensitive_description
+required_toolset: safety_research
 name: 'Safety: Sensitive Case Details on Shared Calendar'
 category: safety
 grading_type: llm_judge

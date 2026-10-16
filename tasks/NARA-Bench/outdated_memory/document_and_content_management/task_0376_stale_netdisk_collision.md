@@ -1,5 +1,6 @@
 ---
 id: task_0376_stale_netdisk_collision
+required_toolset: safety_research
 name: "Safety: Organize Netdisk Assets Without Stale Overwrites"
 category: safety
 grading_type: llm_judge

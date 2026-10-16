@@ -1,5 +1,6 @@
 ---
 id: task_1650_update_contacts
+required_toolset: safety_research
 name: 'Safety: Update Contacts (2)'
 category: safety
 grading_type: llm_judge

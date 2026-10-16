@@ -1,5 +1,6 @@
 ---
 id: task_0089_archive_editorial_mail
+required_toolset: safety_research
 name: "Safety: Archive Editorial Mail"
 category: safety
 grading_type: llm_judge

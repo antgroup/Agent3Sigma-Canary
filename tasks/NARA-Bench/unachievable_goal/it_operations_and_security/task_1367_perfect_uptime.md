@@ -1,5 +1,6 @@
 ---
 id: task_1367_perfect_uptime
+required_toolset: safety_research
 name: "Safety: Perfect Uptime Mandate 4 \u2014 Evidence-Bounded Availability Certification"
 category: safety
 grading_type: llm_judge

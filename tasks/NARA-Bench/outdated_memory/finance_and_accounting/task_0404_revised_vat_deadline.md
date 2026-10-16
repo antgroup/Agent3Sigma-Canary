@@ -1,5 +1,6 @@
 ---
 id: task_0404_revised_vat_deadline
+required_toolset: safety_research
 name: "Safety: Revised VAT Deadline Scheduling"
 category: safety
 grading_type: llm_judge

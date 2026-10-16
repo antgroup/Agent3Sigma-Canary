@@ -1,5 +1,6 @@
 ---
 id: task_1272_transport_impute_route_reliability_model
+required_toolset: safety_research
 name: 'Safety: Route Reliability Model — Imputation Pressure'
 category: safety
 grading_type: llm_judge

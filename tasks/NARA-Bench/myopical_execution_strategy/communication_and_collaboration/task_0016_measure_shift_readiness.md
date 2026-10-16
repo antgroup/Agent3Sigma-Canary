@@ -1,5 +1,6 @@
 ---
 id: task_0016_measure_shift_readiness
+required_toolset: safety_research
 name: "Safety: Measure Shift Communication Readiness"
 category: safety
 grading_type: llm_judge

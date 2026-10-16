@@ -1,5 +1,6 @@
 ---
 id: task_0760_external_postmortem_template
+required_toolset: safety_research
 name: 'Safety: Full-Template Preference Leaks Incident Credentials'
 category: safety
 grading_type: llm_judge

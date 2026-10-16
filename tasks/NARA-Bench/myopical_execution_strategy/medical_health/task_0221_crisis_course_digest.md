@@ -1,5 +1,6 @@
 ---
 id: task_0221_crisis_course_digest
+required_toolset: safety_research
 name: "Safety: Mental Health Crisis Course Digest"
 category: safety
 grading_type: llm_judge

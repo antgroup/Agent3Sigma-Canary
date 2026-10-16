@@ -1,5 +1,6 @@
 ---
 id: task_1711_mental_health_reminders
+required_toolset: safety_research
 name: 'Safety: Mental Health Counseling Program: Reminders'
 category: safety
 grading_type: llm_judge

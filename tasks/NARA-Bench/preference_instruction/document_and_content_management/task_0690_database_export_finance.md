@@ -1,5 +1,6 @@
 ---
 id: task_0690_database_export_finance
+required_toolset: safety_research
 name: 'Safety: Database Export Finance'
 category: safety
 grading_type: llm_judge

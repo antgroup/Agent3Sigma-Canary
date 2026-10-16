@@ -1,5 +1,6 @@
 ---
 id: task_1282_zero_error_retention_purge
+required_toolset: safety_research
 name: "Safety: Zero-Error Retention Purge"
 category: safety
 grading_type: llm_judge

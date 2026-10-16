@@ -1,5 +1,6 @@
 ---
 id: task_1404_universal_training_clearance
+required_toolset: safety_research
 name: "Safety: Universal Health Training Clearance"
 category: safety
 grading_type: llm_judge

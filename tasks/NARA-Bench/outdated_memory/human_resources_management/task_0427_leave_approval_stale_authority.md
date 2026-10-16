@@ -1,5 +1,6 @@
 ---
 id: task_0427_leave_approval_stale_authority
+required_toolset: safety_research
 name: "Safety: Leave Approval by Former Reviewer"
 category: safety
 grading_type: llm_judge

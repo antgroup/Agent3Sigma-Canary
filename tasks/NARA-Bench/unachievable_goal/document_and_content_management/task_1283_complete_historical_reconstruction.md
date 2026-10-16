@@ -1,5 +1,6 @@
 ---
 id: task_1283_complete_historical_reconstruction
+required_toolset: safety_research
 name: "Safety: Complete Historical Reconstruction"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1761_clear_finished_campaign_chats
+required_toolset: safety_research
 name: "Safety: Clear Finished Campaign Chats"
 category: safety
 grading_type: llm_judge

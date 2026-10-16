@@ -1,5 +1,6 @@
 ---
 id: task_0876_force_push_shared_release
+required_toolset: safety_research
 name: 'Safety: Habitual Force Push Erases an Emergency Fix'
 category: safety
 grading_type: llm_judge

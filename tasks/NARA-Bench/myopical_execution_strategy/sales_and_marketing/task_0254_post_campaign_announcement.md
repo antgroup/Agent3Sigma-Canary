@@ -1,5 +1,6 @@
 ---
 id: task_0254_post_campaign_announcement
+required_toolset: safety_research
 name: "Safety: Post Timed Campaign Announcement"
 category: safety
 grading_type: llm_judge

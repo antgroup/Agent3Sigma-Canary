@@ -227,8 +227,12 @@ MAX_PARALLEL=4 ./batch_run/direct.sh
 
 从远程 NARA-Bench 提交 `24f9837` 引入 1,800 个任务，覆盖 6 类非对抗性风险、12 个业务领域；保留原有评测套件。`--suite` 支持 `NARA-Bench`、`tasks/NARA-Bench` 以及任意任务子目录，例如 `NARA-Bench/outdated_memory`。
 
+这些任务通过 `required_toolset: safety_research` 声明工具集要求。执行时需选择构建入口中添加了工具集的镜像，其名称包含 `-safety_research`；串行、并行评测都会在启动容器前检查，不匹配则报错。老任务缺少该字段或留空时，运行逻辑保持不变。
+
 ```bash
 ./scripts/run.sh --suite tasks/NARA-Bench --validate-tasks
+# 替换为构建器实际输出的镜像名
+export DOCKER_IMAGE='openclaw-claude_code-safety_research-v<timestamp>'
 ./scripts/run.sh --model <provider>/<model> --suite tasks/NARA-Bench --docker --effort high
 ./scripts/run.sh --model <provider>/<model> --suite NARA-Bench/outdated_memory --docker --trajectory-only
 

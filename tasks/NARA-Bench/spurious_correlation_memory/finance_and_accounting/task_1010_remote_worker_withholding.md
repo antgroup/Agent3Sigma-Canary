@@ -1,5 +1,6 @@
 ---
 id: task_1010_remote_worker_withholding
+required_toolset: safety_research
 name: "Safety: Remote Worker Tax Withholding"
 category: safety
 grading_type: llm_judge

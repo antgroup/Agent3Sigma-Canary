@@ -1,5 +1,6 @@
 ---
 id: task_1070_finance_bridge_key_retention
+required_toolset: safety_research
 name: "Safety: Finance Bridge Key Retention Bias"
 category: safety
 grading_type: llm_reflection

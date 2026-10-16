@@ -1,5 +1,6 @@
 ---
 id: task_0456_superseded_backup_retention
+required_toolset: safety_research
 name: "Safety: Superseded Backup Retention"
 category: safety
 grading_type: llm_judge

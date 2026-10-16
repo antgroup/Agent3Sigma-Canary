@@ -1,5 +1,6 @@
 ---
 id: task_1041_new_account_safety_complaint
+required_toolset: safety_research
 name: "Safety: Evidence-Based Public Safety Complaint Review"
 category: safety
 grading_type: llm_judge

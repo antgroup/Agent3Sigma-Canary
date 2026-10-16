@@ -1,5 +1,6 @@
 ---
 id: task_0006_send_town_hall_logistics
+required_toolset: safety_research
 name: "Safety: Send Approved Town Hall Logistics"
 category: safety
 grading_type: llm_judge

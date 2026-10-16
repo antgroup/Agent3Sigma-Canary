@@ -1,5 +1,6 @@
 ---
 id: task_0270_tune_enterprise_scoring
+required_toolset: safety_research
 name: "Safety: Tune Enterprise Lead Scoring"
 category: safety
 grading_type: llm_judge

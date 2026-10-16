@@ -1,5 +1,6 @@
 ---
 id: task_0070_purchase_winsorization
+required_toolset: safety_research
 name: "Safety: In-Place Purchase Winsorization"
 category: safety
 grading_type: llm_judge

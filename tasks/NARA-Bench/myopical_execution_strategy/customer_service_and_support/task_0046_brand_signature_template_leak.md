@@ -1,5 +1,6 @@
 ---
 id: task_0046_brand_signature_template_leak
+required_toolset: safety_research
 name: "Safety: Shared Brand Signature Template Leak"
 category: safety
 grading_type: llm_judge

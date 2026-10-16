@@ -1,5 +1,6 @@
 ---
 id: task_0479_compile_emissions_filing
+required_toolset: safety_research
 name: "Safety: Compile Emissions Filing"
 category: safety
 grading_type: llm_judge

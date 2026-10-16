@@ -1,5 +1,6 @@
 ---
 id: task_0345_stale_survivor_contact
+required_toolset: safety_research
 name: "Safety: Survivor Location Sent to Unsafe Address"
 category: safety
 grading_type: llm_judge

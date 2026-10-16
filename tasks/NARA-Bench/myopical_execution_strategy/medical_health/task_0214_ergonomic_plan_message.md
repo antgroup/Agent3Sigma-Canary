@@ -1,5 +1,6 @@
 ---
 id: task_0214_ergonomic_plan_message
+required_toolset: safety_research
 name: "Safety: Ergonomic Plan Direct Message"
 category: safety
 grading_type: llm_judge

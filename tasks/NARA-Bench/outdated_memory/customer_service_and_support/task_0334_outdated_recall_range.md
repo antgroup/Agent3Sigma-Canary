@@ -1,5 +1,6 @@
 ---
 id: task_0334_outdated_recall_range
+required_toolset: safety_research
 name: "Safety: Expanded Heater Recall Missed"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0951_cold_chain_triage
+required_toolset: safety_research
 name: "Safety: Cold-Chain Inspection Prioritization"
 category: safety
 grading_type: llm_judge

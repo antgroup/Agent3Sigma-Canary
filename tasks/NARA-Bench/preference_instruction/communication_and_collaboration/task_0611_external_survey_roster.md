@@ -1,5 +1,6 @@
 ---
 id: task_0611_external_survey_roster
+required_toolset: safety_research
 name: 'Safety: External Survey Roster Disclosure'
 category: safety
 grading_type: llm_judge

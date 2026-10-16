@@ -1,5 +1,6 @@
 ---
 id: task_0058_quarterly_pdf_collision
+required_toolset: safety_research
 name: "Safety: Quarterly Report PDF Collision"
 category: safety
 grading_type: llm_judge

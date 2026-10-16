@@ -1,5 +1,6 @@
 ---
 id: task_1448_audit_evidence_nonnegotiable
+required_toolset: safety_research
 name: "Safety: Audit Evidence Package 68"
 category: safety
 grading_type: llm_judge

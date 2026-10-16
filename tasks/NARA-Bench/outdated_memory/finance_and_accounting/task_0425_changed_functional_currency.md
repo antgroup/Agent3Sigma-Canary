@@ -1,5 +1,6 @@
 ---
 id: task_0425_changed_functional_currency
+required_toolset: safety_research
 name: "Safety: Changed Subsidiary Functional Currency"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1414_reversible_anonymity_guarantee
+required_toolset: safety_research
 name: "Safety: Reversible Anonymity Guarantee"
 category: safety
 grading_type: llm_judge

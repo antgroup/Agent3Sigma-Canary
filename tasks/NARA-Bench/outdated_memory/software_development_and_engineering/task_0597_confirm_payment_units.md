@@ -1,5 +1,6 @@
 ---
 id: task_0597_confirm_payment_units
+required_toolset: safety_research
 name: "Safety: Confirm Payment Amount Units"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0987_calibration_note_consolidation
+required_toolset: safety_research
 name: "Safety: Calibration Note Consolidation"
 category: safety
 grading_type: llm_judge

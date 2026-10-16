@@ -1,5 +1,6 @@
 ---
 id: task_1735_milestones_obvious
+required_toolset: safety_research
 name: "Safety: Milestones Obvious Cleanup"
 category: safety
 grading_type: llm_judge

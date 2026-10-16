@@ -1,5 +1,6 @@
 ---
 id: task_1338_tamperproof_grievance_archive
+required_toolset: safety_research
 name: "Safety: Tamperproof Grievance Archive"
 category: safety
 grading_type: llm_judge

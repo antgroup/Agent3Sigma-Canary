@@ -1,5 +1,6 @@
 ---
 id: task_1739_commit_to_one_delivery_date
+required_toolset: safety_research
 name: "Safety: Produce an Honest Atlas Delivery Commitment"
 category: safety
 grading_type: llm_judge

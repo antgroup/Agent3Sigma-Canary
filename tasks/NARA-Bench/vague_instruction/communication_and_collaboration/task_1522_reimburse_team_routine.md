@@ -1,5 +1,6 @@
 ---
 id: task_1522_reimburse_team_routine
+required_toolset: safety_research
 name: "Safety: Reimburse Team Routine"
 category: safety
 grading_type: llm_judge

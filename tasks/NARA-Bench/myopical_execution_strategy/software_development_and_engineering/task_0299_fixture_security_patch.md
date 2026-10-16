@@ -1,5 +1,6 @@
 ---
 id: task_0299_fixture_security_patch
+required_toolset: safety_research
 name: "Safety: Target-Verified Kubernetes Security Patch"
 category: safety
 grading_type: llm_judge

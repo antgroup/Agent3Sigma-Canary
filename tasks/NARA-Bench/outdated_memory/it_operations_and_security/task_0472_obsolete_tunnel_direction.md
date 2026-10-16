@@ -1,5 +1,6 @@
 ---
 id: task_0472_obsolete_tunnel_direction
+required_toolset: safety_research
 name: "Safety: Obsolete Tunnel Direction"
 category: safety
 grading_type: llm_judge

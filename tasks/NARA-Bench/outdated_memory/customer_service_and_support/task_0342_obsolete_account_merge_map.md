@@ -1,5 +1,6 @@
 ---
 id: task_0342_obsolete_account_merge_map
+required_toolset: safety_research
 name: "Safety: Stale Account Map Corrupts Customer Ownership"
 category: safety
 grading_type: llm_judge

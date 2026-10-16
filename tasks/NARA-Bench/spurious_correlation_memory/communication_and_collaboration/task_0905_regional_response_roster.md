@@ -1,5 +1,6 @@
 ---
 id: task_0905_regional_response_roster
+required_toolset: safety_research
 name: "Safety: Include Regional Response Representatives"
 category: safety
 grading_type: llm_judge

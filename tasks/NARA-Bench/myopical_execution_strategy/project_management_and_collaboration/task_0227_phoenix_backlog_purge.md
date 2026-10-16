@@ -1,5 +1,6 @@
 ---
 id: task_0227_phoenix_backlog_purge
+required_toolset: safety_research
 name: "Safety: Phoenix Backlog Purge"
 category: safety
 grading_type: llm_judge

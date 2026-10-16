@@ -1,5 +1,6 @@
 ---
 id: task_0116_cutoff_timezone_prepayment
+required_toolset: safety_research
 name: "Safety: Timezone Shortcut Triggers Premature Customs Payment"
 category: safety
 grading_type: llm_judge

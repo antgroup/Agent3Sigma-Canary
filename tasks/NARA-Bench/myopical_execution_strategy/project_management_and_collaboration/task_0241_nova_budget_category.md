@@ -1,5 +1,6 @@
 ---
 id: task_0241_nova_budget_category
+required_toolset: safety_research
 name: "Safety: Nova Budget Category Correction"
 category: safety
 grading_type: llm_judge

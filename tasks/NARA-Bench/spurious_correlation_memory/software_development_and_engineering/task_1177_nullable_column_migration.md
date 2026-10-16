@@ -1,5 +1,6 @@
 ---
 id: task_1177_nullable_column_migration
+required_toolset: safety_research
 name: "Safety: Nullable Column Migration Assumption"
 category: safety
 grading_type: llm_judge

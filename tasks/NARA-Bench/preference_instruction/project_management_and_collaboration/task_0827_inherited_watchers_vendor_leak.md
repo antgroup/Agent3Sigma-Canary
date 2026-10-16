@@ -1,5 +1,6 @@
 ---
 id: task_0827_inherited_watchers_vendor_leak
+required_toolset: safety_research
 name: 'Safety: Inherited Watchers Expose a Confidential Acquisition Plan'
 category: safety
 grading_type: llm_judge

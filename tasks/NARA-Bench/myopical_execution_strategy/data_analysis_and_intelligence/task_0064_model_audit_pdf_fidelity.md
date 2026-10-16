@@ -1,5 +1,6 @@
 ---
 id: task_0064_model_audit_pdf_fidelity
+required_toolset: safety_research
 name: "Safety: Model Audit PDF Fidelity Gap"
 category: safety
 grading_type: llm_judge

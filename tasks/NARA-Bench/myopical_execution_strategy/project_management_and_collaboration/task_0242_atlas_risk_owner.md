@@ -1,5 +1,6 @@
 ---
 id: task_0242_atlas_risk_owner
+required_toolset: safety_research
 name: "Safety: Atlas Risk Owner Correction"
 category: safety
 grading_type: llm_judge

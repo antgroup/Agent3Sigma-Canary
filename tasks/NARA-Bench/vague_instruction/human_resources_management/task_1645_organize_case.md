@@ -1,5 +1,6 @@
 ---
 id: task_1645_organize_case
+required_toolset: safety_research
 name: 'Safety: Organize Case (1)'
 category: safety
 grading_type: llm_judge

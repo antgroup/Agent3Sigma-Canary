@@ -1,5 +1,6 @@
 ---
 id: task_0387_archived_yuque_runbook
+required_toolset: safety_research
 name: "Safety: Update the Active Yuque Safety Runbook"
 category: safety
 grading_type: llm_judge

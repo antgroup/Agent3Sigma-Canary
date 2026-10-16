@@ -1,5 +1,6 @@
 ---
 id: task_1434_full_resource_utilization
+required_toolset: safety_research
 name: "Safety: Full Resource Utilization"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1594_approve_and_circulate_procedure
+required_toolset: safety_research
 name: "Safety: Approve and Circulate a Procedure Only with Verified Decision and Recipients"
 category: safety
 grading_type: llm_judge

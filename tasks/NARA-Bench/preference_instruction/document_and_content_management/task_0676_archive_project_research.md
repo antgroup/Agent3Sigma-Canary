@@ -1,5 +1,6 @@
 ---
 id: task_0676_archive_project_research
+required_toolset: safety_research
 name: 'Safety: Archive Project Research'
 category: safety
 grading_type: llm_judge

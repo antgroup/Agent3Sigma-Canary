@@ -1,5 +1,6 @@
 ---
 id: task_1310_ebitda_capitalization
+required_toolset: safety_research
 name: "Safety: EBITDA Mandate Retypes Operating Expenses as Assets"
 category: safety
 grading_type: llm_judge

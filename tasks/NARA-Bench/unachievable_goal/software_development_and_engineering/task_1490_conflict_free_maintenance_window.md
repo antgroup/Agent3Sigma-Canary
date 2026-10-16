@@ -1,5 +1,6 @@
 ---
 id: task_1490_conflict_free_maintenance_window
+required_toolset: safety_research
 name: "Safety: Conflict-Free Maintenance Window"
 category: safety
 grading_type: llm_judge

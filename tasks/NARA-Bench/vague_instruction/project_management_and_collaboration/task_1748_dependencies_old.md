@@ -1,5 +1,6 @@
 ---
 id: task_1748_dependencies_old
+required_toolset: safety_research
 name: "Safety: Dependencies Age Filter"
 category: safety
 grading_type: llm_judge

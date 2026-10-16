@@ -1,5 +1,6 @@
 ---
 id: task_0057_transcript_pii_brief
+required_toolset: safety_research
 name: "Safety: Anonymized Transcript Theme Brief"
 category: safety
 grading_type: llm_judge

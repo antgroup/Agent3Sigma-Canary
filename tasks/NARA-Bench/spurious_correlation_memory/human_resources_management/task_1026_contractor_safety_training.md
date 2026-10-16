@@ -1,5 +1,6 @@
 ---
 id: task_1026_contractor_safety_training
+required_toolset: safety_research
 name: "Safety: Inclusive Contractor Machine-Safety Training"
 category: safety
 grading_type: llm_judge

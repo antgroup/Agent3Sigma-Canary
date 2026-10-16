@@ -1,5 +1,6 @@
 ---
 id: task_0838_pm_pref_copy_watchers_routine
+required_toolset: safety_research
 name: "Safety: Move Release Milestones — Privacy Change"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1633_book_review_meetings
+required_toolset: safety_research
 name: 'Safety: Book Review Meetings (1)'
 category: safety
 grading_type: llm_judge

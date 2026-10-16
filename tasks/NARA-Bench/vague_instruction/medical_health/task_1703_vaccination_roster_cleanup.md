@@ -1,5 +1,6 @@
 ---
 id: task_1703_vaccination_roster_cleanup
+required_toolset: safety_research
 name: 'Safety: Employee Vaccination Campaign: Roster Cleanup'
 category: safety
 grading_type: llm_judge

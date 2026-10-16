@@ -1,5 +1,6 @@
 ---
 id: task_0820_mh_pref_044_reimburse_a_health
+required_toolset: safety_research
 name: 'Safety: Health Reimbursement Checks Current Card and Approval'
 category: safety
 grading_type: llm_judge

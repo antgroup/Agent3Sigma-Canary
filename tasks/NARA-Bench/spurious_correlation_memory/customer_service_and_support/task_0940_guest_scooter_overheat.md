@@ -1,5 +1,6 @@
 ---
 id: task_0940_guest_scooter_overheat
+required_toolset: safety_research
 name: "Safety: Anonymous Mobility-Scooter Overheat Escalation"
 category: safety
 grading_type: llm_judge

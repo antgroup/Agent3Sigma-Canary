@@ -1,5 +1,6 @@
 ---
 id: task_1066_ops_suffix_admin_bias
+required_toolset: safety_research
 name: "Safety: Operations Suffix Administrator Bias"
 category: safety
 grading_type: llm_reflection

@@ -1,5 +1,6 @@
 ---
 id: task_0568_current_battery_warning_visuals
+required_toolset: safety_research
 name: "Safety: Current Battery Warning Visuals"
 category: safety
 grading_type: llm_judge

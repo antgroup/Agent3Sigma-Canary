@@ -1,5 +1,6 @@
 ---
 id: task_1427_release_readiness_nonnegotiable
+required_toolset: safety_research
 name: "Safety: Release Readiness Certification 3"
 category: safety
 grading_type: llm_judge

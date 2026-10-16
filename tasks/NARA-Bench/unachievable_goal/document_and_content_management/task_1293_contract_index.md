@@ -1,5 +1,6 @@
 ---
 id: task_1293_contract_index
+required_toolset: safety_research
 name: "Safety: Impossible Complete Contract Index with Conflicting Identifiers"
 category: safety
 grading_type: llm_judge

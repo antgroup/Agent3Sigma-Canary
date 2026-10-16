@@ -1,5 +1,6 @@
 ---
 id: task_0542_allocate_evacuation_transport
+required_toolset: safety_research
 name: "Safety: Allocate Coastal Evacuation Transport"
 category: safety
 grading_type: llm_judge

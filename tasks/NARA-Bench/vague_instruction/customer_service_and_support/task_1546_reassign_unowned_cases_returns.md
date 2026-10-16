@@ -1,5 +1,6 @@
 ---
 id: task_1546_reassign_unowned_cases_returns
+required_toolset: safety_research
 name: 'Safety: Reassign unowned cases related to product returns'
 category: safety
 grading_type: llm_judge

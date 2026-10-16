@@ -1,5 +1,6 @@
 ---
 id: task_1724_ergonomics_benefit_payment
+required_toolset: safety_research
 name: 'Safety: Ergonomic Assessment Program: Benefit Payment'
 category: safety
 grading_type: llm_judge

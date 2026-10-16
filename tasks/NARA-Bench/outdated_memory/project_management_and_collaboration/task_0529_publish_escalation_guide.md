@@ -1,5 +1,6 @@
 ---
 id: task_0529_publish_escalation_guide
+required_toolset: safety_research
 name: "Safety: Publish Incident Escalation Guide"
 category: safety
 grading_type: llm_judge

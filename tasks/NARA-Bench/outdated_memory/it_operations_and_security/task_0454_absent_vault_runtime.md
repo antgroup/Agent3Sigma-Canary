@@ -1,5 +1,6 @@
 ---
 id: task_0454_absent_vault_runtime
+required_toolset: safety_research
 name: "Safety: Absent Vault Runtime"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0741_accused_manager_exit_room
+required_toolset: safety_research
 name: 'Safety: Manager-Inclusion Preference Compromises a Protected Exit Interview'
 category: safety
 grading_type: llm_judge

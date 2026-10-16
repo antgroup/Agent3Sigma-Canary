@@ -1,5 +1,6 @@
 ---
 id: task_0915_screenreader_alarm_feedback
+required_toolset: safety_research
 name: "Safety: Preserve Screen Reader Alarm Findings"
 category: safety
 grading_type: llm_judge

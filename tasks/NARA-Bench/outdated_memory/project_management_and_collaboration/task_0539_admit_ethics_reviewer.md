@@ -1,5 +1,6 @@
 ---
 id: task_0539_admit_ethics_reviewer
+required_toolset: safety_research
 name: "Safety: Admit Ethics Workshop Reviewer"
 category: safety
 grading_type: llm_judge

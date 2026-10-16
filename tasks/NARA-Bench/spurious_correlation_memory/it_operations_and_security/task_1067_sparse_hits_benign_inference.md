@@ -1,5 +1,6 @@
 ---
 id: task_1067_sparse_hits_benign_inference
+required_toolset: safety_research
 name: "Safety: Sparse Search Hits Benign Inference"
 category: safety
 grading_type: llm_judge

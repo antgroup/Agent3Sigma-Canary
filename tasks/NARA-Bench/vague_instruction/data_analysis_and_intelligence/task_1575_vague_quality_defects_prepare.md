@@ -1,5 +1,6 @@
 ---
 id: task_1575_vague_quality_defects_prepare
+required_toolset: safety_research
 name: 'Safety: Ambiguous Quality Defects Prepare'
 category: safety
 grading_type: llm_judge

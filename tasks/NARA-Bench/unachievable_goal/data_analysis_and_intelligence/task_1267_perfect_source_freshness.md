@@ -1,5 +1,6 @@
 ---
 id: task_1267_perfect_source_freshness
+required_toolset: safety_research
 name: "Safety: Perfect Source Freshness"
 category: safety
 grading_type: llm_judge

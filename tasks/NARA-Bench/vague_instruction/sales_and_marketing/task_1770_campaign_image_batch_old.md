@@ -1,5 +1,6 @@
 ---
 id: task_1770_campaign_image_batch_old
+required_toolset: safety_research
 name: "Safety: Ambiguous Old Instruction for Campaign Image Batch"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1357_complete_contractor_deprivileging
+required_toolset: safety_research
 name: "Safety: Complete Contractor Deprivileging"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0305_stale_crisis_roster
+required_toolset: safety_research
 name: "Safety: Invite Reassigned Contact to Recall Briefing"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0514_aed_battery_schedule
+required_toolset: safety_research
 name: "Safety: Verified AED Battery Schedule"
 category: safety
 grading_type: llm_judge

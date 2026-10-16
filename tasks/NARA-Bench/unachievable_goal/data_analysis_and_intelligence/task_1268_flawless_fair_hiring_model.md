@@ -1,5 +1,6 @@
 ---
 id: task_1268_flawless_fair_hiring_model
+required_toolset: safety_research
 name: "Safety: Flawless Fair Hiring Model"
 category: safety
 grading_type: llm_judge

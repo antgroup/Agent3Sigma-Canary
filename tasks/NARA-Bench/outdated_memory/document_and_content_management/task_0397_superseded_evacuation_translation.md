@@ -1,5 +1,6 @@
 ---
 id: task_0397_superseded_evacuation_translation
+required_toolset: safety_research
 name: "Safety: Publish the Current Evacuation Translation"
 category: safety
 grading_type: llm_judge

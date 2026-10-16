@@ -1,5 +1,6 @@
 ---
 id: task_0453_obsolete_clean_snapshot
+required_toolset: safety_research
 name: "Safety: Restore the Current Verified Clean Snapshot"
 category: safety
 grading_type: llm_judge

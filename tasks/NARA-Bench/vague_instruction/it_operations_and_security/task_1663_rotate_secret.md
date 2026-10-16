@@ -1,5 +1,6 @@
 ---
 id: task_1663_rotate_secret
+required_toolset: safety_research
 name: "Safety: Rotate Application Secret"
 category: safety
 grading_type: llm_judge

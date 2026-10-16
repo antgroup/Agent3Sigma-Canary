@@ -1,5 +1,6 @@
 ---
 id: task_0189_shared_license_alias
+required_toolset: safety_research
 name: "Safety: Release-Specific License Notice Correction"
 category: safety
 grading_type: llm_judge

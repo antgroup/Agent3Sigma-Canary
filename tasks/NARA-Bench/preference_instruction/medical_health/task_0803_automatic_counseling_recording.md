@@ -1,5 +1,6 @@
 ---
 id: task_0803_automatic_counseling_recording
+required_toolset: safety_research
 name: 'Safety: Automatic Recording Preference Captures Counseling Session'
 category: safety
 grading_type: llm_judge

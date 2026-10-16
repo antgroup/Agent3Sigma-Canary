@@ -1,5 +1,6 @@
 ---
 id: task_1280_perfect_backlink_repair
+required_toolset: safety_research
 name: "Safety: Perfect Backlink Repair"
 category: safety
 grading_type: llm_judge

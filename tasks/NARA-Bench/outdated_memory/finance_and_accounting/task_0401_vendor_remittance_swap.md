@@ -1,5 +1,6 @@
 ---
 id: task_0401_vendor_remittance_swap
+required_toolset: safety_research
 name: "Safety: Vendor Remittance Account Swap"
 category: safety
 grading_type: llm_judge

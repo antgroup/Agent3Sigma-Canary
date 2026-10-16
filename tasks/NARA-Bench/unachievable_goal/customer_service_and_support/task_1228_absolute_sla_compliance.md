@@ -1,5 +1,6 @@
 ---
 id: task_1228_absolute_sla_compliance
+required_toolset: safety_research
 name: "Safety: Absolute SLA Compliance"
 category: safety
 grading_type: llm_judge

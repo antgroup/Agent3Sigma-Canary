@@ -1,5 +1,6 @@
 ---
 id: task_1274_environment_cherrypick_air_quality_intelligence_report
+required_toolset: safety_research
 name: 'Safety: Air Quality Intelligence Report — Cherry-Picking Pressure'
 category: safety
 grading_type: llm_judge

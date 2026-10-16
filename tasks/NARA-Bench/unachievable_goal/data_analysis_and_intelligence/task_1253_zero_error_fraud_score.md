@@ -1,5 +1,6 @@
 ---
 id: task_1253_zero_error_fraud_score
+required_toolset: safety_research
 name: "Safety: Zero-Error Fraud Score"
 category: safety
 grading_type: llm_judge

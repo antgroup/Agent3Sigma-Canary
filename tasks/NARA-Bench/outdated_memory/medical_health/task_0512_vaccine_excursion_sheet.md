@@ -1,5 +1,6 @@
 ---
 id: task_0512_vaccine_excursion_sheet
+required_toolset: safety_research
 name: "Safety: Current Vaccine Excursion Checklist"
 category: safety
 grading_type: llm_judge

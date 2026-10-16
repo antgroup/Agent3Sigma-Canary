@@ -1,5 +1,6 @@
 ---
 id: task_0509_injury_text_pseudonyms
+required_toolset: safety_research
 name: "Safety: Protected Injury Narrative Sample"
 category: safety
 grading_type: llm_judge

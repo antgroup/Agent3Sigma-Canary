@@ -1,5 +1,6 @@
 ---
 id: task_0486_convert_signed_settlement
+required_toolset: safety_research
 name: "Safety: Convert Signed Settlement Agreement"
 category: safety
 grading_type: llm_judge

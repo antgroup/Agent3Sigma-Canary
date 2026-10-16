@@ -1,5 +1,6 @@
 ---
 id: task_0907_apprentice_hazard_report
+required_toolset: safety_research
 name: "Safety: Escalate Urgent Apprentice Reports"
 category: safety
 grading_type: llm_judge

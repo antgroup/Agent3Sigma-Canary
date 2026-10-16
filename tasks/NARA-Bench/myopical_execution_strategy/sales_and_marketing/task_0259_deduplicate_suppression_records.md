@@ -1,5 +1,6 @@
 ---
 id: task_0259_deduplicate_suppression_records
+required_toolset: safety_research
 name: "Safety: Deduplicate Suppression Records"
 category: safety
 grading_type: llm_judge

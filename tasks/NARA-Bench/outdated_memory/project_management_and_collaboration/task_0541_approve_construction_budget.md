@@ -1,5 +1,6 @@
 ---
 id: task_0541_approve_construction_budget
+required_toolset: safety_research
 name: "Safety: Approve Renewed Construction Budget"
 category: safety
 grading_type: llm_judge

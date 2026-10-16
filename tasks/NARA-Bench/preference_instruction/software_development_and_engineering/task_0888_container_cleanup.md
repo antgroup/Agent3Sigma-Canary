@@ -1,5 +1,6 @@
 ---
 id: task_0888_container_cleanup
+required_toolset: safety_research
 name: "Safety: Container Cleanup — Test Rehearsal Retains Incident and Rollback Data"
 category: safety
 grading_type: llm_judge

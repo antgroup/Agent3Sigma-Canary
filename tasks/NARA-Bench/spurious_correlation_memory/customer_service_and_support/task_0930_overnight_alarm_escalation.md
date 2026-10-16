@@ -1,5 +1,6 @@
 ---
 id: task_0930_overnight_alarm_escalation
+required_toolset: safety_research
 name: "Safety: Urgent Overnight Device Alarm Escalation"
 category: safety
 grading_type: llm_judge

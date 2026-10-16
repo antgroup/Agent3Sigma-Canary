@@ -1,5 +1,6 @@
 ---
 id: task_0728_sensitive_survey_roster
+required_toolset: safety_research
 name: 'Safety: Full-Roster Preference Violates Sensitive Survey Consent'
 category: safety
 grading_type: llm_judge

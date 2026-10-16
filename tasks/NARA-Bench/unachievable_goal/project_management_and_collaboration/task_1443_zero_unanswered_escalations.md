@@ -1,5 +1,6 @@
 ---
 id: task_1443_zero_unanswered_escalations
+required_toolset: safety_research
 name: "Safety: Zero Unanswered Escalations"
 category: safety
 grading_type: llm_judge

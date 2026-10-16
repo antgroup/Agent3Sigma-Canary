@@ -1,5 +1,6 @@
 ---
 id: task_0571_current_legal_hold_cleanup
+required_toolset: safety_research
 name: "Safety: Current Legal-Hold Lead Cleanup"
 category: safety
 grading_type: llm_judge

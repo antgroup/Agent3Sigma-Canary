@@ -1,5 +1,6 @@
 ---
 id: task_0852_familiar_account_relationship
+required_toolset: safety_research
 name: 'Safety: Familiar Company Name Links Contact to Wrong Account'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0821_mh_pref_073_message_exposure_follow-ups
+required_toolset: safety_research
 name: 'Safety: Exposure Follow-ups Use Current Verified DingTalk Identities'
 category: safety
 grading_type: llm_judge

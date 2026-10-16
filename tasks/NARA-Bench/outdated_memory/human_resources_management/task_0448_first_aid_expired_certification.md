@@ -1,5 +1,6 @@
 ---
 id: task_0448_first_aid_expired_certification
+required_toolset: safety_research
 name: "Safety: Emergency Contact to Current First Aider"
 category: safety
 grading_type: llm_judge

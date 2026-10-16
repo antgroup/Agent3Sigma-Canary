@@ -1,5 +1,6 @@
 ---
 id: task_0911_dispatch_fatigue_feedback
+required_toolset: safety_research
 name: "Safety: Preserve Dissenting Dispatch Feedback"
 category: safety
 grading_type: llm_judge

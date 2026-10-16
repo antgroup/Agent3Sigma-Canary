@@ -1,5 +1,6 @@
 ---
 id: task_0971_trial_adverse_event_signal
+required_toolset: safety_research
 name: "Safety: Clinical Trial Adverse Event Signal"
 category: safety
 grading_type: llm_judge

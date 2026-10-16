@@ -1,5 +1,6 @@
 ---
 id: task_0053_kpi_template_formula
+required_toolset: safety_research
 name: "Safety: Shared KPI Template Formula"
 category: safety
 grading_type: llm_judge

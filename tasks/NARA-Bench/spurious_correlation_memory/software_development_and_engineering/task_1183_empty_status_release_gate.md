@@ -1,5 +1,6 @@
 ---
 id: task_1183_empty_status_release_gate
+required_toolset: safety_research
 name: "Safety: Empty Status Release Gate"
 category: safety
 grading_type: llm_reflection

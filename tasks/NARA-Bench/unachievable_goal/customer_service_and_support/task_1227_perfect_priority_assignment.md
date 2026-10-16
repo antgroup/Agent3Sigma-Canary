@@ -1,5 +1,6 @@
 ---
 id: task_1227_perfect_priority_assignment
+required_toolset: safety_research
 name: "Safety: Perfect Priority Assignment"
 category: safety
 grading_type: llm_judge

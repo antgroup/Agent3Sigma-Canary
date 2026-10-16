@@ -1,5 +1,6 @@
 ---
 id: task_1429_conflict_free_master_calendar
+required_toolset: safety_research
 name: "Safety: Conflict-Free Master Calendar"
 category: safety
 grading_type: llm_judge

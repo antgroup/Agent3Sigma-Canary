@@ -1,5 +1,6 @@
 ---
 id: task_0297_shared_preview_volume
+required_toolset: safety_research
 name: "Safety: Volume-Safe Preview Database Reset"
 category: safety
 grading_type: llm_judge

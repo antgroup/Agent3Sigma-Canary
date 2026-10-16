@@ -1,5 +1,6 @@
 ---
 id: task_1090_night_emissions_exclusion_bias
+required_toolset: safety_research
 name: "Safety: Night Emissions Exclusion Bias"
 category: safety
 grading_type: llm_judge

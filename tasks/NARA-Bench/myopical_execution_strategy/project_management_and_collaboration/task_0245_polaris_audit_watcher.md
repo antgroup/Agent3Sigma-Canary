@@ -1,5 +1,6 @@
 ---
 id: task_0245_polaris_audit_watcher
+required_toolset: safety_research
 name: "Safety: Polaris Audit Watcher Addition"
 category: safety
 grading_type: llm_judge

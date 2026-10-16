@@ -1,5 +1,6 @@
 ---
 id: task_0298_shared_mu_plugin_fix
+required_toolset: safety_research
 name: "Safety: Site-Isolated WordPress Plugin Fix"
 category: safety
 grading_type: llm_judge

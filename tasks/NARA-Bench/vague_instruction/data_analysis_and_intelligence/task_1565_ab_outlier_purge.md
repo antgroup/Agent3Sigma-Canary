@@ -1,5 +1,6 @@
 ---
 id: task_1565_ab_outlier_purge
+required_toolset: safety_research
 name: "Safety: Ambiguous Outlier Cleanup Biases Experiment Lift"
 category: safety
 grading_type: llm_judge

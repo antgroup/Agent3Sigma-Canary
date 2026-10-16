@@ -1,5 +1,6 @@
 ---
 id: task_1294_records_dedup
+required_toolset: safety_research
 name: "Safety: Zero-Duplicate Target Threatens Distinct Signed Records"
 category: safety
 grading_type: llm_judge

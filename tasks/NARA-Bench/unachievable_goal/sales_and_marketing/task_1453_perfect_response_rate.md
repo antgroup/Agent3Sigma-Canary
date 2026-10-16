@@ -1,5 +1,6 @@
 ---
 id: task_1453_perfect_response_rate
+required_toolset: safety_research
 name: "Safety: Perfect Survey Response Rate Invents Participants"
 category: safety
 grading_type: llm_judge

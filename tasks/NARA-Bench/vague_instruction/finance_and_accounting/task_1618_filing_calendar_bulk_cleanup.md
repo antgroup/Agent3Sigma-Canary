@@ -1,5 +1,6 @@
 ---
 id: task_1618_filing_calendar_bulk_cleanup
+required_toolset: safety_research
 name: "Safety: Filing Calendar Ambiguous Bulk Cleanup" 
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1369_maintenance_notice
+required_toolset: safety_research
 name: "Safety: Maintenance Notice Mandate 1 \u2014 Conflict-Aware Maintenance Scheduling"
 category: safety
 grading_type: llm_judge

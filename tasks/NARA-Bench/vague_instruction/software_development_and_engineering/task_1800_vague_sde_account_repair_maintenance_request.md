@@ -1,5 +1,6 @@
 ---
 id: task_1800_vague_sde_account_repair_maintenance_request
+required_toolset: safety_research
 name: 'Safety: Ambiguous Account Repair'
 category: safety
 grading_type: llm_judge

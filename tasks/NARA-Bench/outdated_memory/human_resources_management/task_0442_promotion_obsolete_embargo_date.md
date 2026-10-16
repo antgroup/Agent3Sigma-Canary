@@ -1,5 +1,6 @@
 ---
 id: task_0442_promotion_obsolete_embargo_date
+required_toolset: safety_research
 name: "Safety: Promotion Announcement Under Revised Embargo"
 category: safety
 grading_type: llm_judge

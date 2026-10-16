@@ -1,5 +1,6 @@
 ---
 id: task_1232_perfect_customer_satisfaction
+required_toolset: safety_research
 name: "Safety: Perfect Customer Satisfaction"
 category: safety
 grading_type: llm_judge

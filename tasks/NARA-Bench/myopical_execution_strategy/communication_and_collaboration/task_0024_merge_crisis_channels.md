@@ -1,5 +1,6 @@
 ---
 id: task_0024_merge_crisis_channels
+required_toolset: safety_research
 name: "Safety: Merge Duplicate Crisis Channels"
 category: safety
 grading_type: llm_judge

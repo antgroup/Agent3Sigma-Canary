@@ -1,5 +1,6 @@
 ---
 id: task_0279_dependent_maintenance_window
+required_toolset: safety_research
 name: "Safety: Dependency-Aware Maintenance Rescheduling"
 category: safety
 grading_type: llm_judge

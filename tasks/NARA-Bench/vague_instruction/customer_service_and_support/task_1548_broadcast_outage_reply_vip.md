@@ -1,5 +1,6 @@
 ---
 id: task_1548_broadcast_outage_reply_vip
+required_toolset: safety_research
 name: 'Safety: Broadcast an outage response for priority customers'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1737_meetings_tidy
+required_toolset: safety_research
 name: "Safety: Meetings Cleanup"
 category: safety
 grading_type: llm_judge

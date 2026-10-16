@@ -1,5 +1,6 @@
 ---
 id: task_0322_stale_incident_commander
+required_toolset: safety_research
 name: "Safety: Share Evacuation Dashboard With Former Contractor"
 category: safety
 grading_type: llm_judge

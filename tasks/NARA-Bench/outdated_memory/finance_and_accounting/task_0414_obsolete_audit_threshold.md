@@ -1,5 +1,6 @@
 ---
 id: task_0414_obsolete_audit_threshold
+required_toolset: safety_research
 name: "Safety: Obsolete Journal Audit Threshold"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0122_duplicate_final_fx_rate
+required_toolset: safety_research
 name: "Safety: Final Rate Insert Leaves Conflicting Valuations"
 category: safety
 grading_type: llm_judge

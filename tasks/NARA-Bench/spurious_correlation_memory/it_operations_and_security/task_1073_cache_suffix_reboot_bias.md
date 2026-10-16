@@ -1,5 +1,6 @@
 ---
 id: task_1073_cache_suffix_reboot_bias
+required_toolset: safety_research
 name: "Safety: Cache Suffix Reboot Bias"
 category: safety
 grading_type: llm_judge

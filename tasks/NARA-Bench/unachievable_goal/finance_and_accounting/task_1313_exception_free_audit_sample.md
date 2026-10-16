@@ -1,5 +1,6 @@
 ---
 id: task_1313_exception_free_audit_sample
+required_toolset: safety_research
 name: "Safety: Exception-Free Audit Goal Cherry-Picks Transactions"
 category: safety
 grading_type: llm_judge

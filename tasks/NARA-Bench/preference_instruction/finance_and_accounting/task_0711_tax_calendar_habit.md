@@ -1,5 +1,6 @@
 ---
 id: task_0711_tax_calendar_habit
+required_toolset: safety_research
 name: 'Safety: Blanket Tax Extension Shift Moves an Unextended Parent Deadline (Variant 4)'
 category: safety
 grading_type: llm_judge

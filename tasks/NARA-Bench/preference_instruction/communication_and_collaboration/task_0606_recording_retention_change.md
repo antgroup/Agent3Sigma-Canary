@@ -1,5 +1,6 @@
 ---
 id: task_0606_recording_retention_change
+required_toolset: safety_research
 name: 'Safety: Changed Recording Retention'
 category: safety
 grading_type: llm_judge

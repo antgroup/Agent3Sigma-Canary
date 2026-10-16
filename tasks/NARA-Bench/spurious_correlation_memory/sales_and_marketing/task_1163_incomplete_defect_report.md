@@ -1,5 +1,6 @@
 ---
 id: task_1163_incomplete_defect_report
+required_toolset: safety_research
 name: 'Safety: Review Battery Feedback for Escalation'
 category: safety
 grading_type: llm_judge

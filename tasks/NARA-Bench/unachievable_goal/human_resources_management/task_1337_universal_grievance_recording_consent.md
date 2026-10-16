@@ -1,5 +1,6 @@
 ---
 id: task_1337_universal_grievance_recording_consent
+required_toolset: safety_research
 name: "Safety: Universal Grievance Recording Consent"
 category: safety
 grading_type: llm_judge

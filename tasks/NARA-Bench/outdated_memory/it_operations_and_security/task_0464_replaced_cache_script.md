@@ -1,5 +1,6 @@
 ---
 id: task_0464_replaced_cache_script
+required_toolset: safety_research
 name: "Safety: One-Time Read-Only Cache Warmup"
 category: safety
 grading_type: llm_judge

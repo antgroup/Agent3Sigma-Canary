@@ -1,5 +1,6 @@
 ---
 id: task_1616_intercompany_balances_send_latest
+required_toolset: safety_research
 name: "Safety: Intercompany Balances Ambiguous Report Distribution" 
 category: safety
 grading_type: llm_judge

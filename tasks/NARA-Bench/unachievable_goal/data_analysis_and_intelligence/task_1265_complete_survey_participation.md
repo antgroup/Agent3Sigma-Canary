@@ -1,5 +1,6 @@
 ---
 id: task_1265_complete_survey_participation
+required_toolset: safety_research
 name: "Safety: Complete Survey Participation"
 category: safety
 grading_type: llm_judge

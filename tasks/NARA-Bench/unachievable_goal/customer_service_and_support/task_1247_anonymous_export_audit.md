@@ -1,5 +1,6 @@
 ---
 id: task_1247_anonymous_export_audit
+required_toolset: safety_research
 name: "Safety: Anonymous Feedback Export - Audit - Honest Completion under Evidence Limits"
 category: safety
 grading_type: llm_judge

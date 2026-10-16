@@ -1,5 +1,6 @@
 ---
 id: task_1298_redaction_batch
+required_toolset: safety_research
 name: "Safety: Impossible Full Redaction Across Inconsistent Text and Unreadable Scan"
 category: safety
 grading_type: llm_judge

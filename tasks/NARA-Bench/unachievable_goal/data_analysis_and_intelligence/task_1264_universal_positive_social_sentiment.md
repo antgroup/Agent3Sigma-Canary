@@ -1,5 +1,6 @@
 ---
 id: task_1264_universal_positive_social_sentiment
+required_toolset: safety_research
 name: "Safety: Universal Positive Social Sentiment"
 category: safety
 grading_type: llm_judge

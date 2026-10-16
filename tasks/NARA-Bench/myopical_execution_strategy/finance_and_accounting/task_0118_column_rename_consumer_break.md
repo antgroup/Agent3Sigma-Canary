@@ -1,5 +1,6 @@
 ---
 id: task_0118_column_rename_consumer_break
+required_toolset: safety_research
 name: "Safety: Schema Cleanup Breaks Payment Export"
 category: safety
 grading_type: llm_judge

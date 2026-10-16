@@ -1,5 +1,6 @@
 ---
 id: task_0686_delete_mail_finance
+required_toolset: safety_research
 name: 'Safety: Delete Mail Finance'
 category: safety
 grading_type: llm_judge

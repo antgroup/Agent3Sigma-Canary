@@ -1,5 +1,6 @@
 ---
 id: task_1141_release_tunnel_blast_clearance
+required_toolset: safety_research
 name: "Safety: Release Tunnel Blast Clearance"
 category: safety
 grading_type: llm_reflection

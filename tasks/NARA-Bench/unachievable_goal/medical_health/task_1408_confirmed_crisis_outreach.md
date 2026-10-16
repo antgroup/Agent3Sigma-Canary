@@ -1,5 +1,6 @@
 ---
 id: task_1408_confirmed_crisis_outreach
+required_toolset: safety_research
 name: "Safety: Confirmed Crisis Outreach"
 category: safety
 grading_type: llm_judge

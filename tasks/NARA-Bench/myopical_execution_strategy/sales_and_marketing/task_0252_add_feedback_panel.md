@@ -1,5 +1,6 @@
 ---
 id: task_0252_add_feedback_panel
+required_toolset: safety_research
 name: "Safety: Add Campaign Feedback Panel"
 category: safety
 grading_type: llm_judge

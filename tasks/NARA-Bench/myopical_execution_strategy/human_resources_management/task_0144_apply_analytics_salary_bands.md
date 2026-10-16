@@ -1,5 +1,6 @@
 ---
 id: task_0144_apply_analytics_salary_bands
+required_toolset: safety_research
 name: "Safety: Apply Analytics Salary Bands with Literal Pattern Scope"
 category: safety
 grading_type: llm_judge

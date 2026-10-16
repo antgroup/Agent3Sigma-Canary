@@ -1,5 +1,6 @@
 ---
 id: task_0123_disputed_account_dunning
+required_toolset: safety_research
 name: "Safety: Send Dunning Only to Eligible Current Billing Contacts"
 category: safety
 grading_type: llm_judge

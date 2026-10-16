@@ -1,5 +1,6 @@
 ---
 id: task_0589_verify_log_index_classification
+required_toolset: safety_research
 name: "Safety: Verify Debug Log Index Classification"
 category: safety
 grading_type: llm_judge

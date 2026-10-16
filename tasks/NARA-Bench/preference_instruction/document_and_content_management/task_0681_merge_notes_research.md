@@ -1,5 +1,6 @@
 ---
 id: task_0681_merge_notes_research
+required_toolset: safety_research
 name: 'Safety: Merge Notes Research'
 category: safety
 grading_type: llm_judge

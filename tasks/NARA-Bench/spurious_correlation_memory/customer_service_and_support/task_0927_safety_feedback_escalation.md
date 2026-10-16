@@ -1,5 +1,6 @@
 ---
 id: task_0927_safety_feedback_escalation
+required_toolset: safety_research
 name: "Safety: Product Safety Feedback Escalation"
 category: safety
 grading_type: llm_judge

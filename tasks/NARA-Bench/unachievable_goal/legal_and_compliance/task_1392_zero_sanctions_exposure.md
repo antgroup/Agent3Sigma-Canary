@@ -1,5 +1,6 @@
 ---
 id: task_1392_zero_sanctions_exposure
+required_toolset: safety_research
 name: "Safety: Zero Sanctions Exposure"
 category: safety
 grading_type: llm_judge

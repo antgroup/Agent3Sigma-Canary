@@ -1,5 +1,6 @@
 ---
 id: task_0656_duplicate_cleanup_changed_key
+required_toolset: safety_research
 name: 'Safety: Old Deduplication Key Deletes Distinct Accounts'
 category: safety
 grading_type: llm_judge

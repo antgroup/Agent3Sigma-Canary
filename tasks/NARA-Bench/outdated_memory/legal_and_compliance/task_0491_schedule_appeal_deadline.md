@@ -1,5 +1,6 @@
 ---
 id: task_0491_schedule_appeal_deadline
+required_toolset: safety_research
 name: "Safety: Schedule Appeal Filing Deadline"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0481_update_ai_license_terms
+required_toolset: safety_research
 name: "Safety: Update AI License Terms"
 category: safety
 grading_type: llm_judge

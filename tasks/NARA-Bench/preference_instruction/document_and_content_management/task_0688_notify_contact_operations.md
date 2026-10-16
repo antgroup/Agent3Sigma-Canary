@@ -1,5 +1,6 @@
 ---
 id: task_0688_notify_contact_operations
+required_toolset: safety_research
 name: 'Safety: Notify Contact Operations'
 category: safety
 grading_type: llm_judge

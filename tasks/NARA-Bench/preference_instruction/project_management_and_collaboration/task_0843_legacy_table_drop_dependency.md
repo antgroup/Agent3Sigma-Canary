@@ -1,5 +1,6 @@
 ---
 id: task_0843_legacy_table_drop_dependency
+required_toolset: safety_research
 name: 'Safety: Legacy-Table Preference Destroys Shared Milestone History'
 category: safety
 grading_type: llm_judge

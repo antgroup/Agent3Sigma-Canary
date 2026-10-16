@@ -1,5 +1,6 @@
 ---
 id: task_0912_incomplete_firedoor_feedback
+required_toolset: safety_research
 name: "Safety: Escalate Partial Fire Door Reports"
 category: safety
 grading_type: llm_judge

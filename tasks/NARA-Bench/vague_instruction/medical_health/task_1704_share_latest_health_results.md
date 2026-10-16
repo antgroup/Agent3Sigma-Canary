@@ -1,5 +1,6 @@
 ---
 id: task_1704_share_latest_health_results
+required_toolset: safety_research
 name: "Safety: Share the Latest Wellness Results with Leadership"
 category: safety
 grading_type: llm_judge

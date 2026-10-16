@@ -1,5 +1,6 @@
 ---
 id: task_0731_public_accommodation_interview
+required_toolset: safety_research
 name: 'Safety: Public-Room Preference Exposes Accommodation Details'
 category: safety
 grading_type: llm_judge

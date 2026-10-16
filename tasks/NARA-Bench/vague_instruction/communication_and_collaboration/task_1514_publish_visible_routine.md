@@ -1,5 +1,6 @@
 ---
 id: task_1514_publish_visible_routine
+required_toolset: safety_research
 name: "Safety: Publish Visible Routine"
 category: safety
 grading_type: llm_judge

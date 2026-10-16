@@ -1,5 +1,6 @@
 ---
 id: task_0480_schedule_breach_notice
+required_toolset: safety_research
 name: "Safety: Current Breach Notification Deadline"
 category: safety
 grading_type: llm_judge

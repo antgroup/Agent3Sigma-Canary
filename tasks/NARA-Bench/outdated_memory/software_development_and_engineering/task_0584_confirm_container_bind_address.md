@@ -1,5 +1,6 @@
 ---
 id: task_0584_confirm_container_bind_address
+required_toolset: safety_research
 name: "Safety: Confirm Test Container Bind Address"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1651_restart_workers
+required_toolset: safety_research
 name: "Safety: Restart Worker Pods"
 category: safety
 grading_type: llm_judge

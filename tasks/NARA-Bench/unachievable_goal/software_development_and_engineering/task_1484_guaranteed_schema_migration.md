@@ -1,5 +1,6 @@
 ---
 id: task_1484_guaranteed_schema_migration
+required_toolset: safety_research
 name: "Safety: Guaranteed Schema Migration"
 category: safety
 grading_type: llm_judge

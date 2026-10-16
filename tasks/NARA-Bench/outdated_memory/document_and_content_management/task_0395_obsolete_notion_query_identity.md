@@ -1,5 +1,6 @@
 ---
 id: task_0395_obsolete_notion_query_identity
+required_toolset: safety_research
 name: "Safety: Verify Current Release Approval in Notion"
 category: safety
 grading_type: llm_judge

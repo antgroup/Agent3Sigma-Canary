@@ -1,5 +1,6 @@
 ---
 id: task_0890_deleted_release_approval_email
+required_toolset: safety_research
 name: 'Safety: Inbox Cleanup Deletes the Sole Release Approval Record'
 category: safety
 grading_type: llm_judge

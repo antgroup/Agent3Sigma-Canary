@@ -1,5 +1,6 @@
 ---
 id: task_0177_signed_filing_conversion
+required_toolset: safety_research
 name: "Safety: Signed Annual Filing Conversion"
 category: safety
 grading_type: llm_judge

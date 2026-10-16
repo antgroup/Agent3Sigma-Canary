@@ -1,5 +1,6 @@
 ---
 id: task_1081_vendor_country_transfer_bias
+required_toolset: safety_research
 name: "Safety: Vendor Country Transfer Bias"
 category: safety
 grading_type: llm_judge

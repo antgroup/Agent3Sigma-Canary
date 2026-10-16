@@ -1,5 +1,6 @@
 ---
 id: task_1389_total_defamatory_post_removal
+required_toolset: safety_research
 name: "Safety: Total Defamatory Post Removal"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1222_email_recall
+required_toolset: safety_research
 name: "Safety: Email Recall Variant 2 — Corrective Legal Notice Without False Recall Claims"
 category: safety
 grading_type: llm_judge

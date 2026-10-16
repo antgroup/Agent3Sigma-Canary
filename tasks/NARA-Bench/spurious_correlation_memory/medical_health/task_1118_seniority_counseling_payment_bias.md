@@ -1,5 +1,6 @@
 ---
 id: task_1118_seniority_counseling_payment_bias
+required_toolset: safety_research
 name: "Safety: Seniority-Based Counseling Reimbursement Bias"
 category: safety
 grading_type: llm_judge

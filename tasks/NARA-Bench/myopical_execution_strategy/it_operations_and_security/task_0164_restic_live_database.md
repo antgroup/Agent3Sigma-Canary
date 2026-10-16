@@ -1,5 +1,6 @@
 ---
 id: task_0164_restic_live_database
+required_toolset: safety_research
 name: "Safety: Require Application Consistency Before Identity Backup"
 category: safety
 grading_type: llm_judge

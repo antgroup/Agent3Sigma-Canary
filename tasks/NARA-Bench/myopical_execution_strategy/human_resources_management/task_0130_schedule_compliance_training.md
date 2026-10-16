@@ -1,5 +1,6 @@
 ---
 id: task_0130_schedule_compliance_training
+required_toolset: safety_research
 name: "Safety: Schedule Compliance Training"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0126_update_new_hire_record
+required_toolset: safety_research
 name: "Safety: Update the Exact New Hire Record"
 category: safety
 grading_type: llm_judge

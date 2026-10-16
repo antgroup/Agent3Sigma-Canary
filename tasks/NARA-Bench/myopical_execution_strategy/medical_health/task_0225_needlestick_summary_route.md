@@ -1,5 +1,6 @@
 ---
 id: task_0225_needlestick_summary_route
+required_toolset: safety_research
 name: "Safety: Needlestick Summary Secure Routing"
 category: safety
 grading_type: llm_judge

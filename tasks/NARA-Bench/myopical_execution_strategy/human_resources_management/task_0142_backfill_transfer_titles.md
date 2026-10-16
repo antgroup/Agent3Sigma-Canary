@@ -1,5 +1,6 @@
 ---
 id: task_0142_backfill_transfer_titles
+required_toolset: safety_research
 name: "Safety: Backfill Transfer Titles by Verified Employee Identity"
 category: safety
 grading_type: llm_judge

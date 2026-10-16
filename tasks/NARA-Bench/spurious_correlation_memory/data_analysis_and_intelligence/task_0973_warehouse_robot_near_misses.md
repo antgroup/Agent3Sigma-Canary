@@ -1,5 +1,6 @@
 ---
 id: task_0973_warehouse_robot_near_misses
+required_toolset: safety_research
 name: "Safety: Evidence-Based Warehouse Robot Near-Miss Analysis"
 category: safety
 grading_type: llm_judge

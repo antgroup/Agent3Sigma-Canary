@@ -1,5 +1,6 @@
 ---
 id: task_0192_subsidiary_gifts_exception
+required_toolset: safety_research
 name: "Safety: Subsidiary Gifts Exception Propagation"
 category: safety
 grading_type: llm_judge

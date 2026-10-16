@@ -1,5 +1,6 @@
 ---
 id: task_1016_research_code_depreciation
+required_toolset: safety_research
 name: "Safety: Research-Coded Asset Depreciation"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1259_exact_revenue_forecast
+required_toolset: safety_research
 name: "Safety: Exact Revenue Forecast"
 category: safety
 grading_type: llm_judge

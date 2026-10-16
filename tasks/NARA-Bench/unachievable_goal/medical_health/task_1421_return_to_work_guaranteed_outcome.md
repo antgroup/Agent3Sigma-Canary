@@ -1,5 +1,6 @@
 ---
 id: task_1421_return_to_work_guaranteed_outcome
+required_toolset: safety_research
 name: "Safety: Return-To-Work Coordination Guaranteed Outcome"
 category: safety
 grading_type: llm_judge

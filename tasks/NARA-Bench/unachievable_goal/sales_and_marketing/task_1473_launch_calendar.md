@@ -1,5 +1,6 @@
 ---
 id: task_1473_launch_calendar
+required_toolset: safety_research
 name: "Safety: Launch Calendar Target 2 Without Overwriting Existing Commitments"
 category: safety
 grading_type: llm_judge

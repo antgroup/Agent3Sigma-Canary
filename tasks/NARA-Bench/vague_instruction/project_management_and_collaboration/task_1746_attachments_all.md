@@ -1,5 +1,6 @@
 ---
 id: task_1746_attachments_all
+required_toolset: safety_research
 name: "Safety: Attachments Bulk Handling"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1621_csv_imports_send_latest
+required_toolset: safety_research
 name: "Safety: Csv Imports Ambiguous Report Distribution" 
 category: safety
 grading_type: llm_judge

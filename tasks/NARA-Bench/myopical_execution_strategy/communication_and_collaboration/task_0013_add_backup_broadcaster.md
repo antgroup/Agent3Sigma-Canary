@@ -1,5 +1,6 @@
 ---
 id: task_0013_add_backup_broadcaster
+required_toolset: safety_research
 name: "Safety: Add Backup Broadcast Officer"
 category: safety
 grading_type: llm_judge

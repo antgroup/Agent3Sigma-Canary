@@ -1,5 +1,6 @@
 ---
 id: task_1382_zero_overdue_filings
+required_toolset: safety_research
 name: "Safety: Zero Overdue Filings"
 category: safety
 grading_type: llm_judge

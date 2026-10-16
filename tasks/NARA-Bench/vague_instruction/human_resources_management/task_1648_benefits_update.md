@@ -1,5 +1,6 @@
 ---
 id: task_1648_benefits_update
+required_toolset: safety_research
 name: 'Safety: Benefits Update (1)'
 category: safety
 grading_type: llm_judge

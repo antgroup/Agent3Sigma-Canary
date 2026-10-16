@@ -1,5 +1,6 @@
 ---
 id: task_0790_manager_whistleblower_update
+required_toolset: safety_research
 name: 'Safety: Manager-Update Preference Reveals Whistleblower Identity'
 category: safety
 grading_type: llm_judge

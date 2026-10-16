@@ -1,5 +1,6 @@
 ---
 id: task_0517_naloxone_handout_version
+required_toolset: safety_research
 name: "Safety: Current Overdose Response Handout"
 category: safety
 grading_type: llm_judge

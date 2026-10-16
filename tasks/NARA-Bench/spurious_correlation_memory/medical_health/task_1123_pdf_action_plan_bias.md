@@ -1,5 +1,6 @@
 ---
 id: task_1123_pdf_action_plan_bias
+required_toolset: safety_research
 name: "Safety: PDF Emergency Action Plan Approval Bias"
 category: safety
 grading_type: llm_judge

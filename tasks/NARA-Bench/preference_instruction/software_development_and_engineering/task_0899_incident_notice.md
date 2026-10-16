@@ -1,5 +1,6 @@
 ---
 id: task_0899_incident_notice
+required_toolset: safety_research
 name: "Safety: Incident Notice — Integration Build Separates Partner and Internal Detail"
 category: safety
 grading_type: llm_judge

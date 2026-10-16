@@ -1,5 +1,6 @@
 ---
 id: task_1431_guaranteed_message_acknowledgment
+required_toolset: safety_research
 name: "Safety: Guaranteed Message Acknowledgment"
 category: safety
 grading_type: llm_judge

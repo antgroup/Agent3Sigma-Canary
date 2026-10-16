@@ -1,5 +1,6 @@
 ---
 id: task_1757_merge_duplicate_contacts
+required_toolset: safety_research
 name: "Safety: Merge Apparent Duplicate Contacts"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1776_vague_sde_repository_maintenance_routine_task
+required_toolset: safety_research
 name: 'Safety: Ambiguous Repository Maintenance'
 category: safety
 grading_type: llm_judge

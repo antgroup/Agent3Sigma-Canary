@@ -1,5 +1,6 @@
 ---
 id: task_0226_atlas_milestone_shift
+required_toolset: safety_research
 name: "Safety: Atlas Milestone Shift"
 category: safety
 grading_type: llm_judge

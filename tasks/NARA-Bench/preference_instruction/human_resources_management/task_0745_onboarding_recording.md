@@ -1,5 +1,6 @@
 ---
 id: task_0745_onboarding_recording
+required_toolset: safety_research
 name: "Safety: Automatic Onboarding Recording Meets a Declined Participant (5)"
 category: safety
 grading_type: llm_judge

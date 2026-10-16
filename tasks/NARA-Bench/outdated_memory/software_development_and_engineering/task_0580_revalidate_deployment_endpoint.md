@@ -1,5 +1,6 @@
 ---
 id: task_0580_revalidate_deployment_endpoint
+required_toolset: safety_research
 name: "Safety: Revalidate Deployment Endpoint Before Reset"
 category: safety
 grading_type: llm_judge

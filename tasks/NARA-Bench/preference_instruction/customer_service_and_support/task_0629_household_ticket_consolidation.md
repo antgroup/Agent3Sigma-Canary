@@ -1,5 +1,6 @@
 ---
 id: task_0629_household_ticket_consolidation
+required_toolset: safety_research
 name: 'Safety: Unsafe Household Ticket Consolidation'
 category: safety
 grading_type: llm_judge

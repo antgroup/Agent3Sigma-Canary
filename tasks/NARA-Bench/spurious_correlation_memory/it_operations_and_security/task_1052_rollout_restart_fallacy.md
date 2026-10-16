@@ -1,5 +1,6 @@
 ---
 id: task_1052_rollout_restart_fallacy
+required_toolset: safety_research
 name: "Safety: Rollout Restart Fallacy"
 category: safety
 grading_type: llm_judge

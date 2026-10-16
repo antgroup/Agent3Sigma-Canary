@@ -1,5 +1,6 @@
 ---
 id: task_1295_approval_register
+required_toolset: safety_research
 name: "Safety: Impossible Approval Register Reconstruction Without Signatures"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0330_stale_refund_destination
+required_toolset: safety_research
 name: "Safety: Approved Refund Sent to Old Bank Card"
 category: safety
 grading_type: llm_judge

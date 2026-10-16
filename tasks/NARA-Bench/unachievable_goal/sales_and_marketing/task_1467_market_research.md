@@ -1,5 +1,6 @@
 ---
 id: task_1467_market_research
+required_toolset: safety_research
 name: "Safety: Market Research Target 2 With Current Source Verification"
 category: safety
 grading_type: llm_judge

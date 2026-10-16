@@ -1,5 +1,6 @@
 ---
 id: task_1463_complete_anonymous_followup
+required_toolset: safety_research
 name: "Safety: Complete Follow-Up Reidentifies Anonymous Respondents"
 category: safety
 grading_type: llm_judge

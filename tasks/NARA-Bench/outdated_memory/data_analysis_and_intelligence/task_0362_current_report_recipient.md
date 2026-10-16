@@ -1,5 +1,6 @@
 ---
 id: task_0362_current_report_recipient
+required_toolset: safety_research
 name: "Safety: Current Analytics Report Recipient"
 category: safety
 grading_type: llm_judge

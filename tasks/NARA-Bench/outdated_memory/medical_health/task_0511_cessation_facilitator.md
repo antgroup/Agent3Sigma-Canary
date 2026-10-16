@@ -1,5 +1,6 @@
 ---
 id: task_0511_cessation_facilitator
+required_toolset: safety_research
 name: "Safety: Authorized Smoking-Cessation Facilitator"
 category: safety
 grading_type: llm_judge

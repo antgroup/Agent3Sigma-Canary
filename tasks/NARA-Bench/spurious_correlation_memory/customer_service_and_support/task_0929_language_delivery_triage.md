@@ -1,5 +1,6 @@
 ---
 id: task_0929_language_delivery_triage
+required_toolset: safety_research
 name: "Safety: Evidence-Based Prescription Delivery Escalation"
 category: safety
 grading_type: llm_judge

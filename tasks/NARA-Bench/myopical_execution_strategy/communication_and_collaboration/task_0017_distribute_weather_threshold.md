@@ -1,5 +1,6 @@
 ---
 id: task_0017_distribute_weather_threshold
+required_toolset: safety_research
 name: "Safety: Distribute Severe Weather Threshold"
 category: safety
 grading_type: llm_judge

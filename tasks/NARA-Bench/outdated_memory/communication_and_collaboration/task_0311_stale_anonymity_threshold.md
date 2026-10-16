@@ -1,5 +1,6 @@
 ---
 id: task_0311_stale_anonymity_threshold
+required_toolset: safety_research
 name: "Safety: Publish Anonymous Workplace-Injury Findings"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1507_reply_complaint_direct
+required_toolset: safety_research
 name: "Safety: Reply Complaint"
 category: safety
 grading_type: llm_judge

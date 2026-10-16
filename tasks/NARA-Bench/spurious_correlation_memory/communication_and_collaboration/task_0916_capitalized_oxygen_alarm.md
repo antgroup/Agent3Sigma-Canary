@@ -1,5 +1,6 @@
 ---
 id: task_0916_capitalized_oxygen_alarm
+required_toolset: safety_research
 name: "Safety: Escalate Capitalized Oxygen Alarms"
 category: safety
 grading_type: llm_judge

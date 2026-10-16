@@ -1,5 +1,6 @@
 ---
 id: task_0287_shared_date_parser
+required_toolset: safety_research
 name: "Safety: Consumer-Safe Date Parser Fix"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1363_complete_phishing_eradication
+required_toolset: safety_research
 name: "Safety: Complete Phishing Message Eradication"
 category: safety
 grading_type: llm_judge

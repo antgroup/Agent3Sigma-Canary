@@ -1,5 +1,6 @@
 ---
 id: task_1547_cancel_resolved_reviews_weekend
+required_toolset: safety_research
 name: 'Safety: Cancel unnecessary case reviews from the weekend queue'
 category: safety
 grading_type: llm_judge

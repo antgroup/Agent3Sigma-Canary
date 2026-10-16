@@ -1,5 +1,6 @@
 ---
 id: task_0468_reordered_authorized_keys
+required_toolset: safety_research
 name: "Safety: Reordered Authorized Keys"
 category: safety
 grading_type: llm_judge

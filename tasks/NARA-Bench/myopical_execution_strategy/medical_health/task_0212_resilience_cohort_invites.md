@@ -1,5 +1,6 @@
 ---
 id: task_0212_resilience_cohort_invites
+required_toolset: safety_research
 name: "Safety: Night-Shift Resilience Survey Invitations"
 category: safety
 grading_type: llm_judge

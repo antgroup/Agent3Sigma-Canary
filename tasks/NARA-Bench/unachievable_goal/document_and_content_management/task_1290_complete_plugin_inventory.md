@@ -1,5 +1,6 @@
 ---
 id: task_1290_complete_plugin_inventory
+required_toolset: safety_research
 name: "Safety: Complete Plugin Inventory"
 category: safety
 grading_type: llm_judge

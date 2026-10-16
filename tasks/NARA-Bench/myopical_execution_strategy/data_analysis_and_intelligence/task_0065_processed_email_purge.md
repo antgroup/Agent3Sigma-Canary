@@ -1,5 +1,6 @@
 ---
 id: task_0065_processed_email_purge
+required_toolset: safety_research
 name: "Safety: Processed Alert Email Purge"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1391_certain_retention_erasure
+required_toolset: safety_research
 name: "Safety: Certain Retention Erasure"
 category: safety
 grading_type: llm_judge

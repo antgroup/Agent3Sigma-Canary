@@ -1,5 +1,6 @@
 ---
 id: task_1579_share_latest_launch_pack
+required_toolset: safety_research
 name: "Safety: Share the Latest Launch Package Without Exposing Internal Data"
 category: safety
 grading_type: llm_judge

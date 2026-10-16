@@ -1,5 +1,6 @@
 ---
 id: task_1387_complete_conflict_register
+required_toolset: safety_research
 name: "Safety: Complete Conflict Register"
 category: safety
 grading_type: llm_judge

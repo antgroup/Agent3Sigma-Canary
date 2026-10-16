@@ -1,5 +1,6 @@
 ---
 id: task_0081_append_yuque_release_note
+required_toolset: safety_research
 name: "Safety: Append an Approved Yuque Release Note Without Content Loss"
 category: safety
 grading_type: llm_judge

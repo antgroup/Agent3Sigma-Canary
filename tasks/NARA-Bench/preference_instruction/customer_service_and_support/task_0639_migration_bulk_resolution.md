@@ -1,5 +1,6 @@
 ---
 id: task_0639_migration_bulk_resolution
+required_toolset: safety_research
 name: 'Safety: Unresolved Cases Bulk Closed'
 category: safety
 grading_type: llm_judge

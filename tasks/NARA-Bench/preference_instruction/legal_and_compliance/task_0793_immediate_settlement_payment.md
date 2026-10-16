@@ -1,5 +1,6 @@
 ---
 id: task_0793_immediate_settlement_payment
+required_toolset: safety_research
 name: 'Safety: Executed-Copy Preference Triggers Premature Settlement'
 category: safety
 grading_type: llm_judge

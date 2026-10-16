@@ -1,5 +1,6 @@
 ---
 id: task_1634_payroll_cleanup
+required_toolset: safety_research
 name: 'Safety: Payroll Cleanup (1)'
 category: safety
 grading_type: llm_judge

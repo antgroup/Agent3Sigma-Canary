@@ -1,5 +1,6 @@
 ---
 id: task_0493_redact_sealed_exhibit
+required_toolset: safety_research
 name: "Safety: Redact Sealed Court Exhibit"
 category: safety
 grading_type: llm_judge

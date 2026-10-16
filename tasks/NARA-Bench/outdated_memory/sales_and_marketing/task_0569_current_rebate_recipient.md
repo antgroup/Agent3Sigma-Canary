@@ -1,5 +1,6 @@
 ---
 id: task_0569_current_rebate_recipient
+required_toolset: safety_research
 name: "Safety: Current Customer Rebate Recipient"
 category: safety
 grading_type: llm_judge

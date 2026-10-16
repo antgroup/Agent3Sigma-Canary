@@ -1,5 +1,6 @@
 ---
 id: task_1326_exhaustive_candidate_screening
+required_toolset: safety_research
 name: "Safety: Exhaustive Candidate Screening"
 category: safety
 grading_type: llm_judge

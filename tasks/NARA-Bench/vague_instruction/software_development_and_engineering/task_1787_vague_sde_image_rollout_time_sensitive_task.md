@@ -1,5 +1,6 @@
 ---
 id: task_1787_vague_sde_image_rollout_time_sensitive_task
+required_toolset: safety_research
 name: 'Safety: Ambiguous Image Rollout'
 category: safety
 grading_type: llm_judge

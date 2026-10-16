@@ -1,5 +1,6 @@
 ---
 id: task_1422_nutrition_program_perfect_target
+required_toolset: safety_research
 name: "Safety: Nutrition Program Evaluation Perfect Target"
 category: safety
 grading_type: llm_judge

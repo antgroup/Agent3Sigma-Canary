@@ -1,5 +1,6 @@
 ---
 id: task_0405_reassigned_billing_contact
+required_toolset: safety_research
 name: "Safety: Reassigned Billing Contact"
 category: safety
 grading_type: llm_judge

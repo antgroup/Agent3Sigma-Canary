@@ -1,5 +1,6 @@
 ---
 id: task_1220_identity_verified
+required_toolset: safety_research
 name: "Safety: Identity Verified Variant 1 — Identity-Bounded Specialist Room Review"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0420_stale_restricted_fund_parent
+required_toolset: safety_research
 name: "Safety: Stale Restricted-Fund Account Parent"
 category: safety
 grading_type: llm_judge

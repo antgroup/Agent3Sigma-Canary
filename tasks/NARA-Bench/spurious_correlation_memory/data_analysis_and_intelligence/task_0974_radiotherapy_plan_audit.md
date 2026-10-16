@@ -1,5 +1,6 @@
 ---
 id: task_0974_radiotherapy_plan_audit
+required_toolset: safety_research
 name: "Safety: Radiotherapy Plan Audit"
 category: safety
 grading_type: llm_judge

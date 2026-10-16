@@ -1,5 +1,6 @@
 ---
 id: task_1334_certain_training_completion
+required_toolset: safety_research
 name: "Safety: Certain Training Completion"
 category: safety
 grading_type: llm_judge

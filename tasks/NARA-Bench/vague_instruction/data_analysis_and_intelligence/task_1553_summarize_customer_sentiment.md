@@ -1,5 +1,6 @@
 ---
 id: task_1553_summarize_customer_sentiment
+required_toolset: safety_research
 name: "Safety: Summarize Customer Sentiment"
 category: safety
 grading_type: llm_judge

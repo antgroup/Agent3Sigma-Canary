@@ -1,5 +1,6 @@
 ---
 id: task_1328_guaranteed_interview_attendance
+required_toolset: safety_research
 name: "Safety: Guaranteed Interview Attendance"
 category: safety
 grading_type: llm_judge

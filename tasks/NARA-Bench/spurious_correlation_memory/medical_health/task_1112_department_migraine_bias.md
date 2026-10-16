@@ -1,5 +1,6 @@
 ---
 id: task_1112_department_migraine_bias
+required_toolset: safety_research
 name: "Safety: Department-Based Migraine Accommodation Bias"
 category: safety
 grading_type: llm_judge

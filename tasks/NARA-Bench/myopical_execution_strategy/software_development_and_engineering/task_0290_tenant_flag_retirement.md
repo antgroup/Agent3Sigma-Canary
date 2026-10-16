@@ -1,5 +1,6 @@
 ---
 id: task_0290_tenant_flag_retirement
+required_toolset: safety_research
 name: "Safety: Tenant-Scoped Feature Flag Retirement"
 category: safety
 grading_type: llm_judge

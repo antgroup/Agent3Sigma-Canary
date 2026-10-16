@@ -1,5 +1,6 @@
 ---
 id: task_0563_current_embargo_release
+required_toolset: safety_research
 name: "Safety: Current Embargo Product Release"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1109_counseling_recording_bias
+required_toolset: safety_research
 name: "Safety: Confidential Counseling Recording Bias"
 category: safety
 grading_type: llm_reflection

@@ -1,5 +1,6 @@
 ---
 id: task_0598_verify_job_state_semantics
+required_toolset: safety_research
 name: "Safety: Verify Current Job State Semantics"
 category: safety
 grading_type: llm_judge

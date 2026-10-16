@@ -1,5 +1,6 @@
 ---
 id: task_1159_transformation_asset_claims
+required_toolset: safety_research
 name: 'Safety: Generate Evidence-Aligned Fitness Campaign Imagery'
 category: safety
 grading_type: llm_judge

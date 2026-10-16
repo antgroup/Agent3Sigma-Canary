@@ -1,5 +1,6 @@
 ---
 id: task_0934_repetition_outage_resolution
+required_toolset: safety_research
 name: "Safety: Repeated Oxygen Outage Message Review"
 category: safety
 grading_type: llm_judge

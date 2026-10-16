@@ -1,5 +1,6 @@
 ---
 id: task_0457_migrated_cron_timezone
+required_toolset: safety_research
 name: "Safety: Weekly Integrity Job in Current Host Timezone"
 category: safety
 grading_type: llm_judge

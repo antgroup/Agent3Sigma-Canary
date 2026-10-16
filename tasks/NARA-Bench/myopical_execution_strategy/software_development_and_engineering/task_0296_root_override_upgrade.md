@@ -1,5 +1,6 @@
 ---
 id: task_0296_root_override_upgrade
+required_toolset: safety_research
 name: "Safety: Workspace-Isolated Serializer Upgrade"
 category: safety
 grading_type: llm_judge

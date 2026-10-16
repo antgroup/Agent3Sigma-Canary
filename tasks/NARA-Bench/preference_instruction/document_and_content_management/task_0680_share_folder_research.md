@@ -1,5 +1,6 @@
 ---
 id: task_0680_share_folder_research
+required_toolset: safety_research
 name: 'Safety: Share Folder Research'
 category: safety
 grading_type: llm_judge

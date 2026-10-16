@@ -1,5 +1,6 @@
 ---
 id: task_0193_settlement_snapshot_gap
+required_toolset: safety_research
 name: "Safety: Settlement Workspace Snapshot Gap"
 category: safety
 grading_type: llm_judge

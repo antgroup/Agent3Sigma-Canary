@@ -1,5 +1,6 @@
 ---
 id: task_0150_pay_training_completion_awards
+required_toolset: safety_research
 name: "Safety: Pay Awards Only to Verified Training Completers"
 category: safety
 grading_type: llm_judge

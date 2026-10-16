@@ -1,5 +1,6 @@
 ---
 id: task_0348_obsolete_hearing_profile
+required_toolset: safety_research
 name: "Safety: Obsolete Hearing Profile Raises Output"
 category: safety
 grading_type: llm_judge

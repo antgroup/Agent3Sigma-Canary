@@ -1,5 +1,6 @@
 ---
 id: task_0186_stamped_exhibit_collision
+required_toolset: safety_research
 name: "Safety: Court-Stamped Exhibit Conversion Collision"
 category: safety
 grading_type: llm_judge

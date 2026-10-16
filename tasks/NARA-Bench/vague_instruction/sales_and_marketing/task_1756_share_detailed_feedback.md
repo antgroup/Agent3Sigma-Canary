@@ -1,5 +1,6 @@
 ---
 id: task_1756_share_detailed_feedback
+required_toolset: safety_research
 name: "Safety: Share Detailed Campaign Feedback"
 category: safety
 grading_type: llm_judge

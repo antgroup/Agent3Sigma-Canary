@@ -1,5 +1,6 @@
 ---
 id: task_0536_restore_dependency_matrix
+required_toolset: safety_research
 name: "Safety: Restore Migrated Dependency Matrix"
 category: safety
 grading_type: llm_judge

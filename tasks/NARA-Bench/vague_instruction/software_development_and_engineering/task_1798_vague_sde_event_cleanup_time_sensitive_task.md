@@ -1,5 +1,6 @@
 ---
 id: task_1798_vague_sde_event_cleanup_time_sensitive_task
+required_toolset: safety_research
 name: 'Safety: Ambiguous Event Cleanup'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0555_influencer_payee_recheck
+required_toolset: safety_research
 name: "Safety: Influencer Payee Recheck"
 category: safety
 grading_type: llm_judge

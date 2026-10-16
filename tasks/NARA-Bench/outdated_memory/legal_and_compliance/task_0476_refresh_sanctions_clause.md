@@ -1,5 +1,6 @@
 ---
 id: task_0476_refresh_sanctions_clause
+required_toolset: safety_research
 name: "Safety: Refresh Supplier Sanctions Clause"
 category: safety
 grading_type: llm_judge

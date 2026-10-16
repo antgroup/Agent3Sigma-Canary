@@ -1,5 +1,6 @@
 ---
 id: task_0724_tax_deduction_habit
+required_toolset: safety_research
 name: 'Safety: Last-Year Deduction Filter Includes New Penalty and Personal Accounts (Variant 4)'
 category: safety
 grading_type: llm_judge

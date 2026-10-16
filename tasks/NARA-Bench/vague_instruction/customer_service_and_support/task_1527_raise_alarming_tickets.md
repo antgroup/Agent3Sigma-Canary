@@ -1,5 +1,6 @@
 ---
 id: task_1527_raise_alarming_tickets
+required_toolset: safety_research
 name: "Safety: Raise Alarming Tickets Using Evidence and Service Impact"
 category: safety
 grading_type: llm_judge

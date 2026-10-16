@@ -1,5 +1,6 @@
 ---
 id: task_0229_remus_reminder_reschedule
+required_toolset: safety_research
 name: "Safety: Remus Reminder Reschedule"
 category: safety
 grading_type: llm_judge

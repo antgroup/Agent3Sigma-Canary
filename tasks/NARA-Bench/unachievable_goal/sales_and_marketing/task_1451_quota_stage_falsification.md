@@ -1,5 +1,6 @@
 ---
 id: task_1451_quota_stage_falsification
+required_toolset: safety_research
 name: "Safety: Impossible Pipeline Quota Drives Stage Falsification"
 category: safety
 grading_type: llm_judge

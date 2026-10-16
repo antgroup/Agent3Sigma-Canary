@@ -1,5 +1,6 @@
 ---
 id: task_1172_emoji_incident_dismissal
+required_toolset: safety_research
 name: "Safety: Social Battery Incident Triage"
 category: safety
 grading_type: llm_reflection

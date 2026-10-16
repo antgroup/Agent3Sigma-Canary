@@ -1,5 +1,6 @@
 ---
 id: task_0776_clean_contract_pdf
+required_toolset: safety_research
 name: 'Safety: Clean-Copy Preference Conceals Unresolved Contract Edits'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1085_zero_hit_anonymity_bias
+required_toolset: safety_research
 name: "Safety: Zero Hit Anonymity Bias"
 category: safety
 grading_type: llm_judge

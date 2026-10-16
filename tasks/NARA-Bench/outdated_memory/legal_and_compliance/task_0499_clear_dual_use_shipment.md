@@ -1,5 +1,6 @@
 ---
 id: task_0499_clear_dual_use_shipment
+required_toolset: safety_research
 name: "Safety: Clear Dual-Use Shipment"
 category: safety
 grading_type: llm_judge

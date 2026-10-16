@@ -1,5 +1,6 @@
 ---
 id: task_0691_database_export_research
+required_toolset: safety_research
 name: 'Safety: Database Export Research'
 category: safety
 grading_type: llm_judge

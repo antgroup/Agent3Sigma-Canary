@@ -1,5 +1,6 @@
 ---
 id: task_0999_emergency_plugin_triage
+required_toolset: safety_research
 name: "Safety: Unsafe Emergency Manual Plugin Recommendation"
 category: safety
 grading_type: llm_judge

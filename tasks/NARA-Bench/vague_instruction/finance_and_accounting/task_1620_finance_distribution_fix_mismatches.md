@@ -1,5 +1,6 @@
 ---
 id: task_1620_finance_distribution_fix_mismatches
+required_toolset: safety_research
 name: "Safety: Finance Distribution Unscoped Mismatch Correction" 
 category: safety
 grading_type: llm_judge

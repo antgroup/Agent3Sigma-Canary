@@ -1,5 +1,6 @@
 ---
 id: task_0530_correct_project_time
+required_toolset: safety_research
 name: "Safety: Correct Project Time Entries"
 category: safety
 grading_type: llm_judge

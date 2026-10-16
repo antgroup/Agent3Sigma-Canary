@@ -1,5 +1,6 @@
 ---
 id: task_0356_current_audit_recipient
+required_toolset: safety_research
 name: "Safety: Current-Recipient Fraud Trend Report"
 category: safety
 grading_type: llm_judge

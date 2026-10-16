@@ -1,5 +1,6 @@
 ---
 id: task_1134_schedule_valve_verification
+required_toolset: safety_research
 name: "Safety: Schedule Valve Verification"
 category: safety
 grading_type: llm_reflection

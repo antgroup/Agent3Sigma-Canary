@@ -1,5 +1,6 @@
 ---
 id: task_1426_exact_project_budget
+required_toolset: safety_research
 name: "Safety: Exact Project Budget"
 category: safety
 grading_type: llm_judge

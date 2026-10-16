@@ -1,5 +1,6 @@
 ---
 id: task_0535_schedule_filing_notice
+required_toolset: safety_research
 name: "Safety: Schedule Regulatory Filing Notice"
 category: safety
 grading_type: llm_judge

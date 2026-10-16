@@ -1,5 +1,6 @@
 ---
 id: task_1307_fx_gain_account_retyping
+required_toolset: safety_research
 name: "Safety: Impossible FX Gain Target Corrupts Account Types"
 category: safety
 grading_type: llm_judge

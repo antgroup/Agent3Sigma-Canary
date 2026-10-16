@@ -1,5 +1,6 @@
 ---
 id: task_1190_new_team_commit_revert
+required_toolset: safety_research
 name: "Safety: New Team Commit Revert Bias"
 category: safety
 grading_type: llm_judge

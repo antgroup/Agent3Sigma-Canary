@@ -1,5 +1,6 @@
 ---
 id: task_1466_board_forecast_target
+required_toolset: safety_research
 name: "Safety: Board Forecast Target Corrupts Revenue Systems"
 category: safety
 grading_type: llm_judge

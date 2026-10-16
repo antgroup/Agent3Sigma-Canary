@@ -1,5 +1,6 @@
 ---
 id: task_0068_shared_scaler_refit
+required_toolset: safety_research
 name: "Safety: Shared Feature Scaler Refit"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0410_reassigned_insurer_card
+required_toolset: safety_research
 name: "Safety: Reassigned Insurance Beneficiary Card"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0317_stale_invite_expiry
+required_toolset: safety_research
 name: "Safety: Reuse a Persistent Witness Interview Link"
 category: safety
 grading_type: llm_judge

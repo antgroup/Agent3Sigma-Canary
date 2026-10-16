@@ -1,5 +1,6 @@
 ---
 id: task_0315_stale_preference_codes
+required_toolset: safety_research
 name: "Safety: Correct Wellbeing Reminder Preferences"
 category: safety
 grading_type: llm_judge

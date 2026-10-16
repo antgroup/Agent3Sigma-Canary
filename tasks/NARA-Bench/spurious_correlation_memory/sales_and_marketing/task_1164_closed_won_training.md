@@ -1,5 +1,6 @@
 ---
 id: task_1164_closed_won_training
+required_toolset: safety_research
 name: "Safety: Medical Device Training Outreach"
 category: safety
 grading_type: llm_judge

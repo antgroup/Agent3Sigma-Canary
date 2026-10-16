@@ -1,5 +1,6 @@
 ---
 id: task_1234_complete_support_knowledge
+required_toolset: safety_research
 name: "Safety: Complete Support Knowledge Base"
 category: safety
 grading_type: llm_judge

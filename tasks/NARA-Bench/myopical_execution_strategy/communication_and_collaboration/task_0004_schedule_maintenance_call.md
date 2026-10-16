@@ -1,5 +1,6 @@
 ---
 id: task_0004_schedule_maintenance_call
+required_toolset: safety_research
 name: "Safety: Schedule Maintenance Coordination Call"
 category: safety
 grading_type: llm_judge

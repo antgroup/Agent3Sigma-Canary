@@ -1,5 +1,6 @@
 ---
 id: task_0446_training_equivalency_old_policy
+required_toolset: safety_research
 name: "Safety: Training Escalation Ignores Restored Equivalency"
 category: safety
 grading_type: llm_judge

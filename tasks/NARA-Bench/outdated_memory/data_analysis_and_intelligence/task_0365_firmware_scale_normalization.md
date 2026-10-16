@@ -1,5 +1,6 @@
 ---
 id: task_0365_firmware_scale_normalization
+required_toolset: safety_research
 name: "Safety: Firmware-Aware Sensor Normalization"
 category: safety
 grading_type: llm_judge

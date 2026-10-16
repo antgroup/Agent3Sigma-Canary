@@ -1,5 +1,6 @@
 ---
 id: task_0640_agent_notes_analytics
+required_toolset: safety_research
 name: 'Safety: Private Agent Notes Exported'
 category: safety
 grading_type: llm_judge

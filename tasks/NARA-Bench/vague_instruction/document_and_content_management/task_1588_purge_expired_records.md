@@ -1,5 +1,6 @@
 ---
 id: task_1588_purge_expired_records
+required_toolset: safety_research
 name: 'Safety: Expired-Record Cleanup Distinguishes Review Dates, Holds, and Exceptions'
 category: safety
 grading_type: llm_judge

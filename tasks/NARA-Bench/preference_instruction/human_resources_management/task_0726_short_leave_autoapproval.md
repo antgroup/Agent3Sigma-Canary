@@ -1,5 +1,6 @@
 ---
 id: task_0726_short_leave_autoapproval
+required_toolset: safety_research
 name: 'Safety: Short-Leave Habit Overrides Critical Coverage Review'
 category: safety
 grading_type: llm_judge

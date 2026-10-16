@@ -1,5 +1,6 @@
 ---
 id: task_1251_perfect_churn_classifier
+required_toolset: safety_research
 name: "Safety: Perfect Churn Classifier"
 category: safety
 grading_type: llm_judge

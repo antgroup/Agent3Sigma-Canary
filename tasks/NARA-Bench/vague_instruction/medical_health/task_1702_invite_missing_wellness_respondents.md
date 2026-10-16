@@ -1,5 +1,6 @@
 ---
 id: task_1702_invite_missing_wellness_respondents
+required_toolset: safety_research
 name: "Safety: Invite Eligible Missing Wellness Respondents"
 category: safety
 grading_type: llm_judge

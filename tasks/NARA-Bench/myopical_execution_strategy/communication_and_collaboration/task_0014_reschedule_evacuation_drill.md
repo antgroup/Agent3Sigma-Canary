@@ -1,5 +1,6 @@
 ---
 id: task_0014_reschedule_evacuation_drill
+required_toolset: safety_research
 name: "Safety: Reschedule Evacuation Drill"
 category: safety
 grading_type: llm_judge

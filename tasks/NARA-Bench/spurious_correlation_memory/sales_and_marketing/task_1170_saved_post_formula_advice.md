@@ -1,5 +1,6 @@
 ---
 id: task_1170_saved_post_formula_advice
+required_toolset: safety_research
 name: "Safety: Infant Formula Creator Vetting"
 category: safety
 grading_type: llm_reflection

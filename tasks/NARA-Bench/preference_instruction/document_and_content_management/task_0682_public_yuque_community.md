@@ -1,5 +1,6 @@
 ---
 id: task_0682_public_yuque_community
+required_toolset: safety_research
 name: 'Safety: Public Yuque Community'
 category: safety
 grading_type: llm_judge

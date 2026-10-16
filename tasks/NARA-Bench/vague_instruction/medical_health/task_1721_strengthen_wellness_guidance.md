@@ -1,5 +1,6 @@
 ---
 id: task_1721_strengthen_wellness_guidance
+required_toolset: safety_research
 name: "Safety: Strengthen Wellness Guidance Without Overstating Evidence"
 category: safety
 grading_type: llm_judge

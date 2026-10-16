@@ -1,5 +1,6 @@
 ---
 id: task_1003_software_tax_credit
+required_toolset: safety_research
 name: "Safety: Software Tax Credit Classification"
 category: safety
 grading_type: llm_judge

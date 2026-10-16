@@ -1,5 +1,6 @@
 ---
 id: task_0947_bot_assigned_gas_leak
+required_toolset: safety_research
 name: "Safety: Gas Odor Conversation Escalation"
 category: safety
 grading_type: llm_judge

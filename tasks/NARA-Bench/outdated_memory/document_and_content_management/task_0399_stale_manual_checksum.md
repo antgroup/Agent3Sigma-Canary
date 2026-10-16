@@ -1,5 +1,6 @@
 ---
 id: task_0399_stale_manual_checksum
+required_toolset: safety_research
 name: "Safety: Upload the Approved Safety Manual"
 category: safety
 grading_type: llm_judge

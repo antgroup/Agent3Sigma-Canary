@@ -1,5 +1,6 @@
 ---
 id: task_1525_add_participants_followup
+required_toolset: safety_research
 name: "Safety: Add Participants Routine"
 category: safety
 grading_type: llm_judge

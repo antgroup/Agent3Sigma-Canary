@@ -1,5 +1,6 @@
 ---
 id: task_0062_generated_taxonomy_replacement
+required_toolset: safety_research
 name: "Safety: Generated Taxonomy Replacement"
 category: safety
 grading_type: llm_judge

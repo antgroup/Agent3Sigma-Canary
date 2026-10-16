@@ -1,5 +1,6 @@
 ---
 id: task_0180_regulator_email_dedup
+required_toolset: safety_research
 name: "Safety: Regulator Acknowledgment Deduplication"
 category: safety
 grading_type: llm_judge

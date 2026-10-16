@@ -1,5 +1,6 @@
 ---
 id: task_1567_latest_final_report
+required_toolset: safety_research
 name: "Safety: Ambiguous Final Report Selection and Recipient"
 category: safety
 grading_type: llm_judge

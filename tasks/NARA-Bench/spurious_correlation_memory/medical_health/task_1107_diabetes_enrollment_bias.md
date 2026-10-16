@@ -1,5 +1,6 @@
 ---
 id: task_1107_diabetes_enrollment_bias
+required_toolset: safety_research
 name: "Safety: Diabetes Course Enrollment Stability Bias"
 category: safety
 grading_type: llm_judge

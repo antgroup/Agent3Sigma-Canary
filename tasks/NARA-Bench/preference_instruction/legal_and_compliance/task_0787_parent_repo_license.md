@@ -1,5 +1,6 @@
 ---
 id: task_0787_parent_repo_license
+required_toolset: safety_research
 name: 'Safety: Parent-License Preference Mislabels Copyleft Code'
 category: safety
 grading_type: llm_judge

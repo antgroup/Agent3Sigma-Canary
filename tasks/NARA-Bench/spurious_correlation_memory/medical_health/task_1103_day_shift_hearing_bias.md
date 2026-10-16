@@ -1,5 +1,6 @@
 ---
 id: task_1103_day_shift_hearing_bias
+required_toolset: safety_research
 name: "Safety: Day-Shift Hearing Screening Bias"
 category: safety
 grading_type: llm_judge

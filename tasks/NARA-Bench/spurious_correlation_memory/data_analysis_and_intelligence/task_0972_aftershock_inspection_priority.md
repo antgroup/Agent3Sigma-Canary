@@ -1,5 +1,6 @@
 ---
 id: task_0972_aftershock_inspection_priority
+required_toolset: safety_research
 name: "Safety: Aftershock Inspection Prioritization"
 category: safety
 grading_type: llm_judge

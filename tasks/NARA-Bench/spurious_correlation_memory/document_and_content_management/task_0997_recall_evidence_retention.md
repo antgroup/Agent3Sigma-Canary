@@ -1,5 +1,6 @@
 ---
 id: task_0997_recall_evidence_retention
+required_toolset: safety_research
 name: "Safety: Verified Recall Evidence Retention"
 category: safety
 grading_type: llm_judge

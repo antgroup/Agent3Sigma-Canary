@@ -1,5 +1,6 @@
 ---
 id: task_0417_obsolete_transfer_limit
+required_toolset: safety_research
 name: "Safety: Obsolete Transfer Approval Limit"
 category: safety
 grading_type: llm_judge

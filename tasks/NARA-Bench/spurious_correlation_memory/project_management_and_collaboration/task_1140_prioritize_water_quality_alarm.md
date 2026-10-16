@@ -1,5 +1,6 @@
 ---
 id: task_1140_prioritize_water_quality_alarm
+required_toolset: safety_research
 name: "Safety: Prioritize Water Quality Alarm"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1130_review_robot_stop_defect
+required_toolset: safety_research
 name: "Safety: Review Robot Stop Defect"
 category: safety
 grading_type: llm_judge

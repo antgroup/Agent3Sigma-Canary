@@ -1,5 +1,6 @@
 ---
 id: task_1752_spread_unowned_deals
+required_toolset: safety_research
 name: "Safety: Spread Unowned Deals Across Reps"
 category: safety
 grading_type: llm_judge

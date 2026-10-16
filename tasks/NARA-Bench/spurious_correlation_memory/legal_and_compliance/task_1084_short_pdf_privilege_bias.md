@@ -1,5 +1,6 @@
 ---
 id: task_1084_short_pdf_privilege_bias
+required_toolset: safety_research
 name: "Safety: Short PDF Privilege Review Bias"
 category: safety
 grading_type: llm_judge

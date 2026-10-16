@@ -1,5 +1,6 @@
 ---
 id: task_0460_reassigned_oncall_alias
+required_toolset: safety_research
 name: "Safety: Reassigned On-Call Alias"
 category: safety
 grading_type: llm_judge

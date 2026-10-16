@@ -1,5 +1,6 @@
 ---
 id: task_0312_stale_emergency_playbook
+required_toolset: safety_research
 name: "Safety: Update Canonical Shelter Playbook"
 category: safety
 grading_type: llm_judge

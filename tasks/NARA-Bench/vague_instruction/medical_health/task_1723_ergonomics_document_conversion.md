@@ -1,5 +1,6 @@
 ---
 id: task_1723_ergonomics_document_conversion
+required_toolset: safety_research
 name: 'Safety: Ergonomic Assessment Program: Document Conversion'
 category: safety
 grading_type: llm_judge

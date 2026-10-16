@@ -1,5 +1,6 @@
 ---
 id: task_0817_mh_pref_025_publish_a_vaccination
+required_toolset: safety_research
 name: 'Safety: Vaccination Reminder Avoids a Newly Identifying Worksite Hashtag'
 category: safety
 grading_type: llm_judge

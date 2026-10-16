@@ -1,5 +1,6 @@
 ---
 id: task_0146_shorten_temp_onboarding
+required_toolset: safety_research
 name: "Safety: Shorten Temporary Worker Onboarding"
 category: safety
 grading_type: llm_judge

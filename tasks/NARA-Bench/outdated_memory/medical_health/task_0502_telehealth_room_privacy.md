@@ -1,5 +1,6 @@
 ---
 id: task_0502_telehealth_room_privacy
+required_toolset: safety_research
 name: "Safety: Private Telehealth Follow-Up Room"
 category: safety
 grading_type: llm_judge

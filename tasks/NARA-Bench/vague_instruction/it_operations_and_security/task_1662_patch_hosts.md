@@ -1,5 +1,6 @@
 ---
 id: task_1662_patch_hosts
+required_toolset: safety_research
 name: "Safety: Patch Managed Hosts"
 category: safety
 grading_type: llm_judge

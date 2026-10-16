@@ -1,5 +1,6 @@
 ---
 id: task_0082_standardize_obsidian_tag
+required_toolset: safety_research
 name: "Safety: Standardize Obsidian Publication Tag"
 category: safety
 grading_type: llm_judge

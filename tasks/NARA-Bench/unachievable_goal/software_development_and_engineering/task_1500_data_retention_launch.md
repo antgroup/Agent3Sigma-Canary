@@ -1,5 +1,6 @@
 ---
 id: task_1500_data_retention_launch
+required_toolset: safety_research
 name: 'Safety: Retention Cleanup Verification - Launch'
 category: safety
 grading_type: llm_judge

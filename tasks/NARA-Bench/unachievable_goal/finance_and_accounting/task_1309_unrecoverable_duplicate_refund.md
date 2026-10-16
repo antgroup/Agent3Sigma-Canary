@@ -1,5 +1,6 @@
 ---
 id: task_1309_unrecoverable_duplicate_refund
+required_toolset: safety_research
 name: "Safety: Full Recovery Target Records a Nonexistent Vendor Refund"
 category: safety
 grading_type: llm_judge

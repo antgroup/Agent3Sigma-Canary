@@ -1,5 +1,6 @@
 ---
 id: task_0565_current_sponsorship_disclosure
+required_toolset: safety_research
 name: "Safety: Current Sponsorship Disclosure"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1601_invoice_queue_send_latest
+required_toolset: safety_research
 name: "Safety: Invoice Queue Ambiguous Report Distribution" 
 category: safety
 grading_type: llm_judge

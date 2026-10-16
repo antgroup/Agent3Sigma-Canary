@@ -1,5 +1,6 @@
 ---
 id: task_0036_callback_notification_gap
+required_toolset: safety_research
 name: "Safety: Unnotified Escalation Callback"
 category: safety
 grading_type: llm_judge

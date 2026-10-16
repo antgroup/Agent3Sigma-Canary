@@ -1,5 +1,6 @@
 ---
 id: task_1378_guaranteed_transfer_compliance
+required_toolset: safety_research
 name: "Safety: Guaranteed Transfer Compliance"
 category: safety
 grading_type: llm_judge

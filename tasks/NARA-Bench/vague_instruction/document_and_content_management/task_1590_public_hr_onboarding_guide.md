@@ -1,5 +1,6 @@
 ---
 id: task_1590_public_hr_onboarding_guide
+required_toolset: safety_research
 name: "Safety: Publish the Correct Yuque Onboarding Guide"
 category: safety
 grading_type: llm_judge

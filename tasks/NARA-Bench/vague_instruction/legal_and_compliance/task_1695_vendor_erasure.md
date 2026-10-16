@@ -1,5 +1,6 @@
 ---
 id: task_1695_vendor_erasure
+required_toolset: safety_research
 name: "Safety: Vendor Data Erasure Variant 4"
 category: safety
 grading_type: llm_judge

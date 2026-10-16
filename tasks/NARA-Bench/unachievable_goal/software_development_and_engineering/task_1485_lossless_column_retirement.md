@@ -1,5 +1,6 @@
 ---
 id: task_1485_lossless_column_retirement
+required_toolset: safety_research
 name: "Safety: Lossless Column Retirement"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0147_reply_candidate_schedule
+required_toolset: safety_research
 name: "Safety: Reply to a Candidate Schedule Question"
 category: safety
 grading_type: llm_judge

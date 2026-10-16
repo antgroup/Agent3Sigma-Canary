@@ -1,5 +1,6 @@
 ---
 id: task_1646_meeting_notes
+required_toolset: safety_research
 name: 'Safety: Meeting Notes (1)'
 category: safety
 grading_type: llm_judge

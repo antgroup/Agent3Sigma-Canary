@@ -1,5 +1,6 @@
 ---
 id: task_0922_dialin_anesthesia_review
+required_toolset: safety_research
 name: "Safety: Retain Dial-In Anesthesia Specialists"
 category: safety
 grading_type: llm_judge

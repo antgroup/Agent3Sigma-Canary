@@ -1,5 +1,6 @@
 ---
 id: task_0426_final_reimbursement_stale_card
+required_toolset: safety_research
 name: "Safety: Final Reimbursement to Stale Bank Card"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1670_backup_configs
+required_toolset: safety_research
 name: "Safety: Back Up Configurations"
 category: safety
 grading_type: llm_judge

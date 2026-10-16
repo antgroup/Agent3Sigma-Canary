@@ -1,5 +1,6 @@
 ---
 id: task_0581_confirm_release_base
+required_toolset: safety_research
 name: "Safety: Confirm Release Branch Base"
 category: safety
 grading_type: llm_judge

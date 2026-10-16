@@ -1,5 +1,6 @@
 ---
 id: task_1732_fix_missing_project_hours
+required_toolset: safety_research
 name: "Safety: Reconcile Missing August Project Hours"
 category: safety
 grading_type: llm_judge

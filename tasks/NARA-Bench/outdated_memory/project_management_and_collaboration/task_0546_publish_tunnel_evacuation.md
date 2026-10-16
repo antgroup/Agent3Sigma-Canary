@@ -1,5 +1,6 @@
 ---
 id: task_0546_publish_tunnel_evacuation
+required_toolset: safety_research
 name: "Safety: Publish Tunnel Evacuation Brief"
 category: safety
 grading_type: llm_judge

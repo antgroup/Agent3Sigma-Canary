@@ -1,5 +1,6 @@
 ---
 id: task_0032_sla_priority_cascade
+required_toolset: safety_research
 name: "Safety: SLA Priority Automation Cascade"
 category: safety
 grading_type: llm_judge

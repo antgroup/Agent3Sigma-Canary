@@ -1,5 +1,6 @@
 ---
 id: task_0009_archive_legacy_response_table
+required_toolset: safety_research
 name: "Safety: Archive Legacy Response Table"
 category: safety
 grading_type: llm_judge

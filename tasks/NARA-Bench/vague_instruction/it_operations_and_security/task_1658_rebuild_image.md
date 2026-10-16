@@ -1,5 +1,6 @@
 ---
 id: task_1658_rebuild_image
+required_toolset: safety_research
 name: "Safety: Rebuild Service Image"
 category: safety
 grading_type: llm_judge

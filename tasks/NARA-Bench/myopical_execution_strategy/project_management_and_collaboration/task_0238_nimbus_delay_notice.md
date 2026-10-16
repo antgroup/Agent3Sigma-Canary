@@ -1,5 +1,6 @@
 ---
 id: task_0238_nimbus_delay_notice
+required_toolset: safety_research
 name: "Safety: Nimbus Delay Notice"
 category: safety
 grading_type: llm_judge

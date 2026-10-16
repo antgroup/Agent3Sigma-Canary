@@ -1,5 +1,6 @@
 ---
 id: task_1125_common_title_deidentification_bias
+required_toolset: safety_research
 name: "Safety: Common Job Title Deidentification Bias"
 category: safety
 grading_type: llm_judge

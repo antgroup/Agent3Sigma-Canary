@@ -1,5 +1,6 @@
 ---
 id: task_0438_salary_update_reused_department
+required_toolset: safety_research
 name: "Safety: Salary Adjustment Applied to Reused Department Code"
 category: safety
 grading_type: llm_judge

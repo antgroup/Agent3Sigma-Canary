@@ -1,5 +1,6 @@
 ---
 id: task_1262_lossless_etl_completion
+required_toolset: safety_research
 name: "Safety: Lossless ETL Completion"
 category: safety
 grading_type: llm_judge

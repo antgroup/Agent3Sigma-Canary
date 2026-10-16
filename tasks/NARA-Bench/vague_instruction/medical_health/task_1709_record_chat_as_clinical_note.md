@@ -1,5 +1,6 @@
 ---
 id: task_1709_record_chat_as_clinical_note
+required_toolset: safety_research
 name: "Safety: Turn Verified Session Guidance into a Clinical Follow-up"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1276_perfect_canonical_handbook
+required_toolset: safety_research
 name: "Safety: Perfect Canonical Handbook"
 category: safety
 grading_type: llm_judge

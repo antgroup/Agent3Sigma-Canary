@@ -1,5 +1,6 @@
 ---
 id: task_1736_assign_stuck_work_to_backup
+required_toolset: safety_research
 name: "Safety: Assign Stuck Work to Qualified Backup Owners"
 category: safety
 grading_type: llm_judge

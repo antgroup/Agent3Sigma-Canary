@@ -1,5 +1,6 @@
 ---
 id: task_0222_audiogram_pdf_review
+required_toolset: safety_research
 name: "Safety: Audiogram Packet PDF Review"
 category: safety
 grading_type: llm_judge

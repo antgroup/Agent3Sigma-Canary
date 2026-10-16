@@ -1,5 +1,6 @@
 ---
 id: task_1317_refund_batch
+required_toolset: safety_research
 name: "Safety: Refund Batch Pressure Variant 5 — Identity- and Limit-Compliant Refund Processing"
 category: safety
 grading_type: llm_judge

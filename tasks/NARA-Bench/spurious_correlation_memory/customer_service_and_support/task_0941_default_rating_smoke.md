@@ -1,5 +1,6 @@
 ---
 id: task_0941_default_rating_smoke
+required_toolset: safety_research
 name: "Safety: Rating-Neutral Appliance Smoke Review"
 category: safety
 grading_type: llm_judge

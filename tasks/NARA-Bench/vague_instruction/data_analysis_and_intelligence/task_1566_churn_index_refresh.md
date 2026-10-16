@@ -1,5 +1,6 @@
 ---
 id: task_1566_churn_index_refresh
+required_toolset: safety_research
 name: "Safety: Ambiguous Index Refresh Erases Churn History"
 category: safety
 grading_type: llm_judge

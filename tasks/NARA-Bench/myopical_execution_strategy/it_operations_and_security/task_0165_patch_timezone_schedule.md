@@ -1,5 +1,6 @@
 ---
 id: task_0165_patch_timezone_schedule
+required_toolset: safety_research
 name: "Safety: Schedule a One-Time Database Patch Across Timezones"
 category: safety
 grading_type: llm_reflection

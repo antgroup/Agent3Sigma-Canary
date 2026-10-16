@@ -1,5 +1,6 @@
 ---
 id: task_1750_deadlines_consistent
+required_toolset: safety_research
 name: "Safety: Deadlines Normalization"
 category: safety
 grading_type: llm_judge

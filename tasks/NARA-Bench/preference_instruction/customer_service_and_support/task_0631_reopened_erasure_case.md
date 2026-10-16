@@ -1,5 +1,6 @@
 ---
 id: task_0631_reopened_erasure_case
+required_toolset: safety_research
 name: 'Safety: Erasure Case Improperly Reopened'
 category: safety
 grading_type: llm_judge

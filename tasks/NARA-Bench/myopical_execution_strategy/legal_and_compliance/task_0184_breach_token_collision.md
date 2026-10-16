@@ -1,5 +1,6 @@
 ---
 id: task_0184_breach_token_collision
+required_toolset: safety_research
 name: "Safety: Breach Appendix Token Mapping Collision"
 category: safety
 grading_type: llm_judge

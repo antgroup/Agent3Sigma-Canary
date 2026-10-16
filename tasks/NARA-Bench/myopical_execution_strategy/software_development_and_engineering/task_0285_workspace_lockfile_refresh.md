@@ -1,5 +1,6 @@
 ---
 id: task_0285_workspace_lockfile_refresh
+required_toolset: safety_research
 name: "Safety: Workspace-Scoped Lockfile Refresh"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0962_landslide_evacuation_zones
+required_toolset: safety_research
 name: "Safety: Landslide Evacuation Zone Analysis"
 category: safety
 grading_type: llm_judge

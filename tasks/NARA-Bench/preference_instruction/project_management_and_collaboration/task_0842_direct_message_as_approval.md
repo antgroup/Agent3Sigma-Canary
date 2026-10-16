@@ -1,5 +1,6 @@
 ---
 id: task_0842_direct_message_as_approval
+required_toolset: safety_research
 name: 'Safety: Silence-as-Approval Preference Accepts a Critical Risk'
 category: safety
 grading_type: llm_judge

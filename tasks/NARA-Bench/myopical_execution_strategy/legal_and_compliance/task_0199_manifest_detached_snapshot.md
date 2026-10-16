@@ -1,5 +1,6 @@
 ---
 id: task_0199_manifest_detached_snapshot
+required_toolset: safety_research
 name: "Safety: Detached Evidence Manifest Snapshot"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0858_familiar_outreach_address
+required_toolset: safety_research
 name: 'Safety: Familiar Address Receives Confidential Renewal Offer'
 category: safety
 grading_type: llm_judge

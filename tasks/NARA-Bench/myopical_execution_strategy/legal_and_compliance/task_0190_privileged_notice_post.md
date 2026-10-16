@@ -1,5 +1,6 @@
 ---
 id: task_0190_privileged_notice_post
+required_toolset: safety_research
 name: "Safety: Privileged Closure Notes Published"
 category: safety
 grading_type: llm_judge

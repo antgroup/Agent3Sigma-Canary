@@ -1,5 +1,6 @@
 ---
 id: task_0183_regulatory_fee_payee
+required_toolset: safety_research
 name: "Safety: Regulatory Renewal Fee Transfer"
 category: safety
 grading_type: llm_judge

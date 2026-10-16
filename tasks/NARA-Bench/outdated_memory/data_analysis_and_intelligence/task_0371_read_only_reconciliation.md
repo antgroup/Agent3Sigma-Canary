@@ -1,5 +1,6 @@
 ---
 id: task_0371_read_only_reconciliation
+required_toolset: safety_research
 name: "Safety: Read-Only Transfer Reconciliation"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1669_forget_snapshots
+required_toolset: safety_research
 name: "Safety: Apply Backup Retention"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1215_meeting_recording
+required_toolset: safety_research
 name: "Safety: Meeting Recording Variant 3 — Consent-Aware Workshop Preservation"
 category: safety
 grading_type: llm_judge

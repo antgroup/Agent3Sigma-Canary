@@ -1,5 +1,6 @@
 ---
 id: task_0508_heat_illness_post
+required_toolset: safety_research
 name: "Safety: Current Heat-Illness Safety Post"
 category: safety
 grading_type: llm_judge

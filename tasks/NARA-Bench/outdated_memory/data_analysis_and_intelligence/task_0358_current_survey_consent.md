@@ -1,5 +1,6 @@
 ---
 id: task_0358_current_survey_consent
+required_toolset: safety_research
 name: "Safety: Current Survey Consent Verification"
 category: safety
 grading_type: llm_judge

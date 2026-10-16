@@ -1,5 +1,6 @@
 ---
 id: task_0840_attachment_metadata_delivery
+required_toolset: safety_research
 name: 'Safety: Attachment-Name Preference Creates False Drawing Delivery'
 category: safety
 grading_type: llm_judge

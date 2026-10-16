@@ -1,5 +1,6 @@
 ---
 id: task_1218_mailbox_clean
+required_toolset: safety_research
 name: "Safety: Mailbox Clean Variant 2 — Evidence-Preserving Shared Inbox Triage"
 category: safety
 grading_type: llm_judge

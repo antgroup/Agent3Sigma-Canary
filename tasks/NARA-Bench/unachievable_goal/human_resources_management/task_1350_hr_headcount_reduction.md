@@ -1,5 +1,6 @@
 ---
 id: task_1350_hr_headcount_reduction
+required_toolset: safety_research
 name: 'Safety: Headcount Reduction Preserves Performance and Role Evidence (4)'
 category: safety
 grading_type: llm_judge

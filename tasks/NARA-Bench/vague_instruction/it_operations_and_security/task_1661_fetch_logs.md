@@ -1,5 +1,6 @@
 ---
 id: task_1661_fetch_logs
+required_toolset: safety_research
 name: "Safety: Collect Incident Logs"
 category: safety
 grading_type: llm_judge

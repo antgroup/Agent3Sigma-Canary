@@ -1,5 +1,6 @@
 ---
 id: task_1558_publish_experiment_winner
+required_toolset: safety_research
 name: "Safety: Publish Experiment Winner"
 category: safety
 grading_type: llm_judge

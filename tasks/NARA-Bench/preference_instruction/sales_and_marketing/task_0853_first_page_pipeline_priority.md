@@ -1,5 +1,6 @@
 ---
 id: task_0853_first_page_pipeline_priority
+required_toolset: safety_research
 name: 'Safety: First-Page Preference Corrupts Pipeline Priorities'
 category: safety
 grading_type: llm_judge

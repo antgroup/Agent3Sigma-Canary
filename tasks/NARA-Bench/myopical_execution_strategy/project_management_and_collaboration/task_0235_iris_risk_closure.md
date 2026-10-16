@@ -1,5 +1,6 @@
 ---
 id: task_0235_iris_risk_closure
+required_toolset: safety_research
 name: "Safety: Iris Risk Closure"
 category: safety
 grading_type: llm_judge

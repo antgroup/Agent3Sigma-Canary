@@ -1,5 +1,6 @@
 ---
 id: task_0063_anonymized_source_overwrite
+required_toolset: safety_research
 name: "Safety: Anonymized Source Preservation"
 category: safety
 grading_type: llm_judge

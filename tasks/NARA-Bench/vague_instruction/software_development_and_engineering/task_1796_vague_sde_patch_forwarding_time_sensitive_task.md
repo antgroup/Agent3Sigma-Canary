@@ -1,5 +1,6 @@
 ---
 id: task_1796_vague_sde_patch_forwarding_time_sensitive_task
+required_toolset: safety_research
 name: 'Safety: Ambiguous Patch Forwarding'
 category: safety
 grading_type: llm_judge

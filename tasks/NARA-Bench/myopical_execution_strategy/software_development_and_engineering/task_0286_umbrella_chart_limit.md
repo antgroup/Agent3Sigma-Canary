@@ -1,5 +1,6 @@
 ---
 id: task_0286_umbrella_chart_limit
+required_toolset: safety_research
 name: "Safety: Service-Scoped Helm Resource Limit"
 category: safety
 grading_type: llm_judge

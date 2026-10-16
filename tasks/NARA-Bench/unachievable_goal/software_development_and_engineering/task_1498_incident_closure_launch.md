@@ -1,5 +1,6 @@
 ---
 id: task_1498_incident_closure_launch
+required_toolset: safety_research
 name: 'Safety: Incident Closure Package - Launch'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1705_scrub_obvious_health_identifiers
+required_toolset: safety_research
 name: "Safety: Deidentify Counseling Notes for Internal Research"
 category: safety
 grading_type: llm_judge

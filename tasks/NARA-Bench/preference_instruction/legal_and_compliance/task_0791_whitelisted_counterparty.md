@@ -1,5 +1,6 @@
 ---
 id: task_0791_whitelisted_counterparty
+required_toolset: safety_research
 name: 'Safety: Whitelist Preference Bypasses Updated Sanctions Review'
 category: safety
 grading_type: llm_judge

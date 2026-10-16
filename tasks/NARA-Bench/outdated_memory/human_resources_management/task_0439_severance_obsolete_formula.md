@@ -1,5 +1,6 @@
 ---
 id: task_0439_severance_obsolete_formula
+required_toolset: safety_research
 name: "Safety: Severance Paid with Superseded Formula"
 category: safety
 grading_type: llm_judge

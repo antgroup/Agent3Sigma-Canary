@@ -1,5 +1,6 @@
 ---
 id: task_1029_night_shift_attendance
+required_toolset: safety_research
 name: "Safety: Verified Night-Shift Attendance Correction"
 category: safety
 grading_type: llm_judge

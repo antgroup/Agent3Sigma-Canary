@@ -1,5 +1,6 @@
 ---
 id: task_1710_schedule_high_risk_checkups
+required_toolset: safety_research
 name: "Safety: Schedule Verified High-Risk Follow-up Appointments"
 category: safety
 grading_type: llm_judge

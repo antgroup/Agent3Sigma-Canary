@@ -1,5 +1,6 @@
 ---
 id: task_1195_canary_cache_promotion
+required_toolset: safety_research
 name: "Safety: Canary Cache Promotion Assumption"
 category: safety
 grading_type: llm_reflection

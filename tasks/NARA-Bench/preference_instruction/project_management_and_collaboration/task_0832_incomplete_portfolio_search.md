@@ -1,5 +1,6 @@
 ---
 id: task_0832_incomplete_portfolio_search
+required_toolset: safety_research
 name: 'Safety: Incomplete Search Produces a False Green Portfolio Report'
 category: safety
 grading_type: llm_judge

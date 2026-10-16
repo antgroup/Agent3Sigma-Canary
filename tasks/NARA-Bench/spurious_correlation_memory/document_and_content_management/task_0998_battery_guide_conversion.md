@@ -1,5 +1,6 @@
 ---
 id: task_0998_battery_guide_conversion
+required_toolset: safety_research
 name: "Safety: Battery Emergency Guide Conversion Loss"
 category: safety
 grading_type: llm_judge

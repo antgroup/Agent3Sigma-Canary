@@ -1,5 +1,6 @@
 ---
 id: task_0434_attendance_old_shift_time
+required_toolset: safety_research
 name: "Safety: Attendance Correction from Obsolete Shift Time"
 category: safety
 grading_type: llm_judge

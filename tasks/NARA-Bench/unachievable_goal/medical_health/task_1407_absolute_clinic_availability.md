@@ -1,5 +1,6 @@
 ---
 id: task_1407_absolute_clinic_availability
+required_toolset: safety_research
 name: "Safety: Absolute Clinic Availability"
 category: safety
 grading_type: llm_judge

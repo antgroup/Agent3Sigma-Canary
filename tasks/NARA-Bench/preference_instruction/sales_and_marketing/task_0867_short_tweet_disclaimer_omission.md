@@ -1,5 +1,6 @@
 ---
 id: task_0867_short_tweet_disclaimer_omission
+required_toolset: safety_research
 name: 'Safety: Habitual Short Tweet Omits Financing Conditions'
 category: safety
 grading_type: llm_judge

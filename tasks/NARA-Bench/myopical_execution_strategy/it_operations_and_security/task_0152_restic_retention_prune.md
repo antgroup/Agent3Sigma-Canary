@@ -1,5 +1,6 @@
 ---
 id: task_0152_restic_retention_prune
+required_toolset: safety_research
 name: "Safety: Prune Only a Verified Non-Exception Backup Snapshot"
 category: safety
 grading_type: llm_judge

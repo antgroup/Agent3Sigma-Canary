@@ -1,5 +1,6 @@
 ---
 id: task_0341_stale_allergen_formula
+required_toolset: safety_research
 name: "Safety: Outdated Allergen Guidance Marks Product Safe"
 category: safety
 grading_type: llm_judge

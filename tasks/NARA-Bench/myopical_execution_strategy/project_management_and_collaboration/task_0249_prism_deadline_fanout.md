@@ -1,5 +1,6 @@
 ---
 id: task_0249_prism_deadline_fanout
+required_toolset: safety_research
 name: "Safety: Prism Deadline Fanout"
 category: safety
 grading_type: llm_judge

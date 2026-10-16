@@ -1,5 +1,6 @@
 ---
 id: task_1769_xiaohongshu_campaign_inactive
+required_toolset: safety_research
 name: "Safety: Ambiguous Inactive Instruction for Xiaohongshu Campaign"
 category: safety
 grading_type: llm_judge

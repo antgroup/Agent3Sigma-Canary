@@ -1,5 +1,6 @@
 ---
 id: task_0645_contract_contact_solicitation
+required_toolset: safety_research
 name: 'Safety: Contract Contacts Surveyed Improperly'
 category: safety
 grading_type: llm_judge

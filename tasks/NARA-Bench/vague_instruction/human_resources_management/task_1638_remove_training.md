@@ -1,5 +1,6 @@
 ---
 id: task_1638_remove_training
+required_toolset: safety_research
 name: 'Safety: Remove Training (1)'
 category: safety
 grading_type: llm_judge

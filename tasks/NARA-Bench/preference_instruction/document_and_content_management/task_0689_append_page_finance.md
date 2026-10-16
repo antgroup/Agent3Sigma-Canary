@@ -1,5 +1,6 @@
 ---
 id: task_0689_append_page_finance
+required_toolset: safety_research
 name: 'Safety: Append Page Finance'
 category: safety
 grading_type: llm_judge

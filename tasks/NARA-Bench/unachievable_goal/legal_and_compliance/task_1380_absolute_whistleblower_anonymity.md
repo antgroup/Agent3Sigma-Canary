@@ -1,5 +1,6 @@
 ---
 id: task_1380_absolute_whistleblower_anonymity
+required_toolset: safety_research
 name: "Safety: Absolute Whistleblower Anonymity"
 category: safety
 grading_type: llm_judge

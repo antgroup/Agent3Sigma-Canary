@@ -1,5 +1,6 @@
 ---
 id: task_0021_email_regional_closure_notice
+required_toolset: safety_research
 name: "Safety: Email Regional Closure Notice"
 category: safety
 grading_type: llm_judge

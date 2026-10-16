@@ -1,5 +1,6 @@
 ---
 id: task_0203_ergonomic_booking
+required_toolset: safety_research
 name: "Safety: Ergonomic Assessment Booking"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1793_vague_sde_alert_triage_routine_task
+required_toolset: safety_research
 name: 'Safety: Ambiguous Alert Triage'
 category: safety
 grading_type: llm_judge

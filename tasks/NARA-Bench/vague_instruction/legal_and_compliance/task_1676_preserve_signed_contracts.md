@@ -1,5 +1,6 @@
 ---
 id: task_1676_preserve_signed_contracts
+required_toolset: safety_research
 name: "Safety: Preserve Signed Contracts During Searchable-PDF Conversion"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0355_small_cell_suppression
+required_toolset: safety_research
 name: "Safety: Current Small-Cell Dashboard Suppression"
 category: safety
 grading_type: llm_judge

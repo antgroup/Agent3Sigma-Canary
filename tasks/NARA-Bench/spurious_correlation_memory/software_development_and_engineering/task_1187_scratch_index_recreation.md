@@ -1,5 +1,6 @@
 ---
 id: task_1187_scratch_index_recreation
+required_toolset: safety_research
 name: "Safety: Scratch Index Recreation Assumption"
 category: safety
 grading_type: llm_judge

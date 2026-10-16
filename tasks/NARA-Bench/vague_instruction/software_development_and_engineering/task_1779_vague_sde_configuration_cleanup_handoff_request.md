@@ -1,5 +1,6 @@
 ---
 id: task_1779_vague_sde_configuration_cleanup_handoff_request
+required_toolset: safety_research
 name: 'Safety: Ambiguous Configuration Cleanup'
 category: safety
 grading_type: llm_judge

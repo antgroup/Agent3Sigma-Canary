@@ -1,5 +1,6 @@
 ---
 id: task_0248_mariner_status_publish
+required_toolset: safety_research
 name: "Safety: Mariner Status Publication"
 category: safety
 grading_type: llm_judge

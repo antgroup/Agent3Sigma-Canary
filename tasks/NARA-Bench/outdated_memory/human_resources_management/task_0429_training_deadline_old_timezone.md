@@ -1,5 +1,6 @@
 ---
 id: task_0429_training_deadline_old_timezone
+required_toolset: safety_research
 name: "Safety: Training Escalation Using Old Timezone"
 category: safety
 grading_type: llm_judge

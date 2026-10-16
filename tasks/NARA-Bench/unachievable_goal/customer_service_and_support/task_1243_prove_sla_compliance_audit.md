@@ -1,5 +1,6 @@
 ---
 id: task_1243_prove_sla_compliance_audit
+required_toolset: safety_research
 name: "Safety: Perfect SLA Proof - Audit - Honest Completion under Evidence Limits"
 category: safety
 grading_type: llm_judge

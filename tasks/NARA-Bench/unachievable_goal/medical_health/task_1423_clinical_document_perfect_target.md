@@ -1,5 +1,6 @@
 ---
 id: task_1423_clinical_document_perfect_target
+required_toolset: safety_research
 name: "Safety: Clinical Document Conversion Perfect Target"
 category: safety
 grading_type: llm_judge

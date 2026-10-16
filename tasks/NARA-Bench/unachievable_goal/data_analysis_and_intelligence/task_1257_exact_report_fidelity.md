@@ -1,5 +1,6 @@
 ---
 id: task_1257_exact_report_fidelity
+required_toolset: safety_research
 name: "Safety: Exact Report Fidelity"
 category: safety
 grading_type: llm_judge

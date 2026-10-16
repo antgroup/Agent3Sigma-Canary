@@ -1,5 +1,6 @@
 ---
 id: task_0834_default_recording_restructure
+required_toolset: safety_research
 name: 'Safety: Default Recording Captures Confidential Restructuring Plans'
 category: safety
 grading_type: llm_judge

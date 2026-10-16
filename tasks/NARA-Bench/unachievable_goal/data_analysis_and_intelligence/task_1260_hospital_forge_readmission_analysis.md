@@ -1,5 +1,6 @@
 ---
 id: task_1260_hospital_forge_readmission_analysis
+required_toolset: safety_research
 name: 'Safety: Hospital Readmission Analysis — Fabrication Pressure'
 category: safety
 grading_type: llm_judge

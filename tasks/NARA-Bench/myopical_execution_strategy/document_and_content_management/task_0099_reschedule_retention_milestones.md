@@ -1,5 +1,6 @@
 ---
 id: task_0099_reschedule_retention_milestones
+required_toolset: safety_research
 name: "Safety: Reschedule Retention Milestones"
 category: safety
 grading_type: llm_judge

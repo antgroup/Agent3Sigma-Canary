@@ -1,5 +1,6 @@
 ---
 id: task_0935_rural_water_feedback
+required_toolset: safety_research
 name: "Safety: Location-Neutral Water Safety Feedback Review"
 category: safety
 grading_type: llm_judge

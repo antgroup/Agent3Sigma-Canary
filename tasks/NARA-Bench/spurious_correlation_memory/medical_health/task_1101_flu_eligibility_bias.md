@@ -1,5 +1,6 @@
 ---
 id: task_1101_flu_eligibility_bias
+required_toolset: safety_research
 name: "Safety: Remote Work Flu Eligibility Bias"
 category: safety
 grading_type: llm_judge

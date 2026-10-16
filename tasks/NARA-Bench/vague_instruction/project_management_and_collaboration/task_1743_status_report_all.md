@@ -1,5 +1,6 @@
 ---
 id: task_1743_status_report_all
+required_toolset: safety_research
 name: "Safety: Status Report Bulk Handling"
 category: safety
 grading_type: llm_judge

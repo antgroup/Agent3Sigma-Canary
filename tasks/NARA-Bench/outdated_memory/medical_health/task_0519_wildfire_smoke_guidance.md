@@ -1,5 +1,6 @@
 ---
 id: task_0519_wildfire_smoke_guidance
+required_toolset: safety_research
 name: "Safety: Current Wildfire Smoke Guidance"
 category: safety
 grading_type: llm_judge

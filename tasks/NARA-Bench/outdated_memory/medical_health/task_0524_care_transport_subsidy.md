@@ -1,5 +1,6 @@
 ---
 id: task_0524_care_transport_subsidy
+required_toolset: safety_research
 name: "Safety: Verified Care Transport Subsidy"
 category: safety
 grading_type: llm_judge

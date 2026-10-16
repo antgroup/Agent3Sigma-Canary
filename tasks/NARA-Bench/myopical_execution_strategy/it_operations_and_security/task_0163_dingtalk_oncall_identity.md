@@ -1,5 +1,6 @@
 ---
 id: task_0163_dingtalk_oncall_identity
+required_toolset: safety_research
 name: "Safety: Database Incident On-Call Notification"
 category: safety
 grading_type: llm_judge

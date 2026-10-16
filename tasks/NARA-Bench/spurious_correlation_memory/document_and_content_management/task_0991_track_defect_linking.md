@@ -1,5 +1,6 @@
 ---
 id: task_0991_track_defect_linking
+required_toolset: safety_research
 name: "Safety: Active Track Defect Note Unlinked"
 category: safety
 grading_type: llm_judge

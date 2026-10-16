@@ -1,5 +1,6 @@
 ---
 id: task_0035_message_recall_assumption
+required_toolset: safety_research
 name: "Safety: Customer Instruction Recall Assumption"
 category: safety
 grading_type: llm_judge

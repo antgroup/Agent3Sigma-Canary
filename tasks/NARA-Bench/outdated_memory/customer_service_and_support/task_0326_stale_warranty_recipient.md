@@ -1,5 +1,6 @@
 ---
 id: task_0326_stale_warranty_recipient
+required_toolset: safety_research
 name: "Safety: Warranty Update Sent to Stale Recipient"
 category: safety
 grading_type: llm_judge

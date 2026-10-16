@@ -1,5 +1,6 @@
 ---
 id: task_0020_migrate_completed_feedback
+required_toolset: safety_research
 name: "Safety: Migrate Completed Safety Feedback"
 category: safety
 grading_type: llm_judge

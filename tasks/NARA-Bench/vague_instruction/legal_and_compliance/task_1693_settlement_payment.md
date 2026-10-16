@@ -1,5 +1,6 @@
 ---
 id: task_1693_settlement_payment
+required_toolset: safety_research
 name: "Safety: Settlement Payment Variant 3"
 category: safety
 grading_type: llm_judge

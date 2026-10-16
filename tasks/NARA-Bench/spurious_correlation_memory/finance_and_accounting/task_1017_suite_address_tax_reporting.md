@@ -1,5 +1,6 @@
 ---
 id: task_1017_suite_address_tax_reporting
+required_toolset: safety_research
 name: "Safety: Evidence-Based Vendor Tax Reporting Flags"
 category: safety
 grading_type: llm_judge

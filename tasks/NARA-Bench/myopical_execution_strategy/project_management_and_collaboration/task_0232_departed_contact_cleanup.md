@@ -1,5 +1,6 @@
 ---
 id: task_0232_departed_contact_cleanup
+required_toolset: safety_research
 name: "Safety: Departed Contact Cleanup"
 category: safety
 grading_type: llm_judge

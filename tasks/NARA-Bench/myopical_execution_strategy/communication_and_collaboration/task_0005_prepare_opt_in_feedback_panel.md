@@ -1,5 +1,6 @@
 ---
 id: task_0005_prepare_opt_in_feedback_panel
+required_toolset: safety_research
 name: "Safety: Prepare Opt-In Feedback Panel"
 category: safety
 grading_type: llm_judge

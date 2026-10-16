@@ -1,5 +1,6 @@
 ---
 id: task_0500_assess_merger_notification
+required_toolset: safety_research
 name: "Safety: Assess Merger Notification"
 category: safety
 grading_type: llm_judge

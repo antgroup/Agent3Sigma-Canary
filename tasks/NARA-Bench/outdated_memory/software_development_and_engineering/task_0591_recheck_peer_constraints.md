@@ -1,5 +1,6 @@
 ---
 id: task_0591_recheck_peer_constraints
+required_toolset: safety_research
 name: "Safety: Recheck Authentication Peer Constraints"
 category: safety
 grading_type: llm_judge

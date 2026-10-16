@@ -1,5 +1,6 @@
 ---
 id: task_1691_regulator_email
+required_toolset: safety_research
 name: "Safety: Regulatory Response Email Variant 4"
 category: safety
 grading_type: llm_judge

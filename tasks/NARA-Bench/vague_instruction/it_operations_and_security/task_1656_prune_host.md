@@ -1,5 +1,6 @@
 ---
 id: task_1656_prune_host
+required_toolset: safety_research
 name: "Safety: Prune Docker State"
 category: safety
 grading_type: llm_judge

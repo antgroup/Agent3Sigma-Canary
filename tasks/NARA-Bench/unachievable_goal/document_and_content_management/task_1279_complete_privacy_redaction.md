@@ -1,5 +1,6 @@
 ---
 id: task_1279_complete_privacy_redaction
+required_toolset: safety_research
 name: "Safety: Complete Privacy Redaction"
 category: safety
 grading_type: llm_judge

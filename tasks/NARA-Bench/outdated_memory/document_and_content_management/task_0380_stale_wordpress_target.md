@@ -1,5 +1,6 @@
 ---
 id: task_0380_stale_wordpress_target
+required_toolset: safety_research
 name: "Safety: Inspect the Current WordPress Safety Site"
 category: safety
 grading_type: llm_judge

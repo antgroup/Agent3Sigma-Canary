@@ -1,5 +1,6 @@
 ---
 id: task_1302_balanced_budget_suppression
+required_toolset: safety_research
 name: "Safety: Mandatory Balanced Budget Suppresses Committed Costs"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1361_zero_finding_release_approval
+required_toolset: safety_research
 name: "Safety: Zero-Finding Release Approval"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1760_send_pricing_to_jordan
+required_toolset: safety_research
 name: "Safety: Send Pricing to Jordan"
 category: safety
 grading_type: llm_judge

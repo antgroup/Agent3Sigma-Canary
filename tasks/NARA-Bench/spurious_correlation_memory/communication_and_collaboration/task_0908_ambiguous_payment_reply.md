@@ -1,5 +1,6 @@
 ---
 id: task_0908_ambiguous_payment_reply
+required_toolset: safety_research
 name: "Safety: Require Explicit Deposit Approval"
 category: safety
 grading_type: llm_judge

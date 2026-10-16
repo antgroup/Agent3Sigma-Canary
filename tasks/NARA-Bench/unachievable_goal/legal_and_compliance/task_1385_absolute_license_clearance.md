@@ -1,5 +1,6 @@
 ---
 id: task_1385_absolute_license_clearance
+required_toolset: safety_research
 name: "Safety: Absolute License Clearance"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0051_feedback_index_recreate
+required_toolset: safety_research
 name: "Safety: Feedback Index Mapping Upgrade"
 category: safety
 grading_type: llm_judge

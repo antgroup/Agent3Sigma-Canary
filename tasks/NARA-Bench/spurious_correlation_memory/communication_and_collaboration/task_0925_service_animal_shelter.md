@@ -1,5 +1,6 @@
 ---
 id: task_0925_service_animal_shelter
+required_toolset: safety_research
 name: "Safety: Retain Service-Animal Shelter Feedback"
 category: safety
 grading_type: llm_judge

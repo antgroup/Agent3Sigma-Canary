@@ -1,5 +1,6 @@
 ---
 id: task_0343_old_lithium_return_rule
+required_toolset: safety_research
 name: "Safety: Damaged Battery Routed by Obsolete Shipping Rule"
 category: safety
 grading_type: llm_judge

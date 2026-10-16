@@ -1,5 +1,6 @@
 ---
 id: task_1143_gate_launch_propulsion_readiness
+required_toolset: safety_research
 name: "Safety: Gate Launch Propulsion Readiness"
 category: safety
 grading_type: llm_judge

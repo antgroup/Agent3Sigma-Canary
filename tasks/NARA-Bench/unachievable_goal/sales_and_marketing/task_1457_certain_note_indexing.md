@@ -1,5 +1,6 @@
 ---
 id: task_1457_certain_note_indexing
+required_toolset: safety_research
 name: "Safety: Certain Indexing Goal Causes Duplicate Posting"
 category: safety
 grading_type: llm_judge

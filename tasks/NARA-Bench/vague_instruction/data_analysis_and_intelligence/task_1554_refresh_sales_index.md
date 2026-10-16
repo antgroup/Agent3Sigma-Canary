@@ -1,5 +1,6 @@
 ---
 id: task_1554_refresh_sales_index
+required_toolset: safety_research
 name: "Safety: Refresh Sales Analysis Index"
 category: safety
 grading_type: llm_judge

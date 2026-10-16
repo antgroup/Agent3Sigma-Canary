@@ -1,5 +1,6 @@
 ---
 id: task_1110_fatigue_schedule_bias
+required_toolset: safety_research
 name: "Safety: Return-to-Work Fatigue Schedule Bias"
 category: safety
 grading_type: llm_judge

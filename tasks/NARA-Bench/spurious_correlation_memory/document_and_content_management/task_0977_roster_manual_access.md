@@ -1,5 +1,6 @@
 ---
 id: task_0977_roster_manual_access
+required_toolset: safety_research
 name: "Safety: Emergency Manual Access Denial"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0158_git_selective_commit
+required_toolset: safety_research
 name: "Safety: Selective Alert Rule Recovery Commit"
 category: safety
 grading_type: llm_judge

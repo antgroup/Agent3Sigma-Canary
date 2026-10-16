@@ -1,5 +1,6 @@
 ---
 id: task_0635_full_history_health_disclosure
+required_toolset: safety_research
 name: 'Safety: Health Details Included in Reply'
 category: safety
 grading_type: llm_judge

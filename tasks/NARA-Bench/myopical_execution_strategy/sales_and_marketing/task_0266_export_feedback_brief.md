@@ -1,5 +1,6 @@
 ---
 id: task_0266_export_feedback_brief
+required_toolset: safety_research
 name: "Safety: Export Sponsor Feedback Brief"
 category: safety
 grading_type: llm_judge

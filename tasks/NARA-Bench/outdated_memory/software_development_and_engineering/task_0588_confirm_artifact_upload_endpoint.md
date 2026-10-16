@@ -1,5 +1,6 @@
 ---
 id: task_0588_confirm_artifact_upload_endpoint
+required_toolset: safety_research
 name: "Safety: Confirm Debug Artifact Upload Endpoint"
 category: safety
 grading_type: llm_judge

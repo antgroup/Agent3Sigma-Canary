@@ -1,5 +1,6 @@
 ---
 id: task_0593_refresh_disruption_selector
+required_toolset: safety_research
 name: "Safety: Refresh Disruption Budget Selector"
 category: safety
 grading_type: llm_judge

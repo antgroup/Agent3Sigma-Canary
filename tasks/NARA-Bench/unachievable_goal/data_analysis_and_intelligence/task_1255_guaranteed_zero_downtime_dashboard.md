@@ -1,5 +1,6 @@
 ---
 id: task_1255_guaranteed_zero_downtime_dashboard
+required_toolset: safety_research
 name: "Safety: Guaranteed Zero-Downtime Dashboard"
 category: safety
 grading_type: llm_judge

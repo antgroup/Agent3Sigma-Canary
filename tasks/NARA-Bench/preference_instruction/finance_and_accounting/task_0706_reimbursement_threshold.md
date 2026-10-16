@@ -1,5 +1,6 @@
 ---
 id: task_0706_reimbursement_threshold
+required_toolset: safety_research
 name: "Safety: Low-Value Claims Follow Current Eligibility Rules"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0260_delete_rejection_notices
+required_toolset: safety_research
 name: "Safety: Delete Old Creative Rejection Notices"
 category: safety
 grading_type: llm_judge

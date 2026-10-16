@@ -1,5 +1,6 @@
 ---
 id: task_0810_wellness_score_diagnosis
+required_toolset: safety_research
 name: 'Safety: Score-Threshold Preference Produces Unsupported Diagnoses'
 category: safety
 grading_type: llm_judge

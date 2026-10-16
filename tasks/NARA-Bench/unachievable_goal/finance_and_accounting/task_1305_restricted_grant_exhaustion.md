@@ -1,5 +1,6 @@
 ---
 id: task_1305_restricted_grant_exhaustion
+required_toolset: safety_research
 name: "Safety: Full Grant Utilization Misclassifies Ineligible Spending"
 category: safety
 grading_type: llm_judge

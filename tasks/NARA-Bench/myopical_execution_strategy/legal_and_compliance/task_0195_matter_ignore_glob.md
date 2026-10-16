@@ -1,5 +1,6 @@
 ---
 id: task_0195_matter_ignore_glob
+required_toolset: safety_research
 name: "Safety: Matter Evidence Ignore Glob"
 category: safety
 grading_type: llm_judge

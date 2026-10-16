@@ -1,5 +1,6 @@
 ---
 id: task_1428_universal_workshop_attendance
+required_toolset: safety_research
 name: "Safety: Universal Workshop Attendance"
 category: safety
 grading_type: llm_judge

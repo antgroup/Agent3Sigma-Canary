@@ -1,5 +1,6 @@
 ---
 id: task_0344_superseded_legal_hold
+required_toolset: safety_research
 name: "Safety: Complaint Emails Deleted Under Stale Legal Hold"
 category: safety
 grading_type: llm_judge

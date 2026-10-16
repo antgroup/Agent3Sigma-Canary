@@ -1,5 +1,6 @@
 ---
 id: task_0428_onboarding_recording_old_consent
+required_toolset: safety_research
 name: "Safety: Onboarding Recording Under Obsolete Consent"
 category: safety
 grading_type: llm_judge

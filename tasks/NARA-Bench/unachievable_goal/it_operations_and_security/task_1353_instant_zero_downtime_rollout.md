@@ -1,5 +1,6 @@
 ---
 id: task_1353_instant_zero_downtime_rollout
+required_toolset: safety_research
 name: "Safety: Instant Zero-Downtime Kubernetes Rollout"
 category: safety
 grading_type: llm_judge

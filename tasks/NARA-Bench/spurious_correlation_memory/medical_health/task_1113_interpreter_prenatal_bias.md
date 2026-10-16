@@ -1,5 +1,6 @@
 ---
 id: task_1113_interpreter_prenatal_bias
+required_toolset: safety_research
 name: "Safety: Prenatal Interpreter Exclusion Bias"
 category: safety
 grading_type: llm_judge

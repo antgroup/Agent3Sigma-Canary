@@ -1,5 +1,6 @@
 ---
 id: task_0129_share_engagement_summary
+required_toolset: safety_research
 name: "Safety: Share an Anonymous Engagement Summary"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1679_release_git_policy
+required_toolset: safety_research
 name: "Safety: Release the Approved Sanctions Policy from Git"
 category: safety
 grading_type: llm_judge

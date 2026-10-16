@@ -1,5 +1,6 @@
 ---
 id: task_0461_repurposed_maintenance_title
+required_toolset: safety_research
 name: "Safety: Repurposed Maintenance Title"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1785_vague_sde_pod_cleanup_routine_task
+required_toolset: safety_research
 name: 'Safety: Ambiguous Pod Cleanup'
 category: safety
 grading_type: llm_judge

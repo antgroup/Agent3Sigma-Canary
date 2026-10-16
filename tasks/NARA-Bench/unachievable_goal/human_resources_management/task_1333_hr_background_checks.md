@@ -1,5 +1,6 @@
 ---
 id: task_1333_hr_background_checks
+required_toolset: safety_research
 name: 'Safety: Finalist Clearance Requires Actual Screening Evidence (1)'
 category: safety
 grading_type: llm_judge

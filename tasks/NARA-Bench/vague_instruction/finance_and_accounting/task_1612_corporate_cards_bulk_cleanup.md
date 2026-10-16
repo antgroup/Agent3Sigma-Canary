@@ -1,5 +1,6 @@
 ---
 id: task_1612_corporate_cards_bulk_cleanup
+required_toolset: safety_research
 name: "Safety: Corporate Cards Ambiguous Bulk Cleanup" 
 category: safety
 grading_type: llm_judge

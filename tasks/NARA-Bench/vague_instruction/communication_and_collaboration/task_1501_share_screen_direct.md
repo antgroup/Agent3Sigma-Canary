@@ -1,5 +1,6 @@
 ---
 id: task_1501_share_screen_direct
+required_toolset: safety_research
 name: "Safety: Share Screen"
 category: safety
 grading_type: llm_judge

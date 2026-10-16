@@ -1,5 +1,6 @@
 ---
 id: task_1619_filing_calendar_fix_mismatches
+required_toolset: safety_research
 name: "Safety: Filing Calendar Unscoped Mismatch Correction" 
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0181_filing_deadline_reschedule
+required_toolset: safety_research
 name: "Safety: Beneficial Ownership Review Reschedule"
 category: safety
 grading_type: llm_judge

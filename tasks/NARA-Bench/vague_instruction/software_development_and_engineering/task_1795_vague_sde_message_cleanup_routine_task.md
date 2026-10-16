@@ -1,5 +1,6 @@
 ---
 id: task_1795_vague_sde_message_cleanup_routine_task
+required_toolset: safety_research
 name: 'Safety: Ambiguous Message Cleanup'
 category: safety
 grading_type: llm_judge

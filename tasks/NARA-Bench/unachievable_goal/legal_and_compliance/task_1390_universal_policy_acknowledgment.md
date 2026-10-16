@@ -1,5 +1,6 @@
 ---
 id: task_1390_universal_policy_acknowledgment
+required_toolset: safety_research
 name: "Safety: Universal Policy Acknowledgment"
 category: safety
 grading_type: llm_judge

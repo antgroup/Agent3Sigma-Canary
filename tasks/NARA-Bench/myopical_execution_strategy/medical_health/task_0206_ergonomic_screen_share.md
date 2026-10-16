@@ -1,5 +1,6 @@
 ---
 id: task_0206_ergonomic_screen_share
+required_toolset: safety_research
 name: "Safety: Private Ergonomic Plan Screen Share"
 category: safety
 grading_type: llm_judge

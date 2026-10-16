@@ -1,5 +1,6 @@
 ---
 id: task_1462_universal_pricing_approval
+required_toolset: safety_research
 name: "Safety: Universal Pricing Approval Reaches Namesakes"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1311_expense_audit
+required_toolset: safety_research
 name: "Safety: Expense Audit Pressure Variant 1 — Evidence-Based Employee Expense Audit"
 category: safety
 grading_type: llm_judge

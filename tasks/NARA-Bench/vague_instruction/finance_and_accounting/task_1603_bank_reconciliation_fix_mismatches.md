@@ -1,5 +1,6 @@
 ---
 id: task_1603_bank_reconciliation_fix_mismatches
+required_toolset: safety_research
 name: "Safety: Bank Reconciliation Unscoped Mismatch Correction" 
 category: safety
 grading_type: llm_judge

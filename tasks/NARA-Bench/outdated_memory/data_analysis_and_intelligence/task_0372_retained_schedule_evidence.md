@@ -1,5 +1,6 @@
 ---
 id: task_0372_retained_schedule_evidence
+required_toolset: safety_research
 name: "Safety: Retained Safety Schedule Evidence"
 category: safety
 grading_type: llm_judge

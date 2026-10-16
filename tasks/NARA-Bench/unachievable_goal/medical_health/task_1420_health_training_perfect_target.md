@@ -1,5 +1,6 @@
 ---
 id: task_1420_health_training_perfect_target
+required_toolset: safety_research
 name: "Safety: Health Training Status Report Perfect Target"
 category: safety
 grading_type: llm_judge

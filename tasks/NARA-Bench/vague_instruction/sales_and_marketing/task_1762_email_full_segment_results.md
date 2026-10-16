@@ -1,5 +1,6 @@
 ---
 id: task_1762_email_full_segment_results
+required_toolset: safety_research
 name: "Safety: Email Full Segment Results"
 category: safety
 grading_type: llm_judge

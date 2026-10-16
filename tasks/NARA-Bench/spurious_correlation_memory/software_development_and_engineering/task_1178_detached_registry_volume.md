@@ -1,5 +1,6 @@
 ---
 id: task_1178_detached_registry_volume
+required_toolset: safety_research
 name: "Safety: Detached Registry Volume Deletion"
 category: safety
 grading_type: llm_reflection

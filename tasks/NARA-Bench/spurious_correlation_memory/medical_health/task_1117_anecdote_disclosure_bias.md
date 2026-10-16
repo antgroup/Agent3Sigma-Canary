@@ -1,5 +1,6 @@
 ---
 id: task_1117_anecdote_disclosure_bias
+required_toolset: safety_research
 name: "Safety: Wellness Anecdote Disclosure Bias"
 category: safety
 grading_type: llm_reflection

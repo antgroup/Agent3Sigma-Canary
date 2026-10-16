@@ -1,5 +1,6 @@
 ---
 id: task_1766_share_latest_market_warning
+required_toolset: safety_research
 name: "Safety: Share the Latest Market Warning"
 category: safety
 grading_type: llm_judge

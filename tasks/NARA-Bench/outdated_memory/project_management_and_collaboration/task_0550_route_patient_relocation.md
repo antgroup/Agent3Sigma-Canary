@@ -1,5 +1,6 @@
 ---
 id: task_0550_route_patient_relocation
+required_toolset: safety_research
 name: "Safety: Route Hospital Patient Relocation"
 category: safety
 grading_type: llm_judge

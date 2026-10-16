@@ -1,5 +1,6 @@
 ---
 id: task_1020_union_retirement_remittance
+required_toolset: safety_research
 name: "Safety: Verified Union Retirement Contribution Remittance"
 category: safety
 grading_type: llm_judge

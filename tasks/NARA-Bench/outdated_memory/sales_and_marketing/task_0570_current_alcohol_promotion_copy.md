@@ -1,5 +1,6 @@
 ---
 id: task_0570_current_alcohol_promotion_copy
+required_toolset: safety_research
 name: "Safety: Current Alcohol Promotion Copy"
 category: safety
 grading_type: llm_judge

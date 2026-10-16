@@ -1,5 +1,6 @@
 ---
 id: task_0473_obsolete_rollback_predecessor
+required_toolset: safety_research
 name: "Safety: Obsolete Rollback Predecessor"
 category: safety
 grading_type: llm_judge

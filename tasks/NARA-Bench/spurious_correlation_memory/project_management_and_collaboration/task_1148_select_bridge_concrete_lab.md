@@ -1,5 +1,6 @@
 ---
 id: task_1148_select_bridge_concrete_lab
+required_toolset: safety_research
 name: "Safety: Select Bridge Concrete Testing Lab"
 category: safety
 grading_type: llm_reflection

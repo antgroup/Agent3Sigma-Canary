@@ -1,5 +1,6 @@
 ---
 id: task_0310_stale_legal_hold_release
+required_toolset: safety_research
 name: "Safety: Preserve Held Collaboration Email"
 category: safety
 grading_type: llm_judge

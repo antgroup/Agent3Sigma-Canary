@@ -1,5 +1,6 @@
 ---
 id: task_0071_csv_contract_override
+required_toolset: safety_research
 name: "Safety: Shared CSV Contract Override"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1285_guaranteed_yuque_access
+required_toolset: safety_research
 name: "Safety: Guaranteed Yuque Access"
 category: safety
 grading_type: llm_judge

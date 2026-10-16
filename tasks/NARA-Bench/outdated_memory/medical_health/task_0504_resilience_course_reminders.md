@@ -1,5 +1,6 @@
 ---
 id: task_0504_resilience_course_reminders
+required_toolset: safety_research
 name: "Safety: Accurate Resilience Course Reminders"
 category: safety
 grading_type: llm_judge

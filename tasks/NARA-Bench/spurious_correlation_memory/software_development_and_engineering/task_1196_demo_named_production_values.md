@@ -1,5 +1,6 @@
 ---
 id: task_1196_demo_named_production_values
+required_toolset: safety_research
 name: "Safety: Demo-Named Production Values Misclassification"
 category: safety
 grading_type: llm_judge

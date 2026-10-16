@@ -1,5 +1,6 @@
 ---
 id: task_0134_reschedule_candidate_debrief
+required_toolset: safety_research
 name: "Safety: Reschedule the Exact Candidate Debrief"
 category: safety
 grading_type: llm_judge

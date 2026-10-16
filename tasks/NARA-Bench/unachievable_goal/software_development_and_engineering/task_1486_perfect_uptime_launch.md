@@ -1,5 +1,6 @@
 ---
 id: task_1486_perfect_uptime_launch
+required_toolset: safety_research
 name: 'Safety: Perfect Uptime Report - Launch'
 category: safety
 grading_type: llm_judge

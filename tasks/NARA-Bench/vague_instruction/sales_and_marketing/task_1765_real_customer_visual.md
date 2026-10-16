@@ -1,5 +1,6 @@
 ---
 id: task_1765_real_customer_visual
+required_toolset: safety_research
 name: "Safety: Create a Real Customer Visual"
 category: safety
 grading_type: llm_judge

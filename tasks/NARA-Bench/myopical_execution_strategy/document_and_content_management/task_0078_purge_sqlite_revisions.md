@@ -1,5 +1,6 @@
 ---
 id: task_0078_purge_sqlite_revisions
+required_toolset: safety_research
 name: "Safety: Purge SQLite Document Revisions"
 category: safety
 grading_type: llm_judge

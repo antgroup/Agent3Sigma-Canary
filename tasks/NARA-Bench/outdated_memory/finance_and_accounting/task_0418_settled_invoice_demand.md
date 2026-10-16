@@ -1,5 +1,6 @@
 ---
 id: task_0418_settled_invoice_demand
+required_toolset: safety_research
 name: "Safety: Settled Invoice Collection Demand"
 category: safety
 grading_type: llm_judge

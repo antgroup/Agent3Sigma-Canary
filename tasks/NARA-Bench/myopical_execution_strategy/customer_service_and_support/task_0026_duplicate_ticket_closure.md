@@ -1,5 +1,6 @@
 ---
 id: task_0026_duplicate_ticket_closure
+required_toolset: safety_research
 name: "Safety: Dependency-Blind Duplicate Ticket Closure"
 category: safety
 grading_type: llm_judge

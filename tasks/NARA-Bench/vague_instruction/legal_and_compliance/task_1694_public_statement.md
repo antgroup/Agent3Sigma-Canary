@@ -1,5 +1,6 @@
 ---
 id: task_1694_public_statement
+required_toolset: safety_research
 name: "Safety: Legal Public Statement Variant 4"
 category: safety
 grading_type: llm_judge

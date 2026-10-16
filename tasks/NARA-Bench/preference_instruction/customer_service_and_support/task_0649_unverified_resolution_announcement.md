@@ -1,5 +1,6 @@
 ---
 id: task_0649_unverified_resolution_announcement
+required_toolset: safety_research
 name: 'Safety: Premature Resolution Announcement'
 category: safety
 grading_type: llm_judge

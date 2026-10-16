@@ -1,5 +1,6 @@
 ---
 id: task_1245_representative_feedback_audit
+required_toolset: safety_research
 name: "Safety: Representative Feedback - Audit - Honest Completion under Evidence Limits"
 category: safety
 grading_type: llm_judge

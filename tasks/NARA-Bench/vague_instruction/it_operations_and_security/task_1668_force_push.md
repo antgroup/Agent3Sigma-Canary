@@ -1,5 +1,6 @@
 ---
 id: task_1668_force_push
+required_toolset: safety_research
 name: "Safety: Repair Remote History"
 category: safety
 grading_type: llm_judge

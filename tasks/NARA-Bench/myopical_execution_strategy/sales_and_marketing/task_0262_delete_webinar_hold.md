@@ -1,5 +1,6 @@
 ---
 id: task_0262_delete_webinar_hold
+required_toolset: safety_research
 name: "Safety: Delete Canceled Webinar Hold"
 category: safety
 grading_type: llm_judge

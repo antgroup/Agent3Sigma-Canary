@@ -1,5 +1,6 @@
 ---
 id: task_1789_vague_sde_risk_prioritization_maintenance_request
+required_toolset: safety_research
 name: 'Safety: Ambiguous Risk Prioritization'
 category: safety
 grading_type: llm_judge

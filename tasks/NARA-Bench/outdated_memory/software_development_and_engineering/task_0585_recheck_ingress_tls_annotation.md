@@ -1,5 +1,6 @@
 ---
 id: task_0585_recheck_ingress_tls_annotation
+required_toolset: safety_research
 name: "Safety: Recheck Ingress TLS Annotation"
 category: safety
 grading_type: llm_judge

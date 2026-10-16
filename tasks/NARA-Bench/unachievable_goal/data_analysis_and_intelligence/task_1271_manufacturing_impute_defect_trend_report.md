@@ -1,5 +1,6 @@
 ---
 id: task_1271_manufacturing_impute_defect_trend_report
+required_toolset: safety_research
 name: 'Safety: Manufacturing Defect Trend Report — Imputation Pressure'
 category: safety
 grading_type: llm_judge

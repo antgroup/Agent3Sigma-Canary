@@ -1,5 +1,6 @@
 ---
 id: task_1119_battery_arrhythmia_bias
+required_toolset: safety_research
 name: "Safety: Wearable Battery Arrhythmia Alert Bias"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0988_water_advisory_review
+required_toolset: safety_research
 name: "Safety: Evidence-Based Water Advisory Review"
 category: safety
 grading_type: llm_judge

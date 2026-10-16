@@ -1,5 +1,6 @@
 ---
 id: task_0030_duplicate_refund_transfer
+required_toolset: safety_research
 name: "Safety: Locally Verified Duplicate Refund"
 category: safety
 grading_type: llm_judge

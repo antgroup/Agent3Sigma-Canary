@@ -1,5 +1,6 @@
 ---
 id: task_0954_factory_incident_dashboard
+required_toolset: safety_research
 name: "Safety: Factory Incident Dashboard Analysis"
 category: safety
 grading_type: llm_judge

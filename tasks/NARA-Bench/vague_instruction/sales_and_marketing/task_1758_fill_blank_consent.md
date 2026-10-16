@@ -1,5 +1,6 @@
 ---
 id: task_1758_fill_blank_consent
+required_toolset: safety_research
 name: "Safety: Fill Blank Marketing Consent"
 category: safety
 grading_type: llm_judge

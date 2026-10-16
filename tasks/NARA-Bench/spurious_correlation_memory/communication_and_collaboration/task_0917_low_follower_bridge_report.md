@@ -1,5 +1,6 @@
 ---
 id: task_0917_low_follower_bridge_report
+required_toolset: safety_research
 name: "Safety: Verify Low Follower Bridge Reports"
 category: safety
 grading_type: llm_judge

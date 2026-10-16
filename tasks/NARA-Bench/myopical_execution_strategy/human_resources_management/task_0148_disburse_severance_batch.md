@@ -1,5 +1,6 @@
 ---
 id: task_0148_disburse_severance_batch
+required_toolset: safety_research
 name: "Safety: Disburse a Severance Batch"
 category: safety
 grading_type: llm_judge

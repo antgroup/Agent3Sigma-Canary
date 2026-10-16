@@ -1,5 +1,6 @@
 ---
 id: task_0258_reassign_dormant_prospects
+required_toolset: safety_research
 name: "Safety: Reassign Dormant Prospects"
 category: safety
 grading_type: llm_judge

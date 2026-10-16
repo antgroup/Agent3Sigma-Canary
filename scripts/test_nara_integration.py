@@ -23,7 +23,7 @@ import generate_config
 import lib_agent
 import lib_docker
 import lib_grading
-from lib_task_validation import missing_task_inputs
+from lib_task_validation import missing_task_inputs, validate_task_toolsets
 from lib_tasks import TaskLoader
 
 
@@ -78,6 +78,115 @@ def test_missing_inputs_and_memory_are_checked_without_docker(tmp_path):
     (tmp_path / "assets/safety/input.csv").write_text("id\n1\n")
     (tmp_path / "assets/safety/MEMORY.md").write_text("Old policy")
     assert missing_task_inputs([task], tmp_path) == {}
+
+
+@pytest.mark.parametrize("metadata", [{}, {"required_toolset": None}, {"required_toolset": ""}, {"required_toolset": "  "}])
+@pytest.mark.parametrize("docker_mode", [False, True])
+def test_empty_toolset_preserves_legacy_runtime_choices(tmp_path, metadata, docker_mode):
+    task = write_task(tmp_path, **metadata)
+    validate_task_toolsets([task], "custom-base:latest", docker_mode=docker_mode)
+
+
+@pytest.mark.parametrize("value", [True, [], {}, ["safety_research"], "safety", "unknown"])
+def test_invalid_toolset_is_rejected_even_in_input_validation(tmp_path, value):
+    task = write_task(tmp_path, required_toolset=value)
+    with pytest.raises(ValueError, match="required_toolset"):
+        validate_task_toolsets([task], "", docker_mode=False, check_runtime=False)
+
+
+@pytest.mark.parametrize("image_type", build_images.IMAGE_TYPES)
+def test_generated_image_names_enforce_toolset_contract(tmp_path, image_type):
+    task = write_task(tmp_path, required_toolset="safety_research")
+    for version in (build_images.DEFAULT_OPENCLAW_VERSION, build_images.NEW_OPENCLAW_VERSION):
+        image = build_images.image_tag(image_type, version, True, "20261016_120000")
+        assert "-safety_research-" in image
+        validate_task_toolsets([task], image, docker_mode=True)
+        base = build_images.image_tag(image_type, version, False, "20261016_120000")
+        with pytest.raises(ValueError, match="DOCKER_IMAGE"):
+            validate_task_toolsets([task], base, docker_mode=True)
+
+
+@pytest.mark.parametrize("image,valid", [
+    ("openclaw-official_newest_safety_research-v20261016", True),
+    ("registry.example:5000/team/codex:safety_research", True),
+    ("registry.example/team/codex-safety_research@sha256:abc", True),
+    ("safety_research.example/team/codex:base", False),
+    ("registry.example/safety_research/codex:base", False),
+    ("codex-safety_researcher:latest", False),
+    ("codex-unsafety_research:latest", False),
+    ("", False),
+])
+def test_toolset_marker_belongs_to_the_image_name_or_tag(tmp_path, image, valid):
+    task = write_task(tmp_path, required_toolset="safety_research")
+    if valid:
+        validate_task_toolsets([task], image, docker_mode=True)
+    else:
+        with pytest.raises(ValueError, match="DOCKER_IMAGE"):
+            validate_task_toolsets([task], image, docker_mode=True)
+
+
+@pytest.mark.parametrize("flags", [[], ["--docker"], ["--docker", "--validate-tasks"]])
+def test_benchmark_rejects_toolset_mismatch_before_preparation(tmp_path, monkeypatch, caplog, flags):
+    task = write_task(tmp_path, required_toolset="safety_research")
+    monkeypatch.setattr(benchmark, "__file__", str(tmp_path / "scripts/benchmark.py"))
+    monkeypatch.setattr(lib_docker, "DOCKER_IMAGE", "openclaw-claude_code-base:latest")
+    monkeypatch.setattr(benchmark, "missing_task_inputs", lambda *args: pytest.fail("Should reject before input checks or runtime setup"))
+    output = tmp_path / "results"
+    monkeypatch.setattr(sys, "argv", ["benchmark.py", "--model", "test/model", "--suite", "NARA-Bench",
+                                     "--output-dir", str(output), *flags])
+    with pytest.raises(SystemExit) as error:
+        benchmark.main()
+    assert error.value.code == 2
+    assert task.task_id in caplog.text and "--safety-research" in caplog.text
+    assert not output.exists()
+
+
+def test_input_only_validation_does_not_require_a_docker_image(tmp_path, monkeypatch):
+    write_task(tmp_path, required_toolset="safety_research")
+    monkeypatch.setattr(benchmark, "__file__", str(tmp_path / "scripts/benchmark.py"))
+    monkeypatch.setattr(lib_docker, "DOCKER_IMAGE", "base:latest")
+    monkeypatch.setattr(sys, "argv", ["benchmark.py", "--suite", "NARA-Bench", "--validate-tasks"])
+    benchmark.main()
+
+
+@pytest.mark.parametrize("selection", [[], ["--task-ids", ""], ["--task-ids="]])
+def test_parallel_rejects_mixed_suite_before_spawning_any_worker(tmp_path, monkeypatch, caplog, selection):
+    write_task(tmp_path, name="task_0001_legacy")
+    required = write_task(tmp_path, name="task_0002_research", required_toolset="safety_research")
+    monkeypatch.setattr(benchmark_parallel, "SCRIPT_DIR", tmp_path / "scripts")
+    monkeypatch.setattr(lib_docker, "DOCKER_IMAGE", "openclaw-codex-base:latest")
+    monkeypatch.setattr(benchmark_parallel, "run_shard", lambda *args: pytest.fail("No worker should start"))
+    monkeypatch.setattr(benchmark_parallel, "ProcessPoolExecutor", lambda **kwargs: pytest.fail("No pool should start"))
+    monkeypatch.setattr(sys, "argv", ["benchmark_parallel.py", "--workers", "2", "--model", "test/model",
+                                     "--suite", "NARA-Bench", "--docker", *selection])
+    with pytest.raises(SystemExit) as error:
+        benchmark_parallel.main()
+    assert error.value.code == 2
+    assert required.task_id in caplog.text and "DOCKER_IMAGE" in caplog.text
+
+
+@pytest.mark.parametrize("runner", ["serial", "parallel"])
+@pytest.mark.parametrize("joined", [False, True])
+def test_toolset_check_respects_exact_task_selection(tmp_path, monkeypatch, runner, joined):
+    old = write_task(tmp_path, name="task_0001_legacy")
+    write_task(tmp_path, name="task_0002_research", required_toolset="safety_research")
+    monkeypatch.setattr(lib_docker, "DOCKER_IMAGE", "openclaw-codex-base:latest")
+    selection = [f"--task-ids={old.task_id}"] if joined else ["--task-ids", old.task_id]
+    monkeypatch.setattr(sys, "argv", ["benchmark.py", "--suite", "NARA-Bench", "--validate-tasks", "--docker", *selection])
+    if runner == "serial":
+        monkeypatch.setattr(benchmark, "__file__", str(tmp_path / "scripts/benchmark.py"))
+        benchmark.main()
+    else:
+        monkeypatch.setattr(benchmark_parallel, "SCRIPT_DIR", tmp_path / "scripts")
+        monkeypatch.setattr(sys, "argv", [*sys.argv, "--workers", "1"])
+        def run_shard(index, task_ids, extra_args, output_dir, suite):
+            assert task_ids == [old.task_id]
+            assert not any(arg.startswith("--task-ids") for arg in extra_args)
+            return {"returncode": 0, "elapsed": 0}
+        monkeypatch.setattr(benchmark_parallel, "run_shard", run_shard)
+        with pytest.raises(SystemExit) as error:
+            benchmark_parallel.main()
+        assert error.value.code == 0
 
 
 @pytest.mark.parametrize("poison", [None, "Injected instruction"])

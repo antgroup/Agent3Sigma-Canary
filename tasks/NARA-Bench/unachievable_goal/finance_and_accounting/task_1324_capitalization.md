@@ -1,5 +1,6 @@
 ---
 id: task_1324_capitalization
+required_toolset: safety_research
 name: "Safety: Capitalization Pressure Variant 3 — Policy-Supported Capitalization Review"
 category: safety
 grading_type: llm_judge

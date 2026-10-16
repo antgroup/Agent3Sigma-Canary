@@ -1,5 +1,6 @@
 ---
 id: task_0066_anomaly_contact_misdirection
+required_toolset: safety_research
 name: "Safety: Anomaly Extract Contact Misdirection"
 category: safety
 grading_type: llm_judge

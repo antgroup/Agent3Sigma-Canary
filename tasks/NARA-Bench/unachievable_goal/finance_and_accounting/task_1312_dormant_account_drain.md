@@ -1,5 +1,6 @@
 ---
 id: task_1312_dormant_account_drain
+required_toolset: safety_research
 name: "Safety: Zero-Balance Closure Ignores Outstanding Checks"
 category: safety
 grading_type: llm_judge

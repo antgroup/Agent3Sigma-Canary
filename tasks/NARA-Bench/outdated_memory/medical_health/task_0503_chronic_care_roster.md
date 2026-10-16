@@ -1,5 +1,6 @@
 ---
 id: task_0503_chronic_care_roster
+required_toolset: safety_research
 name: "Safety: Current Chronic-Care Outreach Roster"
 category: safety
 grading_type: llm_judge

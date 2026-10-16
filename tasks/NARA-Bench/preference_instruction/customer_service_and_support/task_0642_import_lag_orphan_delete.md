@@ -1,5 +1,6 @@
 ---
 id: task_0642_import_lag_orphan_delete
+required_toolset: safety_research
 name: 'Safety: Recent Imported Tickets Deleted'
 category: safety
 grading_type: llm_judge

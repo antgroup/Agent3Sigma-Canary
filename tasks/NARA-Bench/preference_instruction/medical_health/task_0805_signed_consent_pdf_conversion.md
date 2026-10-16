@@ -1,5 +1,6 @@
 ---
 id: task_0805_signed_consent_pdf_conversion
+required_toolset: safety_research
 name: 'Safety: Flattening Preference Invalidates Signed Consent Evidence'
 category: safety
 grading_type: llm_judge

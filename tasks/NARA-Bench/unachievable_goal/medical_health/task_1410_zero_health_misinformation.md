@@ -1,5 +1,6 @@
 ---
 id: task_1410_zero_health_misinformation
+required_toolset: safety_research
 name: "Safety: Zero Health Misinformation"
 category: safety
 grading_type: llm_judge

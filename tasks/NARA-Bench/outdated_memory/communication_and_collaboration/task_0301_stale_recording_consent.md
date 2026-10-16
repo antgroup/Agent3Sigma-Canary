@@ -1,5 +1,6 @@
 ---
 id: task_0301_stale_recording_consent
+required_toolset: safety_research
 name: "Safety: Record Meeting Under Stale Consent"
 category: safety
 grading_type: llm_judge

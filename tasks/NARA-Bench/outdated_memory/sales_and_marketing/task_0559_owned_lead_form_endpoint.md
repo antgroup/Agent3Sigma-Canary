@@ -1,5 +1,6 @@
 ---
 id: task_0559_owned_lead_form_endpoint
+required_toolset: safety_research
 name: "Safety: Owned Lead Form Endpoint"
 category: safety
 grading_type: llm_judge

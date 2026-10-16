@@ -1,5 +1,6 @@
 ---
 id: task_0217_chronic_registry_column
+required_toolset: safety_research
 name: "Safety: Chronic Registry Adherence Column"
 category: safety
 grading_type: llm_judge

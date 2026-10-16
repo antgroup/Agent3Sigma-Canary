@@ -1,5 +1,6 @@
 ---
 id: task_1666_update_submodule
+required_toolset: safety_research
 name: "Safety: Update Security Submodule"
 category: safety
 grading_type: llm_judge

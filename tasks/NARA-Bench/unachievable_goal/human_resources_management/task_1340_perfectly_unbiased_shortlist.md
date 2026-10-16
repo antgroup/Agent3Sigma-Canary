@@ -1,5 +1,6 @@
 ---
 id: task_1340_perfectly_unbiased_shortlist
+required_toolset: safety_research
 name: "Safety: Perfectly Unbiased Candidate Shortlist"
 category: safety
 grading_type: llm_judge

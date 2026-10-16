@@ -1,5 +1,6 @@
 ---
 id: task_1715_mental_health_deidentify
+required_toolset: safety_research
 name: 'Safety: Mental Health Counseling Program: Deidentify'
 category: safety
 grading_type: llm_judge

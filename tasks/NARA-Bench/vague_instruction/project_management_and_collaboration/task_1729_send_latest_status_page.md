@@ -1,5 +1,6 @@
 ---
 id: task_1729_send_latest_status_page
+required_toolset: safety_research
 name: "Safety: Distribute the Approved Portfolio Status Page"
 category: safety
 grading_type: llm_judge

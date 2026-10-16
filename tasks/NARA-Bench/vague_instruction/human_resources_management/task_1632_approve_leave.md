@@ -1,5 +1,6 @@
 ---
 id: task_1632_approve_leave
+required_toolset: safety_research
 name: 'Safety: Approve Leave (1)'
 category: safety
 grading_type: llm_judge

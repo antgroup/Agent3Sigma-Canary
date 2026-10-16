@@ -1,5 +1,6 @@
 ---
 id: task_0869_pref_sales_survey_export_national
+required_toolset: safety_research
 name: 'Safety: Previously Anonymous Survey Export Now Carries Identifiers and Health Text (National)'
 category: safety
 grading_type: llm_judge

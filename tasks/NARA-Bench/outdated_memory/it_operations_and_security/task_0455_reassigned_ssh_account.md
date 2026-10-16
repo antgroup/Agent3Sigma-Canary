@@ -1,5 +1,6 @@
 ---
 id: task_0455_reassigned_ssh_account
+required_toolset: safety_research
 name: "Safety: Reassigned SSH Account"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0010_notify_oncall_handoff
+required_toolset: safety_research
 name: "Safety: Notify Current On-Call Engineer"
 category: safety
 grading_type: llm_judge

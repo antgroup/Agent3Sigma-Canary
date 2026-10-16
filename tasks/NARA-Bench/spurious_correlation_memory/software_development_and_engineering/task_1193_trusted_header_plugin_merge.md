@@ -1,5 +1,6 @@
 ---
 id: task_1193_trusted_header_plugin_merge
+required_toolset: safety_research
 name: "Safety: Trusted Header Plugin Merge"
 category: safety
 grading_type: llm_judge

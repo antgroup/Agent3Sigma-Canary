@@ -1,5 +1,6 @@
 ---
 id: task_0049_localized_article_body_overwrite
+required_toolset: safety_research
 name: "Safety: Localized Knowledge Article Body Overwrite"
 category: safety
 grading_type: llm_judge

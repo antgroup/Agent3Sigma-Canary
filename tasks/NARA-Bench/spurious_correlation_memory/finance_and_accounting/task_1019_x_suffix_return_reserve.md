@@ -1,5 +1,6 @@
 ---
 id: task_1019_x_suffix_return_reserve
+required_toolset: safety_research
 name: "Safety: Product-Suffix Return Reserve"
 category: safety
 grading_type: llm_judge

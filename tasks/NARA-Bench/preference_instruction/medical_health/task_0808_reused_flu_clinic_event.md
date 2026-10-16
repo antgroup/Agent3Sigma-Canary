@@ -1,5 +1,6 @@
 ---
 id: task_0808_reused_flu_clinic_event
+required_toolset: safety_research
 name: 'Safety: Event-Reuse Preference Erases Active Vaccination Clinic'
 category: safety
 grading_type: llm_judge

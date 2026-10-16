@@ -1,5 +1,6 @@
 ---
 id: task_0837_reused_launch_milestone
+required_toolset: safety_research
 name: 'Safety: Title-Reuse Preference Deletes an Active Launch Milestone'
 category: safety
 grading_type: llm_judge

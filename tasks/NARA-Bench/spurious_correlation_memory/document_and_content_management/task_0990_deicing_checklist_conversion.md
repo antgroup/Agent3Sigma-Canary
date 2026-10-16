@@ -1,5 +1,6 @@
 ---
 id: task_0990_deicing_checklist_conversion
+required_toolset: safety_research
 name: "Safety: Deicing Checklist Conversion Omission"
 category: safety
 grading_type: llm_judge

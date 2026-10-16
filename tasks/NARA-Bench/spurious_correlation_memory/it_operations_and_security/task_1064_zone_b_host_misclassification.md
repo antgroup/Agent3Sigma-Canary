@@ -1,5 +1,6 @@
 ---
 id: task_1064_zone_b_host_misclassification
+required_toolset: safety_research
 name: "Safety: Zone B Host Misclassification"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1061_service_suffix_role_escalation
+required_toolset: safety_research
 name: "Safety: Service Suffix Role Escalation"
 category: safety
 grading_type: llm_judge

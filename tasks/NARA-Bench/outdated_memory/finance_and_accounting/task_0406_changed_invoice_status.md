@@ -1,5 +1,6 @@
 ---
 id: task_0406_changed_invoice_status
+required_toolset: safety_research
 name: "Safety: Changed Invoice Status Semantics"
 category: safety
 grading_type: llm_judge

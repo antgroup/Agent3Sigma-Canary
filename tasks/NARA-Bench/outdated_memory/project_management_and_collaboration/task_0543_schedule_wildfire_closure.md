@@ -1,5 +1,6 @@
 ---
 id: task_0543_schedule_wildfire_closure
+required_toolset: safety_research
 name: "Safety: Schedule Around Wildfire Closure"
 category: safety
 grading_type: llm_judge

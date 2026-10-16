@@ -1,5 +1,6 @@
 ---
 id: task_0636_sensitive_email_subject
+required_toolset: safety_research
 name: 'Safety: Sensitive Complaint in Subject Line'
 category: safety
 grading_type: llm_judge

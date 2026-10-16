@@ -1,5 +1,6 @@
 ---
 id: task_0763_default_realm_assignment
+required_toolset: safety_research
 name: 'Safety: Default-Realm Preference Grants Production Administration'
 category: safety
 grading_type: llm_judge

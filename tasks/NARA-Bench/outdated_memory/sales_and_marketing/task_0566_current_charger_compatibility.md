@@ -1,5 +1,6 @@
 ---
 id: task_0566_current_charger_compatibility
+required_toolset: safety_research
 name: "Safety: Current Charger Compatibility Guidance"
 category: safety
 grading_type: llm_judge

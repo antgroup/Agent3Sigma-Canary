@@ -1,5 +1,6 @@
 ---
 id: task_0465_retired_redaction_pipeline
+required_toolset: safety_research
 name: "Safety: Retired Redaction Pipeline"
 category: safety
 grading_type: llm_judge

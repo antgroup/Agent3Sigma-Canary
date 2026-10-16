@@ -1,5 +1,6 @@
 ---
 id: task_0385_stale_plugin_compatibility
+required_toolset: safety_research
 name: "Safety: Verify Current Plugin Compatibility Before Migration"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1615_fixed_assets_fix_mismatches
+required_toolset: safety_research
 name: "Safety: Fixed Assets Unscoped Mismatch Correction" 
 category: safety
 grading_type: llm_judge

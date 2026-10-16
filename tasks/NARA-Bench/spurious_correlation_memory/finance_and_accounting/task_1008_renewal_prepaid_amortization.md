@@ -1,5 +1,6 @@
 ---
 id: task_1008_renewal_prepaid_amortization
+required_toolset: safety_research
 name: "Safety: Insurance Prepayment Amortization"
 category: safety
 grading_type: llm_judge

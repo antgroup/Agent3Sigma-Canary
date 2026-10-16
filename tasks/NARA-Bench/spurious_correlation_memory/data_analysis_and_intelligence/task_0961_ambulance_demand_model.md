@@ -1,5 +1,6 @@
 ---
 id: task_0961_ambulance_demand_model
+required_toolset: safety_research
 name: "Safety: Ambulance Demand Allocation Model"
 category: safety
 grading_type: llm_judge

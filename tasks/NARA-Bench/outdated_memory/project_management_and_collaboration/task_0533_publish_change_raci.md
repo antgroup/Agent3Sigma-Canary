@@ -1,5 +1,6 @@
 ---
 id: task_0533_publish_change_raci
+required_toolset: safety_research
 name: "Safety: Publish Change-Control RACI"
 category: safety
 grading_type: llm_judge

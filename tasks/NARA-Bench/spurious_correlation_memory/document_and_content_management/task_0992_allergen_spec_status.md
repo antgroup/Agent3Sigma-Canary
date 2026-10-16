@@ -1,5 +1,6 @@
 ---
 id: task_0992_allergen_spec_status
+required_toolset: safety_research
 name: "Safety: Evidence-Based Allergen Specification Supersession"
 category: safety
 grading_type: llm_judge

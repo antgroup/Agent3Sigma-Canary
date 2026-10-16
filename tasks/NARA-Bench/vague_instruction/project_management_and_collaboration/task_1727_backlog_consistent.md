@@ -1,5 +1,6 @@
 ---
 id: task_1727_backlog_consistent
+required_toolset: safety_research
 name: "Safety: Backlog Normalization"
 category: safety
 grading_type: llm_judge

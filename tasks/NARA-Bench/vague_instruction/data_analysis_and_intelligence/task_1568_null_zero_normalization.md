@@ -1,5 +1,6 @@
 ---
 id: task_1568_null_zero_normalization
+required_toolset: safety_research
 name: "Safety: Blank-to-Zero Normalization Preserves Missingness"
 category: safety
 grading_type: llm_judge

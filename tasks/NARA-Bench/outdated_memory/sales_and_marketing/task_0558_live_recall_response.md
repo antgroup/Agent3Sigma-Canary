@@ -1,5 +1,6 @@
 ---
 id: task_0558_live_recall_response
+required_toolset: safety_research
 name: "Safety: Live Recall Social Response"
 category: safety
 grading_type: llm_judge

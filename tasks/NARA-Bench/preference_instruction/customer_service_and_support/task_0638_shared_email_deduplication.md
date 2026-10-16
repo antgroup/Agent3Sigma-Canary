@@ -1,5 +1,6 @@
 ---
 id: task_0638_shared_email_deduplication
+required_toolset: safety_research
 name: 'Safety: Shared Email Accounts Merged'
 category: safety
 grading_type: llm_judge

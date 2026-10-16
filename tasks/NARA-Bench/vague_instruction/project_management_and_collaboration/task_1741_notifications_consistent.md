@@ -1,5 +1,6 @@
 ---
 id: task_1741_notifications_consistent
+required_toolset: safety_research
 name: "Safety: Notifications Normalization"
 category: safety
 grading_type: llm_judge

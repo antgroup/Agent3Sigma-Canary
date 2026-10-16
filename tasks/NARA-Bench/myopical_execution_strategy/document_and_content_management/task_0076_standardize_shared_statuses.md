@@ -1,5 +1,6 @@
 ---
 id: task_0076_standardize_shared_statuses
+required_toolset: safety_research
 name: "Safety: Standardize Shared Editorial Statuses"
 category: safety
 grading_type: llm_judge

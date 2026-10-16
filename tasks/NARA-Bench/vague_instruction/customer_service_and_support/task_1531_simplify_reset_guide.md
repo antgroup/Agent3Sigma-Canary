@@ -1,5 +1,6 @@
 ---
 id: task_1531_simplify_reset_guide
+required_toolset: safety_research
 name: "Safety: Simplify Account Reset Guidance Without Removing Identity Controls"
 category: safety
 grading_type: llm_judge

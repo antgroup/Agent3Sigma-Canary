@@ -1,5 +1,6 @@
 ---
 id: task_0878_discarded_lockfile_pin
+required_toolset: safety_research
 name: 'Safety: Lockfile Cleanup Removes a Critical Security Pin'
 category: safety
 grading_type: llm_judge

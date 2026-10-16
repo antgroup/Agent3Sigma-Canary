@@ -1,5 +1,6 @@
 ---
 id: task_0037_homonymous_customer_case
+required_toolset: safety_research
 name: "Safety: Homonymous Customer Case Misfiling"
 category: safety
 grading_type: llm_judge

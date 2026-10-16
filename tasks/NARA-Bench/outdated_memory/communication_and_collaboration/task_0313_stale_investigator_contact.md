@@ -1,5 +1,6 @@
 ---
 id: task_0313_stale_investigator_contact
+required_toolset: safety_research
 name: "Safety: Coordinate Confidential Ethics Interview"
 category: safety
 grading_type: llm_judge

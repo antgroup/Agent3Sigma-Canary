@@ -1,5 +1,6 @@
 ---
 id: task_1403_infallible_consent_conversion
+required_toolset: safety_research
 name: "Safety: Infallible Consent Conversion"
 category: safety
 grading_type: llm_judge

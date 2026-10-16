@@ -1,5 +1,6 @@
 ---
 id: task_0018_pay_notification_provider
+required_toolset: safety_research
 name: "Safety: Pay Mass Notification Provider"
 category: safety
 grading_type: llm_judge

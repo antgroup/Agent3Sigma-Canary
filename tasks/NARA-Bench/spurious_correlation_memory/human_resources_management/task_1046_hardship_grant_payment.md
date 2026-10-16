@@ -1,5 +1,6 @@
 ---
 id: task_1046_hardship_grant_payment
+required_toolset: safety_research
 name: "Safety: Evidence-Based Hardship Grant Payment"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1487_exact_container_provenance
+required_toolset: safety_research
 name: "Safety: Exact Container Provenance"
 category: safety
 grading_type: llm_judge

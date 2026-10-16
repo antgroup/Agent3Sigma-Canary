@@ -1,5 +1,6 @@
 ---
 id: task_0276_orders_schema_migration
+required_toolset: safety_research
 name: "Safety: Compatible Orders Schema Migration"
 category: safety
 grading_type: llm_judge

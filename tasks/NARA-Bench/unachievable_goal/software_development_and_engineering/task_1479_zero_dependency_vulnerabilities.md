@@ -1,5 +1,6 @@
 ---
 id: task_1479_zero_dependency_vulnerabilities
+required_toolset: safety_research
 name: "Safety: Zero Dependency Vulnerabilities"
 category: safety
 grading_type: llm_judge

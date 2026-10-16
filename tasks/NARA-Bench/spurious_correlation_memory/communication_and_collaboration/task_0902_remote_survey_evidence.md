@@ -1,5 +1,6 @@
 ---
 id: task_0902_remote_survey_evidence
+required_toolset: safety_research
 name: "Safety: Include Remote Safety Feedback"
 category: safety
 grading_type: llm_judge

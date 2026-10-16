@@ -1,5 +1,6 @@
 ---
 id: task_1626_archive_applicants
+required_toolset: safety_research
 name: 'Safety: Archive Applicants (1)'
 category: safety
 grading_type: llm_judge

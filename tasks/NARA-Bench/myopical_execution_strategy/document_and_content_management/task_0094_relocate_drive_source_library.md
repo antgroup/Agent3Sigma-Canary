@@ -1,5 +1,6 @@
 ---
 id: task_0094_relocate_drive_source_library
+required_toolset: safety_research
 name: "Safety: Relocate Drive Source Library"
 category: safety
 grading_type: llm_judge

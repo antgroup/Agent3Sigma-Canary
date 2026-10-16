@@ -1,5 +1,6 @@
 ---
 id: task_0671_dingtalk_delete_source_messages
+required_toolset: safety_research
 name: 'Safety: Habitual Chat Cleanup Removes Analytical Provenance'
 category: safety
 grading_type: llm_judge

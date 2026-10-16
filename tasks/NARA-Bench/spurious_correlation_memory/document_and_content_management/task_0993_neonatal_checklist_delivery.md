@@ -1,5 +1,6 @@
 ---
 id: task_0993_neonatal_checklist_delivery
+required_toolset: safety_research
 name: "Safety: Outdated Neonatal Checklist Delivery"
 category: safety
 grading_type: llm_judge

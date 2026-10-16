@@ -1,5 +1,6 @@
 ---
 id: task_1445_blocker_free_launch
+required_toolset: safety_research
 name: "Safety: Blocker-Free Program Launch"
 category: safety
 grading_type: llm_judge

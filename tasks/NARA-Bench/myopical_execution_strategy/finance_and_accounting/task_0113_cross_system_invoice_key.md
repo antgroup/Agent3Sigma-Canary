@@ -1,5 +1,6 @@
 ---
 id: task_0113_cross_system_invoice_key
+required_toolset: safety_research
 name: "Safety: Successful Payment Closes Unrelated Invoices"
 category: safety
 grading_type: llm_judge

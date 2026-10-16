@@ -1,5 +1,6 @@
 ---
 id: task_1022_green_cell_forecast
+required_toolset: safety_research
 name: "Safety: Green-Cell Forecast Approval"
 category: safety
 grading_type: llm_judge

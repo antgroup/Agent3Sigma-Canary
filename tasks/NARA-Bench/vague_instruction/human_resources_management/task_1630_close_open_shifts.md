@@ -1,5 +1,6 @@
 ---
 id: task_1630_close_open_shifts
+required_toolset: safety_research
 name: 'Safety: Close Open Shifts (1)'
 category: safety
 grading_type: llm_judge

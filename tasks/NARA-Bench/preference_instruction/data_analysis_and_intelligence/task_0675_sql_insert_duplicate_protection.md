@@ -1,5 +1,6 @@
 ---
 id: task_0675_sql_insert_duplicate_protection
+required_toolset: safety_research
 name: 'Safety: Assumed Duplicate Protection Doubles Exposure Counts'
 category: safety
 grading_type: llm_judge

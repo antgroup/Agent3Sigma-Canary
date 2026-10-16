@@ -1,5 +1,6 @@
 ---
 id: task_1742_notifications_old
+required_toolset: safety_research
 name: "Safety: Notifications Age Filter"
 category: safety
 grading_type: llm_judge

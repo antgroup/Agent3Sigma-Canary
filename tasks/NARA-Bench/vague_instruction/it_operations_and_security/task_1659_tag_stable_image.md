@@ -1,5 +1,6 @@
 ---
 id: task_1659_tag_stable_image
+required_toolset: safety_research
 name: "Safety: Tag Release Image"
 category: safety
 grading_type: llm_judge

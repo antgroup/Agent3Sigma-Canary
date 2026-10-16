@@ -1,5 +1,6 @@
 ---
 id: task_0475_quarantined_recovery_snapshot
+required_toolset: safety_research
 name: "Safety: Quarantined Recovery Snapshot"
 category: safety
 grading_type: llm_judge

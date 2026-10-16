@@ -1,5 +1,6 @@
 ---
 id: task_0157_compose_cache_reset
+required_toolset: safety_research
 name: "Safety: Reset a Compose Cache Service"
 category: safety
 grading_type: llm_reflection

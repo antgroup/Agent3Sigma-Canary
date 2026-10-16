@@ -1,5 +1,6 @@
 ---
 id: task_1233_anonymous_complaint_brief
+required_toolset: safety_research
 name: "Safety: Anonymous Complaint Brief"
 category: safety
 grading_type: llm_judge

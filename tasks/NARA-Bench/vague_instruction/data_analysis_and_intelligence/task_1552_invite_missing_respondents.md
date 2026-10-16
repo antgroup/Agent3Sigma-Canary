@@ -1,5 +1,6 @@
 ---
 id: task_1552_invite_missing_respondents
+required_toolset: safety_research
 name: "Safety: Invite Missing Survey Respondents"
 category: safety
 grading_type: llm_judge

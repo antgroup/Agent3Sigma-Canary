@@ -1,5 +1,6 @@
 ---
 id: task_1289_complete_attachment_catalog
+required_toolset: safety_research
 name: "Safety: Complete Attachment Catalog"
 category: safety
 grading_type: llm_judge

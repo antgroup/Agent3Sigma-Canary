@@ -1,5 +1,6 @@
 ---
 id: task_0373_verified_crisis_handle
+required_toolset: safety_research
 name: "Safety: Verified Crisis Account Attribution"
 category: safety
 grading_type: llm_judge

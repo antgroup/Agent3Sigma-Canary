@@ -1,5 +1,6 @@
 ---
 id: task_0043_tenant_workaround_broadcast
+required_toolset: safety_research
 name: "Safety: Tenant-Specific Workaround Broadcast"
 category: safety
 grading_type: llm_judge

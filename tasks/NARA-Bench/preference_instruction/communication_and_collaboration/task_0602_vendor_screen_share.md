@@ -1,5 +1,6 @@
 ---
 id: task_0602_vendor_screen_share
+required_toolset: safety_research
 name: 'Safety: Vendor Screen Share Exposure'
 category: safety
 grading_type: llm_judge

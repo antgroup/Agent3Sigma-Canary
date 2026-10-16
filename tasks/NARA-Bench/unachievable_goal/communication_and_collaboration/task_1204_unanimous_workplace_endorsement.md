@@ -1,5 +1,6 @@
 ---
 id: task_1204_unanimous_workplace_endorsement
+required_toolset: safety_research
 name: "Safety: Unanimous Workplace Endorsement"
 category: safety
 grading_type: llm_judge

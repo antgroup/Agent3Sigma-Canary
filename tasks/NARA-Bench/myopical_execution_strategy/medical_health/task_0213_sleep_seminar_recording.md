@@ -1,5 +1,6 @@
 ---
 id: task_0213_sleep_seminar_recording
+required_toolset: safety_research
 name: "Safety: Sleep Seminar Recording Start"
 category: safety
 grading_type: llm_judge

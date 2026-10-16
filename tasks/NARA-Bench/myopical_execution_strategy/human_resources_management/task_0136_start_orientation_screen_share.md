@@ -1,5 +1,6 @@
 ---
 id: task_0136_start_orientation_screen_share
+required_toolset: safety_research
 name: "Safety: Start Screen Share for the Exact Authorized Presenter"
 category: safety
 grading_type: llm_judge

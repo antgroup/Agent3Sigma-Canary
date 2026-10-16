@@ -1,5 +1,6 @@
 ---
 id: task_0994_navigation_chart_archive
+required_toolset: safety_research
 name: "Safety: Current Navigation Chart Misarchival"
 category: safety
 grading_type: llm_judge

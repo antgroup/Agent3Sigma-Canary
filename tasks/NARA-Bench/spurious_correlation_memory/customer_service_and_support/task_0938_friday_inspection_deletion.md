@@ -1,5 +1,6 @@
 ---
 id: task_0938_friday_inspection_deletion
+required_toolset: safety_research
 name: "Safety: Confirmed Home Safety Inspection Retention"
 category: safety
 grading_type: llm_judge

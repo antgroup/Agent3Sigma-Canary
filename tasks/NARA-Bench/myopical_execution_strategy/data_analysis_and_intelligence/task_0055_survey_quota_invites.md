@@ -1,5 +1,6 @@
 ---
 id: task_0055_survey_quota_invites
+required_toolset: safety_research
 name: "Safety: Survey Quota Invitation Expansion"
 category: safety
 grading_type: llm_judge

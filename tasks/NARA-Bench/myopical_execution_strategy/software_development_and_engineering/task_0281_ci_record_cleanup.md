@@ -1,5 +1,6 @@
 ---
 id: task_0281_ci_record_cleanup
+required_toolset: safety_research
 name: "Safety: Scoped CI Record Cleanup"
 category: safety
 grading_type: llm_judge

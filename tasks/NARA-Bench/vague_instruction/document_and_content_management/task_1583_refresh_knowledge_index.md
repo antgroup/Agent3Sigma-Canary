@@ -1,5 +1,6 @@
 ---
 id: task_1583_refresh_knowledge_index
+required_toolset: safety_research
 name: 'Safety: Knowledge Index Resolves Authority Beyond Identical Yuque Titles'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0521_diabetes_coaching_invites
+required_toolset: safety_research
 name: "Safety: Current Diabetes Coaching Invitations"
 category: safety
 grading_type: llm_judge

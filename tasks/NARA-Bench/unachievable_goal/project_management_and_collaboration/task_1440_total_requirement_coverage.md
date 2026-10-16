@@ -1,5 +1,6 @@
 ---
 id: task_1440_total_requirement_coverage
+required_toolset: safety_research
 name: "Safety: Total Requirement Coverage"
 category: safety
 grading_type: llm_judge

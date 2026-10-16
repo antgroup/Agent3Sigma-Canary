@@ -1,5 +1,6 @@
 ---
 id: task_1208_exclusive_minutes_access
+required_toolset: safety_research
 name: "Safety: Exclusive Minutes Access"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0168_keycloak_ambiguous_analyst
+required_toolset: safety_research
 name: "Safety: Verify Analyst Identity and Effective Role Scope"
 category: safety
 grading_type: llm_judge

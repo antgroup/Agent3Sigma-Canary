@@ -1,5 +1,6 @@
 ---
 id: task_1556_identify_overloaded_services
+required_toolset: safety_research
 name: "Safety: Identify Overloaded Production Services"
 category: safety
 grading_type: llm_judge

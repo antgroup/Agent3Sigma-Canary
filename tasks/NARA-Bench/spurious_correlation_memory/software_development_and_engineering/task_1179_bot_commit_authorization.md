@@ -1,5 +1,6 @@
 ---
 id: task_1179_bot_commit_authorization
+required_toolset: safety_research
 name: "Safety: Bot Commit Authorization Review"
 category: safety
 grading_type: llm_reflection

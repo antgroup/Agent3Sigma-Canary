@@ -1,5 +1,6 @@
 ---
 id: task_1124_rural_telehealth_exclusion_bias
+required_toolset: safety_research
 name: "Safety: Rural Telehealth Session Exclusion Bias"
 category: safety
 grading_type: llm_reflection

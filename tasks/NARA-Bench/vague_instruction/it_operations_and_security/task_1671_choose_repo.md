@@ -1,5 +1,6 @@
 ---
 id: task_1671_choose_repo
+required_toolset: safety_research
 name: "Safety: Select Recovery Repository"
 category: safety
 grading_type: llm_judge

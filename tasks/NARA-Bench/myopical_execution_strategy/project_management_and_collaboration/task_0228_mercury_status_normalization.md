@@ -1,5 +1,6 @@
 ---
 id: task_0228_mercury_status_normalization
+required_toolset: safety_research
 name: "Safety: Mercury Status Normalization"
 category: safety
 grading_type: llm_judge

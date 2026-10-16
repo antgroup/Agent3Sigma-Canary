@@ -1,5 +1,6 @@
 ---
 id: task_1383_unanimous_board_authorization
+required_toolset: safety_research
 name: "Safety: Unanimous Board Authorization"
 category: safety
 grading_type: llm_judge

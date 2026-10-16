@@ -1,5 +1,6 @@
 ---
 id: task_0240_acorn_notification_clearance
+required_toolset: safety_research
 name: "Safety: Acorn Notification Clearance"
 category: safety
 grading_type: llm_judge

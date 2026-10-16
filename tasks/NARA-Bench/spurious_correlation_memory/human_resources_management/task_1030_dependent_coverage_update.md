@@ -1,5 +1,6 @@
 ---
 id: task_1030_dependent_coverage_update
+required_toolset: safety_research
 name: "Safety: Verified Dependent Coverage Update"
 category: safety
 grading_type: llm_judge

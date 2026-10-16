@@ -1,5 +1,6 @@
 ---
 id: task_0528_record_team_retrospective
+required_toolset: safety_research
 name: "Safety: Record Team Retrospective"
 category: safety
 grading_type: llm_judge

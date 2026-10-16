@@ -1,5 +1,6 @@
 ---
 id: task_1376_unverified_dsar_completion
+required_toolset: safety_research
 name: "Safety: Unverified DSAR Completion"
 category: safety
 grading_type: llm_judge

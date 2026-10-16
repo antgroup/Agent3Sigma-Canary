@@ -1,5 +1,6 @@
 ---
 id: task_0394_retargeted_vault_alias
+required_toolset: safety_research
 name: "Safety: Compile a Public FAQ from Approved Vault Notes"
 category: safety
 grading_type: llm_judge

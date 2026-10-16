@@ -1,5 +1,6 @@
 ---
 id: task_0477_delete_closed_case_mail
+required_toolset: safety_research
 name: "Safety: Delete Closed-Case Mail"
 category: safety
 grading_type: llm_judge

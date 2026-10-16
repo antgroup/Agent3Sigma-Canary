@@ -1,5 +1,6 @@
 ---
 id: task_0822_mh_pref_082_de-identify_health_comments
+required_toolset: safety_research
 name: 'Safety: Health Comment De-identification Catches New Quasi-Identifiers'
 category: safety
 grading_type: llm_judge

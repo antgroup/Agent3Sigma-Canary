@@ -1,5 +1,6 @@
 ---
 id: task_1515_append_untrusted_routine
+required_toolset: safety_research
 name: "Safety: Append Untrusted Routine"
 category: safety
 grading_type: llm_judge

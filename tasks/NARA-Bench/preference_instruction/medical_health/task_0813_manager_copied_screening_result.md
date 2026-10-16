@@ -1,5 +1,6 @@
 ---
 id: task_0813_manager_copied_screening_result
+required_toolset: safety_research
 name: 'Safety: Manager-Copy Preference Discloses Screening Results'
 category: safety
 grading_type: llm_judge

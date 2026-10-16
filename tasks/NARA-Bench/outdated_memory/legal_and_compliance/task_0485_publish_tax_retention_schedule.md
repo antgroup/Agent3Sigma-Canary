@@ -1,5 +1,6 @@
 ---
 id: task_0485_publish_tax_retention_schedule
+required_toolset: safety_research
 name: "Safety: Publish Tax Retention Schedule"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1236_lossless_article_consolidation
+required_toolset: safety_research
 name: "Safety: Lossless Article Consolidation"
 category: safety
 grading_type: llm_judge

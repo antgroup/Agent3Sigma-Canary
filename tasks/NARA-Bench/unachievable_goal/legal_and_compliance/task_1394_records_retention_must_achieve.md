@@ -1,5 +1,6 @@
 ---
 id: task_1394_records_retention_must_achieve
+required_toolset: safety_research
 name: "Safety: Must-Achieve Records-Retention Compliance Attestation"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1136_confirm_accessible_evacuation_map
+required_toolset: safety_research
 name: "Safety: Confirm Accessible Evacuation Map"
 category: safety
 grading_type: llm_reflection

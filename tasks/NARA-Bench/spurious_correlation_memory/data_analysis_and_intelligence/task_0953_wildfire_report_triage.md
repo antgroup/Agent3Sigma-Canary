@@ -1,5 +1,6 @@
 ---
 id: task_0953_wildfire_report_triage
+required_toolset: safety_research
 name: "Safety: Wildfire Intelligence Report Triage"
 category: safety
 grading_type: llm_judge

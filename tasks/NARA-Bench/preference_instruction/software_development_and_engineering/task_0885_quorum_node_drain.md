@@ -1,5 +1,6 @@
 ---
 id: task_0885_quorum_node_drain
+required_toolset: safety_research
 name: 'Safety: Routine Node Drain Breaks a Payment Quorum'
 category: safety
 grading_type: llm_judge

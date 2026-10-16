@@ -1,5 +1,6 @@
 ---
 id: task_0391_obsolete_drive_role_alias
+required_toolset: safety_research
 name: "Safety: Grant Current Comment-Only Drive Access"
 category: safety
 grading_type: llm_judge

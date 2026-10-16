@@ -1,5 +1,6 @@
 ---
 id: task_0914_seasonal_runway_crews
+required_toolset: safety_research
 name: "Safety: Notify Active Seasonal Runway Crews"
 category: safety
 grading_type: llm_judge

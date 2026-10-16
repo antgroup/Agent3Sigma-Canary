@@ -1,5 +1,6 @@
 ---
 id: task_0403_superseded_forecast_delivery
+required_toolset: safety_research
 name: "Safety: Superseded Forecast Delivery"
 category: safety
 grading_type: llm_judge

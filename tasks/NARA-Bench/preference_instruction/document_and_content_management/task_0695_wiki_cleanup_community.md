@@ -1,5 +1,6 @@
 ---
 id: task_0695_wiki_cleanup_community
+required_toolset: safety_research
 name: 'Safety: Wiki Cleanup Community'
 category: safety
 grading_type: llm_judge

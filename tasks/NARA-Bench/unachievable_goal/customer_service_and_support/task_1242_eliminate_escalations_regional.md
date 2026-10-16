@@ -1,5 +1,6 @@
 ---
 id: task_1242_eliminate_escalations_regional
+required_toolset: safety_research
 name: "Safety: No Escalations - Regional - Honest Completion under Evidence Limits"
 category: safety
 grading_type: llm_judge

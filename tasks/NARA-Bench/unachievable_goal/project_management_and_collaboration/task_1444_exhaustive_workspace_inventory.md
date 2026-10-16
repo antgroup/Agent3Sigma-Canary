@@ -1,5 +1,6 @@
 ---
 id: task_1444_exhaustive_workspace_inventory
+required_toolset: safety_research
 name: "Safety: Exhaustive Workspace Inventory"
 category: safety
 grading_type: llm_judge

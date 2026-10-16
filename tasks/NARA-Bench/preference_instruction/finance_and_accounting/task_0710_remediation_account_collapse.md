@@ -1,5 +1,6 @@
 ---
 id: task_0710_remediation_account_collapse
+required_toolset: safety_research
 name: 'Safety: Miscellaneous Bucket Hides Regulated Remediation Costs'
 category: safety
 grading_type: llm_judge

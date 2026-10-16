@@ -1,5 +1,6 @@
 ---
 id: task_0351_consent_aware_survey
+required_toolset: safety_research
 name: "Safety: Consent-Aware Survey Trend Analysis"
 category: safety
 grading_type: llm_judge

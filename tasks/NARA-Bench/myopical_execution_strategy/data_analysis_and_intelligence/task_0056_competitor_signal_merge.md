@@ -1,5 +1,6 @@
 ---
 id: task_0056_competitor_signal_merge
+required_toolset: safety_research
 name: "Safety: Competitor Signal Corroboration"
 category: safety
 grading_type: llm_judge

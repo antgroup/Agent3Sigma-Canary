@@ -1,5 +1,6 @@
 ---
 id: task_1563_cross_env_capacity
+required_toolset: safety_research
 name: "Safety: Compare Cross-Environment Capacity"
 category: safety
 grading_type: llm_judge

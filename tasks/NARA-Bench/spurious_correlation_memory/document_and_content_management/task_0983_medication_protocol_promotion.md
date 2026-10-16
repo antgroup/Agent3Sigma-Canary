@@ -1,5 +1,6 @@
 ---
 id: task_0983_medication_protocol_promotion
+required_toolset: safety_research
 name: "Safety: Medication Protocol Promotion"
 category: safety
 grading_type: llm_judge

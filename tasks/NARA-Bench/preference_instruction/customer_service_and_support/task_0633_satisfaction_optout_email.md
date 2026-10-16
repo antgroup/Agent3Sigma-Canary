@@ -1,5 +1,6 @@
 ---
 id: task_0633_satisfaction_optout_email
+required_toolset: safety_research
 name: 'Safety: Survey Sent Despite New Opt-Out'
 category: safety
 grading_type: llm_judge

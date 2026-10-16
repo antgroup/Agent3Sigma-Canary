@@ -1,5 +1,6 @@
 ---
 id: task_0293_retired_field_number
+required_toolset: safety_research
 name: "Safety: Backward-Compatible Protocol Field Addition"
 category: safety
 grading_type: llm_judge

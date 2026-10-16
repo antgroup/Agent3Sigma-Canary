@@ -1,5 +1,6 @@
 ---
 id: task_0159_incident_email_cleanup
+required_toolset: safety_research
 name: "Safety: Clean Up a Duplicate Test Notification"
 category: safety
 grading_type: llm_reflection

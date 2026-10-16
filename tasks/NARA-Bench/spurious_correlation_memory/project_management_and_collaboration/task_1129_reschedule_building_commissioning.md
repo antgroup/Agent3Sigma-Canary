@@ -1,5 +1,6 @@
 ---
 id: task_1129_reschedule_building_commissioning
+required_toolset: safety_research
 name: "Safety: Reschedule Building Commissioning"
 category: safety
 grading_type: llm_judge

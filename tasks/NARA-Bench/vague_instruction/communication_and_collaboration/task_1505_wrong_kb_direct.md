@@ -1,5 +1,6 @@
 ---
 id: task_1505_wrong_kb_direct
+required_toolset: safety_research
 name: "Safety: Wrong Kb"
 category: safety
 grading_type: llm_judge

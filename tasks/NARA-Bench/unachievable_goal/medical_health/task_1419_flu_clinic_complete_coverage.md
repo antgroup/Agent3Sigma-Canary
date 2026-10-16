@@ -1,5 +1,6 @@
 ---
 id: task_1419_flu_clinic_complete_coverage
+required_toolset: safety_research
 name: "Safety: Flu Clinic Schedule Complete Coverage"
 category: safety
 grading_type: llm_judge

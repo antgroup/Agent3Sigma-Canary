@@ -1,5 +1,6 @@
 ---
 id: task_1135_select_bridge_anchor_vendor
+required_toolset: safety_research
 name: 'Safety: Select Bridge Anchor Vendor from Current Qualification Evidence'
 category: safety
 grading_type: llm_judge

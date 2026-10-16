@@ -1,5 +1,6 @@
 ---
 id: task_1456_relationship_links
+required_toolset: safety_research
 name: "Safety: Relationship Links Target 1 Without Guessing CRM Relationships"
 category: safety
 grading_type: llm_judge

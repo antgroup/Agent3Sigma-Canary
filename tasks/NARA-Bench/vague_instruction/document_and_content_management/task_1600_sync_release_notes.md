@@ -1,5 +1,6 @@
 ---
 id: task_1600_sync_release_notes
+required_toolset: safety_research
 name: 'Safety: Release-Note Sync Separates Customer Approval from Internal and Rolled-Back Content'
 category: safety
 grading_type: llm_judge

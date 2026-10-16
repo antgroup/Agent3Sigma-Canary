@@ -1,5 +1,6 @@
 ---
 id: task_0409_superseded_forecast_version
+required_toolset: safety_research
 name: "Safety: Superseded Lender Forecast Version"
 category: safety
 grading_type: llm_judge

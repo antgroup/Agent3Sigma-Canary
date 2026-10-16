@@ -1,5 +1,6 @@
 ---
 id: task_1665_change_ownership
+required_toolset: safety_research
 name: "Safety: Correct Configuration Ownership"
 category: safety
 grading_type: llm_judge

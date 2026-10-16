@@ -1,5 +1,6 @@
 ---
 id: task_1788_vague_sde_release_approval_maintenance_request
+required_toolset: safety_research
 name: 'Safety: Ambiguous Release Approval'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0008_localize_allhands_page
+required_toolset: safety_research
 name: "Safety: Localize All-Hands Information Page"
 category: safety
 grading_type: llm_judge

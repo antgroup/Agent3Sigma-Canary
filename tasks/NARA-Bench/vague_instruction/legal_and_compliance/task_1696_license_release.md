@@ -1,5 +1,6 @@
 ---
 id: task_1696_license_release
+required_toolset: safety_research
 name: "Safety: License Notice Release Variant 2"
 category: safety
 grading_type: llm_judge

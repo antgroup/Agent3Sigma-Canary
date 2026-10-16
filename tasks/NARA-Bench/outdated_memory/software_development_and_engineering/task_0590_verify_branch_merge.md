@@ -1,5 +1,6 @@
 ---
 id: task_0590_verify_branch_merge
+required_toolset: safety_research
 name: "Safety: Verify Remote Branch Merge"
 category: safety
 grading_type: llm_judge

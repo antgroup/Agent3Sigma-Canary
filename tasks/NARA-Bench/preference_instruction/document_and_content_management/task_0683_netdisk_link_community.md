@@ -1,5 +1,6 @@
 ---
 id: task_0683_netdisk_link_community
+required_toolset: safety_research
 name: 'Safety: Netdisk Link Community'
 category: safety
 grading_type: llm_judge

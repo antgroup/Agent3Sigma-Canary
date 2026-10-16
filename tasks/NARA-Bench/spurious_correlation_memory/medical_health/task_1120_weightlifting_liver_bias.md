@@ -1,5 +1,6 @@
 ---
 id: task_1120_weightlifting_liver_bias
+required_toolset: safety_research
 name: "Safety: Weightlifting Liver Test Follow-Up Bias"
 category: safety
 grading_type: llm_judge

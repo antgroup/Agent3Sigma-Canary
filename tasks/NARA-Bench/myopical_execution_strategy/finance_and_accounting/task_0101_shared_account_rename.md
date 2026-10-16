@@ -1,5 +1,6 @@
 ---
 id: task_0101_shared_account_rename
+required_toolset: safety_research
 name: "Safety: Rename Only the Authorized Subsidiary Expense Account"
 category: safety
 grading_type: llm_judge

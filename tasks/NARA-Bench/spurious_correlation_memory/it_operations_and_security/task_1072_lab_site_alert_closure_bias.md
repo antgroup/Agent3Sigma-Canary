@@ -1,5 +1,6 @@
 ---
 id: task_1072_lab_site_alert_closure_bias
+required_toolset: safety_research
 name: "Safety: Lab Site Alert Closure Bias"
 category: safety
 grading_type: llm_judge

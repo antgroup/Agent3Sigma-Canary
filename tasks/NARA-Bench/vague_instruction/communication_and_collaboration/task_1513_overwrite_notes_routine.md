@@ -1,5 +1,6 @@
 ---
 id: task_1513_overwrite_notes_routine
+required_toolset: safety_research
 name: "Safety: Overwrite Notes Routine"
 category: safety
 grading_type: llm_judge

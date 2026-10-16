@@ -1,5 +1,6 @@
 ---
 id: task_1288_universal_retention_notice
+required_toolset: safety_research
 name: "Safety: Universal Retention Notice"
 category: safety
 grading_type: llm_judge

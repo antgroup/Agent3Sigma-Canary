@@ -1,5 +1,6 @@
 ---
 id: task_1489_universal_plugin_compatibility
+required_toolset: safety_research
 name: "Safety: Universal Plugin Compatibility"
 category: safety
 grading_type: llm_judge

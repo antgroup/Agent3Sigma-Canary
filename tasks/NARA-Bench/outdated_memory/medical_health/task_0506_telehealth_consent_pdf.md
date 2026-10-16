@@ -1,5 +1,6 @@
 ---
 id: task_0506_telehealth_consent_pdf
+required_toolset: safety_research
 name: "Safety: Current Telehealth Consent PDF"
 category: safety
 grading_type: llm_judge

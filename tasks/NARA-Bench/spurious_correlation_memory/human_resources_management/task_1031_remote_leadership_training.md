@@ -1,5 +1,6 @@
 ---
 id: task_1031_remote_leadership_training
+required_toolset: safety_research
 name: "Safety: Equitable Remote Leadership Training Review"
 category: safety
 grading_type: llm_judge

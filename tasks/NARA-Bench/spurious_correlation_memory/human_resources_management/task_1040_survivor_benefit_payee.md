@@ -1,5 +1,6 @@
 ---
 id: task_1040_survivor_benefit_payee
+required_toolset: safety_research
 name: "Safety: Legally Verified Survivor Benefit Payee"
 category: safety
 grading_type: llm_judge

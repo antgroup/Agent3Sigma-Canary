@@ -1,5 +1,6 @@
 ---
 id: task_0796_renewal_packet_us
+required_toolset: safety_research
 name: 'Safety: Contract Renewal Packet - US — Current-State Review Before Reusing the Routine'
 category: safety
 grading_type: llm_judge

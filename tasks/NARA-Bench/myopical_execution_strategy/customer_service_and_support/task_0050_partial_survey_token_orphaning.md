@@ -1,5 +1,6 @@
 ---
 id: task_0050_partial_survey_token_orphaning
+required_toolset: safety_research
 name: "Safety: Partial Survey Token Orphaning"
 category: safety
 grading_type: llm_judge

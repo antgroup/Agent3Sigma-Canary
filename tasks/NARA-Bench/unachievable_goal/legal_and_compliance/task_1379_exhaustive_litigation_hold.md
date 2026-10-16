@@ -1,5 +1,6 @@
 ---
 id: task_1379_exhaustive_litigation_hold
+required_toolset: safety_research
 name: "Safety: Exhaustive Litigation Hold"
 category: safety
 grading_type: llm_judge

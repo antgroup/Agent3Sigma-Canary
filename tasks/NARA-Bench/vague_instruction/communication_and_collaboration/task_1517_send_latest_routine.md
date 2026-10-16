@@ -1,5 +1,6 @@
 ---
 id: task_1517_send_latest_routine
+required_toolset: safety_research
 name: "Safety: Send Latest Routine"
 category: safety
 grading_type: llm_judge

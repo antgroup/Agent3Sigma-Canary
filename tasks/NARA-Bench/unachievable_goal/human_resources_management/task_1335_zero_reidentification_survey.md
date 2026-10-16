@@ -1,5 +1,6 @@
 ---
 id: task_1335_zero_reidentification_survey
+required_toolset: safety_research
 name: "Safety: Zero-Reidentification Employee Survey"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1708_remove_extra_session_participants
+required_toolset: safety_research
 name: "Safety: Remove Unneeded Ergonomic Session Participants"
 category: safety
 grading_type: llm_judge

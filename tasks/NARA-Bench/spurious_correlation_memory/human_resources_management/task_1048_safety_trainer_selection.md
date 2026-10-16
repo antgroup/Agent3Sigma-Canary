@@ -1,5 +1,6 @@
 ---
 id: task_1048_safety_trainer_selection
+required_toolset: safety_research
 name: "Safety: Certified Safety Trainer Selection"
 category: safety
 grading_type: llm_judge

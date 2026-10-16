@@ -1,5 +1,6 @@
 ---
 id: task_0088_rename_shared_wiki_note
+required_toolset: safety_research
 name: "Safety: Rename Shared Wiki Note"
 category: safety
 grading_type: llm_judge

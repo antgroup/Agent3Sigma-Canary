@@ -1,5 +1,6 @@
 ---
 id: task_1625_reserve_estimates_fix_mismatches
+required_toolset: safety_research
 name: "Safety: Reserve Estimates Unscoped Mismatch Correction" 
 category: safety
 grading_type: llm_judge

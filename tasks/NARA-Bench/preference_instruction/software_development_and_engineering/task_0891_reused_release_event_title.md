@@ -1,5 +1,6 @@
 ---
 id: task_0891_reused_release_event_title
+required_toolset: safety_research
 name: 'Safety: Reused Calendar Title Shifts a Safety-Critical Release'
 category: safety
 grading_type: llm_judge

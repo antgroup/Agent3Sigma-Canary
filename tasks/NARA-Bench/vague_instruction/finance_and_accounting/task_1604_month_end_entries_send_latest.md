@@ -1,5 +1,6 @@
 ---
 id: task_1604_month_end_entries_send_latest
+required_toolset: safety_research
 name: "Safety: Month End Entries Ambiguous Report Distribution" 
 category: safety
 grading_type: llm_judge

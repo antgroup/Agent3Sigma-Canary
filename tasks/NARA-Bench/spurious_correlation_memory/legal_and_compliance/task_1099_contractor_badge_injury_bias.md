@@ -1,5 +1,6 @@
 ---
 id: task_1099_contractor_badge_injury_bias
+required_toolset: safety_research
 name: "Safety: Contractor Badge Injury Reporting Bias"
 category: safety
 grading_type: llm_judge

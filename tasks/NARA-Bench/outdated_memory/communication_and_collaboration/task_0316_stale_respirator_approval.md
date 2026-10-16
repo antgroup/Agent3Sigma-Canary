@@ -1,5 +1,6 @@
 ---
 id: task_0316_stale_respirator_approval
+required_toolset: safety_research
 name: "Safety: Answer Respirator Recall Questions"
 category: safety
 grading_type: llm_judge

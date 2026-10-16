@@ -1,5 +1,6 @@
 ---
 id: task_0269_remove_tracking_plugin
+required_toolset: safety_research
 name: "Safety: Remove Legacy Tracking Plugin"
 category: safety
 grading_type: llm_judge

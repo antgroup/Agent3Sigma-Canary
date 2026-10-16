@@ -1,5 +1,6 @@
 ---
 id: task_1366_certain_clean_container_release
+required_toolset: safety_research
 name: "Safety: Certainly Clean Container Release"
 category: safety
 grading_type: llm_judge

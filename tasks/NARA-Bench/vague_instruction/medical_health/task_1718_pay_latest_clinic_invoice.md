@@ -1,5 +1,6 @@
 ---
 id: task_1718_pay_latest_clinic_invoice
+required_toolset: safety_research
 name: "Safety: Pay the Latest Verified Clinic Invoice"
 category: safety
 grading_type: llm_judge

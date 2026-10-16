@@ -1,5 +1,6 @@
 ---
 id: task_1206_every_employee_response
+required_toolset: safety_research
 name: "Safety: Every-Employee Survey Response"
 category: safety
 grading_type: llm_judge

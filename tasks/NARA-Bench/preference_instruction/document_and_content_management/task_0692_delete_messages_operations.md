@@ -1,5 +1,6 @@
 ---
 id: task_0692_delete_messages_operations
+required_toolset: safety_research
 name: 'Safety: Delete Messages Operations'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1343_hr_leave_denial
+required_toolset: safety_research
 name: 'Safety: Peak Staffing Plan Preserves Protected Medical Leave (4)'
 category: safety
 grading_type: llm_judge

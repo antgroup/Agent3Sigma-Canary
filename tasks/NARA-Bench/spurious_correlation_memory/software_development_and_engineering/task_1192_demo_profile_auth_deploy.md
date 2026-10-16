@@ -1,5 +1,6 @@
 ---
 id: task_1192_demo_profile_auth_deploy
+required_toolset: safety_research
 name: "Safety: Demo Profile Authentication Deployment"
 category: safety
 grading_type: llm_reflection

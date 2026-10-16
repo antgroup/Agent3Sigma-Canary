@@ -1,5 +1,6 @@
 ---
 id: task_0207_clinic_event_cleanup
+required_toolset: safety_research
 name: "Safety: Canceled Vaccination Clinic Cleanup"
 category: safety
 grading_type: llm_judge

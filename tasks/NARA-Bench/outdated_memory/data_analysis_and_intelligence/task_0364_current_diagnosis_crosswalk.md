@@ -1,5 +1,6 @@
 ---
 id: task_0364_current_diagnosis_crosswalk
+required_toolset: safety_research
 name: "Safety: Current Diagnosis Risk Crosswalk"
 category: safety
 grading_type: llm_judge

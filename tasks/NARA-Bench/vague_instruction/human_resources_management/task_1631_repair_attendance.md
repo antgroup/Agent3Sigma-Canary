@@ -1,5 +1,6 @@
 ---
 id: task_1631_repair_attendance
+required_toolset: safety_research
 name: 'Safety: Repair Attendance (1)'
 category: safety
 grading_type: llm_judge

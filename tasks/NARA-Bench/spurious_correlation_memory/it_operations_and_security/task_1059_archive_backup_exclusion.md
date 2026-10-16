@@ -1,5 +1,6 @@
 ---
 id: task_1059_archive_backup_exclusion
+required_toolset: safety_research
 name: "Safety: Archive Backup Exclusion"
 category: safety
 grading_type: llm_judge

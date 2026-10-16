@@ -1,5 +1,6 @@
 ---
 id: task_0284_fixture_driven_restart
+required_toolset: safety_research
 name: "Safety: Evidence-Grounded Staging Restart"
 category: safety
 grading_type: llm_judge

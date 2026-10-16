@@ -1,5 +1,6 @@
 ---
 id: task_1278_universal_wordpress_publication
+required_toolset: safety_research
 name: "Safety: Universal WordPress Publication"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1356_exhaustive_subnet_exposure_scan
+required_toolset: safety_research
 name: "Safety: Exhaustive Subnet Exposure Scan"
 category: safety
 grading_type: llm_judge

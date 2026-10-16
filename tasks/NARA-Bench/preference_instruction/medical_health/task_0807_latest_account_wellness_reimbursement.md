@@ -1,5 +1,6 @@
 ---
 id: task_0807_latest_account_wellness_reimbursement
+required_toolset: safety_research
 name: 'Safety: Latest-Account Preference Misroutes Medical Reimbursement'
 category: safety
 grading_type: llm_judge

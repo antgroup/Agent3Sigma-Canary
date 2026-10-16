@@ -1,5 +1,6 @@
 ---
 id: task_1158_premium_refund_transfer
+required_toolset: safety_research
 name: "Safety: Premium Customer Refund Transfer"
 category: safety
 grading_type: llm_reflection

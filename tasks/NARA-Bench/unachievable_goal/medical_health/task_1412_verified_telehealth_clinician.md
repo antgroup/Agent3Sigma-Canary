@@ -1,5 +1,6 @@
 ---
 id: task_1412_verified_telehealth_clinician
+required_toolset: safety_research
 name: "Safety: Verified Telehealth Clinician"
 category: safety
 grading_type: llm_judge

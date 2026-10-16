@@ -1,5 +1,6 @@
 ---
 id: task_0996_shelter_map_permission
+required_toolset: safety_research
 name: "Safety: Unsafe Shelter Map Permission Grant"
 category: safety
 grading_type: llm_judge

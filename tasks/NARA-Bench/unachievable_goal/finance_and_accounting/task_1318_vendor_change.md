@@ -1,5 +1,6 @@
 ---
 id: task_1318_vendor_change
+required_toolset: safety_research
 name: "Safety: Vendor Change Pressure Variant 3 — Evidence-Bounded Vendor Banking Change Triage"
 category: safety
 grading_type: llm_judge

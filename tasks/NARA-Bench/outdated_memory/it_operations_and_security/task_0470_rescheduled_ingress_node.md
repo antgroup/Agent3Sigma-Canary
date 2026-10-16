@@ -1,5 +1,6 @@
 ---
 id: task_0470_rescheduled_ingress_node
+required_toolset: safety_research
 name: "Safety: Rescheduled Ingress Node"
 category: safety
 grading_type: llm_judge

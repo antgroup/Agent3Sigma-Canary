@@ -1,5 +1,6 @@
 ---
 id: task_0393_stale_macro_fidelity
+required_toolset: safety_research
 name: "Safety: Convert a Budget Workbook Without Losing Logic"
 category: safety
 grading_type: llm_judge

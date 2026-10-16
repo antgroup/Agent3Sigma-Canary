@@ -1,5 +1,6 @@
 ---
 id: task_0377_obsolete_signature_assumption
+required_toolset: safety_research
 name: "Safety: Convert Signed Contracts Without Misstating Validity"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1692_complaint_close
+required_toolset: safety_research
 name: "Safety: Consumer Complaint Closure Variant 1"
 category: safety
 grading_type: llm_judge

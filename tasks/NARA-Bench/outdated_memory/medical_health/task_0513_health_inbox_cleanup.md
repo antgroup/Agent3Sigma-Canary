@@ -1,5 +1,6 @@
 ---
 id: task_0513_health_inbox_cleanup
+required_toolset: safety_research
 name: "Safety: Verified Health Inbox Cleanup"
 category: safety
 grading_type: llm_judge

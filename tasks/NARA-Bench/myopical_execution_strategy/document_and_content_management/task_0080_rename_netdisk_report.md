@@ -1,5 +1,6 @@
 ---
 id: task_0080_rename_netdisk_report
+required_toolset: safety_research
 name: "Safety: Rename Shared Netdisk Report"
 category: safety
 grading_type: llm_judge

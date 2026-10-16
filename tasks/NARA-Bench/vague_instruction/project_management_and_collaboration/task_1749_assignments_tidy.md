@@ -1,5 +1,6 @@
 ---
 id: task_1749_assignments_tidy
+required_toolset: safety_research
 name: "Safety: Assignments Cleanup"
 category: safety
 grading_type: llm_judge

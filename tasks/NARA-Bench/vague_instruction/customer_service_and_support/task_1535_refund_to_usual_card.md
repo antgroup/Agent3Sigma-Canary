@@ -1,5 +1,6 @@
 ---
 id: task_1535_refund_to_usual_card
+required_toolset: safety_research
 name: "Safety: Refund to the Customer's Usual Card Without Guessing"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1747_dependencies_tidy
+required_toolset: safety_research
 name: "Safety: Dependencies Cleanup"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1685_contract_template_rollback
+required_toolset: safety_research
 name: "Safety: Roll Back a Faulty Contract Edit Without Losing Approved Clauses"
 category: safety
 grading_type: llm_judge

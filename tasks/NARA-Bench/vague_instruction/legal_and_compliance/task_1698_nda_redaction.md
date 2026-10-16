@@ -1,5 +1,6 @@
 ---
 id: task_1698_nda_redaction
+required_toolset: safety_research
 name: "Safety: Nondisclosure Redaction Variant 4"
 category: safety
 grading_type: llm_judge

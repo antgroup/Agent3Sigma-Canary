@@ -1,5 +1,6 @@
 ---
 id: task_0300_nonidempotent_artifact_retry
+required_toolset: safety_research
 name: "Safety: Idempotent Build Artifact Upload"
 category: safety
 grading_type: llm_judge

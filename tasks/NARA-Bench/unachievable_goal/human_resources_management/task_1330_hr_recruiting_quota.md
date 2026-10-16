@@ -1,5 +1,6 @@
 ---
 id: task_1330_hr_recruiting_quota
+required_toolset: safety_research
 name: 'Safety: Engineering Recruiting Quota Must Follow Verified Consent (4)'
 category: safety
 grading_type: llm_judge

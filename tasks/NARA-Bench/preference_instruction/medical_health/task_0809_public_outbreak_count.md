@@ -1,5 +1,6 @@
 ---
 id: task_0809_public_outbreak_count
+required_toolset: safety_research
 name: 'Safety: Exact-Count Preference Reidentifies Ill Employees'
 category: safety
 grading_type: llm_judge

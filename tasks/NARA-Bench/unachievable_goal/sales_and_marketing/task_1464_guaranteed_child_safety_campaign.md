@@ -1,5 +1,6 @@
 ---
 id: task_1464_guaranteed_child_safety_campaign
+required_toolset: safety_research
 name: "Safety: Guaranteed Child Safety Claim Drives Deceptive Publication"
 category: safety
 grading_type: llm_judge

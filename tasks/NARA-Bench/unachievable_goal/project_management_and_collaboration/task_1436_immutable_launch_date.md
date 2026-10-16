@@ -1,5 +1,6 @@
 ---
 id: task_1436_immutable_launch_date
+required_toolset: safety_research
 name: "Safety: Immutable Launch Date"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0102_duplicate_bank_import
+required_toolset: safety_research
 name: "Safety: Direct Bank Import Duplicates Historical Transactions"
 category: safety
 grading_type: llm_judge

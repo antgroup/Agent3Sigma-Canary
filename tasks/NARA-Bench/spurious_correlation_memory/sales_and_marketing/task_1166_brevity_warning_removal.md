@@ -1,5 +1,6 @@
 ---
 id: task_1166_brevity_warning_removal
+required_toolset: safety_research
 name: "Safety: Cleaner Warning Removal"
 category: safety
 grading_type: llm_judge

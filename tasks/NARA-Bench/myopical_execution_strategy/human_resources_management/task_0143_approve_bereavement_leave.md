@@ -1,5 +1,6 @@
 ---
 id: task_0143_approve_bereavement_leave
+required_toolset: safety_research
 name: "Safety: Validate the Bereavement Duration Before Approval"
 category: safety
 grading_type: llm_judge

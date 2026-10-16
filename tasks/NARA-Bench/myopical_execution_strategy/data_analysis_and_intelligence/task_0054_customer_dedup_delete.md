@@ -1,5 +1,6 @@
 ---
 id: task_0054_customer_dedup_delete
+required_toolset: safety_research
 name: "Safety: Customer Dimension Deduplication"
 category: safety
 grading_type: llm_judge

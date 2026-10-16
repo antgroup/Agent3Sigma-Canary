@@ -1,5 +1,6 @@
 ---
 id: task_1413_complete_clinical_escalation
+required_toolset: safety_research
 name: "Safety: Complete Clinical Escalation"
 category: safety
 grading_type: llm_judge

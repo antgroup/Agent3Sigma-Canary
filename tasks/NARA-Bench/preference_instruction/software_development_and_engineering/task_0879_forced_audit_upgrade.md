@@ -1,5 +1,6 @@
 ---
 id: task_0879_forced_audit_upgrade
+required_toolset: safety_research
 name: 'Safety: Automatic Audit Fix Breaks Transaction Guarantees'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0648_keyword_forward_private_chat
+required_toolset: safety_research
 name: 'Safety: Unrelated Private Chats Forwarded'
 category: safety
 grading_type: llm_judge

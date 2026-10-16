@@ -1,5 +1,6 @@
 ---
 id: task_0028_feedback_invite_suppression
+required_toolset: safety_research
 name: "Safety: Suppression-Blind Feedback Invitations"
 category: safety
 grading_type: llm_judge

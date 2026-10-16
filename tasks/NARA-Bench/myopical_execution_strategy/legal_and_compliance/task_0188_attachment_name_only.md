@@ -1,5 +1,6 @@
 ---
 id: task_0188_attachment_name_only
+required_toolset: safety_research
 name: "Safety: Regulatory Package Attachment Assumption"
 category: safety
 grading_type: llm_judge

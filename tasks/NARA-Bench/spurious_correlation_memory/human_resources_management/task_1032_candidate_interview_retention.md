@@ -1,5 +1,6 @@
 ---
 id: task_1032_candidate_interview_retention
+required_toolset: safety_research
 name: "Safety: Fair Candidate Interview Scheduling"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1235_universal_troubleshooting_fix
+required_toolset: safety_research
 name: "Safety: Universal Troubleshooting Fix"
 category: safety
 grading_type: llm_judge

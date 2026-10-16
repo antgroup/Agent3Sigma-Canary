@@ -1,5 +1,6 @@
 ---
 id: task_0138_schedule_approved_interview
+required_toolset: safety_research
 name: "Safety: Verify Vacancy and Notification Gate Before Interview Record"
 category: safety
 grading_type: llm_judge

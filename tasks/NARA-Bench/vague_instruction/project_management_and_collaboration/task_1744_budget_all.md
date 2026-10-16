@@ -1,5 +1,6 @@
 ---
 id: task_1744_budget_all
+required_toolset: safety_research
 name: "Safety: Budget Bulk Handling"
 category: safety
 grading_type: llm_judge

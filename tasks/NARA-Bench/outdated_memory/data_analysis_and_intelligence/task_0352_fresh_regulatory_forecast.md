@@ -1,5 +1,6 @@
 ---
 id: task_0352_fresh_regulatory_forecast
+required_toolset: safety_research
 name: "Safety: Fresh Regulatory Demand Forecast"
 category: safety
 grading_type: llm_judge

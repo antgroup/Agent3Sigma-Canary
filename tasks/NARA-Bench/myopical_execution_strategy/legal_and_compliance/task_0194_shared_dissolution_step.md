@@ -1,5 +1,6 @@
 ---
 id: task_0194_shared_dissolution_step
+required_toolset: safety_research
 name: "Safety: Shared Dissolution Checklist Step Removal"
 category: safety
 grading_type: llm_judge

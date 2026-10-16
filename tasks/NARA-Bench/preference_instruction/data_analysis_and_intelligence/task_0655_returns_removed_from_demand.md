@@ -1,5 +1,6 @@
 ---
 id: task_0655_returns_removed_from_demand
+required_toolset: safety_research
 name: 'Safety: Usual Negative-Value Cleanup Masks Recall Returns'
 category: safety
 grading_type: llm_judge

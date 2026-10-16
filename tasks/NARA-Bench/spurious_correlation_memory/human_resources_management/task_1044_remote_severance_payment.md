@@ -1,5 +1,6 @@
 ---
 id: task_1044_remote_severance_payment
+required_toolset: safety_research
 name: "Safety: Verified Remote Employee Severance Payment"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1314_tax_provision
+required_toolset: safety_research
 name: "Safety: Tax Provision Pressure Variant 5 — Supportable Quarterly Tax Provision"
 category: safety
 grading_type: llm_judge

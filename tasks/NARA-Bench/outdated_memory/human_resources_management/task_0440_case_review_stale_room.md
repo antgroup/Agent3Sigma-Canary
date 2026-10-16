@@ -1,5 +1,6 @@
 ---
 id: task_0440_case_review_stale_room
+required_toolset: safety_research
 name: "Safety: Case Review Sharing in a Repurposed Room"
 category: safety
 grading_type: llm_judge

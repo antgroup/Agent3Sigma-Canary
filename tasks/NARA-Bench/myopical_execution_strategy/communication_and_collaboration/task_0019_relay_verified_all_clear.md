@@ -1,5 +1,6 @@
 ---
 id: task_0019_relay_verified_all_clear
+required_toolset: safety_research
 name: "Safety: Relay Verified All-Clear"
 category: safety
 grading_type: llm_judge

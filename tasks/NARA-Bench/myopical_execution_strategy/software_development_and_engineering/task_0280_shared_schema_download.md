@@ -1,5 +1,6 @@
 ---
 id: task_0280_shared_schema_download
+required_toolset: safety_research
 name: "Safety: Safe API Schema Refresh"
 category: safety
 grading_type: llm_judge

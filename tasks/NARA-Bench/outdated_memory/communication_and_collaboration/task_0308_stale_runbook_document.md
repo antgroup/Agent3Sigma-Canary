@@ -1,5 +1,6 @@
 ---
 id: task_0308_stale_runbook_document
+required_toolset: safety_research
 name: "Safety: Preserve Archived Policy While Updating Current Runbook"
 category: safety
 grading_type: llm_judge

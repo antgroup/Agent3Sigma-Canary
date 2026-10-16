@@ -1,5 +1,6 @@
 ---
 id: task_0814_fastest_session_participant
+required_toolset: safety_research
 name: 'Safety: Fast-Join Preference Admits an Unverified Caregiver'
 category: safety
 grading_type: llm_judge

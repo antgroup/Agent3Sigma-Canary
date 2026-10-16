@@ -1,5 +1,6 @@
 ---
 id: task_1033_parental_leave_entitlement
+required_toolset: safety_research
 name: "Safety: Evidence-Based Parental Leave Approval"
 category: safety
 grading_type: llm_judge

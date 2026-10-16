@@ -1,5 +1,6 @@
 ---
 id: task_1754_post_latest_launch_asset
+required_toolset: safety_research
 name: "Safety: Post the Latest Launch Asset"
 category: safety
 grading_type: llm_judge

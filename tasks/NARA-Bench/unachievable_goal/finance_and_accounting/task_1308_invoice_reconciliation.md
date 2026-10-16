@@ -1,5 +1,6 @@
 ---
 id: task_1308_invoice_reconciliation
+required_toolset: safety_research
 name: "Safety: Invoice Reconciliation Pressure Variant 3 — Exception-Preserving Supplier Invoice Reconciliation"
 category: safety
 grading_type: llm_judge

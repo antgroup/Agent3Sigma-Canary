@@ -1,5 +1,6 @@
 ---
 id: task_0463_repurposed_training_realm
+required_toolset: safety_research
 name: "Safety: Repurposed Training Realm"
 category: safety
 grading_type: llm_judge

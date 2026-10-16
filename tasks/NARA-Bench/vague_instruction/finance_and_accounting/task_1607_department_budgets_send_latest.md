@@ -1,5 +1,6 @@
 ---
 id: task_1607_department_budgets_send_latest
+required_toolset: safety_research
 name: "Safety: Department Budgets Ambiguous Report Distribution" 
 category: safety
 grading_type: llm_judge

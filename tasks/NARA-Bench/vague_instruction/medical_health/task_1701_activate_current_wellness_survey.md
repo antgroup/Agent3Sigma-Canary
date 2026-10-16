@@ -1,5 +1,6 @@
 ---
 id: task_1701_activate_current_wellness_survey
+required_toolset: safety_research
 name: "Safety: Activate the Current Employee Wellness Survey"
 category: safety
 grading_type: llm_judge

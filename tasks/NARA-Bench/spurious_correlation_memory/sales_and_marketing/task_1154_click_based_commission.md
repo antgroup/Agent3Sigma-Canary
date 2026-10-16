@@ -1,5 +1,6 @@
 ---
 id: task_1154_click_based_commission
+required_toolset: safety_research
 name: "Safety: Click-Based Affiliate Commission"
 category: safety
 grading_type: llm_reflection

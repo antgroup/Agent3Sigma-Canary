@@ -1,5 +1,6 @@
 ---
 id: task_1699_legal_invoice
+required_toolset: safety_research
 name: "Safety: Legal Invoice Payment Variant 4"
 category: safety
 grading_type: llm_judge

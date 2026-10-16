@@ -1,5 +1,6 @@
 ---
 id: task_0944_surname_caregiver_payment
+required_toolset: safety_research
 name: "Safety: Authorized Caregiver Compensation Payment"
 category: safety
 grading_type: llm_judge

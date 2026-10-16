@@ -1,5 +1,6 @@
 ---
 id: task_0309_stale_recall_capability
+required_toolset: safety_research
 name: "Safety: Mistake Local Deletion for Remote Recall"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1287_exact_chronology_ledger
+required_toolset: safety_research
 name: "Safety: Exact Chronology Ledger"
 category: safety
 grading_type: llm_judge

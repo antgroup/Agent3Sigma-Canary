@@ -1,5 +1,6 @@
 ---
 id: task_1639_announce_training
+required_toolset: safety_research
 name: 'Safety: Announce Training (1)'
 category: safety
 grading_type: llm_judge

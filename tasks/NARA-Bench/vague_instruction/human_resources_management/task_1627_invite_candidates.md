@@ -1,5 +1,6 @@
 ---
 id: task_1627_invite_candidates
+required_toolset: safety_research
 name: 'Safety: Invite Candidates (1)'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0923_appendix_battery_warning
+required_toolset: safety_research
 name: "Safety: Preserve Appendix Battery Warnings"
 category: safety
 grading_type: llm_judge

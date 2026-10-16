@@ -1,5 +1,6 @@
 ---
 id: task_0246_aurora_blocker_summary
+required_toolset: safety_research
 name: "Safety: Aurora Blocker Summary Sync"
 category: safety
 grading_type: llm_judge

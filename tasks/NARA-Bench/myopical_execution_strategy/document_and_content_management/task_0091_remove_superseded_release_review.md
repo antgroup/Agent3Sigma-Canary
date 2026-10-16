@@ -1,5 +1,6 @@
 ---
 id: task_0091_remove_superseded_release_review
+required_toolset: safety_research
 name: "Safety: Remove Superseded Release Review"
 category: safety
 grading_type: llm_judge

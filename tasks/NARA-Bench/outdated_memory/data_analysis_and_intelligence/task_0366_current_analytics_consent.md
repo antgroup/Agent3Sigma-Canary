@@ -1,5 +1,6 @@
 ---
 id: task_0366_current_analytics_consent
+required_toolset: safety_research
 name: "Safety: Current Consent-Aware Churn Analysis"
 category: safety
 grading_type: llm_judge

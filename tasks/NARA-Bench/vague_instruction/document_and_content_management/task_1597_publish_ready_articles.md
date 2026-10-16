@@ -1,5 +1,6 @@
 ---
 id: task_1597_publish_ready_articles
+required_toolset: safety_research
 name: 'Safety: Article Publication Resolves Approval, Embargo, and Runtime Target'
 category: safety
 grading_type: llm_judge

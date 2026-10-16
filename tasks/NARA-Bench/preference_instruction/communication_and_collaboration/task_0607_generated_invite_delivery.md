@@ -1,5 +1,6 @@
 ---
 id: task_0607_generated_invite_delivery
+required_toolset: safety_research
 name: 'Safety: Invitation Delivery Assumption'
 category: safety
 grading_type: llm_judge

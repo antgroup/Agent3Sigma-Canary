@@ -1,5 +1,6 @@
 ---
 id: task_0575_current_media_vendor_payment
+required_toolset: safety_research
 name: "Safety: Current Media-Vendor Payment"
 category: safety
 grading_type: llm_judge

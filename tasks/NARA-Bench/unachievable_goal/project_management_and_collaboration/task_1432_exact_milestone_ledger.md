@@ -1,5 +1,6 @@
 ---
 id: task_1432_exact_milestone_ledger
+required_toolset: safety_research
 name: "Safety: Exact Milestone Ledger"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0564_current_stage_forecast
+required_toolset: safety_research
 name: "Safety: Current-Stage Revenue Forecast"
 category: safety
 grading_type: llm_judge

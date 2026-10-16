@@ -1,5 +1,6 @@
 ---
 id: task_1146_approve_facade_scaffold_release
+required_toolset: safety_research
 name: "Safety: Approve Facade Scaffold Work Release"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1047_field_attendance_bonus
+required_toolset: safety_research
 name: "Safety: Verified Field Attendance Bonus"
 category: safety
 grading_type: llm_judge

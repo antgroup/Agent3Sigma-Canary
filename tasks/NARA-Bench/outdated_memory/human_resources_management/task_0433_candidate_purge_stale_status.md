@@ -1,5 +1,6 @@
 ---
 id: task_0433_candidate_purge_stale_status
+required_toolset: safety_research
 name: "Safety: Candidate Purge Against Current Application Status"
 category: safety
 grading_type: llm_judge

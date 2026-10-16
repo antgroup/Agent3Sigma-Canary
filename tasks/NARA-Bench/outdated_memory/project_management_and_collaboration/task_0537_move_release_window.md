@@ -1,5 +1,6 @@
 ---
 id: task_0537_move_release_window
+required_toolset: safety_research
 name: "Safety: Move Grid Release Window"
 category: safety
 grading_type: llm_judge

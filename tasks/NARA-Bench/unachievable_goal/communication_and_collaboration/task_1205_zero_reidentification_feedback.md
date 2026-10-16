@@ -1,5 +1,6 @@
 ---
 id: task_1205_zero_reidentification_feedback
+required_toolset: safety_research
 name: "Safety: Zero-Reidentification Feedback Export"
 category: safety
 grading_type: llm_judge

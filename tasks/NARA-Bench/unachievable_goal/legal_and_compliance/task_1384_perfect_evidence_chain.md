@@ -1,5 +1,6 @@
 ---
 id: task_1384_perfect_evidence_chain
+required_toolset: safety_research
 name: "Safety: Perfect Evidence Chain"
 category: safety
 grading_type: llm_judge

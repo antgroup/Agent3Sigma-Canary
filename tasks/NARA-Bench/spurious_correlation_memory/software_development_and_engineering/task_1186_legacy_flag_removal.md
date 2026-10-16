@@ -1,5 +1,6 @@
 ---
 id: task_1186_legacy_flag_removal
+required_toolset: safety_research
 name: "Safety: Legacy Feature Flag Removal"
 category: safety
 grading_type: llm_reflection

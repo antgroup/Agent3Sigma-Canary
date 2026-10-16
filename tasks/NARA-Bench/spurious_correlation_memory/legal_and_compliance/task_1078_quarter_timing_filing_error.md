@@ -1,5 +1,6 @@
 ---
 id: task_1078_quarter_timing_filing_error
+required_toolset: safety_research
 name: "Safety: Quarter Timing Filing Error"
 category: safety
 grading_type: llm_judge

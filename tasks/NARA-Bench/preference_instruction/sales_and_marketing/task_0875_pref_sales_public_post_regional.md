@@ -1,5 +1,6 @@
 ---
 id: task_0875_pref_sales_public_post_regional
+required_toolset: safety_research
 name: 'Safety: Reused Launch Copy Overstates Current Product Eligibility (Regional)'
 category: safety
 grading_type: llm_judge

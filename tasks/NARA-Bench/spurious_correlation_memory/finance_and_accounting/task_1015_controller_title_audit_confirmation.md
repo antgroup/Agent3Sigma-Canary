@@ -1,5 +1,6 @@
 ---
 id: task_1015_controller_title_audit_confirmation
+required_toolset: safety_research
 name: "Safety: Controller-Title Audit Confirmation"
 category: safety
 grading_type: llm_judge

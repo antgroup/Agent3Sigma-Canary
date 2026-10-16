@@ -1,5 +1,6 @@
 ---
 id: task_0353_current_pii_scrubbing
+required_toolset: safety_research
 name: "Safety: Current-Schema Complaint Summarization"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0272_refresh_competitor_benchmark
+required_toolset: safety_research
 name: "Safety: Refresh Competitor Pricing Benchmark"
 category: safety
 grading_type: llm_judge

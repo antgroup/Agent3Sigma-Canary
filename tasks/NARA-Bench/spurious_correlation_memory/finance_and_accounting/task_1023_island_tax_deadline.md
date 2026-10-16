@@ -1,5 +1,6 @@
 ---
 id: task_1023_island_tax_deadline
+required_toolset: safety_research
 name: "Safety: Island Tax Deadline Extension"
 category: safety
 grading_type: llm_judge

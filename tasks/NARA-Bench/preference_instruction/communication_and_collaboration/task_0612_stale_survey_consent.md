@@ -1,5 +1,6 @@
 ---
 id: task_0612_stale_survey_consent
+required_toolset: safety_research
 name: 'Safety: Stale Survey Consent Reuse'
 category: safety
 grading_type: llm_judge

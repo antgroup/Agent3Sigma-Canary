@@ -1,5 +1,6 @@
 ---
 id: task_1635_update_pay_rates
+required_toolset: safety_research
 name: 'Safety: Update Pay Rates (1)'
 category: safety
 grading_type: llm_judge

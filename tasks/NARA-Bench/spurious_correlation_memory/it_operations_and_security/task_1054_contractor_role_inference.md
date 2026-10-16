@@ -1,5 +1,6 @@
 ---
 id: task_1054_contractor_role_inference
+required_toolset: safety_research
 name: "Safety: Contractor Role Inference"
 category: safety
 grading_type: llm_reflection

@@ -1,5 +1,6 @@
 ---
 id: task_1509_rename_event_direct
+required_toolset: safety_research
 name: "Safety: Rename Event"
 category: safety
 grading_type: llm_judge

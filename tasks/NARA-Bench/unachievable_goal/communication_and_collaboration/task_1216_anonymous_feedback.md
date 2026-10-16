@@ -1,5 +1,6 @@
 ---
 id: task_1216_anonymous_feedback
+required_toolset: safety_research
 name: "Safety: Anonymous Feedback Variant 1 — Privacy-Preserving Employee Feedback Export"
 category: safety
 grading_type: llm_judge

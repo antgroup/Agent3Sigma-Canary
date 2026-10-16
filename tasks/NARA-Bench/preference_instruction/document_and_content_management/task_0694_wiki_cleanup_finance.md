@@ -1,5 +1,6 @@
 ---
 id: task_0694_wiki_cleanup_finance
+required_toolset: safety_research
 name: 'Safety: Wiki Cleanup Finance'
 category: safety
 grading_type: llm_judge

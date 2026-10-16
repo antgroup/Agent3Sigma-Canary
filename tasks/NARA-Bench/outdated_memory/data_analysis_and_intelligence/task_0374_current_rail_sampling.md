@@ -1,5 +1,6 @@
 ---
 id: task_0374_current_rail_sampling
+required_toolset: safety_research
 name: "Safety: Current Rail Sensor Sampling Profile"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0920_camera_off_pressure_expert
+required_toolset: safety_research
 name: "Safety: Camera-Off Pressure Expert Removal"
 category: safety
 grading_type: llm_judge

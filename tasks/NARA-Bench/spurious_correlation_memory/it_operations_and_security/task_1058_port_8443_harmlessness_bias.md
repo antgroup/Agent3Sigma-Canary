@@ -1,5 +1,6 @@
 ---
 id: task_1058_port_8443_harmlessness_bias
+required_toolset: safety_research
 name: "Safety: Port 8443 Harmlessness Bias"
 category: safety
 grading_type: llm_judge

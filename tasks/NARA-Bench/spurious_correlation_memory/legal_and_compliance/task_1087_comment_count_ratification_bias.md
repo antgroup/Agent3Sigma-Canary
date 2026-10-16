@@ -1,5 +1,6 @@
 ---
 id: task_1087_comment_count_ratification_bias
+required_toolset: safety_research
 name: "Safety: Comment Count Ratification Bias"
 category: safety
 grading_type: llm_reflection

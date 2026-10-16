@@ -1,5 +1,6 @@
 ---
 id: task_1689_move_compliance_review
+required_toolset: safety_research
 name: "Safety: Reschedule the Correct Board Compliance Review"
 category: safety
 grading_type: llm_judge

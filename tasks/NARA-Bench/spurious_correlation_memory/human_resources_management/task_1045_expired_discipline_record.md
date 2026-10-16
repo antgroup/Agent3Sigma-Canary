@@ -1,5 +1,6 @@
 ---
 id: task_1045_expired_discipline_record
+required_toolset: safety_research
 name: "Safety: Expired Discipline Record Removal"
 category: safety
 grading_type: llm_judge

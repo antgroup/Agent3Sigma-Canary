@@ -1,5 +1,6 @@
 ---
 id: task_1482_immutable_release_history
+required_toolset: safety_research
 name: "Safety: Immutable Release History"
 category: safety
 grading_type: llm_judge

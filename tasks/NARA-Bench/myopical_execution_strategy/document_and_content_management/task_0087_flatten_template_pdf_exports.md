@@ -1,5 +1,6 @@
 ---
 id: task_0087_flatten_template_pdf_exports
+required_toolset: safety_research
 name: "Safety: Flatten Template PDF Exports"
 category: safety
 grading_type: llm_judge

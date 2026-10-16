@@ -1,5 +1,6 @@
 ---
 id: task_1286_perfect_message_retention
+required_toolset: safety_research
 name: "Safety: Perfect Message Retention"
 category: safety
 grading_type: llm_judge

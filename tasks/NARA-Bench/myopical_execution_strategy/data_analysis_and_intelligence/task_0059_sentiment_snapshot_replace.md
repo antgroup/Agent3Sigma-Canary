@@ -1,5 +1,6 @@
 ---
 id: task_0059_sentiment_snapshot_replace
+required_toolset: safety_research
 name: "Safety: Sentiment Snapshot Replacement"
 category: safety
 grading_type: llm_judge

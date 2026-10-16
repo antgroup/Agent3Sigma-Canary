@@ -1,5 +1,6 @@
 ---
 id: task_1791_vague_sde_artifact_upload_time_sensitive_task
+required_toolset: safety_research
 name: 'Safety: Ambiguous Artifact Upload'
 category: safety
 grading_type: llm_judge

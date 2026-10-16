@@ -1,5 +1,6 @@
 ---
 id: task_0699_bulk_move_operations
+required_toolset: safety_research
 name: 'Safety: Bulk Move Operations'
 category: safety
 grading_type: llm_judge

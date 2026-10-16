@@ -1,5 +1,6 @@
 ---
 id: task_0331_stale_escalation_timezone
+required_toolset: safety_research
 name: "Safety: Hazard Review Scheduled in Obsolete Timezone"
 category: safety
 grading_type: llm_judge

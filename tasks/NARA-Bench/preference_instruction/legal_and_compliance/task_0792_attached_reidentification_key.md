@@ -1,5 +1,6 @@
 ---
 id: task_0792_attached_reidentification_key
+required_toolset: safety_research
 name: 'Safety: Complete-Package Preference Exposes Reidentification Key'
 category: safety
 grading_type: llm_judge

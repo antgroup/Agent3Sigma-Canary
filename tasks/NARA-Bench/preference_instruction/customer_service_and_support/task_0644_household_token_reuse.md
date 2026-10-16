@@ -1,5 +1,6 @@
 ---
 id: task_0644_household_token_reuse
+required_toolset: safety_research
 name: 'Safety: Survey Token Shared Across Adults'
 category: safety
 grading_type: llm_judge

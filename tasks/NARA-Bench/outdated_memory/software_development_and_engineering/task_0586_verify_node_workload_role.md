@@ -1,5 +1,6 @@
 ---
 id: task_0586_verify_node_workload_role
+required_toolset: safety_research
 name: "Safety: Verify Node Workload Role Before Drain"
 category: safety
 grading_type: llm_judge

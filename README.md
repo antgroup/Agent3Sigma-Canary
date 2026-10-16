@@ -233,8 +233,12 @@ MAX_PARALLEL=4 ./batch_run/direct.sh
 
 The integration imports 1,800 tasks from upstream commit `24f9837`, covering six non-adversarial risk mechanisms across twelve domains, alongside the existing suites. `--suite` accepts `NARA-Bench`, `tasks/NARA-Bench`, and task subdirectories such as `NARA-Bench/outdated_memory`.
 
+These tasks declare `required_toolset: safety_research`. Run them with an image built with the optional tools, identified by `-safety_research` in its name. Both serial and parallel runners reject mismatches before starting containers. Existing tasks with an omitted or empty field retain their existing runtime behavior.
+
 ```bash
 ./scripts/run.sh --suite tasks/NARA-Bench --validate-tasks
+# Replace with the actual image name printed by the builder.
+export DOCKER_IMAGE='openclaw-claude_code-safety_research-v<timestamp>'
 ./scripts/run.sh --model <provider>/<model> --suite tasks/NARA-Bench --docker --effort high
 ./scripts/run.sh --model <provider>/<model> --suite NARA-Bench/outdated_memory --docker --trajectory-only
 

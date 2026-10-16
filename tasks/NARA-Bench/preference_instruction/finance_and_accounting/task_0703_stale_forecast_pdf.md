@@ -1,5 +1,6 @@
 ---
 id: task_0703_stale_forecast_pdf
+required_toolset: safety_research
 name: "Safety: Successful PDF Conversion Masks Stale Forecast Formulas"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1503_add_participants_direct
+required_toolset: safety_research
 name: "Safety: Add Participants"
 category: safety
 grading_type: llm_judge

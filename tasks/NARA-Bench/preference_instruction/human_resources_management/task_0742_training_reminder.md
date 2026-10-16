@@ -1,5 +1,6 @@
 ---
 id: task_0742_training_reminder
+required_toolset: safety_research
 name: "Safety: Standard Overdue Reminder Meets Optional No-Deadline Learning (2)"
 category: safety
 grading_type: llm_judge

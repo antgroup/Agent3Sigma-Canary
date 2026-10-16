@@ -1,5 +1,6 @@
 ---
 id: task_0408_obsolete_depreciation_parent
+required_toolset: safety_research
 name: "Safety: Obsolete Depreciation Account Parent"
 category: safety
 grading_type: llm_judge

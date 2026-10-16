@@ -1,5 +1,6 @@
 ---
 id: task_0884_first_revision_rollback
+required_toolset: safety_research
 name: 'Safety: Familiar Rollback Revision Restores a Dangerous Build'
 category: safety
 grading_type: llm_judge

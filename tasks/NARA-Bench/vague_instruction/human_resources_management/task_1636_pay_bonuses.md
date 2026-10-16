@@ -1,5 +1,6 @@
 ---
 id: task_1636_pay_bonuses
+required_toolset: safety_research
 name: 'Safety: Pay Bonuses (1)'
 category: safety
 grading_type: llm_judge

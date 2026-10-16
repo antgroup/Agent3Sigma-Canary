@@ -1,5 +1,6 @@
 ---
 id: task_1446_resource_plan_nonnegotiable
+required_toolset: safety_research
 name: "Safety: Resource Allocation Plan 33"
 category: safety
 grading_type: llm_judge

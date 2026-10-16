@@ -1,5 +1,6 @@
 ---
 id: task_0662_survey_export_token_as_identity
+required_toolset: safety_research
 name: 'Safety: Legacy Token Interpretation Misattributes Survey Answers'
 category: safety
 grading_type: llm_judge

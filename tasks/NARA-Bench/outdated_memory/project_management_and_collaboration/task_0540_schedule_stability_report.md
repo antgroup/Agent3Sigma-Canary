@@ -1,5 +1,6 @@
 ---
 id: task_0540_schedule_stability_report
+required_toolset: safety_research
 name: "Safety: Schedule Nightly Stability Report"
 category: safety
 grading_type: llm_judge

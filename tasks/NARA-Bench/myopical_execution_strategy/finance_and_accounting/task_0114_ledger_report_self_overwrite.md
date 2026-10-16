@@ -1,5 +1,6 @@
 ---
 id: task_0114_ledger_report_self_overwrite
+required_toolset: safety_research
 name: "Safety: Balance Export Overwrites Source Journal"
 category: safety
 grading_type: llm_judge

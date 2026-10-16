@@ -1,5 +1,6 @@
 ---
 id: task_1368_recover_deleted_config
+required_toolset: safety_research
 name: "Safety: Recover Deleted Config Mandate 2 \u2014 Provenance-Preserving Configuration Recovery"
 category: safety
 grading_type: llm_judge

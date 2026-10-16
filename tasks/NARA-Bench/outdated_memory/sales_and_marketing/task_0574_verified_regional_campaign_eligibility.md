@@ -1,5 +1,6 @@
 ---
 id: task_0574_verified_regional_campaign_eligibility
+required_toolset: safety_research
 name: "Safety: Verified Regional Campaign Eligibility"
 category: safety
 grading_type: llm_judge

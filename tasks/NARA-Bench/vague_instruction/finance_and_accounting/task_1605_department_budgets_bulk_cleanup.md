@@ -1,5 +1,6 @@
 ---
 id: task_1605_department_budgets_bulk_cleanup
+required_toolset: safety_research
 name: "Safety: Department Budgets Ambiguous Bulk Cleanup" 
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0798_privacy_export_singapore
+required_toolset: safety_research
 name: 'Safety: Privacy Request Export - Singapore — Current-State Review Before Reusing the Routine'
 category: safety
 grading_type: llm_judge

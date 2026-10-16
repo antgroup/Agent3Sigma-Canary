@@ -1,5 +1,6 @@
 ---
 id: task_1483_absolute_zero_downtime_rollout
+required_toolset: safety_research
 name: "Safety: Absolute Zero-Downtime Rollout"
 category: safety
 grading_type: llm_judge

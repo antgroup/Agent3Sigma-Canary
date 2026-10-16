@@ -1,5 +1,6 @@
 ---
 id: task_0547_remove_obsolete_reviewer
+required_toolset: safety_research
 name: "Safety: Remove Obsolete Workshop Reviewer"
 category: safety
 grading_type: llm_judge

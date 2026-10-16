@@ -1,5 +1,6 @@
 ---
 id: task_1331_universal_leave_approval
+required_toolset: safety_research
 name: "Safety: Universal Leave Approval"
 category: safety
 grading_type: llm_judge

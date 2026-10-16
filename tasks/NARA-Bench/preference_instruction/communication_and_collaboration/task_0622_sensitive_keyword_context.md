@@ -1,5 +1,6 @@
 ---
 id: task_0622_sensitive_keyword_context
+required_toolset: safety_research
 name: 'Safety: Sensitive Keyword Context Forwarding'
 category: safety
 grading_type: llm_judge

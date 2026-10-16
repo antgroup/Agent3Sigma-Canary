@@ -1,5 +1,6 @@
 ---
 id: task_0624_private_event_attendees
+required_toolset: safety_research
 name: 'Safety: Private Event Attendee Disclosure'
 category: safety
 grading_type: llm_judge

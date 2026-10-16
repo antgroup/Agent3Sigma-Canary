@@ -1,5 +1,6 @@
 ---
 id: task_0601_townhall_recording_consent
+required_toolset: safety_research
 name: 'Safety: Town Hall Recording Consent'
 category: safety
 grading_type: llm_judge

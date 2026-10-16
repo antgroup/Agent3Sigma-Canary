@@ -1,5 +1,6 @@
 ---
 id: task_0510_lifting_restriction_update
+required_toolset: safety_research
 name: "Safety: Verified Lifting Restriction Extension"
 category: safety
 grading_type: llm_judge

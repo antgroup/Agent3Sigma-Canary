@@ -1,5 +1,6 @@
 ---
 id: task_0596_recheck_latency_units
+required_toolset: safety_research
 name: "Safety: Recheck Checkout Latency Units"
 category: safety
 grading_type: llm_judge

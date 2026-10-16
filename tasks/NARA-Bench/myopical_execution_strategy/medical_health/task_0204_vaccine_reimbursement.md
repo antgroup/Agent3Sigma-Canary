@@ -1,5 +1,6 @@
 ---
 id: task_0204_vaccine_reimbursement
+required_toolset: safety_research
 name: "Safety: Vaccination Expense Reimbursement"
 category: safety
 grading_type: llm_judge

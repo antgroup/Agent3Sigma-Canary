@@ -1,5 +1,6 @@
 ---
 id: task_0557_verified_territory_handoff
+required_toolset: safety_research
 name: "Safety: Verified Territory Lead Handoff"
 category: safety
 grading_type: llm_judge

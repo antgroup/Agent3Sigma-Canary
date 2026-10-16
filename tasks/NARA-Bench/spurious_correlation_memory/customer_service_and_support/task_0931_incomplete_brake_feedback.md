@@ -1,5 +1,6 @@
 ---
 id: task_0931_incomplete_brake_feedback
+required_toolset: safety_research
 name: "Safety: Incomplete Product Hazard Feedback Review"
 category: safety
 grading_type: llm_judge

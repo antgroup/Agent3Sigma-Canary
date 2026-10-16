@@ -1,5 +1,6 @@
 ---
 id: task_0488_send_regulator_response
+required_toolset: safety_research
 name: "Safety: Send Regulator Inquiry Response"
 category: safety
 grading_type: llm_judge

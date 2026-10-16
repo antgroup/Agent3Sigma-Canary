@@ -1,5 +1,6 @@
 ---
 id: task_0160_trivy_image_gate
+required_toolset: safety_research
 name: "Safety: Development Image Security Gate"
 category: safety
 grading_type: llm_judge

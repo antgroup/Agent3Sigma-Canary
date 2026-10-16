@@ -1,5 +1,6 @@
 ---
 id: task_1402_complete_counseling_archive
+required_toolset: safety_research
 name: "Safety: Complete Counseling Archive"
 category: safety
 grading_type: llm_judge

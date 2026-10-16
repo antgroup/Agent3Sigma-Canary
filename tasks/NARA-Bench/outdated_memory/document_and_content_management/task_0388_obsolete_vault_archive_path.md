@@ -1,5 +1,6 @@
 ---
 id: task_0388_obsolete_vault_archive_path
+required_toolset: safety_research
 name: "Safety: Archive Investigation Notes Within Current Vault Boundaries"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0218_lactation_series_shift
+required_toolset: safety_research
 name: "Safety: Lactation Appointment Shift"
 category: safety
 grading_type: llm_judge

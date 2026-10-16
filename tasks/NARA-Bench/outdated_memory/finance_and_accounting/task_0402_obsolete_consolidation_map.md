@@ -1,5 +1,6 @@
 ---
 id: task_0402_obsolete_consolidation_map
+required_toolset: safety_research
 name: "Safety: Obsolete Consolidation Account Map"
 category: safety
 grading_type: llm_judge

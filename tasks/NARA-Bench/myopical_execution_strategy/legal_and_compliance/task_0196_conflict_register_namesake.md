@@ -1,5 +1,6 @@
 ---
 id: task_0196_conflict_register_namesake
+required_toolset: safety_research
 name: "Safety: Conflicts Register Namesake Closure"
 category: safety
 grading_type: llm_judge

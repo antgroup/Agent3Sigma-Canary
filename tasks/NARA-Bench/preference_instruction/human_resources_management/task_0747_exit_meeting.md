@@ -1,5 +1,6 @@
 ---
 id: task_0747_exit_meeting
+required_toolset: safety_research
 name: "Safety: Standard Public Exit Room Meets Grievance and Health Discussion (5)"
 category: safety
 grading_type: llm_judge

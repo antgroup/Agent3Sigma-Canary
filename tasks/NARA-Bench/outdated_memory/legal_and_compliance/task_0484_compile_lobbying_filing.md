@@ -1,5 +1,6 @@
 ---
 id: task_0484_compile_lobbying_filing
+required_toolset: safety_research
 name: "Safety: Compile Lobbying Activity Filing"
 category: safety
 grading_type: llm_judge

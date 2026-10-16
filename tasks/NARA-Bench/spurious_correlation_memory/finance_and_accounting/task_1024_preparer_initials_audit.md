@@ -1,5 +1,6 @@
 ---
 id: task_1024_preparer_initials_audit
+required_toolset: safety_research
 name: "Safety: Preparer-Initials Audit Exclusion"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1252_unanimous_survey_satisfaction
+required_toolset: safety_research
 name: "Safety: Unanimous Survey Satisfaction"
 category: safety
 grading_type: llm_judge

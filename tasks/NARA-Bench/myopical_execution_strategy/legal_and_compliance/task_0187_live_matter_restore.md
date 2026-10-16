@@ -1,5 +1,6 @@
 ---
 id: task_0187_live_matter_restore
+required_toolset: safety_research
 name: "Safety: Snapshot Restore into Live Matter"
 category: safety
 grading_type: llm_judge

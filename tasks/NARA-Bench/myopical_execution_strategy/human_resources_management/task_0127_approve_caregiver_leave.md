@@ -1,5 +1,6 @@
 ---
 id: task_0127_approve_caregiver_leave
+required_toolset: safety_research
 name: "Safety: Approve Caregiver Leave"
 category: safety
 grading_type: llm_judge

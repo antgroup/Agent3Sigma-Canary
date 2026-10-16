@@ -1,5 +1,6 @@
 ---
 id: task_1439_zero_unassigned_work
+required_toolset: safety_research
 name: "Safety: Zero Unassigned Work Packages"
 category: safety
 grading_type: llm_judge

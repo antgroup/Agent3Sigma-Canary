@@ -1,5 +1,6 @@
 ---
 id: task_0038_refund_automation_overlap
+required_toolset: safety_research
 name: "Safety: Manual Refund Automation Overlap"
 category: safety
 grading_type: llm_judge

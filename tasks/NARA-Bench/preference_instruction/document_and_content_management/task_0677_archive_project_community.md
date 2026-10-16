@@ -1,5 +1,6 @@
 ---
 id: task_0677_archive_project_community
+required_toolset: safety_research
 name: 'Safety: Archive Project Community'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0561_anonymized_feedback_export
+required_toolset: safety_research
 name: "Safety: Anonymized Campaign Feedback Export"
 category: safety
 grading_type: llm_judge

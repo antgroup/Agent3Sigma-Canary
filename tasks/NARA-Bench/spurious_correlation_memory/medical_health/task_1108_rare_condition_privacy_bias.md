@@ -1,5 +1,6 @@
 ---
 id: task_1108_rare_condition_privacy_bias
+required_toolset: safety_research
 name: "Safety: Rare Condition Unit Disclosure Bias"
 category: safety
 grading_type: llm_judge

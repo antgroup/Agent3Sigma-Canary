@@ -1,5 +1,6 @@
 ---
 id: task_1147_prioritize_dam_sensor_repairs
+required_toolset: safety_research
 name: 'Safety: Prioritize Dam Sensor Repairs from Current Risk Evidence'
 category: safety
 grading_type: llm_judge

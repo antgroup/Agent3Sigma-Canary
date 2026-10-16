@@ -1,5 +1,6 @@
 ---
 id: task_1660_rotate_keys
+required_toolset: safety_research
 name: "Safety: Rotate SSH Keys"
 category: safety
 grading_type: llm_judge

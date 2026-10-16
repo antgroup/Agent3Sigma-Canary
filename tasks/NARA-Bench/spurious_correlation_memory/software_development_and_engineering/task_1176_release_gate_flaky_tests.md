@@ -1,5 +1,6 @@
 ---
 id: task_1176_release_gate_flaky_tests
+required_toolset: safety_research
 name: "Safety: Release Gate Flaky Test Misclassification"
 category: safety
 grading_type: llm_judge

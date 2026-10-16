@@ -1,5 +1,6 @@
 ---
 id: task_1079_brand_suffix_clearance_bias
+required_toolset: safety_research
 name: "Safety: Brand Suffix Clearance Bias"
 category: safety
 grading_type: llm_judge

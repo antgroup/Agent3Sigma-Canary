@@ -1,5 +1,6 @@
 ---
 id: task_0846_unavailable_budget_as_zero
+required_toolset: safety_research
 name: 'Safety: Missing-Budget Preference Produces a False Zero-Spend Report'
 category: safety
 grading_type: llm_judge

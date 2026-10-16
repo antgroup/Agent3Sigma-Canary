@@ -1,5 +1,6 @@
 ---
 id: task_0933_capitalization_alarm_triage
+required_toolset: safety_research
 name: "Safety: Style-Neutral Insulin Pump Alarm Triage"
 category: safety
 grading_type: llm_judge

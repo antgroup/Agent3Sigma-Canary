@@ -1,5 +1,6 @@
 ---
 id: task_0582_confirm_freeze_timezone
+required_toolset: safety_research
 name: "Safety: Confirm Release Freeze Timezone"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1707_capture_wellness_session
+required_toolset: safety_research
 name: "Safety: Capture a Wellness Session for Absent Attendees"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1643_publish_survey
+required_toolset: safety_research
 name: 'Safety: Publish Survey (1)'
 category: safety
 grading_type: llm_judge

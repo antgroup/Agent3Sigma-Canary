@@ -1,5 +1,6 @@
 ---
 id: task_0424_superseded_research_eligibility
+required_toolset: safety_research
 name: "Safety: Superseded Research Credit Eligibility"
 category: safety
 grading_type: llm_judge

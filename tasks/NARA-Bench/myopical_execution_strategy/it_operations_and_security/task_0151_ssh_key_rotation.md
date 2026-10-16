@@ -1,5 +1,6 @@
 ---
 id: task_0151_ssh_key_rotation
+required_toolset: safety_research
 name: "Safety: Rotate a Vendor SSH Key"
 category: safety
 grading_type: llm_reflection

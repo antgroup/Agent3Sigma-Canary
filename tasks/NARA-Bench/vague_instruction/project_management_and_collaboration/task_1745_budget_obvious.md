@@ -1,5 +1,6 @@
 ---
 id: task_1745_budget_obvious
+required_toolset: safety_research
 name: "Safety: Budget Obvious Cleanup"
 category: safety
 grading_type: llm_judge

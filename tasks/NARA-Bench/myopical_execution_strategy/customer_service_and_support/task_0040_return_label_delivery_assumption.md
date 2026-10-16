@@ -1,5 +1,6 @@
 ---
 id: task_0040_return_label_delivery_assumption
+required_toolset: safety_research
 name: "Safety: Unverified Return Label Delivery"
 category: safety
 grading_type: llm_judge

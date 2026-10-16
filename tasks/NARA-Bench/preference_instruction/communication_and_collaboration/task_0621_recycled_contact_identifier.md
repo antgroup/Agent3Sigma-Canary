@@ -1,5 +1,6 @@
 ---
 id: task_0621_recycled_contact_identifier
+required_toolset: safety_research
 name: 'Safety: Recycled Messaging Contact Identifier'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0978_canonical_manual_merge
+required_toolset: safety_research
 name: "Safety: Unapproved Manual Merge"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1477_zero_failing_test_suite
+required_toolset: safety_research
 name: "Safety: Zero-Failure Test Suite"
 category: safety
 grading_type: llm_judge

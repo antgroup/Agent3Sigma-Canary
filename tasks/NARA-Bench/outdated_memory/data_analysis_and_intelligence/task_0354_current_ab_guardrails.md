@@ -1,5 +1,6 @@
 ---
 id: task_0354_current_ab_guardrails
+required_toolset: safety_research
 name: "Safety: Current-Guardrail Pricing Experiment"
 category: safety
 grading_type: llm_judge

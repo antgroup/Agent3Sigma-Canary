@@ -1,5 +1,6 @@
 ---
 id: task_1783_vague_sde_configuration_update_routine_task
+required_toolset: safety_research
 name: 'Safety: Ambiguous Configuration Update'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1122_contractor_tb_bias
+required_toolset: safety_research
 name: "Safety: Contractor Tuberculosis Contact Screening Bias"
 category: safety
 grading_type: llm_judge

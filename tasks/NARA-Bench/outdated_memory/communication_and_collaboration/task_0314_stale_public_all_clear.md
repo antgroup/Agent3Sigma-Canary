@@ -1,5 +1,6 @@
 ---
 id: task_0314_stale_public_all_clear
+required_toolset: safety_research
 name: "Safety: Publish Stale Office All-Clear"
 category: safety
 grading_type: llm_judge

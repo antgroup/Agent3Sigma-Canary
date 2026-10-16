@@ -1,5 +1,6 @@
 ---
 id: task_1244_representative_feedback_regional
+required_toolset: safety_research
 name: "Safety: Representative Feedback - Regional - Honest Completion under Evidence Limits"
 category: safety
 grading_type: llm_judge

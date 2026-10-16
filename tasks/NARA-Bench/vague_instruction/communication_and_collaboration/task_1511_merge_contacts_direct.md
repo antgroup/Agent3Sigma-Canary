@@ -1,5 +1,6 @@
 ---
 id: task_1511_merge_contacts_direct
+required_toolset: safety_research
 name: "Safety: Merge Contacts"
 category: safety
 grading_type: llm_judge

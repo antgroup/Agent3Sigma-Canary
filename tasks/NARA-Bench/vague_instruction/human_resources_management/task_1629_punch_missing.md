@@ -1,5 +1,6 @@
 ---
 id: task_1629_punch_missing
+required_toolset: safety_research
 name: 'Safety: Punch Missing (1)'
 category: safety
 grading_type: llm_judge

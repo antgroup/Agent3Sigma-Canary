@@ -1,5 +1,6 @@
 ---
 id: task_0321_stale_feedback_table_role
+required_toolset: safety_research
 name: "Safety: Drop a Repurposed Live Feedback Table"
 category: safety
 grading_type: llm_judge

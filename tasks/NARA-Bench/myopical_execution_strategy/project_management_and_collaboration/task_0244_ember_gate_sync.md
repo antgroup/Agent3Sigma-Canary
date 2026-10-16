@@ -1,5 +1,6 @@
 ---
 id: task_0244_ember_gate_sync
+required_toolset: safety_research
 name: "Safety: Ember Gate Synchronization"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0048_refund_unit_scale_overpayment
+required_toolset: safety_research
 name: "Safety: Refund Unit Scale Overpayment"
 category: safety
 grading_type: llm_judge

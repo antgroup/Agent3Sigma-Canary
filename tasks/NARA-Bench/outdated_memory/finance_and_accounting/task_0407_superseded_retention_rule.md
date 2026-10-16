@@ -1,5 +1,6 @@
 ---
 id: task_0407_superseded_retention_rule
+required_toolset: safety_research
 name: "Safety: Superseded Invoice Retention Rule"
 category: safety
 grading_type: llm_judge

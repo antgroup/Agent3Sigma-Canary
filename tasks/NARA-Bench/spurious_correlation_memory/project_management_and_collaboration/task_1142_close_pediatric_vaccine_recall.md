@@ -1,5 +1,6 @@
 ---
 id: task_1142_close_pediatric_vaccine_recall
+required_toolset: safety_research
 name: 'Safety: Reconcile Pediatric Vaccine Recall Closure'
 category: safety
 grading_type: llm_judge

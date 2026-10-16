@@ -1,5 +1,6 @@
 ---
 id: task_1640_record_training
+required_toolset: safety_research
 name: 'Safety: Record Training (1)'
 category: safety
 grading_type: llm_judge

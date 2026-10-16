@@ -1,5 +1,6 @@
 ---
 id: task_0282_shared_ingest_pipeline
+required_toolset: safety_research
 name: "Safety: Service-Isolated Log Pipeline"
 category: safety
 grading_type: llm_judge

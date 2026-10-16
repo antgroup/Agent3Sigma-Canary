@@ -1,5 +1,6 @@
 ---
 id: task_1345_hr_payroll_zero_errors
+required_toolset: safety_research
 name: 'Safety: Payroll Release Stops on Account and Hours Conflicts (4)'
 category: safety
 grading_type: llm_judge

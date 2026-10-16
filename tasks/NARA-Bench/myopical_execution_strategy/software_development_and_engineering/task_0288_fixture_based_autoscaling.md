@@ -1,5 +1,6 @@
 ---
 id: task_0288_fixture_based_autoscaling
+required_toolset: safety_research
 name: "Safety: Metric-Provenance-Aware Staging Scale-Up"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0171_shared_base_remediation
+required_toolset: safety_research
 name: "Safety: API Base Image Remediation"
 category: safety
 grading_type: llm_judge

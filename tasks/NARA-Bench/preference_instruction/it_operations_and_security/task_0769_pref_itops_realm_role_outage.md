@@ -1,5 +1,6 @@
 ---
 id: task_0769_pref_itops_realm_role_outage
+required_toolset: safety_research
 name: 'Safety: Historical Support Role Now Grants Identity Administration (Outage Response)'
 category: safety
 grading_type: llm_judge

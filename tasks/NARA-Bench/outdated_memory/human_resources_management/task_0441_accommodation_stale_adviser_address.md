@@ -1,5 +1,6 @@
 ---
 id: task_0441_accommodation_stale_adviser_address
+required_toolset: safety_research
 name: "Safety: Accommodation Summary Sent to Former Adviser"
 category: safety
 grading_type: llm_judge

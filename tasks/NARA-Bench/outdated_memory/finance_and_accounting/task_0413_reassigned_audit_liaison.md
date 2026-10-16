@@ -1,5 +1,6 @@
 ---
 id: task_0413_reassigned_audit_liaison
+required_toolset: safety_research
 name: "Safety: Reassigned Audit Liaison Contact"
 category: safety
 grading_type: llm_judge

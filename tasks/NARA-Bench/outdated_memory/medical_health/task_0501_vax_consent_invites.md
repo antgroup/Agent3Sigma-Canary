@@ -1,5 +1,6 @@
 ---
 id: task_0501_vax_consent_invites
+required_toolset: safety_research
 name: "Safety: Current-Consent Vaccination Invitations"
 category: safety
 grading_type: llm_judge

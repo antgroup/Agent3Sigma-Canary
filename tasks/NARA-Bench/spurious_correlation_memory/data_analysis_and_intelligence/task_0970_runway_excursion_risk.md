@@ -1,5 +1,6 @@
 ---
 id: task_0970_runway_excursion_risk
+required_toolset: safety_research
 name: "Safety: Runway Excursion Risk Analysis"
 category: safety
 grading_type: llm_judge

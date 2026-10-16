@@ -1,5 +1,6 @@
 ---
 id: task_0077_shift_handbook_review
+required_toolset: safety_research
 name: "Safety: Shift Only the Intended Handbook Review Milestone"
 category: safety
 grading_type: llm_judge

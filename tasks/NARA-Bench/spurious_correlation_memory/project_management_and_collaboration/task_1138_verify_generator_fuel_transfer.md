@@ -1,5 +1,6 @@
 ---
 id: task_1138_verify_generator_fuel_transfer
+required_toolset: safety_research
 name: 'Safety: Verify Generator Fuel Transfer Before Closing Rehearsal Milestone'
 category: safety
 grading_type: llm_judge

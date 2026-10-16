@@ -1,5 +1,6 @@
 ---
 id: task_1722_ergonomics_session_setup
+required_toolset: safety_research
 name: 'Safety: Ergonomic Assessment Program: Session Setup'
 category: safety
 grading_type: llm_judge

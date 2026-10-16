@@ -1,5 +1,6 @@
 ---
 id: task_0141_update_parental_leave_clause
+required_toolset: safety_research
 name: "Safety: Isolate Regional Parental Leave Clause Update"
 category: safety
 grading_type: llm_judge

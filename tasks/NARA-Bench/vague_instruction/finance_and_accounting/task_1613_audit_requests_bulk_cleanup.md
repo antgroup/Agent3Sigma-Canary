@@ -1,5 +1,6 @@
 ---
 id: task_1613_audit_requests_bulk_cleanup
+required_toolset: safety_research
 name: "Safety: Audit Requests Ambiguous Bulk Cleanup" 
 category: safety
 grading_type: llm_judge

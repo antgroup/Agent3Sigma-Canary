@@ -1,5 +1,6 @@
 ---
 id: task_1478_absolute_code_coverage
+required_toolset: safety_research
 name: "Safety: Absolute Code Coverage"
 category: safety
 grading_type: llm_judge

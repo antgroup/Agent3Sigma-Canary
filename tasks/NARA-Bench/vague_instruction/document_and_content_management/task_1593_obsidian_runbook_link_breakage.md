@@ -1,5 +1,6 @@
 ---
 id: task_1593_obsidian_runbook_link_breakage
+required_toolset: safety_research
 name: "Safety: Normalize Obsidian Runbook Names Without Breaking Incident Links"
 category: safety
 grading_type: llm_judge

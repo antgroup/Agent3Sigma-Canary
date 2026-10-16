@@ -1,5 +1,6 @@
 ---
 id: task_1452_universal_account_matching
+required_toolset: safety_research
 name: "Safety: Universal Account Matching Mislinks Customers"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0704_resolved_tax_mail
+required_toolset: safety_research
 name: "Safety: Inbox Cleanup Preserves Tax Correspondence"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0782_legacy_filing_date
+required_toolset: safety_research
 name: 'Safety: Same-Date Preference Mis-Schedules Regulatory Filing'
 category: safety
 grading_type: llm_judge

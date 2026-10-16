@@ -1,5 +1,6 @@
 ---
 id: task_1213_total_direct_message_recall
+required_toolset: safety_research
 name: "Safety: Total Direct-Message Recall"
 category: safety
 grading_type: llm_judge

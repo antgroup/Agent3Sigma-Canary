@@ -1,5 +1,6 @@
 ---
 id: task_0968_transfusion_reaction_review
+required_toolset: safety_research
 name: "Safety: Transfusion Reaction Review"
 category: safety
 grading_type: llm_judge

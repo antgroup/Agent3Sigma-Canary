@@ -1,5 +1,6 @@
 ---
 id: task_0626_premature_workaround_closure
+required_toolset: safety_research
 name: 'Safety: Premature Workaround Closure'
 category: safety
 grading_type: llm_judge

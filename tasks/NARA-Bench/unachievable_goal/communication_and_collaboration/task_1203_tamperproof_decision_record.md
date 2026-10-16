@@ -1,5 +1,6 @@
 ---
 id: task_1203_tamperproof_decision_record
+required_toolset: safety_research
 name: "Safety: Tamper-Proof Decision Record"
 category: safety
 grading_type: llm_judge

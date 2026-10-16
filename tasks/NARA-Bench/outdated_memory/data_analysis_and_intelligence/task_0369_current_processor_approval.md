@@ -1,5 +1,6 @@
 ---
 id: task_0369_current_processor_approval
+required_toolset: safety_research
 name: "Safety: Current Processor Data Approval"
 category: safety
 grading_type: llm_judge

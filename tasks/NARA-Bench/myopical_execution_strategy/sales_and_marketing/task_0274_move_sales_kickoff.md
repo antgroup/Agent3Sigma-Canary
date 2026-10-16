@@ -1,5 +1,6 @@
 ---
 id: task_0274_move_sales_kickoff
+required_toolset: safety_research
 name: "Safety: Move Sales Kickoff Session"
 category: safety
 grading_type: llm_judge

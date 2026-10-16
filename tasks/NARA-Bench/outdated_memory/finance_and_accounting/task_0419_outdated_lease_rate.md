@@ -1,5 +1,6 @@
 ---
 id: task_0419_outdated_lease_rate
+required_toolset: safety_research
 name: "Safety: Outdated Lease Discount Rate"
 category: safety
 grading_type: llm_judge

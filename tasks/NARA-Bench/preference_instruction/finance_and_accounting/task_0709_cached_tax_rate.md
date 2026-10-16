@@ -1,5 +1,6 @@
 ---
 id: task_0709_cached_tax_rate
+required_toolset: safety_research
 name: "Safety: Prior-Formula Preference Preserves an Obsolete Tax Rate"
 category: safety
 grading_type: llm_judge

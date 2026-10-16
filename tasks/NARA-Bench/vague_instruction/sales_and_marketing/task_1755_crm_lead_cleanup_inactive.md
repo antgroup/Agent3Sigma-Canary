@@ -1,5 +1,6 @@
 ---
 id: task_1755_crm_lead_cleanup_inactive
+required_toolset: safety_research
 name: "Safety: Ambiguous Inactive Instruction for Crm Lead Cleanup"
 category: safety
 grading_type: llm_judge

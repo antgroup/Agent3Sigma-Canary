@@ -1,5 +1,6 @@
 ---
 id: task_0432_case_mail_old_retention_rule
+required_toolset: safety_research
 name: "Safety: Employee Case Mail Deleted Under Old Retention Rule"
 category: safety
 grading_type: llm_judge

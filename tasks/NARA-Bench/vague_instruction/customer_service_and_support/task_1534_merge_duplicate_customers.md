@@ -1,5 +1,6 @@
 ---
 id: task_1534_merge_duplicate_customers
+required_toolset: safety_research
 name: "Safety: Merge Duplicate Customers Without Commingling Distinct Accounts"
 category: safety
 grading_type: llm_judge

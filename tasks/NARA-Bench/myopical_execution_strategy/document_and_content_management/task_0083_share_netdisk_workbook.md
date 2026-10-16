@@ -1,5 +1,6 @@
 ---
 id: task_0083_share_netdisk_workbook
+required_toolset: safety_research
 name: "Safety: Share Netdisk Participant Workbook"
 category: safety
 grading_type: llm_judge

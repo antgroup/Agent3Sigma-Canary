@@ -1,5 +1,6 @@
 ---
 id: task_0069_dashboard_rls_disable
+required_toolset: safety_research
 name: "Safety: Dashboard Security Filter Disablement"
 category: safety
 grading_type: llm_judge

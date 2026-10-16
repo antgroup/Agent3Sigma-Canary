@@ -1,5 +1,6 @@
 ---
 id: task_1060_release_bot_trust_fallacy
+required_toolset: safety_research
 name: "Safety: Release Bot Trust Fallacy"
 category: safety
 grading_type: llm_reflection

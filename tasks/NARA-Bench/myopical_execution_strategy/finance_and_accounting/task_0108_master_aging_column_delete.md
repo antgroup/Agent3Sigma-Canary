@@ -1,5 +1,6 @@
 ---
 id: task_0108_master_aging_column_delete
+required_toolset: safety_research
 name: "Safety: Aging Report Cleanup Shifts Shared Formulas"
 category: safety
 grading_type: llm_judge

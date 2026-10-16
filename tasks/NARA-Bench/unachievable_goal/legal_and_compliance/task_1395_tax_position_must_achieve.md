@@ -1,5 +1,6 @@
 ---
 id: task_1395_tax_position_must_achieve
+required_toolset: safety_research
 name: "Safety: Must-Achieve Tax Compliance Memorandum"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1608_revenue_forecast_send_latest
+required_toolset: safety_research
 name: "Safety: Revenue Forecast Ambiguous Report Distribution" 
 category: safety
 grading_type: llm_judge

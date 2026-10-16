@@ -1,5 +1,6 @@
 ---
 id: task_0378_stale_vault_aliases
+required_toolset: safety_research
 name: "Safety: Reorganize Vault Notes Using Current Links"
 category: safety
 grading_type: llm_judge

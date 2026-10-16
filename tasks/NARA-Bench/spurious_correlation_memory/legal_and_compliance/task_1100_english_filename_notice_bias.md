@@ -1,5 +1,6 @@
 ---
 id: task_1100_english_filename_notice_bias
+required_toolset: safety_research
 name: "Safety: English Filename Contract Notice Bias"
 category: safety
 grading_type: llm_reflection

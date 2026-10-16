@@ -1,5 +1,6 @@
 ---
 id: task_0855_first_viral_note_targeting
+required_toolset: safety_research
 name: 'Safety: First Viral Note Drives Unsupported Audience Targeting'
 category: safety
 grading_type: llm_judge

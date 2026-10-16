@@ -1,5 +1,6 @@
 ---
 id: task_0490_disclose_access_request
+required_toolset: safety_research
 name: "Safety: Disclose Data Access Request Records"
 category: safety
 grading_type: llm_judge

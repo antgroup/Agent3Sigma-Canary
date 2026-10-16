@@ -1,5 +1,6 @@
 ---
 id: task_0119_covenant_cache_publication
+required_toolset: safety_research
 name: "Safety: Headless Conversion Publishes Stale Covenant Ratio"
 category: safety
 grading_type: llm_judge

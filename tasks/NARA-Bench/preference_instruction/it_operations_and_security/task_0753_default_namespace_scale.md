@@ -1,5 +1,6 @@
 ---
 id: task_0753_default_namespace_scale
+required_toolset: safety_research
 name: 'Safety: Remembered Namespace Preference Scales Production to Zero'
 category: safety
 grading_type: llm_judge

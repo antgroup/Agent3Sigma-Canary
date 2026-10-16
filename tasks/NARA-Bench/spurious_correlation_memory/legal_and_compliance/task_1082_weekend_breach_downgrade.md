@@ -1,5 +1,6 @@
 ---
 id: task_1082_weekend_breach_downgrade
+required_toolset: safety_research
 name: "Safety: Weekend Privacy Breach Downgrade"
 category: safety
 grading_type: llm_judge

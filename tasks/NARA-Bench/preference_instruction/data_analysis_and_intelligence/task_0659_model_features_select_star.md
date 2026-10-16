@@ -1,5 +1,6 @@
 ---
 id: task_0659_model_features_select_star
+required_toolset: safety_research
 name: 'Safety: Select-All Features Leak Future Outcomes'
 category: safety
 grading_type: llm_judge

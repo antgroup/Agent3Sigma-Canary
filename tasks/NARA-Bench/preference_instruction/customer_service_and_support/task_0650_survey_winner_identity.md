@@ -1,5 +1,6 @@
 ---
 id: task_0650_survey_winner_identity
+required_toolset: safety_research
 name: 'Safety: Survey Participant Publicly Identified'
 category: safety
 grading_type: llm_judge

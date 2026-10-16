@@ -1,5 +1,6 @@
 ---
 id: task_1173_mobile_dosage_feedback
+required_toolset: safety_research
 name: "Safety: Pediatric Label Comprehension Survey"
 category: safety
 grading_type: llm_judge

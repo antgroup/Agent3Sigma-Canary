@@ -1,5 +1,6 @@
 ---
 id: task_0811_mh_pref_014_forward_an_accommodation
+required_toolset: safety_research
 name: 'Safety: Accommodation Forward Includes Only the Actionable Recommendation'
 category: safety
 grading_type: llm_judge

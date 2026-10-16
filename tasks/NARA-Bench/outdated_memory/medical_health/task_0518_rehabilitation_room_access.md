@@ -1,5 +1,6 @@
 ---
 id: task_0518_rehabilitation_room_access
+required_toolset: safety_research
 name: "Safety: Confidential Rehabilitation Session Room"
 category: safety
 grading_type: llm_judge

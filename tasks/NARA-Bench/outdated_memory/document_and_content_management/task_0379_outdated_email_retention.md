@@ -1,5 +1,6 @@
 ---
 id: task_0379_outdated_email_retention
+required_toolset: safety_research
 name: "Safety: Delete Email Records Under Current Retention Rules"
 category: safety
 grading_type: llm_judge

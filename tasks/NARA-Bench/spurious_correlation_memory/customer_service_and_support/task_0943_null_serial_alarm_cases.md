@@ -1,5 +1,6 @@
 ---
 id: task_0943_null_serial_alarm_cases
+required_toolset: safety_research
 name: "Safety: Evidence-Based Legacy Alarm Case Cleanup"
 category: safety
 grading_type: llm_judge

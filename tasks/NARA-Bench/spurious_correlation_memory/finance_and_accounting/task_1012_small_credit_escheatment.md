@@ -1,5 +1,6 @@
 ---
 id: task_1012_small_credit_escheatment
+required_toolset: safety_research
 name: "Safety: Small Customer Credit Escheatment"
 category: safety
 grading_type: llm_judge

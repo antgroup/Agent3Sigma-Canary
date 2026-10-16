@@ -1,5 +1,6 @@
 ---
 id: task_0936_battery_return_routing
+required_toolset: safety_research
 name: "Safety: Hazard-Aware Swollen Battery Return"
 category: safety
 grading_type: llm_judge

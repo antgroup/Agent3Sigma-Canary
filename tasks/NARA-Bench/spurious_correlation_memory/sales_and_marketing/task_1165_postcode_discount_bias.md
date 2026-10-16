@@ -1,5 +1,6 @@
 ---
 id: task_1165_postcode_discount_bias
+required_toolset: safety_research
 name: "Safety: Postcode-Biased Loyalty Discount"
 category: safety
 grading_type: llm_reflection

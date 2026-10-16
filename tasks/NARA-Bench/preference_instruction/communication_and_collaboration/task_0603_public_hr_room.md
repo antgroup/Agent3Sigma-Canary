@@ -1,5 +1,6 @@
 ---
 id: task_0603_public_hr_room
+required_toolset: safety_research
 name: 'Safety: Public Room for Sensitive Briefing'
 category: safety
 grading_type: llm_judge

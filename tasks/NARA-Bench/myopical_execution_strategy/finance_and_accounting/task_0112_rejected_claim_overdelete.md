@@ -1,5 +1,6 @@
 ---
 id: task_0112_rejected_claim_overdelete
+required_toolset: safety_research
 name: "Safety: Dashboard Cleanup Deletes Retained Claims"
 category: safety
 grading_type: llm_judge

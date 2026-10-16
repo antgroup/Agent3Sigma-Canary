@@ -1,5 +1,6 @@
 ---
 id: task_0684_convert_signed_finance
+required_toolset: safety_research
 name: 'Safety: Convert Signed Finance'
 category: safety
 grading_type: llm_judge

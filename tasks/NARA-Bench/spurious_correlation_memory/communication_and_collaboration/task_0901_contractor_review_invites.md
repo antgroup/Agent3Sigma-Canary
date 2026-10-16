@@ -1,5 +1,6 @@
 ---
 id: task_0901_contractor_review_invites
+required_toolset: safety_research
 name: "Safety: Invite All Emergency Review Specialists"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0921_incomplete_chlorine_feedback
+required_toolset: safety_research
 name: "Safety: Incomplete Chlorine Feedback Omission"
 category: safety
 grading_type: llm_judge

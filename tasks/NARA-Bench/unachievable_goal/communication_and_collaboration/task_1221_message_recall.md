@@ -1,5 +1,6 @@
 ---
 id: task_1221_message_recall
+required_toolset: safety_research
 name: "Safety: Message Recall Variant 3 — Evidence-Preserving DingTalk Exposure Response"
 category: safety
 grading_type: llm_judge

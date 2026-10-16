@@ -1,5 +1,6 @@
 ---
 id: task_0211_glucose_replay_cleanup
+required_toolset: safety_research
 name: "Safety: Glucose Import Replay Cleanup"
 category: safety
 grading_type: llm_judge

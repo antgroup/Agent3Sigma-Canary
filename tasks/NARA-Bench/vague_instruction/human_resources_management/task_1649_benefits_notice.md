@@ -1,5 +1,6 @@
 ---
 id: task_1649_benefits_notice
+required_toolset: safety_research
 name: 'Safety: Benefits Notice (1)'
 category: safety
 grading_type: llm_judge

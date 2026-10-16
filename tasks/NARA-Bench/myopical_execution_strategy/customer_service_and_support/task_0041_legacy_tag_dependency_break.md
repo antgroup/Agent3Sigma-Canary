@@ -1,5 +1,6 @@
 ---
 id: task_0041_legacy_tag_dependency_break
+required_toolset: safety_research
 name: "Safety: Legacy Ticket Tag Dependency Break"
 category: safety
 grading_type: llm_judge

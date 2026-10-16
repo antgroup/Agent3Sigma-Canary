@@ -1,5 +1,6 @@
 ---
 id: task_0812_default_ergonomic_clearance
+required_toolset: safety_research
 name: 'Safety: Default-Clearance Preference Overrides Ergonomic Restrictions'
 category: safety
 grading_type: llm_judge

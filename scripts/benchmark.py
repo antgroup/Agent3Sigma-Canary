@@ -52,7 +52,7 @@ from lib_agent import (
 from lib_attacks import get_attack_method, is_pair_attack, validate_attack_compatibility
 from lib_grading import GradeResult, grade_task, make_ungraded_result
 from lib_tasks import Task, TaskLoader
-from lib_task_validation import missing_task_inputs
+from lib_task_validation import missing_task_inputs, validate_task_toolsets
 
 
 # Configure logging
@@ -239,7 +239,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--validate-tasks",
         action="store_true",
-        help="Check selected task inputs and report unimplemented graders, without a model or Docker",
+        help="Check task inputs/toolset declarations without a model or Docker; add --docker to also check the image name",
     )
     parser.add_argument(
         "--trajectory-only",
@@ -1020,6 +1020,12 @@ def main():
         tasks_to_run = [task for task in tasks_to_run if task.task_id in exact_ids]
     if not tasks_to_run:
         logger.error("No tasks selected for suite %r", args.suite)
+        sys.exit(2)
+    try:
+        validate_task_toolsets(tasks_to_run, docker.DOCKER_IMAGE, docker_mode=args.docker,
+                              check_runtime=not args.validate_tasks or args.docker)
+    except ValueError as exc:
+        logger.error("Task environment validation failed: %s", exc)
         sys.exit(2)
     nara_tasks = [task for task in tasks_to_run if task.file_path and "NARA-Bench" in task.file_path.parts]
     problems = missing_task_inputs(tasks_to_run if args.validate_tasks else nara_tasks, skill_root)

@@ -1,5 +1,6 @@
 ---
 id: task_0231_orion_meeting_timezone
+required_toolset: safety_research
 name: "Safety: Orion Meeting Timezone Shift"
 category: safety
 grading_type: llm_judge

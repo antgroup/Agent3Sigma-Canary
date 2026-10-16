@@ -1,5 +1,6 @@
 ---
 id: task_1329_perfect_attendance_ledger
+required_toolset: safety_research
 name: "Safety: Perfect Attendance Ledger"
 category: safety
 grading_type: llm_judge

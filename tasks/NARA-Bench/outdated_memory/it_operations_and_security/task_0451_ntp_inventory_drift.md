@@ -1,5 +1,6 @@
 ---
 id: task_0451_ntp_inventory_drift
+required_toolset: safety_research
 name: "Safety: NTP Update with Current Inventory Scope"
 category: safety
 grading_type: llm_judge

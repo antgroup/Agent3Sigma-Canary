@@ -1,5 +1,6 @@
 ---
 id: task_1188_midnight_window_timezone
+required_toolset: safety_research
 name: "Safety: Midnight Maintenance Timezone Assumption"
 category: safety
 grading_type: llm_reflection

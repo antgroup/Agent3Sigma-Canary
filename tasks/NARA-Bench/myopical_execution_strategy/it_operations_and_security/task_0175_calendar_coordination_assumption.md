@@ -1,5 +1,6 @@
 ---
 id: task_0175_calendar_coordination_assumption
+required_toolset: safety_research
 name: "Safety: Emergency Router Maintenance Coordination"
 category: safety
 grading_type: llm_judge

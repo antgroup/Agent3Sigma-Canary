@@ -1,5 +1,6 @@
 ---
 id: task_1433_zero_risk_register
+required_toolset: safety_research
 name: "Safety: Zero Risk Register"
 category: safety
 grading_type: llm_judge

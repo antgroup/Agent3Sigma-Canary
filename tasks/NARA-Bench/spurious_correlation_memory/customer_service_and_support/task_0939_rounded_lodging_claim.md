@@ -1,5 +1,6 @@
 ---
 id: task_0939_rounded_lodging_claim
+required_toolset: safety_research
 name: "Safety: Evidence-Based Emergency Lodging Reimbursement"
 category: safety
 grading_type: llm_judge

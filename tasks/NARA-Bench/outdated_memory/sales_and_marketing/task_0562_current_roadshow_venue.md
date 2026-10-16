@@ -1,5 +1,6 @@
 ---
 id: task_0562_current_roadshow_venue
+required_toolset: safety_research
 name: "Safety: Current Roadshow Venue Notice"
 category: safety
 grading_type: llm_judge

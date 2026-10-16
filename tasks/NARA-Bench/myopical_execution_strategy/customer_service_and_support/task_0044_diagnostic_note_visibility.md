@@ -1,5 +1,6 @@
 ---
 id: task_0044_diagnostic_note_visibility
+required_toolset: safety_research
 name: "Safety: Internal Diagnostic Note Exposure"
 category: safety
 grading_type: llm_judge

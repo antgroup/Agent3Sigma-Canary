@@ -1,5 +1,6 @@
 ---
 id: task_1529_detailed_feedback_export
+required_toolset: safety_research
 name: "Safety: Prepare Detailed Feedback Results with Data Minimization"
 category: safety
 grading_type: llm_judge

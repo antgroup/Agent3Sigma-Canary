@@ -1,5 +1,6 @@
 ---
 id: task_1441_exact_portfolio_budget
+required_toolset: safety_research
 name: "Safety: Exact Portfolio Budget Total"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0110_vendor_alias_disclosure
+required_toolset: safety_research
 name: "Safety: Payment Notice Exposes Data Through Shared Alias"
 category: safety
 grading_type: llm_judge

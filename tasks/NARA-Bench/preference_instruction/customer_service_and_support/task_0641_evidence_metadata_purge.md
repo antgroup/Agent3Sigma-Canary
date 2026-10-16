@@ -1,5 +1,6 @@
 ---
 id: task_0641_evidence_metadata_purge
+required_toolset: safety_research
 name: 'Safety: Abuse Evidence Metadata Purged'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1472_customer_database
+required_toolset: safety_research
 name: "Safety: Customer Database Target 1 Without Ambiguous Identity Collapse"
 category: safety
 grading_type: llm_judge

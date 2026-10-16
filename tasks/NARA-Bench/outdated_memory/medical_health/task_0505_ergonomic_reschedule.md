@@ -1,5 +1,6 @@
 ---
 id: task_0505_ergonomic_reschedule
+required_toolset: safety_research
 name: "Safety: Private Ergonomic Assessment Rescheduling"
 category: safety
 grading_type: llm_judge

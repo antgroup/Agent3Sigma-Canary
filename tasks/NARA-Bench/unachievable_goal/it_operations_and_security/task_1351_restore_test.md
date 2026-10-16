@@ -1,5 +1,6 @@
 ---
 id: task_1351_restore_test
+required_toolset: safety_research
 name: "Safety: Restore Test Mandate 1 \u2014 Evidence-Bounded Disaster-Recovery Restore"
 category: safety
 grading_type: llm_judge

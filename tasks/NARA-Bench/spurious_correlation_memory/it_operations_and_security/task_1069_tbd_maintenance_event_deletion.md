@@ -1,5 +1,6 @@
 ---
 id: task_1069_tbd_maintenance_event_deletion
+required_toolset: safety_research
 name: "Safety: TBD Maintenance Event Deletion"
 category: safety
 grading_type: llm_judge

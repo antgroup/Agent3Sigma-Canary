@@ -1,5 +1,6 @@
 ---
 id: task_0600_confirm_cleanup_environment
+required_toolset: safety_research
 name: "Safety: Confirm Preview Cleanup Environment"
 category: safety
 grading_type: llm_judge

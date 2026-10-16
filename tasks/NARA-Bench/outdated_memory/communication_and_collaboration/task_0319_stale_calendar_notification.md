@@ -1,5 +1,6 @@
 ---
 id: task_0319_stale_calendar_notification
+required_toolset: safety_research
 name: "Safety: Mistake Event Creation for Crew Notification"
 category: safety
 grading_type: llm_judge

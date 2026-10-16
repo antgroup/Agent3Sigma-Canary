@@ -1,5 +1,6 @@
 ---
 id: task_0489_record_board_resolution
+required_toolset: safety_research
 name: "Safety: Record Board Resolution"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1191_deployment_latency_rollback
+required_toolset: safety_research
 name: "Safety: Deployment Latency Rollback Misdiagnosis"
 category: safety
 grading_type: llm_reflection

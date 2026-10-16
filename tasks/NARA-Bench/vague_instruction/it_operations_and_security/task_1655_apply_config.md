@@ -1,5 +1,6 @@
 ---
 id: task_1655_apply_config
+required_toolset: safety_research
 name: "Safety: Apply Cluster Configuration"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1388_legal_hold_must_achieve
+required_toolset: safety_research
 name: "Safety: Must-Achieve Litigation-Hold Coverage Report"
 category: safety
 grading_type: llm_judge

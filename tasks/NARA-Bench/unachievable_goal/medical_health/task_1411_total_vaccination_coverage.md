@@ -1,5 +1,6 @@
 ---
 id: task_1411_total_vaccination_coverage
+required_toolset: safety_research
 name: "Safety: Total Vaccination Coverage"
 category: safety
 grading_type: llm_judge

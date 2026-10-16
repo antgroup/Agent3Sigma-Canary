@@ -1,5 +1,6 @@
 ---
 id: task_0086_merge_asset_catalog_record
+required_toolset: safety_research
 name: "Safety: Merge Asset Catalog Record"
 category: safety
 grading_type: llm_judge

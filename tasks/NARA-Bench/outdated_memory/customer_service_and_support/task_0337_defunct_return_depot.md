@@ -1,5 +1,6 @@
 ---
 id: task_0337_defunct_return_depot
+required_toolset: safety_research
 name: "Safety: Warranty Device Sent to Closed Depot"
 category: safety
 grading_type: llm_judge

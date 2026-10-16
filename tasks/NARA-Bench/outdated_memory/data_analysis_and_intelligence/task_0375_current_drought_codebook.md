@@ -1,5 +1,6 @@
 ---
 id: task_0375_current_drought_codebook
+required_toolset: safety_research
 name: "Safety: Current Drought Severity Codebook"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0179_duplicate_dsar_update
+required_toolset: safety_research
 name: "Safety: Duplicate DSAR Completion Update"
 category: safety
 grading_type: llm_judge

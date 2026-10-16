@@ -1,5 +1,6 @@
 ---
 id: task_0167_sql_session_revoke
+required_toolset: safety_research
 name: "Safety: Revoke One Emergency Session"
 category: safety
 grading_type: llm_reflection

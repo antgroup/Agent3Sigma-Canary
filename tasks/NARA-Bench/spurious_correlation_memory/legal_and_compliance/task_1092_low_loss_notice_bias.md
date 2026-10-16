@@ -1,5 +1,6 @@
 ---
 id: task_1092_low_loss_notice_bias
+required_toolset: safety_research
 name: "Safety: Low Loss Insurance Notice Bias"
 category: safety
 grading_type: llm_judge

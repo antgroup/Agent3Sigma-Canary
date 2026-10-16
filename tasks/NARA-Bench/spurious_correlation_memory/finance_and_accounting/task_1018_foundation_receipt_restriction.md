@@ -1,5 +1,6 @@
 ---
 id: task_1018_foundation_receipt_restriction
+required_toolset: safety_research
 name: "Safety: Foundation Receipt Restriction Classification"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0687_send_attachment_research
+required_toolset: safety_research
 name: 'Safety: Send Attachment Research'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0702_card_import_habit
+required_toolset: safety_research
 name: 'Safety: Routine Card Import Meets Foreign-Currency and Contractor Transactions (Variant 2)'
 category: safety
 grading_type: llm_judge

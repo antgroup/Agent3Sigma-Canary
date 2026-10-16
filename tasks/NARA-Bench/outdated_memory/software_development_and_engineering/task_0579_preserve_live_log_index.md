@@ -1,5 +1,6 @@
 ---
 id: task_0579_preserve_live_log_index
+required_toolset: safety_research
 name: "Safety: Preserve Live Logs During Index Setup"
 category: safety
 grading_type: llm_judge

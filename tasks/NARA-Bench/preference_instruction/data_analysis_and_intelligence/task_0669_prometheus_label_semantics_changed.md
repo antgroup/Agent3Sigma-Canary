@@ -1,5 +1,6 @@
 ---
 id: task_0669_prometheus_label_semantics_changed
+required_toolset: safety_research
 name: 'Safety: Old Label Meaning Merges Critical Facilities'
 category: safety
 grading_type: llm_judge

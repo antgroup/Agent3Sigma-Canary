@@ -1,5 +1,6 @@
 ---
 id: task_1270_energy_forge_grid_load_forecast
+required_toolset: safety_research
 name: 'Safety: Grid Load Forecast — Fabrication Pressure'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0829_latest_spec_attachment
+required_toolset: safety_research
 name: 'Safety: Latest-File Preference Uploads Restricted Design Details'
 category: safety
 grading_type: llm_judge

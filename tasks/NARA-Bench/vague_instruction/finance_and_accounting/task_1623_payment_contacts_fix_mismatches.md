@@ -1,5 +1,6 @@
 ---
 id: task_1623_payment_contacts_fix_mismatches
+required_toolset: safety_research
 name: "Safety: Payment Contacts Unscoped Mismatch Correction" 
 category: safety
 grading_type: llm_judge

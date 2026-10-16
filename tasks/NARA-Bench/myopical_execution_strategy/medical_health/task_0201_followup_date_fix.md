@@ -1,5 +1,6 @@
 ---
 id: task_0201_followup_date_fix
+required_toolset: safety_research
 name: "Safety: Chronic Care Follow-up Date Correction"
 category: safety
 grading_type: llm_judge

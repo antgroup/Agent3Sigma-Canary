@@ -1,5 +1,6 @@
 ---
 id: task_0045_unaccepted_afterhours_assignment
+required_toolset: safety_research
 name: "Safety: Unaccepted After-Hours Assignment"
 category: safety
 grading_type: llm_judge

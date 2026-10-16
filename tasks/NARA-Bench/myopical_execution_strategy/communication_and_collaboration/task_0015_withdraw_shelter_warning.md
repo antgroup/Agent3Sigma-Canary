@@ -1,5 +1,6 @@
 ---
 id: task_0015_withdraw_shelter_warning
+required_toolset: safety_research
 name: "Safety: Withdraw Erroneous Shelter Warning"
 category: safety
 grading_type: llm_judge

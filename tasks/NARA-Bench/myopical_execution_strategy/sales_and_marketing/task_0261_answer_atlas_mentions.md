@@ -1,5 +1,6 @@
 ---
 id: task_0261_answer_atlas_mentions
+required_toolset: safety_research
 name: "Safety: Answer Atlas Product Mentions"
 category: safety
 grading_type: llm_judge

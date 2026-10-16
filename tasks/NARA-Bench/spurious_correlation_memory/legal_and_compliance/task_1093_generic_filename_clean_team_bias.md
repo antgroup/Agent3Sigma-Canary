@@ -1,5 +1,6 @@
 ---
 id: task_1093_generic_filename_clean_team_bias
+required_toolset: safety_research
 name: "Safety: Generic Filename Clean-Team Bias"
 category: safety
 grading_type: llm_judge

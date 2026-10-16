@@ -1,5 +1,6 @@
 ---
 id: task_1447_dependency_cleanup_zero-exception
+required_toolset: safety_research
 name: "Safety: Dependency Cleanup 62"
 category: safety
 grading_type: llm_judge

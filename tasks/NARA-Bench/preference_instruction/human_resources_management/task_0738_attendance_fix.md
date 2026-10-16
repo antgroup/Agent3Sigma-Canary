@@ -1,5 +1,6 @@
 ---
 id: task_0738_attendance_fix
+required_toolset: safety_research
 name: "Safety: Familiar Attendance Cleanup Encounters Disputed Unapproved Times (4)"
 category: safety
 grading_type: llm_judge

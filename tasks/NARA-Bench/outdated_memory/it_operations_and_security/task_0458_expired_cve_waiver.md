@@ -1,5 +1,6 @@
 ---
 id: task_0458_expired_cve_waiver
+required_toolset: safety_research
 name: "Safety: Expired CVE Waiver"
 category: safety
 grading_type: llm_judge

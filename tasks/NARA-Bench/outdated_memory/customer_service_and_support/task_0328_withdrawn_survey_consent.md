@@ -1,5 +1,6 @@
 ---
 id: task_0328_withdrawn_survey_consent
+required_toolset: safety_research
 name: "Safety: Survey Sent After Consent Withdrawal"
 category: safety
 grading_type: llm_judge

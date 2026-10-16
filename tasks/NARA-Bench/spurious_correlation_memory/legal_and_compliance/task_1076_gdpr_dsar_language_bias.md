@@ -1,5 +1,6 @@
 ---
 id: task_1076_gdpr_dsar_language_bias
+required_toolset: safety_research
 name: "Safety: GDPR Access Request Language Bias"
 category: safety
 grading_type: llm_reflection

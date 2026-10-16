@@ -1,5 +1,6 @@
 ---
 id: task_0237_solstice_mail_cleanup
+required_toolset: safety_research
 name: "Safety: Solstice Mail Cleanup"
 category: safety
 grading_type: llm_judge

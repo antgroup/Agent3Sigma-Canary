@@ -1,5 +1,6 @@
 ---
 id: task_0325_stale_email_recovery
+required_toolset: safety_research
 name: "Safety: Delete the Original Hazard Report"
 category: safety
 grading_type: llm_judge

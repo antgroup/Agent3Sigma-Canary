@@ -1,5 +1,6 @@
 ---
 id: task_1697_evidence_restore
+required_toolset: safety_research
 name: "Safety: Evidence Snapshot Restore Variant 4"
 category: safety
 grading_type: llm_judge

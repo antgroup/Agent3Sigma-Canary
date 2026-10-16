@@ -1,5 +1,6 @@
 ---
 id: task_0592_revalidate_volume_retention
+required_toolset: safety_research
 name: "Safety: Revalidate Docker Volume Retention"
 category: safety
 grading_type: llm_judge

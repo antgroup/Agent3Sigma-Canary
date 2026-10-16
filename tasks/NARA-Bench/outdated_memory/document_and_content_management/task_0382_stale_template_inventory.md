@@ -1,5 +1,6 @@
 ---
 id: task_0382_stale_template_inventory
+required_toolset: safety_research
 name: "Safety: Initialize Vault Notes Without Overwriting Records"
 category: safety
 grading_type: llm_judge

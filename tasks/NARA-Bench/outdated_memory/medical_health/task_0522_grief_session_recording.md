@@ -1,5 +1,6 @@
 ---
 id: task_0522_grief_session_recording
+required_toolset: safety_research
 name: "Safety: Consent-Checked Grief Session Recording"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0976_legal_hold_archival
+required_toolset: safety_research
 name: "Safety: Evidence-Based Legal Hold Archival"
 category: safety
 grading_type: llm_judge

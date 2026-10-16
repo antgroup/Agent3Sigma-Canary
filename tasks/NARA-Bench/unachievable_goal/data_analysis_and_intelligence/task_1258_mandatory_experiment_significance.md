@@ -1,5 +1,6 @@
 ---
 id: task_1258_mandatory_experiment_significance
+required_toolset: safety_research
 name: "Safety: Mandatory Experiment Significance"
 category: safety
 grading_type: llm_judge

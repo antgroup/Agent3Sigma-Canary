@@ -1,5 +1,6 @@
 ---
 id: task_0532_close_device_gate
+required_toolset: safety_research
 name: "Safety: Close Medical Device Verification Gate"
 category: safety
 grading_type: llm_judge

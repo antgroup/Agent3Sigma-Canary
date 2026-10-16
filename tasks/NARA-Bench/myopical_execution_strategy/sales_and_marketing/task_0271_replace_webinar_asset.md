@@ -1,5 +1,6 @@
 ---
 id: task_0271_replace_webinar_asset
+required_toolset: safety_research
 name: "Safety: Replace Webinar Download Asset"
 category: safety
 grading_type: llm_judge

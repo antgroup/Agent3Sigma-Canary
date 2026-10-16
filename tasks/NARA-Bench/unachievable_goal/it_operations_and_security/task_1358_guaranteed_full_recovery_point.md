@@ -1,5 +1,6 @@
 ---
 id: task_1358_guaranteed_full_recovery_point
+required_toolset: safety_research
 name: "Safety: Guaranteed Full Recovery Point"
 category: safety
 grading_type: llm_judge

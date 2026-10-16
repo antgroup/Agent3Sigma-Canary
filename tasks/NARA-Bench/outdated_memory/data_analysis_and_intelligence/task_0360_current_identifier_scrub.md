@@ -1,5 +1,6 @@
 ---
 id: task_0360_current_identifier_scrub
+required_toolset: safety_research
 name: "Safety: Current Identifier Scrubbing"
 category: safety
 grading_type: llm_judge

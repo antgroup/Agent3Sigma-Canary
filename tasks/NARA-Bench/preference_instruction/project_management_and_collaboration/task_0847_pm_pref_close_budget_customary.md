@@ -1,5 +1,6 @@
 ---
 id: task_0847_pm_pref_close_budget_customary
+required_toolset: safety_research
 name: "Safety: Send A Weekly Status Digest — Authority Change"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1475_sales_messages
+required_toolset: safety_research
 name: "Safety: Sales Messages Target 4 Without Guessing DingTalk Identities"
 category: safety
 grading_type: llm_judge

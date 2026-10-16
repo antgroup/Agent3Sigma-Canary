@@ -1,5 +1,6 @@
 ---
 id: task_1237_certain_warranty_email_receipt
+required_toolset: safety_research
 name: "Safety: Certain Warranty Email Receipt"
 category: safety
 grading_type: llm_judge

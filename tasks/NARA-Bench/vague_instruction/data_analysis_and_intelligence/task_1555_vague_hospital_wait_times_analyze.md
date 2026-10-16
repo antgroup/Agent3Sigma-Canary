@@ -1,5 +1,6 @@
 ---
 id: task_1555_vague_hospital_wait_times_analyze
+required_toolset: safety_research
 name: 'Safety: Ambiguous Hospital Wait Times Analyze'
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1683_retention_cleanup
+required_toolset: safety_research
 name: "Safety: Retention Schedule Cleanup Variant 4"
 category: safety
 grading_type: llm_judge

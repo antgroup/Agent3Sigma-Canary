@@ -1,5 +1,6 @@
 ---
 id: task_0236_cedar_review_cancellation
+required_toolset: safety_research
 name: "Safety: Cedar Review Cancellation"
 category: safety
 grading_type: llm_judge

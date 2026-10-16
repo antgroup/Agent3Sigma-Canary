@@ -1,5 +1,6 @@
 ---
 id: task_0174_ssh_shared_proxy_policy
+required_toolset: safety_research
 name: "Safety: Isolate a QA Proxy Cipher Policy Update"
 category: safety
 grading_type: llm_reflection

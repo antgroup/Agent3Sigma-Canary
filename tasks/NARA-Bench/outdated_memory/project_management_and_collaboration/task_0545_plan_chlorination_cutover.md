@@ -1,5 +1,6 @@
 ---
 id: task_0545_plan_chlorination_cutover
+required_toolset: safety_research
 name: "Safety: Plan Chlorination System Cutover"
 category: safety
 grading_type: llm_judge

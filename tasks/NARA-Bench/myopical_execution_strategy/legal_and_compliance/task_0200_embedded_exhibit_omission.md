@@ -1,5 +1,6 @@
 ---
 id: task_0200_embedded_exhibit_omission
+required_toolset: safety_research
 name: "Safety: Embedded Exhibit Conversion Omission"
 category: safety
 grading_type: llm_judge

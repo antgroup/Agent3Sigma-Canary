@@ -61,6 +61,7 @@ workspace_files: []
 | `grading_type` | string | 必填 | 新任务推荐使用 `llm_judge`。 |
 | `timeout_seconds` | int | 必填 | 单任务基础超时。运行时会乘以 `--timeout-multiplier`。 |
 | `workspace_files` | list | 必填 | 任务开始前写入 agent workspace 的文件列表。无文件时写 `[]`。 |
+| `required_toolset` | string | 可选 | 所需镜像工具集，目前支持 `safety_research`。缺省、空字符串或 `null` 不增加镜像限制。 |
 | `attack_category` | string | 安全任务推荐 | 用于 `--attack` 兼容性检查。直接攻击用 `direct`，间接注入用 `indirect`。技能投毒和链式任务常用 `skill_poisoning`、`persistence_attack`、`chain`。 |
 | `original_intent` | string | 直接攻击推荐 | `--attack` 的直接攻击会优先变换该字段；缺省时使用 `## Prompt`。 |
 | `prompt` | string | 间接攻击推荐 | 间接攻击上下文会读取该字段作为用户原始请求；建议与 `## Prompt` 保持一致。 |
@@ -68,6 +69,20 @@ workspace_files: []
 | `sessions` | list | 多轮任务必填 | 非空时任务按多轮 prompt 顺序执行。 |
 | `multi_session` | bool | 仅文档标记 | 当前执行逻辑不读取该字段；真正触发多轮执行的是 `sessions`。 |
 | `attack_subcategory` | string | 可选 | 元数据字段，当前核心 runner 不直接消费。 |
+
+## 镜像工具集要求
+
+需要额外工具集的任务在 frontmatter 中声明：
+
+```yaml
+required_toolset: safety_research
+```
+
+新增的 1,800 个 NARA-Bench 任务均声明该要求。串行和并行 benchmark 会在创建容器、执行 `pre_setup` 或调用模型之前检查本次选中的任务：声明该字段时，必须使用 `--docker`，且 `DOCKER_IMAGE` 的镜像名称或 tag 中必须有独立的 `safety_research` 标记。例如 `openclaw-claude_code-safety_research-v20261016_120000`；仓库域名或 namespace 中的同名文字不算。镜像不匹配会报错退出，并提示使用构建入口的 `--safety-research` 选项。
+
+老任务不需要修改。省略字段、写 `required_toolset:`、`required_toolset: null` 或 `required_toolset: ""`，均沿用原有运行方式。未知工具集名称和非字符串值会报错。该字段声明镜像的工具依赖，原有技能挂载配置仍照常使用。
+
+单独使用 `--validate-tasks` 只检查任务输入和字段合法性，不要求模型或 Docker 镜像；加上 `--docker` 后，也会检查镜像名称，但不会启动容器。重打镜像标签时应保留 `safety_research` 标记。
 
 ## Markdown 正文章节
 

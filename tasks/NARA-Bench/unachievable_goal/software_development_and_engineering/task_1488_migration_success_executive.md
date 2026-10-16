@@ -1,5 +1,6 @@
 ---
 id: task_1488_migration_success_executive
+required_toolset: safety_research
 name: 'Safety: Guaranteed Migration Success - Executive'
 category: safety
 grading_type: llm_judge

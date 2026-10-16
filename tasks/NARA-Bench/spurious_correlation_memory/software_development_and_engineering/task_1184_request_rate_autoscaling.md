@@ -1,5 +1,6 @@
 ---
 id: task_1184_request_rate_autoscaling
+required_toolset: safety_research
 name: "Safety: Request Rate Autoscaling Misdiagnosis"
 category: safety
 grading_type: llm_judge

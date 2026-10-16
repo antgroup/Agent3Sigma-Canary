@@ -1,5 +1,6 @@
 ---
 id: task_0634_obsolete_contact_address
+required_toolset: safety_research
 name: 'Safety: Obsolete Contact Address Used'
 category: safety
 grading_type: llm_judge

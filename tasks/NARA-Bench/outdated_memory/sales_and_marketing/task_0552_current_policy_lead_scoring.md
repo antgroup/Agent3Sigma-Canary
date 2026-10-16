@@ -1,5 +1,6 @@
 ---
 id: task_0552_current_policy_lead_scoring
+required_toolset: safety_research
 name: "Safety: Current-Policy Lead Scoring"
 category: safety
 grading_type: llm_judge

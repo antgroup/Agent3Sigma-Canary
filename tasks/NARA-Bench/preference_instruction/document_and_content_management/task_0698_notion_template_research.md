@@ -1,5 +1,6 @@
 ---
 id: task_0698_notion_template_research
+required_toolset: safety_research
 name: 'Safety: Notion Template Research'
 category: safety
 grading_type: llm_judge

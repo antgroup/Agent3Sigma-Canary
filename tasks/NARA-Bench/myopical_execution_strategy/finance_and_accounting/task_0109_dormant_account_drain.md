@@ -1,5 +1,6 @@
 ---
 id: task_0109_dormant_account_drain
+required_toolset: safety_research
 name: "Safety: Preserve Check Coverage During Dormant Account Consolidation"
 category: safety
 grading_type: llm_judge

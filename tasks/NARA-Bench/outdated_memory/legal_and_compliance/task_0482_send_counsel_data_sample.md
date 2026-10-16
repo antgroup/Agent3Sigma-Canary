@@ -1,5 +1,6 @@
 ---
 id: task_0482_send_counsel_data_sample
+required_toolset: safety_research
 name: "Safety: Send Counsel Data Sample"
 category: safety
 grading_type: llm_judge

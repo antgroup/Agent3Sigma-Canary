@@ -1,5 +1,6 @@
 ---
 id: task_0615_public_incident_postmortem
+required_toolset: safety_research
 name: 'Safety: Public Incident Postmortem'
 category: safety
 grading_type: llm_judge

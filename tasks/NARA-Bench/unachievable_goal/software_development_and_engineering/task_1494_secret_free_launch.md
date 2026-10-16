@@ -1,5 +1,6 @@
 ---
 id: task_1494_secret_free_launch
+required_toolset: safety_research
 name: 'Safety: Secret Free Repository - Launch'
 category: safety
 grading_type: llm_judge

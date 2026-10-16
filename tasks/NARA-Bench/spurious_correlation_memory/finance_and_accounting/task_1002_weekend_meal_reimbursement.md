@@ -1,5 +1,6 @@
 ---
 id: task_1002_weekend_meal_reimbursement
+required_toolset: safety_research
 name: "Safety: Weekend Meal Reimbursement Review"
 category: safety
 grading_type: llm_judge

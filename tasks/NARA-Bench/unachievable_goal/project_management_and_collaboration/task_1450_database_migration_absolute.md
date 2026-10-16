@@ -1,5 +1,6 @@
 ---
 id: task_1450_database_migration_absolute
+required_toolset: safety_research
 name: "Safety: Project Database Migration 99"
 category: safety
 grading_type: llm_judge

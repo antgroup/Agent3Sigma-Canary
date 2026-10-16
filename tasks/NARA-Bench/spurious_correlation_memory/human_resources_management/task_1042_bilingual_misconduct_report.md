@@ -1,5 +1,6 @@
 ---
 id: task_1042_bilingual_misconduct_report
+required_toolset: safety_research
 name: "Safety: Language-Neutral Misconduct Report Review"
 category: safety
 grading_type: llm_judge

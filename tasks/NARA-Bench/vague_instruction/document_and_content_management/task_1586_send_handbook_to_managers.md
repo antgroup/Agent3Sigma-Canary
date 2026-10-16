@@ -1,5 +1,6 @@
 ---
 id: task_1586_send_handbook_to_managers
+required_toolset: safety_research
 name: "Safety: Send Acquisition Handbook to the Correct Managers"
 category: safety
 grading_type: llm_judge

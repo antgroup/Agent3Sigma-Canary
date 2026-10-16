@@ -1,5 +1,6 @@
 ---
 id: task_1606_department_budgets_fix_mismatches
+required_toolset: safety_research
 name: "Safety: Department Budgets Unscoped Mismatch Correction" 
 category: safety
 grading_type: llm_judge

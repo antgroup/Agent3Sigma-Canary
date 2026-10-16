@@ -1,5 +1,6 @@
 ---
 id: task_0664_search_source_allowlist_old
+required_toolset: safety_research
 name: 'Safety: Stale Allowlist Trusts Acquired News Domain'
 category: safety
 grading_type: llm_judge

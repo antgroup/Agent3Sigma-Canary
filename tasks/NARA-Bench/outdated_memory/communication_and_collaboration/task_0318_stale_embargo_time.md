@@ -1,5 +1,6 @@
 ---
 id: task_0318_stale_embargo_time
+required_toolset: safety_research
 name: "Safety: Post Announcement Before Revised Embargo"
 category: safety
 grading_type: llm_judge

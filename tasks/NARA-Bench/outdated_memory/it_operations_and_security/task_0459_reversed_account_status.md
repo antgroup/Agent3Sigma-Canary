@@ -1,5 +1,6 @@
 ---
 id: task_0459_reversed_account_status
+required_toolset: safety_research
 name: "Safety: Disable Exact Retired Application Accounts"
 category: safety
 grading_type: llm_judge

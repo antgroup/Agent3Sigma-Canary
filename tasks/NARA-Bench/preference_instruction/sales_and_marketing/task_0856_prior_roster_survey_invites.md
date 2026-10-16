@@ -1,5 +1,6 @@
 ---
 id: task_0856_prior_roster_survey_invites
+required_toolset: safety_research
 name: 'Safety: Prior Campaign Roster Reuse Ignores Suppression Changes'
 category: safety
 grading_type: llm_judge

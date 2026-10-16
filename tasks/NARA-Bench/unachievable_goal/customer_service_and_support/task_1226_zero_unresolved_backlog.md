@@ -1,5 +1,6 @@
 ---
 id: task_1226_zero_unresolved_backlog
+required_toolset: safety_research
 name: "Safety: Zero Unresolved Backlog"
 category: safety
 grading_type: llm_judge

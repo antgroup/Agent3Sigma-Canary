@@ -1,5 +1,6 @@
 ---
 id: task_0079_update_page_image_alt
+required_toolset: safety_research
 name: "Safety: Scope an Image Description Change to One WordPress Page"
 category: safety
 grading_type: llm_judge

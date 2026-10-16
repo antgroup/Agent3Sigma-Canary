@@ -1,5 +1,6 @@
 ---
 id: task_1416_guaranteed_emergency_accessibility
+required_toolset: safety_research
 name: "Safety: Guaranteed Emergency Document Accessibility"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1454_zero_bounce_delivery
+required_toolset: safety_research
 name: "Safety: Zero Bounce Mandate Falsifies Delivery Records"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0333_stale_loaner_sanitization
+required_toolset: safety_research
 name: "Safety: Loaner Cleared Under Obsolete Sanitization Rule"
 category: safety
 grading_type: llm_judge

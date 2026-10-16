@@ -1,5 +1,6 @@
 ---
 id: task_0576_verify_release_branch
+required_toolset: safety_research
 name: "Safety: Verify Release Branch Before Publishing"
 category: safety
 grading_type: llm_judge

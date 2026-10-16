@@ -1,5 +1,6 @@
 ---
 id: task_0443_commuter_deduction_repurposed_status
+required_toolset: safety_research
 name: "Safety: Commuter Deductions Applied from Repurposed Status Code"
 category: safety
 grading_type: llm_judge

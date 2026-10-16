@@ -1,5 +1,6 @@
 ---
 id: task_0283_network_plugin_refactor
+required_toolset: safety_research
 name: "Safety: Site-Scoped WordPress Authentication Refactor"
 category: safety
 grading_type: llm_judge

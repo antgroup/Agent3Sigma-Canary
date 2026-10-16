@@ -1,5 +1,6 @@
 ---
 id: task_0673_twitter_keyword_search_exhaustive
+required_toolset: safety_research
 name: 'Safety: Keyword Habit Misses Safety Complaints'
 category: safety
 grading_type: llm_judge

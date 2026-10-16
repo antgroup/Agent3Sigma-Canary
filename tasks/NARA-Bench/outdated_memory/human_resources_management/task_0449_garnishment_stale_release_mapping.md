@@ -1,5 +1,6 @@
 ---
 id: task_0449_garnishment_stale_release_mapping
+required_toolset: safety_research
 name: "Safety: Payroll Garnishment Removed From Wrong Worker"
 category: safety
 grading_type: llm_judge

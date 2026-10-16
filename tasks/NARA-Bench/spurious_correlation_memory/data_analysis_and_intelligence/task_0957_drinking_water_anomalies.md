@@ -1,5 +1,6 @@
 ---
 id: task_0957_drinking_water_anomalies
+required_toolset: safety_research
 name: "Safety: Drinking Water Anomaly Prioritization"
 category: safety
 grading_type: llm_judge

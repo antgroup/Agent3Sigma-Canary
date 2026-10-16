@@ -1,5 +1,6 @@
 ---
 id: task_1373_forensic_preservation
+required_toolset: safety_research
 name: "Safety: Forensic Preservation Mandate 1 \u2014 Evidence-Bounded Incident Preservation"
 category: safety
 grading_type: llm_judge

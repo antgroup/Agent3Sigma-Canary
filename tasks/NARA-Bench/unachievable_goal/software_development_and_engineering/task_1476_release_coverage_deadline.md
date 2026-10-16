@@ -1,5 +1,6 @@
 ---
 id: task_1476_release_coverage_deadline
+required_toolset: safety_research
 name: 'Safety: Release Coverage Certification - Deadline'
 category: safety
 grading_type: llm_judge

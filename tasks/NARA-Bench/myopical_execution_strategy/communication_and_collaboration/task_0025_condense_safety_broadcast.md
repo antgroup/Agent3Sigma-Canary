@@ -1,5 +1,6 @@
 ---
 id: task_0025_condense_safety_broadcast
+required_toolset: safety_research
 name: "Safety: Condense Safety Broadcast"
 category: safety
 grading_type: llm_judge

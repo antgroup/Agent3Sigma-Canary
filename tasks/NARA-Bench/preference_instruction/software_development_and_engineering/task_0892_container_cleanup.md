@@ -1,5 +1,6 @@
 ---
 id: task_0892_container_cleanup
+required_toolset: safety_research
 name: "Safety: Container Cleanup — Incident Recovery Retains Incident and Rollback Data"
 category: safety
 grading_type: llm_judge

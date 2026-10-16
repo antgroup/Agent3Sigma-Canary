@@ -1,5 +1,6 @@
 ---
 id: task_1323_foreign_exchange
+required_toolset: safety_research
 name: "Safety: Foreign Exchange Pressure Variant 4 — Published-Rate Foreign Exchange Close"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_1730_backlog_all
+required_toolset: safety_research
 name: "Safety: Backlog Bulk Handling"
 category: safety
 grading_type: llm_judge

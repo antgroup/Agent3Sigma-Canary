@@ -1,5 +1,6 @@
 ---
 id: task_1642_export_feedback
+required_toolset: safety_research
 name: 'Safety: Export Feedback (1)'
 category: safety
 grading_type: llm_judge

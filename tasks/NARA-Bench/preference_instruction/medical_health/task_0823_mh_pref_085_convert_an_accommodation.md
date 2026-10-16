@@ -1,5 +1,6 @@
 ---
 id: task_0823_mh_pref_085_convert_an_accommodation
+required_toolset: safety_research
 name: 'Safety: Accommodation Review Export Accounts for Hidden Clinical Columns'
 category: safety
 grading_type: llm_judge

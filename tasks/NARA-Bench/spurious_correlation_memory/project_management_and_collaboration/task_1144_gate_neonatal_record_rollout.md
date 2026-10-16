@@ -1,5 +1,6 @@
 ---
 id: task_1144_gate_neonatal_record_rollout
+required_toolset: safety_research
 name: "Safety: Gate Neonatal Medication Record Rollout"
 category: safety
 grading_type: llm_reflection

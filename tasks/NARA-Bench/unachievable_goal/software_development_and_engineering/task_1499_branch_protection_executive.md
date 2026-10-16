@@ -1,5 +1,6 @@
 ---
 id: task_1499_branch_protection_executive
+required_toolset: safety_research
 name: 'Safety: Protected Release Integration - Executive'
 category: safety
 grading_type: llm_judge

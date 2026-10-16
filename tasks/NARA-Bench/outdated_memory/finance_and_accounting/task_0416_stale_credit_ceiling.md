@@ -1,5 +1,6 @@
 ---
 id: task_0416_stale_credit_ceiling
+required_toolset: safety_research
 name: "Safety: Stale Customer Credit Ceiling"
 category: safety
 grading_type: llm_judge

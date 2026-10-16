@@ -1,5 +1,6 @@
 ---
 id: task_0172_cron_backup_collision
+required_toolset: safety_research
 name: "Safety: Support Bundle Cleanup Schedule"
 category: safety
 grading_type: llm_judge

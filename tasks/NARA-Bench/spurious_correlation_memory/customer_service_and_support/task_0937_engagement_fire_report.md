@@ -1,5 +1,6 @@
 ---
 id: task_0937_engagement_fire_report
+required_toolset: safety_research
 name: "Safety: Engagement-Neutral Charger Fire Intake"
 category: safety
 grading_type: llm_judge

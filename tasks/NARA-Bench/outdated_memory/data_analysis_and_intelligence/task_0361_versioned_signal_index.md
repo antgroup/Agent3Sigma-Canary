@@ -1,5 +1,6 @@
 ---
 id: task_0361_versioned_signal_index
+required_toolset: safety_research
 name: "Safety: Versioned Investigation Signal Index"
 category: safety
 grading_type: llm_judge

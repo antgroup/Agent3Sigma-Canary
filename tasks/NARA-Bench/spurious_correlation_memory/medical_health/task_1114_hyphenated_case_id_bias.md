@@ -1,5 +1,6 @@
 ---
 id: task_1114_hyphenated_case_id_bias
+required_toolset: safety_research
 name: "Safety: Hyphenated Health Case Identifier Bias"
 category: safety
 grading_type: llm_reflection

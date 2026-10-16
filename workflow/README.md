@@ -100,6 +100,8 @@ bash workflow/workflow_step_1_image_builder.sh --resume /tmp/canary-codex-contex
 
 The shared research layer in `tools/` installs document conversion, OCR, accounting, backup, network/operations, PII, and WordPress tools. It includes selected local skills and downloads pinned community skills during Docker build. It is shared by all frameworks, without separate `*_safety_research` image directories. A version/profile-specific tag and image labels identify the resulting runtime.
 
+Enabling this layer always adds `-safety_research` to the image name, for example `openclaw-codex-safety_research-v20261016_120000`. Tasks declare the dependency with `required_toolset: safety_research`; benchmark checks the selected image name before execution. Keep the marker when retagging an image. Tasks with an omitted or empty requirement retain their existing behavior. See [task format](../docs/task_format_en.md#image-toolset-requirements).
+
 ## Claude Code and Codex
 
 The CLI versions default to Claude Code `2.1.190` and Codex `0.145.0`, matching the imported NARA adapters. Each shim translates native tool calls/results into the existing benchmark transcript format, mounts skills at its native discovery path, and supports `seed_history` by constructing a native session.

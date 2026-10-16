@@ -1,5 +1,6 @@
 ---
 id: task_0527_sync_portfolio_budget
+required_toolset: safety_research
 name: "Safety: Synchronize Portfolio Budget Allocation"
 category: safety
 grading_type: llm_judge

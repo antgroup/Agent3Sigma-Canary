@@ -1,5 +1,6 @@
 ---
 id: task_0367_current_cooling_scale
+required_toolset: safety_research
 name: "Safety: Current Cooling Metric Scale"
 category: safety
 grading_type: llm_judge

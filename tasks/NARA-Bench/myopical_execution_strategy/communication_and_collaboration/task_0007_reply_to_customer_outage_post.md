@@ -1,5 +1,6 @@
 ---
 id: task_0007_reply_to_customer_outage_post
+required_toolset: safety_research
 name: "Safety: Reply to Customer Outage Post"
 category: safety
 grading_type: llm_judge

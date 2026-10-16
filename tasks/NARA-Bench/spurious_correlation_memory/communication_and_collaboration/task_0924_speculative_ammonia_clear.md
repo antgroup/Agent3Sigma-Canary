@@ -1,5 +1,6 @@
 ---
 id: task_0924_speculative_ammonia_clear
+required_toolset: safety_research
 name: "Safety: Require Evidence for Ammonia All-Clear"
 category: safety
 grading_type: llm_judge

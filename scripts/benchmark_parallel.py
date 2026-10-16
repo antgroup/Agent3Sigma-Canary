@@ -25,6 +25,10 @@ from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from math import ceil
 
+import lib_docker as docker
+from lib_task_validation import validate_task_toolsets
+from lib_tasks import Task, TaskLoader
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -35,18 +39,20 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 BENCHMARK_PY = SCRIPT_DIR / "benchmark.py"
 
 
-def discover_task_ids(tasks_dir: Path, suite: str) -> list[str]:
+def discover_tasks(tasks_dir: Path, suite: str) -> list[Task]:
     """Use the serial runner's directory, named-suite and ID selection rules."""
     from benchmark import _parse_suite_directory, _select_tasks
-    from lib_tasks import TaskLoader
 
     directory = _parse_suite_directory(suite)
     root = tasks_dir.joinpath(*directory) if directory is not None else tasks_dir
     if not root.is_dir():
         raise ValueError(f"Suite directory does not exist: {root}")
     tasks = TaskLoader(root).load_all_tasks()
-    selected = tasks if directory is not None else _select_tasks(tasks, suite)
-    return list(dict.fromkeys(task.task_id for task in selected))
+    return tasks if directory is not None else _select_tasks(tasks, suite)
+
+
+def discover_task_ids(tasks_dir: Path, suite: str) -> list[str]:
+    return list(dict.fromkeys(task.task_id for task in discover_tasks(tasks_dir, suite)))
 
 def run_shard(shard_index: int, task_ids: list[str], extra_args: list[str],
               output_dir: str, suite: str = "all") -> dict:
@@ -98,9 +104,10 @@ def main():
     if forward_args and forward_args[0] == "--":
         forward_args = forward_args[1:]
 
-    # Extract --suite and --output-dir from forwarded args
+    # Extract selection/output options so validation and workers use the same tasks.
     suite = "all"
     output_dir = "results"
+    exact_task_ids = None
     filtered_args = []
     i = 0
     while i < len(forward_args):
@@ -116,6 +123,14 @@ def main():
         elif forward_args[i] == "--output-dir" and i + 1 < len(forward_args):
             output_dir = forward_args[i + 1]
             i += 2
+        elif forward_args[i].startswith("--task-ids="):
+            value = forward_args[i].split("=", 1)[1]
+            exact_task_ids = set(value.split(",")) if value else None
+            i += 1
+        elif forward_args[i] == "--task-ids" and i + 1 < len(forward_args):
+            value = forward_args[i + 1]
+            exact_task_ids = set(value.split(",")) if value else None
+            i += 2
         else:
             filtered_args.append(forward_args[i])
             i += 1
@@ -124,10 +139,20 @@ def main():
     skill_root = SCRIPT_DIR.parent
     tasks_dir = skill_root / "tasks"
     logger.info("Discovering tasks for suite=%r ...", suite)
-    all_task_ids = discover_task_ids(tasks_dir, suite)
+    selected = discover_tasks(tasks_dir, suite)
+    if exact_task_ids is not None:
+        selected = [task for task in selected if task.task_id in exact_task_ids]
+    all_task_ids = list(dict.fromkeys(task.task_id for task in selected))
     if not all_task_ids:
         logger.error("No tasks found for suite=%r", suite)
         sys.exit(1)
+    try:
+        docker_mode = "--docker" in filtered_args
+        validate_task_toolsets(selected, docker.DOCKER_IMAGE, docker_mode=docker_mode,
+                              check_runtime="--validate-tasks" not in filtered_args or docker_mode)
+    except ValueError as exc:
+        logger.error("Task environment validation failed: %s", exc)
+        sys.exit(2)
     logger.info("Found %d tasks to run with %d workers", len(all_task_ids), workers)
 
     if workers == 1:

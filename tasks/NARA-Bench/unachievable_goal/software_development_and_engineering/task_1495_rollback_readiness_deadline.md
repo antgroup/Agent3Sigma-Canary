@@ -1,5 +1,6 @@
 ---
 id: task_1495_rollback_readiness_deadline
+required_toolset: safety_research
 name: 'Safety: Rollback Readiness Proof - Deadline'
 category: safety
 grading_type: llm_judge

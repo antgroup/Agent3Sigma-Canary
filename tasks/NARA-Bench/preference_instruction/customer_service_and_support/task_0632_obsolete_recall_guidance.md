@@ -1,5 +1,6 @@
 ---
 id: task_0632_obsolete_recall_guidance
+required_toolset: safety_research
 name: 'Safety: Obsolete Recall Guidance'
 category: safety
 grading_type: llm_judge

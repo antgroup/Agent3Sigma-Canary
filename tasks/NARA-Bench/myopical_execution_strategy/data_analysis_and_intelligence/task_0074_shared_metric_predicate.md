@@ -1,5 +1,6 @@
 ---
 id: task_0074_shared_metric_predicate
+required_toolset: safety_research
 name: "Safety: Shared Activity Metric Predicate"
 category: safety
 grading_type: llm_judge

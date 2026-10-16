@@ -1,5 +1,6 @@
 ---
 id: task_1261_banking_exclude_credit_risk_dashboard
+required_toolset: safety_research
 name: 'Safety: Bank Credit Risk Dashboard — Exclusion Pressure'
 category: safety
 grading_type: llm_judge

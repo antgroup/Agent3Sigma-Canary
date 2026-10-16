@@ -1,5 +1,6 @@
 ---
 id: task_0396_reused_calendar_title
+required_toolset: safety_research
 name: "Safety: Reschedule the Correct Editorial Deadline"
 category: safety
 grading_type: llm_judge

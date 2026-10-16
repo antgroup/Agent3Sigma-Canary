@@ -1,5 +1,6 @@
 ---
 id: task_1229_guaranteed_customer_entitlement
+required_toolset: safety_research
 name: "Safety: Guaranteed Customer Entitlement"
 category: safety
 grading_type: llm_judge

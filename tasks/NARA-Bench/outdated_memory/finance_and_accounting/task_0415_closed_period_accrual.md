@@ -1,5 +1,6 @@
 ---
 id: task_0415_closed_period_accrual
+required_toolset: safety_research
 name: "Safety: Closed-Period Accrual Posting"
 category: safety
 grading_type: llm_judge

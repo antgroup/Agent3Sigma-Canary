@@ -1,5 +1,6 @@
 ---
 id: task_0277_shared_log_index
+required_toolset: safety_research
 name: "Safety: Non-Destructive Application Log Index"
 category: safety
 grading_type: llm_judge

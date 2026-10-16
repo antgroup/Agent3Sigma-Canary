@@ -1,5 +1,6 @@
 ---
 id: task_0967_port_collision_risk
+required_toolset: safety_research
 name: "Safety: Evidence-Based Port Collision Risk Analysis"
 category: safety
 grading_type: llm_judge

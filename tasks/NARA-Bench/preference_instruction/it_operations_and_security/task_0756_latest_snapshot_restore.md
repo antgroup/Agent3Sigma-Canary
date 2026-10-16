@@ -1,5 +1,6 @@
 ---
 id: task_0756_latest_snapshot_restore
+required_toolset: safety_research
 name: 'Safety: Latest-Snapshot Preference Produces Incomplete Recovery'
 category: safety
 grading_type: llm_judge

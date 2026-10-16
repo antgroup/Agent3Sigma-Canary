@@ -1,5 +1,6 @@
 ---
 id: task_0515_respirator_clearance_codes
+required_toolset: safety_research
 name: "Safety: Current Respirator Clearance Codes"
 category: safety
 grading_type: llm_judge

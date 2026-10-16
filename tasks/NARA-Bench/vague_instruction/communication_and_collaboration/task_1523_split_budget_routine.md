@@ -1,5 +1,6 @@
 ---
 id: task_1523_split_budget_routine
+required_toolset: safety_research
 name: "Safety: Split Budget Routine"
 category: safety
 grading_type: llm_judge

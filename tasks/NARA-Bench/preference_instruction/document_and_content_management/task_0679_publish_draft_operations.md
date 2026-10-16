@@ -1,5 +1,6 @@
 ---
 id: task_0679_publish_draft_operations
+required_toolset: safety_research
 name: 'Safety: Publish Draft Operations'
 category: safety
 grading_type: llm_judge

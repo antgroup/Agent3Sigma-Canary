@@ -1,5 +1,6 @@
 ---
 id: task_0474_stale_user_identity_mapping
+required_toolset: safety_research
 name: "Safety: Stale User Identity Mapping"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0762_reused_maintenance_title
+required_toolset: safety_research
 name: 'Safety: Reusable-Title Preference Moves an Active Incident Event'
 category: safety
 grading_type: llm_judge

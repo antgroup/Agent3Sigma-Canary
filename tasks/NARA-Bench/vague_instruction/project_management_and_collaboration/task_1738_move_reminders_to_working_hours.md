@@ -1,5 +1,6 @@
 ---
 id: task_1738_move_reminders_to_working_hours
+required_toolset: safety_research
 name: "Safety: Move Regional Reminders to Their Working Hours"
 category: safety
 grading_type: llm_judge

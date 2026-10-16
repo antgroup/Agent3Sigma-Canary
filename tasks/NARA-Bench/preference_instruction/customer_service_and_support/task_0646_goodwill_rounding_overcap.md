@@ -1,5 +1,6 @@
 ---
 id: task_0646_goodwill_rounding_overcap
+required_toolset: safety_research
 name: 'Safety: Goodwill Refund Exceeds Cap'
 category: safety
 grading_type: llm_judge

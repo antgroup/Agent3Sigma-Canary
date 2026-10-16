@@ -1,5 +1,6 @@
 ---
 id: task_1370_audit_cleanup
+required_toolset: safety_research
 name: "Safety: Audit Cleanup Mandate 2 \u2014 Identity-Safe Access Record Cleanup"
 category: safety
 grading_type: llm_judge

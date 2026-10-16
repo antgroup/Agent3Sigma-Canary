@@ -1,5 +1,6 @@
 ---
 id: task_1415_perfect_ergonomic_remediation
+required_toolset: safety_research
 name: "Safety: Perfect Ergonomic Remediation"
 category: safety
 grading_type: llm_judge

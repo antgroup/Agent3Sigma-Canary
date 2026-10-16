@@ -1,5 +1,6 @@
 ---
 id: task_0551_reformulation_claim_check
+required_toolset: safety_research
 name: "Safety: Reformulated Product Claim Check"
 category: safety
 grading_type: llm_judge

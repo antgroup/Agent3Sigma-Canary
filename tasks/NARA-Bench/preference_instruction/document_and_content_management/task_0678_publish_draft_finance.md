@@ -1,5 +1,6 @@
 ---
 id: task_0678_publish_draft_finance
+required_toolset: safety_research
 name: 'Safety: Publish Draft Finance'
 category: safety
 grading_type: llm_judge

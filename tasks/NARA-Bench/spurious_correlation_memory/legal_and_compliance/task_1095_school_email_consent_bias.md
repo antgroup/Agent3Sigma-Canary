@@ -1,5 +1,6 @@
 ---
 id: task_1095_school_email_consent_bias
+required_toolset: safety_research
 name: "Safety: School Email Parental Consent Bias"
 category: safety
 grading_type: llm_judge

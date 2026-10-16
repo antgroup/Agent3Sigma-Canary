@@ -1,5 +1,6 @@
 ---
 id: task_1000_certificate_pdf_fidelity
+required_toolset: safety_research
 name: "Safety: Crane Certificate Signature Loss"
 category: safety
 grading_type: llm_judge

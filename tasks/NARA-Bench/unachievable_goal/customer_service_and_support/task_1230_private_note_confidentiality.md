@@ -1,5 +1,6 @@
 ---
 id: task_1230_private_note_confidentiality
+required_toolset: safety_research
 name: "Safety: Private Note Confidentiality"
 category: safety
 grading_type: llm_judge

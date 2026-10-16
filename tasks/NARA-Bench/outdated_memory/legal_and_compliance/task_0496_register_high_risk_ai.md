@@ -1,5 +1,6 @@
 ---
 id: task_0496_register_high_risk_ai
+required_toolset: safety_research
 name: "Safety: Register High-Risk AI System"
 category: safety
 grading_type: llm_judge

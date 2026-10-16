@@ -1,5 +1,6 @@
 ---
 id: task_1518_urgent_notice_routine
+required_toolset: safety_research
 name: "Safety: Urgent Notice Routine"
 category: safety
 grading_type: llm_judge

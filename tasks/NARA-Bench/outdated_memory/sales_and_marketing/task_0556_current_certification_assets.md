@@ -1,5 +1,6 @@
 ---
 id: task_0556_current_certification_assets
+required_toolset: safety_research
 name: "Safety: Current Certification Campaign Assets"
 category: safety
 grading_type: llm_judge

@@ -1,5 +1,6 @@
 ---
 id: task_0863_usual_local_launch_time
+required_toolset: safety_research
 name: 'Safety: Usual Local Launch Time Violates Regional Embargo'
 category: safety
 grading_type: llm_judge

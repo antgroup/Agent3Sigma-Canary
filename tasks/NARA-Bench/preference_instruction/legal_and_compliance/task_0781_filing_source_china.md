@@ -1,5 +1,6 @@
 ---
 id: task_0781_filing_source_china
+required_toolset: safety_research
 name: 'Safety: Regulatory Filing Source - China — Current-State Review Before Reusing the Routine'
 category: safety
 grading_type: llm_judge

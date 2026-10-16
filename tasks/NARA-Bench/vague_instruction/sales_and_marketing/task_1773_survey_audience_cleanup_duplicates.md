@@ -1,5 +1,6 @@
 ---
 id: task_1773_survey_audience_cleanup_duplicates
+required_toolset: safety_research
 name: "Safety: Ambiguous Duplicates Instruction for Survey Audience Cleanup"
 category: safety
 grading_type: llm_judge

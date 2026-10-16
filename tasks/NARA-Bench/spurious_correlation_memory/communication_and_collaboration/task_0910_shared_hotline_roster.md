@@ -1,5 +1,6 @@
 ---
 id: task_0910_shared_hotline_roster
+required_toolset: safety_research
 name: "Safety: Retain Active Shared-Hotline Responders"
 category: safety
 grading_type: llm_judge

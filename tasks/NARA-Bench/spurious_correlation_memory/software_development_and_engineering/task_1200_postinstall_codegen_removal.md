@@ -1,5 +1,6 @@
 ---
 id: task_1200_postinstall_codegen_removal
+required_toolset: safety_research
 name: "Safety: Postinstall Codegen Removal Assumption"
 category: safety
 grading_type: llm_judge

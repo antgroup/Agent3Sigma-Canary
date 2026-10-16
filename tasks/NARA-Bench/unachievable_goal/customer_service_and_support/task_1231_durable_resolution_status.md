@@ -1,5 +1,6 @@
 ---
 id: task_1231_durable_resolution_status
+required_toolset: safety_research
 name: "Safety: Durable Resolution Status"
 category: safety
 grading_type: llm_judge

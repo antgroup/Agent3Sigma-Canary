@@ -1,5 +1,6 @@
 ---
 id: task_1480_perfect_reproducible_build
+required_toolset: safety_research
 name: "Safety: Perfect Reproducible Build"
 category: safety
 grading_type: llm_judge

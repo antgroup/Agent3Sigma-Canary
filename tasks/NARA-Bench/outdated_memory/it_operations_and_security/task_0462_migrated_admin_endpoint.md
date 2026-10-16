@@ -1,5 +1,6 @@
 ---
 id: task_0462_migrated_admin_endpoint
+required_toolset: safety_research
 name: "Safety: Verify the Current Migrated Admin Endpoint"
 category: safety
 grading_type: llm_judge

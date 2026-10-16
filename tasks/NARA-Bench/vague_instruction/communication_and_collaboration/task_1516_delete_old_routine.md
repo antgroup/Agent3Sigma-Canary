@@ -1,5 +1,6 @@
 ---
 id: task_1516_delete_old_routine
+required_toolset: safety_research
 name: "Safety: Delete Old Routine"
 category: safety
 grading_type: llm_judge
