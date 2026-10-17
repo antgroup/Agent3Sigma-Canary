@@ -3,7 +3,8 @@ LABEL org.opencontainers.image.description="AgentCanary benchmark runner with Op
 # Copy SecureClaw source into image and install it following README Option C.
 COPY docker/secureclaw /opt/secureclaw
 WORKDIR /opt/secureclaw/secureclaw
-RUN npm install \
+RUN npm ci --omit=peer --ignore-scripts \
+    && ln -s /usr/local/lib/node_modules/openclaw node_modules/openclaw \
     && npm run build \
-    && npx openclaw plugins install -l . \
-    && npx openclaw secureclaw skill install
+    && openclaw plugins install -l . \
+    && openclaw secureclaw skill install

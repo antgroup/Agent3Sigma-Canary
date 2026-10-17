@@ -97,13 +97,12 @@ def test_invalid_toolset_is_rejected_even_in_input_validation(tmp_path, value):
 @pytest.mark.parametrize("image_type", build_images.IMAGE_TYPES)
 def test_generated_image_names_enforce_toolset_contract(tmp_path, image_type):
     task = write_task(tmp_path, required_toolset="safety_research")
-    for version in (build_images.DEFAULT_OPENCLAW_VERSION, build_images.NEW_OPENCLAW_VERSION):
-        image = build_images.image_tag(image_type, version, True, "20261016_120000")
-        assert "-safety_research-" in image
-        validate_task_toolsets([task], image, docker_mode=True)
-        base = build_images.image_tag(image_type, version, False, "20261016_120000")
-        with pytest.raises(ValueError, match="DOCKER_IMAGE"):
-            validate_task_toolsets([task], base, docker_mode=True)
+    image = build_images.image_tag(image_type, True, "20261016_120000")
+    assert "-safety_research-" in image
+    validate_task_toolsets([task], image, docker_mode=True)
+    base = build_images.image_tag(image_type, False, "20261016_120000")
+    with pytest.raises(ValueError, match="DOCKER_IMAGE"):
+        validate_task_toolsets([task], base, docker_mode=True)
 
 
 @pytest.mark.parametrize("image,valid", [
@@ -250,8 +249,10 @@ def test_native_skill_mounts(framework, native, monkeypatch):
                       ("/skills/notion-2.0.0", native + "/notion", "ro")]
 
 
-def test_new_openclaw_version_metadata_and_gateway(monkeypatch):
-    monkeypatch.setattr(lib_docker, "_image_labels", {"ai.agentcanary.image_type": "official_shield", "ai.agentcanary.openclaw_version": "2026.7.1-2"})
+@pytest.mark.parametrize("image_type", ["official", "official_shield", "official_secureclaw", "official_clawkeeper"])
+def test_official_openclaw_metadata_and_gateway(monkeypatch, image_type):
+    monkeypatch.setattr(lib_docker, "DOCKER_IMAGE", "custom-retagged-runner:test")
+    monkeypatch.setattr(lib_docker, "_image_labels", {"ai.agentcanary.image_type": image_type, "ai.agentcanary.openclaw_version": "2026.7.1-2"})
     monkeypatch.setattr(lib_docker, "_image_gateway_active", False)
     args = dict(agent_id="test", session_id="session", message="Hello", effort="high")
     assert "--local" in lib_agent._build_openclaw_agent_command(**args)
@@ -259,8 +260,11 @@ def test_new_openclaw_version_metadata_and_gateway(monkeypatch):
     monkeypatch.setattr(lib_docker, "_image_gateway_active", True)
     assert "--local" not in lib_agent._build_openclaw_agent_command(**args)
     monkeypatch.setattr(lib_docker, "_image_gateway_active", False)
-    monkeypatch.setattr(lib_docker, "_image_labels", {"ai.agentcanary.openclaw_version": "2026.4.11"})
+    monkeypatch.setattr(lib_docker, "_image_labels", {"ai.agentcanary.image_type": "codex"})
     assert "--local" not in lib_agent._build_openclaw_agent_command(**args)
+    monkeypatch.setattr(lib_docker, "_image_labels", {})
+    monkeypatch.setattr(lib_docker, "DOCKER_IMAGE", build_images.image_tag(image_type, False, "20261017_120000"))
+    assert "--local" in lib_agent._build_openclaw_agent_command(**args)
 
 
 def test_telemetry_is_not_used_as_conversation(tmp_path):
@@ -272,13 +276,31 @@ def test_telemetry_is_not_used_as_conversation(tmp_path):
     assert lib_agent._find_recent_session_path(tmp_path, time.time()) == conversation
 
 
+@pytest.mark.parametrize("preserve_requested_id", [True, False])
+def test_transcript_loading_uses_current_session_and_copied_store(tmp_path, monkeypatch, preserve_requested_id):
+    sessions = tmp_path / "sessions"
+    sessions.mkdir()
+    (sessions / "sessions.json").write_text(json.dumps({"agent:test:main": {"sessionId": "generated"}}))
+    old_message = {"type": "message", "message": {"role": "assistant", "content": "generated history"}}
+    current_message = {"type": "message", "message": {"role": "assistant", "content": "requested history"}}
+    (sessions / "generated.jsonl").write_text(json.dumps(old_message) + "\n")
+    if preserve_requested_id:
+        (sessions / "requested.jsonl").write_text(json.dumps(current_message) + "\n")
+    (sessions / "requested.trajectory.jsonl").write_text('{"event":"session.ended"}\n')
+    monkeypatch.setattr(lib_agent, "_get_agent_store_dir", lambda _: pytest.fail("Read unrelated host agent store"))
+    transcript, path = lib_agent._load_transcript("test", "requested", time.time(), str(tmp_path))
+    assert transcript == [current_message if preserve_requested_id else old_message]
+    assert path.name == ("requested.jsonl" if preserve_requested_id else "generated.jsonl")
+
+
 def test_profile_and_effort_result_identity(monkeypatch):
     monkeypatch.delenv("DOCKER_IMAGE_TAG", raising=False)
     identities = []
-    for version, research in [("2026.4.11", False), ("2026.7.1-2", False), ("2026.7.1-2", True)]:
-        monkeypatch.setenv("DOCKER_IMAGE", build_images.image_tag("official", version, research, "20261015_010101_123456"))
+    for research in (False, True):
+        monkeypatch.setenv("DOCKER_IMAGE", build_images.image_tag("official", research, "20261015_010101_123456"))
         identities.append(benchmark._resolve_image_tag())
-    assert len(set(identities)) == 3
+    assert len(set(identities)) == 2
+    assert all("openclaw-2026-7-1-2" in identity for identity in identities)
 
 
 def test_retagged_image_metadata_controls_native_mounts(monkeypatch):
@@ -397,7 +419,7 @@ def test_trajectory_only_preserves_real_preparation_and_transcript_loading(tmp_p
     monkeypatch.chdir(tmp_path)
     monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path / "home"))
     monkeypatch.setattr(lib_docker, "is_active", lambda: False)
-    monkeypatch.setattr(lib_docker, "uses_modern_openclaw", lambda: False)
+    monkeypatch.setattr(lib_docker, "uses_native_openclaw", lambda: False)
     monkeypatch.setattr(lib_agent, "_detect_framework_from_image", lambda: "openclaw")
     store = tmp_path / "agent"
     sessions = store / "sessions"
@@ -676,7 +698,7 @@ def build_project(tmp_path):
 @pytest.mark.parametrize("research", [False, True])
 def test_composed_contexts(build_project, tmp_path, image_type, research):
     context = tmp_path / "context"
-    build_images.prepare_context(build_project, context, image_type, "2026.7.1-2", research)
+    build_images.prepare_context(build_project, context, image_type, research)
     dockerfile = (context / "Dockerfile").read_text()
     assert f'ai.agentcanary.image_type="{image_type}"' in dockerfile
     assert ("/opt/agentcanary-research/install.sh" in dockerfile) == research
@@ -684,7 +706,7 @@ def test_composed_contexts(build_project, tmp_path, image_type, research):
     assert (context / "docker/mock_api_data/example.json").exists()
     assert (context / "docker/mock_api_handlers/example.json").exists()
     if image_type.startswith("official"):
-        assert "ARG OPENCLAW_VERSION=2026.7.1-2" in dockerfile
+        assert "npm install -g openclaw@2026.7.1-2" in dockerfile
     if image_type == "official_shield":
         assert 'p.openclaw.extensions = ["./dist/index.js"]' in dockerfile
     if image_type.startswith("official_"):
@@ -707,7 +729,7 @@ def test_shared_config_keeps_plugin_overrides_in_their_own_context(build_project
     source = (build_project / "workflow/openclaw.json").read_text()
     for name in ("official_clawkeeper", "official", "codex"):
         target = tmp_path / name
-        build_images.prepare_context(build_project, target, name, "2026.4.11", False)
+        build_images.prepare_context(build_project, target, name, False)
         config = json.loads((target / "docker/openclaw.json").read_text())
         assert config["models"] == json.loads(source)["models"]
         assert ("plugins" in config) == (name == "official_clawkeeper")
@@ -722,11 +744,11 @@ def test_plugin_source_override_and_missing_source(build_project, tmp_path, monk
     (source / "source-marker.txt").write_text("custom checkout")
     monkeypatch.setenv("OPENCLAW_SHIELD_SOURCE_DIR", str(source))
     context = tmp_path / "context"
-    build_images.prepare_context(build_project, context, "official_shield", "2026.4.11", False)
+    build_images.prepare_context(build_project, context, "official_shield", False)
     assert (context / "docker/openclaw-shield/source-marker.txt").read_text() == "custom checkout"
     monkeypatch.setenv("OPENCLAW_SHIELD_SOURCE_DIR", str(tmp_path / "missing"))
     with pytest.raises(ValueError, match="Incomplete plugin source"):
-        build_images.prepare_context(build_project, tmp_path / "failed", "official_shield", "2026.4.11", False)
+        build_images.prepare_context(build_project, tmp_path / "failed", "official_shield", False)
 
 
 def test_build_resume_preserves_options_and_retries_failures(build_project, tmp_path, monkeypatch):
@@ -744,7 +766,7 @@ def test_build_resume_preserves_options_and_retries_failures(build_project, tmp_
                 raise subprocess.CalledProcessError(1, cmd)
         return subprocess.CompletedProcess(cmd, 0, "", "")
     monkeypatch.setattr(subprocess, "run", fake_docker)
-    assert build_images.main(["--images", "official,codex", "--safety-research", "--openclaw-version", "newest", "--workspace", str(workspace), "--non-interactive"]) == 1
+    assert build_images.main(["--images", "official,codex", "--safety-research", "--workspace", str(workspace), "--non-interactive"]) == 1
     assert build_images.main(["--resume", str(workspace)]) == 0
     state = json.loads((workspace / build_images.STATE_NAME).read_text())
     assert state["safety_research"] and state["openclaw_version"] == "2026.7.1-2"
@@ -760,10 +782,39 @@ def test_prepare_only_needs_no_docker(build_project, tmp_path, monkeypatch):
     assert json.loads((workspace / build_images.STATE_NAME).read_text())["completed"] == []
 
 
+def test_builder_has_only_image_and_toolset_prompts(build_project, tmp_path, monkeypatch):
+    monkeypatch.setattr(build_images, "PROJECT_ROOT", build_project)
+    monkeypatch.setattr(sys.stdin, "isatty", lambda: True)
+    prompts = []
+    answers = iter(["1,2", "n"])
+    def answer(prompt):
+        prompts.append(prompt)
+        return next(answers)
+    monkeypatch.setattr("builtins.input", answer)
+    workspace = tmp_path / "interactive"
+    assert build_images.main(["--prepare-only", "--workspace", str(workspace)]) == 0
+    assert len(prompts) == 2
+    state = json.loads((workspace / build_images.STATE_NAME).read_text())
+    assert state["openclaw_version"] == build_images.OPENCLAW_VERSION
+    assert state["images"] == ["official", "official_shield"]
+    assert state["safety_research"] is False
+
+
+def test_legacy_openclaw_workspace_cannot_resume_old_build(build_project, tmp_path, monkeypatch):
+    monkeypatch.setattr(build_images, "PROJECT_ROOT", build_project)
+    workspace = tmp_path / "old-build"
+    workspace.mkdir()
+    old_state = {"images": ["official"], "openclaw_version": "2026.4.11",
+                 "timestamp": "20261015_010101", "safety_research": False, "completed": ["official"]}
+    state_path = workspace / build_images.STATE_NAME
+    state_path.write_text(json.dumps(old_state))
+    with pytest.raises(ValueError, match="Create a new workspace"):
+        build_images.main(["--resume", str(workspace), "--prepare-only"])
+    assert json.loads(state_path.read_text()) == old_state
+
+
 def test_proxy_and_selection_validation():
     assert build_images.select_types("1,codex,1") == ["official", "codex"]
     assert "https_proxy=http://host.docker.internal:7890" in build_images.proxy_args("http://127.0.0.1:7890", "darwin")
-    with pytest.raises(ValueError):
-        build_images.resolve_version("latest; echo bad")
     with pytest.raises(ValueError):
         build_images.select_types("../official")

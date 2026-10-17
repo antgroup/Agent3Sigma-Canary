@@ -155,14 +155,14 @@ bash workflow/workflow_step_1_image_builder.sh
 > **提示**
 > 如果你因为网络问题需要使用 HTTP 代理来构建 Docker，请参考 [docs/docker_proxy_zh.md](docs/docker_proxy_zh.md) 文档。
 
-支持通过同一个构建入口选择新框架、OpenClaw 版本和共享研究工具层：
+支持通过同一个构建入口选择 Agent 框架及共享研究工具层，OpenClaw 使用统一版本：
 
 ```bash
-bash workflow/workflow_step_1_image_builder.sh --images official,official_shield --openclaw-version 2026.7.1-2 --safety-research --non-interactive
+bash workflow/workflow_step_1_image_builder.sh --images official,official_shield --safety-research --non-interactive
 bash workflow/workflow_step_1_image_builder.sh --images claude_code,codex --safety-research --non-interactive
 ```
 
-交互模式的第二阶段默认不添加工具集；非交互模式下，通过 `--safety-research` 添加工具集，省略该选项则使用基础工具环境。`--no-safety-research` 显式跳过工具集选择并使用基础环境。OpenClaw 默认版本仍为 `2026.4.11`。`--prepare-only` 只生成构建上下文，`--resume <workspace>` 按已保存的选择恢复构建。完整选项和原生 CLI 接口要求见 [workflow 说明](workflow/README.md)。
+交互模式的第二阶段默认不添加工具集；非交互模式下，通过 `--safety-research` 添加工具集，省略该选项则使用基础工具环境。`--no-safety-research` 显式跳过工具集选择并使用基础环境。所有 OpenClaw 镜像统一使用固定版本 `2026.7.1-2`，不再提供旧版本选择。`--prepare-only` 只生成构建上下文，`--resume <workspace>` 按已保存的选择恢复构建。完整选项和原生 CLI 接口要求见 [workflow 说明](workflow/README.md)。
 
 ### 4. 运行评测
 
@@ -170,7 +170,7 @@ bash workflow/workflow_step_1_image_builder.sh --images claude_code,codex --safe
 
 ```bash
 # 选择要评测的目标镜像，替换为第 3 步构建输出的实际 image tag
-export DOCKER_IMAGE=openclaw-official-v20260430_120000
+export DOCKER_IMAGE=openclaw-official-openclaw-2026.7.1-2-v20261017_120000
 
 # 评测单个模型
 ./scripts/run.sh --model <provider-id>/<model-id> --suite <suite> --docker --verbose

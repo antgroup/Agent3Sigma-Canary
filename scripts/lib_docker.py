@@ -169,16 +169,12 @@ def get_image_type() -> str:
     return _image_labels.get("ai.agentcanary.image_type", "")
 
 
-def uses_modern_openclaw() -> bool:
-    version = _image_labels.get("ai.agentcanary.openclaw_version", "")
-    if version:
-        try:
-            return tuple(int(part) for part in version.split("-")[0].split(".")) >= (2026, 7, 1)
-        except ValueError:
-            return False
-    return any(name in DOCKER_IMAGE.lower() for name in (
-        "official_newest_safety_research", "official_newest_shield_safety_research",
-    ))
+def uses_native_openclaw() -> bool:
+    """Identify official OpenClaw images, independently of their version/tag."""
+    if get_image_type():
+        return get_image_type().startswith("official")
+    image_name = DOCKER_IMAGE.lower().rsplit("/", 1)[-1]
+    return image_name.startswith(_NATIVE_GATEWAY_IMAGE_PREFIXES)
 
 
 # ---------------------------------------------------------------------------
@@ -504,10 +500,7 @@ def _should_apply_egress_lockdown() -> bool:
 
 def _uses_native_openclaw_gateway() -> bool:
     """Whether the selected image ships the native OpenClaw gateway CLI."""
-    if get_image_type():
-        return get_image_type().startswith("official")
-    image_name = DOCKER_IMAGE.lower().rsplit("/", 1)[-1]
-    return image_name.startswith(_NATIVE_GATEWAY_IMAGE_PREFIXES)
+    return uses_native_openclaw()
 
 
 def _port_listening(container_id: str, port: int) -> bool:
@@ -594,6 +587,20 @@ def start_image_gateway(
         logger.info("Skipping native gateway startup for non-official image: %s", DOCKER_IMAGE)
         return
     logger.info("Starting in-container gateway after agent creation ...")
+    # Both the new Gateway and its CLI client require credentials. Generate
+    # one per disposable container, shared through its config; never print it
+    # or write it into the host configuration/image.
+    configure = subprocess.run(
+        ["docker", "exec", _container_id, "python3", "-c",
+         "import json,secrets; from pathlib import Path; "
+         "p=Path('/root/.openclaw/openclaw.json'); c=json.loads(p.read_text()); "
+         "g=c.setdefault('gateway',{}); g['bind']='loopback'; "
+         "g['auth']={'mode':'token','token':secrets.token_hex(32)}; "
+         "p.write_text(json.dumps(c)); p.chmod(0o600)"],
+        capture_output=True, text=True, check=False, timeout=15,
+    )
+    if configure.returncode != 0:
+        raise RuntimeError(f"Native gateway authentication setup failed: {configure.stderr.strip()}")
     command = ["docker", "exec"]
     for key, value in (env or {}).items():
         command += ["-e", f"{key}={value}"]
@@ -601,7 +608,9 @@ def start_image_gateway(
         _container_id,
         "sh",
         "-c",
-        "setsid openclaw gateway run --allow-unconfigured "
+        # The benchmark client runs inside this same container. New OpenClaw
+        # defaults to a public bind in Docker and refuses it without auth.
+        "setsid openclaw gateway run --allow-unconfigured --bind loopback "
         "> /tmp/gateway.log 2>&1 < /dev/null &",
     ]
     result = subprocess.run(

@@ -39,8 +39,7 @@ PLUGIN_SOURCES = {
                    ("clawkeeper-plugin/package.json", "clawkeeper-plugin/openclaw.plugin.json",
                     "clawkeeper-plugin/install.sh")),
 }
-DEFAULT_OPENCLAW_VERSION = "2026.4.11"
-NEW_OPENCLAW_VERSION = "2026.7.1-2"
+OPENCLAW_VERSION = "2026.7.1-2"
 STATE_NAME = ".build_state.json"
 
 
@@ -59,23 +58,16 @@ def select_types(value: str) -> list[str]:
     return selected
 
 
-def resolve_version(value: str) -> str:
-    value = {"default": DEFAULT_OPENCLAW_VERSION, "newest": NEW_OPENCLAW_VERSION}.get(value, value)
-    if not re.fullmatch(r"\d+\.\d+\.\d+(?:-[A-Za-z0-9.]+)?", value):
-        raise ValueError("--openclaw-version must be an exact version, 'default', or 'newest'")
-    return value
-
-
-def image_tag(image_type: str, version: str, research: bool, timestamp: str) -> str:
+def image_tag(image_type: str, research: bool, timestamp: str) -> str:
     suffix = ""
-    if image_type.startswith("official") and version != DEFAULT_OPENCLAW_VERSION:
-        suffix += f"-openclaw-{version}"
+    if image_type.startswith("official"):
+        suffix += f"-openclaw-{OPENCLAW_VERSION}"
     if research:
         suffix += "-safety_research"
     return f"openclaw-{image_type}{suffix}-v{timestamp}"
 
 
-def prepare_context(project: Path, context: Path, image_type: str, version: str, research: bool) -> None:
+def prepare_context(project: Path, context: Path, image_type: str, research: bool) -> None:
     """Stage locally available inputs; network access happens only during Docker build."""
     if image_type not in IMAGE_TYPES:
         raise ValueError(f"Unknown image type: {image_type!r}")
@@ -123,9 +115,7 @@ def prepare_context(project: Path, context: Path, image_type: str, version: str,
     template = image_dir / ("Dockerfile.openai" if image_type == "nanoclaw_openai" else "Dockerfile")
     content = template.read_text()
     if family == "openclaw":
-        content = content.replace(
-            f"ARG OPENCLAW_VERSION={DEFAULT_OPENCLAW_VERSION}", f"ARG OPENCLAW_VERSION={version}"
-        )
+        content = content.replace("@OPENCLAW_VERSION@", OPENCLAW_VERSION)
         fragment = ""
         if plugin:
             source_name, env_name, required = PLUGIN_SOURCES[plugin]
@@ -159,7 +149,7 @@ def prepare_context(project: Path, context: Path, image_type: str, version: str,
         f'ai.agentcanary.safety_research="{str(research).lower()}"\n'
     )
     if image_type.startswith("official"):
-        content += 'LABEL ai.agentcanary.openclaw_version="${OPENCLAW_VERSION}"\n'
+        content += f'LABEL ai.agentcanary.openclaw_version="{OPENCLAW_VERSION}"\n'
     dockerfile.write_text(content)
 
 
@@ -187,7 +177,6 @@ def save_state(path: Path, state: dict) -> None:
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--images", help="Comma-separated image types or all (interactive menu if omitted)")
-    parser.add_argument("--openclaw-version", help=f"Exact version, default ({DEFAULT_OPENCLAW_VERSION}), or newest ({NEW_OPENCLAW_VERSION})")
     parser.add_argument("--safety-research", action=argparse.BooleanOptionalAction, default=None,
                         help="Add document, PII, finance, operations and WordPress research tools")
     parser.add_argument("--proxy", help="HTTP(S) proxy used during Docker build")
@@ -201,13 +190,19 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     if args.resume:
-        if any(value is not None for value in (args.images, args.openclaw_version, args.safety_research, args.proxy, args.workspace)):
+        if any(value is not None for value in (args.images, args.safety_research, args.proxy, args.workspace)):
             raise ValueError("--resume uses saved build options; create a new workspace to change them")
         workspace = args.resume.resolve()
         state = json.loads((workspace / STATE_NAME).read_text())
         # Validate values before they are used in paths or generated Dockerfiles.
         state["images"] = select_types(",".join(state["images"]))
-        state["openclaw_version"] = resolve_version(state["openclaw_version"])
+        if (any(name.startswith("official") for name in state["images"])
+                and state.get("openclaw_version") != OPENCLAW_VERSION):
+            raise ValueError(
+                f"Saved workspace uses OpenClaw {state.get('openclaw_version')}; "
+                f"only {OPENCLAW_VERSION} is supported. Create a new workspace to rebuild."
+            )
+        state["openclaw_version"] = OPENCLAW_VERSION
         if not isinstance(state["safety_research"], bool):
             raise ValueError("Invalid safety_research value in saved build state")
         if not re.fullmatch(r"[0-9_]+", state["timestamp"]):
@@ -224,10 +219,6 @@ def main(argv: list[str] | None = None) -> int:
         images = select_types(types or "official")
         if interactive:
             print(f"Selected images: {', '.join(images)}")
-        version = args.openclaw_version
-        if version is None and interactive and any(name.startswith("official") for name in images):
-            version = input(f"OpenClaw version [default={DEFAULT_OPENCLAW_VERSION}; newest={NEW_OPENCLAW_VERSION}]: ").strip()
-        version = resolve_version(version or "default")
         if interactive:
             print("\n[2/2] Choose optional tools")
             print("The safety_research toolset adds document/OCR, PII, finance, operations, "
@@ -247,7 +238,7 @@ def main(argv: list[str] | None = None) -> int:
             raise ValueError(f"Workspace is not empty: {workspace}; use --resume or a new path")
         state = {
             "schema_version": 1, "timestamp": timestamp, "images": images,
-            "openclaw_version": version,
+            "openclaw_version": OPENCLAW_VERSION,
             "safety_research": bool(research), "proxy": args.proxy,
             "completed": [],
         }
@@ -263,8 +254,8 @@ def main(argv: list[str] | None = None) -> int:
     save_state(workspace / STATE_NAME, state)
     failed = []
     for image_type in state["images"]:
-        version, research = state["openclaw_version"], state["safety_research"]
-        tag = image_tag(image_type, version, research, state["timestamp"])
+        research = state["safety_research"]
+        tag = image_tag(image_type, research, state["timestamp"])
         context = workspace / f"build_{image_type}"
         if not args.prepare_only and image_type in state["completed"]:
             inspected = subprocess.run(["docker", "image", "inspect", tag], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -272,7 +263,7 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"Already built: {tag}", flush=True)
                 continue
         try:
-            prepare_context(PROJECT_ROOT, context, image_type, version, research)
+            prepare_context(PROJECT_ROOT, context, image_type, research)
             print(f"Context: {context}\nImage: {tag}", flush=True)
             if args.prepare_only:
                 continue

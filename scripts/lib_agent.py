@@ -80,16 +80,15 @@ def slugify_model(model_id: str) -> str:
 
 
 def _should_use_embedded_openclaw_agent() -> bool:
-    """Select the embedded CLI path for newer OpenClaw versions.
+    """Select the embedded CLI path for official OpenClaw images.
 
-    OpenClaw's ``agent`` command defaults to Gateway dispatch. Newer images
+    OpenClaw's ``agent`` command defaults to Gateway dispatch. Official images
     can run without a persistent Gateway, so use
     ``--local`` unless this runner has explicitly started one via
-    ``benchmark.py --gateway``. Keep this scoped to newer versions so older
-    official and gateway-managed variants preserve their current behaviour.
+    ``benchmark.py --gateway``. Other frameworks keep their native adapters.
     """
     return (
-        docker.uses_modern_openclaw()
+        docker.uses_native_openclaw()
         and not docker.is_image_gateway_active()
     )
 

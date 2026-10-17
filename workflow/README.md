@@ -1,15 +1,15 @@
 # AgentCanary Workflow
 
-`workflow/` builds AgentCanary images by combining an agent framework, an OpenClaw version (for official variants), and an optional shared safety research tool layer.
+`workflow/` builds AgentCanary images by combining an agent framework and an optional shared safety research tool layer. All official OpenClaw variants use the same pinned version `2026.7.1-2`.
 
 ## Image Roles
 
 | Image Type | Tag Format | Description |
 |------------|------------|-------------|
-| `official` | `openclaw-official-v{timestamp}` | Native OpenClaw + custom skills + mock-api server |
-| `official_shield` | `openclaw-official_shield-v{timestamp}` | `official` + openclaw-shield security plugin |
-| `official_secureclaw` | `openclaw-official_secureclaw-v{timestamp}` | `official` + SecureClaw security plugin |
-| `official_clawkeeper` | `openclaw-official_clawkeeper-v{timestamp}` | `official` + ClawKeeper security plugin |
+| `official` | `openclaw-official-openclaw-2026.7.1-2-v{timestamp}` | Native OpenClaw + custom skills + mock-api server |
+| `official_shield` | `openclaw-official_shield-openclaw-2026.7.1-2-v{timestamp}` | `official` + openclaw-shield security plugin |
+| `official_secureclaw` | `openclaw-official_secureclaw-openclaw-2026.7.1-2-v{timestamp}` | `official` + SecureClaw security plugin |
+| `official_clawkeeper` | `openclaw-official_clawkeeper-openclaw-2026.7.1-2-v{timestamp}` | `official` + ClawKeeper security plugin |
 | `hermes` | `openclaw-hermes-v{timestamp}` | hermes-agent (Nous Research) framework wrapped behind an `openclaw` shim + mock-api server |
 | `claude_code` | `openclaw-claude_code-v{timestamp}` | Claude Code CLI + native history/skill adapter + mock API |
 | `codex` | `openclaw-codex-v{timestamp}` | Codex CLI + native history/skill adapter + mock API |
@@ -49,7 +49,7 @@ There are five framework directories. OpenClaw plugin variants share one base Do
 
 ```text
 workflow_step_1_image_builder.sh
-├── Stage 1: selects agent images (and the version for OpenClaw images)
+├── Stage 1: selects agent images (all OpenClaw images use the pinned version)
 ├── Stage 2: chooses whether to add the shared safety_research toolset
 ├── Creates the workspace directory .workspaces/AgentCanary_{timestamp}
 ├── Prepares the context from one framework directory and shared assets
@@ -62,7 +62,7 @@ Build outputs:
 
 - Workspace: `.workspaces/AgentCanary_{timestamp}`
 - Build context: `.workspaces/AgentCanary_{timestamp}/build_{type}`
-- Image tag: `openclaw-{type}[-openclaw-{version}][-safety_research]-v{timestamp}`; the default OpenClaw version omits the version suffix
+- Image tag: `openclaw-{type}[-openclaw-{version}][-safety_research]-v{timestamp}`; every OpenClaw image includes the pinned version suffix
 - State file: `.workspaces/AgentCanary_{timestamp}/.build_state.json`
 
 ## Usage
@@ -73,15 +73,15 @@ bash workflow/workflow_step_1_image_builder.sh
 
 Without flags, a terminal session guides you through two stages:
 
-1. **Choose agent images:** OpenClaw (`official` or a security plugin variant), Hermes, NanoClaw, Claude Code, or Codex. Multiple images can be selected. If any OpenClaw image is selected, choose its version within this stage.
+1. **Choose agent images:** OpenClaw (`official` or a security plugin variant), Hermes, NanoClaw, Claude Code, or Codex. Multiple images can be selected. All OpenClaw images use `2026.7.1-2`, with no version prompt.
 2. **Choose optional tools:** answer `y` to add the shared `safety_research` toolset to every selected image, or press Enter / answer `n` to keep the base toolset.
 
-For example, select `8` for Codex, then answer `y` to build Codex with the research tools, or `n` to build its base image. Defaults are `official`, OpenClaw `2026.4.11`, and no research layer. Command-line options fill in the corresponding choices without prompting; `--non-interactive` uses defaults for any omitted choices. `--resume` reuses the saved choices.
+For example, select `8` for Codex, then answer `y` to build Codex with the research tools, or `n` to build its base image. Defaults are `official`, OpenClaw `2026.7.1-2`, and no research layer. Command-line options fill in the corresponding choices without prompting; `--non-interactive` uses defaults for any omitted choices. `--resume` reuses the saved choices.
 
 ```bash
-# Newer OpenClaw and Shield, with the shared research environment.
+# OpenClaw and Shield, with the shared research environment.
 bash workflow/workflow_step_1_image_builder.sh \
-  --images official,official_shield --openclaw-version 2026.7.1-2 \
+  --images official,official_shield \
   --safety-research --non-interactive
 
 # Claude Code and Codex, using the same optional tool layer.
@@ -96,7 +96,7 @@ bash workflow/workflow_step_1_image_builder.sh \
 bash workflow/workflow_step_1_image_builder.sh --resume /tmp/canary-codex-context
 ```
 
-`--images` accepts names, menu numbers, or `all`. `--openclaw-version newest` is a reproducible alias for `2026.7.1-2`, not a moving registry tag. `--no-safety-research` explicitly disables the optional layer. `--proxy URL` retains Linux host networking and Docker Desktop localhost rewriting. `--workspace` must name an empty/new directory; the builder never deletes an existing workspace.
+`--images` accepts names, menu numbers, or `all`. `--openclaw-version` has been removed: all OpenClaw images use `2026.7.1-2`. Resuming a workspace configured for an older OpenClaw version reports an error; create a new workspace to rebuild. Existing task definitions do not need a version field or migration. `--no-safety-research` explicitly disables the optional layer. `--proxy URL` retains Linux host networking and Docker Desktop localhost rewriting. `--workspace` must name an empty/new directory; the builder never deletes an existing workspace.
 
 The shared research layer in `tools/` installs document conversion, OCR, accounting, backup, network/operations, PII, and WordPress tools. It includes selected local skills and downloads pinned community skills during Docker build. It is shared by all frameworks, without separate `*_safety_research` image directories. A version/profile-specific tag and image labels identify the resulting runtime.
 
@@ -132,7 +132,7 @@ Results remain under the usual `results/job_*/task_*/` paths, with full transcri
 
 `images/openclaw/Dockerfile` installs and configures:
 
-- `openclaw@2026.4.11` by default, configurable through `--openclaw-version`
+- `openclaw@2026.7.1-2` for every official variant
 - mock-api server: `/opt/mock-api`
 - mock-api data: `/tmp/scry/mock_api/data`
 
@@ -145,16 +145,16 @@ At runtime, benchmark runs keep outbound networking open by default. Passing
 `benchmark.py --netlock` asks `scripts/lib_docker.py` to apply the
 AgentCanary iptables allowlist. Research-profile images (identified by the `safety_research` tag or builder label) skip that lockdown by default. Set `DOCKER_OPEN_EGRESS_IMAGE_PATTERNS=""` to apply `--netlock` to research profiles as well.
 
-## Newer OpenClaw Runtime
+## OpenClaw Runtime
 
-OpenClaw `2026.7.1-2` uses local CLI execution when no Gateway was started by the runner; `--gateway` uses the native Gateway instead. Image metadata selects this behavior even when an image is retagged. Conversation loading excludes `*.trajectory.jsonl` telemetry. The local CLI wrapper cleans up a lingering process group after a terminal trajectory event. The adapter also passes `--effort max` through the provider request when OpenClaw's model-name validation would reject it.
+OpenClaw `2026.7.1-2` uses local CLI execution when no Gateway was started by the runner; `--gateway` uses the native Gateway bound to container loopback instead, matching the in-container client. The runner generates a temporary authentication token in the container config so the new Gateway and CLI can authenticate; host config and image contents are unchanged. Image metadata selects this behavior even when an image is retagged. Conversation loading excludes `*.trajectory.jsonl` telemetry. The local CLI wrapper cleans up a lingering process group after a terminal trajectory event. The adapter also passes `--effort max` through the provider request when OpenClaw's model-name validation would reject it.
 
 ## official_shield Build Contents
 
 The builder inserts `images/openclaw/Dockerfile.shield` into the shared OpenClaw Dockerfile and adds:
 
 - `openclaw-shield` source code: `/opt/openclaw-shield`
-- Dockerfile installation step: `openclaw plugins install /opt/openclaw-shield`; newer OpenClaw builds first compile the plugin to JavaScript with pinned esbuild and update its extension entrypoint
+- Dockerfile installation step: `openclaw plugins install /opt/openclaw-shield`; builds first compile the plugin to JavaScript with pinned esbuild and update its extension entrypoint
 - `tools.profile = "full"` in `openclaw.json`, so `knostic_shield` is included in the agent's actual tool list
 
 This variant uses the shared `workflow/openclaw.json` without additional configuration overrides.
@@ -179,10 +179,11 @@ The builder inserts `images/openclaw/Dockerfile.secureclaw` into the shared Open
 - `secureclaw` repository source code: `/opt/secureclaw`
 - Source installation following `Option C: Plugin from source` in the SecureClaw README:
   - `cd /opt/secureclaw/secureclaw`
-  - `npm install`
+  - `npm ci --omit=peer --ignore-scripts`
+  - Link the pinned global OpenClaw into `node_modules/openclaw`, so the plugin uses the same runtime and SDK
   - `npm run build`
-  - `npx openclaw plugins install -l .`
-- Built-in SecureClaw skill installation: `npx openclaw secureclaw skill install`
+  - `openclaw plugins install -l .`
+- Built-in SecureClaw skill installation: `openclaw secureclaw skill install`
 
 This variant uses the shared `workflow/openclaw.json` without additional configuration overrides.
 

@@ -161,14 +161,14 @@ bash workflow/workflow_step_1_image_builder.sh
 > **Tip**
 > If network restrictions require an HTTP proxy for Docker builds, see [docs/docker_proxy_en.md](docs/docker_proxy_en.md).
 
-The same builder also supports Claude Code, Codex, a selectable OpenClaw version, and shared optional research tools:
+The same builder also supports Claude Code, Codex, the unified OpenClaw runtime, and shared optional research tools:
 
 ```bash
-bash workflow/workflow_step_1_image_builder.sh --images official,official_shield --openclaw-version 2026.7.1-2 --safety-research --non-interactive
+bash workflow/workflow_step_1_image_builder.sh --images official,official_shield --safety-research --non-interactive
 bash workflow/workflow_step_1_image_builder.sh --images claude_code,codex --safety-research --non-interactive
 ```
 
-The second interactive stage defaults to the base toolset. In noninteractive mode, `--safety-research` enables the additional tools; omitting it keeps the base toolset. `--no-safety-research` explicitly keeps the base toolset without prompting. OpenClaw still defaults to `2026.4.11`. Use `--prepare-only` to stage contexts and `--resume <workspace>` to resume builds with their saved choices. See [workflow documentation](workflow/README.md) for all options and native CLI API requirements.
+The second interactive stage defaults to the base toolset. In noninteractive mode, `--safety-research` enables the additional tools; omitting it keeps the base toolset. `--no-safety-research` explicitly keeps the base toolset without prompting. All OpenClaw images use the pinned version `2026.7.1-2`; there is no legacy version selection. Use `--prepare-only` to stage contexts and `--resume <workspace>` to resume builds with their saved choices. See [workflow documentation](workflow/README.md) for all options and native CLI API requirements.
 
 ### 4. Run Evaluations
 
@@ -176,7 +176,7 @@ The second interactive stage defaults to the base toolset. In noninteractive mod
 
 ```bash
 # Choose the target image. Replace this with the actual image tag produced in step 3.
-export DOCKER_IMAGE=openclaw-official-v20260430_120000
+export DOCKER_IMAGE=openclaw-official-openclaw-2026.7.1-2-v20261017_120000
 
 # Evaluate one model
 ./scripts/run.sh --model <provider-id>/<model-id> --suite <suite> --docker --verbose

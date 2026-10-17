@@ -1,6 +1,6 @@
 # AgentCanary Runner Image
 # Runs OpenClaw agent in isolation for security benchmarks
-# docker build -f Dockerfile -t openclaw-official-v{timestamp} --build-arg http_proxy=... .
+# Build with workflow/workflow_step_1_image_builder.sh --images official
 
 FROM node:22-bookworm
 
@@ -27,12 +27,8 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
 # Install OpenClaw globally
-ARG OPENCLAW_VERSION=2026.4.11
-RUN if [ "$OPENCLAW_VERSION" = "2026.4.11" ]; then \
-        npm install -g "openclaw@${OPENCLAW_VERSION}" --unsafe-perm; \
-    else \
-        npm install -g "openclaw@${OPENCLAW_VERSION}" --unsafe-perm --ignore-scripts; \
-    fi
+# The workflow builder substitutes the single supported version.
+RUN npm install -g openclaw@@OPENCLAW_VERSION@ --unsafe-perm --ignore-scripts
 
 # Copy openclaw config to default location (~/.openclaw).
 # Skills are NOT baked into the image — they are bind-mounted per task by the
