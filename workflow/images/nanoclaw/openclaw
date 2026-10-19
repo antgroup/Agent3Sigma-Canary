@@ -92,6 +92,10 @@ def cmd_agents_delete(args: argparse.Namespace) -> None:
     state = _load_state()
     agent_id = args.id.replace(":", "-").lower()
     state["agents"].pop(agent_id, None)
+    sessions = state.get("sessions", {})
+    for key in list(sessions):
+        if key.startswith(f"{agent_id}:"):
+            sessions.pop(key)
     _save_state(state)
     agent_dir = AGENTS_DIR / agent_id
     if agent_dir.exists():
@@ -110,6 +114,8 @@ def _write_minimal_transcript(
     transcript_path = sessions_dir / f"{session_id}.jsonl"
 
     out_events: List[Dict[str, Any]] = []
+    if transcript_path.exists():
+        out_events = [json.loads(line) for line in transcript_path.read_text().splitlines() if line.strip()]
     out_events.append(
         {"type": "message", "message": {"role": "user", "content": [{"type": "text", "text": user_msg}]}}
     )
@@ -191,6 +197,13 @@ def cmd_agent_invoke(args: argparse.Namespace) -> None:
     env["NANOCLAW_DRIVER_PROMPT"] = args.message
     env["NANOCLAW_DRIVER_CWD"] = workspace
     env["NANOCLAW_DRIVER_SKILLS_DIR"] = "/root/.openclaw/skills"
+    sessions = state.setdefault("sessions", {})
+    session_key = f"{agent_id}:{args.session_id}"
+    native_session = sessions.get(session_key)
+    if native_session:
+        env["NANOCLAW_DRIVER_RESUME_SESSION"] = native_session
+    else:
+        env.pop("NANOCLAW_DRIVER_RESUME_SESSION", None)
     if args.thinking:
         env["NANOCLAW_DRIVER_EFFORT"] = args.thinking
 
@@ -227,6 +240,9 @@ def cmd_agent_invoke(args: argparse.Namespace) -> None:
         try:
             parsed = json.loads(payload)
             events = parsed.get("events", []) or []
+            if parsed.get("session_id"):
+                sessions[session_key] = parsed["session_id"]
+                _save_state(state)
         except Exception as exc:
             print(f"shim: failed to parse nanoclaw payload: {exc}", file=sys.stderr)
             events = []

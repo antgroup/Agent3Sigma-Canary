@@ -120,6 +120,16 @@ Codex containers receive the seccomp/AppArmor exceptions required by the CLI's n
 
 Results remain under the usual `results/job_*/task_*/` paths, with full transcripts and summaries readable in `workflow_analysis`. Additional `trajectories/job_*/trajectory_*.json` records contain the complete transcript and execution information, including any Tracee log/correlation paths. Judge fields stay empty and the viewer shows `N/A`. PAIR cannot use this option because it needs a judge during attack search.
 
+Multi-turn tasks reuse the same runtime conversation until a `sessions` entry
+sets `new_session: true`. At that boundary the runner archives the previous
+transcript and issues a new session ID, while preserving workspace files,
+installed skills and memory files. This applies to OpenClaw and its plugin
+variants, Claude Code, Codex, Hermes, NanoClaw and NanoClaw/OpenAI. Hermes
+persists its conversation history; NanoClaw resumes its SDK/OpenCode session.
+Codex sandbox options are passed to the parent `exec` command before `resume`,
+which has a narrower argument parser. Rebuild the affected images after
+updating these adapters.
+
 ## official Build Contents
 
 `build_images.py` copies the following files into the Docker build context:

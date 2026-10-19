@@ -50,11 +50,13 @@ async function main() {
   }
 
   const events = [];
+  let sessionId = process.env.NANOCLAW_DRIVER_RESUME_SESSION || undefined;
 
   try {
     const sdkResult = sdkQuery({
       prompt,
       options: {
+        resume: sessionId,
         cwd,
         model: model || undefined,
         systemPrompt: { type: 'preset', preset: 'claude_code' },
@@ -72,6 +74,7 @@ async function main() {
     });
 
     for await (const event of sdkResult) {
+      if (event.session_id) sessionId = event.session_id;
       try {
         // event.type can be: assistant, user, system, result, etc.
         if (event.type === 'assistant') {
@@ -114,7 +117,7 @@ async function main() {
   }
 
   process.stdout.write('---NANOCLAW-RESULT-BEGIN---\n');
-  process.stdout.write(JSON.stringify({ events }) + '\n');
+  process.stdout.write(JSON.stringify({ events, session_id: sessionId }) + '\n');
   process.stdout.write('---NANOCLAW-RESULT-END---\n');
 }
 

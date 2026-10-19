@@ -89,6 +89,7 @@ async function main() {
   process.chdir(cwd);
 
   const events = [];
+  let sessionId = process.env.NANOCLAW_DRIVER_RESUME_SESSION || undefined;
   let serverProc = null;
 
   try {
@@ -100,9 +101,11 @@ async function main() {
     const sub = await client.event.subscribe();
     const stream = sub.stream;
 
-    const session = await client.session.create();
-    if (session.error) throw new Error(`session.create: ${JSON.stringify(session.error)}`);
-    const sessionId = session.data?.id;
+    const session = sessionId
+      ? await client.session.get({ path: { id: sessionId } })
+      : await client.session.create();
+    if (session.error) throw new Error(`session start/resume: ${JSON.stringify(session.error)}`);
+    sessionId = session.data?.id;
     if (!sessionId) throw new Error('session id missing');
 
     await client.session.promptAsync({
@@ -202,7 +205,7 @@ async function main() {
   }
 
   process.stdout.write('---NANOCLAW-RESULT-BEGIN---\n');
-  process.stdout.write(JSON.stringify({ events }) + '\n');
+  process.stdout.write(JSON.stringify({ events, session_id: sessionId }) + '\n');
   process.stdout.write('---NANOCLAW-RESULT-END---\n');
 }
 

@@ -2693,6 +2693,11 @@ def execute_openclaw_task(
                     logger.info("   Backed up %d transcript entries", len(mid_transcript))
                 cleanup_agent_sessions(agent_id)
                 cleanup_agent_sessions_in_container(agent_id)
+                # Native adapters key their conversation state by the supplied
+                # ID. Deleting the exported OpenClaw transcript alone does not
+                # reset that state (or the runtime's own history). Keep files,
+                # memory and installed skills, but start a new conversation.
+                session_id = f"{task.task_id}_{uuid.uuid4().hex}"
 
             logger.info("   Session %d/%d%s%s", i, len(sessions),
                         " (new session)" if is_new_session and i > 1 else "",

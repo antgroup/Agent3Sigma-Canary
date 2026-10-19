@@ -192,7 +192,7 @@ export DOCKER_IMAGE=openclaw-official-openclaw-2026.7.1-2-v20261017_120000
 | `--effort` | Target agent reasoning effort, forwarded to its runtime | `--effort high` |
 | `--trajectory-only` | Skip judge models; preserve execution, automated checks, correlation, and results | `--trajectory-only` |
 | `--validate-tasks` | Check task inputs without a model or Docker | `--suite NARA-Bench --validate-tasks` |
-| `--task-ids` | Restrict the selected suite to exact IDs; also used by parallel workers | `--task-ids task_0001_example,task_0002_example` |
+| `--task-ids` | Restrict the selected suite to exact IDs; also used by parallel workers | `--task-ids task_100001_example,task_100002_example` |
 | `--model` | Target model, in `provider-id/model-id` format | `--model anthropic/claude-sonnet-4` |
 | `--suite` | Test suite | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `safety`, `all`, or comma-separated task IDs |
 | `--docker` | Run the agent inside Docker | `--docker` |
@@ -232,6 +232,8 @@ MAX_PARALLEL=4 ./batch_run/direct.sh
 ### NARA-Bench Tasks
 
 The integration imports 1,800 tasks from upstream commit `24f9837`, covering six non-adversarial risk mechanisms across twelve domains, alongside the existing suites. `--suite` accepts `NARA-Bench`, `tasks/NARA-Bench`, and task subdirectories such as `NARA-Bench/outdated_memory`.
+
+NARA task numbers occupy **100001–101800** (upstream number + 100000), in both filenames and `id`. For example, upstream `task_0023_preview_evacuation_announcement` is now `task_100023_preview_evacuation_announcement`. Each definition retains `upstream_id`; input asset paths keep their upstream names so original assets can still be supplied directly. Use the new IDs for selection/results; `--suite 23` continues to select only the legacy task. Existing NARA results keep their old IDs and should not be resumed under the new numbering.
 
 These tasks declare `required_toolset: safety_research`. Run them with an image built with the optional tools, identified by `-safety_research` in its name. Both serial and parallel runners reject mismatches before starting containers. Existing tasks with an omitted or empty field retain their existing runtime behavior.
 

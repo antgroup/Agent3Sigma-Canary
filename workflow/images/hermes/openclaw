@@ -133,19 +133,19 @@ def _write_minimal_transcript(
     transcript_path = sessions_dir / f"{session_id}.jsonl"
 
     events: List[Dict[str, Any]] = []
-    events.append(
-        {
-            "type": "message",
-            "message": {"role": "user", "content": [{"type": "text", "text": user_msg}]},
-        }
-    )
-
     messages = hermes_result.get("messages", []) or []
+    # Hermes returns the whole conversation, including earlier user turns.
+    # Rebuild this snapshot once instead of prepending the latest prompt.
+    if not any(msg.get("role") == "user" for msg in messages):
+        messages = [{"role": "user", "content": user_msg}, *messages]
     for msg in messages:
         role = msg.get("role")
         raw_content = msg.get("content")
         if role == "user":
-            # already represented at the start; skip
+            text = raw_content if isinstance(raw_content, str) else json.dumps(raw_content)
+            events.append({"type": "message", "message": {
+                "role": "user", "content": [{"type": "text", "text": text}],
+            }})
             continue
         if role == "assistant":
             content_items: List[Dict[str, Any]] = []
@@ -245,6 +245,8 @@ def cmd_agent_invoke(args: argparse.Namespace) -> None:
         shim_dir = "/tmp"  # fallback if /run not writable (shouldn't happen in container)
     result_path = f"{shim_dir}/hermes_result_{args.session_id or uuid.uuid4().hex}.json"
     reasoning_config = _build_reasoning_config(args.thinking)
+    history_path = AGENTS_DIR / agent_id / "sessions" / f"{args.session_id}.history.json"
+    history_path.parent.mkdir(parents=True, exist_ok=True)
 
     driver = f"""
 import json, os, sys
@@ -265,7 +267,12 @@ agent = AIAgent(
     log_prefix_chars=20,
     reasoning_config={reasoning_config!r},
 )
-result = agent.run_conversation({json.dumps(args.message)})
+history_path = {json.dumps(str(history_path))}
+history = None
+if os.path.exists(history_path):
+    with open(history_path, encoding='utf-8') as f:
+        history = json.load(f)
+result = agent.run_conversation({json.dumps(args.message)}, conversation_history=history)
 payload = {{
     'completed': result.get('completed'),
     'api_calls': result.get('api_calls'),
@@ -277,6 +284,9 @@ tmp_path = out_path + '.tmp'
 with open(tmp_path, 'w', encoding='utf-8') as f:
     json.dump(payload, f, default=str, ensure_ascii=False)
 os.replace(tmp_path, out_path)
+with open(history_path + '.tmp', 'w', encoding='utf-8') as f:
+    json.dump(payload['messages'], f, default=str, ensure_ascii=False)
+os.replace(history_path + '.tmp', history_path)
 print('---HERMES-RESULT-FILE---')
 print(out_path)
 """

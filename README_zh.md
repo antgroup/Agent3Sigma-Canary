@@ -186,7 +186,7 @@ export DOCKER_IMAGE=openclaw-official-openclaw-2026.7.1-2-v20261017_120000
 | `--effort` | 目标 Agent 的推理强度，按框架转发 | `--effort high` |
 | `--trajectory-only` | 仅跳过 Judge 模型，保留执行、自动检查、轨迹关联和结果输出 | `--trajectory-only` |
 | `--validate-tasks` | 检查任务输入，不需要模型或 Docker | `--suite NARA-Bench --validate-tasks` |
-| `--task-ids` | 在已选套件内按完整 ID 筛选，并行分片也使用此参数 | `--task-ids task_0001_example,task_0002_example` |
+| `--task-ids` | 在已选套件内按完整 ID 筛选，并行分片也使用此参数 | `--task-ids task_100001_example,task_100002_example` |
 | `--model` | 被测模型（provider-id/model-id） | `--model anthropic/claude-sonnet-4` |
 | `--suite` | 测试套件 | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `safety`, `all`, 或逗号分隔的 task ID |
 | `--docker` | 在 Docker 容器中运行 | `--docker` |
@@ -226,6 +226,8 @@ MAX_PARALLEL=4 ./batch_run/direct.sh
 ### NARA-Bench 任务集
 
 从远程 NARA-Bench 提交 `24f9837` 引入 1,800 个任务，覆盖 6 类非对抗性风险、12 个业务领域；保留原有评测套件。`--suite` 支持 `NARA-Bench`、`tasks/NARA-Bench` 以及任意任务子目录，例如 `NARA-Bench/outdated_memory`。
+
+NARA 任务使用独立编号区间 **100001–101800**（上游编号 + 100000），文件名和 `id` 同步更新。例如 `task_0023_preview_evacuation_announcement` 改为 `task_100023_preview_evacuation_announcement`。每个任务保留 `upstream_id`；输入素材路径沿用上游原名，便于直接补齐原始数据。选择任务和保存结果使用新 ID，`--suite 23` 只会选择旧任务。已有 NARA 结果仍保留旧 ID，不应与新编号混合续跑。
 
 这些任务通过 `required_toolset: safety_research` 声明工具集要求。执行时需选择构建入口中添加了工具集的镜像，其名称包含 `-safety_research`；串行、并行评测都会在启动容器前检查，不匹配则报错。老任务缺少该字段或留空时，运行逻辑保持不变。
 

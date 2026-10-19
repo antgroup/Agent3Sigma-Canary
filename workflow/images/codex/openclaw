@@ -691,9 +691,10 @@ def cmd_agent_invoke(args: argparse.Namespace) -> None:
 
     codex = _codex_bin()
     cmd = [codex, "exec"]
-    if resume_session:
-        cmd += ["resume", resume_session]
-    cmd += ["--json", "--skip-git-repo-check", "--model", model]
+    # Sandbox and additional-directory switches belong to the parent `exec`
+    # parser. `exec resume` does not accept them after the subcommand. Keep
+    # these options before `resume` so both fresh and resumed turns use the
+    # same sandbox policy (including seeded sessions).
     if mode == "yolo":
         # `--ignore-rules` keeps yolo meaning *no* gating: an execpolicy
         # `prompt` rule combined with approval_policy=never resolves to
@@ -705,6 +706,9 @@ def cmd_agent_invoke(args: argparse.Namespace) -> None:
     # `--add-dir` keeps the bundled skills readable from inside the sandbox.
     if Path(SKILLS_DIR).exists():
         cmd += ["--add-dir", SKILLS_DIR]
+    if resume_session:
+        cmd += ["resume", resume_session]
+    cmd += ["--json", "--skip-git-repo-check", "--model", model]
     cmd += [args.message]
 
     shim_timeout = int(os.environ.get("SHIM_TIMEOUT_SECONDS", "1800"))
