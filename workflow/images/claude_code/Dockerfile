@@ -60,6 +60,7 @@ ENV DISABLE_ERROR_REPORTING=1
 ENV CLAUDE_CODE_DISABLE_TERMINAL_TITLE=1
 
 COPY shim/openclaw /usr/local/bin/openclaw
+COPY shim/agentcanary_runtime.py /usr/local/bin/agentcanary_runtime.py
 RUN chmod +x /usr/local/bin/openclaw
 
 COPY docker/openclaw.json /root/.openclaw/openclaw.json

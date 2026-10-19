@@ -81,7 +81,7 @@ def test_new_session_changes_identity_and_preserves_workspace(tmp_path, monkeypa
         (sessions / f"{sid}.jsonl").write_text("".join(json.dumps(row) + "\n" for row in rows))
         return subprocess.CompletedProcess(cmd, 0, "", "")
 
-    monkeypatch.setattr(lib_docker, "run_cmd", invoke)
+    monkeypatch.setattr(lib_docker, "run_agent_cmd", invoke)
     workspace = tmp_path / "run/workspace"
     result = lib_agent.execute_openclaw_task(
         task=task, agent_id="bench", model_id="test/model", run_id="run", timeout_multiplier=1,
@@ -145,7 +145,15 @@ def test_adapter_resumes_only_matching_session_ids(tmp_path, monkeypatch, framew
         native_ids.append(native)
         return subprocess.CompletedProcess(cmd, 0, stdout, "")
 
-    monkeypatch.setattr(subprocess, "run", run)
+    if framework in ("claude_code", "codex"):
+        from agentcanary_runtime import ProcessResult
+        def run_streamed(cmd, **kwargs):
+            result = run(cmd, **kwargs)
+            kwargs["on_update"](result.stdout, result.stderr)
+            return ProcessResult(result.returncode, result.stdout, result.stderr, False)
+        monkeypatch.setattr(shim, "run_process", run_streamed)
+    else:
+        monkeypatch.setattr(subprocess, "run", run)
     for sid, message in [("old", "first"), ("old", "second"), ("new", "fresh")]:
         args = SimpleNamespace(agent="bench", session_id=sid, message=message, seed_history=None, thinking=None)
         with pytest.raises(SystemExit) as result:

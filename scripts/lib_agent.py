@@ -425,9 +425,9 @@ def ensure_agent_exists(agent_id: str, model_id: str, workspace_dir: Path) -> bo
     return True
 
 
-def cleanup_agent_sessions(agent_id: str) -> None:
+def cleanup_agent_sessions(agent_id: str, agent_dir: Path | None = None) -> None:
     """Remove stored session transcripts for an agent to avoid unbounded growth."""
-    agent_dir = _get_agent_store_dir(agent_id)
+    agent_dir = agent_dir if agent_dir is not None else _get_agent_store_dir(agent_id)
     sessions_dir = agent_dir / "sessions"
     if not sessions_dir.exists():
         return
@@ -2558,6 +2558,7 @@ def execute_openclaw_task(
     runtime_effort = _prepare_openclaw_reasoning_effort(model_id, effort)
 
     start_time = time.time()
+    deadline = time.monotonic() + task.timeout_seconds * timeout_multiplier
 
     # Apply attack method BEFORE prepare_task_workspace (for indirect injections)
     # Create a modified task copy if attack is applied
@@ -2586,7 +2587,6 @@ def execute_openclaw_task(
         workspace = local_task_agent_workspace_root_relate
 
     session_id = f"{task.task_id}_{int(time.time() * 1000)}"
-    timeout_seconds = task.timeout_seconds * timeout_multiplier
     stdout = ""
     stderr = ""
     exit_code = -1
@@ -2628,7 +2628,7 @@ def execute_openclaw_task(
     if warmup_prompts:
         logger.info("🔥 Sending %d warmup prompt(s) before main task", len(warmup_prompts))
         for wp_idx, wp_msg in enumerate(warmup_prompts, 1):
-            wp_timeout = 120
+            wp_timeout = min(120, deadline - time.monotonic())
             logger.info("   Warmup %d/%d: %r", wp_idx, len(warmup_prompts), wp_msg[:60])
             try:
                 warmup_cmd = _prepare_openclaw_agent_runtime_command(
@@ -2640,13 +2640,22 @@ def execute_openclaw_task(
                 if wp_idx == 1 and seed_history_args:
                     warmup_cmd.extend(seed_history_args)
                     seed_history_consumed = True
-                docker.run_cmd(
+                result = docker.run_agent_cmd(
                     warmup_cmd,
                     cwd=str(workspace),
                     timeout=wp_timeout,
                     env=agent_env or None,
                 )
-            except (subprocess.TimeoutExpired, FileNotFoundError) as exc:
+                stdout += result.stdout
+                stderr += result.stderr
+            except subprocess.TimeoutExpired as exc:
+                timed_out = True
+                exit_code = 124
+                stdout += exc.stdout.decode("utf-8", "replace") if isinstance(exc.stdout, bytes) else (exc.stdout or "")
+                stderr += exc.stderr.decode("utf-8", "replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
+                logger.warning("   Warmup %d timed out; preserving partial trajectory", wp_idx)
+                break
+            except FileNotFoundError as exc:
                 logger.warning("   Warmup %d failed: %s", wp_idx, exc)
 
     # Check if this is a multi-session task
@@ -2658,14 +2667,24 @@ def execute_openclaw_task(
     # required for genuine cross-session isolation. Agents are pre-created before
     # the gateway starts (see benchmark.py).
     isolate = bool(task.frontmatter.get("isolate_session_guard")) and bool(sessions)
-    if sessions:
+    transcript_backups: List[List[Dict[str, Any]]] = []
+    if isolate and warmup_prompts:
+        warmup_store = docker.ensure_transcripts_on_host(agent_id, task_agent_workspace_root)
+        warmup_transcript, _ = _load_transcript(agent_id, session_id, start_time, agent_dir_param=warmup_store)
+        if warmup_transcript:
+            transcript_backups.append(warmup_transcript)
+    if sessions and not timed_out:
         # Multi-session task: send each prompt in sequence
         # When a session entry has new_session: true, we backup the current
         # transcript and cleanup agent sessions to simulate a fresh session.
         # All backed-up transcripts are merged at the end.
         logger.info("📋 Multi-session task with %d sessions", len(sessions))
-        transcript_backups: List[List[Dict[str, Any]]] = []
         for i, session_entry in enumerate(sessions, 1):
+            # Check before deleting or resetting the previous session's store.
+            if time.monotonic() >= deadline:
+                timed_out = True
+                exit_code = 124
+                break
             # Extract prompt text from session entry (handle both string and dict formats)
             if isinstance(session_entry, str):
                 session_prompt = session_entry
@@ -2691,7 +2710,10 @@ def execute_openclaw_task(
                 if mid_transcript:
                     transcript_backups.append(mid_transcript)
                     logger.info("   Backed up %d transcript entries", len(mid_transcript))
-                cleanup_agent_sessions(agent_id)
+                # Clear the actual host copy as well. docker cp merges trees;
+                # otherwise an empty timed-out new session can reload the old
+                # export and duplicate the transcript we just backed up.
+                cleanup_agent_sessions(agent_id, Path(agent_store_dir_mid) if agent_store_dir_mid else None)
                 cleanup_agent_sessions_in_container(agent_id)
                 # Native adapters key their conversation state by the supplied
                 # ID. Deleting the exported OpenClaw transcript alone does not
@@ -2702,11 +2724,6 @@ def execute_openclaw_task(
             logger.info("   Session %d/%d%s%s", i, len(sessions),
                         " (new session)" if is_new_session and i > 1 else "",
                         f" [agent {loop_agent}]" if isolate else "")
-            elapsed = time.time() - start_time
-            remaining = timeout_seconds - elapsed
-            if remaining <= 0:
-                timed_out = True
-                break
             try:
                 cmd_args = _prepare_openclaw_agent_runtime_command(
                     agent_id=loop_agent,
@@ -2717,10 +2734,10 @@ def execute_openclaw_task(
                 if i == 1 and seed_history_args and not seed_history_consumed:
                     cmd_args.extend(seed_history_args)
                     seed_history_consumed = True
-                result = docker.run_cmd(
+                result = docker.run_agent_cmd(
                     cmd_args,
                     cwd=str(workspace),
-                    timeout=remaining,
+                    timeout=deadline - time.monotonic(),
                     env=agent_env or None,
                 )
                 stdout += result.stdout
@@ -2737,13 +2754,19 @@ def execute_openclaw_task(
                     break
             except subprocess.TimeoutExpired as exc:
                 timed_out = True
+                exit_code = 124
                 stdout += (exc.stdout or b"").decode("utf-8", errors="replace") if isinstance(exc.stdout, bytes) else (exc.stdout or "")
                 stderr += (exc.stderr or b"").decode("utf-8", errors="replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
+                if isolate:
+                    iso_store = docker.ensure_transcripts_on_host(loop_agent, task_agent_workspace_root)
+                    iso_t, _ = _load_transcript(loop_agent, session_id, start_time, agent_dir_param=iso_store)
+                    if iso_t:
+                        transcript_backups.append(iso_t)
                 break
             except FileNotFoundError as exc:
                 stderr = f"openclaw command not found: {exc}"
                 break
-    else:
+    elif not sessions and not timed_out:
         # Single-session task: send resolved_prompt once
         try:
             cmd_args = _prepare_openclaw_agent_runtime_command(
@@ -2754,19 +2777,20 @@ def execute_openclaw_task(
             )
             if seed_history_args and not seed_history_consumed:
                 cmd_args.extend(seed_history_args)
-            result = docker.run_cmd(
+            result = docker.run_agent_cmd(
                 cmd_args,
                 cwd=str(workspace),
-                timeout=timeout_seconds,
+                timeout=deadline - time.monotonic(),
                 env=agent_env or None,
             )
-            stdout = result.stdout
-            stderr = result.stderr
+            stdout += result.stdout
+            stderr += result.stderr
             exit_code = result.returncode
         except subprocess.TimeoutExpired as exc:
             timed_out = True
-            stdout = (exc.stdout or b"").decode("utf-8", errors="replace") if isinstance(exc.stdout, bytes) else (exc.stdout or "")
-            stderr = (exc.stderr or b"").decode("utf-8", errors="replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
+            exit_code = 124
+            stdout += (exc.stdout or b"").decode("utf-8", errors="replace") if isinstance(exc.stdout, bytes) else (exc.stdout or "")
+            stderr += (exc.stderr or b"").decode("utf-8", errors="replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
         except FileNotFoundError as exc:
             stderr = f"openclaw command not found: {exc}"
 
@@ -2800,7 +2824,7 @@ def execute_openclaw_task(
     status = "success"
     if timed_out:
         status = "timeout"
-    if not transcript:
+    elif not transcript:
         status = "error"
     if exit_code not in (0, -1) and not timed_out:
         status = "error"
@@ -2882,6 +2906,7 @@ def run_openclaw_prompt(
 
     start_time = time.time()
     workspace.mkdir(parents=True, exist_ok=True)
+    deadline = time.monotonic() + timeout_seconds
     session_id = f"judge_{int(time.time() * 1000)}"
     stdout = ""
     stderr = ""
@@ -2912,10 +2937,10 @@ def run_openclaw_prompt(
             for i in range(0, total_chunks - 1)
         ]
     for chunk in chunks:
-        elapsed = time.time() - start_time
-        remaining = timeout_seconds - elapsed
+        remaining = deadline - time.monotonic()
         if remaining <= 0:
             timed_out = True
+            exit_code = 124
             break
 
         # Debug: log prompt being sent
@@ -2923,7 +2948,7 @@ def run_openclaw_prompt(
                    chunks.index(chunk) + 1, len(chunks), len(chunk), chunk[:200])
 
         try:
-            result = docker.run_cmd(
+            result = docker.run_agent_cmd(
                 _prepare_openclaw_agent_runtime_command(
                     agent_id=agent_id,
                     session_id=session_id,
@@ -2944,6 +2969,7 @@ def run_openclaw_prompt(
                 break
         except subprocess.TimeoutExpired as exc:
             timed_out = True
+            exit_code = 124
             stdout += (exc.stdout or b"").decode("utf-8", errors="replace") if isinstance(exc.stdout, bytes) else (exc.stdout or "")
             stderr += (exc.stderr or b"").decode("utf-8", errors="replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
             break
@@ -2960,7 +2986,7 @@ def run_openclaw_prompt(
     status = "success"
     if timed_out:
         status = "timeout"
-    if not transcript:
+    elif not transcript:
         status = "error"
     if exit_code not in (0, -1) and not timed_out:
         status = "error"

@@ -48,6 +48,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
 
+from agentcanary_runtime import atomic_text, invocation_deadline, read_jsonl, run_process
+
 OPENCLAW_HOME = Path("/root/.openclaw")
 CONFIG_PATH = OPENCLAW_HOME / "openclaw.json"
 AGENTS_DIR = OPENCLAW_HOME / "agents"
@@ -564,13 +566,19 @@ def _write_seed_rollout(seed_history_path: str, workspace: str,
 
 def _write_minimal_transcript(agent_id: str, session_id: str, user_msg: str,
                               events: List[Dict[str, Any]],
-                              seed_events: List[Dict[str, Any]] | None = None) -> Path:
+                              seed_events: List[Dict[str, Any]] | None = None, *,
+                              snapshot: bool = False,
+                              base_events: List[Dict[str, Any]] | None = None) -> Path:
     sessions_dir = AGENTS_DIR / agent_id / "sessions"
     sessions_dir.mkdir(parents=True, exist_ok=True)
     transcript_path = sessions_dir / f"{session_id}.jsonl"
 
     out_events: List[Dict[str, Any]] = []
-    if transcript_path.exists() and not seed_events:
+    if snapshot:
+        pass  # Rollout already contains every user turn and any seeded history.
+    elif base_events is not None:
+        out_events.extend(base_events)
+    elif transcript_path.exists() and not seed_events:
         for line in transcript_path.read_text(encoding="utf-8").splitlines():
             if not line.strip():
                 continue
@@ -581,8 +589,9 @@ def _write_minimal_transcript(agent_id: str, session_id: str, user_msg: str,
     elif seed_events:
         out_events.extend(seed_events)
 
-    out_events.append({"type": "message", "message": {"role": "user",
-                      "content": [{"type": "text", "text": user_msg}]}})
+    if not snapshot:
+        out_events.append({"type": "message", "message": {"role": "user",
+                          "content": [{"type": "text", "text": user_msg}]}})
     for ev in events or []:
         kind = ev.get("kind")
         if kind == "assistant_text":
@@ -591,10 +600,8 @@ def _write_minimal_transcript(agent_id: str, session_id: str, user_msg: str,
                 out_events.append({"type": "message", "message": {"role": "assistant",
                                    "content": [{"type": "text", "text": text}]}})
         elif kind == "user_text":
-            # A user entry replayed out of the rollout: the task prompt is
-            # already appended above, so only keep genuinely different text.
             text = ev.get("text", "")
-            if text.strip() and text.strip() != user_msg.strip():
+            if text.strip():
                 out_events.append({"type": "message", "message": {"role": "user",
                                    "content": [{"type": "text", "text": text}]}})
         elif kind == "tool_use":
@@ -608,11 +615,9 @@ def _write_minimal_transcript(agent_id: str, session_id: str, user_msg: str,
                 result = json.dumps(result)
             out_events.append({"type": "message", "message": {"role": "toolResult",
                                "toolCallId": ev.get("tool_use_id", ""),
-                               "content": [{"type": "text", "text": result[:10000]}]}})
+                               "content": [{"type": "text", "text": result}]}})
 
-    with transcript_path.open("w", encoding="utf-8") as f:
-        for ev in out_events:
-            f.write(json.dumps(ev, ensure_ascii=False) + "\n")
+    atomic_text(transcript_path, "".join(json.dumps(ev, ensure_ascii=False) + "\n" for ev in out_events))
 
     sessions_payload = {
         "currentSessionId": session_id,
@@ -623,11 +628,12 @@ def _write_minimal_transcript(agent_id: str, session_id: str, user_msg: str,
             "status": "done",
         },
     }
-    (sessions_dir / "sessions.json").write_text(json.dumps(sessions_payload))
+    atomic_text(sessions_dir / "sessions.json", json.dumps(sessions_payload))
     return transcript_path
 
 
 def cmd_agent_invoke(args: argparse.Namespace) -> None:
+    deadline = invocation_deadline()
     state = _load_state()
     agent_id = args.agent.replace(":", "-").lower()
     info = state["agents"].get(agent_id) or {}
@@ -711,63 +717,56 @@ def cmd_agent_invoke(args: argparse.Namespace) -> None:
     cmd += ["--json", "--skip-git-repo-check", "--model", model]
     cmd += [args.message]
 
-    shim_timeout = int(os.environ.get("SHIM_TIMEOUT_SECONDS", "1800"))
-
-    def _run():
-        return subprocess.run(cmd, cwd=workspace, env=env, capture_output=True,
-                              text=True, timeout=shim_timeout)
-
-    timed_out = False
-    try:
-        proc = _run()
-        stdout, stderr, rc = proc.stdout or "", proc.stderr or "", proc.returncode
-    except subprocess.TimeoutExpired as exc:
-        timed_out = True
-        stdout = exc.stdout or ""
-        if isinstance(stdout, bytes):
-            stdout = stdout.decode("utf-8", "replace")
-        stderr = ""
-        rc = 0
-
-    codex_session = _thread_id_from_stream(stdout) or resume_session
+    sessions_dir = AGENTS_DIR / agent_id / "sessions"
+    # Export under the harness session ID, available even before thread.started.
+    # The native ID is used only for Codex resume and locating its rollout.
+    transcript_path = sessions_dir / f"{args.session_id}.jsonl"
+    base_events = seed_events or read_jsonl(transcript_path)
+    runtime_dir = sessions_dir / "runtime" / uuid.uuid4().hex
     events: List[Dict[str, Any]] = []
-    if codex_session:
-        rollout = _rollout_path(codex_session)
+    codex_session = resume_session
+    published_source = None
+
+    def publish(stdout, stderr):
+        nonlocal events, codex_session, published_source
+        codex_session = _thread_id_from_stream(stdout) or codex_session
+        if codex_session and sessions_state.get(session_key) != {"codex_session_id": codex_session}:
+            sessions_state[session_key] = {"codex_session_id": codex_session}
+            _save_state(state)
+        rollout = _rollout_path(codex_session) if codex_session else None
+        stat = rollout.stat() if rollout else None
+        source = (stdout, str(rollout), stat.st_size if stat else 0, stat.st_mtime_ns if stat else 0)
+        if source == published_source:
+            return
+        published_source = source
+        events = _events_from_rollout(rollout) if rollout else []
+        if events:
+            # A rollout contains the entire native conversation, including seed
+            # history and previous turns. Replace the export; never append it.
+            # Preserve legitimately repeated prompts/tool calls without text dedup.
+            _write_minimal_transcript(agent_id, args.session_id, args.message,
+                                      events, snapshot=True)
+        else:
+            events = _events_from_stream(stdout)
+            _write_minimal_transcript(agent_id, args.session_id, args.message,
+                                      events, base_events=base_events)
         if rollout:
-            events = _events_from_rollout(rollout)
-    if not events:
-        events = _events_from_stream(stdout)
+            atomic_text(runtime_dir / "rollout.jsonl", rollout.read_text(errors="replace"))
 
-    # Retry once on a transient empty run (auth glitch / immediate stream drop).
-    if not events and not timed_out:
+    publish("", "")
+    proc = run_process(cmd, cwd=workspace, env=env, deadline=deadline,
+                       log_dir=runtime_dir / "attempt-1", on_update=publish)
+    if not events and not proc.timed_out:
         print("shim: empty/transient failure, retrying once", file=sys.stderr)
-        try:
-            proc = _run()
-            stdout, stderr, rc = proc.stdout or "", proc.stderr or "", proc.returncode
-            codex_session = _thread_id_from_stream(stdout) or codex_session
-            rollout = _rollout_path(codex_session) if codex_session else None
-            events = _events_from_rollout(rollout) if rollout else _events_from_stream(stdout)
-        except subprocess.TimeoutExpired:
-            timed_out = True
-
-    transcript_session = codex_session or str(uuid.uuid4())
-    sessions_state[session_key] = {"codex_session_id": transcript_session}
-    _save_state(state)
-
+        proc = run_process(cmd, cwd=workspace, env=env, deadline=deadline,
+                           log_dir=runtime_dir / "attempt-2", on_update=publish)
     if not events:
         print("shim: no events parsed from codex output", file=sys.stderr)
-        print(stdout[-2000:], file=sys.stderr)
-        if stderr:
-            print(stderr[-2000:], file=sys.stderr)
-
-    transcript_path = _write_minimal_transcript(agent_id, transcript_session, args.message,
-                                                events, seed_events)
-    if timed_out:
-        print(f"shim: codex timed out after {shim_timeout}s; wrote partial transcript "
-              f"{transcript_path}", file=sys.stderr)
-        sys.exit(0)
-    print(f"shim: wrote transcript {transcript_path}")
-    sys.exit(0 if rc == 0 else rc)
+        print(proc.stdout[-2000:], file=sys.stderr)
+        print(proc.stderr[-2000:], file=sys.stderr)
+    qualifier = "timed out; saved partial" if proc.timed_out else "wrote"
+    print(f"shim: {qualifier} transcript {transcript_path}")
+    sys.exit(proc.returncode)
 
 
 def main() -> None:

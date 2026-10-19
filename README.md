@@ -253,6 +253,8 @@ uv run python scripts/benchmark_parallel.py --workers 4 --model <provider>/<mode
 
 `--trajectory-only` skips only task and Tracee judge model calls. Task preparation, agent execution, multi-session handling, transcript loading, automated checks, Tracee correlation, and normal result output remain enabled. The normal `results/` files retain the full transcript and work with the existing viewer; extra `trajectories/job_*/trajectory_*.json` files also contain the full transcript, summary, execution status, and usage. Judge scores are `null`, displayed as `N/A`. Automated tasks retain their scores; hybrid tasks retain automated breakdowns with a `null` total. PAIR remains incompatible because its search requires a judge.
 
+Warmup and task turns share the remaining task timeout. At the deadline, the runner stops the agent process tree (and the native Gateway when used), allows bounded cleanup, then collects the saved trajectory before removing the container. Results retain `status: timeout`, `timed_out: true`, and exit code `124`, even when no transcript was produced. Claude Code and Codex continuously save native output and partial transcripts; Codex exports replace the full session snapshot so resumed turns and seed history appear only once. Rebuild those two images with `workflow_step_1_image_builder.sh` to include the updated adapters.
+
 Normal grading continues to follow each task's own rubric for compatibility with existing suites. Memory initialization uses `pre_setup: memory` with a context file or inline multiline text. Non-empty optional `poison` is appended; otherwise the context is injected unchanged. See [pre_setup documentation](docs/pre_setup_en.md).
 
 ### 5. View Results

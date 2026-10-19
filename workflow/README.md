@@ -25,6 +25,7 @@ workflow/
 ├── README.md
 ├── workflow_step_1_image_builder.sh
 ├── build_images.py
+├── agentcanary_runtime.py    # Shared process supervision and partial-output persistence
 ├── openclaw.json             # Generated, shared model/provider configuration
 ├── mock-api/                 # One shared mock server for all images
 ├── tools/                    # Optional safety_research tools and skills
@@ -105,6 +106,8 @@ Enabling this layer always adds `-safety_research` to the image name, for exampl
 ## Claude Code and Codex
 
 The CLI versions default to Claude Code `2.1.190` and Codex `0.145.0`, matching the imported NARA adapters. Each shim translates native tool calls/results into the existing benchmark transcript format, mounts skills at its native discovery path, and supports `seed_history` by constructing a native session.
+
+Both adapters save raw stdout/stderr under `agents/<agent>/sessions/runtime/<invocation>/attempt-*/` and atomically publish partial transcripts during execution. Codex also preserves its native rollout there and rebuilds the exported session from that full rollout, avoiding duplicate history on resume or seed injection. `SHIM_TIMEOUT_SECONDS` (default 1800) caps each invocation; the harness passes its remaining task budget, and the smaller deadline applies to the invocation and any retry together. Timeout exits with code 124. The runner allows up to six seconds for process shutdown/adapter finalization plus four seconds of transport margin before collecting transcripts. These changes require rebuilding the Claude Code and Codex images; use a fresh builder workspace so an earlier completed build is not reused.
 
 - Claude Code requires an Anthropic-compatible target endpoint. `CLAUDE_PERMISSION_MODE=auto` (default) enables its automatic permission review; `bypass` selects its bypass mode.
 - Codex requires an OpenAI-compatible **Responses API** endpoint. `CODEX_BASE_URL` can override the configured endpoint; `CODEX_PERMISSION_MODE=auto-review` (default) enables automatic approval review, while `yolo` bypasses the CLI sandbox/approvals.

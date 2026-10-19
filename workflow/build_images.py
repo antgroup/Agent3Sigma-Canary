@@ -105,6 +105,8 @@ def prepare_context(project: Path, context: Path, image_type: str, research: boo
         legacy_openai = image_type == "nanoclaw_openai"
         shutil.copy2(image_dir / ("openclaw_openai" if legacy_openai else "openclaw"), shim / "openclaw")
         (shim / "openclaw").chmod((shim / "openclaw").stat().st_mode | 0o111)
+        if family in ("codex", "claude_code"):
+            shutil.copy2(workflow / "agentcanary_runtime.py", shim / "agentcanary_runtime.py")
         if family == "nanoclaw":
             shutil.copy2(image_dir / ("driver_claude_openai.mjs" if legacy_openai else "driver.mjs"), shim / "driver.mjs")
             if legacy_openai:

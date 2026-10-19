@@ -449,7 +449,7 @@ def test_trajectory_only_preserves_real_preparation_and_transcript_loading(tmp_p
         if timed_out:
             raise subprocess.TimeoutExpired(cmd, 1, output="partial output", stderr="deadline")
         return subprocess.CompletedProcess(cmd, 0, "completed", "")
-    monkeypatch.setattr(lib_docker, "run_cmd", run_agent)
+    monkeypatch.setattr(lib_docker, "run_agent_cmd", run_agent)
     judge_calls = []
     def judge(*args, **kwargs):
         judge_calls.append(True)
@@ -715,6 +715,9 @@ def test_composed_contexts(build_project, tmp_path, image_type, research):
         assert all((context / "docker" / source_name / name).exists() for name in required)
     if not image_type.startswith("official"):
         assert (context / "shim/openclaw").exists()
+    if image_type in ("codex", "claude_code"):
+        assert (context / "shim/agentcanary_runtime.py").read_bytes() == (ROOT / "workflow/agentcanary_runtime.py").read_bytes()
+        assert "COPY shim/agentcanary_runtime.py /usr/local/bin/agentcanary_runtime.py" in dockerfile
     if image_type == "nanoclaw_openai":
         assert (context / "shim/driver_openai.mjs").exists()
         assert (context / "shim/driver.mjs").read_bytes() == (build_project / "workflow/images/nanoclaw/driver_claude_openai.mjs").read_bytes()

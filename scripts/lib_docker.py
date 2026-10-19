@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import logging
 import json
+import sys
 import subprocess
 import time
 import uuid
@@ -265,8 +266,53 @@ def run_cmd(
 
 
 # ---------------------------------------------------------------------------
-# Public API: transcript access
+# Public API: agent execution and transcript access
 # ---------------------------------------------------------------------------
+
+def run_agent_cmd(args: list[str], *, timeout: float, cwd: str | None = None,
+                  env: dict | None = None) -> subprocess.CompletedProcess:
+    """Bound agent execution separately from the time needed to save its output."""
+    if timeout <= 0:
+        raise subprocess.TimeoutExpired(args, timeout, output="", stderr="Task deadline exhausted")
+    runtime = (Path(__file__).resolve().parent.parent / "workflow" / "agentcanary_runtime.py").read_text()
+    control = f"/tmp/agentcanary-runtime/{uuid.uuid4().hex}.json"
+    python = "python3" if is_active() else sys.executable
+    command = [python, "-u", "-c", runtime, "supervise", control, *args]
+    runtime_env = {**(env or {}), "AGENTCANARY_DEADLINE_EPOCH": str(time.time() + timeout)}
+    # Six seconds for the adapter to terminate children, flush and publish;
+    # another four for docker transport. This is cleanup time, not model time.
+    try:
+        result = run_cmd(command, cwd=cwd, env=runtime_env, timeout=timeout + 10)
+    except subprocess.TimeoutExpired:
+        try:
+            run_cmd([python, "-c", runtime, "cancel", control], timeout=9)
+        except (OSError, subprocess.SubprocessError) as exc:
+            logger.warning("Could not confirm agent shutdown after transport timeout: %s", exc)
+        _stop_gateway_after_timeout()
+        raise
+    if result.returncode == 124:
+        _stop_gateway_after_timeout()
+        raise subprocess.TimeoutExpired(args, timeout, output=result.stdout, stderr=result.stderr)
+    return result
+
+
+def _stop_gateway_after_timeout() -> None:
+    """A Gateway owns the tools; stopping only its CLI client leaves them alive."""
+    global _image_gateway_active
+    if not (_container_id and _image_gateway_active):
+        return
+    runtime = (Path(__file__).resolve().parent.parent / "workflow" / "agentcanary_runtime.py").read_text()
+    code = runtime.split('if __name__ == "__main__":')[0]
+    code += "\np = Path('/run/agentcanary-gateway.pid')\nif p.exists(): stop_process_tree(int(p.read_text()), 1.0)\n"
+    try:
+        result = run_cmd(["python3", "-c", code], timeout=5)
+        if result.returncode:
+            logger.warning("Gateway shutdown returned %s: %s", result.returncode, result.stderr)
+    except (OSError, subprocess.SubprocessError) as exc:
+        logger.warning("Could not confirm Gateway shutdown after timeout: %s", exc)
+    finally:
+        _image_gateway_active = False
+
 
 def ensure_transcripts_on_host(agent_id: str, task_agent_workspace_root: Path) -> str:
     """Make agent transcript files available on the host filesystem.
@@ -611,7 +657,7 @@ def start_image_gateway(
         # The benchmark client runs inside this same container. New OpenClaw
         # defaults to a public bind in Docker and refuses it without auth.
         "setsid openclaw gateway run --allow-unconfigured --bind loopback "
-        "> /tmp/gateway.log 2>&1 < /dev/null &",
+        "> /tmp/gateway.log 2>&1 < /dev/null & echo $! > /run/agentcanary-gateway.pid",
     ]
     result = subprocess.run(
         command,

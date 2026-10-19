@@ -38,6 +38,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
 
+from agentcanary_runtime import atomic_text, invocation_deadline, read_jsonl, run_process
+
 OPENCLAW_HOME = Path("/root/.openclaw")
 CONFIG_PATH = OPENCLAW_HOME / "openclaw.json"
 AGENTS_DIR = OPENCLAW_HOME / "agents"
@@ -412,13 +414,16 @@ def _write_seed_claude_session(seed_history_path: str, workspace: str,
 
 def _write_minimal_transcript(agent_id: str, session_id: str, user_msg: str,
                               events: List[Dict[str, Any]],
-                              seed_events: List[Dict[str, Any]] | None = None) -> Path:
+                              seed_events: List[Dict[str, Any]] | None = None, *,
+                              base_events: List[Dict[str, Any]] | None = None) -> Path:
     sessions_dir = AGENTS_DIR / agent_id / "sessions"
     sessions_dir.mkdir(parents=True, exist_ok=True)
     transcript_path = sessions_dir / f"{session_id}.jsonl"
 
     out_events: List[Dict[str, Any]] = []
-    if transcript_path.exists() and not seed_events:
+    if base_events is not None:
+        out_events.extend(base_events)
+    elif transcript_path.exists() and not seed_events:
         for line in transcript_path.read_text(encoding="utf-8").splitlines():
             if not line.strip():
                 continue
@@ -449,11 +454,9 @@ def _write_minimal_transcript(agent_id: str, session_id: str, user_msg: str,
                 result = json.dumps(result)
             out_events.append({"type": "message", "message": {"role": "toolResult",
                                "toolCallId": ev.get("tool_use_id", ""),
-                               "content": [{"type": "text", "text": result[:10000]}]}})
+                               "content": [{"type": "text", "text": result}]}})
 
-    with transcript_path.open("w", encoding="utf-8") as f:
-        for ev in out_events:
-            f.write(json.dumps(ev, ensure_ascii=False) + "\n")
+    atomic_text(transcript_path, "".join(json.dumps(ev, ensure_ascii=False) + "\n" for ev in out_events))
 
     sessions_payload = {
         "currentSessionId": session_id,
@@ -464,11 +467,12 @@ def _write_minimal_transcript(agent_id: str, session_id: str, user_msg: str,
             "status": "done",
         },
     }
-    (sessions_dir / "sessions.json").write_text(json.dumps(sessions_payload))
+    atomic_text(sessions_dir / "sessions.json", json.dumps(sessions_payload))
     return transcript_path
 
 
 def cmd_agent_invoke(args: argparse.Namespace) -> None:
+    deadline = invocation_deadline()
     state = _load_state()
     agent_id = args.agent.replace(":", "-").lower()
     info = state["agents"].get(agent_id) or {}
@@ -573,48 +577,41 @@ def cmd_agent_invoke(args: argparse.Namespace) -> None:
     else:
         cmd += ["--session-id", session_uuid]
 
-    shim_timeout = int(os.environ.get("SHIM_TIMEOUT_SECONDS", "1800"))
+    sessions_dir = AGENTS_DIR / agent_id / "sessions"
+    transcript_path = sessions_dir / f"{session_uuid}.jsonl"
+    # Freeze the previous turns once. Each publication replaces this turn's
+    # snapshot, so polling and retries cannot append the same events twice.
+    base_events = seed_events or read_jsonl(transcript_path)
+    runtime_dir = sessions_dir / "runtime" / uuid.uuid4().hex
+    events: List[Dict[str, Any]] = []
+    published_stdout = None
 
-    def _run():
-        return subprocess.run(cmd, cwd=workspace, env=env, capture_output=True,
-                              text=True, timeout=shim_timeout)
-
-    try:
-        proc = _run()
-    except subprocess.TimeoutExpired as exc:
-        stdout = exc.stdout or ""
-        if isinstance(stdout, bytes):
-            stdout = stdout.decode("utf-8", "replace")
+    def publish(stdout, stderr):
+        nonlocal events, published_stdout
+        if stdout == published_stdout:
+            return
+        published_stdout = stdout
         events = _parse_stream_json(stdout)
-        tp = _write_minimal_transcript(agent_id, session_uuid, args.message, events, seed_events)
-        print(f"shim: claude timed out after {shim_timeout}s; wrote partial transcript {tp}",
-              file=sys.stderr)
-        sys.exit(0)
+        _write_minimal_transcript(agent_id, session_uuid, args.message, events,
+                                  base_events=base_events)
 
-    stdout = proc.stdout or ""
-    stderr = proc.stderr or ""
-    events = _parse_stream_json(stdout)
-
-    # Retry once on transient empty output / auth glitch.
-    if not events and ("Invalid API key" in stderr or "Not logged in" in stderr or not stdout.strip()):
+    publish("", "")
+    proc = run_process(cmd, cwd=workspace, env=env, deadline=deadline,
+                       log_dir=runtime_dir / "attempt-1", on_update=publish)
+    # A retry shares the original deadline; a timeout is never retried.
+    if not events and not proc.timed_out and (
+        "Invalid API key" in proc.stderr or "Not logged in" in proc.stderr or not proc.stdout.strip()
+    ):
         print("shim: empty/transient failure, retrying once", file=sys.stderr)
-        try:
-            proc = _run()
-            stdout = proc.stdout or ""
-            stderr = proc.stderr or ""
-            events = _parse_stream_json(stdout)
-        except subprocess.TimeoutExpired:
-            pass
-
+        proc = run_process(cmd, cwd=workspace, env=env, deadline=deadline,
+                           log_dir=runtime_dir / "attempt-2", on_update=publish)
     if not events:
         print("shim: no events parsed from claude output", file=sys.stderr)
-        print(stdout[-2000:], file=sys.stderr)
-        if stderr:
-            print(stderr[-2000:], file=sys.stderr)
-
-    transcript_path = _write_minimal_transcript(agent_id, session_uuid, args.message, events, seed_events)
-    print(f"shim: wrote transcript {transcript_path}")
-    sys.exit(0 if proc.returncode == 0 else proc.returncode)
+        print(proc.stdout[-2000:], file=sys.stderr)
+        print(proc.stderr[-2000:], file=sys.stderr)
+    qualifier = "timed out; saved partial" if proc.timed_out else "wrote"
+    print(f"shim: {qualifier} transcript {transcript_path}")
+    sys.exit(proc.returncode)
 
 
 def main() -> None:

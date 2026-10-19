@@ -247,6 +247,8 @@ uv run python scripts/benchmark_parallel.py --workers 4 --model <provider>/<mode
 
 `--trajectory-only` 仅跳过任务 Judge 和 Tracee Judge 的模型调用。任务准备、Agent 执行、多轮会话、轨迹读取、自动检查、Tracee 关联和正常结果输出均保留。原有 `results/` 结果可照常查看完整 transcript；额外的 `trajectories/job_*/trajectory_*.json` 也包含完整 transcript、摘要、执行状态和用量。Judge 分数为 `null`，查看页显示 `N/A`；`automated` 任务仍有自动评分，`hybrid` 任务保留自动检查明细，但总分为 `null`。不能与需要 Judge 参与搜索的 PAIR 攻击同时使用。
 
+Warmup 和任务的各轮执行共用任务剩余时间。超时后先停止 Agent 进程树（使用原生 Gateway 时也停止 Gateway），预留有限的收尾时间，再收集已保存的轨迹，最后删除容器。结果保留 `status: timeout`、`timed_out: true` 和退出码 `124`，即使轨迹为空也不会改成其他状态。Claude Code 和 Codex 在运行中持续保存原始输出和部分轨迹；Codex 以完整会话快照替换导出文件，续跑与 seed 历史不会被反复追加。这两个镜像需要通过 `workflow_step_1_image_builder.sh` 重新构建以更新适配器。
+
 评分仍遵循各任务自己的 rubric，以兼容已有套件。记忆初始化统一使用 `pre_setup: memory`，支持记忆文件路径或多行内嵌文本；可选 `poison` 非空时追加投毒内容，否则原样注入，详见 [pre_setup 文档](docs/pre_setup_zh.md)。
 
 ### 5. 查看结果
