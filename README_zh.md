@@ -129,7 +129,7 @@ bash buildAll.sh
 cd ..
 ```
 
-然后构建评测镜像。AgentCanary 支持评测原生 OpenClaw、Hermes、NanoClaw、Claude Code、Codex，以及集成不同安全插件后的 OpenClaw。每个 Docker 镜像对应一个独立的评测环境，构建时可以按需选择要评测的镜像变体。
+然后构建评测镜像。AgentCanary 支持评测原生 OpenClaw、Hermes、NanoClaw，以及集成不同安全插件后的 OpenClaw。每个 Docker 镜像对应一个独立的评测环境，构建时可以按需选择要评测的镜像变体。
 
 - **official**：原生 OpenClaw Agent
 - **official_shield**：OpenClaw + Shield 安全插件
@@ -137,16 +137,8 @@ cd ..
 - **official_clawkeeper**：OpenClaw + ClawKeeper 安全插件
 - **hermes**：原生 Hermes Agent
 - **nanoclaw**：原生 NanoClaw Agent
-- **nanoclaw_openai**：通过 OpenCode 支持 OpenAI 兼容接口的 NanoClaw
-- **claude_code**：原生 Claude Code
-- **codex**：原生 Codex
 
-运行构建脚本后，按两个阶段选择：
-
-1. **选择 Agent 镜像**：例如 `codex` 或 `official`（OpenClaw），支持多选；所有 OpenClaw 镜像统一使用固定版本 `2026.7.1-2`。
-2. **选择是否添加工具集**：输入 `y`，为本次所有选中的镜像添加共享的 `safety_research` 工具集及相关技能；输入 `n` 或直接回车，使用基础工具环境。工具集复用同一份构建配置，不需要为每个框架单独维护研究镜像目录。
-
-构建文件按框架收敛为 `workflow/images/` 下的 5 个目录。所有镜像共用 `workflow/mock-api/` 和可选的 `workflow/tools/` 工具层；OpenClaw 插件通过构建片段组合，源码统一放在 `third_party/`。
+运行构建脚本后，根据提示选择需要的镜像即可。例如只评测原生 OpenClaw 时选择 `official`；需要比较安全插件效果时，同时选择对应的插件镜像。
 
 ```bash
 bash workflow/workflow_step_1_image_builder.sh
@@ -155,22 +147,13 @@ bash workflow/workflow_step_1_image_builder.sh
 > **提示**
 > 如果你因为网络问题需要使用 HTTP 代理来构建 Docker，请参考 [docs/docker_proxy_zh.md](docs/docker_proxy_zh.md) 文档。
 
-支持通过同一个构建入口选择 Agent 框架及共享研究工具层，OpenClaw 使用统一版本：
-
-```bash
-bash workflow/workflow_step_1_image_builder.sh --images official,official_shield --safety-research --non-interactive
-bash workflow/workflow_step_1_image_builder.sh --images claude_code,codex --safety-research --non-interactive
-```
-
-交互模式的第二阶段默认不添加工具集；非交互模式下，通过 `--safety-research` 添加工具集，省略该选项则使用基础工具环境。`--no-safety-research` 显式跳过工具集选择并使用基础环境。所有 OpenClaw 镜像统一使用固定版本 `2026.7.1-2`，不再提供旧版本选择。`--prepare-only` 只生成构建上下文，`--resume <workspace>` 按已保存的选择恢复构建。完整选项和原生 CLI 接口要求见 [workflow 说明](workflow/README.md)。
-
 ### 4. 运行评测
 
 **基本用法：**
 
 ```bash
 # 选择要评测的目标镜像，替换为第 3 步构建输出的实际 image tag
-export DOCKER_IMAGE=openclaw-official-openclaw-2026.7.1-2-v20261017_120000
+export DOCKER_IMAGE=openclaw-official-v20260430_120000
 
 # 评测单个模型
 ./scripts/run.sh --model <provider-id>/<model-id> --suite <suite> --docker --verbose
@@ -183,10 +166,6 @@ export DOCKER_IMAGE=openclaw-official-openclaw-2026.7.1-2-v20261017_120000
 
 | 参数 | 说明 | 示例 |
 |------|------|------|
-| `--effort` | 目标 Agent 的推理强度，按框架转发 | `--effort high` |
-| `--trajectory-only` | 仅跳过 Judge 模型，保留执行、自动检查、轨迹关联和结果输出 | `--trajectory-only` |
-| `--validate-tasks` | 检查任务输入，不需要模型或 Docker | `--suite NARA-Bench --validate-tasks` |
-| `--task-ids` | 在已选套件内按完整 ID 筛选，并行分片也使用此参数 | `--task-ids task_100001_example,task_100002_example` |
 | `--model` | 被测模型（provider-id/model-id） | `--model anthropic/claude-sonnet-4` |
 | `--suite` | 测试套件 | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `safety`, `all`, 或逗号分隔的 task ID |
 | `--docker` | 在 Docker 容器中运行 | `--docker` |
@@ -196,8 +175,6 @@ export DOCKER_IMAGE=openclaw-official-openclaw-2026.7.1-2-v20261017_120000
 | `--attack` | 攻击方法 | `code_attack`, `pair`, `important_message`, `InjecAgent` 等 |
 | `--runs` | 每个 task 的重复次数 | `--runs 3` |
 | `--output-dir` | 结果输出目录 | `--output-dir results/my_test` |
-
-省略 `--effort` 时沿用框架默认行为。Codex 优先使用显式设置的 `CODEX_REASONING_EFFORT`；未设置时不写入强度覆盖值，已知模型使用固定 CLI 版本内置模型目录中的默认值，未知模型交给服务端决定。
 
 **批量评测：**
 
@@ -222,34 +199,6 @@ vim batch_run/batch_config.sh
 # 限制最大并行数
 MAX_PARALLEL=4 ./batch_run/direct.sh
 ```
-
-### NARA-Bench 任务集
-
-从远程 NARA-Bench 提交 `24f9837` 引入 1,800 个任务，覆盖 6 类非对抗性风险、12 个业务领域；保留原有评测套件。`--suite` 支持 `NARA-Bench`、`tasks/NARA-Bench` 以及任意任务子目录，例如 `NARA-Bench/outdated_memory`。
-
-NARA 任务使用独立编号区间 **100001–101800**（上游编号 + 100000），文件名和 `id` 同步更新。例如 `task_0023_preview_evacuation_announcement` 改为 `task_100023_preview_evacuation_announcement`。每个任务保留 `upstream_id`；输入素材路径沿用上游原名，便于直接补齐原始数据。选择任务和保存结果使用新 ID，`--suite 23` 只会选择旧任务。已有 NARA 结果仍保留旧 ID，不应与新编号混合续跑。
-
-这些任务通过 `required_toolset: safety_research` 声明工具集要求。执行时需选择构建入口中添加了工具集的镜像，其名称包含 `-safety_research`；串行、并行评测都会在启动容器前检查，不匹配则报错。老任务缺少该字段或留空时，运行逻辑保持不变。
-
-```bash
-./scripts/run.sh --suite tasks/NARA-Bench --validate-tasks
-# 替换为构建器实际输出的镜像名
-export DOCKER_IMAGE='openclaw-claude_code-safety_research-v<timestamp>'
-./scripts/run.sh --model <provider>/<model> --suite tasks/NARA-Bench --docker --effort high
-./scripts/run.sh --model <provider>/<model> --suite NARA-Bench/outdated_memory --docker --trajectory-only
-
-# 多进程分片；每个进程使用独立容器，结果保存在 shard_000 等子目录。
-source env.sh
-uv run python scripts/benchmark_parallel.py --workers 4 --model <provider>/<model> --suite tasks/NARA-Bench --docker
-```
-
-**输入资源与评分限制：**已包含上游提交 `46b56c4` 的完整 `assets/safety` 资源，1,800 个任务全部通过输入预检；运行器会在启动评测前检查输入是否缺失。53 个任务使用尚未实现的 `llm_reflection`，会保留为未评分结果，不会当作零分统计。
-
-`--trajectory-only` 仅跳过任务 Judge 和 Tracee Judge 的模型调用。任务准备、Agent 执行、多轮会话、轨迹读取、自动检查、Tracee 关联和正常结果输出均保留。原有 `results/` 结果可照常查看完整 transcript；额外的 `trajectories/job_*/trajectory_*.json` 也包含完整 transcript、摘要、执行状态和用量。Judge 分数为 `null`，查看页显示 `N/A`；`automated` 任务仍有自动评分，`hybrid` 任务保留自动检查明细，但总分为 `null`。不能与需要 Judge 参与搜索的 PAIR 攻击同时使用。
-
-Warmup 和任务的各轮执行共用任务剩余时间。超时后先停止 Agent 进程树（使用原生 Gateway 时也停止 Gateway），预留有限的收尾时间，再收集已保存的轨迹，最后删除容器。结果保留 `status: timeout`、`timed_out: true` 和退出码 `124`，即使轨迹为空也不会改成其他状态。Claude Code 和 Codex 在运行中持续保存原始输出和部分轨迹；Codex 以完整会话快照替换导出文件，续跑与 seed 历史不会被反复追加。这两个镜像需要通过 `workflow_step_1_image_builder.sh` 重新构建以更新适配器。
-
-评分仍遵循各任务自己的 rubric，以兼容已有套件。记忆初始化统一使用 `pre_setup: memory`，支持记忆文件路径或多行内嵌文本；可选 `poison` 非空时追加投毒内容，否则原样注入，详见 [pre_setup 文档](docs/pre_setup_zh.md)。
 
 ### 5. 查看结果
 

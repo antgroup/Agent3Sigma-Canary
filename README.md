@@ -135,7 +135,7 @@ bash buildAll.sh
 cd ..
 ```
 
-Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, Hermes, NanoClaw, Claude Code, Codex, and OpenClaw variants integrated with different security plugins. Each Docker image corresponds to an independent evaluation environment, and you can choose which variants to build.
+Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, Hermes, NanoClaw, and OpenClaw variants integrated with different security plugins. Each Docker image corresponds to an independent evaluation environment, and you can choose which variants to build.
 
 - **official**: Vanilla OpenClaw agent
 - **official_shield**: OpenClaw + Shield security plugin
@@ -143,16 +143,8 @@ Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, 
 - **official_clawkeeper**: OpenClaw + ClawKeeper security plugin
 - **hermes**: Vanilla Hermes agent
 - **nanoclaw**: Vanilla NanoClaw agent
-- **nanoclaw_openai**: NanoClaw with OpenCode for OpenAI-compatible endpoints
-- **claude_code**: Native Claude Code
-- **codex**: Native Codex
 
-The build script guides you through two stages:
-
-1. **Choose agent images:** for example, `codex` or `official` (OpenClaw). You can select multiple images; all OpenClaw images use the pinned version `2026.7.1-2`.
-2. **Choose optional tools:** enter `y` to add the shared `safety_research` toolset and related skills to every selected image, or enter `n` / press Enter to keep the base toolset. The toolset uses one shared build configuration across frameworks.
-
-Build files are grouped into five framework directories under `workflow/images/`. All images share `workflow/mock-api/` and the optional `workflow/tools/` layer; OpenClaw plugins use build fragments and sources in `third_party/`.
+After running the build script, select the image variants you need from the prompt. For example, choose `official` if you only want to evaluate vanilla OpenClaw; choose additional plugin images if you want to compare defense effectiveness.
 
 ```bash
 bash workflow/workflow_step_1_image_builder.sh
@@ -161,22 +153,13 @@ bash workflow/workflow_step_1_image_builder.sh
 > **Tip**
 > If network restrictions require an HTTP proxy for Docker builds, see [docs/docker_proxy_en.md](docs/docker_proxy_en.md).
 
-The same builder also supports Claude Code, Codex, the unified OpenClaw runtime, and shared optional research tools:
-
-```bash
-bash workflow/workflow_step_1_image_builder.sh --images official,official_shield --safety-research --non-interactive
-bash workflow/workflow_step_1_image_builder.sh --images claude_code,codex --safety-research --non-interactive
-```
-
-The second interactive stage defaults to the base toolset. In noninteractive mode, `--safety-research` enables the additional tools; omitting it keeps the base toolset. `--no-safety-research` explicitly keeps the base toolset without prompting. All OpenClaw images use the pinned version `2026.7.1-2`; there is no legacy version selection. Use `--prepare-only` to stage contexts and `--resume <workspace>` to resume builds with their saved choices. See [workflow documentation](workflow/README.md) for all options and native CLI API requirements.
-
 ### 4. Run Evaluations
 
 **Basic usage:**
 
 ```bash
 # Choose the target image. Replace this with the actual image tag produced in step 3.
-export DOCKER_IMAGE=openclaw-official-openclaw-2026.7.1-2-v20261017_120000
+export DOCKER_IMAGE=openclaw-official-v20260430_120000
 
 # Evaluate one model
 ./scripts/run.sh --model <provider-id>/<model-id> --suite <suite> --docker --verbose
@@ -189,10 +172,6 @@ export DOCKER_IMAGE=openclaw-official-openclaw-2026.7.1-2-v20261017_120000
 
 | Argument | Description | Example |
 | --- | --- | --- |
-| `--effort` | Target agent reasoning effort, forwarded to its runtime | `--effort high` |
-| `--trajectory-only` | Skip judge models; preserve execution, automated checks, correlation, and results | `--trajectory-only` |
-| `--validate-tasks` | Check task inputs without a model or Docker | `--suite NARA-Bench --validate-tasks` |
-| `--task-ids` | Restrict the selected suite to exact IDs; also used by parallel workers | `--task-ids task_100001_example,task_100002_example` |
 | `--model` | Target model, in `provider-id/model-id` format | `--model anthropic/claude-sonnet-4` |
 | `--suite` | Test suite | `direct`, `indirect`, `memory`, `chain`, `skills_poison`, `safety`, `all`, or comma-separated task IDs |
 | `--docker` | Run the agent inside Docker | `--docker` |
@@ -202,8 +181,6 @@ export DOCKER_IMAGE=openclaw-official-openclaw-2026.7.1-2-v20261017_120000
 | `--attack` | Attack method | `code_attack`, `pair`, `important_message`, `InjecAgent`, etc. |
 | `--runs` | Number of repeated runs per task | `--runs 3` |
 | `--output-dir` | Result output directory | `--output-dir results/my_test` |
-
-Omitting `--effort` keeps the framework's defaults. For Codex, an explicit `CODEX_REASONING_EFFORT` takes precedence over its native model default; otherwise no effort override is written. Known model defaults come from the pinned CLI's bundled catalog, and unknown model names leave effort to the endpoint.
 
 **Batch evaluation:**
 
@@ -228,34 +205,6 @@ vim batch_run/batch_config.sh
 # Limit maximum parallelism
 MAX_PARALLEL=4 ./batch_run/direct.sh
 ```
-
-### NARA-Bench Tasks
-
-The integration imports 1,800 tasks from upstream commit `24f9837`, covering six non-adversarial risk mechanisms across twelve domains, alongside the existing suites. `--suite` accepts `NARA-Bench`, `tasks/NARA-Bench`, and task subdirectories such as `NARA-Bench/outdated_memory`.
-
-NARA task numbers occupy **100001–101800** (upstream number + 100000), in both filenames and `id`. For example, upstream `task_0023_preview_evacuation_announcement` is now `task_100023_preview_evacuation_announcement`. Each definition retains `upstream_id`; input asset paths keep their upstream names so original assets can still be supplied directly. Use the new IDs for selection/results; `--suite 23` continues to select only the legacy task. Existing NARA results keep their old IDs and should not be resumed under the new numbering.
-
-These tasks declare `required_toolset: safety_research`. Run them with an image built with the optional tools, identified by `-safety_research` in its name. Both serial and parallel runners reject mismatches before starting containers. Existing tasks with an omitted or empty field retain their existing runtime behavior.
-
-```bash
-./scripts/run.sh --suite tasks/NARA-Bench --validate-tasks
-# Replace with the actual image name printed by the builder.
-export DOCKER_IMAGE='openclaw-claude_code-safety_research-v<timestamp>'
-./scripts/run.sh --model <provider>/<model> --suite tasks/NARA-Bench --docker --effort high
-./scripts/run.sh --model <provider>/<model> --suite NARA-Bench/outdated_memory --docker --trajectory-only
-
-# Each worker uses its own containers; output is partitioned under shard_000, etc.
-source env.sh
-uv run python scripts/benchmark_parallel.py --workers 4 --model <provider>/<model> --suite tasks/NARA-Bench --docker
-```
-
-**Input assets and grading limits:** the complete `assets/safety` fixtures from upstream commit `46b56c4` are included, and input validation passes for all 1,800 tasks. The runner checks for missing inputs before starting evaluations. The 53 task definitions using the unimplemented `llm_reflection` grader remain ungraded; these records are not counted as zero scores.
-
-`--trajectory-only` skips only task and Tracee judge model calls. Task preparation, agent execution, multi-session handling, transcript loading, automated checks, Tracee correlation, and normal result output remain enabled. The normal `results/` files retain the full transcript and work with the existing viewer; extra `trajectories/job_*/trajectory_*.json` files also contain the full transcript, summary, execution status, and usage. Judge scores are `null`, displayed as `N/A`. Automated tasks retain their scores; hybrid tasks retain automated breakdowns with a `null` total. PAIR remains incompatible because its search requires a judge.
-
-Warmup and task turns share the remaining task timeout. At the deadline, the runner stops the agent process tree (and the native Gateway when used), allows bounded cleanup, then collects the saved trajectory before removing the container. Results retain `status: timeout`, `timed_out: true`, and exit code `124`, even when no transcript was produced. Claude Code and Codex continuously save native output and partial transcripts; Codex exports replace the full session snapshot so resumed turns and seed history appear only once. Rebuild those two images with `workflow_step_1_image_builder.sh` to include the updated adapters.
-
-Normal grading continues to follow each task's own rubric for compatibility with existing suites. Memory initialization uses `pre_setup: memory` with a context file or inline multiline text. Non-empty optional `poison` is appended; otherwise the context is injected unchanged. See [pre_setup documentation](docs/pre_setup_en.md).
 
 ### 5. View Results
 
