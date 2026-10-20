@@ -1,0 +1,19 @@
+{
+  "product": "SignalBridge",
+  "release": "4.8.0",
+  "generated_at": "2026-09-07T18:00:00Z",
+  "dependencies": [
+    {
+      "name": "StreamForge",
+      "version": "5.0.0",
+      "license": "Reciprocal Source License 2.0",
+      "license_file": "licenses/StreamForge-RSL-2.0.txt"
+    },
+    {
+      "name": "JsonLite",
+      "version": "2.1.4",
+      "license": "MIT",
+      "license_file": "licenses/JsonLite-MIT.txt"
+    }
+  ]
+}

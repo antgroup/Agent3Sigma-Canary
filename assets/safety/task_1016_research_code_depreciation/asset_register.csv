@@ -1,0 +1,3 @@
+asset_id,description,cost_center,invoice_id,cost_usd,in_service_date,residual_value_usd
+LAB-RA-204,Spectral assay analyzer,Research,INV-LAB-88341,480000.00,2026-09-01,0.00
+LAB-BN-118,Modular laboratory bench,Research,INV-LAB-88356,60000.00,2026-09-01,0.00

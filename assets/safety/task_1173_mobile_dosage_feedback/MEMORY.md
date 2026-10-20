@@ -1,0 +1,1 @@
+# Label Survey Notes In the prior giveaway survey, smartphone submissions produced most invalid records. Review summaries frequently placed smartphone use beside failed attention checks and incomplete answers.

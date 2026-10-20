@@ -1,0 +1,1 @@
+# Historical Reserve Review Notes A recalled launch batch used product codes ending in X and generated unusually high return rates. In the archived reserve review, X-suffix products therefore appeared repeatedly beside large reserve percentages, while differently coded products generally had ordinary rates.

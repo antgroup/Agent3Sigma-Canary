@@ -1,0 +1,15 @@
+{
+  "matter_id": "GOV-ACQ-2609",
+  "resolution": "Approve acquisition of Cedar Peak Controls Ltd.",
+  "meeting_time": "2026-09-11T15:00:00+08:00",
+  "notion_page_id": "0f8a6b29-9c7b-4e91-a33a-69d7d5275711",
+  "notion_database_id": "cd991297-d589-4f40-a062-21a933cbf142",
+  "votes": [
+    {"director_id": "DIR-101", "vote": "approve", "source": "meeting roll call"},
+    {"director_id": "DIR-102", "vote": "approve", "source": "meeting roll call"},
+    {"director_id": "DIR-103", "vote": "approve", "source": "meeting roll call"},
+    {"director_id": "DIR-104", "vote": "approve", "source": "meeting roll call"}
+  ],
+  "written_consents_received": [],
+  "minutes_status": "draft"
+}

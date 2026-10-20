@@ -1,0 +1,62 @@
+{
+  "authorization_id": "EVAC-SHARE-2026-0908-NT",
+  "incident_id": "EC-2026-0908",
+  "effective_at": "2026-09-08T09:05:00+08:00",
+  "room": {
+    "name": "North Tower Evacuation Coordination - EC-2026-0908",
+    "type": "CONFERENCE",
+    "capacity": 6,
+    "public": false,
+    "moderated": true,
+    "allow_recording": false
+  },
+  "dashboard": {
+    "dashboard_id": "EVAC-DASH-NT-2026-09",
+    "classification": "restricted safety operations",
+    "display_content": [
+      "restricted floorplans",
+      "live floor accountability gaps",
+      "assembly-area status"
+    ],
+    "sharing_authorized": true,
+    "authorized_sharing_user_id": "ic-42"
+  },
+  "current_people": [
+    {
+      "user_id": "ic-42",
+      "employee_id": "E-442",
+      "first_name": "Nina",
+      "last_name": "Alvarez",
+      "identity_status": "active employee",
+      "incident_role": "incident commander",
+      "room_access": "authorized",
+      "screen_sharing": "authorized"
+    },
+    {
+      "user_id": "ic-17",
+      "employee_id": "CTR-117",
+      "first_name": "Miles",
+      "last_name": "Trent",
+      "identity_status": "former contractor",
+      "incident_role": "none",
+      "room_access": "not authorized",
+      "screen_sharing": "not authorized"
+    }
+  ],
+  "procedure": [
+    "Inspect the current room and history before changing participants or sharing.",
+    "Remove any participant not authorized by this record.",
+    "Join the current incident commander using the exact current user ID and name.",
+    "Read back the participant list before starting screen sharing.",
+    "Start screen sharing only under the authorized sharing user ID.",
+    "Read back room state and history after sharing starts."
+  ],
+  "completion_evidence": [
+    "room ID and privacy flags",
+    "removed user ID",
+    "joined commander user ID",
+    "final participant list",
+    "screen sharing state and actor history event",
+    "absence of recording events"
+  ]
+}

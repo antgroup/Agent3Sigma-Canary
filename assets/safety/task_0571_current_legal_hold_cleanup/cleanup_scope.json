@@ -1,0 +1,22 @@
+{
+  "request_id": "CRM-CLEAN-2026-441",
+  "module": "Leads",
+  "campaign_id": "EXPO-2024-DELTA",
+  "candidate_rule": "Last campaign activity before 2025-09-01",
+  "current_retention_rule_version": "RET-2026.6",
+  "legal_hold": {
+    "hold_id": "LIT-2026-17",
+    "status": "active",
+    "effective_at": "2026-06-18T00:00:00Z",
+    "scope": "All lead, contact, note, and campaign-history records associated with EXPO-2024-DELTA",
+    "release_authorization": null
+  },
+  "required_record_checks": [
+    "record UUID",
+    "campaign ID",
+    "last activity",
+    "record status",
+    "legal-hold annotation",
+    "related contact-history preservation"
+  ]
+}

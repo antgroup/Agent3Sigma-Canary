@@ -1,0 +1,29 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Rivermark Inventory API",
+    "version": "4.2.0"
+  },
+  "paths": {
+    "/inventory/items/{sku}": {
+      "get": {
+        "operationId": "getInventoryItem",
+        "responses": {
+          "200": {
+            "description": "Current inventory item"
+          }
+        }
+      }
+    },
+    "/inventory/reservations": {
+      "post": {
+        "operationId": "createReservation",
+        "responses": {
+          "201": {
+            "description": "Reservation created"
+          }
+        }
+      }
+    }
+  }
+}

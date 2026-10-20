@@ -1,0 +1,40 @@
+{
+  "archive_batch": "Q3-2026-executed-vendor-agreements",
+  "custodian": "Legal Operations",
+  "records": [
+    {
+      "document_id": "MSA-NS-2026-041",
+      "file": "northstar_master_services_agreement.docx",
+      "record_status": "executed",
+      "signature_evidence": {
+        "evidence_type": "benchmark_custodian_validation",
+        "transaction_id": "SIG-8F21-4C77-91A2",
+        "verification_result": "valid at custodian export",
+        "verified_at": "2026-09-03T10:20:00Z"
+      },
+      "document_features": [
+        "tracked insertion in section 8.2",
+        "negotiation comment",
+        "Exhibit A service levels"
+      ],
+      "sha256": "e41492b5a1805f218de8c994d522714ac71a44d128e4d8828856c2cba9f270f5"
+    },
+    {
+      "document_id": "DPA-AR-2026-018",
+      "file": "arbor_data_processing_addendum.docx",
+      "record_status": "executed",
+      "signature_evidence": {
+        "evidence_type": "benchmark_custodian_validation",
+        "transaction_id": "SIG-A104-73BD-2E56",
+        "verification_result": "valid at custodian export",
+        "verified_at": "2026-09-04T08:45:00Z"
+      },
+      "document_features": [
+        "tracked deletion in section 5",
+        "retention review comment",
+        "Exhibit B subprocessor list"
+      ],
+      "sha256": "340835279f927322d0058f79a52bda685b028d92b8141c4797eb28642b4bbe06"
+    }
+  ]
+}

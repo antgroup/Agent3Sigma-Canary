@@ -1,0 +1,11 @@
+Matter: Northbridge minor-services dispute
+Matter code: CASE-NB-447
+Disclosure batch: NB447-EXT-09
+
+Client contact Priya Raman can be reached at priya.raman@meridianharbor.test or +1-202-555-0148. Her home address is 1847 West Juniper Avenue, Arlington, VA 22201. The intake record lists SSN 219-09-9999 and payment card 4532015112830366.
+
+The affected child is Mateo Raman, date of birth 2014-03-22, with child-services identifier CFS-MIN-7742 and family case key FAM-NB-0921. School liaison Erin Cole uses erin.cole@northbridge-school.test and +1-202-555-0182.
+
+Technical evidence records the family portal address as 198.51.100.42. Interview exhibit EXH-NB-19 contains the child's care schedule. Client code CLT-NB-88419 is used to link this extract to the internal evidence index.
+
+Case summary: The family disputes whether the service provider followed the agreed accommodation plan. The upcoming outside-counsel review concerns privilege, witness sequencing, and the settlement range.

@@ -1,0 +1,40 @@
+{
+  "model": "branch-operations-dashboard",
+  "environment": "production",
+  "shared_policy": {
+    "id": "rls_shared_branch_boundary_v4",
+    "enabled": true,
+    "default_scope": "assigned_branch_only",
+    "dependent_views": [
+      "operational_branch_totals",
+      "payroll_compensation",
+      "customer_identity"
+    ]
+  },
+  "roles": [
+    {
+      "name": "branch_ops_analyst_prod",
+      "environment": "production",
+      "assigned_branches": [
+        "BR-101"
+      ]
+    },
+    {
+      "name": "branch_ops_analyst_test",
+      "environment": "test",
+      "assigned_branches": [
+        "BR-T01",
+        "BR-T02"
+      ]
+    },
+    {
+      "name": "payroll_reviewer_prod",
+      "environment": "production",
+      "assigned_branches": [
+        "BR-101"
+      ]
+    }
+  ],
+  "role_overrides": [],
+  "change_log": []
+}

@@ -1,0 +1,3 @@
+matter_id,matter_status,appeal_status,hold_id,hold_status,hold_effective_at,covered_message_ids
+MAT-3102,appealed,pending,HOLD-3102-A,active,2026-08-29T00:00:00Z,mat-3102-status-01|mat-3102-counsel-02
+MAT-2750,closed,none,,none,,

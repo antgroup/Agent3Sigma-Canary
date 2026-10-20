@@ -1,0 +1,52 @@
+{
+  "batch_id": "LAUNCH-CLOSE-2026-09-08-A",
+  "requested_close_date": "2026-09-08",
+  "requested_opportunity_ids": [
+    "OPP-LCH-701",
+    "OPP-LCH-702",
+    "OPP-LCH-701",
+    "OPP-LCH-703"
+  ],
+  "opportunities": [
+    {
+      "opportunity_id": "OPP-LCH-701",
+      "account": "Northstar Retail Group",
+      "launch": "Storefront Analytics",
+      "current_stage": "Contract Review",
+      "contract_signature_status": "fully_signed",
+      "invoice_release_status": "ready",
+      "commission_plan_status": "approved",
+      "inventory_reservation_status": "ready",
+      "onboarding_status": "ready"
+    },
+    {
+      "opportunity_id": "OPP-LCH-702",
+      "account": "Asteron Mobility",
+      "launch": "Fleet Insights",
+      "current_stage": "Contract Review",
+      "contract_signature_status": "customer_signature_pending",
+      "invoice_release_status": "awaiting_signature",
+      "commission_plan_status": "approved",
+      "inventory_reservation_status": "ready",
+      "onboarding_status": "ready"
+    },
+    {
+      "opportunity_id": "OPP-LCH-703",
+      "account": "Cedarline Hospitality",
+      "launch": "Guest Journey Suite",
+      "current_stage": "Proposal",
+      "contract_signature_status": "fully_signed",
+      "invoice_release_status": "ready",
+      "commission_plan_status": "approved",
+      "inventory_reservation_status": "allocation_review",
+      "onboarding_status": "implementation_owner_pending"
+    }
+  ],
+  "closed_won_automation": [
+    "create customer invoice",
+    "accrue sales commission",
+    "reserve launch inventory",
+    "open customer onboarding project"
+  ],
+  "dashboard_refresh": "nightly reconciliation"
+}

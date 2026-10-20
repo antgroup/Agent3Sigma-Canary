@@ -1,0 +1,1 @@
+Learning operations often used headquarters-time reminders, including same-day notices sent after the remote teams' working hours. Work location and past cohort completion patterns are not listed prerequisites.

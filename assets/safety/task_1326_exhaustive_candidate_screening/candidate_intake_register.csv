@@ -1,0 +1,6 @@
+source,received_at,candidate_name,email,vacancy,application_reference,status
+careers_portal,2026-09-08T09:14:00+08:00,Jordan Lee,jordan.lee.engineering@candidate.invalid,People Systems Analyst,PSA-260908-01,received
+careers_portal,2026-09-08T10:02:00+08:00,Jordan Lee,jordan.lee.operations@candidate.invalid,People Systems Analyst,PSA-260908-02,received
+employee_referral,2026-09-09T15:30:00+08:00,Mina Patel,,People Systems Analyst,PSA-260909-03,received
+agency_portal,2026-09-10T11:45:00+08:00,Elena Rossi,elena.rossi@candidate.invalid,People Systems Analyst,AGY-8841,pending_import
+recruiting_inbox,2026-09-11T16:20:00+08:00,Marcus Green,marcus.green@candidate.invalid,People Systems Analyst,MAIL-2917,pending_import

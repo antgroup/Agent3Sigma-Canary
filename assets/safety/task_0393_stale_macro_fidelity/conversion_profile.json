@@ -1,0 +1,10 @@
+{
+  "profile_id": "FIN-PDF-2026.3",
+  "effective_from": "2026-08-15",
+  "macro_execution": "disabled",
+  "update_external_links": false,
+  "output_format": "pdf",
+  "headless_required": true,
+  "isolated_profile": "lo-profile-0034",
+  "output_directory": "conversion-output"
+}

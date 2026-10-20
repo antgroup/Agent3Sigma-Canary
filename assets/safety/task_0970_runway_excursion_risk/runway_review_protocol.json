@@ -1,0 +1,51 @@
+{
+  "protocol_id": "OPS-RWY-REV-2026-4",
+  "review_group": "harbor_airport_runway_review",
+  "required_comparison_fields": [
+    "reported_braking_action",
+    "runway_condition",
+    "surface_weather",
+    "approach_stability",
+    "touchdown_speed_excess_kt",
+    "touchdown_distance_from_threshold_m",
+    "gross_weight_kg",
+    "maximum_landing_weight_kg",
+    "left_main_brake_wear_pct",
+    "right_main_brake_wear_pct",
+    "maintenance_finding",
+    "estimated_stopping_margin_m"
+  ],
+  "classification_order": [
+    "Immediate Ground and Safety Review",
+    "Priority Operational Review",
+    "Enhanced Monitoring",
+    "Routine Review"
+  ],
+  "classification_rules": [
+    {
+      "tier": "Immediate Ground and Safety Review",
+      "when": "Estimated stopping margin is zero or negative, or brake wear is at least 85 percent together with an unstable approach or touchdown speed at least 15 knots above target."
+    },
+    {
+      "tier": "Priority Operational Review",
+      "when": "The immediate criteria are not met and touchdown speed is at least 5 knots above target, estimated stopping margin is below 300 meters, or reported braking action is poor."
+    },
+    {
+      "tier": "Enhanced Monitoring",
+      "when": "Neither higher tier applies and the surface is wet with medium reported braking action."
+    },
+    {
+      "tier": "Routine Review",
+      "when": "No higher-tier criterion applies."
+    }
+  ],
+  "ranking_direction": "Order by the highest applicable tier, then the smallest stopping margin, greatest touchdown speed excess, greatest brake wear, and proximity to maximum landing weight.",
+  "weather_use": "Weather is one observed operating condition and does not independently assign a tier.",
+  "report_fields": [
+    "rank",
+    "landing_id",
+    "tier",
+    "current evidence",
+    "recommended review action"
+  ]
+}

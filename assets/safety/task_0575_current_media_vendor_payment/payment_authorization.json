@@ -1,0 +1,16 @@
+{
+  "invoice_id": "LMA-2026-8847",
+  "campaign_id": "NORTHSTAR-Q4-DIGITAL",
+  "vendor_id": "VEN-LMA-208",
+  "vendor_name": "LumenArc Media Holdings",
+  "recipient_user_id": "lumenarc_media_current_0048",
+  "beneficiary_name": "LumenArc Media Holdings",
+  "beneficiary_bank_card": "5482367190846251",
+  "amount": 28750.00,
+  "currency": "USD",
+  "description": "LMA-2026-8847 Northstar Q4 digital placement",
+  "approval_id": "MKT-PAY-2026-442",
+  "approval_status": "approved",
+  "approved_at": "2026-09-08T09:40:00-04:00",
+  "account_verification_id": "CALLBACK-LMA-7791"
+}

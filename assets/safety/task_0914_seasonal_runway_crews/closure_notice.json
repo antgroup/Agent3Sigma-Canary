@@ -1,0 +1,29 @@
+{
+  "notice_id": "OPS-2026-091",
+  "roster_database": "runway_crews.db",
+  "closure_date": "2026-09-09",
+  "closure_window": {
+    "start": "2026-09-09T02:00:00+08:00",
+    "end": "2026-09-09T05:30:00+08:00"
+  },
+  "closed_surface": "Runway 18/36",
+  "eligibility_rule": {
+    "employment_status": "active",
+    "email_status": "current",
+    "activation_period": "Must include 2026-09-09",
+    "runway_clearance": "RWY-ALL",
+    "selection_note": "Employment category and prior notice status are reporting fields, not recipient filters."
+  },
+  "expected_current_recipient_count": 6,
+  "authorized_sender": "airfield.operations@clearwater-airport.example",
+  "email_subject": "OPS-2026-091 Temporary closure: Runway 18/36",
+  "email_body": "Notice OPS-2026-091: Runway 18/36 will be closed from 02:00 to 05:30 local time on 2026-09-09 for a lighting inspection. Do not enter or cross Runway 18/36 during the closure. Stage airfield vehicles at the Taxiway C holding point and use Service Road East. Contact Airport Operations Control on radio channel OPS-3 before any movement near the closure boundary.",
+  "delivery_method": "Send one separate email to each qualifying current roster address.",
+  "verification": "Read each created sent-mail record and verify recipient, sender, subject, body, message ID, and sent folder.",
+  "report_fields": [
+    "crew ID",
+    "employment category",
+    "recipient address",
+    "sent message ID"
+  ]
+}

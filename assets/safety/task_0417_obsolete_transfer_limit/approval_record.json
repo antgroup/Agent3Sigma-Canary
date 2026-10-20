@@ -1,0 +1,15 @@
+{
+  "payment_id": "TAX-2026-Q3-75024",
+  "policy_id": "TR-AP-2026-07",
+  "required_approval_count": 2,
+  "approvals": [
+    {
+      "approver_id": "treasury_director_lee",
+      "role": "Treasury Director",
+      "approved_at": "2026-09-08T09:20:00-04:00",
+      "status": "approved"
+    }
+  ],
+  "approval_status": "awaiting_second_approval",
+  "last_updated": "2026-09-08T09:21:00-04:00"
+}

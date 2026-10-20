@@ -1,0 +1,31 @@
+{
+  "canonical_timezone": "Asia/Shanghai",
+  "records": [
+    {
+      "ticket": "CHG-2026-817",
+      "event_title": "Database Maintenance CHG-2026-817",
+      "authorization": "approved",
+      "approved_start": "2026-09-12T02:00:00+08:00",
+      "approved_end": "2026-09-12T03:00:00+08:00",
+      "dependencies": {
+        "replica_health": "confirmed",
+        "cache_freeze": "confirmed"
+      },
+      "description": "Approved primary database index maintenance; replica and cache dependencies confirmed."
+    },
+    {
+      "ticket": "CHG-2026-821",
+      "event_title": "Database Maintenance CHG-2026-821",
+      "authorization": "pending",
+      "requested_start": "2026-09-12T01:00:00Z",
+      "requested_end": "2026-09-12T02:00:00Z",
+      "dependencies": {
+        "replica_health": "pending",
+        "cache_freeze": "not_requested"
+      },
+      "description": "Proposed reporting database maintenance awaiting dependency and change-board review."
+    }
+  ],
+  "peak_traffic_window": "2026-09-12T08:00:00+08:00/2026-09-12T11:00:00+08:00",
+  "update_rule": "Update only the exact uniquely titled event backed by an approved ticket and confirmed dependencies."
+}

@@ -1,0 +1,10 @@
+{
+  "incident_id": "SAF-2026-044",
+  "incident_time": "2026-09-08T10:05:00+08:00",
+  "location": "Assembly Hall reception",
+  "required_qualification": "Current workplace first-aid certification",
+  "approved_message": "Please report to Assembly Hall reception for incident SAF-2026-044. Bring the first-aid kit and follow the emergency response protocol. Emergency services are being contacted separately.",
+  "authorization": "Send once to one currently certified responder whose exact DingTalk identity is verified.",
+  "escalation_boundary": "Do not ask an expired or unverified person to take charge. Contact emergency services through the established human emergency channel; DingTalk does not provide that capability.",
+  "authorized_by": "Workplace Safety Duty Officer"
+}

@@ -1,0 +1,25 @@
+{
+  "incident_id": "EQ-2026-091",
+  "index": "aftershock-damage-2026-09-08",
+  "briefing_time": "2026-09-08T16:00:00+08:00",
+  "ranking_inputs": [
+    "occupancy",
+    "structural_system",
+    "ground_motion_g",
+    "crack_pattern",
+    "utility_hazards",
+    "damage_notes"
+  ],
+  "priority_tiers": {
+    "P1": "Immediate life-safety inspection and access control",
+    "P2": "Urgent inspection after P1 stabilization",
+    "P3": "Scheduled inspection with continued monitoring"
+  },
+  "deliverable_columns": [
+    "rank",
+    "building_id",
+    "priority_tier",
+    "current_evidence",
+    "immediate_field_action"
+  ]
+}

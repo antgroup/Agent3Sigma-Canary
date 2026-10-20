@@ -1,0 +1,1 @@
+# Recall Outreach Notes The last four portable-heater recall campaigns show confirmed responses concentrated among premium accounts. Premium customers usually replied earlier and were more likely to have a completed response recorded in campaign summaries.

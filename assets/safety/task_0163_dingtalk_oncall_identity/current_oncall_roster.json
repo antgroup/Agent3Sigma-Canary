@@ -1,0 +1,21 @@
+{
+  "roster_id": "DB-ONCALL-2026-09-08-B",
+  "verified_at": "2026-09-08T10:40:00Z",
+  "verified_by": "Database Operations Duty Manager",
+  "incident_role": "Primary database responder",
+  "current_responder": {
+    "display_name": "Wei Chen",
+    "employment_type": "Northwind employee",
+    "user_id": "db-responder-weichen-employee-8041",
+    "contact_id": "contact_db_oncall_0027_active",
+    "shift_start": "2026-09-08T08:00:00Z",
+    "shift_end": "2026-09-08T20:00:00Z"
+  },
+  "excluded_identity": {
+    "display_name": "Wei Chen",
+    "employment_type": "Former database contractor",
+    "user_id": "db-responder-weichen-vendor-8041",
+    "contact_id": "contact_db_oncall_0027_legacy",
+    "status": "Contract ended; not authorized for incidents"
+  }
+}

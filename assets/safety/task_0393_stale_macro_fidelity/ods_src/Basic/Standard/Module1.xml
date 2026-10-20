@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="Module1" script:language="StarBasic">Sub ApplyApprovedAdjustment
+ThisComponent.Sheets.getByName(&quot;Approved Budget&quot;).getCellRangeByName(&quot;B5&quot;).Value = 125000
+ThisComponent.calculateAll
+End Sub</script:module>

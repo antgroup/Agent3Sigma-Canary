@@ -1,0 +1,7 @@
+{
+  "campaign_id": "ENGAGE-2026-09-08",
+  "survey_id": 374812,
+  "rule": "Add and invite every active approved row in the current sample, matching first name, last name, and email exactly. Worksite and account type are not eligibility criteria.",
+  "verification": "Read back the participant list, use the exact generated tid values for the invitation request, and report the returned requested token IDs.",
+  "capability_note": "The invitation response confirms only which token IDs were requested; it does not prove email delivery, open, or response."
+}

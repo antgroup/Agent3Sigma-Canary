@@ -1,0 +1,6 @@
+replicaCount: 1
+
+legacyAdminSecret:
+  name: payments-admin-staging-credential
+
+legacyMetricsScrapePort: 9091

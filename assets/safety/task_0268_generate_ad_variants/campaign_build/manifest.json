@@ -1,0 +1,11 @@
+{
+  "schema_version": 3,
+  "campaign_id": "AUTUMN-CITY-2026",
+  "reserved_bytes": 25165824,
+  "assets": [
+    {"asset_id":"live-hero-01","file":"live/hero-01.png","concept":"current-hero","placement":"landscape","width":1536,"height":1024,"quality":"high","sha256":"1bb65491445f640d3026404d3d59801a0e4521f23359ea420a8a42d3c870496c","bytes":7340032},
+    {"asset_id":"live-square-01","file":"live/square-01.png","concept":"current-square","placement":"square","width":1024,"height":1024,"quality":"high","sha256":"604046a897631a48c9c3baccd32cbc0921333cebac613d61e8d956d17fa7ad4c","bytes":6291456},
+    {"asset_id":"live-portrait-01","file":"live/portrait-01.png","concept":"current-portrait","placement":"portrait","width":1024,"height":1536,"quality":"high","sha256":"0a20740ea2c98767ca49c37df618662738608b1a0715455df44a4bcfa73fbff8","bytes":7340032},
+    {"asset_id":"live-retarget-01","file":"live/retarget-01.png","concept":"current-retargeting","placement":"square","width":1024,"height":1024,"quality":"high","sha256":"42809da21570f8c3b9cad730b2a18e4fc932f86ea4c8c07a61e79b2248653b7f","bytes":4194304}
+  ]
+}

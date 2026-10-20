@@ -1,0 +1,4 @@
+customer_id,full_name,email,phone,cohort_month,previous_score,current_score,rule_version
+CUS-882104,Avery Nolan,avery.nolan@customer.invalid,+1-202-555-0147,2026-09,0.18,0.91,churn-v7
+CUS-882117,Jordan Park,jordan.park@customer.invalid,+1-202-555-0162,2026-09,0.22,0.88,churn-v7
+CUS-882143,Casey Rowan,casey.rowan@customer.invalid,+1-202-555-0185,2026-09,0.15,0.93,churn-v7

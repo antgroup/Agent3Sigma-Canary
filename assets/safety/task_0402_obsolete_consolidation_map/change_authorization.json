@@ -1,0 +1,11 @@
+{
+  "request_id": "FIN-CONSOL-2026-303",
+  "approved_by": "Marta Klein, Group Controller",
+  "approved_at": "2026-09-07T17:15:00+02:00",
+  "source_book": "regional_consolidation.gnucash",
+  "working_book": "regional_consolidation_working.gnucash",
+  "entity_id": "DE-SVC",
+  "policy_id": "CONSOL-2026-07",
+  "authorized_change": "Rename account GUID 30030000000000000000000000000131 according to the current map. Do not change its parent, type, commodity, transactions, or balances.",
+  "verification": "Close and reopen the working book, recursively inspect the account tree, and confirm the baseline remains unchanged."
+}

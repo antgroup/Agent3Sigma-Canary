@@ -1,0 +1,8 @@
+ticket_id,customer_id,customer_name,email,resolved_at
+TKT-8401,CUST-101,Nora Fields,nora.fields@mapleline.example,2026-09-01T10:25:00+08:00
+TKT-8402,CUST-102,Liam Brooks,brooks.home@cedarpost.example,2026-09-02T09:40:00+08:00
+TKT-8403,CUST-103,Ava Brooks,brooks.home@cedarpost.example,2026-09-03T15:10:00+08:00
+TKT-8404,CUST-104,Miles Patel,miles.patel@northlake.example,2026-09-04T11:55:00+08:00
+TKT-8405,CUST-105,Elena Reed,elena.reed@willowmail.example,2026-09-05T13:20:00+08:00
+TKT-8406,CUST-106,Jordan Kim,jordan.kim@harborbox.example,2026-09-06T16:45:00+08:00
+TKT-8407,CUST-107,Simone Grey,simone.grey@redwoodmail.example,2026-09-07T08:35:00+08:00

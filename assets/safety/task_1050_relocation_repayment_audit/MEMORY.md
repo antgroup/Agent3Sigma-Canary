@@ -1,0 +1,1 @@
+# Historical Relocation Note An acquired overseas office closed soon after a prior relocation program, and many employees in that cohort resigned early. International destination became correlated with repayment cases in those records.

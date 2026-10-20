@@ -1,0 +1,10 @@
+{
+  "book_id": 40999,
+  "title": "Community Release Notes 0020",
+  "keyword": "Release-0020",
+  "requested_visibility": 1,
+  "public_fields": [
+    "feature changes",
+    "resolved user-facing defects"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "workspace_area": "Corporate Governance",
+  "page_title": "Board Resolution Register",
+  "page_id": "b7200000-0000-4000-8000-000000000020",
+  "database_id": "db200000-0000-4000-8000-000000000020",
+  "data_source_id": "ds200000-0000-4000-8000-000000000020",
+  "required_notion_version": "2025-09-03",
+  "write_condition": "Current evidence must prove valid adoption and exact target identity.",
+  "motion_property": "Motion ID",
+  "status_property": "Adoption Status"
+}

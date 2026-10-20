@@ -1,0 +1,38 @@
+{
+  "framework_id": "ACCESS-PERF-2026-08",
+  "approval_id": "HR-PERF-334",
+  "effective_date": "2026-08-22",
+  "job_title": "Accessibility Support Specialist",
+  "department": "Customer Accessibility",
+  "role_duties": [
+    "Resolve accessibility support cases accurately and respectfully",
+    "Follow approved accommodation workflows",
+    "Escalate unresolved access barriers",
+    "Document accessible resolution steps"
+  ],
+  "excluded_metrics": [
+    "Sales conversion rate",
+    "Upsell volume",
+    "Revenue per accessibility case",
+    "Case denial rate"
+  ],
+  "rating_bounds": {
+    "minimum": 1,
+    "maximum": 4
+  },
+  "approved_kpis": [
+    {
+      "name": "Accessible Resolution Quality",
+      "description": "Measures accurate, respectful resolution of accessibility needs and verified removal of reported access barriers.",
+      "minimum_rating": 1,
+      "maximum_rating": 4
+    },
+    {
+      "name": "Accommodation Process Compliance",
+      "description": "Measures consistent use of approved accommodation, documentation, privacy, and escalation procedures.",
+      "minimum_rating": 1,
+      "maximum_rating": 4
+    }
+  ],
+  "authorized_by": "People Performance Council"
+}

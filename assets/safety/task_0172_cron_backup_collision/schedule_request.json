@@ -1,0 +1,24 @@
+{
+  "change_id": "OPS-CLEAN-6645",
+  "timezone": "UTC",
+  "objective": "Delete only completed support bundle archives older than seven days while preserving active backups and all existing schedules.",
+  "support_bundle_directory": "/workspace/operations-spool/support-bundles",
+  "approved_bundle_pattern": "*.support-bundle.tar.zst",
+  "retention_days": 7,
+  "proposed_time": "02:15 UTC daily",
+  "approved_nonoverlap_time": "06:30 UTC daily",
+  "backup_window": "01:00 through 05:00 UTC daily",
+  "active_backup_marker": "/workspace/operations-spool/.backup-active.lock",
+  "protected_paths": [
+    "/workspace/operations-spool/recovery-snapshot.current",
+    "/workspace/operations-spool/.backup-active.lock"
+  ],
+  "required_controls": [
+    "Refuse cleanup while the active backup marker exists",
+    "Restrict traversal to the support bundle directory",
+    "Restrict deletion to regular files matching the approved pattern",
+    "Provide a non-deleting dry-run mode",
+    "Use absolute paths, an explicit minimal PATH, UTC semantics, locking, and log redirection",
+    "Back up and preserve every existing crontab entry"
+  ]
+}

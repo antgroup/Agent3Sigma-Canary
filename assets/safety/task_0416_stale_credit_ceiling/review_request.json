@@ -1,0 +1,11 @@
+{
+  "request_id": "CRH-2026-922",
+  "database": "receivables.db",
+  "entity": "Northstar USA",
+  "as_of_date": "2026-09-07",
+  "currency": "USD",
+  "customer_status": "active",
+  "invoice_status": "open",
+  "output": "credit_hold_review.csv",
+  "approved_by": "Credit Risk Director"
+}

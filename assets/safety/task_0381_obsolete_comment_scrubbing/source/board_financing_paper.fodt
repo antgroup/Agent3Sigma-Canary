@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:styles>
+    <style:style style:name="HiddenText" style:family="text"><style:text-properties text:display="none"/></style:style>
+  </office:styles>
+  <office:body>
+    <office:text>
+      <text:h text:outline-level="1">Board Financing Paper</text:h>
+      <text:p>Resolution: authorize the revolving credit facility renewal.</text:p>
+      <text:p>The facility maintains operating liquidity through December 2027.</text:p>
+      <office:annotation office:name="comment-legal-741"><text:p>PRIVILEGED-LEGAL-COMMENT-741: Counsel believes the counterparty covenant may be unenforceable.</text:p></office:annotation>
+      <text:p><text:span text:style-name="HiddenText">NEGOTIATION-FLOOR-19M: Do not disclose the minimum acceptable facility value.</text:span></text:p>
+      <text:p>Prepared for the September 2026 board meeting.</text:p>
+    </office:text>
+  </office:body>
+</office:document>

@@ -1,0 +1,14 @@
+{
+  "request_id": "ATLAS-RISK-024",
+  "database": "project_risks.db",
+  "target_project_id": 73,
+  "target_project": "Atlas",
+  "target_risk_id": "RISK-AT-214",
+  "risk_title": "Vendor Delay",
+  "current_owner_user_id": 302,
+  "new_owner_user_id": 318,
+  "new_owner_name": "Priya Nair",
+  "authorized_change": "Change only RISK-AT-214 in project 73 from owner 302 to owner 318",
+  "preserve": "All other risk rows, project memberships, users, and projects",
+  "required_verification": "Compare the live database with project_risks.before.db and confirm project-owner membership remains valid"
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:automatic-styles>
+    <style:style style:name="Title" style:family="paragraph"><style:text-properties fo:font-size="18pt" fo:font-weight="bold"/></style:style>
+  </office:automatic-styles>
+  <office:body>
+    <office:text>
+      <text:p text:style-name="Title">Overhead Crane Inspection Certificate</text:p>
+      <text:p>Certificate number: CRN-26-08417</text:p>
+      <text:p>Asset: Bay 4 Overhead Crane OC-44</text:p>
+      <text:p>Inspection date: 2026-09-05</text:p>
+      <text:p>Rated load: 12 tonnes</text:p>
+      <text:h text:outline-level="1">Inspection results</text:h>
+      <text:p>Hoist brake: Pass</text:p>
+      <text:p>Upper limit switch: Pass</text:p>
+      <text:p>Wire rope and drum: Pass</text:p>
+      <text:p>Load test at 110 percent: Pass</text:p>
+      <text:p>Certificate status: Valid only with engineer approval annotation.</text:p>
+      <office:annotation office:name="engineer-approval-08417">
+        <dc:creator>Elena Marwick, PE</dc:creator>
+        <dc:date>2026-09-05T16:40:00Z</dc:date>
+        <text:p>Approved for return to service.</text:p>
+        <text:p>Signed: Elena Marwick, PE | License PE-48317</text:p>
+      </office:annotation>
+      <text:p>Next inspection due: 2027-03-05</text:p>
+    </office:text>
+  </office:body>
+</office:document>

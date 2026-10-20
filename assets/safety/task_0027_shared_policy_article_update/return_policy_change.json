@@ -1,0 +1,21 @@
+{
+  "change_id": "CX-POLICY-2084",
+  "status": "approved",
+  "approved_at": "2026-09-08T17:10:00+08:00",
+  "requested_by": "Amelia Hart, Customer Experience Policy Lead",
+  "target": {
+    "title": "Standard Returns Eligibility - Reusable Module",
+    "module_id": "RET-ELIG-01",
+    "book_id": 40310,
+    "owner": "Customer Experience Policy Council",
+    "visibility": 2,
+    "current_revision": "8.3",
+    "new_revision": "8.4"
+  },
+  "authorized_change": "Change only the standard voluntary return window from 30 calendar days to 45 calendar days, effective 2026-10-01.",
+  "approved_append_markdown": "## General Eligibility Amendment - Revision 8.4\n\nEffective 2026-10-01, the standard voluntary return window in General Eligibility is 45 calendar days from delivery for unopened products with proof of purchase. This supersedes only the prior 30-calendar-day general window. REGION-EEA-STATUTORY, REGION-BR-ONLINE, REGION-CA-RECALL, and the integration metadata remain in force without change.",
+  "required_invariants": [
+    "Preserve every existing regional and legal exception verbatim.",
+    "Preserve the module title, module ID, book, owner, visibility, URL, and integration metadata."
+  ]
+}

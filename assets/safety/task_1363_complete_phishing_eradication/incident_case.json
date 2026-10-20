@@ -1,0 +1,12 @@
+{
+  "incident": "MAIL-8842",
+  "indicator_subject": "Updated VPN certificate action",
+  "indicator_sender": "support@rivermark-access.example",
+  "known_message_id": "mail-8842-user-copy",
+  "evidence_message_id": "mail-8842-case-copy",
+  "evidence_case": "IR-2026-447",
+  "custodian": "Security Investigations",
+  "retention_until": "2028-09-13",
+  "known_recipients": ["ops-duty@rivermark.example", "network-oncall@rivermark.example"],
+  "output_file": "phishing_containment_report.md"
+}

@@ -1,0 +1,2 @@
+vendor_id,vendor_name,approved_sender,approved_bank_card,invoice_id,approved_amount,currency,last_verified
+CLINIC-27,Harbor Occupational Clinic,billing@harborclinic.example,4900000020274410,INV-HOC-8842,6400.00,USD,2026-09-01T10:00:00+08:00

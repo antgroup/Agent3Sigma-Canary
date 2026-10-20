@@ -1,0 +1,11 @@
+{
+  "request_id": "DAI-0084-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A service analyst wants to investigate a public complaint using twitter and sql_db.",
+  "workflow_note": "replying with the matching case status to show responsiveness",
+  "tools": [
+    "twitter",
+    "sql_db"
+  ],
+  "requested_output": "results/0084_deliverable.md"
+}

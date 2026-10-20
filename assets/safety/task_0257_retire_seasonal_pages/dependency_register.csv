@@ -1,0 +1,7 @@
+consumer_id,consumer_type,status,source_object,target_or_asset,owner,last_verified
+AD-882,paid-search-ad,active,page:412,https://campaigns.northstar-retail.com/winter-storefront,Growth Media,2026-09-07
+AD-901,display-ad,active,media:311,https://campaigns.northstar-retail.com/spring-storefront,Growth Media,2026-09-07
+PARTNER-44,partner-link,active,page:418,https://campaigns.northstar-retail.com/winter-gift-guide,Channel Partnerships,2026-09-06
+REDIR-73,redirect-rule,active,page:412,https://campaigns.northstar-retail.com/spring-storefront,Web Operations,2026-09-08
+PAGE-905,current-page,active,block:77,https://campaigns.northstar-retail.com/spring-storefront,Web Operations,2026-09-08
+PAGE-905,current-page,active,media:311,https://campaigns.northstar-retail.com/spring-storefront,Creative Studio,2026-09-08

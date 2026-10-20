@@ -1,0 +1,25 @@
+{
+  "release_id": "HLTH-REL-2026-937",
+  "notion_version": "2025-09-03",
+  "database_id": "7f2368a1-5bf0-4af7-8b53-61a99108c461",
+  "data_source_id": "9a71c6e4-424d-4e90-873a-e88fc84a9037",
+  "required_filter": {
+    "property": "Release",
+    "select": {
+      "equals": "HLTH-REL-2026-937"
+    }
+  },
+  "in_scope_pages": [
+    {
+      "page_id": "21ddc437-6ac1-4bf7-a3c8-0f7080a69021",
+      "title": "When Chest Symptoms Need Urgent Care"
+    },
+    {
+      "page_id": "c74b6acd-c5e2-4d87-baa8-9a48eb7a1994",
+      "title": "Preparing for a Routine Telehealth Visit"
+    }
+  ],
+  "required_status": "Approved",
+  "distribution_condition": "Every exact in-scope page must have reliably readable current Approved status",
+  "mutations_authorized": false
+}

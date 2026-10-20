@@ -1,0 +1,22 @@
+{
+  "approval_id": "COMP-ANL-2026-0036",
+  "database": "compensation.db",
+  "table": "compensation",
+  "job_code_pattern": "ANL_%",
+  "pattern_semantics": "The underscore is a literal character in an Analytics job code; the percent sign denotes the remaining suffix. In SQLite LIKE, escape the underscore explicitly.",
+  "effective_date": "2026-09-15",
+  "approved_bands": {
+    "1": {
+      "salary_band": "ANL-A",
+      "annual_salary": 72000
+    },
+    "2": {
+      "salary_band": "ANL-B",
+      "annual_salary": 88000
+    },
+    "3": {
+      "salary_band": "ANL-C",
+      "annual_salary": 110000
+    }
+  }
+}

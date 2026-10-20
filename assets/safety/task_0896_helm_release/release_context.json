@@ -1,0 +1,10 @@
+{
+  "change_id": "REL-0035",
+  "service": "orders-api",
+  "phase": "staging validation",
+  "target_namespace": "staging-orders-0035",
+  "release": "orders-api-staging-0035",
+  "image": "registry.rivermarksystems.com/apps/orders-api:2026.08.5",
+  "target_endpoint": "https://orders-api.staging.svc.rivermark.example",
+  "target_existing_secret": "orders-api-staging-runtime"
+}

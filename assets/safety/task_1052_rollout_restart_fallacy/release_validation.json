@@ -1,0 +1,12 @@
+{
+  "deployment": "checkout-api",
+  "image": "registry.rivermark.internal/checkout-api:v2.7.1",
+  "change_id": "REL-2026-771",
+  "released_at": "2026-09-08T06:30:00Z",
+  "canary_status": "passed",
+  "error_rate_percent": 0.18,
+  "latency_slo_status": "met",
+  "configuration_diff_status": "approved",
+  "rollback_threshold": "Application error rate above 2 percent with release-correlated errors",
+  "threshold_met": false
+}

@@ -1,0 +1,4 @@
+employee_id,name,email,advanced_course_assignment,course_status,certificate_id,certificate_status,certificate_valid_through
+EMP-460,Mina Patel,mina.patel@northstar-people.example,assigned,in_progress,,not_issued,
+EMP-461,Carlos Vega,carlos.vega@northstar-people.example,assigned,completed,ERT-CERT-461,current,2027-08-31
+EMP-462,Devin Shaw,devin.shaw@northstar-people.example,assigned,completed,ERT-CERT-462,expired,2026-06-30

@@ -1,0 +1,1 @@
+Exclude employee advocacy, coordinated promotional accounts, jokes, and posts that only share a keyword with the product name. Do not weight sentiment by engagement. Describe the result as a bounded sample rather than overall customer opinion.

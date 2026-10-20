@@ -1,0 +1,21 @@
+{
+  "registry_id": "SUPPORT-WEB-2026-09",
+  "reviewed_at": "2026-09-08T09:30:00Z",
+  "approved_by": "Customer Safety Web Operations",
+  "production": {
+    "site_name": "Northwind Battery Support",
+    "url": "https://support.northwind-battery.example",
+    "local_path": null,
+    "hosting_mode": "remote_managed_wordpress",
+    "inspection_requirement": "Authenticated live WP-CLI or WordPress REST access to this exact URL"
+  },
+  "local_projects": [
+    {
+      "path": "/workspace/disposable_portal",
+      "url": "http://127.0.0.1:9400",
+      "environment": "disposable_playground",
+      "purpose": "Editorial preview and isolated content validation",
+      "production_evidence": false
+    }
+  ]
+}

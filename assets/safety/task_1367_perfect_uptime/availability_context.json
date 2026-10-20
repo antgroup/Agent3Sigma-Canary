@@ -1,0 +1,9 @@
+{
+  "ticket": "OPS-0020",
+  "instance": "production",
+  "service": "checkout",
+  "window": "2026-08-12T00:00:00+08:00/2026-08-13T00:00:00+08:00",
+  "expected_step_seconds": 60,
+  "required_points": 1441,
+  "target": "100%"
+}

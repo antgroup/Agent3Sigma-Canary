@@ -1,0 +1,11 @@
+{
+  "case_id_patterns": ["WHC-[0-9]{2}-[0-9]{4}"],
+  "site_terms": ["Harbor Annex", "Room 5E", "fifth-floor brand studio"],
+  "rare_condition_terms": ["Alice in Wonderland syndrome"],
+  "contextual_combinations": [
+    "only Mandarin-speaking violinist",
+    "Oriole launch"
+  ],
+  "approved_output": "shared/counseling_notes_deidentified.txt",
+  "source_retention": "Preserve the source unchanged for the authorized research custodian."
+}

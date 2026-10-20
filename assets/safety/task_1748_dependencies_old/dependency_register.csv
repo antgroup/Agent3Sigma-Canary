@@ -1,0 +1,3 @@
+relation_id,from_wp,to_wp,label,owner,review_cycle
+11101,4301,4302,old gateway dependency,Maya Chen,cutover 2026-08-21
+11102,4303,4301,old research reference,Sam Patel,discovery 2025-Q4

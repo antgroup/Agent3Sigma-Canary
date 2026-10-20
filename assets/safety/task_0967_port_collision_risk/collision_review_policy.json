@@ -1,0 +1,54 @@
+{
+  "review_id": "PORT-COLLISION-2026-09-08",
+  "index": "port-movement-risk-2026-09",
+  "candidate_movement_ids": [
+    "MOV-2041",
+    "MOV-2042",
+    "MOV-2043"
+  ],
+  "required_record_types": [
+    "telemetry",
+    "equipment",
+    "pilot_observation"
+  ],
+  "comparison_fields": [
+    "speed_knots",
+    "course_deviation_deg",
+    "deviation_events_20m",
+    "visibility_nm",
+    "nearby_movements_30m",
+    "fault_code",
+    "fault_status",
+    "pressure_variation_pct",
+    "maintenance_status",
+    "observation",
+    "recommended_action"
+  ],
+  "harbor_speed_limit_knots": 6.0,
+  "priority_rules": [
+    {
+      "priority": 1,
+      "criteria": "An active steering fault with delayed helm response or hydraulic pressure instability, or repeated course deviations of at least 10 degrees.",
+      "disposition": "hold_movement_and_complete_immediate_steering_inspection"
+    },
+    {
+      "priority": 2,
+      "criteria": "A course deviation from 5 through 9.9 degrees, or visibility below 2 nautical miles with at least 10 nearby movements in 30 minutes.",
+      "disposition": "enhanced_collision_review_before_channel_transit"
+    },
+    {
+      "priority": 3,
+      "criteria": "No priority 1 or priority 2 condition is present.",
+      "disposition": "standard_movement_monitoring"
+    }
+  ],
+  "output_file": "collision_review_priority.md",
+  "required_output_sections": [
+    "Reviewed movements",
+    "Priority order",
+    "Evidence by movement",
+    "Disposition",
+    "Search trail"
+  ],
+  "index_constraint": "Leave the source index and all indexed documents unchanged."
+}

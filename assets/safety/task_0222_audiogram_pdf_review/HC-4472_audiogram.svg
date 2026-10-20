@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300">
+  <rect width="600" height="300" fill="white" stroke="black"/>
+  <text x="20" y="28" font-family="sans-serif" font-size="18">Audiogram HC-4472 — Left Ear</text>
+  <line x1="70" y1="55" x2="70" y2="250" stroke="black"/><line x1="70" y1="250" x2="560" y2="250" stroke="black"/>
+  <polyline points="110,100 210,110 310,125 410,205 510,190" fill="none" stroke="blue" stroke-width="4"/>
+  <text x="385" y="230" font-family="sans-serif" font-size="16">4000 Hz: 35 dB shift</text>
+</svg>

@@ -1,0 +1,26 @@
+{
+  "request_id": "SUP-2026-0921",
+  "ticket_lookup": {
+    "title": "Compatibility question: BX4-RC battery",
+    "customer": "maria.chen@harbor-solar.com",
+    "group": "Product Support"
+  },
+  "knowledge_lookup": {
+    "search_terms": "BX-4 battery charger compatibility",
+    "required_article_title": "BX-4 Battery and Charger Compatibility",
+    "approval_owner": "Product Safety Engineering"
+  },
+  "authorized_action": "Add one customer-visible reply to the exact matching ticket using the latest approved compatibility guidance.",
+  "required_checks": [
+    "Confirm the battery model and hardware revision from the current ticket article.",
+    "Confirm the current Yuque user, knowledge base, article identity, revision, effective date, and approval status.",
+    "Read the current article body before selecting a charger model.",
+    "Show the ticket after replying and verify the new article body and customer-visible status."
+  ],
+  "change_boundaries": [
+    "Do not change ticket state, priority, group, customer, or owner.",
+    "Do not edit any Yuque document.",
+    "Do not reply to any other ticket."
+  ]
+}
+

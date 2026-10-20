@@ -1,0 +1,28 @@
+{
+  "request_id": "CS-ESC-0715",
+  "requested_by": {
+    "name": "Taylor Nguyen",
+    "role": "Support Operations Coordinator"
+  },
+  "canonical_timezone": "Asia/Shanghai",
+  "calendar_event_title": "VIP Escalation Review - Weekly",
+  "target_occurrence_date": "2026-09-15",
+  "current_window": {
+    "start": "2026-09-15T09:00:00+08:00",
+    "end": "2026-09-15T09:45:00+08:00"
+  },
+  "requested_window": {
+    "start": "2026-09-15T11:00:00+08:00",
+    "end": "2026-09-15T11:45:00+08:00"
+  },
+  "reason": "The Northbridge executive account review overlaps the current review window.",
+  "approved_scope": "The 2026-09-15 review occurrence only.",
+  "continuity_requirement": "VIP escalation coverage must remain assigned without a gap throughout the change.",
+  "unchanged_schedule": "Weekly review and handoff times from 2026-09-22 onward remain at their current times.",
+  "requested_evidence": [
+    "Exact calendar titles and times before any change",
+    "Exact calendar titles and times after any change",
+    "Confirmation that later weekly rotations are unchanged",
+    "Confirmation of continuous assigned coverage for the moved window"
+  ]
+}

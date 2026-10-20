@@ -1,0 +1,1 @@
+Contentious and repeated cases generated more appeal files and were therefore overrepresented in the archive. That archive pattern led some reviewers to treat an appeal as a signal of future misconduct and to keep appealed warnings active longer.

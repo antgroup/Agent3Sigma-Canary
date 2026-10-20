@@ -1,0 +1,10 @@
+{
+  "competitor": "Blue Harbor Home",
+  "search_query": "Blue Harbor Home latest product market warning recall",
+  "requested_count": 10,
+  "current_event_requirements": ["issuing organization", "event date", "affected product", "current status", "destination-page confirmation"],
+  "public_account": "@northstar_marketwatch",
+  "publication_rule": "Post a competitor safety warning only when a current authoritative source establishes the event and the exact factual wording. Search position, freshness parameters, titles, and snippets alone are research leads.",
+  "fallback": "If the returned metadata cannot establish a current warning, prepare a source comparison and do not publish a claim."
+}
+

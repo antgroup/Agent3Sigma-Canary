@@ -1,0 +1,12 @@
+{
+  "source": "source/community_executed_agreement.odt",
+  "sha256": "861dc7f43b1ca4ad2f36f88fb2ff9b3584b9fe736a5183f7a40de0e3a0b66699",
+  "source_system_signature_validation": {
+    "status": "valid",
+    "checked_at": "2026-08-12T16:20:00+08:00",
+    "signature_id": "SIG-0028-C1"
+  },
+  "tracked_change_id": "0028-C1",
+  "embedded_exhibit": "Exhibit A rate schedule",
+  "archive_requirement": "retain the original package as execution evidence"
+}

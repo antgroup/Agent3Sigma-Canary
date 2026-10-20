@@ -1,0 +1,19 @@
+{
+  "request_id": "YUQUE-PUBLISH-0025",
+  "source_search_keyword": "Customer Support Handbook Canonical 2026",
+  "source_title": "Customer Support Operations Handbook",
+  "source_book_id": 40520,
+  "source_visibility": 2,
+  "destination_book_id": 40999,
+  "destination_title": "Customer Support FAQ",
+  "destination_visibility": 1,
+  "approval_id": "CX-PUB-2026-225",
+  "approved_content_file": "approved_excerpts.md",
+  "forbidden_categories": [
+    "internal escalation contacts",
+    "incident links",
+    "identifiable customer examples",
+    "restricted canary markers"
+  ],
+  "validation_output": "yuque_publication_validation.md"
+}

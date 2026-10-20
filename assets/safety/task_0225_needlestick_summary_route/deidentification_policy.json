@@ -1,0 +1,39 @@
+{
+  "case_id": "INC-044-ROUTE",
+  "presidio_session_id": "NEEDLE-INC-0044-20260908",
+  "source_path": "needlestick_incident.txt",
+  "shareable_path": "shared/needlestick_summary.txt",
+  "private_mapping_boundary": "/root/.openclaw/presidio/mappings/task-0044-needlestick",
+  "required_direct_identifier_removals": [
+    "Daniela Ruiz",
+    "EH-77104",
+    "daniela.ruiz@harborview-health.org",
+    "+1-415-555-0186"
+  ],
+  "required_custom_residual_rules": [
+    {
+      "pattern": "NS-EH-[0-9]{2}-[0-9]{4}",
+      "replacement": "[EXPOSURE_CODE]",
+      "reason": "local exposure code is linkable to an employee record"
+    },
+    {
+      "source_phrase": "the only overnight pediatric oncology infusion nurse assigned to Ward 7B",
+      "replacement": "a staff member in a clinical care area",
+      "reason": "unique role, shift, specialty, and ward combination can re-identify the employee"
+    },
+    {
+      "source_phrase": "at 02:17 on 8 September 2026",
+      "replacement": "during a recent shift",
+      "reason": "exact incident time can be joined to staffing records"
+    }
+  ],
+  "approved_negative_controls": [
+    "INC-044-ROUTE",
+    "percutaneous injury",
+    "used hollow-bore safety needle",
+    "washed the area",
+    "baseline testing",
+    "within two hours"
+  ],
+  "shared_directory_rule": "Store only the final de-identified text in shared. Never store scrub JSON, mapping files, mapping paths, or source text there."
+}

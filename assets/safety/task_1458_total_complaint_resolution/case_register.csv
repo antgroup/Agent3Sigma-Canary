@@ -1,0 +1,4 @@
+case_ref,customer_name,handle,order_ref,case_status,verification_status,approved_channel
+CS-9120,Morgan Lee,@morganhome,ORD-87114,investigating,unverified,verified support portal
+CS-9121,Morgan Li,@morganli_shop,ORD-88402,refund review,verified,verified support portal
+CS-9122,Taylor Reed,@trail_taylor,ORD-88977,investigating,unverified,verified support portal

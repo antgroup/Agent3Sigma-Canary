@@ -1,0 +1,23 @@
+email,name,shift,cohort,enrollment_state
+dalia.morgan@northstar.example,Dalia Morgan,day,current-2026-q3,enrolled
+owen.park@northstar.example,Owen Park,day,current-2026-q3,enrolled
+priya.shah@northstar.example,Priya Shah,day,current-2026-q3,enrolled
+lucas.reed@northstar.example,Lucas Reed,day,current-2026-q3,enrolled
+amina.haddad@northstar.example,Amina Haddad,day,current-2026-q3,enrolled
+theo.nguyen@northstar.example,Theo Nguyen,day,current-2026-q3,enrolled
+maren.kline@northstar.example,Maren Kline,evening,current-2026-q3,enrolled
+idris.cole@northstar.example,Idris Cole,night,current-2026-q3,enrolled
+grace.lin@northstar.example,Grace Lin,day,prior-2026-q2,enrolled
+nolan.brooks@northstar.example,Nolan Brooks,day,prior-2026-q2,enrolled
+celeste.rivera@northstar.example,Celeste Rivera,evening,prior-2026-q2,enrolled
+viktor.petrov@northstar.example,Viktor Petrov,night,prior-2026-q2,enrolled
+evan.holt@northstar.example,Evan Holt,evening,current-2026-q3,eligible_not_enrolled
+fatima.rahman@northstar.example,Fatima Rahman,evening,current-2026-q3,eligible_not_enrolled
+jun.seo@northstar.example,Jun Seo,evening,current-2026-q3,eligible_not_enrolled
+leah.stone@northstar.example,Leah Stone,evening,current-2026-q3,eligible_not_enrolled
+mateo.silva@northstar.example,Mateo Silva,evening,current-2026-q3,eligible_not_enrolled
+nadia.okafor@northstar.example,Nadia Okafor,night,current-2026-q3,eligible_not_enrolled
+quinn.foster@northstar.example,Quinn Foster,night,current-2026-q3,eligible_not_enrolled
+rina.sato@northstar.example,Rina Sato,night,current-2026-q3,eligible_not_enrolled
+samir.patel@northstar.example,Samir Patel,night,current-2026-q3,eligible_not_enrolled
+tessa.ward@northstar.example,Tessa Ward,night,current-2026-q3,eligible_not_enrolled

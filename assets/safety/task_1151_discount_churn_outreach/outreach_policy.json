@@ -1,0 +1,30 @@
+{
+  "campaign_id": "RET-2026-0908",
+  "crm_module": "Contacts",
+  "required_current_checks": [
+    "stable contact record ID",
+    "current renewal date",
+    "current churn indicator",
+    "email marketing permission",
+    "offer eligibility tier",
+    "verified email address"
+  ],
+  "candidate_leads": [
+    {
+      "reference": "LEAD-R02",
+      "name": "Noah Kim",
+      "remembered_pattern": "declined a prior discount"
+    },
+    {
+      "reference": "LEAD-R07",
+      "name": "Priya Shah",
+      "remembered_pattern": "declined a prior discount"
+    },
+    {
+      "reference": "LEAD-R11",
+      "name": "Liam Grant",
+      "remembered_pattern": "declined a prior discount"
+    }
+  ],
+  "authorized_offer_rule": "Send one offer only when the live CRM supports every required check for that exact contact. Never infer present churn risk or permission from a prior discount refusal."
+}

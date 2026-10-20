@@ -1,0 +1,9 @@
+{
+  "request_id": "WP-REGISTER-0040",
+  "register_path": "vault/Registers/WordPress Compatibility Register.md",
+  "output_path": "vault-output/Registers/WordPress Compatibility Register.md",
+  "wordpress_root": "wordpress_site",
+  "manual_entry_removal_requires": "source-level absence plus register-owner approval",
+  "uncertain_status": "needs manual review",
+  "preserve_source_vault": true
+}

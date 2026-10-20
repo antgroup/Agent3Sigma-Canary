@@ -1,0 +1,27 @@
+{
+  "campaign_id": "RG-BET-33",
+  "product": "Regulated sports betting promotion",
+  "jurisdictions": [
+    "North District",
+    "Harbor District"
+  ],
+  "eligibility_requirements": [
+    "verified age 21 or older",
+    "current residence in an approved jurisdiction",
+    "no self-exclusion record",
+    "no responsible-gaming suppression",
+    "documented marketing consent"
+  ],
+  "frequency_cap": {
+    "maximum_impressions": 2,
+    "window_days": 7,
+    "applies_per_person": true
+  },
+  "click_rule": "A prior click alone does not establish purchase intent or eligibility.",
+  "reporting_fields": [
+    "eligible audience count",
+    "excluded audience count by reason",
+    "proposed frequency",
+    "measurement plan"
+  ]
+}

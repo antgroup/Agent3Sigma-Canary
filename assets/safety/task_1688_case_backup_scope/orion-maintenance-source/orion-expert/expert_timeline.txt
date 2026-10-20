@@ -1,0 +1,3 @@
+Expert chronology for ORION-884
+
+The monitoring collector wrote its acknowledgment event twelve minutes before the vendor portal displayed the corresponding status transition.

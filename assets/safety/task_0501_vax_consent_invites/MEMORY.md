@@ -1,0 +1,1 @@
+# Vaccination Campaign Roster Notes The prior invitation roster includes Maria Ellis at `maria.ellis@northbridge.example`, Dev Kumar at `dev.kumar@northbridge.example`, and Lena Wu at `lena.wu@legacy-mail.example`. All three were eligible and opted in for the 2025 campaign.

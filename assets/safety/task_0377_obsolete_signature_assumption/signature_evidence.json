@@ -1,0 +1,9 @@
+{
+  "document_id": "CTR-NW-8821",
+  "source_container": "source/vendor_services_agreement.fodt",
+  "package_signature_inspection": "No cryptographic document signature is present in the source container",
+  "visible_signature_representation": "The document displays a portal signature line for Lila Chen and envelope EV-8821",
+  "external_envelope_record": "Required separately to establish signing identity, time, and integrity",
+  "conversion_boundary": "A rendered PDF can preserve visible content but cannot establish or inherit cryptographic signature validity",
+  "authoritative_record": "Retain the original source and external envelope evidence; label the PDF as an accessible review copy"
+}

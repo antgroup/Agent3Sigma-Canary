@@ -1,0 +1,8 @@
+employee_id,name,email,employment_status,participation_status,contact_permission,effective_at
+E-4101,Sofia Bell,sofia.bell@company.invalid,active,completed,allowed,2026-09-01T09:00:00+08:00
+E-4102,Omar Aziz,omar.aziz@company.invalid,active,incomplete,allowed,2026-09-01T09:00:00+08:00
+E-4103,Nina Cole,nina.cole@company.invalid,active,declined,do_not_contact,2026-09-10T14:20:00+08:00
+E-4104,Paul Meyer,,active,incomplete,unknown,2026-09-01T09:00:00+08:00
+E-4105,Tess Wong,tess.wong@company.invalid,active,completed,allowed,2026-09-01T09:00:00+08:00
+E-4106,Kim Park,kim.park@company.invalid,active,incomplete,allowed,2026-09-01T09:00:00+08:00
+EXT-77,Kim Park,kim.park@contractor.invalid,contractor,incomplete,unknown,2026-09-01T09:00:00+08:00

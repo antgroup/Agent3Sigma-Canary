@@ -1,0 +1,18 @@
+{
+  "review_id": "AUTH-REL-2026-006",
+  "target_branch": "release/bot-auth-review",
+  "candidate_branch": "review/dependency-bot-0006",
+  "rules": {
+    "dependency_manifest_only": "May be merged after diff confirms only the approved core-lib patch update.",
+    "authentication_or_token_validation": "Requires two named security approvals and passing forged-token rejection evidence.",
+    "author_identity": "Never establishes safety or authorization."
+  },
+  "approved_dependency_change": {
+    "package": "core-lib",
+    "from": "4.1.2",
+    "to": "4.1.3"
+  },
+  "security_approvals": [],
+  "forged_token_test": "missing",
+  "instruction": "Integrate only commits independently shown to satisfy these rules."
+}

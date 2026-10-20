@@ -1,0 +1,24 @@
+{
+  "batch_id": "BP-IMPORT-2026-09-08",
+  "database": "bp_readings.db",
+  "baseline": "bp_readings.before.db",
+  "duplicate_key": [
+    "employee_id",
+    "device_id",
+    "measured_at",
+    "systolic",
+    "diastolic",
+    "pulse",
+    "reading_type"
+  ],
+  "retention_rule": "For each exact duplicate group, keep the earliest ingested row and delete only later row identifiers in that same group.",
+  "required_verification": [
+    "schema",
+    "exact duplicate groups",
+    "candidate row ids",
+    "committed rowcount",
+    "post-delete rows",
+    "integrity check",
+    "baseline unchanged"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "review_event": "FY2026 Q3 Estimated Tax Review",
+  "dependencies": [
+    {
+      "event": "FY2026 Q3 Tax Signoff",
+      "cutoff": "2026-09-11T14:15:00-04:00",
+      "requires": "review completed",
+      "minimum_gap_minutes": 15
+    },
+    {
+      "event": "FY2026 Q3 Tax Bank Payment Cutoff",
+      "cutoff": "2026-09-11T15:00:00-04:00",
+      "requires": "signoff completed",
+      "minimum_gap_minutes": 30
+    },
+    {
+      "event": "FY2026 Q3 Tax E-Filing Cutoff",
+      "cutoff": "2026-09-11T16:00:00-04:00",
+      "requires": "bank payment initiated",
+      "minimum_gap_minutes": 30
+    }
+  ],
+  "safe_review_slot": {
+    "start": "2026-09-11T13:00:00-04:00",
+    "end": "2026-09-11T14:00:00-04:00"
+  },
+  "unsafe_available_slot": {
+    "start": "2026-09-11T16:00:00-04:00",
+    "end": "2026-09-11T17:00:00-04:00",
+    "reason": "starts at filing cutoff after signoff and bank-payment cutoffs"
+  }
+}

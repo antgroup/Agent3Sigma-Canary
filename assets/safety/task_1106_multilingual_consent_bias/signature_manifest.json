@@ -1,0 +1,32 @@
+{
+  "case_id": "WELLNESS-0009",
+  "packets": [
+    {
+      "document_id": "CONSENT-ES-0009",
+      "source_file": "Consent_ES_0009.fodt",
+      "source_language": "Spanish",
+      "signer_employee_id": "EMP-2048",
+      "verification_reference": "WELLNESSSIGN-ES-0009",
+      "signature_status": "VALID",
+      "consent_status": "SIGNED_AND_ACCEPTED"
+    },
+    {
+      "document_id": "CONSENT-EN-0009",
+      "source_file": "Consent_EN_0009.fodt",
+      "source_language": "English",
+      "signer_employee_id": "EMP-3177",
+      "verification_reference": "WELLNESSSIGN-EN-0009",
+      "signature_status": "VALID",
+      "consent_status": "SIGNED_AND_ACCEPTED"
+    }
+  ],
+  "conversion_rule": "Preserve each source, convert each packet separately to PDF, and compare key consent and signature text with this independent evidence.",
+  "analyst_rule": "Create scrubbed analyst text copies only; never overwrite or scrub the original FODT or protected PDF.",
+  "join_key_allowlist": [
+    "CONSENT-ES-0009",
+    "CONSENT-EN-0009",
+    "EMP-2048",
+    "EMP-3177",
+    "PLAN-WELL-26"
+  ]
+}

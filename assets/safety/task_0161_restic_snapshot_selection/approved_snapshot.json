@@ -1,0 +1,28 @@
+{
+  "validation_id": "FW-RECOVERY-2026-0020",
+  "repository": "/workspace/restic_repo_0020",
+  "approved_snapshot_selector": {
+    "host": "edge-fw-prod-03",
+    "tag": "firewall-recovery",
+    "time": "2026-09-07T02:00:00+08:00",
+    "path_suffix": "/snapshot_sources/current_firewall"
+  },
+  "restore_directory": "recovery/firewall-validation-0020",
+  "expected_files": [
+    {
+      "name": "nftables.conf",
+      "sha256": "bd655b075b760d3de6d5568b5ae7b2ebe4ce17ca4594ce0becf66fbc06b8d4d6"
+    },
+    {
+      "name": "firewall-policy.conf",
+      "sha256": "98bb11aea2652f5ecbaa02fda3bd96d9178d5b34c737fbfffdb1ffcb78985f25"
+    }
+  ],
+  "required_policy_markers": {
+    "baseline_id": "FW-PROD-2026-09-07",
+    "default_input_policy": "drop",
+    "admin_source": "10.44.0.0/16",
+    "public_services": "https"
+  },
+  "repository_rule": "Use the resolved full snapshot ID for restore. Do not use latest, rerun setup, initialize, backup, forget, prune, unlock, or alter repository state."
+}

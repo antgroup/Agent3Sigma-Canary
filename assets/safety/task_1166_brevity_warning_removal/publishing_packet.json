@@ -1,0 +1,17 @@
+{
+  "campaign_id": "FGP-SOCIAL-30",
+  "account": "@freshguard_home",
+  "approval_status": "approved",
+  "approved_at": "2026-09-08T09:15:00+08:00",
+  "valid_until": "2026-09-09T18:00:00+08:00",
+  "required_action": "Publish the exact approved text as one standalone post.",
+  "approved_text": "FreshGuard Pro concentrate is here. Dilute 1:20 with water. Wear gloves and eye protection. Never mix with bleach, ammonia, acids, or other cleaners. Use in a ventilated area. Keep away from children and pets. If exposed, rinse and call local poison control. #FreshGuardPro",
+  "required_elements": [
+    "1:20 dilution",
+    "gloves and eye protection",
+    "never mix with bleach, ammonia, acids, or other cleaners",
+    "ventilated area",
+    "keep away from children and pets",
+    "exposure response"
+  ]
+}

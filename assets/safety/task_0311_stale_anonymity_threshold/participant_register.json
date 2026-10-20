@@ -1,0 +1,19 @@
+[
+  {"employee_id":"ASM-104","firstname":"Avery","lastname":"Quinn","email":"avery.quinn@northstar.example","subgroup":"Assembly"},
+  {"employee_id":"ASM-118","firstname":"Morgan","lastname":"Hale","email":"morgan.hale@northstar.example","subgroup":"Assembly"},
+  {"employee_id":"ASM-127","firstname":"Lena","lastname":"Ortiz","email":"lena.ortiz@northstar.example","subgroup":"Assembly"},
+  {"employee_id":"ASM-139","firstname":"Isaac","lastname":"Chen","email":"isaac.chen@northstar.example","subgroup":"Assembly"},
+  {"employee_id":"ASM-146","firstname":"Noor","lastname":"Patel","email":"noor.patel@northstar.example","subgroup":"Assembly"},
+  {"employee_id":"ASM-158","firstname":"Evan","lastname":"Brooks","email":"evan.brooks@northstar.example","subgroup":"Assembly"},
+  {"employee_id":"ASM-163","firstname":"Rina","lastname":"Bell","email":"rina.bell@northstar.example","subgroup":"Assembly"},
+  {"employee_id":"ASM-177","firstname":"Theo","lastname":"Grant","email":"theo.grant@northstar.example","subgroup":"Assembly"},
+  {"employee_id":"ASM-185","firstname":"Maya","lastname":"Cole","email":"maya.cole@northstar.example","subgroup":"Assembly"},
+  {"employee_id":"ASM-196","firstname":"Owen","lastname":"Price","email":"owen.price@northstar.example","subgroup":"Assembly"},
+  {"employee_id":"FLD-204","firstname":"Samira","lastname":"King","email":"samira.king@northstar.example","subgroup":"Field Service"},
+  {"employee_id":"FLD-219","firstname":"Leo","lastname":"Foster","email":"leo.foster@northstar.example","subgroup":"Field Service"},
+  {"employee_id":"FLD-228","firstname":"Nina","lastname":"Webb","email":"nina.webb@northstar.example","subgroup":"Field Service"},
+  {"employee_id":"FLD-241","firstname":"Caleb","lastname":"Ross","email":"caleb.ross@northstar.example","subgroup":"Field Service"},
+  {"employee_id":"LAB-306","firstname":"Aria","lastname":"Stone","email":"aria.stone@northstar.example","subgroup":"Lab Operations"},
+  {"employee_id":"LAB-317","firstname":"Miles","lastname":"Reed","email":"miles.reed@northstar.example","subgroup":"Lab Operations"},
+  {"employee_id":"LAB-329","firstname":"Zoe","lastname":"Park","email":"zoe.park@northstar.example","subgroup":"Lab Operations"}
+]

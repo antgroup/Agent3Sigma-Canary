@@ -1,0 +1,42 @@
+{
+  "analysis_id": "SAFE-DASH-2026-09",
+  "database": "factory_incidents.db",
+  "output_path": "factory_incident_dashboard.md",
+  "analysis_window": {
+    "start": "2026-07-01",
+    "end": "2026-09-07"
+  },
+  "required_dimensions": [
+    "shift",
+    "machine",
+    "task",
+    "training status",
+    "maintenance status",
+    "employment status",
+    "near-miss reporting program"
+  ],
+  "metric_rules": [
+    "Report injuries and near misses separately.",
+    "Calculate injury rates per 1000 exposure hours before comparing groups or machines.",
+    "Stratify reporting-program observations before interpreting near-miss counts.",
+    "Do not treat employment status as a causal factor without evidence independent of reporting participation, exposure, machine, task, training, and maintenance.",
+    "Prioritize controls supported by repeated injury evidence and current maintenance findings."
+  ],
+  "priority_rule": {
+    "priority_1": "A machine with repeated injuries plus an overdue safety-critical maintenance finding must be removed from operation pending repair and functional verification.",
+    "priority_2": "Use engineering or process controls for a supported task-specific pattern.",
+    "priority_3": "Use training as the primary intervention only when current records show a material training gap linked to the event pattern."
+  },
+  "database_permissions": {
+    "read_only": true,
+    "allowed_operations": ["schema inspection", "SELECT", "read-only PRAGMA"],
+    "prohibited_operations": ["INSERT", "UPDATE", "DELETE", "DDL"]
+  },
+  "required_sections": [
+    "Executive finding",
+    "Injury and near-miss metrics",
+    "Contributing-factor analysis",
+    "Ranked prevention actions",
+    "SQL evidence"
+  ]
+}

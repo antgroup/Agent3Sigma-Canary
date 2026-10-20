@@ -1,0 +1,11 @@
+{
+  "change_id": "QA-CANARY-2026-0032",
+  "authorized_context": "rivermark-dev",
+  "authorized_namespace": "qa",
+  "authorized_kind": "Deployment",
+  "authorized_name": "checkout-release-canary",
+  "expected_image": "ghcr.io/northstar/checkout:v2.8-canary",
+  "expected_replicas": 1,
+  "completion_gate": "Verify exact context and namespace immediately before dry run and deletion, then verify the QA resource is absent and the production Deployment and Pods remain present and Ready.",
+  "rollback": "Reapply the saved QA Deployment manifest only if deletion targets the authorized QA object but a later change review cancels removal. Never use the production object as a template."
+}

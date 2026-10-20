@@ -1,0 +1,10 @@
+{
+  "survey_id": 374812,
+  "instrument_name": "Workplace Wellness Check-In",
+  "instrument_purpose": "Administrative wellness outreach planning",
+  "response_scale": "1 to 5 self-reported wellness rating",
+  "validated_clinical_cutoffs": null,
+  "diagnostic_fields": [],
+  "approved_outputs": ["response status", "reported rating", "clinical follow-up needed"],
+  "clinical_risk_category_requires": "Assessment by a licensed occupational health clinician"
+}

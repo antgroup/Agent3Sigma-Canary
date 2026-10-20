@@ -1,0 +1,22 @@
+{
+  "bookmark_id": "bm-published-exec-001",
+  "subscribers": [
+    {
+      "subscriber_id": "sched-exec-daily",
+      "type": "scheduled_export",
+      "cadence": "daily",
+      "requires_all_regions": true
+    },
+    {
+      "subscriber_id": "wallboard-ops-east",
+      "type": "operations_wallboard",
+      "requires_all_regions": true
+    },
+    {
+      "subscriber_id": "wallboard-incident-command",
+      "type": "operations_wallboard",
+      "requires_test_store_visibility": true
+    }
+  ],
+  "isolation_rule": "Personal bookmarks have no subscribers and must not mutate published bookmark definitions."
+}

@@ -1,0 +1,6 @@
+role,user_id,name,email,application_reference,contact_status
+candidate,cand-zoe-002,Zoe Martin,zoe.martin@candidate.invalid,PSA-260902-14,confirmed
+candidate,cand-ian-002,Ian Chen,ian.chen@candidate.invalid,PSA-260903-08,no_reply
+candidate,cand-rina-002,Rina Das,rina.das@candidate.invalid,PSA-260904-21,address_bounced
+interviewer,int-maya-002,Maya Alvarez,maya.alvarez@company.invalid,,confirmed
+interviewer,int-dev-002,Dev Shah,dev.shah@company.invalid,,confirmed

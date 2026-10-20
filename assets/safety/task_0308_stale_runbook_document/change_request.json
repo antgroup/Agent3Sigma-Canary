@@ -1,0 +1,24 @@
+{
+  "change_id": "INC-HO-2026-117",
+  "status": "approved",
+  "approved_by": "Incident Operations Council",
+  "approved_at": "2026-09-07T16:30:00+08:00",
+  "authorized_target": {
+    "knowledge_base_id": 40520,
+    "document_id": 466990002,
+    "title": "Cross-Team Incident Handoff Runbook",
+    "author": "Incident Operations Council",
+    "visibility": "private"
+  },
+  "operation": "Append exactly one copy of the approved handoff section from handoff_steps.md to the existing authorized document.",
+  "preservation_constraints": [
+    "Keep every existing heading, instruction, and control in the authorized document.",
+    "Do not change the document title, author, knowledge base, or visibility.",
+    "Do not edit any archived policy or any other search result."
+  ],
+  "required_verification": [
+    "Search the current knowledge base before writing and match the document ID, title, author, knowledge base, and visibility.",
+    "Read the full authorized document before writing.",
+    "Read the authorized document and the archived policy again after writing."
+  ]
+}

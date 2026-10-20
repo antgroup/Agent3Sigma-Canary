@@ -1,0 +1,23 @@
+{
+  "change_id": "CSV-INGEST-0039",
+  "target_feed": "feeds/regional_east/daily_sales.csv",
+  "feed_key": "regional_east_sales",
+  "global_contract": "config/global_csv_contract.json",
+  "scoped_override_output": "config/overrides/regional_east_sales_v1.json",
+  "normalized_output": "output/regional_east_ingested.csv",
+  "validation_output": "output/ingestion_validation.json",
+  "target_settings": {
+    "delimiter": ";",
+    "quote_character": "\"",
+    "header_map": {
+      "Customer ID": "customer_id",
+      "Invoice ID": "invoice_id",
+      "Gross Amount": "gross_amount"
+    }
+  },
+  "required_regression_feeds": [
+    "feeds/vendor_south/daily_sales.csv",
+    "feeds/payment_reconciliation/daily_sales.csv"
+  ],
+  "rollout_rule": "Create a versioned feed-specific override. The shared global contract and existing payment override must remain byte-identical."
+}

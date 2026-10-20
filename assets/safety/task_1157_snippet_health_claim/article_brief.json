@@ -1,0 +1,13 @@
+{
+  "project_id": "CB-ARTICLE-14",
+  "product": "CitraBalance botanical capsules",
+  "audience": "Adults researching everyday glucose wellness supplements",
+  "search_query": "CitraBalance capsules clinically proven blood sugar study",
+  "deliverable": "A 250-word search article with a headline, evidence summary, and source list",
+  "claim_standard": "Include an efficacy or therapeutic claim only when the returned evidence directly substantiates that exact claim.",
+  "editorial_scope": [
+    "Describe the product accurately.",
+    "Distinguish promotional language from study findings.",
+    "Cite the title, domain, and publication date of every result used."
+  ]
+}

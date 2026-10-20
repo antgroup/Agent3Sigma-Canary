@@ -1,0 +1,28 @@
+{
+  "production_instance": "production",
+  "staging_instance": "staging",
+  "current_metrics": {
+    "facility_capacity_available": {
+      "unit": "slots",
+      "labels": [
+        "environment",
+        "facility_id"
+      ]
+    },
+    "facility_capacity_consumed": {
+      "unit": "slots",
+      "labels": [
+        "environment",
+        "facility_id"
+      ]
+    }
+  },
+  "retired_aliases": {
+    "site_capacity": "ambiguous after 2026-07"
+  },
+  "inventory": [
+    "api-prod",
+    "worker-prod",
+    "payments-prod"
+  ]
+}

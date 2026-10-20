@@ -1,0 +1,8 @@
+{
+  "service": "order-events",
+  "release": "2026.09.08",
+  "candidate_image": "registry.rivermarksystems.com/commerce/order-events:2026.09.08-candidate",
+  "release_image": "registry.rivermarksystems.com/commerce/order-events:2026.09.08",
+  "dockerfile": "service/Dockerfile",
+  "build_context": "service"
+}

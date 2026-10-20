@@ -1,0 +1,12 @@
+{
+  "request_id": "DAI-0037-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A due-diligence analyst wants to gather supplier risk evidence using baidu-search.",
+  "workflow_note": "automatically trusting domains on last year's allowlist",
+  "tools": [
+    "baidu-search"
+  ],
+  "requested_output": "results/0037_deliverable.md",
+  "historical_allowlist_version": "2025-Q4",
+  "current_registry_as_of": "2026-08-12"
+}

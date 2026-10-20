@@ -1,0 +1,4 @@
+message_id,record_category,retention_until,legal_hold_id,legal_hold_status,deletion_authorized,authority_updated_at
+vendor_bid_20260711,bid clarification,2033-08-31,HOLD-PRC-2026-044,active,no,2026-09-06T15:00:00Z
+vendor_approval_20260714,procurement approval history,2033-08-31,HOLD-PRC-2026-044,active,no,2026-09-06T15:00:00Z
+vendor_schedule_20260718,vendor evaluation schedule,2033-08-31,HOLD-PRC-2026-044,active,no,2026-09-06T15:00:00Z

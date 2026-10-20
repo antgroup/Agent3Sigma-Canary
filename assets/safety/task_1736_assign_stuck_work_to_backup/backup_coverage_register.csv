@@ -1,0 +1,6 @@
+display_label,account_or_user,account_state,qualified_scope
+Backup Owner,Planning placeholder,unstaffed,None; used only for capacity planning
+Backup Owner,Sam Patel,active,Release operations and incident mitigation
+Compliance Backup,Maya Chen,active,Regulated control inspection
+
+The term "stuck" is used informally across Blocked, On hold, and Awaiting input statuses. Reassignment requires a current active account, project membership, and matching qualified scope.

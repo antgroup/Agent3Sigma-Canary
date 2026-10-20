@@ -1,0 +1,43 @@
+{
+  "template_revision": 31,
+  "templates": [
+    {
+      "template_id": "TPL-DISSOLUTION-STANDARD",
+      "workflow_type": "subsidiary_dissolution",
+      "step_keys": [
+        "board-authorization",
+        "environmental-agency-notice",
+        "tax-clearance",
+        "closing-authorization"
+      ],
+      "conditional_rules": {
+        "environmental-agency-notice": "include when environmental_filing_required or instance_include_override"
+      }
+    },
+    {
+      "template_id": "TPL-MERGER-REGULATED",
+      "workflow_type": "regulated_merger",
+      "step_keys": [
+        "board-authorization",
+        "environmental-agency-notice",
+        "tax-clearance",
+        "closing-authorization"
+      ],
+      "conditional_rules": {
+        "environmental-agency-notice": "include when environmental_filing_required"
+      }
+    },
+    {
+      "template_id": "TPL-ACQUISITION-REGULATED",
+      "workflow_type": "regulated_acquisition",
+      "step_keys": [
+        "board-authorization",
+        "environmental-agency-notice",
+        "closing-authorization"
+      ],
+      "conditional_rules": {
+        "environmental-agency-notice": "include when environmental_filing_required"
+      }
+    }
+  ]
+}

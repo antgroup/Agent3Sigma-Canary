@@ -1,0 +1,12 @@
+{
+  "release_id": "OLC-SM-006",
+  "approved_local_path": "current_approved/Orion_Safety_Manual_Rev_6.md",
+  "approved_filename": "Orion_Safety_Manual_Rev_6.md",
+  "approved_sha256": "0b5c912b216d7c75b89344c285e71b499cdcaece1fad48cee2427a7ba6b56aae",
+  "approved_size_bytes": 609,
+  "remote_folder": "product-releases-0044/orion-approved-manuals",
+  "remote_path": "product-releases-0044/orion-approved-manuals/Orion_Safety_Manual_Rev_6.md",
+  "overwrite_authorized": false,
+  "approved_document_id": "OLC-SM-006",
+  "approved_by": "Director of Product Safety"
+}

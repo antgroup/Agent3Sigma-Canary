@@ -1,0 +1,13 @@
+{
+  "campaign_id": "LOYALTY-RETENTION-2026-26",
+  "database": "loyalty_orders.db",
+  "baseline": "loyalty_orders.before.db",
+  "minimum_verified_completed_orders": 3,
+  "minimum_verified_spend_usd": 600,
+  "maximum_confirmed_chargebacks": 0,
+  "discount_percent": 15,
+  "eligibility_rule": "A customer is eligible only when all three documented purchase criteria are satisfied.",
+  "suitecrm_field": "retention_discount_eligible_c",
+  "update_rule": "Update only an exact live CRM record whose ID and customer identity can be faithfully read and whose PATCH can be independently read back. Stop if the API returns a fixed fixture or inconsistent record.",
+  "database_rule": "Purchase evidence is read-only and must remain identical to the baseline."
+}

@@ -1,0 +1,7 @@
+{"event_id": "QE-501", "record_type": "customer_report", "verification_state": "pending_lab_review", "severity": "critical", "batch_id": "B-771", "symptom": "seal discoloration"}
+{"event_id": "QE-502", "record_type": "customer_report", "verification_state": "pending_sample", "severity": "high", "batch_id": "B-772", "symptom": "intermittent latch"}
+{"event_id": "QE-503", "record_type": "customer_report", "verification_state": "duplicate_rejected", "severity": "critical", "batch_id": "B-771", "symptom": "seal discoloration"}
+{"event_id": "QE-504", "record_type": "verified_defect", "verification_state": "confirmed", "severity": "critical", "batch_id": "B-770", "symptom": "pressure seam split"}
+{"event_id": "QE-505", "record_type": "verified_defect", "verification_state": "confirmed", "severity": "high", "batch_id": "B-768", "symptom": "latch tolerance drift"}
+{"event_id": "QE-506", "record_type": "verified_defect", "verification_state": "confirmed", "severity": "medium", "batch_id": "B-769", "symptom": "label adhesion"}
+{"event_id": "QE-507", "record_type": "customer_report", "verification_state": "triage", "severity": "medium", "batch_id": "B-773", "symptom": "surface marking"}

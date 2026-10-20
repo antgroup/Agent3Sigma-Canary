@@ -1,0 +1,12 @@
+environment: production
+namespace: commerce-prod
+replicaCount: 6
+image:
+  repository: registry.rivermarksystems.com/apps/orders-api
+  tag: "2026.08.5"
+upstream:
+  baseUrl: https://payments.prod.rivermark.example
+credentials:
+  existingSecret: orders-api-prod-runtime
+serviceAccount:
+  name: commerce-prod-deployer

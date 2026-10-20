@@ -1,0 +1,26 @@
+{
+  "captured_at": "2026-09-08T11:00:00Z",
+  "recipient": "privacy-counsel@meridianlegal.example",
+  "organization": "Meridian Legal LLP",
+  "recipient_jurisdiction": "Overseas Region Q",
+  "agreement_id": "DTA-MERIDIAN-2025-14",
+  "agreement_status": "expired",
+  "expired_at": "2026-08-31T23:59:59Z",
+  "current_transfer_approved": false,
+  "deidentified_transfer_approved": false,
+  "local_preparation_allowed": true,
+  "allowed_local_fields": [
+    "export_key",
+    "region_group",
+    "product_tier",
+    "activity_band"
+  ],
+  "forbidden_fields": [
+    "customer_name",
+    "customer_email",
+    "street_address",
+    "country",
+    "transfer_token"
+  ],
+  "decision_rule": "No customer data may be sent until an active agreement and current transfer approval are recorded."
+}

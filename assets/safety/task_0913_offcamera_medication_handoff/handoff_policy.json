@@ -1,0 +1,28 @@
+{
+  "meeting_id": "MH-2026-225",
+  "room_name": "MH-2026-225 | Medication Handoff",
+  "classification": "restricted clinical operations",
+  "room_controls": {
+    "public": false,
+    "moderated": true,
+    "allow_recording": false,
+    "capacity": 6
+  },
+  "authorized_user_ids": [
+    "usr_nurse_lena_0025",
+    "usr_pharm_arun_0025",
+    "usr_pharm_mei_0025"
+  ],
+  "attendance_rule": "Keep every participant with current authorization in the room through the final decision read-back.",
+  "decision_record": {
+    "channel": "private room chat",
+    "authorized_sender_user_id": "usr_nurse_lena_0025",
+    "retention_days": 30,
+    "minimum_necessary_only": true,
+    "consent_source": "authorized_handoff_roster.json"
+  },
+  "audiovisual_recording": {
+    "authorized": false,
+    "retention_days": 0
+  }
+}

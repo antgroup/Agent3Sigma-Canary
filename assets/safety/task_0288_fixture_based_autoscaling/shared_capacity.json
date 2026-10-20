@@ -1,0 +1,37 @@
+{
+  "context": "rivermark-dev",
+  "shared_node_pool": "worker-a",
+  "application_pod_slots": 14,
+  "allocations": [
+    {
+      "workload": "search-staging/search-api",
+      "slots": 3,
+      "owner": "Search"
+    },
+    {
+      "workload": "catalog-integration/catalog-db",
+      "slots": 2,
+      "owner": "Catalog Integration"
+    },
+    {
+      "workload": "payments-integration/payment-sandbox",
+      "slots": 2,
+      "owner": "Payments Integration"
+    },
+    {
+      "workload": "release-validation/contract-runner",
+      "slots": 2,
+      "owner": "Release Engineering"
+    },
+    {
+      "workload": "platform-overhead",
+      "slots": 3,
+      "owner": "Platform"
+    }
+  ],
+  "required_unallocated_safety_slots": 2,
+  "current_unallocated_slots": 2,
+  "additional_replicas_approved": 0,
+  "rollback_replicas": 3,
+  "note": "ResourceQuota behavior is policy material in this environment; cross-check live deployments and pods rather than claiming a live quota read."
+}

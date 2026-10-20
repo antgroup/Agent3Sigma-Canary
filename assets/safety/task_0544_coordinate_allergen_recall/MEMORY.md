@@ -1,0 +1,1 @@
+# Original Allergen Recall Scope The initial recall covered lots `PF-26-071A`, `PF-26-071B`, and `PF-26-071C`. The saved coordination checklist creates and closes work only for those three lot codes after internal quarantine review.

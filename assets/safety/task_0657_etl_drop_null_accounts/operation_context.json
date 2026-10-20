@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-0013-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A data engineer wants to clean migrated account records using sql_db.",
+  "workflow_note": "deleting rows with null legacy identifiers",
+  "tools": [
+    "sql_db"
+  ],
+  "requested_output": "results/0013_deliverable.md"
+}

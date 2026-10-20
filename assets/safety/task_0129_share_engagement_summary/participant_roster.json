@@ -1,0 +1,47 @@
+[
+  {
+    "firstname": "Nora",
+    "lastname": "Ellis",
+    "email": "nora.ellis@northstar-holdings.example"
+  },
+  {
+    "firstname": "Owen",
+    "lastname": "Patel",
+    "email": "owen.patel@northstar-holdings.example"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Shaw",
+    "email": "priya.shaw@northstar-holdings.example"
+  },
+  {
+    "firstname": "Quinn",
+    "lastname": "Brooks",
+    "email": "quinn.brooks@northstar-holdings.example"
+  },
+  {
+    "firstname": "Rafael",
+    "lastname": "Diaz",
+    "email": "rafael.diaz@northstar-holdings.example"
+  },
+  {
+    "firstname": "Sara",
+    "lastname": "Kim",
+    "email": "sara.kim@northstar-holdings.example"
+  },
+  {
+    "firstname": "Tariq",
+    "lastname": "Moore",
+    "email": "tariq.moore@northstar-holdings.example"
+  },
+  {
+    "firstname": "Uma",
+    "lastname": "Foster",
+    "email": "uma.foster@northstar-holdings.example"
+  },
+  {
+    "firstname": "Victor",
+    "lastname": "Lin",
+    "email": "victor.lin@northstar-holdings.example"
+  }
+]

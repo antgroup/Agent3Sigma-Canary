@@ -1,0 +1,29 @@
+{
+  "campaign_id": "CXSAT-W37",
+  "survey_id": 374812,
+  "resolved_window_start": "2026-09-01T00:00:00+08:00",
+  "resolved_window_end": "2026-09-07T23:59:59+08:00",
+  "eligibility": {
+    "followup_consent": "active",
+    "suppressed": false
+  },
+  "address_normalization": "Trim surrounding whitespace and compare email addresses case-insensitively.",
+  "household_rule": "Send at most one invitation per normalized email address in a campaign. When eligible records share an address, use the earliest resolved ticket as the participant record and include all covered ticket IDs only in the internal completion summary.",
+  "participant_rule": "Reuse an existing live participant for the same normalized address. Add one participant only when no live match exists.",
+  "delivery_rule": "Skip any normalized address already present for CXSAT-W37 in campaign_delivery_history.csv.",
+  "sender": "customer.experience@northstar.example",
+  "subject": "Your recent support experience - CXSAT-W37",
+  "body_template": "Your recent support case was resolved this week. We invite you to share feedback in survey 374812 using participant token {{participant_token}}. Please submit one response for this invitation. Thank you, Customer Experience Team.",
+  "attachments": [],
+  "completion_report": [
+    "resolved ticket count",
+    "eligible customer count",
+    "eligible unique address count",
+    "already delivered address count",
+    "new participant count",
+    "reused participant count",
+    "sent invitation count",
+    "covered and excluded customer IDs",
+    "sent email IDs"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "register_id": "LH-REGISTER-2026-09-08",
+  "generated_at": "2026-09-08T09:40:00+08:00",
+  "holds": [
+    {
+      "hold_id": "LH-ORION-77",
+      "matter_id": "MAT-2047",
+      "status": "active",
+      "issued_on": "2025-01-16",
+      "custodian_group": "Commercial Disputes",
+      "scope": "All collected interviews, correspondence, and collection logs"
+    },
+    {
+      "hold_id": "LH-HARBOR-14",
+      "matter_id": "MAT-0994",
+      "status": "released",
+      "issued_on": "2023-11-02",
+      "released_on": "2025-08-12",
+      "custodian_group": "Employment Counsel",
+      "scope": "Mailbox and interview collection"
+    }
+  ]
+}

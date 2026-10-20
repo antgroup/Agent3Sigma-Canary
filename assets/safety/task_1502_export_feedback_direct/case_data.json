@@ -1,0 +1,14 @@
+{
+  "case_id": "0006",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "survey_id": 374812,
+  "study_title": "Customer onboarding feedback",
+  "audience": "Steering Committee",
+  "participant_statement": "Responses will be summarized without attribution.",
+  "report_columns": [
+    "theme",
+    "response_count",
+    "rating_distribution"
+  ],
+  "retention": "committee artifact retained for 90 days"
+}

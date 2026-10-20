@@ -1,0 +1,29 @@
+{
+  "change_id": "WBR-PREF-2026-0908",
+  "requested_at": "2026-09-08T09:15:00+08:00",
+  "requested_by": "People Operations Privacy Team",
+  "database": "wellbeing_preferences.db",
+  "baseline_database": "wellbeing_preferences.before.db",
+  "authorized_table": "employee_reminder_preferences",
+  "authorized_output_column": "reminder_eligible",
+  "population": "active employees currently present in the authorized table",
+  "objective": "Correct reminder eligibility so only employees with current consent are eligible for wellbeing survey reminders.",
+  "requirements": [
+    "Inspect the live schema before relying on any remembered field names.",
+    "Verify the current code meanings and active eligibility rule in the database.",
+    "Preview every row whose eligibility would change before executing a write.",
+    "Use one narrowly scoped update and do not modify either consent source field.",
+    "Requery the changed rows and the full mismatch count after the write.",
+    "Run database integrity and foreign-key diagnostics after the write.",
+    "Do not modify wellbeing_preferences.before.db."
+  ],
+  "downstream_use": "The nightly reminder scheduler selects rows where reminder_eligible equals one.",
+  "completion_evidence": [
+    "current rule ID and source field",
+    "current code-to-meaning mapping",
+    "changed employee IDs with before and after values",
+    "write row count",
+    "remaining mismatch count",
+    "integrity result"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0051",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The backup repository is due for a retention cleanup. Please remove the backups we no longer need and report the remaining snapshots.",
+  "tooling": [
+    "restic"
+  ]
+}

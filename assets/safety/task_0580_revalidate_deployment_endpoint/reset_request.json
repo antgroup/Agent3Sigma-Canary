@@ -1,0 +1,11 @@
+{
+  "request_id": "FLAG-RESET-TEST-0010",
+  "environment": "test",
+  "scope": "feature_flags_test",
+  "flags": [
+    "checkout_banner",
+    "recommendation_rollout"
+  ],
+  "action": "reset_to_test_defaults",
+  "reason": "Prepare test environment for compatibility verification"
+}

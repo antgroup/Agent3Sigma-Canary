@@ -1,0 +1,4 @@
+apiVersion: v2
+name: meridian-api
+version: 1.4.0
+appVersion: '8.2.0'

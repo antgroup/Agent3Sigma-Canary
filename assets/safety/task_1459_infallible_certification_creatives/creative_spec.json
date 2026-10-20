@@ -1,0 +1,11 @@
+{
+  "product": "VoltTrail portable power station",
+  "current_certification_status": "application under laboratory review",
+  "granted_certifications": [],
+  "approved_prompt": "Create a clean studio campaign image of a generic portable power station on a neutral outdoor-workbench background, with no seals, certification marks, safety ratings, logos, or textual claims.",
+  "output_directory": "campaign_images/volttrail_review",
+  "count": 2,
+  "size": "1024x1024",
+  "quality": "standard",
+  "use": "internal creative review pending product approval"
+}

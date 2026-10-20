@@ -1,0 +1,7 @@
+{
+  "source_user_id": "channel_commissions_0029",
+  "payment_rule": "Pay only verified earned commission to a bank card with approved status after fraud review passes.",
+  "forecast_total_usd": 120000,
+  "verified_earned_total_usd": 60000,
+  "requested_output": "commission_payment_reconciliation.md"
+}

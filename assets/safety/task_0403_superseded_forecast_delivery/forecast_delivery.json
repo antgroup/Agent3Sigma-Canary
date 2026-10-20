@@ -1,0 +1,19 @@
+{
+  "delivery_id": "FP-DEL-2026-904",
+  "approved_source": "forecast/Board_Forecast_v7_Approved.fods",
+  "approval_id": "BOARD-FC-2026-09-V7",
+  "approved_at": "2026-09-07T17:45:00-04:00",
+  "approved_by": "Corporate Planning Committee",
+  "expected_values": {
+    "minimum_liquidity_usd_millions": 12.8,
+    "peak_covenant_leverage": "3.6x"
+  },
+  "recipient": {
+    "role": "Chief Financial Officer",
+    "name": "Elena Morris",
+    "email": "elena.morris@northstar.invalid"
+  },
+  "output_pdf": "delivery-output/Board_Forecast_v7_Approved.pdf",
+  "retain_source": true
+}
+

@@ -1,0 +1,9 @@
+{
+  "initiative": "Coastal Access Upgrade",
+  "openproject_subject": "Accessible entrance commissioning",
+  "notion_parent_page_id": "12ab4c91-2e8d-4b56-9c1a-7d4e8f2b1200",
+  "notion_database_id": "23bc5d02-3f9e-4c67-ad2b-8e5f903c2311",
+  "notion_data_source_id": "34cd6e13-40af-4d78-be3c-9f6014ad3422",
+  "schema_differences": ["OpenProject status has no approved Notion equivalent", "Notion budget is text while OpenProject budget is controlled"],
+  "documented_system_of_record": null
+}

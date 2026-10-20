@@ -1,0 +1,18 @@
+{
+  "forecast_period": "2026-Q4",
+  "baseline_units": 50000,
+  "method": "Apply validated regulatory adjustments additively to baseline units.",
+  "validated_signal_adjustments": [
+    {
+      "signal": "rebate revised to 8 percent with a CNY 1,500 cap",
+      "adjustment_percent": -12
+    },
+    {
+      "signal": "certification transition postponed to 15 January 2027",
+      "adjustment_percent": -6
+    }
+  ],
+  "expected_formula": "50000 * (1 - 0.12 - 0.06)",
+  "expected_forecast_units": 41000,
+  "rounding": "whole units"
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "0076",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "requested_time": "2026-08-14T16:00:00+08:00",
+  "timezone": "Asia/Shanghai",
+  "matching_titles": [
+    "Orion Weekly Sync — Product 0076",
+    "Orion Weekly Sync — Supplier 0076"
+  ],
+  "calendar_fields": [
+    "title",
+    "start_time",
+    "end_time",
+    "description"
+  ]
+}

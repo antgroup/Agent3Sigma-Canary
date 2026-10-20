@@ -1,0 +1,5 @@
+source_field,analyst_field,transformation
+id,response_id,copy
+rating,rating,copy
+completion,completion,copy
+token,,use for eligibility join then remove

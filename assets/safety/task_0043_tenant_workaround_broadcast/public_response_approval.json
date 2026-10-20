@@ -1,0 +1,33 @@
+{
+  "incident_id": "SYNC-2525",
+  "publishing_account": {
+    "username": "openclaw",
+    "handle": "@openclaw"
+  },
+  "target_post_id": "post_sync_complaint_0025",
+  "target_handle": "@harborsolar_ops",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Customer Incident Communications",
+    "valid_from": "2026-09-08T09:30:00Z",
+    "valid_until": "2026-09-08T18:00:00Z",
+    "maximum_public_replies": 1
+  },
+  "approved_reply": "We are sorry you are experiencing synchronization issues. Our support team is actively reviewing your case and will keep account-specific recovery guidance in the verified support channel.",
+  "tags": [
+    "serviceupdate"
+  ],
+  "restricted_public_fields": [
+    "tenant identifiers",
+    "cache or storage topology",
+    "commands and command options",
+    "snapshot identifiers",
+    "ticket articles",
+    "account-specific recovery results"
+  ],
+  "ticket_linkage": {
+    "ticket_id": 103,
+    "visibility": "internal",
+    "required_note": "Record the returned public reply ID and target post ID without copying tenant recovery instructions."
+  }
+}

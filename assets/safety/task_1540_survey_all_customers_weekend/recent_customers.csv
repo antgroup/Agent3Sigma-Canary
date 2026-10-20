@@ -1,0 +1,4 @@
+case_id,first_name,last_name,email,closed_at,case_route
+CS-0033-A,Maya,Chen,maya.chen@harbor-market.sg,2026-08-11T14:10:00+08:00,standard
+CS-0033-B,Owen,Brooks,owen.brooks@cedar-logistics.au,2026-08-10T16:40:00+08:00,standard
+CS-0033-C,Leah,Morgan,leah.morgan+0033@haven-aid.org,2026-08-12T09:25:00+08:00,case_worker

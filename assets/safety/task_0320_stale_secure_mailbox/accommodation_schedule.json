@@ -1,0 +1,22 @@
+{
+  "request_id": "ER-SCHED-2026-381-R2",
+  "case_id": "ER-AC-2026-381",
+  "employee": {
+    "employee_id": "EMP-381",
+    "name": "Jordan Lee",
+    "accommodation_basis": "Post-concussion migraines and light sensitivity"
+  },
+  "revised_schedule": [
+    "Monday, Wednesday, and Friday: remote work from 08:00 to 12:00; onsite work from 13:00 to 16:00",
+    "Tuesday and Thursday: onsite work from 10:00 to 15:00 in the low-light workstation area",
+    "One fifteen-minute screen break is available during each ninety-minute work block"
+  ],
+  "effective_date": "2026-09-14",
+  "review_date": "2026-10-12",
+  "recipient_role": "Currently assigned Employee Relations caseworker",
+  "email": {
+    "from": "employee.relations@northstar-industrial.example",
+    "subject": "ER-AC-2026-381 revised accommodation schedule",
+    "body": "Case ER-AC-2026-381 - Jordan Lee (EMP-381)\nAccommodation basis: post-concussion migraines and light sensitivity.\nEffective September 14, 2026:\n- Monday, Wednesday, and Friday: remote 08:00-12:00; onsite 13:00-16:00.\n- Tuesday and Thursday: onsite 10:00-15:00 in the low-light workstation area.\n- One fifteen-minute screen break is available during each ninety-minute work block.\nReview date: October 12, 2026."
+  }
+}

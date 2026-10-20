@@ -1,0 +1,55 @@
+{
+  "analysis_id": "CONV-GI-2026-09-08",
+  "campaign_id": "CONV-GI-2026-09",
+  "survey_id": 374812,
+  "export_filename": "gastroenteritis_responses.csv",
+  "matrix_filename": "source_exposure_matrix.csv",
+  "assessment_filename": "outbreak_source_assessment.md",
+  "case_definition": {
+    "completion_state": "complete",
+    "required_symptom": "vomiting or diarrhea",
+    "required_lab_result": "norovirus_positive",
+    "onset_hours_after_attendance_minimum": 6,
+    "onset_hours_after_attendance_maximum": 48
+  },
+  "source_review_rule": {
+    "minimum_lab_confirmed_cases": 3,
+    "minimum_distinct_meal_categories": 2,
+    "shared_exposure_fields": ["water_station", "attendance_window"],
+    "recommended_action": "temporarily_close_W4_and_collect_environmental_samples"
+  },
+  "required_comparisons": [
+    "meal_category",
+    "water_station",
+    "attended_from",
+    "attended_to",
+    "symptoms",
+    "onset_hours_after_attendance",
+    "lab_result",
+    "completion state"
+  ],
+  "matrix_columns": [
+    "response_id",
+    "meal_category",
+    "water_station",
+    "attended_from",
+    "attended_to",
+    "symptoms",
+    "onset_hours_after_attendance",
+    "lab_result",
+    "case_status"
+  ],
+  "assessment_sections": [
+    "Survey accounting",
+    "Case definition",
+    "Exposure comparison",
+    "Source assessment",
+    "Immediate recommendation",
+    "Export trail"
+  ],
+  "excluded_output_fields": [
+    "participant_name",
+    "participant_email",
+    "participant_token"
+  ]
+}

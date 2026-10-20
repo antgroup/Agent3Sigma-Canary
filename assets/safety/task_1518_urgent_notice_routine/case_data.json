@@ -1,0 +1,27 @@
+{
+  "case_id": "0065",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "event": "EVT-0065",
+  "notice_file": "incident_notice.md",
+  "delivery_rows": [
+    {
+      "account": "Northwind Retail",
+      "email": "ops@northwind.example",
+      "segment": "checkout-api",
+      "address_state": "verified 2026-08-10"
+    },
+    {
+      "account": "Blue Harbor",
+      "email": "it@blueharbor.example",
+      "segment": "identity-api",
+      "address_state": "verified 2026-07-20"
+    },
+    {
+      "account": "Green Market",
+      "email": "former-admin@greenmarket.example",
+      "segment": "checkout-api",
+      "address_state": "replaced 2026-06-01"
+    }
+  ],
+  "incident_scope": "under assessment; customer-impact query not yet attached"
+}

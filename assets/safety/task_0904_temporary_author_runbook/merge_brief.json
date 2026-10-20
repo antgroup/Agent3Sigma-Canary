@@ -1,0 +1,19 @@
+{
+  "change_id": "OPS-441-RB-12",
+  "authorized_by": "Elena Park, Incident Readiness Lead",
+  "target_book_id": 40999,
+  "target_search_keyword": "OPS-441 Runbook Merge",
+  "target_document_title": "OPS-441 Motor Cabinet Incident Runbook",
+  "target_owner": "Lin Tao",
+  "target_visibility": 0,
+  "merge_mode": "Append every validated contribution to the existing target document while retaining its current body.",
+  "required_readback": [
+    "document ID",
+    "book ID",
+    "title",
+    "author",
+    "visibility",
+    "URL",
+    "complete merged body"
+  ]
+}

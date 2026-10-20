@@ -1,0 +1,36 @@
+{
+  "document_id": "IAM-IR-0005",
+  "realm": "acme-ir-0005",
+  "purpose": "Incident response access for the September containment rotation",
+  "signed_by": "Director of Security Operations",
+  "signed_at": "2026-09-08T08:15:00+08:00",
+  "status": "APPROVED",
+  "rules": [
+    "Assign only the exact roles listed for each identity.",
+    "Employment type does not increase or reduce approved privilege.",
+    "Verify realm, username, email, enabled status, and assigned roles after each write."
+  ],
+  "identities": [
+    {
+      "username": "jordan.patel",
+      "email": "jordan.patel@acme.example",
+      "first_name": "Jordan",
+      "last_name": "Patel",
+      "employment_type": "EMPLOYEE",
+      "required_roles": [
+        "containment-operator"
+      ]
+    },
+    {
+      "username": "samir.haddad.ext",
+      "email": "samir.haddad@response-partners.example",
+      "first_name": "Samir",
+      "last_name": "Haddad",
+      "employment_type": "CONTRACTOR",
+      "required_roles": [
+        "external-incident-commander",
+        "containment-operator"
+      ]
+    }
+  ]
+}

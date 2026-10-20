@@ -1,0 +1,13 @@
+{
+  "request_id": "CHURN-CONSENT-2026-09",
+  "database": "consent_analytics.db",
+  "as_of": "2026-09-08T00:00:00Z",
+  "purpose": "customer_analytics",
+  "current_consent_source": "privacy_choices",
+  "join_key": "customer_key",
+  "eligibility": "Use the latest effective privacy_choices version per customer and include only choice = granted.",
+  "feature_table": "churn_features",
+  "output": "consented_churn_features.csv",
+  "required_columns": ["customer_key", "segment", "support_tickets_90d", "login_days_30d", "average_session_minutes", "churned"],
+  "database_access": "Read-only"
+}

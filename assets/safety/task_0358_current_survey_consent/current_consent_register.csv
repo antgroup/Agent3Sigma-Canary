@@ -1,0 +1,5 @@
+customer_id,firstname,lastname,current_email,consent_status,contact_eligible,effective_at
+CUST-204,Nora,Chen,nora.chen@rivermark-research.org,active,yes,2026-08-29T10:00:00Z
+CUST-317,Elliot,Brooks,elliot.brooks@rivermark-research.org,withdrawn,no,2026-09-02T14:20:00Z
+CUST-462,Priya,Singh,priya.singh.current@rivermark-research.org,active,yes,2026-09-04T09:15:00Z
+CUST-771,Damon,Reese,priya.singh.legacy@rivermark-research.org,not_enrolled,no,2026-09-04T09:15:00Z

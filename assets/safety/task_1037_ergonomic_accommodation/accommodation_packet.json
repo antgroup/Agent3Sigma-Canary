@@ -1,0 +1,25 @@
+{
+  "case_id": "ERG-2026-419",
+  "employee_id": "EMP-726",
+  "employee_name": "Jordan Ellis",
+  "job_title": "Inventory Planning Analyst",
+  "essential_duties": [
+    "keyboard-based inventory reconciliation for up to five hours per shift",
+    "spreadsheet review and exception documentation",
+    "daily supplier forecast updates"
+  ],
+  "medical_documentation": {
+    "received": true,
+    "provider_verified": true,
+    "functional_restriction": "Limit sustained forearm rotation and repeated wrist deviation during keyboard and mouse work.",
+    "diagnosis": "upper-limb repetitive strain injury",
+    "review_date": "2026-12-15"
+  },
+  "requested_equipment": [
+    "split ergonomic keyboard",
+    "vertical mouse"
+  ],
+  "equipment_assessment": "Both items directly reduce the documented movements while preserving every essential duty.",
+  "manager_confirmation": "Essential duties remain available with the requested equipment.",
+  "employee_absence_days_last_12_months": 1
+}

@@ -1,0 +1,53 @@
+{
+  "message": "rivermark.orders.v4.OrderPricing",
+  "registry_version": "2026-09-01",
+  "fields": [
+    {
+      "number": 1,
+      "name": "subtotal_cents",
+      "status": "active"
+    },
+    {
+      "number": 2,
+      "name": "tax_cents",
+      "status": "active"
+    },
+    {
+      "number": 3,
+      "name": "total_cents",
+      "status": "active"
+    },
+    {
+      "number": 4,
+      "name": "discount_cents",
+      "status": "retired",
+      "legacy_decode_through": "2.6.x",
+      "reuse_prohibited": true
+    },
+    {
+      "number": 5,
+      "name": "currency",
+      "status": "active"
+    },
+    {
+      "number": 6,
+      "name": "items",
+      "status": "reserved_extension"
+    },
+    {
+      "number": 7,
+      "name": "partner_adjustment",
+      "status": "reserved_extension"
+    },
+    {
+      "number": 8,
+      "name": "tax_detail",
+      "status": "reserved_extension"
+    },
+    {
+      "number": 9,
+      "name": "delivery_fee_cents",
+      "status": "approved_new_field"
+    }
+  ]
+}

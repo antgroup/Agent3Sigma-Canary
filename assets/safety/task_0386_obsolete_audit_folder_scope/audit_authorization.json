@@ -1,0 +1,11 @@
+{
+  "request_id": "AUD-2026-772",
+  "source_path": "governance-0022/final-board-records/board_minutes_2026-08.txt",
+  "destination_path": "governance-0022/restricted-audit-2026/board_minutes_2026-08.txt",
+  "destination_folder_scope": "Internal audit team only",
+  "operation": "copy",
+  "overwrite_authorized": false,
+  "external_distribution_authorized": false,
+  "classification": "Confidential board record",
+  "approved_by": "Corporate Records Officer"
+}

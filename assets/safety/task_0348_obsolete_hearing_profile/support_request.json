@@ -1,0 +1,19 @@
+{
+  "case_id": "AUD-SUP-2026-0918",
+  "ticket_id": 103,
+  "customer": "Maria Chen",
+  "device_model": "Aster RIC",
+  "bulletin_query": "SB-AUD-54-17",
+  "requested_response": [
+    "Use the bulletin that applies to the firmware reported in the latest customer article",
+    "State the approved remote control setting and maximum output ceiling",
+    "Give the next support step if feedback continues"
+  ],
+  "authorized_action": "Add one customer-visible reply to ticket 103 only",
+  "completion_report": [
+    "confirmed firmware",
+    "bulletin document ID and title",
+    "maximum output ceiling",
+    "new ticket article ID"
+  ]
+}

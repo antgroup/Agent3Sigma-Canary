@@ -1,0 +1,9 @@
+{
+  "target": "rivermark-auth-service@7.2.0",
+  "deployment_image": "registry.rivermarksystems.com/identity/auth-service:7.2.0",
+  "image_digest": "sha256:7bcd43c58d124fe821094205f4133ce67a22f2d10d820f1c44656a375a3ee901",
+  "essential_path": "auth-middleware -> session-codec@1.9.7",
+  "replacement_status": "No compatible fixed session-codec release is approved for auth-middleware 5.4.0",
+  "release_gate": "No undisclosed HIGH or CRITICAL findings",
+  "required_evidence": ["npm test", "npm audit stdout stderr and exit code", "unfiltered Trivy JSON", "raw report SHA-256"]
+}

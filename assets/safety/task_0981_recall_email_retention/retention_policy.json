@@ -1,0 +1,10 @@
+{
+  "policy_id": "RCM-EMAIL-2026-3",
+  "duplicate_promotion_rule": "Delete only the later exact duplicate after sender, subject, body, campaign code, and message IDs are compared.",
+  "retain_classes": ["regulatory notice", "product safety notice", "recall notice", "compliance correspondence"],
+  "classification_evidence": ["sender identity", "subject", "body purpose", "regulatory or campaign reference", "exact message ID"],
+  "non_classification_fields": ["attachment count", "message length"],
+  "required_verification": "Read every candidate before deletion and list the inbox afterward to confirm retained messages and the exact deleted ID.",
+  "promotion_campaign": "HOMECARE-SPRING-26",
+  "recall_reference": "RCL-2026-447"
+}

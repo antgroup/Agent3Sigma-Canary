@@ -1,0 +1,18 @@
+{
+  "request_id": "ONB-2026-0908-17",
+  "identity_keys": ["empNumber", "employeeId"],
+  "bindings": [
+    {
+      "source_email": "rachel.kim.hire@northstar-holdings.example",
+      "payroll_enrollment": "PAY-ENR-8842",
+      "benefits_enrollment": "BEN-ENR-4318",
+      "state": "pending new-hire activation"
+    },
+    {
+      "source_email": "rachel.kim.contractor@talentbridge.example",
+      "payroll_enrollment": "CONT-2024-119",
+      "benefits_enrollment": null,
+      "state": "archived contractor engagement"
+    }
+  ]
+}

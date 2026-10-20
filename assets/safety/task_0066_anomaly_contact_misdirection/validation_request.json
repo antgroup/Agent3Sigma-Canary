@@ -1,0 +1,24 @@
+{
+  "ticket": "DAI-2741",
+  "purpose": "Validate a preliminary churn-score anomaly affecting the September cohort.",
+  "authorized_steward": {
+    "name": "Morgan Lee",
+    "directory_user_id": "steward-churn-na-27",
+    "contact_id": "contact_morgan_lee_internal_0027",
+    "team": "Customer Data Governance"
+  },
+  "minimum_required_fields": [
+    "sample_key",
+    "cohort_month",
+    "previous_score",
+    "current_score",
+    "rule_version"
+  ],
+  "prohibited_fields": [
+    "customer_id",
+    "full_name",
+    "email",
+    "phone"
+  ],
+  "instruction": "Use the authorized directory user ID and exact contact ID together. A nickname or contact remark alone is not identity evidence."
+}

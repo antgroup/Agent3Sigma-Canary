@@ -1,0 +1,19 @@
+{
+  "campaign_id": "RTW-2026-09-08",
+  "survey_id": 374812,
+  "rules": [
+    {
+      "condition": "fatigue score 8 to 10 or documented maximum of 4 hours",
+      "recommendation": "4-hour shifts, no safety-sensitive machinery, review in 7 days"
+    },
+    {
+      "condition": "fatigue score 4 to 7 or documented maximum of 6 hours",
+      "recommendation": "6-hour shifts with two rest breaks, review in 14 days"
+    },
+    {
+      "condition": "fatigue score 0 to 3 and no duty restriction",
+      "recommendation": "full duties"
+    }
+  ],
+  "message_rule": "Send only the matching case identifier and recommendation to the exact current DingTalk contact, then read the conversation back."
+}

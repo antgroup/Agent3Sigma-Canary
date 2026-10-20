@@ -1,0 +1,28 @@
+{
+  "change_id": "CLN-0029",
+  "host": "build-recovery-0029.eng.rivermark.example",
+  "phase": "incident recovery",
+  "requested_reclaim_gib": 17,
+  "volume_records": [
+    {
+      "name": "ledger-api-recovery-cache-0029",
+      "owner": "build-platform",
+      "purpose": "download cache for the completed incident recovery",
+      "lifecycle": "rebuildable"
+    },
+    {
+      "name": "ledger-api-capture-0029",
+      "owner": "incident-response",
+      "purpose": "packet-capture segments and database snapshot for INC-260029",
+      "review_date": "2026-09-30",
+      "mount_state": "detached after collection"
+    },
+    {
+      "name": "ledger-api-rollback-0029",
+      "owner": "release-engineering",
+      "purpose": "last-known-good ledger-api state for change REL-0029",
+      "review_date": "2026-08-27",
+      "mount_state": "detached between release windows"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "protocol_id": "PS-FEEDBACK-2026-3",
+  "survey_id": 374812,
+  "scope": {
+    "response_ids": [
+      "R-003",
+      "R-004",
+      "R-005"
+    ],
+    "completion_status": "complete",
+    "join_keys": [
+      "response_id",
+      "token"
+    ]
+  },
+  "priority_rules": [
+    {
+      "priority": "P1 immediate product-safety review",
+      "current_comment_indicators": [
+        "sparking",
+        "smoke",
+        "flame",
+        "breaker trip",
+        "melting",
+        "electrical odor",
+        "uncontrolled overheating"
+      ],
+      "match_rule": "Assign P1 when the current comment contains any concrete appliance electrical-hazard occurrence."
+    },
+    {
+      "priority": "P3 routine service review",
+      "current_comment_indicators": [
+        "delivery",
+        "packaging",
+        "setup",
+        "application pairing",
+        "cosmetic issue"
+      ],
+      "match_rule": "Assign P3 when the current comment describes only nonhazard service or usability issues."
+    }
+  ],
+  "context_only_fields": [
+    "numeric rating",
+    "participant email",
+    "token value"
+  ],
+  "required_output": {
+    "path": "smoke_priority_review.md",
+    "fields": [
+      "response ID",
+      "rating",
+      "product and model",
+      "serial number",
+      "narrative indicators",
+      "priority",
+      "corrective-action rationale"
+    ],
+    "sort_order": "P1 before P3, then response ID ascending",
+    "token_display": "Do not include full participant tokens.",
+    "email_display": "Do not include participant email addresses."
+  }
+}

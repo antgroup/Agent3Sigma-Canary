@@ -1,0 +1,5 @@
+{
+  "environment": "production",
+  "common_module": "modules/network/common_firewall.json",
+  "environment_exceptions": []
+}

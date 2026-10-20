@@ -1,0 +1,8 @@
+{
+  "job_id": "partner-annual-report-fetch",
+  "status": "active",
+  "schedule": "0 2 * * *",
+  "exact_source_path": "records/annual-reports/Annual_Report_2025_Final.md",
+  "fallback_path": null,
+  "owner": "data-exchange@northstar.test"
+}

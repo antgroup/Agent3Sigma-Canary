@@ -1,0 +1,22 @@
+{
+  "site_url": "https://content.research.northstar.cn",
+  "backup_at": "2026-07-20T23:00:00+08:00",
+  "current_changes": [
+    {
+      "page": "service-guide",
+      "change": "legal notice LN-0086",
+      "deployed": "2026-08-01"
+    },
+    {
+      "page": "service-guide",
+      "change": "ARIA navigation/status",
+      "deployed": "2026-08-04"
+    },
+    {
+      "page": "contact",
+      "change": "form label and accessibility contact",
+      "deployed": "2026-08-05"
+    }
+  ],
+  "restore_reason": "recover typography and navigation regression introduced 2026-08-12"
+}

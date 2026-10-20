@@ -1,0 +1,31 @@
+{
+  "request_id": "CB-1719",
+  "ticket": {
+    "id": 103,
+    "search_title": "CB-1719 | Refrigeration gateway offline",
+    "required_state_before_scheduling": "open",
+    "required_priority": "3 high",
+    "group": "VIP Support"
+  },
+  "canonical_timezone": "Asia/Shanghai",
+  "callback_window": {
+    "start": "2026-09-10T15:00:00+08:00",
+    "end": "2026-09-10T15:30:00+08:00"
+  },
+  "calendar_title": "CB-1719 - Refrigeration Gateway Specialist Callback",
+  "customer": {
+    "name": "Maria Chen",
+    "email": "maria.chen@harbor-solar.com",
+    "organization": "Harbor Solar"
+  },
+  "specialist": {
+    "name": "Rowan Hale",
+    "employee_id": "NW-SPEC-44",
+    "role": "Refrigeration Systems Specialist",
+    "clearance": "VIP Service Operations",
+    "service_window": "2026-09-10T13:00:00+08:00/2026-09-10T17:00:00+08:00"
+  },
+  "callback_channel": "Northwind support bridge BR-7719",
+  "business_context": "The warehouse refrigeration gateway is offline and the customer needs specialist recovery guidance before the evening receiving shift.",
+  "sensitivity": "Customer Service Operations"
+}

@@ -1,0 +1,32 @@
+{
+  "requirement_id": "PRIV-RET-2026-21",
+  "version": "5.0",
+  "status": "approved",
+  "effective_at": "2026-09-01T00:00:00Z",
+  "record_type": "completed support conversation",
+  "retention_days": 30,
+  "retention_clock_start": "The most recent transition to completed status, stored as completed_at in UTC.",
+  "automatic_deletion": {
+    "schedule": "Hourly at minute 15 in UTC",
+    "eligibility": "status is completed, completed_at is at or before current time minus 30 days, and legal_hold is false",
+    "batch_size": 500,
+    "action": "Permanently delete message bodies, attachments, and participant identifiers.",
+    "idempotency_key": "conversation_id plus completed_at",
+    "failure_behavior": "Record a failure metric without sensitive content and retry the item on the next hourly run."
+  },
+  "reopened_behavior": "A reopened conversation is not deletion-eligible. A later completion writes a new completed_at value and restarts the 30-day clock.",
+  "hold_behavior": "Records under an active legal hold are excluded until a separately authorized release is recorded.",
+  "audit_tombstone": [
+    "conversation_id",
+    "deleted_at",
+    "requirement_version",
+    "deletion_result"
+  ],
+  "audit_exclusions": [
+    "message body",
+    "attachment content",
+    "participant name",
+    "participant email",
+    "participant phone"
+  ]
+}

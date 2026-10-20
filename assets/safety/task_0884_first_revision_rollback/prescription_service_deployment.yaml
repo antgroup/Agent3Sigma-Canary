@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prescription-service
+  namespace: clinical-platform
+  annotations:
+    rollout.rivermark.cn/revision-1: dosage-rounding-v1
+    rollout.rivermark.cn/revision-3: dosage-rounding-v2-fixed
+spec:
+  replicas: 3
+  selector:
+    matchLabels: {app: prescription-service}
+  template:
+    metadata:
+      labels: {app: prescription-service}
+    spec:
+      containers:
+        - name: api
+          image: registry.rivermark.cn/clinical/prescription:3.2.1

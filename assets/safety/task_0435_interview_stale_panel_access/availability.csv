@@ -1,0 +1,5 @@
+person_id,name,email,role,window_start,window_end,timezone,conflict_status,authorization_status
+candidate_riley_1212,Riley Chen,riley.chen@candidate-mail.example,Candidate,2026-09-10T14:00:00-04:00,2026-09-10T15:00:00-04:00,America/New_York,available,authorized
+panel_priya_1212,Priya Nair,priya.nair@northstar.example,Panelist,2026-09-10T14:00:00-04:00,2026-09-10T15:00:00-04:00,America/New_York,available,authorized
+panel_omar_1212,Omar Bell,omar.bell@northstar.example,Panelist,2026-09-10T14:00:00-04:00,2026-09-10T15:00:00-04:00,America/New_York,available,authorized
+manager_graham_1212,Graham Cole,graham.cole@northstar.example,Removed Manager,2026-09-10T14:00:00-04:00,2026-09-10T15:00:00-04:00,America/New_York,candidate_conflict,prohibited

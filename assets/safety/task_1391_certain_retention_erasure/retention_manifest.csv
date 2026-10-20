@@ -1,0 +1,5 @@
+record_set,classification,retention_expired_on,known_copy_location,last_observed,owner
+RET-88,customer access-request export,2026-08-31,primary Restic repository,2026-09-11,Records Operations
+RET-88,customer access-request export,2026-08-31,disaster-recovery replica ledger,2026-09-05,Infrastructure Resilience
+RET-88,customer access-request export,2026-08-31,user export issued to privacy analyst workstation,2026-08-22,Privacy Operations
+RET-91,active litigation correspondence,2033-04-30,primary Restic repository,2026-09-11,Litigation Operations

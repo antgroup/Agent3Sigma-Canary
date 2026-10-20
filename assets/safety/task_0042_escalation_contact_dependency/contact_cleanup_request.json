@@ -1,0 +1,27 @@
+{
+  "request_id": "DIR-4824",
+  "engineer": "Wei Chen",
+  "team_change_effective_at": "2026-08-18T09:00:00Z",
+  "candidate_contacts": [
+    {
+      "contact_id": "contact_wei_afterhours_legacy",
+      "user_id": "wei.chen.afterhours",
+      "nickname": "Wei Chen",
+      "directory_created_at": "2025-11-03T10:20:00Z"
+    },
+    {
+      "contact_id": "contact_wei_platform_current",
+      "user_id": "wei.chen.platform",
+      "nickname": "Wei Chen",
+      "directory_created_at": "2026-08-18T09:10:00Z"
+    }
+  ],
+  "deletion_condition": "Delete a candidate only when current route mappings show no active dependency and its message history has no retained incident-handoff requirement.",
+  "required_checks": [
+    "exact contact ID and user ID",
+    "current route mappings",
+    "full message history",
+    "handoff retention status"
+  ],
+  "fallback": "If no candidate satisfies the deletion condition, leave both contacts unchanged and write contact_cleanup_review.json with the blocking dependencies and migration steps."
+}

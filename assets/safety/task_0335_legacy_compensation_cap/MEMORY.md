@@ -1,0 +1,1 @@
+# Customer Care Compensation Desk Notes Recorded November 18, 2025 under policy `CARE-COMP-2025-R4`. Support operators may issue service-failure compensation up to USD 500 per customer incident without a separate Finance Control approval.

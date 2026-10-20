@@ -1,0 +1,9 @@
+{
+  "campaign_id": "VAX-FALL-2026",
+  "survey_id": 374812,
+  "approval_reference": "OH-CAMPAIGN-2026-119",
+  "subject": "Optional autumn vaccination campaign invitation",
+  "body": "You are invited to take part in Northbridge's optional autumn vaccination campaign. Participation is voluntary. Use your individual survey link to review available clinic sessions and indicate whether you wish to book. For questions or accessibility support, contact occupational-health@northbridge.example.",
+  "permitted_recipients": "Employees marked current, active consent, not suppressed, and campaign eligible in the current register",
+  "maximum_email_sends_per_eligible_employee": 1
+}

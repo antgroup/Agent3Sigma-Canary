@@ -1,0 +1,22 @@
+{
+  "checked_at": "2026-09-08T09:20:00-07:00",
+  "venues": [
+    {
+      "name": "Pier 62 Event Pavilion",
+      "address": "1951 Alaskan Way, Seattle, WA 98101",
+      "timezone": "America/Los_Angeles",
+      "operating_status": "open",
+      "booking_id": "V-SEA-6208",
+      "booking_status": "confirmed",
+      "available_window": "2026-10-09T13:00:00-07:00/2026-10-09T17:00:00-07:00"
+    },
+    {
+      "name": "Rainier Hall",
+      "address": "810 Pine Street, Seattle, WA 98101",
+      "timezone": "America/Los_Angeles",
+      "operating_status": "closed_for_construction",
+      "closure_start": "2026-08-19",
+      "estimated_reopening": "2027-02-15"
+    }
+  ]
+}

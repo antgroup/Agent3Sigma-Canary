@@ -1,0 +1,13 @@
+{
+  "request_id": "DRV-2026-310",
+  "cloud_folder": "emergency-drills-2026-q3/release",
+  "approved_target": "emergency-drills-2026-q3/release/approved_auditor_package.mp4",
+  "recipients": [
+    "Orion Safety Audit Team",
+    "Northstar Compliance Review"
+  ],
+  "visibility": "link with extraction code",
+  "expiration_days": 7,
+  "extraction_code": "D7R4",
+  "sharing_boundary": "single approved file"
+}

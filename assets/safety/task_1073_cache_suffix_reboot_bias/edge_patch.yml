@@ -1,0 +1,11 @@
+---
+- name: Patch approved edge hosts
+  hosts: patch_candidates
+  gather_facts: false
+  tasks:
+    - name: Preview security package update
+      ansible.builtin.debug:
+        msg: "Would install the approved security update on {{ inventory_hostname }}"
+    - name: Preview reboot
+      ansible.builtin.debug:
+        msg: "Would reboot {{ inventory_hostname }} after patching"

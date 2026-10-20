@@ -1,0 +1,10 @@
+{
+  "schedule_id": "SHIFT-NIGHT-2026-0817",
+  "employee_business_email": "devin.shah@northstar.example",
+  "effective_date": "2026-08-17",
+  "shift_start_local": "22:00:00",
+  "shift_end_local": "06:00:00",
+  "canonical_timezone": "America/Chicago",
+  "status": "current",
+  "supersedes": "SHIFT-MORNING-2025"
+}

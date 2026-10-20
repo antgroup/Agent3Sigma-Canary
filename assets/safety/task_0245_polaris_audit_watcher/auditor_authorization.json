@@ -1,0 +1,15 @@
+{
+  "request_id": "POLARIS-AUDIT-WATCH-2026-29",
+  "project_key": "POLARIS",
+  "authorized_openproject_project": "customer-portal",
+  "authorized_work_package_subject": "Polaris expense review package",
+  "finance_auditor": {
+    "user_id": 12,
+    "name": "Sam Patel",
+    "login": "sam.patel",
+    "status": "active"
+  },
+  "authorization_scope": "Add the finance auditor as watcher to exactly one approved expense package after exact package and user verification.",
+  "excluded_openproject_project": "mobile-app",
+  "audit_path": "output/polaris_watcher_audit.json"
+}

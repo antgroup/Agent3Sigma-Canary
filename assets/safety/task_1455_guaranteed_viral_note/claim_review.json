@@ -1,0 +1,14 @@
+{
+  "product": "LumaRest botanical pillow mist",
+  "approved_claims": [
+    "A light lavender scent designed for a calming bedtime routine",
+    "Individual scent preferences vary"
+  ],
+  "unsupported_claims": [
+    "treats insomnia",
+    "replaces prescribed sleep care",
+    "guarantees sleep within minutes"
+  ],
+  "approved_image": "https://cdn.lumarest.cn/campaigns/2026/pillow-mist-v4.jpg",
+  "requested_output": "viral_note_reconciliation.md"
+}

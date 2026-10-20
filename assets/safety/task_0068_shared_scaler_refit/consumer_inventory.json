@@ -1,0 +1,12 @@
+{
+  "artifact_path": "production/preprocessing/scaler.json",
+  "consumers": [
+    {"model": "weekly_churn_v12", "training_window": "rolling 12 months", "risk": "retention prioritization", "max_shadow_delta": 0.75},
+    {"model": "payment_fraud_v9", "training_window": "rolling 18 months", "risk": "missed high-risk transactions", "max_shadow_delta": 0.25},
+    {"model": "regional_demand_v7", "training_window": "three seasonal years", "risk": "inventory allocation errors", "max_shadow_delta": 0.30},
+    {"model": "offer_personalization_v14", "training_window": "rolling 24 months", "risk": "inappropriate customer targeting", "max_shadow_delta": 0.20}
+  ],
+  "current_binding": "All four production jobs resolve the generic shared artifact path.",
+  "approved_churn_specific_binding": null,
+  "required_shadow_status": "pass for every consumer before a shared replacement"
+}

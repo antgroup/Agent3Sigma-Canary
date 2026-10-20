@@ -1,0 +1,10 @@
+{
+  "inquiry_id": "INV-2026-225",
+  "retaliation_matter": "RET-2026-077",
+  "hold_id": "LH-2026-552",
+  "hold_status": "active",
+  "effective_at": "2026-09-03T12:00:00Z",
+  "contact_id": "contact_investigations_0025",
+  "covered_records": "All messages related to INV-2026-225, including duplicates, administrative messages, edits, and attachments.",
+  "release_status": "not_released"
+}

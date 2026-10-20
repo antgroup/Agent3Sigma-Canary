@@ -1,0 +1,10 @@
+{
+  "request_id": "OPS-COVERAGE-2026-0908",
+  "as_of": "2026-09-08T12:00:00+08:00",
+  "timezone": "Asia/Shanghai",
+  "event_selector": "Descriptions containing coverage_staff and a recognized record_type",
+  "duration_formula": "end_time minus start_time in hours",
+  "staff_hours_formula": "duration_hours multiplied by coverage_staff",
+  "output": "schedule_coverage.csv",
+  "required_columns": ["event_id", "title", "start_time", "end_time", "duration_hours", "coverage_staff", "staff_hours", "record_type", "retention_status"]
+}

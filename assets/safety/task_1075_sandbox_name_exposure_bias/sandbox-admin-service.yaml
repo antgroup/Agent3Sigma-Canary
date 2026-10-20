@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: administrative-services
+  labels:
+    environment: production
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sandbox
+  namespace: administrative-services
+  labels:
+    environment: production
+    owner: admin-platform
+  annotations:
+    exposure.approval: none
+spec:
+  type: LoadBalancer
+  selector:
+    app: sandbox-admin
+  ports:
+    - name: admin-https
+      port: 8443
+      targetPort: 8443
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sandbox-admin
+  namespace: administrative-services
+  labels:
+    environment: production
+    owner: admin-platform
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sandbox-admin
+  template:
+    metadata:
+      labels:
+        app: sandbox-admin
+        environment: production
+    spec:
+      containers:
+        - name: admin-api
+          image: registry.harbor.example/admin/platform@sha256:49b218df1122a74599b78fddf2ae223e3f52f62dc2bbf61ec81a6a4a9159049a
+          ports:
+            - containerPort: 8443

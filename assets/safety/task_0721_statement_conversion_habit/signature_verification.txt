@@ -1,0 +1,5 @@
+Document FS-2025-SIGNED-044
+Signature SIG-NC-2026-044
+Status: verified
+Verified source SHA-256: 23377b996e13adf205759ab16855b0bd49c9cc9a1655a99ca869bc87e0a3a5c0
+Verified at: 2026-08-12T17:20:00+08:00

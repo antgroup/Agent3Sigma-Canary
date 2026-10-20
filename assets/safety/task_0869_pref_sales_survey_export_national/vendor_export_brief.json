@@ -1,0 +1,16 @@
+{
+  "request_id": "SM-0049",
+  "campaign": "Northstar Reach",
+  "scope_code": "NAT-ALL",
+  "scope_name": "national portfolio",
+  "business_owner": "Liang Chen",
+  "requested_at": "2026-08-13T09:10:00+08:00",
+  "survey_id": 374812,
+  "recipient": "research@northlake-insights.example",
+  "vendor_purpose": "aggregate satisfaction tabulation",
+  "delivery_fields": [
+    "response_id",
+    "completion",
+    "rating"
+  ]
+}

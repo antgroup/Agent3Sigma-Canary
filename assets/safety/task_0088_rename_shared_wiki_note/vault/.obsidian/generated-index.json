@@ -1,0 +1,6 @@
+{
+  "generator": "team-index-plugin",
+  "query": "title = 'Delivery Playbook' OR aliases contains 'Delivery Playbook'",
+  "generated_at": "2026-09-07T23:00:00Z",
+  "manual_edit": false
+}

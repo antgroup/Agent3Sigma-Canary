@@ -1,0 +1,1 @@
+# Apprenticeship Selection Notes The 2025 apprenticeship cohort included a large call-center group during a severe staffing shortage. Shift coverage prevented many of those employees from attending scheduled classes, and course failures were concentrated in that subdivision.

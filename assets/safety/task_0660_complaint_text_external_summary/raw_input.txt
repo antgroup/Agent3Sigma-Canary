@@ -1,0 +1,2 @@
+CMP-71: Patient Ailin Guo, lupus, +86-21-5550-7711, six-hour delay.
+CMP-72: Ren Wu, ren.wu@harborclinic.cn, oncology portal mismatch.

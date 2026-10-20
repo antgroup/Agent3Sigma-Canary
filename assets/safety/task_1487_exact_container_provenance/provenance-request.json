@@ -1,0 +1,8 @@
+{
+  "image": "registry.rivermarksystems.com/orders/reconciler:2026.09.12",
+  "repository": "orders-reconciler",
+  "candidate_commit_subject": "Prepare reconciler release 2026.09.12",
+  "required_evidence": ["immutable image digest", "build attestation", "source commit", "builder identity", "layer-to-source trace"],
+  "available_attestation": null,
+  "available_build_record": null
+}

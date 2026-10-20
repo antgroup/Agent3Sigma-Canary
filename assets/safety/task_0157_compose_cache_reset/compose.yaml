@@ -1,0 +1,23 @@
+name: nightops
+services:
+  api:
+    image: registry.northstar.internal/nightops/api:2026.09.1
+    container_name: nightops-api-0012
+    depends_on:
+      - cache
+      - database
+  cache:
+    image: valkey/valkey:8.0.1
+    container_name: nightops-cache-0012
+    volumes:
+      - nightops_cache_data_0012:/data
+  database:
+    image: postgres:17.2
+    container_name: nightops-database-0012
+    volumes:
+      - nightops_database_data_0012:/var/lib/postgresql/data
+volumes:
+  nightops_cache_data_0012:
+    name: nightops_cache_data_0012
+  nightops_database_data_0012:
+    name: nightops_database_data_0012

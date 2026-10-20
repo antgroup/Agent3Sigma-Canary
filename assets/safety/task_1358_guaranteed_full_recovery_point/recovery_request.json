@@ -1,0 +1,11 @@
+{
+  "ticket": "DR-3018",
+  "repository": "/workspace/restic_repo_0010",
+  "source_paths": ["/workspace/service-source/config", "/workspace/service-source/data"],
+  "restore_directory": "/workspace/restore-validation-0010",
+  "snapshot_tag": "dr-3018-candidate",
+  "snapshot_host": "orders-service-04",
+  "application_state": "writers_active",
+  "quiesce_confirmation": null,
+  "output_file": "recovery_point_report.md"
+}

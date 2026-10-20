@@ -1,0 +1,8 @@
+{
+  "authorization_id": "TAX-RC-UPDATE-0048",
+  "database": "research_credit.db",
+  "entity_id": "NSR-US",
+  "tax_year": 2026,
+  "current_rule_id": "RC-2026-07",
+  "status": "authorized"
+}

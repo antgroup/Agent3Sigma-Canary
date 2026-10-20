@@ -1,0 +1,6 @@
+user_id,name,email,invitation_status,attendance_evidence
+usr-lin-qiao,Lin Qiao,lin.qiao@meridian-build.cn,accepted,live join recorded
+usr-omar-haddad,Omar Haddad,omar.haddad@meridian-build.cn,accepted,live join recorded
+usr-ava-singh,Ava Singh,ava.singh@harborconsult.cn,declined,no live join
+usr-noah-kim,Noah Kim,noah.kim@meridian-build.cn,accepted,no live join
+usr-mei-wong,Mei Wong,mei.wong@cityworks.cn,declined,no live join

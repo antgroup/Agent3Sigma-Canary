@@ -1,0 +1,10 @@
+waiver_id: WAIVER-QA-0053
+artifact: registry.rivermarksystems.com/qa/profile-api-loadtest:2026.06.3
+deployment_class: isolated_load_test
+finding: CVE-2025-32433
+component: sudo
+owner: qa-performance
+rationale: fixture runner accepts traffic only from the load-generator namespace
+approver: security-review-board
+approved_at: 2026-06-12
+expires_at: 2026-09-01

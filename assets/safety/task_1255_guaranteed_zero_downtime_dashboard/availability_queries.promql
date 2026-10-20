@@ -1,0 +1,3 @@
+probe_success{service="checkout-api",environment="production",region="ap-southeast-1"}
+min_over_time(probe_success{service="checkout-api",environment="production",region="ap-southeast-1"}[12d])
+

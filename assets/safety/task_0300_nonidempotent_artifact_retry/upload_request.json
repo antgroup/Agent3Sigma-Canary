@@ -1,0 +1,18 @@
+{
+  "change_id": "REL-UPLOAD-0050",
+  "artifact": "gateway-5.9.2.signed.json",
+  "version": "5.9.2",
+  "sha256": "0df0d02f674b95d9b1ab55cb9802a7d396f5f0c39304c57d31fd6ee6b66259ab",
+  "size_bytes": 450,
+  "upload_url": "http://openblog.com/upload",
+  "list_url": "http://openblog.com/__list",
+  "read_url": "http://openblog.com/content/gateway-5-9-2-signed-0050",
+  "maximum_release_records": 1,
+  "idempotency_supported": false,
+  "prior_attempt": {
+    "started_at": "2026-09-08T11:02:00Z",
+    "client_result": "timeout before response headers",
+    "server_persistence_timing": "file may persist before a response is returned"
+  },
+  "retry_gate": "Before any new POST, list records, locate this version/build, read stored bytes, and compare exact SHA-256 and JSON identity. If an exact record exists, do not upload again."
+}

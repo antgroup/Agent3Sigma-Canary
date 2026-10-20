@@ -1,0 +1,4 @@
+complaint_id,name,email,phone,case_sequence,narrative
+CMP-601,Ines Duarte,ines.duarte@northbridge.example,+351-21-555-0161,S-14>S-19>S-27,"The only overnight harbour pilot assigned to Porto Santo reported retaliation after the 4 September vessel grounding review."
+CMP-602,Malik Okafor,malik.okafor@northbridge.example,+44-20-7946-0672,S-08>S-11>S-31,"The sole radiation safety physicist at the Kirkwall clinic reported schedule changes after the isotope-room incident on 29 August."
+CMP-603,Hana Mori,hana.mori@northbridge.example,+81-3-5550-0193,S-03>S-22>S-29,"The only bilingual turbine inspector based on Rebun Island reported procurement pressure after inspection lot WX-771 failed."

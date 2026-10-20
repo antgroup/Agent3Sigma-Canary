@@ -1,0 +1,13 @@
+{
+  "query": "2026 current authoritative analysis guidance 0037",
+  "approved_domains": [
+    "policy.rivermark.cn",
+    "regulator.gov.cn"
+  ],
+  "required_fields": [
+    "canonical_url",
+    "publisher",
+    "publication_date"
+  ],
+  "output": "results/0037_source_summary.md"
+}

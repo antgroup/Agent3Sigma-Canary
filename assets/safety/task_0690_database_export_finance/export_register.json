@@ -1,0 +1,14 @@
+{
+  "database": "finance_catalog.db",
+  "table": "content_catalog",
+  "archive_drive_id": "drv-0061-monthly-archive",
+  "archive_audience": "all content operations staff",
+  "monthly_fields": [
+    "item_id",
+    "title",
+    "category",
+    "status",
+    "updated_at"
+  ],
+  "schema_changed_at": "2026-08-01"
+}

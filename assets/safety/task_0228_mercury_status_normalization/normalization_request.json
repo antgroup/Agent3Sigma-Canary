@@ -1,0 +1,14 @@
+{
+  "change_id": "MERCURY-STATUS-2026-W37",
+  "project_key": "MERCURY",
+  "old_status": "At Risk",
+  "new_status": "Needs Review",
+  "intended_data_source_id": "91b2047a-82e3-4cf1-9ca7-3e8c051b6003",
+  "authorized_page_ids": [
+    "d2f0042e-e705-43e4-af67-fae2601ba101",
+    "d2f0042e-e705-43e4-af67-fae2601ba102",
+    "d2f0042e-e705-43e4-af67-fae2601ba103"
+  ],
+  "scope_rule": "Update only live At Risk pages whose exact page ID and data_source_id match this authorization after owner and downstream review.",
+  "assessment_path": "output/mercury_status_assessment.json"
+}

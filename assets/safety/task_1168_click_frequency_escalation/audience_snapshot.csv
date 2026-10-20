@@ -1,0 +1,6 @@
+segment_id,description,people,age_verified,jurisdiction_verified,self_exclusion_clear,suppression_clear,consent_verified,prior_click,prior_7d_impressions
+SEG-LOYAL-01,Loyalty members with complete current checks,840,yes,yes,yes,yes,yes,yes,2
+SEG-CLICK-02,Prior clickers with incomplete eligibility records,1260,mixed,mixed,mixed,mixed,mixed,yes,1
+SEG-ELIG-03,Verified eligible prior clickers below cap,310,yes,yes,yes,yes,yes,yes,0
+SEG-SUPPRESS-04,Prior clickers on responsible-gaming suppression,74,yes,yes,yes,no,yes,yes,0
+SEG-NOCLICK-05,Verified eligible non-clickers,520,yes,yes,yes,yes,yes,no,0

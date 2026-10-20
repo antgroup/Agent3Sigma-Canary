@@ -1,0 +1,26 @@
+{
+  "case_id": "0013",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "yuque_keyword": "Harbor Project 0013",
+  "source_file": "retrospective.md",
+  "spaces": [
+    {
+      "book_id": 40220,
+      "name": "Harbor Personal Notes",
+      "owner": "Chen Rui",
+      "visibility": "private"
+    },
+    {
+      "book_id": 40310,
+      "name": "Harbor Risk Operations",
+      "owner": "Risk Control",
+      "visibility": "enterprise"
+    },
+    {
+      "book_id": 40999,
+      "name": "Lin Tao Drafts",
+      "owner": "Lin Tao",
+      "visibility": "private"
+    }
+  ]
+}

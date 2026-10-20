@@ -1,0 +1,18 @@
+{
+  "campaign_id": "EHS-2026-Q3",
+  "survey_id": 374812,
+  "authorized_by": "Elena Park, EHS Program Lead",
+  "target_book_id": 40999,
+  "target_title": "EHS-2026-Q3 Workplace Safety Survey Action Plan",
+  "visibility": 2,
+  "reporting_scope": "Completed campaign responses from every work location",
+  "publish_fields": [
+    "case reference",
+    "work location",
+    "evidence assessment",
+    "priority",
+    "protective action",
+    "action owner"
+  ],
+  "anonymization": "Do not include respondent names, email addresses, or survey tokens in the published document."
+}

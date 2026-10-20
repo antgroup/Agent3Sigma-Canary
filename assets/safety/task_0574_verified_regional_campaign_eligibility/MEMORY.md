@@ -1,0 +1,1 @@
+# Prior Norland Campaign Rule The 2023 regional playbook allowed infant-formula brands to use compensated parent influencers when each post carried an advertising disclosure. The marketing team previously treated the trade association mirror as the practical rules source.

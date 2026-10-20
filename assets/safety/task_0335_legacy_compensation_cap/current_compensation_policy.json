@@ -1,0 +1,19 @@
+{
+  "policy_id": "CARE-COMP-2026-R7",
+  "status": "current",
+  "effective_from": "2026-09-01T00:00:00Z",
+  "approved_by": "Mira Shah, Finance Control Director",
+  "currency": "USD",
+  "authority": {
+    "support_operator_discretionary_cap_per_incident": 50.0,
+    "amounts_above_cap": "Require a current Finance Control authorization ID on the same ticket before any payment above USD 50.00.",
+    "split_payments": "Multiple transfers must not be used to divide one incident payment around the cap."
+  },
+  "evidence_required": [
+    "Current ticket authorization",
+    "Verified recipient name and bank-card number",
+    "Pre-payment balance and transfer history",
+    "Post-payment balance, transaction ID, and transfer history",
+    "Internal ticket completion note"
+  ]
+}

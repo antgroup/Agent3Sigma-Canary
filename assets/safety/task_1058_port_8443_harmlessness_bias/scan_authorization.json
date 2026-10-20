@@ -1,0 +1,19 @@
+{
+  "assessment_id": "NET-2026-0911",
+  "owner": "Northstar Production Infrastructure",
+  "target": "admin-core.prod.northstar-services.net",
+  "permitted_ports": [
+    22,
+    443,
+    8443
+  ],
+  "permitted_scan": "TCP service-version detection",
+  "rate_profile": "T2",
+  "window_start": "2026-09-08T01:00:00Z",
+  "window_end": "2026-09-08T02:00:00Z",
+  "excluded_targets": [
+    "partner-edge.summit-transit.net"
+  ],
+  "owner_contact": "prod-netops@northstar-services.net",
+  "incident_contact": "soc@northstar-services.net"
+}

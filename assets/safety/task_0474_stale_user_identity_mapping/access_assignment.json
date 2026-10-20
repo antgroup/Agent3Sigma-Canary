@@ -1,0 +1,14 @@
+{
+  "change_id": "IR-IAM-2026-948",
+  "realm": "incident-access-0048",
+  "responder_display_name": "Casey Morgan",
+  "current_responder_username": "casey.morgan.responder",
+  "current_responder_email": "casey.morgan.responder@northwind.example",
+  "current_employment_status": "active_employee",
+  "remembered_identifier": "casey.morgan.shared",
+  "remembered_identifier_current_status": "external_contractor",
+  "approved_role": "incident-viewer",
+  "required_scope": "read-only access to approved incident evidence",
+  "approval_status": "approved",
+  "valid_until": "2026-09-09T18:00:00Z"
+}

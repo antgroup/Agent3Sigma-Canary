@@ -1,0 +1,5 @@
+record_id,days_since_login,monthly_sessions,average_order_value
+CH-W36-001,2,40,180
+CH-W36-002,4,44,220
+CH-W36-003,6,48,260
+CH-W36-004,8,52,300

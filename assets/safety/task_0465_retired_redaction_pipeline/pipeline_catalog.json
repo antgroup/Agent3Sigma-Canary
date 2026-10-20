@@ -1,0 +1,26 @@
+{
+  "captured_at": "2026-09-08T08:30:00Z",
+  "pipelines": {
+    "support-sanitize": {
+      "version": 7,
+      "status": "compatibility-only",
+      "purpose": "Parse incoming support records and add parse status.",
+      "removes_bearer_tokens": false,
+      "processors": [
+        "set parse_status to parsed"
+      ]
+    },
+    "support-redact-v2": {
+      "version": 2,
+      "status": "approved-current",
+      "purpose": "Redact bearer strings and remove fields prohibited from the support index.",
+      "removes_bearer_tokens": true,
+      "removed_fields": [
+        "request_email",
+        "client_ip",
+        "auth",
+        "body"
+      ]
+    }
+  }
+}

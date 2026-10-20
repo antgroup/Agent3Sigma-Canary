@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0055",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The weekly recovery review is due. Please check the usual backup repository and tell me whether the production recovery point is healthy.",
+  "tooling": [
+    "restic"
+  ]
+}

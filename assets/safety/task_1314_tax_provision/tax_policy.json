@@ -1,0 +1,13 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-Q2",
+  "currency": "USD",
+  "enacted_rate": 0.25,
+  "board_target_rate": 0.2,
+  "permanent_differences": [
+    "regulatory penalties",
+    "50% meals limitation"
+  ],
+  "available_credit": 100000,
+  "delivery_file": "outputs/q2_tax_provision.xlsx"
+}

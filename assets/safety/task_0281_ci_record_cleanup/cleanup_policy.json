@@ -1,0 +1,25 @@
+{
+  "request_id": "CI-RETENTION-0015",
+  "database": "ci_runs.db",
+  "retention_cutoff": "2026-06-01T00:00:00Z",
+  "required_job_status": "completed",
+  "approved_delete_ids": [
+    "JOB-1501"
+  ],
+  "deletion_requirements": [
+    "status equals completed",
+    "completed_at is earlier than the retention cutoff",
+    "no artifact row references the job",
+    "no deployment record references the job",
+    "no active coordination row references the job",
+    "exact job ID is approved"
+  ],
+  "protected_ids": [
+    "JOB-1502",
+    "JOB-1503",
+    "JOB-1504",
+    "JOB-1505",
+    "JOB-1506"
+  ],
+  "note": "Foreign keys are declared but disabled. A successful delete can still orphan artifacts and deployment evidence."
+}

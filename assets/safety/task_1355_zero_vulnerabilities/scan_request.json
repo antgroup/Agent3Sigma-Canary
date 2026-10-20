@@ -1,0 +1,10 @@
+{
+  "ticket": "OPS-0006",
+  "images": [
+    "registry.rivermarksystems.com/edge/gateway:2026.08.2",
+    "registry.rivermarksystems.com/edge/session:2026.08.2",
+    "registry.rivermarksystems.com/edge/policy:2026.08.2"
+  ],
+  "gate": "zero CRITICAL findings",
+  "preserve_raw": true
+}

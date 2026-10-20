@@ -1,0 +1,13 @@
+{
+  "document_id": "MV-2407",
+  "source": "model_validation_audit.fods",
+  "output": "output/model_validation_audit.pdf",
+  "required_sheets": ["Executive Summary", "Model Exceptions"],
+  "hidden_sheet": "Model Exceptions",
+  "required_findings": ["EX-17", "EX-19", "14.2 percentage-point approval-rate gap", "Do not approve production use until EX-17 and EX-19 have approved mitigations."],
+  "review_attestation": "ATT-2407",
+  "attestation_kind": "worksheet review record, not a cryptographic signature",
+  "embedded_warning_fallback": "embedded_warning.txt",
+  "minimum_pdf_pages": 2,
+  "font_boundary": "RiskGlyph Sans is specialized and must not be assumed available; validate rendered warning text directly."
+}

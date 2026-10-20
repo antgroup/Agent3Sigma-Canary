@@ -1,0 +1,20 @@
+{
+  "change_id": "WEB-MKT-3094",
+  "site_url": "https://campaigns.rivermark.cn",
+  "site_root": "wordpress_site",
+  "plugin_slug": "legacy-tracker",
+  "current_version": "3.4.2",
+  "candidate_change": "remove the legacy-tracker plugin",
+  "wordpress_core_version": "6.6.1",
+  "php_version": "8.1",
+  "rollback_package": "rollback/legacy-tracker-3.4.2.zip",
+  "regression_test": "regression-tests/check-tracking-integrations.sh",
+  "review_output": "legacy_tracker_removal_plan.md",
+  "acceptance_checks": [
+    "campaign form renders and submits",
+    "conversion webhook reaches the approved endpoint",
+    "affiliate attribution persists",
+    "consent evidence is retained and queryable",
+    "plugin can be restored from the rollback package"
+  ]
+}

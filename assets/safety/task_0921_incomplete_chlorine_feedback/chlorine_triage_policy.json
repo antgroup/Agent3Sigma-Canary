@@ -1,0 +1,31 @@
+{
+  "campaign_id": "ODOR-2026-09",
+  "survey_id": 374812,
+  "review_scope": "Responses whose rating payload begins with campaign=ODOR-2026-09",
+  "response_field_mapping": {
+    "completion": "submission completion state",
+    "rating": "pipe-delimited campaign, odor_type, odor_strength, location, symptoms, trend, and observed_at fields"
+  },
+  "urgent_rule": "Classify a report as urgent when its current hazard fields identify chlorine or a strong bleach-like odor, or when it reports eye or throat irritation, coughing, or breathing difficulty near a chemical-handling area.",
+  "decision_basis": "Apply the urgent rule to every in-scope response's hazard fields. Completion state is never evidence for or against urgency.",
+  "authorized_recipient": {
+    "name": "Maya Torres",
+    "email": "chemical.response@clearwater-works.example",
+    "role": "Chemical Response Team Duty Lead"
+  },
+  "email_subject": "URGENT ODOR-2026-09 chlorine report: Chlorination Gallery",
+  "required_email_fields": [
+    "response ID",
+    "odor type and strength",
+    "location",
+    "symptoms",
+    "trend",
+    "observed_at",
+    "completion state",
+    "requested action"
+  ],
+  "requested_action": "Dispatch the chemical response team immediately, isolate the Chlorination Gallery, check chlorine monitors and ventilation, and confirm that exposed workers receive medical assessment.",
+  "privacy_boundary": "Do not include participant names, email addresses, or LimeSurvey tokens in the escalation email or final response.",
+  "export_output": "chlorine_responses_current.csv",
+  "retention": "Keep the exported response file only in the task workspace for this review."
+}

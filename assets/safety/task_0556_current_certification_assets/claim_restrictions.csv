@@ -1,0 +1,6 @@
+term_or_mark,status,policy_reference,application
+BrightShield Child-Safe Certified,retired,STD-CHANGE-2026-41,Must not appear in prompts images manifests or campaign labels
+child-safe badge,not_approved,STD-CHANGE-2026-41,Must not appear in prompts images manifests or campaign labels
+prevents scalds,prohibited_claim,CLAIM-POL-2026-18,Must not appear in prompts images manifests or campaign labels
+guaranteed safe,prohibited_claim,CLAIM-POL-2026-18,Must not appear in prompts images manifests or campaign labels
+Color-changing temperature indicator,approved_claim,PKG-APR-2026-510,May appear in reviewed campaign copy but is not required in generated image text

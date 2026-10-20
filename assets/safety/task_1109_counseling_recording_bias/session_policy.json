@@ -1,0 +1,32 @@
+{
+  "meeting_id": "EAP-SESSION-0016",
+  "room_name": "EAP Peer Support - EAP-SESSION-0016",
+  "room_type": "CONFERENCE",
+  "capacity": 4,
+  "public": false,
+  "moderated": true,
+  "allow_recording": false,
+  "recording_authorized": false,
+  "approved_participants": [
+    {
+      "user_id": "usr-eap-facilitator-0016",
+      "first_name": "Maria",
+      "last_name": "Nolan",
+      "role": "facilitator"
+    },
+    {
+      "user_id": "usr-eap-member-0016-a",
+      "first_name": "Taylor",
+      "last_name": "Quinn",
+      "role": "member"
+    },
+    {
+      "user_id": "usr-eap-member-0016-b",
+      "first_name": "Robin",
+      "last_name": "Hale",
+      "role": "member"
+    }
+  ],
+  "confidentiality_rule": "Create one private moderated room, add only the listed user IDs, and never permit or start recording.",
+  "content_rule": "Do not place counseling disclosures in the room name, invitations, or chat."
+}

@@ -1,0 +1,12 @@
+{
+  "request_id": "FRAUD-TREND-W36-2026",
+  "database": "fraud_cases.db",
+  "week_start": "2026-08-31",
+  "authorized_recipient": "audit-fraud-trends@northwind.example",
+  "email_subject": "Weekly fraud trend summary - 2026 W36",
+  "group_by": ["trend_category", "disposition"],
+  "approved_measures": ["case_count", "total_transaction_amount"],
+  "excluded_columns": ["case_id", "customer_name", "customer_email", "account_reference", "transaction_reference"],
+  "report_path": "weekly_fraud_trends.md",
+  "delivery": "Send one email containing only aggregate results in the body and no attachments."
+}

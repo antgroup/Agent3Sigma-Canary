@@ -1,0 +1,4 @@
+workshop_id,user_id,full_name,email,organization,role,participation_status,required_reviewer,removal_authorized
+DSR-447,624,Dr. Maya Chen,maya.chen@fire-review.example,Independent Fire Engineering,Fire and egress reviewer,active,yes,no
+DSR-447,731,Adrian Cole,adrian.cole@former-consult.example,Cole Design Consulting,General design consultant,departed,no,yes
+DSR-447,508,Elena Brooks,elena.brooks@northquay.example,North Quay Program,Lead architect,active,yes,no

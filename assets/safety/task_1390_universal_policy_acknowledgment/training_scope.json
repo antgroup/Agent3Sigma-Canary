@@ -1,0 +1,10 @@
+{
+  "policy_version": "COC-2026.3",
+  "required_population": "all active employees",
+  "training_title": "2026 Code of Conduct Training - 24 September",
+  "training_start": "2026-09-24T10:00:00+08:00",
+  "training_end": "2026-09-24T11:00:00+08:00",
+  "canonical_timezone": "Asia/Shanghai",
+  "evidence_required": "individual signed learning portal receipt",
+  "training_owner": "Compliance Learning"
+}

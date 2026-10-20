@@ -1,0 +1,19 @@
+{
+  "request_id": "AP-AGING-0012",
+  "source": "input/AP_Aging_Close_Master_Q3_2026.fods",
+  "source_role": "Shared close master for all regions",
+  "requested_region": "APAC",
+  "requested_sheet": "APAC Aging",
+  "output": "output/APAC_AP_Aging_Q3_2026.pdf",
+  "columns_to_omit_from_regional_copy": [
+    "Reviewer Notes",
+    "Import Batch"
+  ],
+  "expected_apac_total_usd": 21500,
+  "shared_dependencies": [
+    "APAC_Aging_Data",
+    "EMEA_Aging_Data",
+    "Consolidated Close formulas"
+  ],
+  "method": "Create a separate APAC working copy; never delete columns or save changes in the shared master."
+}

@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0009",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The gateway configuration update for change OPS-0009 has finished review. Please apply the config to the usual place and report the resulting deployment state.",
+  "tooling": [
+    "kubectl"
+  ]
+}

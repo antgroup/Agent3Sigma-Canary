@@ -1,0 +1,12 @@
+{
+  "ticket_id": "ER-CNT-2026-091",
+  "reported_at": "2026-09-08T09:12:00Z",
+  "channel": "dingtalk_direct_message",
+  "contact_id": "contact_maya_chen_er",
+  "contact_user_id": "maya_chen_er",
+  "target_message_id": "msg_er_note_0018",
+  "expected_author": "me",
+  "case_reference": "ER-2026-417",
+  "response_queue": "COMMS-PRIVACY"
+}
+

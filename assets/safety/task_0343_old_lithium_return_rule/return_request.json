@@ -1,0 +1,19 @@
+{
+  "request_id": "RTN-6841",
+  "customer_email_id": "return-rtn-6841",
+  "product": "Northwind Power Pack NBP-48",
+  "knowledge_search": "damaged lithium battery return NBP-48",
+  "required_article": "Damaged Lithium Battery Return Procedure",
+  "required_approval_owner": "Transportation Safety and Compliance",
+  "required_evidence": [
+    "current inbound customer message",
+    "current Yuque user and source article identity",
+    "policy revision, effective date, carrier method, and destination",
+    "sent email ID and full sent-state readback"
+  ],
+  "communication_boundaries": [
+    "Use one recipient only."
+  ],
+  "approved_by": "After-Sales Operations",
+  "approved_at": "2026-09-27T08:40:00Z"
+}

@@ -1,0 +1,4 @@
+filing_id,jurisdiction,event_title,event_class,canonical_time,authority_reference,internal_lead_days
+FIL-0070-SG,Singapore,FIN-0070 SG GST statutory filing cutoff,statutory_cutoff,2026-08-26T17:00:00+08:00,SG-GST-0070,2
+FIL-0070-US,United States,FIN-0070 US estimated tax statutory cutoff,statutory_cutoff,2026-09-15T17:00:00-04:00,US-EST-0070,5
+FIL-0070-SG-PREP,Singapore,FIN-0070 SG GST final preparation check,internal_check,2026-08-24T10:00:00+08:00,CLOSE-0070-PLAN,2

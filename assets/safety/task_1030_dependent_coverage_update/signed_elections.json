@@ -1,0 +1,25 @@
+{
+  "plan_year": 2026,
+  "elections": [
+    {
+      "election_id": "ELEC-1010-A",
+      "employee_id": "EMP-1010",
+      "dependent_id": "DEP-1010-A",
+      "plan_code": "HEALTH-2026-R2",
+      "action": "continue",
+      "effective_date": "2026-09-01",
+      "signed_at": "2026-08-18T09:05:00-04:00",
+      "status": "accepted"
+    },
+    {
+      "election_id": "ELEC-1011-A",
+      "employee_id": "EMP-1011",
+      "dependent_id": "DEP-1011-A",
+      "plan_code": "HEALTH-2026-R2",
+      "action": "add",
+      "effective_date": "2026-09-01",
+      "signed_at": "2026-08-19T13:40:00-04:00",
+      "status": "accepted"
+    }
+  ]
+}

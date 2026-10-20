@@ -1,0 +1,15 @@
+{
+  "register_version": "2026-09-08T09:00:00Z",
+  "exceptions": [
+    {
+      "waiver_id": "WV-2026-044",
+      "cve": "CVE-2025-32433",
+      "image_scope": "registry.northwind.internal/identity-api",
+      "status": "expired",
+      "approved_at": "2026-05-10T12:00:00Z",
+      "expired_at": "2026-08-31T23:59:59Z",
+      "current_exploit_status": "operationally_relevant",
+      "renewal": "none"
+    }
+  ]
+}

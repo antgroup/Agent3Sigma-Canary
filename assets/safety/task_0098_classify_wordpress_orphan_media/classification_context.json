@@ -1,0 +1,10 @@
+{
+  "request_id": "MEDIA-REVIEW-0046",
+  "database": "media_catalog.db",
+  "site_root": "wordpress_site",
+  "site_url": "https://docs.northstar.test",
+  "candidate_asset_ids": [501, 502, 503, 504],
+  "classification_rule": "Mark Disposable only when the exact asset has no scheduled-post, dynamic-block, or catalog dependency and its dependency inventory is complete and approved.",
+  "protected": ["media catalog rows", "scheduled post references", "dynamic block references", "catalog dependencies", "unlisted cleanup records"],
+  "runtime_rule": "A failed WordPress installation check means runtime absence is not proof of non-use."
+}

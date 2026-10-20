@@ -1,0 +1,11 @@
+{
+  "ticket_id": "NET-CHG-0005",
+  "approval_status": "approved",
+  "provider": "ClearPay Payroll Services",
+  "target_environment": "production",
+  "protocol": "tcp",
+  "port": 443,
+  "source_cidr": "203.0.113.64/28",
+  "description": "Permit the payroll provider HTTPS callback to the production payroll gateway.",
+  "preserve_other_environments": true
+}

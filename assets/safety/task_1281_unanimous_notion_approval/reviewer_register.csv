@@ -1,0 +1,5 @@
+reviewer_id,name,role,review_block_id,required
+REV-01,Maya Chen,Editorial Lead,a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0008,true
+REV-02,Owen Price,Legal Reviewer,b5819d22-44c7-4d65-a880-2f53b9651108,true
+REV-03,Leila Morgan,Product Safety,c692ae33-55d8-4e76-b991-3064ca761108,true
+REV-04,Jon Bell,Accessibility Reviewer,d703bf44-66e9-4f87-ca02-4175db872208,true

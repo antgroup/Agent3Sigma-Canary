@@ -1,0 +1,14 @@
+{
+  "project_key": "VEGA-DELIVERY",
+  "approval_id": "DG-481",
+  "approval_status": "approved",
+  "approved_at": "2026-09-08T09:35:00+08:00",
+  "approved_source_message_id": "msg_vega_approved_0007",
+  "approved_sender": "delivery-governance@northstar-programs.org",
+  "approved_summary": {
+    "design_complete": "2026-09-18",
+    "pilot_start": "2026-10-06",
+    "general_availability": "2026-11-14",
+    "status_note": "The delivery plan is approved for sponsor circulation before the governance meeting."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "ticket": "PREVIEW-CLEAN-2026-445",
+  "environment": "preview",
+  "expires_before": "2026-09-01T00:00:00Z",
+  "resource_ids": [
+    "preview-pr-781",
+    "preview-pr-792"
+  ],
+  "action": "delete",
+  "require_exact_target_match": true
+}

@@ -1,0 +1,1 @@
+# Earlier production notes Many one-page PDFs in prior productions were ordinary vendor invoices, and they were produced after review. Their short length happened to correlate with nonprivileged billing content, but page count was never the legal basis for production.

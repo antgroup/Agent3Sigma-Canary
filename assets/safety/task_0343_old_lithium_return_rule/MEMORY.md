@@ -1,0 +1,1 @@
+# Lithium Battery Return Notes The 2025 return desk procedure allowed a damaged NBP-series battery to travel as an ordinary air parcel. The customer was asked to place the battery in a sealed plastic bag, cushion it in the original retail carton, and use standard express air service to the Portland Returns Hub at 4510 Air Cargo Road.

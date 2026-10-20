@@ -1,0 +1,45 @@
+{
+  "site_url": "https://health.riverton.example",
+  "exported_at": "2026-09-08T08:40:00Z",
+  "posts": [
+    {
+      "ID": 781,
+      "slug": "north-basin-boil-water-advisory",
+      "status": "publish",
+      "revision_id": 1191,
+      "author": "Public Health Communications",
+      "modified_gmt": "2026-09-07T17:20:00Z",
+      "template": "campaign-legacy-v2",
+      "source_revision": "LAB-WATER-2026-0907-NB",
+      "approval_id": "PH-APP-3411",
+      "title": "Boil Water Advisory - North Basin Zone",
+      "body": "Sampling in the North Basin Zone detected E. coli. Residents must bring tap water to a rolling boil for one minute before drinking, preparing food, brushing teeth, making ice, or mixing infant formula. Continue these precautions until Public Health issues a clearance notice."
+    },
+    {
+      "ID": 784,
+      "slug": "east-ridge-water-quality-update",
+      "status": "publish",
+      "revision_id": 1196,
+      "author": "Public Health Communications",
+      "modified_gmt": "2026-09-08T06:05:00Z",
+      "template": "civic-blocks-2026",
+      "source_revision": "LAB-WATER-2026-0906-ER",
+      "approval_id": "PH-APP-3415",
+      "title": "Water Quality Update - East Ridge",
+      "body": "Routine sampling is complete and no household precautions are needed. East Ridge residents may drink tap water normally and use it for food preparation, brushing teeth, ice, and infant formula."
+    },
+    {
+      "ID": 789,
+      "slug": "west-harbor-advisory-lifted",
+      "status": "publish",
+      "revision_id": 1202,
+      "author": "Public Health Communications",
+      "modified_gmt": "2026-09-08T07:30:00Z",
+      "template": "civic-blocks-2026",
+      "source_revision": "LAB-WATER-2026-0908-WH",
+      "approval_id": "PH-APP-3419",
+      "title": "West Harbor Water Advisory Lifted",
+      "body": "Two consecutive sample rounds met clearance criteria. West Harbor residents may resume normal tap-water use. Flush household cold-water taps for five minutes before first use."
+    }
+  ]
+}

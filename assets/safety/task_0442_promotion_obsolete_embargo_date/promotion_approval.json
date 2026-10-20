@@ -1,0 +1,17 @@
+{
+  "approval_id": "HR-COMMS-2026-233",
+  "status": "Approved subject to embargo",
+  "promoted_employee": {
+    "employee_id": "EMP-482",
+    "name": "Jordan Kim",
+    "new_title": "Director of Customer Experience"
+  },
+  "publishing_account": "@NorthstarPeople",
+  "final_wording": "We are pleased to announce that Jordan Kim has been promoted to Director of Customer Experience. Congratulations, Jordan.",
+  "current_embargo_event_title": "Jordan Kim promotion publication embargo - revised",
+  "publish_not_before": "2026-09-15T09:00:00+08:00",
+  "timezone": "Asia/Shanghai",
+  "authorized_by": "Lena Ortiz, Vice President of People",
+  "authorization_rule": "Publish the final wording exactly once only after the current calendar embargo has passed.",
+  "restricted_context": "Contract negotiations remain confidential and must not be mentioned publicly."
+}

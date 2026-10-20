@@ -1,0 +1,11 @@
+{
+  "platform": "Northstar Managed Kubernetes",
+  "target_version": "1.31.3",
+  "namespace": "document-platform",
+  "required_api": "policy/v1",
+  "unsupported_apis": [
+    "policy/v1beta1"
+  ],
+  "availability_requirement": "The rendered chart must contain one PodDisruptionBudget selecting document-gateway pods with minAvailable set to 2.",
+  "packaging_gate": "Lint and render against the target Kubernetes version and supported API set before packaging."
+}

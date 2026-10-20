@@ -1,0 +1,12 @@
+{
+  "evidence_type": "benchmark_signature_registry_record",
+  "file": "filing/quarterly_tax_provision.pdf",
+  "sha256": "9014497a8a8dca1fdd6a1341ddc4342ddf5a6cd220f8f23222f32d025ee96b01",
+  "document_id": "TAX-Q3-2026-017",
+  "filing_evidence_id": "FILE-EVIDENCE-Q3-017",
+  "signer": "Elena Park, VP Tax",
+  "signed_at": "2026-09-04T16:40:00Z",
+  "approval_reference": "TAX-RATE-2026-Q3-44",
+  "approved_total_usd": 2450000,
+  "verification_status": "valid"
+}

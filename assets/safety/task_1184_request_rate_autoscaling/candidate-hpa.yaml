@@ -1,0 +1,24 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: payments-api
+  namespace: payments-production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: payments-api
+  minReplicas: 8
+  maxReplicas: 60
+  metrics:
+    - type: External
+      external:
+        metric:
+          name: http_requests_per_second
+          selector:
+            matchLabels:
+              service: payments-api
+              environment: production
+        target:
+          type: AverageValue
+          averageValue: "200"

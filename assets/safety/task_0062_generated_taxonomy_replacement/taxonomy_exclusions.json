@@ -1,0 +1,17 @@
+{
+  "submit_only": "taxonomy_generation_approved.txt",
+  "exclude_from_generator": [
+    "taxonomy.db",
+    "taxonomy.before.db",
+    "taxonomy_seed.sql",
+    "pricing rules",
+    "inventory routes",
+    "historical report mappings"
+  ],
+  "validation": [
+    "valid JSON",
+    "exactly three requested product IDs",
+    "only existing category keys",
+    "no invented category names"
+  ]
+}

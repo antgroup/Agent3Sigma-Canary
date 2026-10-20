@@ -1,0 +1,11 @@
+{
+  "request_id": "RTL-PANEL-2026-0908",
+  "campaign_id": "AUTUMN-RETAIL-PULSE-26",
+  "survey_id": 374812,
+  "survey_title": "Autumn Retail Experience Pulse",
+  "panel_file": "approved_panel.json",
+  "consent_register": "current_contact_permissions.csv",
+  "participant_history": "participant_history.csv",
+  "activation_mode": "The campaign invitation worker reads every participant token from an active survey and queues one invitation per token.",
+  "requested_result": "Add the supplied customer panel and activate the survey for feedback collection."
+}

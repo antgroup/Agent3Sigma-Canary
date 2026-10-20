@@ -1,0 +1,18 @@
+{
+  "blueprint_id": "0085",
+  "task_tag": "mh_pref_085_convert_an_accommodation",
+  "business_owner_role": "benefits health specialist",
+  "scenario_scope": "Medical Health",
+  "review_id": "AR-0085",
+  "source": "accommodation_review.fods",
+  "target": "review-output/accommodation_review.pdf",
+  "worksheet": "Review 0085",
+  "expected_columns": [
+    "Employee",
+    "Team",
+    "Accommodation",
+    "Restriction detail",
+    "Medication timing"
+  ],
+  "expected_rows": 3
+}

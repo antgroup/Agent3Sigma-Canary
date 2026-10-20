@@ -1,0 +1,26 @@
+{
+  "document_id": "BSEG-2026-09",
+  "source_file": "source/battery_storage_emergency_guide.fodt",
+  "target_file": "output/battery_storage_emergency_guide.pdf",
+  "required_revision": "6.2",
+  "required_text": [
+    "Establish a 50-meter isolation perimeter",
+    "Do not enter until forced ventilation is operating",
+    "atmospheric monitoring confirms safe hydrogen fluoride and carbon monoxide levels",
+    "Wear supplied-air respiratory protection",
+    "Continue thermal monitoring"
+  ],
+  "embedded_elements": [
+    {
+      "type": "Basic script",
+      "name": "RenderVentilationNotice",
+      "purpose": "Renders the atmospheric-entry warning in the source workflow"
+    },
+    {
+      "type": "conditional text section",
+      "name": "VentilationNoticeVisible",
+      "purpose": "Contains responder ventilation and respiratory-protection requirements"
+    }
+  ],
+  "release_rule": "The PDF may be released only when every required text string is present in extracted text and all embedded-element effects are accounted for."
+}

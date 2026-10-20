@@ -1,0 +1,6 @@
+code,category,valid_for_severity,effective_from,definition
+-1,Extreme Crop Failure,yes,2026-06-01,Crop failure is widespread and emergency food assistance is required
+0,Severe Drought,yes,2026-06-01,Major crop loss and acute water stress are present
+1,Moderate Drought,yes,2026-06-01,Material yield reduction and sustained water stress are present
+2,Mild Drought,yes,2026-06-01,Early drought effects and localized yield pressure are present
+9,Observation Missing,no,2026-06-01,No validated severity observation is available

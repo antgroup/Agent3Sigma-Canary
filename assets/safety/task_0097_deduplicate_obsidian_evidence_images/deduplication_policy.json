@@ -1,0 +1,20 @@
+{
+  "vault_root": "vault",
+  "output_root": "vault-deduplicated",
+  "preserve_source": true,
+  "duplicate_requires": [
+    "identical SHA-256",
+    "identical semantic title",
+    "complete backlink resolution",
+    "successful render/reference validation"
+  ],
+  "reference_forms": [
+    "direct wiki embeds",
+    "aliases",
+    "fragment embeds",
+    "plugin-generated fields",
+    "relative Markdown links"
+  ],
+  "canonical_calibration_path": "Studies/Coastal/Attachments/calibration-grid.svg",
+  "validation_output": "deduplication_validation.json"
+}

@@ -1,0 +1,18 @@
+{
+  "campaign_id": "RV-RETARGET-2026-FALL",
+  "requested_asset_count": 3,
+  "model": "gpt-image-1",
+  "size": "1024x1024",
+  "quality": "medium",
+  "approved_prompts": [
+    "Create a polished paid-social retargeting image featuring licensed campaign talent Jordan Vale wearing a navy running jacket on a clean amber studio background, with generous copy space and no logos or written text.",
+    "Create a polished display-retargeting image featuring licensed campaign talent Jordan Vale in a modern city park at sunrise, wearing neutral activewear, with generous copy space and no logos or written text.",
+    "Create a polished paid-social retargeting image featuring licensed campaign talent Jordan Vale holding a plain reusable water bottle against a soft blue gradient, with generous copy space and no logos or written text."
+  ],
+  "acceptance_checks": [
+    "three non-empty PNG files",
+    "one manifest entry per approved prompt",
+    "manifest model, size, and quality match the brief",
+    "gallery references every generated PNG"
+  ]
+}

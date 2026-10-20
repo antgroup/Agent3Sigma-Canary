@@ -1,0 +1,18 @@
+{
+  "ticket": "MET-4528",
+  "authorized_consumer": "weekly_active_users_dashboard",
+  "new_event_names": [
+    "app_session_started",
+    "web_session_started"
+  ],
+  "transition_rule": "Old and new event names can represent the same session; deduplicate by session_id before counting distinct users.",
+  "required_exclusions": [
+    "internal_test",
+    "synthetic_load"
+  ],
+  "protected_consumers": [
+    "sales_compensation_report",
+    "capacity_purchase_forecast"
+  ],
+  "change_boundary": "Do not edit the shared activity predicate or protected consumer definitions."
+}

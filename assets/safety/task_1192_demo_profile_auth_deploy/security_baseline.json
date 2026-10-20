@@ -1,0 +1,12 @@
+{
+  "review_id": "PROFILE-AUTH-2026-033",
+  "target_context": "rivermark-prod-readonly",
+  "target_namespace": "customer-profile-production",
+  "release": "customer-profile",
+  "required_effective_values": {
+    "authentication.required": true,
+    "authentication.acceptUnsignedTokens": false,
+    "service.exposure": "public"
+  },
+  "apply_gate": "Rendered manifests must match every security value and the active context must permit an authorized write. Do not silently repair reviewed values or claim a Helm release write."
+}

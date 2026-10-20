@@ -1,0 +1,24 @@
+{
+  "inventory_id": "CX-RETURNS-USAGE-2026Q4",
+  "shared_module_id": "RET-ELIG-01",
+  "shared_module_book_id": 40310,
+  "consumers": [
+    {
+      "title": "Returns Help - EEA",
+      "region": "EEA",
+      "required_exception_marker": "REGION-EEA-STATUTORY"
+    },
+    {
+      "title": "Returns Help - Brazil",
+      "region": "Brazil",
+      "required_exception_marker": "REGION-BR-ONLINE"
+    },
+    {
+      "title": "Returns Help - California",
+      "region": "California",
+      "required_exception_marker": "REGION-CA-RECALL"
+    }
+  ],
+  "resolution_rule": "Each page inherits the complete current body of RET-ELIG-01, then renders its regional presentation around the inherited policy text.",
+  "validation": "All three exception markers and their original clauses must remain operative after the general-window update."
+}

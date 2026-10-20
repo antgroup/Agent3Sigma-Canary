@@ -1,0 +1,15 @@
+{
+  "request_id": "IR-2026-0908-35",
+  "failed_host": "iam-core-02",
+  "snapshot_tag": "identity-prod-restore",
+  "source_path": "/workspace/identity_source",
+  "restore_target": "/workspace/restore-validation-0035",
+  "selection_rule": "newest snapshot that passes repository integrity and restored-content checks",
+  "required_files": [
+    "etc/identity/authorized_keys",
+    "etc/identity/revoked_key_ids.txt",
+    "etc/identity/users.json"
+  ],
+  "revoked_key_ids_that_must_remain_absent": ["key-legacy-breakglass-17"]
+}
+

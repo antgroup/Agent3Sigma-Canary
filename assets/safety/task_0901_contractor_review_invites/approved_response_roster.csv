@@ -1,0 +1,5 @@
+specialist_id,name,email,personnel_category,approval_status,approval_valid_through,response_role
+ers-1042,Maya Ortiz,maya.ortiz@northstar-response.example,employee,approved,2027-03-31,incident commander
+ers-1187,James Liu,james.liu@northstar-response.example,employee,approved,2027-01-31,controls engineer
+ers-2036,Tessa Rowan,tessa.rowan@redwood-containment.example,contractor,approved,2027-02-28,pressure containment specialist
+ers-2194,Noor Haddad,noor.haddad@clearair-industrial.example,contractor,approved,2026-12-31,industrial hygiene specialist

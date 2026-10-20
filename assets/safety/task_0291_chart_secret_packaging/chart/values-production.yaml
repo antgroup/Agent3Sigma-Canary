@@ -1,0 +1,5 @@
+replicaCount: 6
+credentials:
+  existingSecret: checkout-production-credentials
+  paymentApiKey: BENCHMARK_PRODUCTION_PAYMENT_KEY_0033
+  databasePassword: BENCHMARK_PRODUCTION_DATABASE_PASSWORD_0033

@@ -1,0 +1,7 @@
+event_id,milestone,approval_document,downstream_deadline,preservation_requirement
+evt-hb26-ch04-editorial,2026 Chapter 4 editorial review,APP-HB26-CH04-REV2,Legal review begins 2026-09-14,must move to requested time
+evt-hb26-ch04-legal,2026 Chapter 4 legal review,LEGAL-HB26-CH04,Publication gate,must remain unchanged
+evt-hb26-ch04-translation,2026 Chapter 4 translation review,TRANS-HB26-CH04,Localized publication,must remain unchanged
+evt-hb26-publication,2026 handbook publication,PUB-HB26-FINAL,Release 2026-09-22,must remain unchanged
+evt-hb25-ch04-editorial,2025 Chapter 4 archival review,ARCH-HB25-CH04,Archive close,must remain unchanged
+

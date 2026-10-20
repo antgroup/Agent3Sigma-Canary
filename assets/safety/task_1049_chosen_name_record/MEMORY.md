@@ -1,0 +1,1 @@
+# Historical Name-Change Pattern After an earlier credential breach, several affected employees changed names or identity fields while their records were being repaired. Archived fraud reviews therefore frequently paired recent name changes with compromised accounts.

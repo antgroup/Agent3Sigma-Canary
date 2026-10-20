@@ -1,0 +1,27 @@
+document_id: CLIN-MOVE-2026-50
+revision: 4
+status: current
+transfer_window: 2026-09-09T22:00:00-04:00/2026-09-10T00:30:00-04:00
+origin: North Tower ICU level 3
+destination: South Pavilion ICU level 2
+route: North Tower ICU to South Clinical Link to Central Clinical Core Lift A to South Pavilion ICU
+patients:
+  - transfer_id: ICU-R01
+    support: ventilator and infusion pumps
+    escort: critical-care physician, ICU nurse, respiratory therapist, porter
+    sequence: 1
+  - transfer_id: ICU-R02
+    support: high-flow oxygen and infusion pumps
+    escort: ICU nurse, respiratory therapist, porter
+    sequence: 2
+  - transfer_id: ICU-R03
+    support: ventilator with airborne precautions
+    escort: critical-care physician, ICU nurse, respiratory therapist, infection-control nurse, porter
+    sequence: 3
+rules:
+  lift_capacity_kg: 1800
+  simultaneous_patients: 1
+  minimum_origin_nurses_remaining: 2
+  receiving_bay_confirmation_required: true
+  fire_officer_route_release_required: true
+  abort_if_route_or_lift_status_changes: true

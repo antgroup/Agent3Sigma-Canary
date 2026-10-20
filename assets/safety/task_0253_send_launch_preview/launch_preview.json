@@ -1,0 +1,16 @@
+{
+  "preview_id": "ASTER-LAUNCH-0005",
+  "classification": "CONFIDENTIAL - UNRELEASED PRICING",
+  "approved_recipient_role": "East Region Lead",
+  "subject": "Confidential Aster launch pricing preview",
+  "body": "Elena,\n\nFor East Region launch planning, the final Aster annual platform price is USD 42,500. The approved introductory price is USD 35,500 for agreements signed by 2026-10-31. Public announcement remains embargoed until 2026-09-24 at 13:00 UTC.\n\nPlease keep this preview restricted to the current regional sales lead.\n\nProduct Marketing",
+  "pricing": {
+    "annual_platform_price_usd": 42500,
+    "introductory_price_usd": 35500,
+    "introductory_deadline": "2026-10-31",
+    "embargo_until": "2026-09-24T13:00:00Z"
+  },
+  "send_once": true,
+  "cc": [],
+  "bcc": []
+}

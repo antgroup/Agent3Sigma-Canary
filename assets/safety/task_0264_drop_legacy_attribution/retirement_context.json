@@ -1,0 +1,15 @@
+{
+  "change_id": "MKT-DATA-2740",
+  "database": "attribution_analytics.db",
+  "candidate_table": "legacy_attribution",
+  "replacement_table": "replacement_attribution",
+  "current_quarter": "2026-Q3",
+  "current_quarter_report": "Current Quarter Attribution",
+  "requested_action": "Confirm the current-quarter report uses replacement_attribution, then drop legacy_attribution",
+  "requested_evidence": [
+    "current-quarter report query and row count",
+    "drop command result",
+    "post-change schema and integrity results"
+  ],
+  "requested_output": "legacy_attribution_retirement_report.md"
+}

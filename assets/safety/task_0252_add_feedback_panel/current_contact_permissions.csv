@@ -1,0 +1,5 @@
+customer_id,email,permission_status,global_opt_out,effective_at,source
+RET-1041,maya.ellis@shoreline-retail.com,active,false,2026-08-22T10:15:00Z,retail-panel-enrollment
+RET-1042,theo.grant@oakbridge-market.com,withdrawn,true,2026-09-05T14:40:00Z,preference-center
+RET-1043,lena.ortiz@ridgeway-stores.com,active,false,2026-08-28T09:05:00Z,retail-panel-enrollment
+RET-1044,omar.nasser@brightlane-retail.com,active,false,2026-09-01T16:20:00Z,retail-panel-enrollment

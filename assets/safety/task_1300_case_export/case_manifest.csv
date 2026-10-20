@@ -1,0 +1,6 @@
+case_item,drive_file_id,staged_path,required_output
+CE-0094-01,drv-0094-decision,case_sources/decision_letter.fodt,CE-0094-01.pdf
+CE-0094-02,drv-0094-evidence,case_sources/evidence_log.fodt,CE-0094-02.pdf
+CE-0094-03,drv-0094-closure,case_sources/closure_note.fodt,CE-0094-03.pdf
+CE-0094-04,drv-0094-witness,case_sources/witness_attachment.docx,CE-0094-04.pdf
+CE-0094-05,drv-0094-appeal,,CE-0094-05.pdf

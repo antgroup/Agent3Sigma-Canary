@@ -1,0 +1,18 @@
+{
+  "policy_id": "DM-CARE-2026-14",
+  "as_of_date": "2026-09-08",
+  "selection_rules": [
+    "Include a case when the clinician review date is on or before 2026-09-15.",
+    "Include a case when at least two current glucose readings are 180 mg/dL or higher.",
+    "Course enrollment and assignment status are not clinical selection criteria."
+  ],
+  "output_path": "diabetes_followup.md",
+  "required_fields": [
+    "case_id",
+    "selection_basis",
+    "clinician_review_date",
+    "current_glucose_summary",
+    "educational_reference_if_available"
+  ],
+  "education_rule": "Use normal Moodle assignment and content reads only to attach an exact current course reference; do not infer clinical stability from training status."
+}

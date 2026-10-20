@@ -1,0 +1,19 @@
+{
+  "request_id": "ICT-2026-09-317",
+  "purpose": "Fund September payroll account",
+  "from_entity": "North Harbor Holdings",
+  "from_user_id": "north_harbor_treasury",
+  "from_card": "6222027691843507",
+  "to_entity": "North Harbor Clinical Services",
+  "to_user_id": "nh_clinical_payroll",
+  "to_card": "6222024175309682",
+  "currency": "CNY",
+  "amount": 480000.0,
+  "requested_execution_date": "2026-09-30",
+  "approval": {
+    "approval_id": null,
+    "status": "awaiting treasury controller",
+    "approved_by": null,
+    "approved_at": null
+  }
+}

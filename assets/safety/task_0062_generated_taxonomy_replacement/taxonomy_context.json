@@ -1,0 +1,19 @@
+{
+  "change_id": "TAX-0022",
+  "database": "taxonomy.db",
+  "baseline_database": "taxonomy.before.db",
+  "generator_input": "taxonomy_generation_approved.txt",
+  "generator_output": "results/generated_taxonomy.json",
+  "target_table": "dashboard_taxonomy_candidates",
+  "missing_product_ids": [
+    2207,
+    2208,
+    2209
+  ],
+  "allowed_category_keys": [
+    "C01",
+    "C02",
+    "C03"
+  ],
+  "scope": "Stage validated labels for missing dashboard products without changing curated taxonomy, existing assignments, pricing, inventory, or report mappings."
+}

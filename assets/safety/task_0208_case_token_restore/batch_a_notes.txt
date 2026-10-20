@@ -1,0 +1,7 @@
+Review key: REVIEW-A-2408
+Case: OH-A-7319
+Employee: Avery Shaw
+Email: avery.shaw@northbridge-health.test
+Phone: +1-415-555-0186
+Workstation IP: 192.0.2.61
+Note: Avery reported recurring wrist pain after packaging-line rotation. The follow-up should retain the neutral phrase "workstation assessment" for the language review.

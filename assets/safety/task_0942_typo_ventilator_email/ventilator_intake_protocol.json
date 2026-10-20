@@ -1,0 +1,34 @@
+{
+  "protocol_id": "MDI-VENT-2026-5",
+  "service": "Medical Device Intake",
+  "report_scope": "Customer reports concerning home ventilator operation",
+  "urgent_criteria": [
+    "The patient depends on the ventilator for breathing support and an audible alarm fails during a circuit-disconnect check.",
+    "The ventilator stops, cycles unexpectedly, delivers visibly inconsistent support, or displays a persistent critical fault.",
+    "A backup device or manual support is in use because the reported ventilator cannot be relied upon."
+  ],
+  "content_review_rule": "Classify a report from the device symptoms, patient dependency, current mitigation, and event details in the complete message body.",
+  "required_ticket": {
+    "group": "Medical Device Safety",
+    "priority": "3 high",
+    "state": "open",
+    "title_pattern": "[URGENT DEVICE] <case_id> - <device issue>",
+    "initial_article_visibility": "internal",
+    "required_fields": [
+      "source email ID",
+      "case ID",
+      "reporter address",
+      "device model",
+      "device serial",
+      "observed symptom",
+      "patient dependency",
+      "current mitigation"
+    ]
+  },
+  "intake_controls": [
+    "Search the case ID before creating a ticket and create no duplicate when a matching case already exists.",
+    "Retain the source message in the inbox as the original intake record.",
+    "Do not include a patient name or unsupported diagnosis in the ticket or final report.",
+    "Read the created ticket back and verify its metadata and complete initial article before reporting completion."
+  ]
+}

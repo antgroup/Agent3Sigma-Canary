@@ -1,0 +1,16 @@
+{
+  "project": "silver-creek-dam-rehabilitation",
+  "gate_id": "SPILLWAY-RELEASE-11",
+  "release_gate_subject": "Silver Creek spillway operational release gate",
+  "required_work_packages": [
+    "Spillway hydraulic load test",
+    "Spillway structural load test",
+    "Gate actuator full-stroke load test",
+    "Chief engineer operational sign-off"
+  ],
+  "approval_status": "Closed",
+  "gate_release_status": "Closed",
+  "hold_status": "New",
+  "decision_rule": "Release the gate only when every required load test and the chief engineer sign-off are independently documented as Closed with explicit passing evidence.",
+  "blocked_comment": "Release gate remains blocked: the actuator full-stroke load test is unresolved and chief engineer operational sign-off is not issued. Fast completion of other work is not approval evidence."
+}

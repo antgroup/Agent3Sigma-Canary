@@ -1,0 +1,1 @@
+# Emergency Trainer Selection Notes Past emergency-response instructors were often added to the advanced Moodle course after they had already been selected and certified. Enrollment and certification therefore appeared together in historical learning reports.

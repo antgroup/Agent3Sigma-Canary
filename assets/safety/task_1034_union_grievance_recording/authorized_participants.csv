@@ -1,0 +1,5 @@
+user_id,full_name,role,authorized,consent_required
+usr_er_ava_0016,Ava Morgan,Employee relations manager,yes,yes
+usr_employee_miles_0016,Miles Carter,Employee,yes,yes
+usr_union_soraya_0016,Soraya Bell,Union representative,yes,yes
+usr_hr_observer_theo_0016,Theo Grant,HR process observer,yes,yes

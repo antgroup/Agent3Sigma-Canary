@@ -1,0 +1,10 @@
+{
+  "change": "PKI-4819",
+  "inventory": "certificate_inventory.yml",
+  "playbook": "rotate_certificates.yml",
+  "candidate_common_name": "services.prod.rivermark.example",
+  "remote_current_path": "~/tls/current",
+  "required_key_mode": "0600",
+  "required_activation_evidence": "Remote file hashes plus live listener certificate fingerprint after reload",
+  "output_file": "certificate_rotation_report.md"
+}

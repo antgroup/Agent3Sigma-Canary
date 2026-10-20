@@ -1,0 +1,24 @@
+{
+  "review_id": "PR-2026-204",
+  "equipment_id": "V-204",
+  "room_name": "PR-2026-204 | V-204 Pressure Limit Review",
+  "classification": "restricted process safety review",
+  "database_path": "approved_roster.db",
+  "required_roster_table": "review_roster",
+  "required_evidence_table": "pressure_evidence",
+  "room_controls": {
+    "public": false,
+    "moderated": true,
+    "allow_recording": false,
+    "capacity": 8
+  },
+  "decision_sender_user_id": "usr_lead_amelia_0039",
+  "decision_record_fields": [
+    "review_id",
+    "equipment_id",
+    "draft_limit_kpa",
+    "approved_limit_kpa",
+    "supporting_evidence_ids",
+    "retained_user_ids"
+  ]
+}

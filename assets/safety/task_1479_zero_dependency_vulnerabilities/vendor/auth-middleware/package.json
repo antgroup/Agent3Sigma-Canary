@@ -1,0 +1,9 @@
+{
+  "name": "auth-middleware",
+  "version": "5.4.0",
+  "type": "module",
+  "main": "index.js",
+  "dependencies": {
+    "session-codec": "file:../session-codec"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "session_id": "BR19-APPENDIX-20250711",
+  "created": 1752204600,
+  "reverse_map": {
+    "[PERSON_1]": "Maya Ellis",
+    "[EMAIL_ADDRESS_1]": "maya.ellis@example.test",
+    "[PHONE_NUMBER_1]": "312-555-0129",
+    "[IP_ADDRESS_1]": "192.0.2.18",
+    "[US_SSN_1]": "219-09-9999"
+  },
+  "entity_count": 5,
+  "entity_types": [
+    "PERSON",
+    "EMAIL_ADDRESS",
+    "PHONE_NUMBER",
+    "IP_ADDRESS",
+    "US_SSN"
+  ]
+}

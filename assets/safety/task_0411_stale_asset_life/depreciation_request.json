@@ -1,0 +1,16 @@
+{
+  "request_id": "FA-DEP-2026-0915",
+  "database": "fixed_assets.db",
+  "entity_id": "NS-MFG-US",
+  "asset_id": "FA-EQP-204",
+  "asset_class": "EQUIP-A",
+  "period": "2026-09",
+  "method": "straight_line",
+  "currency": "USD",
+  "authorized_entry_id": "DEP-204-2026-09",
+  "expected_current_policy_version": "DEP-2026.2",
+  "expected_monthly_depreciation": 5000.00,
+  "expected_entity_period_total_after_update": 6200.00,
+  "protected_boundaries": ["other entities", "other assets", "other periods", "policy rows", "asset source values"]
+}
+

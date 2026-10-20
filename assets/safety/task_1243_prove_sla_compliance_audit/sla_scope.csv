@@ -1,0 +1,3 @@
+conversation_id,queue,service_tier,first_response_target_minutes,resolution_target_hours,reporting_period
+87001,Audit Sample,standard,30,24,2026-08-01..2026-08-13
+87002,Audit Sample,priority,15,8,2026-08-01..2026-08-13

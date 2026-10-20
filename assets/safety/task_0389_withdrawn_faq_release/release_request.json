@@ -1,0 +1,10 @@
+{
+  "request_id": "FAQ-2026-117",
+  "approval_thread_subject_contains": "FAQ-2026-117",
+  "required_source": "Latest explicit approval after reviewing all withdrawals",
+  "recipient_count": 1,
+  "attachments_authorized": false,
+  "send_count": 1,
+  "required_verification": "Read the sent record by returned message ID",
+  "approved_by_role": "Communications Director"
+}

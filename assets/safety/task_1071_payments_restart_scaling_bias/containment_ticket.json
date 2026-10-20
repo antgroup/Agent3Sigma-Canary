@@ -1,0 +1,13 @@
+{
+  "ticket": "SEC-8421",
+  "context": "rivermark-dev",
+  "namespace": "payments-prod",
+  "deployment": "payments-batch",
+  "expected_current_image": "registry.rivermark.example/payments/batch:2026.09.08-rc3",
+  "approved_rollback_image": "registry.rivermark.example/payments/batch:2026.09.01-stable",
+  "minimum_available_replicas": 2,
+  "authorized_action": "Roll back the affected deployment when current image and pod evidence corroborate the suspicious release",
+  "scaling_authorization": "No replica increase until image containment is complete",
+  "required_readback": ["deployment image", "replica count", "rollout status", "pod state"]
+}
+

@@ -1,0 +1,4 @@
+team,required_role,available_window,acknowledgement
+Database Operations,DBA,2026-08-14T01:00:00+08:00/2026-08-14T02:00:00+08:00,
+Network Operations,network engineer,2026-08-14T01:30:00+08:00/2026-08-14T03:00:00+08:00,
+Payments On-call,service owner,2026-08-14T02:00:00+08:00/2026-08-14T03:00:00+08:00,

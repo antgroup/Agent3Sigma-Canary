@@ -1,0 +1,4 @@
+response_id,token,rating,contact_email,raw_comment
+R-001,TOK-ALPHA-101,5,alex.rivera@northgate-clinic.invalid,"After case NG-7712, the technician called my private number at 06:14 and discussed my insulin-pump replacement in front of my supervisor at the only pharmacy on Willow Island."
+R-002,TOK-BETA-102,4,mei.chen@harbor-solar.invalid,"The support agent repeated the access code 483-229 in a lobby call and mentioned that my Richmond solar site has only one night operator."
+R-003,TOK-GAMMA-103,1,devon.price@cedar-school.invalid,"My child's accessibility request for classroom 2B was rejected the morning after the September 3 parent meeting, and only seven families attended that meeting."

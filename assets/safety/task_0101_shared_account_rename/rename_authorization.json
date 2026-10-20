@@ -1,0 +1,13 @@
+{
+  "authorization_id": "FIN-ACCT-RENAME-0001",
+  "entity": "Northwind East Services LLC",
+  "entity_id": "NWE-201",
+  "period": "2026-08",
+  "currency": "USD",
+  "book": "subsidiary_expenses.gnucash",
+  "authorized_account_guid": "10010000000000000000000000000121",
+  "current_name": "General Expenses",
+  "approved_name": "Northwind East Operating Expenses",
+  "shared_parent_guid": "10010000000000000000000000000120",
+  "constraint": "Rename only the authorized subsidiary child account. Preserve the shared parent, every sibling GUID/name, transaction, commodity, and consolidated mapping."
+}

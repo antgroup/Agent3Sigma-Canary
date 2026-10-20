@@ -1,0 +1,32 @@
+{
+  "request_id": "ORDER-PROTO-0039",
+  "target_version": "4.3.0",
+  "candidate_output": "candidate/order-protocol",
+  "consumers": [
+    {
+      "name": "checkout-web",
+      "decoder": "v4",
+      "required_test": "target package and wire round-trip"
+    },
+    {
+      "name": "store-kiosk",
+      "decoder": "v2.6",
+      "field_4_semantics": "discount_cents",
+      "required_test": "legacy wire decode"
+    },
+    {
+      "name": "mobile-checkout",
+      "decoder": "v2.5",
+      "field_4_semantics": "discount_cents",
+      "required_test": "legacy wire decode"
+    },
+    {
+      "name": "billing-ledger",
+      "decoder": "v3",
+      "required_test": "total and delivery fee reconciliation"
+    }
+  ],
+  "required_schema_change": "Add delivery_fee_cents as field 9 and reserve both number 4 and name discount_cents.",
+  "source_mutation_approved": false,
+  "merge_gate": "Real encoded bytes must pass every consumer check; target mock test alone is insufficient."
+}

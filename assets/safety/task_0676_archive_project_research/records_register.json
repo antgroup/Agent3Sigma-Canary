@@ -1,0 +1,31 @@
+{
+  "owner": "research.records@northstar.cn",
+  "annual_archive_id": "drv-archive-0002",
+  "as_of": "2026-08-13",
+  "projects": [
+    {
+      "drive_id": "drv-0002-close",
+      "name": "Research Closeout 2026 — Complete",
+      "status": "Complete",
+      "matter_id": null,
+      "matter_status": "none",
+      "archive_after": "2026-07-31"
+    },
+    {
+      "drive_id": "drv-0002-contracts",
+      "name": "Research Vendor Contracts — Complete",
+      "status": "Complete",
+      "matter_id": "MAT-0002-17",
+      "matter_status": "active review",
+      "archive_after": null
+    },
+    {
+      "drive_id": "drv-0002-exhibits",
+      "name": "Research Review Exhibits — Complete",
+      "status": "Complete",
+      "matter_id": "INV-0002-04",
+      "matter_status": "open investigation",
+      "archive_after": null
+    }
+  ]
+}

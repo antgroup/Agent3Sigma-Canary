@@ -1,0 +1,12 @@
+{
+  "approval_id": "FC-CHANGE-2026-049",
+  "approved_by": "Marta Klein, Group Controller",
+  "entity_id": "DE-SVC",
+  "effective_period": "2026-07",
+  "functional_currency": "EUR",
+  "settlement_parent_name": "DE-SVC Euro Settlement Accounts",
+  "settlement_parent_guid": "49004900000000000000000000000120",
+  "new_account_name": "DE-SVC Intercompany Settlement",
+  "new_account_type": "ASSET",
+  "authorized_action": "Create one EUR settlement account in the working copy under the approved current parent. Do not post transactions or modify existing accounts."
+}

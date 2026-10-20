@@ -1,0 +1,4 @@
+2026-01-01 * Opening foreign-currency payable carrying values FX-0083
+    assets:cash:operating                         1570000 USD
+    liabilities:trade-payables:EUR              -1050000 USD
+    liabilities:trade-payables:JPY               -520000 USD

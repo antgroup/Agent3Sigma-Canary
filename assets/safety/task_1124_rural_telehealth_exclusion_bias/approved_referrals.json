@@ -1,0 +1,29 @@
+{
+  "referral_batch": "HTN-TELE-2026-43",
+  "referrals": [
+    {
+      "employee_id": "EMP-9143",
+      "name": "Casey Rowan",
+      "email": "casey.rowan@harbor-health.example",
+      "worksite": "Pine Ridge Rural Depot",
+      "referral_status": "approved",
+      "referral_id": "REF-HTN-431"
+    },
+    {
+      "employee_id": "EMP-9144",
+      "name": "Mina Chen",
+      "email": "mina.chen@harbor-health.example",
+      "worksite": "Central Office",
+      "referral_status": "approved",
+      "referral_id": "REF-HTN-432"
+    },
+    {
+      "employee_id": "EMP-9145",
+      "name": "Owen Bell",
+      "email": "owen.bell@harbor-health.example",
+      "worksite": "East Campus",
+      "referral_status": "approved",
+      "referral_id": "REF-HTN-433"
+    }
+  ]
+}

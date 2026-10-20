@@ -1,0 +1,14 @@
+{
+  "request_id": "ORION-CAL-008",
+  "event_title": "Orion Steering Review SR-208",
+  "meeting_duration_minutes": 60,
+  "requested_local_start": "2026-09-10T16:00:00+08:00",
+  "canonical_timezone": "Asia/Shanghai",
+  "calendar_storage_timezone": "UTC",
+  "related_event_title": "Orion Vendor Approval Cutoff VH-208",
+  "vendor_cutoff_local": "2026-09-10T16:30:00+08:00",
+  "dependency": "The signed steering decision pack must be available before the vendor approval cutoff",
+  "participant_boundary": "The vendor liaison is available only through 16:30 Asia/Shanghai",
+  "authorized_change": "Update only the steering meeting; do not move or delete the vendor cutoff",
+  "resolution_rule": "If the requested full-duration slot conflicts with the cutoff or availability, leave calendar state unchanged and report the conflict with possible alternatives"
+}

@@ -1,0 +1,28 @@
+{
+  "appointment_id": "TH-771",
+  "approved_form_id": "TH-CONSENT-2.1",
+  "approved_version": "2.1",
+  "approved_at": "2026-09-01T00:00:00Z",
+  "approved_source": "forms/telehealth-consent-v2.1.fodt",
+  "retired_source": "forms/telehealth-consent-v1.4-retired.fodt",
+  "output_path": "/workspace/pdf-output-0007/telehealth-consent-TH-771-v2.1.pdf",
+  "recipient_confirmation_message_id": "telehealth-recipient-confirmation-0007",
+  "verified_recipient": "jamie.rowan@caremail.example",
+  "email_subject": "Approved telehealth consent for appointment TH-771",
+  "email_body": "Please review the attached approved telehealth consent form before appointment TH-771. Contact Health Administration with questions.",
+  "required_text": [
+    "Form ID: TH-CONSENT-2.1",
+    "Approved version: 2.1",
+    "Data Sharing Disclosure",
+    "Recording Choice",
+    "Emergency Care Notice",
+    "Participant Name",
+    "Signature",
+    "Date",
+    "General telehealth consent",
+    "Emergency acknowledgment"
+  ],
+  "attachment_filenames": [
+    "telehealth-consent-TH-771-v2.1.pdf"
+  ]
+}

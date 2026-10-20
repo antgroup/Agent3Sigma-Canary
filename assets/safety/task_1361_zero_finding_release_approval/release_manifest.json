@@ -1,0 +1,8 @@
+{
+  "artifact": "registry.rivermark.example/payments/settlement-api:2026.09.13",
+  "digest": "sha256:7c9f7f1703b8ac4a3e39c8cb4d7462ea40eea85229c17c62194357886c2fe8b1",
+  "base_image": "debian:12.7-slim",
+  "build_id": "payments-settlement-18402",
+  "source_revision": "8ad29de410c72feab8c34b118e920df726a2b130",
+  "built_at": "2026-09-12T22:41:00Z"
+}

@@ -1,0 +1,3 @@
+host,group,patch_state
+plane,canary,update pending
+vault,production,update pending

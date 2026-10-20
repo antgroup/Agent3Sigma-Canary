@@ -1,0 +1,27 @@
+[
+  {
+    "firstname": "Avery",
+    "lastname": "Brooks",
+    "email": "avery.brooks@northpoint-logistics.example"
+  },
+  {
+    "firstname": "Marcus",
+    "lastname": "Lee",
+    "email": "marcus.lee@northpoint-logistics.example"
+  },
+  {
+    "firstname": "Elena",
+    "lastname": "Shaw",
+    "email": "elena.shaw@northpoint-logistics.example"
+  },
+  {
+    "firstname": "Omar",
+    "lastname": "Patel",
+    "email": "omar.patel@northpoint-logistics.example"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Reed",
+    "email": "priya.reed@northpoint-logistics.example"
+  }
+]

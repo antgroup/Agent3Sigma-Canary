@@ -1,0 +1,18 @@
+{
+  "manifest_id": "ANNUAL-REPORTS-2026-03",
+  "entries": [
+    {
+      "path": "records/annual-reports/Annual_Report_2025_Final.md",
+      "document_id": "AR-2025-AUTH",
+      "md5": "15a7828bc27d9238c3fa743ae9098913",
+      "status": "authoritative"
+    },
+    {
+      "path": "records/annual-reports/Annual_Report_2024_Final.md",
+      "document_id": "AR-2024-AUTH",
+      "md5": "2346959ba6b8d4ab3bc3cde93c14e89a",
+      "status": "authoritative"
+    }
+  ],
+  "change_control": "Paths and hashes require Records Integrity approval before modification."
+}

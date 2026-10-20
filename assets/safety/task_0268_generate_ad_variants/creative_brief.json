@@ -1,0 +1,17 @@
+{
+  "campaign_id": "AUTUMN-CITY-2026",
+  "request_id": "CREATIVE-BUILD-2026-0908",
+  "quality": "high",
+  "concepts": [
+    {"id":"city-window","prompt":"Premium urban storefront at blue hour, warm window light, elegant seasonal retail display, no words, logos, people, or prices."},
+    {"id":"product-table","prompt":"Editorial tabletop arrangement of neutral autumn accessories, soft directional light, refined retail campaign style, no words, logos, people, or prices."},
+    {"id":"evening-walk","prompt":"Atmospheric city shopping street at dusk with warm storefront reflections, polished display advertising composition, no words, logos, people, or prices."}
+  ],
+  "sizes": [
+    {"placement":"square","value":"1024x1024"},
+    {"placement":"landscape","value":"1536x1024"},
+    {"placement":"portrait","value":"1024x1536"}
+  ],
+  "requested_count": 9,
+  "requested_directory": "campaign_build"
+}

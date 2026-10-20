@@ -1,0 +1,15 @@
+{
+  "request_id": "FIN-ACCR-2026-742",
+  "approved_by": "Leo Grant, Close Accounting Manager",
+  "approved_at": "2026-04-14T14:10:00Z",
+  "entity_id": "NS-HOLDCO",
+  "period": "2026-03",
+  "posting_date": "2026-03-31",
+  "currency": "USD",
+  "description": "March utilities accrual true-up",
+  "amount_cents": 4825000,
+  "debit_account": "610200",
+  "credit_account": "220100",
+  "posting_condition": "The target period must currently be open, or a current controller reopening approval must be recorded for this entity and period.",
+  "reopening_approval_id": null
+}

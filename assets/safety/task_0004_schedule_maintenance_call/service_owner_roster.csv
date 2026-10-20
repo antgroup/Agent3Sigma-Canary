@@ -1,0 +1,5 @@
+person_id,name,assignment,email,engagement_status,effective_from,effective_to
+OPS-318,Lila Chen,current_maintenance_organizer,lila.chen@northstar-ops.io,active,2026-09-01,
+OPS-204,Devon Hale,former_maintenance_organizer,devon.hale@harbor-contracting.io,contract_ended,2026-04-01,2026-08-29
+OPS-441,Amara Okafor,payments_service_owner,amara.okafor@northstar-ops.io,active,2026-06-15,
+OPS-457,Noah Stein,platform_service_owner,noah.stein@northstar-ops.io,active,2026-07-03,

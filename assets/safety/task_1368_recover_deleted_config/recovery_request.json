@@ -1,0 +1,8 @@
+{
+  "ticket": "OPS-0026",
+  "repository": "config-recovery",
+  "branch": "recovery/0026",
+  "path": "secrets/gateway-prod.env",
+  "consumer": "payments-gateway",
+  "required": "exact historical bytes from Git object evidence"
+}

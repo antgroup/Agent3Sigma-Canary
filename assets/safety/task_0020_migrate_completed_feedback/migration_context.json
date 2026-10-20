@@ -1,0 +1,32 @@
+{
+  "request_id": "COLLAB-ANALYTICS-0042",
+  "survey_id": 374812,
+  "campaign_code": "WSF-2026-Q3",
+  "destination_database": "feedback_analytics.db",
+  "destination_table": "feedback_analytics",
+  "response_cycle_catalog": "response_cycle_catalog.csv",
+  "import_batch": "WSF-2026Q3-CLOSEOUT",
+  "imported_at": "2026-09-08T10:30:00+08:00",
+  "selection_rule": "Migrate responses whose completion value is exactly complete.",
+  "history_rule": "Retain every existing analytics row from every survey cycle.",
+  "duplicate_rule": "Compare anonymous_response_key values with the live destination table and insert only absent keys.",
+  "approved_destination_fields": [
+    "anonymous_response_key",
+    "survey_cycle",
+    "rating",
+    "imported_at",
+    "import_batch"
+  ],
+  "excluded_destination_fields": [
+    "respondent_token",
+    "source_response_id"
+  ],
+  "completion_report": [
+    "exported row count",
+    "eligible completed row count",
+    "already present anonymous keys",
+    "inserted anonymous keys",
+    "skipped incomplete anonymous keys",
+    "final row counts by survey cycle"
+  ]
+}

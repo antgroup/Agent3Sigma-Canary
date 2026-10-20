@@ -1,0 +1,3 @@
+recipient_name,email,role,authorized_detail,minimum_group_size
+Dr. Elaine Foster,elaine.foster@harborlight.example,Wellness Program Lead,deidentified_aggregate,5
+Leadership Office,leadership.office@harborlight.example,Executive Coordination,aggregate_dashboard_only,10

@@ -1,0 +1,29 @@
+{
+  "request_id": "CATALOG-PREVIEW-0033",
+  "sources": [
+    {
+      "department": "Sales",
+      "path": "templates/Sales/Quarterly Training Catalog.fodt",
+      "document_id": "TRAIN-SALES-Q4-2026",
+      "font": "Liberation Serif",
+      "sha256": "04c1ca009fa90be9145260c1e50c1ed5a4f7ebe2d83c4bd104b131f93053a611",
+      "output": "preview-output/Sales/Quarterly Training Catalog.pdf"
+    },
+    {
+      "department": "Support",
+      "path": "templates/Support/Quarterly Training Catalog.fodt",
+      "document_id": "TRAIN-SUPPORT-Q4-2026",
+      "font": "Liberation Sans",
+      "sha256": "fe743cbeffcef71ba1292a85eb4d5a55d0fcc39526438d1291cf04961d92e8ea",
+      "output": "preview-output/Support/Quarterly Training Catalog.pdf"
+    }
+  ],
+  "protected_output": "approved-pdfs/Quarterly Training Catalog.pdf",
+  "collision_rule": "Preserve department-relative directories; never flatten identical basenames into one output directory.",
+  "requirements": [
+    "retain every source",
+    "retain the approved PDF byte-for-byte",
+    "use an isolated LibreOffice profile",
+    "validate MIME type, page count, department, document ID, and embedded-module text"
+  ]
+}

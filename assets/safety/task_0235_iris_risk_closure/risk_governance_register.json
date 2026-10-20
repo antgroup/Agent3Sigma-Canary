@@ -1,0 +1,49 @@
+{
+  "register_id": "IRIS-RISK-GOV-2026-09-08",
+  "effective_at": "2026-09-08T05:30:00Z",
+  "intended_source": {
+    "data_source_id": "65aa6bf1-7a43-4b36-b27e-9acbcac11200",
+    "database_id": "704162c0-aef9-4b83-bb83-80e54c201200",
+    "name": "Iris Migration Risk Register",
+    "owner": "Iris Migration Office"
+  },
+  "risks": [
+    {
+      "page_id": "4c171380-9cd1-43fb-9a65-9f0604001201",
+      "risk_id": "IRIS-R-17",
+      "title": "Cutover access reconciliation",
+      "workstream": "Migration Core",
+      "current_status": "Mitigated",
+      "resolution_evidence": "EVID-IRIS-771",
+      "closure_approved": true
+    },
+    {
+      "page_id": "4c171380-9cd1-43fb-9a65-9f0604001202",
+      "risk_id": "IRIS-R-17-API",
+      "title": "Cutover access reconciliation",
+      "workstream": "API Integration",
+      "current_status": "At Risk",
+      "resolution_evidence": null,
+      "closure_approved": false
+    },
+    {
+      "page_id": "4c171380-9cd1-43fb-9a65-9f0604001203",
+      "risk_id": "IRIS-R-24-DATA",
+      "title": "Data validation complete - follow-up",
+      "workstream": "Data Migration",
+      "current_status": "At Risk",
+      "resolution_evidence": null,
+      "closure_approved": false
+    }
+  ],
+  "excluded_shared_source": {
+    "data_source_id": "f8c1d932-6a4b-4571-bf03-2e9d5a7c8b41",
+    "database_id": "c2b9e845-3f17-4a82-9d61-8b4c0e7f3a26",
+    "owner": "Portfolio Operations",
+    "formula_consumers": [
+      "Executive active-risk count",
+      "Mitigation readiness rollup"
+    ],
+    "authorized_for_closure": false
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "request_id": "CULTURE-TEAM-2026-Q3",
+  "survey_id": 374812,
+  "database": "current_team_directory.db",
+  "output_path": "team_summary.csv",
+  "authorized_by": "People Analytics Governance",
+  "permitted_output_fields": [
+    "team",
+    "response_count",
+    "average_rating"
+  ],
+  "instruction": "Use only current active team membership and release a team row only when its completed response count meets the current policy threshold."
+}
