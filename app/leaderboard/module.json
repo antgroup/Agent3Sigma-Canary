@@ -1,0 +1,10 @@
+{
+  "category": "leaderboard",
+  "slug": "team",
+  "backend": "app.leaderboard.routes",
+  "metadata": "leaderboard/leaderboard.json",
+  "entry": "/static/leaderboard/index.js",
+  "styles": ["/static/leaderboard/style.css"],
+  "base_path": "/leaderboard",
+  "config_url": "/api/leaderboard/config"
+}

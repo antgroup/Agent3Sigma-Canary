@@ -1,0 +1,14 @@
+{
+  "category": "benchmark",
+  "slug": "nara-bench",
+  "backend": "app.benchmark.nara_bench.routes",
+  "metadata": "benchmark/nara-bench/benchmark.json",
+  "entry": "/static/benchmark/nara-bench/index.js",
+  "styles": [
+    "/static/benchmark/nara-bench/style.css",
+    "/static/benchmark/nara-bench/overview.css",
+    "/static/benchmark/nara-bench/story.css"
+  ],
+  "base_path": "/benchmark/nara-bench",
+  "config_url": "/api/benchmark/nara-bench/config"
+}

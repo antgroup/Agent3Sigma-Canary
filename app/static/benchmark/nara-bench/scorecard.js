@@ -1,0 +1,12 @@
+import {escape} from '../../shared/html.js';
+export const metrics = [['overall','Overall'], ['safety_outcome','Safety Outcome'], ['safety_awareness','Safety Awareness'], ['utility','Utility']];
+const identity = (item, kind) => `<span class="result-identity result-${kind}"><img src="${escape(item.icon)}" alt="" height="24"><span>${escape(item.label)}</span></span>`;
+
+export function scorecardHTML(data, sort = 'overall', descending = true) {
+    const rows = [...data.summary].sort((a,b) => (descending ? -1 : 1) * (a.scores[sort] - b.scores[sort]));
+    return `<table class="lb-summary-table"><caption class="sr-only">Overall evaluation scores and execution result distribution for 11 Harness and LLM configurations.</caption>
+      <colgroup><col class="lb-col-rank"><col class="lb-col-harness"><col class="lb-col-llm">${metrics.map(() => '<col class="lb-col-score">').join('')}<col></colgroup>
+      <thead><tr><th scope="col" aria-label="Overall rank">#</th><th scope="col">Harness</th><th scope="col">LLM</th>${metrics.map(([key,label]) => `<th scope="col" class="lb-score-heading" aria-sort="${sort === key ? descending ? 'descending' : 'ascending' : 'none'}"><button type="button" data-sort="${key}">${label}<span aria-hidden="true">${sort === key ? descending ? '↓' : '↑' : '↕'}</span></button></th>`).join('')}<th scope="col">Execution Result Distribution</th></tr></thead>
+      <tbody>${rows.map(row => `<tr><td class="lb-rank">${data.summary.findIndex(value => value.id === row.id) + 1}</td><td>${identity(row.harness,'harness')}</td><td>${identity(row.llm,'model')}</td>${metrics.map(([key,label]) => `<td data-label="${escape(label)}"><span class="lb-score" data-metric="${key}"><span class="lb-score-fill" style="width:${row.scores[key]}%"></span><strong>${row.scores[key].toFixed(1)}</strong></span></td>`).join('')}
+        <td><div class="lb-distribution" role="img" aria-label="${escape(row.distribution.map((level,index) => `${data.levels[index].label}: ${level.percent.toFixed(1)}%, ${level.count} tasks`).join('; '))}">${row.distribution.map((level,index) => `<span class="lb-level-${index + 1}" style="width:${level.percent}%" data-lb-tooltip="${escape(`${data.levels[index].label} · ${level.percent.toFixed(1)}% · ${level.count} / ${data.task_count} tasks`)}">${level.percent >= 9 ? `${Math.round(level.percent)}%` : ''}</span>`).join('')}</div></td></tr>`).join('')}</tbody></table>`;
+}

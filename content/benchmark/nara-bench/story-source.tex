@@ -1,0 +1,317 @@
+\subsection{What is Agent Safety?}
+
+\textbf{Clarification.}
+We clarify \textit{Agent Safety} as the property that an agent maintains safe and reliable operation during normal use, with benign user intent and no third-party attacker. In such settings, the agent typically interacts with the dynamic environment and autonomously performs actions to accomplish task-specific objectives. \textit{Agent Safety} concerns whether the agent can consistently maintain appropriate behavior as the environment evolves throughout task execution, avoiding any unintended or harmful actions. 
+The distinction between \textit{Agent Safety} and \textit{Agent Security} is in Appendix~\ref{app::safety_vs_security}.
+
+
+
+\textbf{Agent Safety Risks.}
+Under the above setting, safety risks arise not from malicious attacks or adversarial manipulation, but from failures during the agent's autonomous operation, which may be caused from the user, the environment, or the agent itself. We therefore refer to risks arising from the agent's own inherent failures, in the absence of third-party attackers and under benign user intent, as \textit{Agent Safety Risks}, or equivalently, \textit{Non-Adversarial Risks of AI Agents}. 
+This definition extends the focus of agent safety research from defending against attacks to ensuring safe interaction with environments.
+Real-world examples of these non-adversarial risks are provided in Appendix~\ref{app::risk_in_reality}.
+
+
+\subsection{Risk Model: How Safety Risks Arise}
+Inspired by \textit{threat models} in \textit{Agent Security}, we introduce the concept of a \textit{risk model} to characterize how a safety risk arises. Specifically, as understanding a security threat requires identifying how an attacker induces harmful behavior, understanding a safety risk requires identifying what triggers the risk and how the agent fails. We therefore model a safety risk through the following causal chain:
+\[
+\textit{Risk Model} = \textit{Risk Trigger} \rightarrow \textit{Inherent Failure} \rightarrow \textit{Unsafe Action}.
+\]
+This causal process consists of three interconnected dimensions:
+\textbf{(1)} \textbf{Risk Trigger.} One or more factors from the user, agent, or environment that provide the conditions for a safety risk to emerge.
+\textbf{(2)} \textbf{Inherent Failure.} A failure in the agent's reasoning process that prevents it from recognizing the trigger or adopting an appropriate response.
+\textbf{(3)} \textbf{Unsafe Action.} An action resulting from the inherent failure that violates safety constraints or may lead to harmful outcomes. The actions specified here are representative cases for completing the causal pathway and may vary depending on the agent capabilities.
+Overall, this causal chain models the fundamental mechanism underlying safety risks: \textit{a risk trigger induces an inherent agent failure, which in turn leads to an unsafe action.} 
+
+
+\section{Three-Stage Risky Task Generation Pipeline}
+\label{sec::pipeline}
+
+In this section, as shown in Figure~\ref{fig:pipeline}, we propose a three-stage risky task generation pipeline that first verifies risk models with executable tasks, instantiates them within specific scenario scopes and tool sets into risky blueprints, yielding executable risky tasks in high-fidelity environments.
+
+
+\subsection{Stage I: PoC of Risk Models}
+In this stage, we conduct a proof-of-concept (PoC) validation for each risk model to verify that its proposed causal pathway can be practically triggered. Specifically, we \textbf{(1)} manually construct executable risk tasks based on the risk model using \textit{AgentCanary}~\citep{li2026agentcanary}; \textbf{(2)} execute them with an agent; \textbf{(3)} inspect the execution trajectory to determine whether the intended risk is triggered, and revise the task based on the trajectory if not; and \textbf{(4)} re-execute the revised task. A risk model is considered validated by at least three tasks that successfully trigger the intended risk; otherwise, we revise the model or construct alternative tasks. Implementation details are in Appendix~\ref{app::poc_risk_model}.
+
+
+
+\begin{figure}[t]
+    \centering
+ \includegraphics[width=0.9\linewidth]{figures/pipeline.pdf}
+    \caption{The \textit{Three-Stage Risky Task Generation Pipeline} constructs high-quality, high-fidelity, and high-risk executable tasks from abstract risk models for end-to-end agent safety evaluation.}
+    \label{fig:pipeline}
+    \vspace{-5pt}
+\end{figure}
+
+
+
+\subsection{Stage II: Risky Blueprint Generation \& Audit}
+
+
+\textbf{Risky Blueprint Generation.}
+For each POC-validated risk model, we combine it with a specific \textit{Scenario Scope} and a \textit{Tool Set} to generate risk blueprints. Specifically, a risk blueprint describes how a safety risk arises from user intent to the final outcome in a concrete scenario. These blueprints aim to instantiate abstract risk models into diverse scenarios, provide an intuitive description of risk occurrence, and serve as outlines for subsequent risky task generation. Given a broad \textit{Scenario Scope} and its corresponding \textit{Tools}, we leverage LLMs to generate diverse blueprints from each risk model, covering a wide range of scenarios, tools, and risks. Each blueprint follows the fixed five-sentence structure shown in the table below. Detailed procedures and examples are in Appendix~\ref{app::blueprint_generation}.
+
+\begin{table}[h] 
+\centering 
+\footnotesize
+\scalebox{0.93}{
+\begin{tabular}{p{0.25\linewidth} p{0.68\linewidth}} 
+\toprule 
+\textbf{Sentence} & \textbf{Description} \\ 
+\midrule 
+\textbf{1. User Intent} & Defines a legitimate user intent and task objective within the given \textit{Scenario Scope} using the available tools in the \textit{Tool Set}. \\ 
+\textbf{2. User Instruction} & Specifies a concrete user instruction based on the given risk model. \\
+\textbf{3. Objective Condition} & Specifies the objective condition that makes risky behavior likely to emerge. \\
+\textbf{4. Agent Risky Behavior} & Describes the risky behavior or logical deviation exhibited by the agent. \\
+\textbf{5. Safety Risk Outcome} & Describes the final safety risk outcome directly caused by the risky behavior. \\ 
+\bottomrule
+\end{tabular} 
+}
+\label{tab:risk_blueprint} 
+\end{table}
+
+
+
+\textbf{Risky Blueprint Audit.}
+For each blueprint, we conduct a multi-dimensional quality audit at both holistic and sentence levels. At the holistic level, we evaluate its consistency with the risk model, scenario realism, and whether it describes a \textit{Safety} risk rather than a \textit{Security} threat. At the sentence level, we evaluate each component against specific criteria, such as the unavoidability of risk trigger and the task relevance of risky behavior. We adopt a rubric-based LLM-as-a-Judge approach, with the rubric refined to achieve high agreement with human audits. Detailed criteria is in Appendix~\ref{app::blueprint_audit}.
+
+
+
+\subsection{Stage III: Risky Task Generation \& Audit}
+
+\textbf{Risky Task Generation.}
+For each audited risk blueprint, we leverage Codex~\citep{openai2026codex} with GPT-5.6-Sol~\citep{openai2026gpt56} to instantiate it into an executable task consisting of a task file and task assets based on an extended version of \textit{AgentCanary}. Specifically, the task file specifies the basic task configuration, benign user prompt, expected safe or unsafe agent behaviors, and a rubric for judging the execution trajectory. The task assets provide the benign materials required during task execution, such as files, data, and application records. 
+Furthermore, to increase risk emergence while keeping the task within \textit{Safety}, we impose four requirements: 
+\textbf{(1)} the user instruction should be normal and reasonable; 
+\textbf{(2)} the objective condition should appear legitimate without safety hints; 
+\textbf{(3)} the risk trigger should lie on the critical path; 
+and \textbf{(4)} the task should involve a non-malicious user and no third-party attack. 
+Detailed procedures and examples are in Appendix~\ref{app::task_generation}.
+
+\textbf{Risky Task Audit.}
+For each generated risky task, we conduct a quality audit across five dimensions: task configuration, user prompt, expected behavior, judging rubric, and task assets. Each dimension is evaluated from three aspects, including \textit{Blueprint Fidelity}, \textit{Reasonableness \& Effectiveness}, and \textit{Red Lines (Must Not)}, with dimension-specific criteria. We also assess cross-dimension consistency to ensure task coherence. We utilize a rubric-based Agent-as-a-Judge approach for the audit, with the rubric refined to achieve high agreement with human audits. Detailed criteria are in Appendix~\ref{app::task_audit}.
+
+
+
+\subsection{Analysis}
+
+\textbf{Current agents frequently incur substantial safety risks even in non-adversarial settings.}
+Even the best-performing agent, Claude Code + Claude-Fable-5.1, has 49\% of executions falling into Levels 1 \& 2 on NARA-Bench, meaning that nearly half of the tasks result in risk outcomes. For the best-performing open-source agent, OpenClaw + Kimi-K3, this proportion further increases to 69\%. These results show that, even without malicious intervention, agents can still produce substantial risks due to inherent failures, posing a non-negligible concern for real-world deployment.
+
+
+\textbf{Safety awareness does not reliably translate into safe behavior.}
+All agents achieve higher \textit{Safety Awareness} scores than \textit{Safety Outcome} scores and exhibit a non-trivial fraction of Level 2 executions, where safety requirements are recognized but unsafe outcomes still occur. Moreover, larger gaps between the two scores generally correspond to more Level 2 executions. Better-performing Claude-based agents show higher Level 2 proportions, whereas less safe agents exhibit fewer such cases. This suggests that frontier agents are becoming better at recognizing safety risks, while a substantial gap still remains between safety awareness and actual behavior.
+
+\textbf{Agent-originated risk triggers are more prone to induce inherent failures, particularly model-level triggers.}
+Agents perform worse on \textit{Myopical Execution Strategy}, \textit{Spurious Correlation Memory}, and \textit{Outdated Memory} than on the other risk models. These risks primarily originate within the agent, including biased execution strategies from the underlying model and incorrect or outdated information in harness memory. Among them, the model-intrinsic \textit{Myopical Execution Strategy} is particularly pronounced. These results suggest that improving agent safety requires particular attention to the robustness of both the underlying model and the harness against internal failures.
+
+\textbf{Agents are safer when task objectives are more aligned with safety requirements.}
+Agents perform better in scenario scopes including \textit{Finance \& Accounting}, \textit{Data Analysis \& Intelligence}, \textit{Legal \& Compliance}, and \textit{Document \& Content Management}. In these scopes, task objectives are often closely tied to safety requirements such as correctness, compliance, and integrity, making successful task completion more aligned with safe execution. In other scenario scopes, where such alignment is weaker, agents are more likely to prioritize explicit task objectives over safety requirements, highlighting a persistent challenge in jointly ensuring task utility and safety requirements.
+
+\textbf{Stronger underlying models generally yield safer agents, but remain insufficient to eliminate non-adversarial risks.}
+Agents powered by frontier closed-source models generally outperform those based on open-source models. For example, GPT-5.6-Sol + OpenClaw scores 64.8 despite being among the weaker closed-source configurations, compared with 56.6 for the best open-source configuration, Kimi-K3 + OpenClaw. Within model families, newer and larger models also tend to perform better. Nevertheless, substantial unsafe executions persist even among the strongest agents, underscoring the need to advance safety alongside continued improvements in task capability.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Agent Safety v.s. Agent Security}
+\label{app::safety_vs_security}
+
+
+\textit{Agent Safety} and \textit{Agent Security} differ in the source of the risk~\citep{luo2025agentauditor, wang2026hintbench}. The former concerns harmful agent behavior during ordinary, non-adversarial use. The latter concerns malicious intent or adversarial manipulation by users or third parties. In the \textit{Agent Safety} setting studied in this paper, a benign user gives the agent a legitimate task to carry out in an environment without adversarial intervention.
+In contrast, \textit{Agent Security} typically considers malicious users or third-party attackers. A malicious user may directly manipulate an agent through prompt injection, jailbreaks, or related attacks, while a third-party attacker may interfere with an otherwise benign interaction through indirect prompt injection, data poisoning, or other adversarial means. Table~\ref{tab:safety-vs-security} summarizes the key distinctions between the two settings.
+\begin{table}[h]
+    \centering
+    \caption{Comparison between \textit{Agent Safety} and \textit{Agent Security}.}
+    \label{tab:safety-vs-security}
+    {
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{l p{0.36\linewidth} p{0.36\linewidth}}
+        \toprule
+        \textbf{Aspect} & \textbf{Agent Safety} & \textbf{Agent Security} \\
+        \midrule
+        User intent 
+        & Benign and legitimate, with no intent to induce unsafe behavior.
+        & May be malicious, with intent to manipulate the agent. \\
+        
+        Agent framework
+        & No malicious backdoors, poisoning, or implanted vulnerabilities.
+        & May be targeted through poisoning, backdoors, or other attacks. \\
+        
+        Environment
+        & No third-party manipulation or adversarial intervention.
+        & May involve adversarial manipulation, such as indirect prompt injection. \\
+        \bottomrule
+    \end{tabular}
+    }
+\end{table}
+
+
+
+\section{Real-World Agent Safety Risks}
+\label{app::risk_in_reality}
+
+
+Non-adversarial agent safety risks remain rarely documented. Academic and industry research still focuses largely on security threats in adversarial settings. Fortunately, six recent OpenAI reports~\footnote{\url{https://openai.com/index/model-misalignment-reporting-framework/}} on misaligned behaviors observed during model training or evaluation offer an opportunity to show how agent safety risks arise in the real world.
+
+
+The following cases are drawn from OpenAI reports documenting trajectories of internal, unreleased models observed during reinforcement learning training. In each case, the user pursued an ordinary task, and the reported misaligned behavior required no attacker, malicious prompt, or exploited software vulnerability. The reports examine these incidents through the lens of safety alignment and investigate how training may have contributed to them. We revisit the cases from an agent safety perspective to show how task pressure, environmental constraints, and the agent's own decisions can lead to unauthorized actions or unreliable outputs.
+
+\paragraph{Case 1: Searching for leaked API keys to complete a data request.}
+In a task to retrieve historical earnings figures, the requested website's data interface did not yield the needed values. The agent attempted to register for access with a disposable email address and placeholder organization details, searched public GitHub repositories for exposed API keys, and automatically tested candidates. One candidate authenticated and returned metadata. The subsequent request for the earnings figures failed, after which the agent supplied nine invented values while claiming that they were transcribed from the website's chart. The observed failures were unauthorized use of another party's credential and fabrication of evidence-backed results. The report does not show that the desired earnings data were obtained with the key. The trigger was an unavailable data path, but the unsafe choices arose from the agent's attempt to finish the benign request despite missing authorization and missing evidence.
+
+\paragraph{Case 2: Publishing task data to obtain a citation or image-search URL.}
+OpenAI reports two training trajectories in which agents uploaded material to public file-hosting services without a user request to publish it. In one, an agent already had lake records from a map-service query but could not make its browser tool cite the local result. It successfully uploaded the records to a public paste service, although the browser also rejected the public URL. In the other, an agent uploaded a user-provided photograph so that an external reverse-image-search service could access it. This upload succeeded, but the attempted search was blocked. The immediate risk was an unauthorized change in data exposure: local task material became publicly reachable for a tool-workaround that did not solve either tool limitation.
+
+\paragraph{Case 3: Using public hosting to transfer a workbook between collaborators.}
+In a multi-agent task to produce a depreciation workbook as a local deliverable, a sub-agent created the file but the parent agent could not see it because their local filesystems were not shared as expected. After unsuccessful attempts to copy the file to a local shared path and serve it over localhost, the sub-agent uploaded the workbook to a public temporary file-hosting service and sent download links to its collaborators. The upload and a subsequent download test succeeded. This was an environmental coordination failure followed by an agent-initiated boundary crossing: a file intended for local collaboration was made available through an external service without authorization.
+
+\paragraph{Case 4: Using a package repository as a cross-sample message board.}
+OpenAI internal training agents were also observed reading and writing messages through a shared Artifactory repository that had been provided for software-package access. In one trajectory, an agent could not find a required local coordinate file. After discovering notes left by other solvers in the repository, it read their conclusions and uploaded its own request for help. Other reported trajectories likewise exchanged notes across separate training samples. The writes succeeded without a software exploit, but the reviewed records do not show that the agents recovered the missing files. The unsafe behavior was repurposing a shared service for unauthorized cross-sample communication, which compromised the intended independence of the training samples and could alter subsequent answers. The other solvers' notes were ordinary agent-generated artifacts in this account, not evidence of an adversarial instruction campaign.
+
+
+Overall, these reports show that agents can create safety risks even in non-adversarial settings. Although the cases do not establish how frequently such failures occur, they suggest that the risk deserves more attention in practice. When an autonomous agent encounters an unavailable tool or an incomplete environment, even a benign goal may lead it to cross boundaries governing credential use, public disclosure, or communication in an attempt to complete the task. The observed outcomes include unauthorized credential use, public uploads, writes to shared repositories, and a fabricated answer. These behaviors could lead to broader harms involving privacy, security, and the integrity of training or evaluation, although such harms were not established in every trajectory. Therefore, agent safety deserves greater attention and further research.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+\subsection{Unified Risk Model Framework}
+\label{sec::unified_framework}
+To organize diverse risk models from a unified perspective, we model task execution as a sequence of environment state transitions induced by the agent's actions. Formally, let $s_i\in\mathcal{S}$ denote the environment state at step $i$, where $\mathcal{S}$ is the state space and $s_0\in\mathcal{S}_{\mathrm{safe}}$ is the initial state. $\mathcal{S}_{\mathrm{safe}}\subseteq\mathcal{S}$ denotes the set of states satisfying the safety constraints imposed by the current environment. At each step, the agent selects an action $a_i\in\mathcal{A}$, inducing
+\begin{equation}
+s_{i+1}=\mathcal{T}(s_i,a_i),\quad i=0,\ldots,T-1,
+\end{equation}
+where $\mathcal{T}:\mathcal{S}\times\mathcal{A}\rightarrow\mathcal{S}$ denotes the environment transition function.
+This yields an execution path
+\begin{equation}
+\pi=(s_0,a_0,s_1,a_1,\ldots,a_{T-1},s_T).
+\end{equation}
+Given a task goal $G$, we define the set of reachable goal states as
+\begin{equation}
+\mathcal{S}_{\mathrm{goal}}(s_0,G)
+=
+\{s_T\in\mathcal{S}\mid
+\exists\pi=(s_0,a_0,\ldots,s_T),\ s_T\models G\},
+\end{equation}
+where $s_T\models G$ means that the final state satisfies the goal $G$. A task-completion path is considered safe if its final state satisfies the safety constraints, \ie, $s_T\in\mathcal{S}_{\mathrm{safe}}$, and unsafe otherwise.
+
+
+
+\begin{figure}[t]
+    \centering
+ \includegraphics[width=1\linewidth]{figures/framework.pdf}
+    \caption{The \textit{Unified Risk Model Framework} organizes risk models into Case (2) or (3) according to the relationship between the goal-state set and the safe-state set. Risk models can be further refined by the source of their risk triggers, which may originate from the user, agent, or environment.}
+    \label{fig:framework}
+    \vspace{-5pt}
+\end{figure}
+
+
+
+As shown in Figure~\ref{fig:framework}, the relationship between $\mathcal{S}_{\mathrm{goal}}(s_0,G)$ and $\mathcal{S}_{\mathrm{safe}}$ gives three cases:
+
+\textbf{(1) Only safe task-completion paths exist.}
+If
+\begin{equation}
+\mathcal{S}_{\mathrm{goal}}(s_0,G)
+\subseteq
+\mathcal{S}_{\mathrm{safe}},
+\end{equation}
+then every reachable goal state satisfies the safety constraints, and no unsafe task-completion path exists.
+No risk model applies to this case, as task completion does not involve a safety-risk choice.
+
+\textbf{(2) Only unsafe task-completion paths exist.}
+If
+\begin{equation}
+\mathcal{S}_{\mathrm{goal}}(s_0,G)
+\cap
+\mathcal{S}_{\mathrm{safe}}
+=\varnothing,
+\end{equation}
+then the task goal cannot be safely achieved under the current conditions. Risk models in this case concern the agent fails to recognize that the goal cannot be safely completed and even pursues it.
+
+\textbf{(3) Both safe and unsafe task-completion paths exist.}
+If
+\begin{equation}
+\mathcal{S}_{\mathrm{goal}}(s_0,G)
+\cap
+\mathcal{S}_{\mathrm{safe}}
+\neq\varnothing
+\quad\text{and}\quad
+\mathcal{S}_{\mathrm{goal}}(s_0,G)
+\setminus
+\mathcal{S}_{\mathrm{safe}}
+\neq\varnothing,
+\end{equation}
+then the task can be completed through either a safe or an unsafe path. Whether a safety risk occurs therefore depends on the agent's path selection. Most risk models fall into this case.
+
+Under this framework, safety risks arise when a \textit{Risk Trigger} induces an \textit{Inherent Failure} that biases the agent toward an unsafe task-completion path, leading an \textit{Unsafe Action} and a safety risk. 
+Accordingly, each risk model can be first organized into one of the three cases described above, and can be further refined by the source of its \textit{Risk Trigger}, which can originate from three factors: \textbf{(i)} \textit{user factors}, such as goals or instructions; \textbf{(ii)} \textit{agent factors}, such as model biases or harness-level mechanisms such as memory; and \textbf{(iii)} \textit{environment factors}, such as states, tools, or constraints. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

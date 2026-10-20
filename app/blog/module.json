@@ -1,0 +1,12 @@
+{
+  "category": "blog",
+  "slug": "team",
+  "backend": "app.blog.routes",
+  "metadata": "blog/posts.json",
+  "entry": "/static/blog/index.js",
+  "styles": [
+    "/static/blog/style.css"
+  ],
+  "base_path": "/blog",
+  "config_url": "/api/blog/config"
+}

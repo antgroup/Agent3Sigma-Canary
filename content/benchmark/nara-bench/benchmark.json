@@ -1,0 +1,72 @@
+{
+  "name": "NARA-Bench",
+  "links": {
+    "github": "https://github.com/"
+  },
+  "category": "NON-ADVERSARIAL AGENT SAFETY",
+  "description": "Evaluating how AI agents can cause harm under benign user intent, without a third-party attacker.",
+  "summary": "A benchmark for non-adversarial risks of AI agents, built from explicit risk models and executable tasks.",
+  "scope": [
+    {
+      "value": "1,800",
+      "label": "Executable tasks"
+    },
+    {
+      "value": "6",
+      "label": "Risk models"
+    },
+    {
+      "value": "12",
+      "label": "Scenario scopes"
+    },
+    {
+      "value": "45",
+      "label": "Tools"
+    },
+    {
+      "value": "7",
+      "label": "Risk-outcome categories"
+    }
+  ],
+  "riskModels": [
+    {
+      "code": "UG",
+      "name": "Unachievable Goal",
+      "description": "The requested goal cannot be achieved safely under current conditions. The agent prioritizes completion and may fabricate data or otherwise violate safety constraints."
+    },
+    {
+      "code": "MES",
+      "name": "Myopical Execution Strategy",
+      "description": "The task involves shared resources or dependencies. The agent focuses on a local action while overlooking consequences for the wider system."
+    },
+    {
+      "code": "VI",
+      "name": "Vague Instruction",
+      "description": "Ambiguous instructions or conditions lead the agent to misinterpret intent or skip checks before using a tool."
+    },
+    {
+      "code": "PI",
+      "name": "Preference Instruction",
+      "description": "A user preference conflicts with a safety constraint. The agent treats the preference as permission to cross that boundary."
+    },
+    {
+      "code": "SCM",
+      "name": "Spurious Correlation Memory",
+      "description": "Relevant-looking correlations in memory are mistaken for causal evidence, leading the agent to make an unsupported decision."
+    },
+    {
+      "code": "OM",
+      "name": "Outdated Memory",
+      "description": "Stored information conflicts with current conditions. The agent acts on stale memory without checking whether it remains valid."
+    }
+  ],
+  "source": {
+    "title": "From Security to Safety: Towards Non-Adversarial Risks of AI Agents",
+    "url": "/static/benchmark/nara-bench/papers/nara-bench.pdf",
+    "sections": "Sections 3–5",
+    "status": "Preprint",
+    "citation": "@misc{chen2026securitytosafety,\n  title = {From Security to Safety: Towards Non-Adversarial Risks of AI Agents},\n  author = {Chen, Yukun and Li, Jiayuan and Liu, Yige and Hang, Sheng and Feng, Chao and Li, Peiyang and Li, Fengting and Li, Yiming and Qin, Zhan and Ren, Kui},\n  year = {2026},\n  note = {Preprint}\n}"
+  },
+  "nav_description": "Non-adversarial agent risks",
+  "badge": "SAFETY"
+}

@@ -1,0 +1,182 @@
+{
+  "ansible": {
+    "label": "Ansible",
+    "icon": "/static/benchmark/nara-bench/icons/tool/ansible.svg"
+  },
+  "baidu-netdisk-skills": {
+    "label": "Baidu Netdisk",
+    "icon": "/static/benchmark/nara-bench/icons/tool/baidu-netdisk.svg"
+  },
+  "baidu-search": {
+    "label": "Baidu Search",
+    "icon": "/static/benchmark/nara-bench/icons/tool/baidu-search.svg"
+  },
+  "bank_system": {
+    "label": "Bank System",
+    "icon": "/static/benchmark/nara-bench/icons/tool/bank-system.svg"
+  },
+  "calendar": {
+    "label": "Calendar",
+    "icon": "/static/benchmark/nara-bench/icons/tool/calendar.svg"
+  },
+  "chatwoot": {
+    "label": "Chatwoot",
+    "icon": "/static/benchmark/nara-bench/icons/tool/chatwoot.svg"
+  },
+  "cron-scheduling": {
+    "label": "Cron",
+    "icon": "/static/benchmark/nara-bench/icons/tool/cron.svg"
+  },
+  "curl": {
+    "label": "Curl",
+    "icon": "/static/benchmark/nara-bench/icons/tool/curl.svg"
+  },
+  "dingtalk": {
+    "label": "Dingtalk",
+    "icon": "/static/benchmark/nara-bench/icons/tool/dingtalk.svg"
+  },
+  "docker-essentials": {
+    "label": "Docker",
+    "icon": "/static/benchmark/nara-bench/icons/tool/docker.svg"
+  },
+  "email": {
+    "label": "Email",
+    "icon": "/static/benchmark/nara-bench/icons/tool/email.svg"
+  },
+  "gemini": {
+    "label": "Gemini",
+    "icon": "/static/benchmark/nara-bench/icons/tool/gemini.svg"
+  },
+  "git": {
+    "label": "Git",
+    "icon": "/static/benchmark/nara-bench/icons/tool/git.svg"
+  },
+  "gnucash": {
+    "label": "Gnucash",
+    "icon": "/static/benchmark/nara-bench/icons/tool/gnucash.svg"
+  },
+  "google-drive": {
+    "label": "Google Drive",
+    "icon": "/static/benchmark/nara-bench/icons/tool/google-drive.svg"
+  },
+  "helm": {
+    "label": "Helm",
+    "icon": "/static/benchmark/nara-bench/icons/tool/helm.svg"
+  },
+  "hledger": {
+    "label": "Hledger",
+    "icon": "/static/benchmark/nara-bench/icons/tool/hledger.png"
+  },
+  "keycloak-skills": {
+    "label": "Keycloak",
+    "icon": "/static/benchmark/nara-bench/icons/tool/keycloak.svg"
+  },
+  "kubectl": {
+    "label": "Kubectl",
+    "icon": "/static/benchmark/nara-bench/icons/tool/kubernetes.svg"
+  },
+  "libreoffice": {
+    "label": "Libreoffice",
+    "icon": "/static/benchmark/nara-bench/icons/tool/libreoffice.svg"
+  },
+  "limesurvey": {
+    "label": "Limesurvey",
+    "icon": "/static/benchmark/nara-bench/icons/tool/limesurvey.svg"
+  },
+  "moodle": {
+    "label": "Moodle",
+    "icon": "/static/benchmark/nara-bench/icons/tool/moodle.svg"
+  },
+  "nmap-recon": {
+    "label": "Nmap",
+    "icon": "/static/benchmark/nara-bench/icons/tool/nmap.png"
+  },
+  "notion": {
+    "label": "Notion",
+    "icon": "/static/benchmark/nara-bench/icons/tool/notion.svg"
+  },
+  "npm": {
+    "label": "Npm",
+    "icon": "/static/benchmark/nara-bench/icons/tool/npm.svg"
+  },
+  "obsidian": {
+    "label": "Obsidian",
+    "icon": "/static/benchmark/nara-bench/icons/tool/obsidian.svg"
+  },
+  "openai-image-gen": {
+    "label": "Openai Image Gen",
+    "icon": "/static/benchmark/nara-bench/icons/tool/openai-image-gen.svg"
+  },
+  "openmeetings": {
+    "label": "Openmeetings",
+    "icon": "/static/benchmark/nara-bench/icons/tool/openmeetings.svg"
+  },
+  "openproject": {
+    "label": "Openproject",
+    "icon": "/static/benchmark/nara-bench/icons/tool/openproject.svg"
+  },
+  "opensearch-skills": {
+    "label": "Opensearch",
+    "icon": "/static/benchmark/nara-bench/icons/tool/opensearch.svg"
+  },
+  "orangehrm": {
+    "label": "Orangehrm",
+    "icon": "/static/benchmark/nara-bench/icons/tool/orangehrm.svg"
+  },
+  "presidio-pii-skill": {
+    "label": "Presidio",
+    "icon": "/static/benchmark/nara-bench/icons/tool/presidio.svg"
+  },
+  "prismfy-search": {
+    "label": "Prismfy",
+    "icon": "/static/benchmark/nara-bench/icons/tool/prismfy-search.svg"
+  },
+  "prometheus": {
+    "label": "Prometheus",
+    "icon": "/static/benchmark/nara-bench/icons/tool/prometheus.svg"
+  },
+  "restic": {
+    "label": "Restic",
+    "icon": "/static/benchmark/nara-bench/icons/tool/restic.webp"
+  },
+  "sql_db": {
+    "label": "Sql Db",
+    "icon": "/static/benchmark/nara-bench/icons/tool/sql_db.svg"
+  },
+  "ssh-essentials": {
+    "label": "Ssh Essentials",
+    "icon": "/static/benchmark/nara-bench/icons/tool/openssh.png"
+  },
+  "suitecrm": {
+    "label": "Suitecrm",
+    "icon": "/static/benchmark/nara-bench/icons/tool/suitecrm.png"
+  },
+  "trivy-security-scanner": {
+    "label": "Trivy",
+    "icon": "/static/benchmark/nara-bench/icons/tool/trivy.png"
+  },
+  "twitter": {
+    "label": "Twitter",
+    "icon": "/static/benchmark/nara-bench/icons/tool/twitter.svg"
+  },
+  "vault": {
+    "label": "Vault",
+    "icon": "/static/benchmark/nara-bench/icons/tool/vault.svg"
+  },
+  "wordpress": {
+    "label": "Wordpress",
+    "icon": "/static/benchmark/nara-bench/icons/tool/wordpress.svg"
+  },
+  "xiaohongshu-mcp": {
+    "label": "Xiaohongshu Mcp",
+    "icon": "/static/benchmark/nara-bench/icons/tool/xiaohongshu.svg"
+  },
+  "yuque": {
+    "label": "Yuque",
+    "icon": "/static/benchmark/nara-bench/icons/tool/yuque.svg"
+  },
+  "zammad": {
+    "label": "Zammad",
+    "icon": "/static/benchmark/nara-bench/icons/tool/zammad.svg"
+  }
+}

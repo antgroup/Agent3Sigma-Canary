@@ -1,0 +1,12 @@
+{
+  "category": "platform",
+  "slug": "evaluation",
+  "backend": "app.platform.evaluation.routes",
+  "metadata": "platform/evaluation/platform.json",
+  "entry": "/static/platform/evaluation/index.js",
+  "styles": [
+    "/static/platform/evaluation/style.css"
+  ],
+  "base_path": "/platform/evaluation",
+  "config_url": "/api/platform/evaluation/config"
+}

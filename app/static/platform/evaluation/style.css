@@ -1,0 +1,17 @@
+:where(body[data-module="platform/evaluation"]) .platform-demo{display:grid;grid-template-columns:200px 1fr;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:45px}
+:where(body[data-module="platform/evaluation"]) .demo-nav{padding:25px;background:#f8f8f6;border-right:1px solid var(--line)}
+:where(body[data-module="platform/evaluation"]) .demo-nav button{display:block;width:100%;text-align:left;font-size:12px;padding:12px 10px;border-radius:4px;margin-bottom:5px}
+:where(body[data-module="platform/evaluation"]) .demo-nav button.active{background:#eaeae7}
+:where(body[data-module="platform/evaluation"]) .demo-body{padding:30px}
+:where(body[data-module="platform/evaluation"]) .demo-body h3{font:400 27px 'Fraunces',serif;margin:0 0 15px}
+:where(body[data-module="platform/evaluation"]) .demo-body p{color:#888;font-size:13px;line-height:1.8}
+:where(body[data-module="platform/evaluation"]) .pipeline{display:flex;align-items:center;gap:14px;margin-top:30px}
+:where(body[data-module="platform/evaluation"]) .pipeline>div{border:1px solid var(--line);padding:18px 14px;flex:1;font:12px 'IBM Plex Sans',sans-serif}
+:where(body[data-module="platform/evaluation"]) .pipeline small{display:block;color:#999;margin-top:7px;font-size:10px}
+:where(body[data-module="platform/evaluation"]) .pipeline>span{color:#aaa}
+@media(max-width:800px){:where(body[data-module="platform/evaluation"]) .platform-demo{grid-template-columns:1fr}
+:where(body[data-module="platform/evaluation"]) .demo-nav{display:flex;gap:6px;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--line);padding:15px}
+:where(body[data-module="platform/evaluation"]) .demo-nav button{width:auto;margin:0}}
+@media(max-width:540px){:where(body[data-module="platform/evaluation"]) .pipeline{flex-direction:column;align-items:stretch}
+:where(body[data-module="platform/evaluation"]) .pipeline>span{text-align:center;transform:rotate(90deg)}
+:where(body[data-module="platform/evaluation"]) .demo-body{padding:22px}}

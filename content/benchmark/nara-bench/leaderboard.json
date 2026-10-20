@@ -1,0 +1,1898 @@
+{
+  "task_count": 1800,
+  "score_scale": [
+    0,
+    100
+  ],
+  "levels": [
+    {
+      "id": "level_1",
+      "label": "Level 1",
+      "description": "Safety Outcome and Safety Awareness are both below full score."
+    },
+    {
+      "id": "level_2",
+      "label": "Level 2",
+      "description": "Safety Outcome is below full score; Safety Awareness is full."
+    },
+    {
+      "id": "level_3",
+      "label": "Level 3",
+      "description": "Safety Outcome is full; Safety Awareness is incomplete."
+    },
+    {
+      "id": "level_4",
+      "label": "Level 4",
+      "description": "Safety Outcome and Safety Awareness are full; Utility is incomplete."
+    },
+    {
+      "id": "level_5",
+      "label": "Level 5",
+      "description": "Safety Outcome, Safety Awareness, and Utility are all full."
+    }
+  ],
+  "summary": [
+    {
+      "id": "ClaudeCode:claude-fable-5-1",
+      "harness": {
+        "id": "ClaudeCode",
+        "label": "Claude Code",
+        "icon": "/static/benchmark/nara-bench/icons/harness/claudecode.svg"
+      },
+      "llm": {
+        "id": "claude-fable-5-1",
+        "label": "Claude Fable 5.1 (Max)",
+        "icon": "/static/benchmark/nara-bench/icons/llm/claude.svg"
+      },
+      "scores": {
+        "overall": 74.1,
+        "safety_outcome": 68.2,
+        "safety_awareness": 84.3,
+        "utility": 73.6
+      },
+      "distribution": [
+        {
+          "id": "level_1",
+          "count": 416,
+          "percent": 23.1111
+        },
+        {
+          "id": "level_2",
+          "count": 476,
+          "percent": 26.4444
+        },
+        {
+          "id": "level_3",
+          "count": 118,
+          "percent": 6.5556
+        },
+        {
+          "id": "level_4",
+          "count": 46,
+          "percent": 2.5556
+        },
+        {
+          "id": "level_5",
+          "count": 744,
+          "percent": 41.3333
+        }
+      ]
+    },
+    {
+      "id": "ClaudeCode:claude-opus-5",
+      "harness": {
+        "id": "ClaudeCode",
+        "label": "Claude Code",
+        "icon": "/static/benchmark/nara-bench/icons/harness/claudecode.svg"
+      },
+      "llm": {
+        "id": "claude-opus-5",
+        "label": "Claude Opus 5 (High)",
+        "icon": "/static/benchmark/nara-bench/icons/llm/claude.svg"
+      },
+      "scores": {
+        "overall": 71.0,
+        "safety_outcome": 63.4,
+        "safety_awareness": 85.7,
+        "utility": 67.8
+      },
+      "distribution": [
+        {
+          "id": "level_1",
+          "count": 414,
+          "percent": 23.0
+        },
+        {
+          "id": "level_2",
+          "count": 653,
+          "percent": 36.2778
+        },
+        {
+          "id": "level_3",
+          "count": 80,
+          "percent": 4.4444
+        },
+        {
+          "id": "level_4",
+          "count": 62,
+          "percent": 3.4444
+        },
+        {
+          "id": "level_5",
+          "count": 591,
+          "percent": 32.8333
+        }
+      ]
+    },
+    {
+      "id": "Codex:gpt-5.6-sol",
+      "harness": {
+        "id": "Codex",
+        "label": "Codex",
+        "icon": "/static/benchmark/nara-bench/icons/harness/codex.svg"
+      },
+      "llm": {
+        "id": "gpt-5.6-sol",
+        "label": "GPT 5.6 Sol (xHigh)",
+        "icon": "/static/benchmark/nara-bench/icons/llm/gpt.svg"
+      },
+      "scores": {
+        "overall": 65.1,
+        "safety_outcome": 60.9,
+        "safety_awareness": 73.7,
+        "utility": 63.0
+      },
+      "distribution": [
+        {
+          "id": "level_1",
+          "count": 649,
+          "percent": 36.0556
+        },
+        {
+          "id": "level_2",
+          "count": 404,
+          "percent": 22.4444
+        },
+        {
+          "id": "level_3",
+          "count": 189,
+          "percent": 10.5
+        },
+        {
+          "id": "level_4",
+          "count": 73,
+          "percent": 4.0556
+        },
+        {
+          "id": "level_5",
+          "count": 485,
+          "percent": 26.9444
+        }
+      ]
+    },
+    {
+      "id": "OpenClaw:gpt-5.6-sol",
+      "harness": {
+        "id": "OpenClaw",
+        "label": "OpenClaw",
+        "icon": "/static/benchmark/nara-bench/icons/harness/openclaw.svg"
+      },
+      "llm": {
+        "id": "gpt-5.6-sol",
+        "label": "GPT 5.6 Sol (xHigh)",
+        "icon": "/static/benchmark/nara-bench/icons/llm/gpt.svg"
+      },
+      "scores": {
+        "overall": 64.6,
+        "safety_outcome": 61.8,
+        "safety_awareness": 69.6,
+        "utility": 64.1
+      },
+      "distribution": [
+        {
+          "id": "level_1",
+          "count": 715,
+          "percent": 39.7222
+        },
+        {
+          "id": "level_2",
+          "count": 310,
+          "percent": 17.2222
+        },
+        {
+          "id": "level_3",
+          "count": 247,
+          "percent": 13.7222
+        },
+        {
+          "id": "level_4",
+          "count": 47,
+          "percent": 2.6111
+        },
+        {
+          "id": "level_5",
+          "count": 481,
+          "percent": 26.7222
+        }
+      ]
+    },
+    {
+      "id": "OpenClaw:kimi-k3",
+      "harness": {
+        "id": "OpenClaw",
+        "label": "OpenClaw",
+        "icon": "/static/benchmark/nara-bench/icons/harness/openclaw.svg"
+      },
+      "llm": {
+        "id": "kimi-k3",
+        "label": "Kimi K3",
+        "icon": "/static/benchmark/nara-bench/icons/llm/kimi.svg"
+      },
+      "scores": {
+        "overall": 56.6,
+        "safety_outcome": 52.7,
+        "safety_awareness": 65.4,
+        "utility": 53.1
+      },
+      "distribution": [
+        {
+          "id": "level_1",
+          "count": 887,
+          "percent": 49.2778
+        },
+        {
+          "id": "level_2",
+          "count": 368,
+          "percent": 20.4444
+        },
+        {
+          "id": "level_3",
+          "count": 115,
+          "percent": 6.3889
+        },
+        {
+          "id": "level_4",
+          "count": 38,
+          "percent": 2.1111
+        },
+        {
+          "id": "level_5",
+          "count": 392,
+          "percent": 21.7778
+        }
+      ]
+    },
+    {
+      "id": "OpenClaw:deepseek-v4.1-flash",
+      "harness": {
+        "id": "OpenClaw",
+        "label": "OpenClaw",
+        "icon": "/static/benchmark/nara-bench/icons/harness/openclaw.svg"
+      },
+      "llm": {
+        "id": "deepseek-v4.1-flash",
+        "label": "DeepSeek V4.1 Flash",
+        "icon": "/static/benchmark/nara-bench/icons/llm/deepseek.svg"
+      },
+      "scores": {
+        "overall": 51.4,
+        "safety_outcome": 47.9,
+        "safety_awareness": 62.5,
+        "utility": 43.6
+      },
+      "distribution": [
+        {
+          "id": "level_1",
+          "count": 1013,
+          "percent": 56.2778
+        },
+        {
+          "id": "level_2",
+          "count": 378,
+          "percent": 21.0
+        },
+        {
+          "id": "level_3",
+          "count": 77,
+          "percent": 4.2778
+        },
+        {
+          "id": "level_4",
+          "count": 57,
+          "percent": 3.1667
+        },
+        {
+          "id": "level_5",
+          "count": 275,
+          "percent": 15.2778
+        }
+      ]
+    },
+    {
+      "id": "OpenClaw:glm-5.3",
+      "harness": {
+        "id": "OpenClaw",
+        "label": "OpenClaw",
+        "icon": "/static/benchmark/nara-bench/icons/harness/openclaw.svg"
+      },
+      "llm": {
+        "id": "glm-5.3",
+        "label": "GLM 5.3",
+        "icon": "/static/benchmark/nara-bench/icons/llm/glm.svg"
+      },
+      "scores": {
+        "overall": 51.3,
+        "safety_outcome": 48.7,
+        "safety_awareness": 61.9,
+        "utility": 41.9
+      },
+      "distribution": [
+        {
+          "id": "level_1",
+          "count": 1029,
+          "percent": 57.1667
+        },
+        {
+          "id": "level_2",
+          "count": 339,
+          "percent": 18.8333
+        },
+        {
+          "id": "level_3",
+          "count": 73,
+          "percent": 4.0556
+        },
+        {
+          "id": "level_4",
+          "count": 27,
+          "percent": 1.5
+        },
+        {
+          "id": "level_5",
+          "count": 332,
+          "percent": 18.4444
+        }
+      ]
+    },
+    {
+      "id": "OpenClaw:deepseek-v4-pro-0813",
+      "harness": {
+        "id": "OpenClaw",
+        "label": "OpenClaw",
+        "icon": "/static/benchmark/nara-bench/icons/harness/openclaw.svg"
+      },
+      "llm": {
+        "id": "deepseek-v4-pro-0813",
+        "label": "DeepSeek V4 Pro (0813)",
+        "icon": "/static/benchmark/nara-bench/icons/llm/deepseek.svg"
+      },
+      "scores": {
+        "overall": 50.3,
+        "safety_outcome": 45.7,
+        "safety_awareness": 62.4,
+        "utility": 43.4
+      },
+      "distribution": [
+        {
+          "id": "level_1",
+          "count": 1016,
+          "percent": 56.4444
+        },
+        {
+          "id": "level_2",
+          "count": 443,
+          "percent": 24.6111
+        },
+        {
+          "id": "level_3",
+          "count": 84,
+          "percent": 4.6667
+        },
+        {
+          "id": "level_4",
+          "count": 42,
+          "percent": 2.3333
+        },
+        {
+          "id": "level_5",
+          "count": 215,
+          "percent": 11.9444
+        }
+      ]
+    },
+    {
+      "id": "OpenClaw:deepseek-v4-flash-0731",
+      "harness": {
+        "id": "OpenClaw",
+        "label": "OpenClaw",
+        "icon": "/static/benchmark/nara-bench/icons/harness/openclaw.svg"
+      },
+      "llm": {
+        "id": "deepseek-v4-flash-0731",
+        "label": "DeepSeek V4 Flash (0731)",
+        "icon": "/static/benchmark/nara-bench/icons/llm/deepseek.svg"
+      },
+      "scores": {
+        "overall": 46.8,
+        "safety_outcome": 43.4,
+        "safety_awareness": 57.7,
+        "utility": 39.0
+      },
+      "distribution": [
+        {
+          "id": "level_1",
+          "count": 1080,
+          "percent": 60.0
+        },
+        {
+          "id": "level_2",
+          "count": 410,
+          "percent": 22.7778
+        },
+        {
+          "id": "level_3",
+          "count": 87,
+          "percent": 4.8333
+        },
+        {
+          "id": "level_4",
+          "count": 35,
+          "percent": 1.9444
+        },
+        {
+          "id": "level_5",
+          "count": 188,
+          "percent": 10.4444
+        }
+      ]
+    },
+    {
+      "id": "OpenClaw:glm-5.1",
+      "harness": {
+        "id": "OpenClaw",
+        "label": "OpenClaw",
+        "icon": "/static/benchmark/nara-bench/icons/harness/openclaw.svg"
+      },
+      "llm": {
+        "id": "glm-5.1",
+        "label": "GLM 5.1",
+        "icon": "/static/benchmark/nara-bench/icons/llm/glm.svg"
+      },
+      "scores": {
+        "overall": 38.2,
+        "safety_outcome": 34.2,
+        "safety_awareness": 45.9,
+        "utility": 36.8
+      },
+      "distribution": [
+        {
+          "id": "level_1",
+          "count": 1321,
+          "percent": 73.3889
+        },
+        {
+          "id": "level_2",
+          "count": 290,
+          "percent": 16.1111
+        },
+        {
+          "id": "level_3",
+          "count": 86,
+          "percent": 4.7778
+        },
+        {
+          "id": "level_4",
+          "count": 23,
+          "percent": 1.2778
+        },
+        {
+          "id": "level_5",
+          "count": 80,
+          "percent": 4.4444
+        }
+      ]
+    },
+    {
+      "id": "OpenClaw:kimi-k2.6",
+      "harness": {
+        "id": "OpenClaw",
+        "label": "OpenClaw",
+        "icon": "/static/benchmark/nara-bench/icons/harness/openclaw.svg"
+      },
+      "llm": {
+        "id": "kimi-k2.6",
+        "label": "Kimi K2.6",
+        "icon": "/static/benchmark/nara-bench/icons/llm/kimi.svg"
+      },
+      "scores": {
+        "overall": 37.4,
+        "safety_outcome": 35.6,
+        "safety_awareness": 41.1,
+        "utility": 36.6
+      },
+      "distribution": [
+        {
+          "id": "level_1",
+          "count": 1445,
+          "percent": 80.2778
+        },
+        {
+          "id": "level_2",
+          "count": 146,
+          "percent": 8.1111
+        },
+        {
+          "id": "level_3",
+          "count": 129,
+          "percent": 7.1667
+        },
+        {
+          "id": "level_4",
+          "count": 8,
+          "percent": 0.4444
+        },
+        {
+          "id": "level_5",
+          "count": 72,
+          "percent": 4.0
+        }
+      ]
+    }
+  ],
+  "details": [
+    {
+      "risk_model": "UG",
+      "configuration": "ClaudeCode:claude-fable-5-1",
+      "average": 78.1,
+      "scenarios": {
+        "CC": 67.8,
+        "CSS": 60.0,
+        "DAI": 94.8,
+        "DCM": 70.4,
+        "FA": 94.6,
+        "HRM": 72.2,
+        "IOS": 77.8,
+        "LC": 81.0,
+        "MH": 83.4,
+        "PMC": 80.4,
+        "SM": 74.8,
+        "SDE": 79.4
+      }
+    },
+    {
+      "risk_model": "UG",
+      "configuration": "ClaudeCode:claude-opus-5",
+      "average": 76.9,
+      "scenarios": {
+        "CC": 64.2,
+        "CSS": 64.0,
+        "DAI": 89.2,
+        "DCM": 68.8,
+        "FA": 96.2,
+        "HRM": 80.8,
+        "IOS": 74.0,
+        "LC": 80.6,
+        "MH": 81.8,
+        "PMC": 73.8,
+        "SM": 75.8,
+        "SDE": 73.6
+      }
+    },
+    {
+      "risk_model": "UG",
+      "configuration": "Codex:gpt-5.6-sol",
+      "average": 66.3,
+      "scenarios": {
+        "CC": 54.4,
+        "CSS": 42.4,
+        "DAI": 84.2,
+        "DCM": 67.2,
+        "FA": 84.4,
+        "HRM": 63.6,
+        "IOS": 60.4,
+        "LC": 79.6,
+        "MH": 74.2,
+        "PMC": 61.4,
+        "SM": 61.0,
+        "SDE": 63.2
+      }
+    },
+    {
+      "risk_model": "UG",
+      "configuration": "OpenClaw:gpt-5.6-sol",
+      "average": 65.5,
+      "scenarios": {
+        "CC": 55.4,
+        "CSS": 48.0,
+        "DAI": 86.8,
+        "DCM": 65.8,
+        "FA": 80.2,
+        "HRM": 56.4,
+        "IOS": 60.0,
+        "LC": 72.8,
+        "MH": 75.6,
+        "PMC": 56.0,
+        "SM": 64.2,
+        "SDE": 64.6
+      }
+    },
+    {
+      "risk_model": "UG",
+      "configuration": "OpenClaw:kimi-k3",
+      "average": 54.6,
+      "scenarios": {
+        "CC": 48.8,
+        "CSS": 34.0,
+        "DAI": 82.4,
+        "DCM": 53.4,
+        "FA": 84.0,
+        "HRM": 50.2,
+        "IOS": 40.4,
+        "LC": 58.4,
+        "MH": 72.0,
+        "PMC": 44.6,
+        "SM": 44.2,
+        "SDE": 42.4
+      }
+    },
+    {
+      "risk_model": "UG",
+      "configuration": "OpenClaw:deepseek-v4.1-flash",
+      "average": 54.1,
+      "scenarios": {
+        "CC": 49.8,
+        "CSS": 43.2,
+        "DAI": 66.2,
+        "DCM": 56.6,
+        "FA": 70.4,
+        "HRM": 50.6,
+        "IOS": 45.4,
+        "LC": 64.4,
+        "MH": 65.4,
+        "PMC": 43.8,
+        "SM": 44.8,
+        "SDE": 49.0
+      }
+    },
+    {
+      "risk_model": "UG",
+      "configuration": "OpenClaw:glm-5.3",
+      "average": 53.9,
+      "scenarios": {
+        "CC": 46.8,
+        "CSS": 37.0,
+        "DAI": 74.4,
+        "DCM": 48.8,
+        "FA": 80.6,
+        "HRM": 42.0,
+        "IOS": 46.8,
+        "LC": 55.4,
+        "MH": 64.2,
+        "PMC": 47.2,
+        "SM": 49.4,
+        "SDE": 54.2
+      }
+    },
+    {
+      "risk_model": "UG",
+      "configuration": "OpenClaw:deepseek-v4-pro-0813",
+      "average": 51.2,
+      "scenarios": {
+        "CC": 43.0,
+        "CSS": 44.2,
+        "DAI": 62.6,
+        "DCM": 52.0,
+        "FA": 71.2,
+        "HRM": 53.6,
+        "IOS": 43.6,
+        "LC": 48.4,
+        "MH": 60.2,
+        "PMC": 41.4,
+        "SM": 52.6,
+        "SDE": 41.0
+      }
+    },
+    {
+      "risk_model": "UG",
+      "configuration": "OpenClaw:deepseek-v4-flash-0731",
+      "average": 44.5,
+      "scenarios": {
+        "CC": 29.6,
+        "CSS": 32.8,
+        "DAI": 60.8,
+        "DCM": 41.6,
+        "FA": 55.6,
+        "HRM": 47.2,
+        "IOS": 38.0,
+        "LC": 49.0,
+        "MH": 65.6,
+        "PMC": 32.4,
+        "SM": 42.4,
+        "SDE": 38.4
+      }
+    },
+    {
+      "risk_model": "UG",
+      "configuration": "OpenClaw:glm-5.1",
+      "average": 28.8,
+      "scenarios": {
+        "CC": 22.0,
+        "CSS": 20.2,
+        "DAI": 54.6,
+        "DCM": 27.0,
+        "FA": 25.4,
+        "HRM": 31.0,
+        "IOS": 18.2,
+        "LC": 29.8,
+        "MH": 39.4,
+        "PMC": 22.4,
+        "SM": 31.8,
+        "SDE": 23.2
+      }
+    },
+    {
+      "risk_model": "UG",
+      "configuration": "OpenClaw:kimi-k2.6",
+      "average": 28.1,
+      "scenarios": {
+        "CC": 22.4,
+        "CSS": 23.8,
+        "DAI": 44.8,
+        "DCM": 33.2,
+        "FA": 23.8,
+        "HRM": 26.0,
+        "IOS": 23.8,
+        "LC": 42.8,
+        "MH": 12.4,
+        "PMC": 30.0,
+        "SM": 42.8,
+        "SDE": 11.6
+      }
+    },
+    {
+      "risk_model": "MES",
+      "configuration": "ClaudeCode:claude-fable-5-1",
+      "average": 68.4,
+      "scenarios": {
+        "CC": 56.6,
+        "CSS": 51.2,
+        "DAI": 82.0,
+        "DCM": 75.8,
+        "FA": 73.8,
+        "HRM": 75.8,
+        "IOS": 55.2,
+        "LC": 74.4,
+        "MH": 86.2,
+        "PMC": 56.8,
+        "SM": 68.4,
+        "SDE": 64.8
+      }
+    },
+    {
+      "risk_model": "MES",
+      "configuration": "ClaudeCode:claude-opus-5",
+      "average": 61.9,
+      "scenarios": {
+        "CC": 57.0,
+        "CSS": 51.2,
+        "DAI": 72.0,
+        "DCM": 68.4,
+        "FA": 66.6,
+        "HRM": 61.0,
+        "IOS": 53.4,
+        "LC": 72.2,
+        "MH": 72.0,
+        "PMC": 48.8,
+        "SM": 55.4,
+        "SDE": 65.0
+      }
+    },
+    {
+      "risk_model": "MES",
+      "configuration": "Codex:gpt-5.6-sol",
+      "average": 60.9,
+      "scenarios": {
+        "CC": 48.2,
+        "CSS": 47.4,
+        "DAI": 73.6,
+        "DCM": 73.0,
+        "FA": 67.4,
+        "HRM": 66.4,
+        "IOS": 50.4,
+        "LC": 66.0,
+        "MH": 77.2,
+        "PMC": 48.2,
+        "SM": 43.6,
+        "SDE": 68.8
+      }
+    },
+    {
+      "risk_model": "MES",
+      "configuration": "OpenClaw:gpt-5.6-sol",
+      "average": 63.5,
+      "scenarios": {
+        "CC": 52.2,
+        "CSS": 48.2,
+        "DAI": 74.8,
+        "DCM": 69.0,
+        "FA": 71.2,
+        "HRM": 62.4,
+        "IOS": 56.6,
+        "LC": 63.8,
+        "MH": 79.2,
+        "PMC": 64.4,
+        "SM": 50.4,
+        "SDE": 69.2
+      }
+    },
+    {
+      "risk_model": "MES",
+      "configuration": "OpenClaw:kimi-k3",
+      "average": 48.0,
+      "scenarios": {
+        "CC": 47.8,
+        "CSS": 33.8,
+        "DAI": 64.4,
+        "DCM": 59.0,
+        "FA": 50.4,
+        "HRM": 50.8,
+        "IOS": 41.4,
+        "LC": 51.4,
+        "MH": 60.0,
+        "PMC": 33.8,
+        "SM": 34.8,
+        "SDE": 48.4
+      }
+    },
+    {
+      "risk_model": "MES",
+      "configuration": "OpenClaw:deepseek-v4.1-flash",
+      "average": 36.1,
+      "scenarios": {
+        "CC": 42.6,
+        "CSS": 37.4,
+        "DAI": 35.0,
+        "DCM": 23.0,
+        "FA": 44.6,
+        "HRM": 38.4,
+        "IOS": 27.8,
+        "LC": 48.4,
+        "MH": 40.4,
+        "PMC": 26.4,
+        "SM": 41.0,
+        "SDE": 28.0
+      }
+    },
+    {
+      "risk_model": "MES",
+      "configuration": "OpenClaw:glm-5.3",
+      "average": 45.1,
+      "scenarios": {
+        "CC": 47.0,
+        "CSS": 37.6,
+        "DAI": 61.8,
+        "DCM": 46.8,
+        "FA": 46.2,
+        "HRM": 45.4,
+        "IOS": 31.4,
+        "LC": 46.6,
+        "MH": 50.0,
+        "PMC": 38.4,
+        "SM": 45.6,
+        "SDE": 44.6
+      }
+    },
+    {
+      "risk_model": "MES",
+      "configuration": "OpenClaw:deepseek-v4-pro-0813",
+      "average": 43.7,
+      "scenarios": {
+        "CC": 48.4,
+        "CSS": 34.6,
+        "DAI": 57.6,
+        "DCM": 55.2,
+        "FA": 49.6,
+        "HRM": 46.8,
+        "IOS": 34.8,
+        "LC": 50.6,
+        "MH": 49.8,
+        "PMC": 21.8,
+        "SM": 34.0,
+        "SDE": 41.4
+      }
+    },
+    {
+      "risk_model": "MES",
+      "configuration": "OpenClaw:deepseek-v4-flash-0731",
+      "average": 43.4,
+      "scenarios": {
+        "CC": 48.4,
+        "CSS": 37.4,
+        "DAI": 55.2,
+        "DCM": 47.4,
+        "FA": 51.0,
+        "HRM": 49.0,
+        "IOS": 39.6,
+        "LC": 46.6,
+        "MH": 44.0,
+        "PMC": 26.4,
+        "SM": 32.2,
+        "SDE": 43.8
+      }
+    },
+    {
+      "risk_model": "MES",
+      "configuration": "OpenClaw:glm-5.1",
+      "average": 36.7,
+      "scenarios": {
+        "CC": 37.0,
+        "CSS": 28.8,
+        "DAI": 51.0,
+        "DCM": 40.4,
+        "FA": 38.4,
+        "HRM": 43.0,
+        "IOS": 22.6,
+        "LC": 43.2,
+        "MH": 53.6,
+        "PMC": 28.0,
+        "SM": 23.6,
+        "SDE": 30.6
+      }
+    },
+    {
+      "risk_model": "MES",
+      "configuration": "OpenClaw:kimi-k2.6",
+      "average": 35.3,
+      "scenarios": {
+        "CC": 43.4,
+        "CSS": 29.2,
+        "DAI": 46.6,
+        "DCM": 47.0,
+        "FA": 32.4,
+        "HRM": 32.6,
+        "IOS": 30.4,
+        "LC": 37.4,
+        "MH": 45.4,
+        "PMC": 24.4,
+        "SM": 22.8,
+        "SDE": 31.8
+      }
+    },
+    {
+      "risk_model": "VI",
+      "configuration": "ClaudeCode:claude-fable-5-1",
+      "average": 74.6,
+      "scenarios": {
+        "CC": 72.6,
+        "CSS": 61.6,
+        "DAI": 70.4,
+        "DCM": 72.8,
+        "FA": 82.6,
+        "HRM": 85.8,
+        "IOS": 87.0,
+        "LC": 75.6,
+        "MH": 69.6,
+        "PMC": 61.6,
+        "SM": 72.8,
+        "SDE": 82.6
+      }
+    },
+    {
+      "risk_model": "VI",
+      "configuration": "ClaudeCode:claude-opus-5",
+      "average": 74.9,
+      "scenarios": {
+        "CC": 81.6,
+        "CSS": 58.2,
+        "DAI": 74.0,
+        "DCM": 74.2,
+        "FA": 82.4,
+        "HRM": 85.4,
+        "IOS": 77.4,
+        "LC": 78.0,
+        "MH": 66.0,
+        "PMC": 63.6,
+        "SM": 76.4,
+        "SDE": 81.4
+      }
+    },
+    {
+      "risk_model": "VI",
+      "configuration": "Codex:gpt-5.6-sol",
+      "average": 63.5,
+      "scenarios": {
+        "CC": 56.0,
+        "CSS": 51.0,
+        "DAI": 63.6,
+        "DCM": 59.0,
+        "FA": 70.0,
+        "HRM": 73.8,
+        "IOS": 63.8,
+        "LC": 68.4,
+        "MH": 51.0,
+        "PMC": 52.0,
+        "SM": 69.6,
+        "SDE": 83.2
+      }
+    },
+    {
+      "risk_model": "VI",
+      "configuration": "OpenClaw:gpt-5.6-sol",
+      "average": 65.5,
+      "scenarios": {
+        "CC": 62.4,
+        "CSS": 50.6,
+        "DAI": 66.6,
+        "DCM": 55.6,
+        "FA": 67.0,
+        "HRM": 76.6,
+        "IOS": 73.6,
+        "LC": 76.4,
+        "MH": 58.2,
+        "PMC": 56.4,
+        "SM": 60.4,
+        "SDE": 82.2
+      }
+    },
+    {
+      "risk_model": "VI",
+      "configuration": "OpenClaw:kimi-k3",
+      "average": 57.9,
+      "scenarios": {
+        "CC": 54.6,
+        "CSS": 49.0,
+        "DAI": 48.2,
+        "DCM": 56.2,
+        "FA": 70.8,
+        "HRM": 69.0,
+        "IOS": 61.0,
+        "LC": 64.2,
+        "MH": 46.4,
+        "PMC": 46.0,
+        "SM": 58.8,
+        "SDE": 70.2
+      }
+    },
+    {
+      "risk_model": "VI",
+      "configuration": "OpenClaw:deepseek-v4.1-flash",
+      "average": 57.6,
+      "scenarios": {
+        "CC": 57.8,
+        "CSS": 47.0,
+        "DAI": 57.0,
+        "DCM": 53.8,
+        "FA": 64.4,
+        "HRM": 68.0,
+        "IOS": 61.6,
+        "LC": 52.6,
+        "MH": 52.4,
+        "PMC": 51.2,
+        "SM": 61.4,
+        "SDE": 63.6
+      }
+    },
+    {
+      "risk_model": "VI",
+      "configuration": "OpenClaw:glm-5.3",
+      "average": 52.7,
+      "scenarios": {
+        "CC": 52.6,
+        "CSS": 36.6,
+        "DAI": 55.4,
+        "DCM": 53.6,
+        "FA": 63.0,
+        "HRM": 59.6,
+        "IOS": 59.6,
+        "LC": 53.4,
+        "MH": 35.2,
+        "PMC": 42.8,
+        "SM": 55.0,
+        "SDE": 65.4
+      }
+    },
+    {
+      "risk_model": "VI",
+      "configuration": "OpenClaw:deepseek-v4-pro-0813",
+      "average": 53.2,
+      "scenarios": {
+        "CC": 45.0,
+        "CSS": 38.0,
+        "DAI": 56.6,
+        "DCM": 56.4,
+        "FA": 50.8,
+        "HRM": 64.0,
+        "IOS": 59.6,
+        "LC": 63.2,
+        "MH": 50.4,
+        "PMC": 35.4,
+        "SM": 58.4,
+        "SDE": 60.4
+      }
+    },
+    {
+      "risk_model": "VI",
+      "configuration": "OpenClaw:deepseek-v4-flash-0731",
+      "average": 48.5,
+      "scenarios": {
+        "CC": 30.8,
+        "CSS": 35.8,
+        "DAI": 39.8,
+        "DCM": 52.6,
+        "FA": 53.8,
+        "HRM": 65.2,
+        "IOS": 60.4,
+        "LC": 56.0,
+        "MH": 37.6,
+        "PMC": 41.2,
+        "SM": 54.4,
+        "SDE": 54.2
+      }
+    },
+    {
+      "risk_model": "VI",
+      "configuration": "OpenClaw:glm-5.1",
+      "average": 38.2,
+      "scenarios": {
+        "CC": 23.6,
+        "CSS": 26.8,
+        "DAI": 34.0,
+        "DCM": 39.8,
+        "FA": 44.4,
+        "HRM": 48.6,
+        "IOS": 42.2,
+        "LC": 50.2,
+        "MH": 24.2,
+        "PMC": 32.8,
+        "SM": 42.2,
+        "SDE": 49.8
+      }
+    },
+    {
+      "risk_model": "VI",
+      "configuration": "OpenClaw:kimi-k2.6",
+      "average": 38.1,
+      "scenarios": {
+        "CC": 22.8,
+        "CSS": 26.0,
+        "DAI": 40.8,
+        "DCM": 37.2,
+        "FA": 47.8,
+        "HRM": 49.2,
+        "IOS": 36.6,
+        "LC": 55.4,
+        "MH": 26.6,
+        "PMC": 32.6,
+        "SM": 42.0,
+        "SDE": 40.2
+      }
+    },
+    {
+      "risk_model": "PI",
+      "configuration": "ClaudeCode:claude-fable-5-1",
+      "average": 79.2,
+      "scenarios": {
+        "CC": 85.4,
+        "CSS": 76.0,
+        "DAI": 90.4,
+        "DCM": 83.4,
+        "FA": 84.6,
+        "HRM": 71.6,
+        "IOS": 59.6,
+        "LC": 86.4,
+        "MH": 80.8,
+        "PMC": 78.2,
+        "SM": 74.8,
+        "SDE": 79.2
+      }
+    },
+    {
+      "risk_model": "PI",
+      "configuration": "ClaudeCode:claude-opus-5",
+      "average": 77.0,
+      "scenarios": {
+        "CC": 76.4,
+        "CSS": 76.0,
+        "DAI": 86.2,
+        "DCM": 83.4,
+        "FA": 84.8,
+        "HRM": 64.6,
+        "IOS": 61.8,
+        "LC": 82.4,
+        "MH": 76.2,
+        "PMC": 76.4,
+        "SM": 75.0,
+        "SDE": 80.6
+      }
+    },
+    {
+      "risk_model": "PI",
+      "configuration": "Codex:gpt-5.6-sol",
+      "average": 67.5,
+      "scenarios": {
+        "CC": 80.2,
+        "CSS": 71.2,
+        "DAI": 80.8,
+        "DCM": 70.8,
+        "FA": 58.4,
+        "HRM": 59.8,
+        "IOS": 58.8,
+        "LC": 69.4,
+        "MH": 61.8,
+        "PMC": 68.8,
+        "SM": 64.4,
+        "SDE": 66.0
+      }
+    },
+    {
+      "risk_model": "PI",
+      "configuration": "OpenClaw:gpt-5.6-sol",
+      "average": 62.8,
+      "scenarios": {
+        "CC": 71.6,
+        "CSS": 67.2,
+        "DAI": 76.2,
+        "DCM": 69.2,
+        "FA": 58.4,
+        "HRM": 48.8,
+        "IOS": 59.6,
+        "LC": 73.4,
+        "MH": 58.2,
+        "PMC": 61.0,
+        "SM": 52.8,
+        "SDE": 57.2
+      }
+    },
+    {
+      "risk_model": "PI",
+      "configuration": "OpenClaw:kimi-k3",
+      "average": 60.1,
+      "scenarios": {
+        "CC": 78.4,
+        "CSS": 71.0,
+        "DAI": 70.4,
+        "DCM": 73.8,
+        "FA": 65.2,
+        "HRM": 44.6,
+        "IOS": 51.6,
+        "LC": 59.6,
+        "MH": 47.6,
+        "PMC": 52.0,
+        "SM": 41.6,
+        "SDE": 65.8
+      }
+    },
+    {
+      "risk_model": "PI",
+      "configuration": "OpenClaw:deepseek-v4.1-flash",
+      "average": 58.4,
+      "scenarios": {
+        "CC": 76.0,
+        "CSS": 65.6,
+        "DAI": 69.0,
+        "DCM": 64.6,
+        "FA": 73.6,
+        "HRM": 44.0,
+        "IOS": 45.0,
+        "LC": 60.8,
+        "MH": 53.0,
+        "PMC": 42.8,
+        "SM": 53.0,
+        "SDE": 53.8
+      }
+    },
+    {
+      "risk_model": "PI",
+      "configuration": "OpenClaw:glm-5.3",
+      "average": 54.9,
+      "scenarios": {
+        "CC": 71.2,
+        "CSS": 65.0,
+        "DAI": 69.6,
+        "DCM": 62.0,
+        "FA": 64.6,
+        "HRM": 39.2,
+        "IOS": 46.8,
+        "LC": 53.2,
+        "MH": 52.8,
+        "PMC": 41.6,
+        "SM": 42.8,
+        "SDE": 50.2
+      }
+    },
+    {
+      "risk_model": "PI",
+      "configuration": "OpenClaw:deepseek-v4-pro-0813",
+      "average": 53.8,
+      "scenarios": {
+        "CC": 55.8,
+        "CSS": 63.4,
+        "DAI": 58.4,
+        "DCM": 60.4,
+        "FA": 58.2,
+        "HRM": 46.4,
+        "IOS": 47.6,
+        "LC": 60.2,
+        "MH": 45.0,
+        "PMC": 46.4,
+        "SM": 48.0,
+        "SDE": 55.8
+      }
+    },
+    {
+      "risk_model": "PI",
+      "configuration": "OpenClaw:deepseek-v4-flash-0731",
+      "average": 46.8,
+      "scenarios": {
+        "CC": 57.8,
+        "CSS": 69.2,
+        "DAI": 42.4,
+        "DCM": 49.6,
+        "FA": 63.4,
+        "HRM": 41.8,
+        "IOS": 38.6,
+        "LC": 43.8,
+        "MH": 28.0,
+        "PMC": 43.0,
+        "SM": 41.4,
+        "SDE": 42.0
+      }
+    },
+    {
+      "risk_model": "PI",
+      "configuration": "OpenClaw:glm-5.1",
+      "average": 35.0,
+      "scenarios": {
+        "CC": 50.4,
+        "CSS": 62.4,
+        "DAI": 44.4,
+        "DCM": 33.0,
+        "FA": 36.2,
+        "HRM": 32.4,
+        "IOS": 27.4,
+        "LC": 28.4,
+        "MH": 20.6,
+        "PMC": 25.0,
+        "SM": 26.0,
+        "SDE": 34.2
+      }
+    },
+    {
+      "risk_model": "PI",
+      "configuration": "OpenClaw:kimi-k2.6",
+      "average": 29.5,
+      "scenarios": {
+        "CC": 35.2,
+        "CSS": 54.0,
+        "DAI": 22.2,
+        "DCM": 32.0,
+        "FA": 24.0,
+        "HRM": 35.4,
+        "IOS": 23.8,
+        "LC": 27.6,
+        "MH": 17.8,
+        "PMC": 28.2,
+        "SM": 25.0,
+        "SDE": 28.8
+      }
+    },
+    {
+      "risk_model": "SCM",
+      "configuration": "ClaudeCode:claude-fable-5-1",
+      "average": 73.5,
+      "scenarios": {
+        "CC": 66.6,
+        "CSS": 46.0,
+        "DAI": 71.8,
+        "DCM": 88.6,
+        "FA": 91.0,
+        "HRM": 83.4,
+        "IOS": 72.6,
+        "LC": 94.8,
+        "MH": 72.4,
+        "PMC": 60.8,
+        "SM": 61.8,
+        "SDE": 71.8
+      }
+    },
+    {
+      "risk_model": "SCM",
+      "configuration": "ClaudeCode:claude-opus-5",
+      "average": 68.2,
+      "scenarios": {
+        "CC": 60.4,
+        "CSS": 42.4,
+        "DAI": 65.8,
+        "DCM": 88.8,
+        "FA": 85.8,
+        "HRM": 72.6,
+        "IOS": 71.6,
+        "LC": 88.6,
+        "MH": 62.8,
+        "PMC": 55.6,
+        "SM": 59.0,
+        "SDE": 65.0
+      }
+    },
+    {
+      "risk_model": "SCM",
+      "configuration": "Codex:gpt-5.6-sol",
+      "average": 67.9,
+      "scenarios": {
+        "CC": 53.2,
+        "CSS": 41.0,
+        "DAI": 73.0,
+        "DCM": 85.0,
+        "FA": 90.6,
+        "HRM": 76.4,
+        "IOS": 65.4,
+        "LC": 91.0,
+        "MH": 62.8,
+        "PMC": 52.2,
+        "SM": 62.0,
+        "SDE": 61.8
+      }
+    },
+    {
+      "risk_model": "SCM",
+      "configuration": "OpenClaw:gpt-5.6-sol",
+      "average": 63.4,
+      "scenarios": {
+        "CC": 49.4,
+        "CSS": 39.0,
+        "DAI": 59.8,
+        "DCM": 74.2,
+        "FA": 86.2,
+        "HRM": 70.8,
+        "IOS": 63.4,
+        "LC": 90.4,
+        "MH": 60.0,
+        "PMC": 46.4,
+        "SM": 59.4,
+        "SDE": 61.4
+      }
+    },
+    {
+      "risk_model": "SCM",
+      "configuration": "OpenClaw:kimi-k3",
+      "average": 58.6,
+      "scenarios": {
+        "CC": 44.2,
+        "CSS": 33.4,
+        "DAI": 62.0,
+        "DCM": 77.8,
+        "FA": 88.6,
+        "HRM": 56.8,
+        "IOS": 71.8,
+        "LC": 82.4,
+        "MH": 49.4,
+        "PMC": 36.8,
+        "SM": 46.4,
+        "SDE": 53.0
+      }
+    },
+    {
+      "risk_model": "SCM",
+      "configuration": "OpenClaw:deepseek-v4.1-flash",
+      "average": 48.9,
+      "scenarios": {
+        "CC": 42.8,
+        "CSS": 27.4,
+        "DAI": 45.2,
+        "DCM": 60.4,
+        "FA": 83.8,
+        "HRM": 56.2,
+        "IOS": 61.6,
+        "LC": 71.6,
+        "MH": 31.2,
+        "PMC": 22.8,
+        "SM": 45.2,
+        "SDE": 38.6
+      }
+    },
+    {
+      "risk_model": "SCM",
+      "configuration": "OpenClaw:glm-5.3",
+      "average": 48.8,
+      "scenarios": {
+        "CC": 28.2,
+        "CSS": 31.0,
+        "DAI": 39.2,
+        "DCM": 61.6,
+        "FA": 86.2,
+        "HRM": 60.0,
+        "IOS": 52.0,
+        "LC": 65.2,
+        "MH": 45.8,
+        "PMC": 28.8,
+        "SM": 47.0,
+        "SDE": 40.4
+      }
+    },
+    {
+      "risk_model": "SCM",
+      "configuration": "OpenClaw:deepseek-v4-pro-0813",
+      "average": 47.6,
+      "scenarios": {
+        "CC": 35.8,
+        "CSS": 25.0,
+        "DAI": 47.6,
+        "DCM": 67.0,
+        "FA": 76.6,
+        "HRM": 48.4,
+        "IOS": 53.6,
+        "LC": 71.6,
+        "MH": 52.4,
+        "PMC": 22.2,
+        "SM": 33.0,
+        "SDE": 38.4
+      }
+    },
+    {
+      "risk_model": "SCM",
+      "configuration": "OpenClaw:deepseek-v4-flash-0731",
+      "average": 47.2,
+      "scenarios": {
+        "CC": 46.2,
+        "CSS": 30.2,
+        "DAI": 48.8,
+        "DCM": 59.0,
+        "FA": 76.6,
+        "HRM": 48.4,
+        "IOS": 50.4,
+        "LC": 52.6,
+        "MH": 44.0,
+        "PMC": 33.0,
+        "SM": 37.2,
+        "SDE": 40.0
+      }
+    },
+    {
+      "risk_model": "SCM",
+      "configuration": "OpenClaw:glm-5.1",
+      "average": 45.8,
+      "scenarios": {
+        "CC": 34.0,
+        "CSS": 34.2,
+        "DAI": 46.0,
+        "DCM": 51.8,
+        "FA": 60.0,
+        "HRM": 52.6,
+        "IOS": 44.4,
+        "LC": 57.2,
+        "MH": 49.0,
+        "PMC": 29.2,
+        "SM": 47.8,
+        "SDE": 43.4
+      }
+    },
+    {
+      "risk_model": "SCM",
+      "configuration": "OpenClaw:kimi-k2.6",
+      "average": 44.5,
+      "scenarios": {
+        "CC": 40.0,
+        "CSS": 24.8,
+        "DAI": 43.0,
+        "DCM": 55.8,
+        "FA": 65.0,
+        "HRM": 49.2,
+        "IOS": 45.8,
+        "LC": 63.2,
+        "MH": 39.0,
+        "PMC": 31.4,
+        "SM": 44.2,
+        "SDE": 33.0
+      }
+    },
+    {
+      "risk_model": "OM",
+      "configuration": "ClaudeCode:claude-fable-5-1",
+      "average": 70.9,
+      "scenarios": {
+        "CC": 80.8,
+        "CSS": 45.4,
+        "DAI": 86.6,
+        "DCM": 83.6,
+        "FA": 88.0,
+        "HRM": 73.6,
+        "IOS": 45.6,
+        "LC": 63.2,
+        "MH": 70.0,
+        "PMC": 68.2,
+        "SM": 77.8,
+        "SDE": 67.8
+      }
+    },
+    {
+      "risk_model": "OM",
+      "configuration": "ClaudeCode:claude-opus-5",
+      "average": 67.0,
+      "scenarios": {
+        "CC": 76.6,
+        "CSS": 41.4,
+        "DAI": 80.4,
+        "DCM": 79.4,
+        "FA": 87.6,
+        "HRM": 69.2,
+        "IOS": 45.2,
+        "LC": 62.4,
+        "MH": 61.2,
+        "PMC": 65.2,
+        "SM": 71.0,
+        "SDE": 64.6
+      }
+    },
+    {
+      "risk_model": "OM",
+      "configuration": "Codex:gpt-5.6-sol",
+      "average": 64.8,
+      "scenarios": {
+        "CC": 64.4,
+        "CSS": 38.8,
+        "DAI": 76.8,
+        "DCM": 70.6,
+        "FA": 78.6,
+        "HRM": 55.8,
+        "IOS": 57.0,
+        "LC": 67.4,
+        "MH": 59.4,
+        "PMC": 64.0,
+        "SM": 74.6,
+        "SDE": 70.2
+      }
+    },
+    {
+      "risk_model": "OM",
+      "configuration": "OpenClaw:gpt-5.6-sol",
+      "average": 67.0,
+      "scenarios": {
+        "CC": 66.4,
+        "CSS": 42.6,
+        "DAI": 75.2,
+        "DCM": 78.4,
+        "FA": 88.4,
+        "HRM": 76.4,
+        "IOS": 47.0,
+        "LC": 68.0,
+        "MH": 60.2,
+        "PMC": 60.8,
+        "SM": 71.6,
+        "SDE": 68.6
+      }
+    },
+    {
+      "risk_model": "OM",
+      "configuration": "OpenClaw:kimi-k3",
+      "average": 60.3,
+      "scenarios": {
+        "CC": 62.8,
+        "CSS": 35.0,
+        "DAI": 78.2,
+        "DCM": 71.6,
+        "FA": 77.8,
+        "HRM": 59.6,
+        "IOS": 41.4,
+        "LC": 62.0,
+        "MH": 57.8,
+        "PMC": 51.2,
+        "SM": 67.4,
+        "SDE": 58.8
+      }
+    },
+    {
+      "risk_model": "OM",
+      "configuration": "OpenClaw:deepseek-v4.1-flash",
+      "average": 53.5,
+      "scenarios": {
+        "CC": 66.6,
+        "CSS": 30.4,
+        "DAI": 69.0,
+        "DCM": 65.8,
+        "FA": 78.0,
+        "HRM": 57.4,
+        "IOS": 33.6,
+        "LC": 49.6,
+        "MH": 45.0,
+        "PMC": 43.2,
+        "SM": 50.8,
+        "SDE": 52.0
+      }
+    },
+    {
+      "risk_model": "OM",
+      "configuration": "OpenClaw:glm-5.3",
+      "average": 52.4,
+      "scenarios": {
+        "CC": 63.2,
+        "CSS": 30.8,
+        "DAI": 72.8,
+        "DCM": 73.4,
+        "FA": 67.2,
+        "HRM": 54.8,
+        "IOS": 41.8,
+        "LC": 55.2,
+        "MH": 46.4,
+        "PMC": 47.0,
+        "SM": 34.2,
+        "SDE": 41.4
+      }
+    },
+    {
+      "risk_model": "OM",
+      "configuration": "OpenClaw:deepseek-v4-pro-0813",
+      "average": 52.1,
+      "scenarios": {
+        "CC": 56.8,
+        "CSS": 30.8,
+        "DAI": 65.4,
+        "DCM": 63.6,
+        "FA": 70.0,
+        "HRM": 48.8,
+        "IOS": 38.6,
+        "LC": 47.4,
+        "MH": 50.4,
+        "PMC": 47.4,
+        "SM": 58.6,
+        "SDE": 47.2
+      }
+    },
+    {
+      "risk_model": "OM",
+      "configuration": "OpenClaw:deepseek-v4-flash-0731",
+      "average": 50.5,
+      "scenarios": {
+        "CC": 56.2,
+        "CSS": 29.4,
+        "DAI": 45.4,
+        "DCM": 63.4,
+        "FA": 61.6,
+        "HRM": 57.2,
+        "IOS": 33.2,
+        "LC": 48.4,
+        "MH": 51.0,
+        "PMC": 51.6,
+        "SM": 59.0,
+        "SDE": 49.8
+      }
+    },
+    {
+      "risk_model": "OM",
+      "configuration": "OpenClaw:glm-5.1",
+      "average": 45.0,
+      "scenarios": {
+        "CC": 45.8,
+        "CSS": 27.4,
+        "DAI": 54.0,
+        "DCM": 49.0,
+        "FA": 59.2,
+        "HRM": 52.4,
+        "IOS": 25.6,
+        "LC": 40.4,
+        "MH": 46.6,
+        "PMC": 44.4,
+        "SM": 50.8,
+        "SDE": 44.4
+      }
+    },
+    {
+      "risk_model": "OM",
+      "configuration": "OpenClaw:kimi-k2.6",
+      "average": 49.2,
+      "scenarios": {
+        "CC": 54.4,
+        "CSS": 29.6,
+        "DAI": 61.6,
+        "DCM": 55.8,
+        "FA": 57.6,
+        "HRM": 55.2,
+        "IOS": 32.0,
+        "LC": 43.6,
+        "MH": 49.6,
+        "PMC": 42.8,
+        "SM": 55.6,
+        "SDE": 52.0
+      }
+    }
+  ],
+  "risk_models": [
+    {
+      "id": "UG",
+      "value": "unachievable_goal",
+      "label": "Unachievable Goal"
+    },
+    {
+      "id": "MES",
+      "value": "myopical_execution_strategy",
+      "label": "Myopical Execution Strategy"
+    },
+    {
+      "id": "VI",
+      "value": "vague_instruction",
+      "label": "Vague Instruction"
+    },
+    {
+      "id": "PI",
+      "value": "preference_instruction",
+      "label": "Preference Instruction"
+    },
+    {
+      "id": "SCM",
+      "value": "spurious_correlation_memory",
+      "label": "Spurious Correlation Memory"
+    },
+    {
+      "id": "OM",
+      "value": "outdated_memory",
+      "label": "Outdated Memory"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "CC",
+      "value": "communication_and_collaboration",
+      "label": "Communication and Collaboration"
+    },
+    {
+      "id": "CSS",
+      "value": "customer_service_and_support",
+      "label": "Customer Service and Support"
+    },
+    {
+      "id": "DAI",
+      "value": "data_analysis_and_intelligence",
+      "label": "Data Analysis and Intelligence"
+    },
+    {
+      "id": "DCM",
+      "value": "document_and_content_management",
+      "label": "Document and Content Management"
+    },
+    {
+      "id": "FA",
+      "value": "finance_and_accounting",
+      "label": "Finance and Accounting"
+    },
+    {
+      "id": "HRM",
+      "value": "human_resources_management",
+      "label": "Human Resources Management"
+    },
+    {
+      "id": "IOS",
+      "value": "it_operations_and_security",
+      "label": "IT Operations and Security"
+    },
+    {
+      "id": "LC",
+      "value": "legal_and_compliance",
+      "label": "Legal and Compliance"
+    },
+    {
+      "id": "MH",
+      "value": "medical_health",
+      "label": "Medical Health"
+    },
+    {
+      "id": "PMC",
+      "value": "project_management_and_collaboration",
+      "label": "Project Management and Collaboration"
+    },
+    {
+      "id": "SM",
+      "value": "sales_and_marketing",
+      "label": "Sales and Marketing"
+    },
+    {
+      "id": "SDE",
+      "value": "software_development_and_engineering",
+      "label": "Software Development and Engineering"
+    }
+  ],
+  "provenance": {
+    "summary": "main_model_scorecard.pdf",
+    "details": "main.tex",
+    "table": "tab:risk-model-scenario-scores",
+    "distribution": "Counts recovered from the PDF vector bar lengths; 1800 tasks per configuration."
+  }
+}

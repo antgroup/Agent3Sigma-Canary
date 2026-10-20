@@ -1,0 +1,5 @@
+:where(body[data-module="leaderboard/team"]) .team-leaderboard{ padding:56px 0 80px; min-height:60svh; }
+:where(body[data-module="leaderboard/team"]) .team-leaderboard .page-title{ margin:0; }
+@media (max-width:540px){
+  :where(body[data-module="leaderboard/team"]) .team-leaderboard{ padding-top:45px; }
+}

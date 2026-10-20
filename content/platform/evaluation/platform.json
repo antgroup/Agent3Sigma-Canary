@@ -1,0 +1,60 @@
+{
+  "name": "Evaluation Platform",
+  "summary": "Configure evaluations, inspect trajectories, and compare results.",
+  "views": {
+    "configure": {
+      "title": "Define the evaluation.",
+      "description": "Choose a benchmark, specify the agent setup, and make the evaluation scope explicit before a run begins.",
+      "steps": [
+        [
+          "Benchmark",
+          "Scenario collection"
+        ],
+        [
+          "Agent setup",
+          "Model & tools"
+        ],
+        [
+          "Run configuration",
+          "Scope & constraints"
+        ]
+      ]
+    },
+    "inspect": {
+      "title": "Follow every decision.",
+      "description": "Inspect the sequence of observations and actions to understand how an agent reached an outcome.",
+      "steps": [
+        [
+          "Input",
+          "Task & context"
+        ],
+        [
+          "Trajectory",
+          "Observations & actions"
+        ],
+        [
+          "Outcome",
+          "Task completion"
+        ]
+      ]
+    },
+    "compare": {
+      "title": "Understand the differences.",
+      "description": "Compare task outcomes and risk dimensions across a consistent scenario set. Keep each result connected to the behavior behind it.",
+      "steps": [
+        [
+          "Task outcome",
+          "Completion & quality"
+        ],
+        [
+          "Risk dimensions",
+          "Boundary violations"
+        ],
+        [
+          "Evidence",
+          "Underlying trajectories"
+        ]
+      ]
+    }
+  }
+}

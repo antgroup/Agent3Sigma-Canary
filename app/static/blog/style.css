@@ -1,0 +1,16 @@
+:where(body[data-module="blog/team"]) .blog-list{border-top:1px solid var(--line);margin-bottom:50px}
+:where(body[data-module="blog/team"]) .blog-row{display:grid;grid-template-columns:130px 1fr 35px;padding:30px 0;gap:25px;border-bottom:1px solid var(--line)}
+:where(body[data-module="blog/team"]) .blog-row:hover h2{color:#888}
+:where(body[data-module="blog/team"]) .blog-row time{font:10px 'IBM Plex Mono',monospace;color:#999;padding-top:7px}
+:where(body[data-module="blog/team"]) .blog-row h2{font:400 26px 'Fraunces',serif;letter-spacing:-.03em;margin:0 0 9px}
+:where(body[data-module="blog/team"]) .blog-row p{font-size:12px;color:#888;line-height:1.7;margin:0}
+:where(body[data-module="blog/team"]) .blog-row .eyebrow{margin-top:15px;margin-bottom:0;font-size:9px}
+:where(body[data-module="blog/team"]) .article{max-width:720px;padding:55px 0 70px}
+:where(body[data-module="blog/team"]) .article h1{font:400 55px/1.08 'Fraunces',serif;letter-spacing:-.045em}
+:where(body[data-module="blog/team"]) .article h2{font:400 29px 'Fraunces',serif;margin-top:35px}
+:where(body[data-module="blog/team"]) .article p{font-size:15px;line-height:1.9;color:#777}
+:where(body[data-module="blog/team"]) .article .eyebrow{margin-top:30px}
+@media(max-width:540px){:where(body[data-module="blog/team"]) .blog-row{grid-template-columns:1fr 20px;gap:12px}
+:where(body[data-module="blog/team"]) .blog-row time{grid-column:1/-1}
+:where(body[data-module="blog/team"]) .blog-row h2{font-size:24px}
+:where(body[data-module="blog/team"]) .article h1{font-size:39px}}

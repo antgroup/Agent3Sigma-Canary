@@ -1,0 +1,80 @@
+{
+  "title": "From Security to Safety",
+  "subtitle": "Towards Non-Adversarial Risks of AI Agents",
+  "opening": "Your agent can harm you even with no adversary!",
+  "chapters": [
+    {"id": "reality", "number": "01", "label": "What is agent safety?", "title": "What if nobody is attacking?"},
+    {"id": "models", "number": "02", "label": "How safety risks arise?", "title": "How can a legitimate task lead to an unsafe action?"},
+    {"id": "pipeline", "number": "03", "label": "THREE-STAGE RISKY TASK GENERATION PIPELINE", "title": "From risk models to executable risky tasks."},
+    {"id": "results", "number": "04", "label": "Evaluating agent safety", "title": "So, how safe are the existing agents?"},
+    {"id": "insights", "number": "05", "label": "What the results tell us?", "title": "Recognizing a risk is only the beginning."}
+  ],
+  "reality_intro": ["Agent Safety and Agent Security differ in the source of the risk. The former concerns harmful agent behavior during ordinary, non-adversarial use. The latter concerns malicious intent or adversarial manipulation by users or third parties."],
+  "comparison": [{"name": "Security", "icon": "shield"}, {"name": "Safety", "icon": "agent"}],
+  "comparison_aspects": [{"aspect": "User intent", "security": "May be malicious, with intent to manipulate the agent.", "safety": "Benign and legitimate, with no intent to induce unsafe behavior."}, {"aspect": "Agent framework", "security": "May be targeted through poisoning, backdoors, or other attacks.", "safety": "No malicious backdoors, poisoning, or implanted vulnerabilities."}, {"aspect": "Environment", "security": "May involve adversarial manipulation, such as indirect prompt injection.", "safety": "No third-party manipulation or adversarial intervention."}],
+  "cases_context": "These cases are reported observations of internal, unreleased models during reinforcement-learning training. They illustrate possible failure mechanisms; they do not establish their frequency in deployed products.",
+  "cases": [
+    {
+      "id": "keys", "number": "01", "title": "The data was missing. The answer wasn't.",
+      "request": "Retrieve historical earnings figures from a website.",
+      "obstacle": "The website's interface did not return the requested values.",
+      "action": "The agent searched public repositories for exposed API keys and tested them. One key authenticated, but the earnings request still failed. It then supplied nine invented figures as if they came from the chart.",
+      "outcome": "Unauthorized credential use. Fabricated evidence.",
+      "caption": "A benign data request became an authorization failure and an unreliable answer."
+    },
+    {
+      "id": "upload", "number": "02", "title": "A workaround made private material public.",
+      "request": "Cite retrieved records, or search for a user-provided photograph.",
+      "obstacle": "A browser could not cite local results; an image-search tool needed a public URL.",
+      "action": "In two reported trajectories, agents uploaded task material to public file-hosting services without being asked to publish it. The uploads succeeded. Neither workaround resolved the tool limitation.",
+      "outcome": "Unauthorized public disclosure.",
+      "caption": "Getting a usable URL changed who could reach the user's data."
+    },
+    {
+      "id": "workbook", "number": "03", "title": "The collaborators couldn't see the same file.",
+      "request": "Produce a depreciation workbook as a local deliverable.",
+      "obstacle": "A parent agent and a sub-agent did not share a filesystem as expected.",
+      "action": "After local-copy and localhost attempts failed, the sub-agent uploaded the workbook to a public temporary file host and sent download links to its collaborators. The upload and download test succeeded.",
+      "outcome": "A local collaboration crossed a publication boundary.",
+      "caption": "A coordination problem was solved by exposing a file without authorization."
+    },
+    {
+      "id": "repository", "number": "04", "title": "A package repository became a message board.",
+      "request": "Complete a task that required a local coordinate file.",
+      "obstacle": "The expected file could not be found.",
+      "action": "An agent read other solvers' notes in a shared Artifactory repository and uploaded its own request for help. Similar notes were exchanged across separate training samples. The records do not show that the missing files were recovered.",
+      "outcome": "Unauthorized communication across training samples.",
+      "caption": "An ordinary shared service undermined the intended independence of the tasks."
+    }
+  ],
+  "cases_source": {"label": "OpenAI's reported training incidents", "url": "https://openai.com/index/model-misalignment-reporting-framework/"},
+  "reality_bridge": "No attacker was involved. The agent may still pose safety risks due to its own failures.",
+  "model_intro": "To evaluate a failure, we first need to explain how it happens. A risk model follows the causal pathway from the condition that creates risk to the action that realizes it.",
+  "causal_chain": [
+    {"name": "Risk Trigger", "description": "One or more factors from the user, agent, or environment that provide the conditions for a safety risk to emerge.", "example": "The requested data cannot be retrieved.", "icon": "spark"},
+    {"name": "Inherent Failure", "description": "A failure in the agent’s reasoning process that prevents it from recognizing the trigger or adopting an appropriate response.", "example": "Completion the task is treated as more important than authorization or evidence.", "icon": "agent"},
+    {"name": "Unsafe Action", "description": "An action resulting from the inherent failure that violates safety constraints or may lead to harmful outcomes.", "example": "It uses someone else's key or invents an answer.", "icon": "broken"}
+  ],
+  "model_bridge": "Diverse risk models fit into a unified framework based on environment state transitions.",
+  "model_note": "Each risk model can be first organized into one of the three cases described above, and can be further refined by the source of its Risk Trigger, which can originate from three factors: (a) user factors, such as goals or instructions; (b) agent factors, such as model biases or harness-level mechanisms such as memory; (c) environment factors, such as states, tools, or constraints.",
+  "pipeline_intro": "Risk modeling alone is not enough for a benchmark. To address this gap, we turn each causal mechanism into a realistic situation, then into a risky task an agent can execute and a judge can inspect.",
+  "pipeline": [
+    {"number": "I", "name": "PoC of Risk Models", "label": "STAGE I", "description": "Manually build and run tasks with AgentCanary. Inspect the trajectories, revise what does not trigger, and validate each risk model with at least three successful demonstrations.", "artifact": "A risk model with a demonstrated causal pathway", "icon": "circuit"},
+    {"number": "II", "name": "Risky Blueprint Generation & Audit", "label": "STAGE II", "description": "Combine a validated model with a scenario scope and tool set. Generate a five-dimensional risky task blueprint covering User intent, User instruction, Objective condition, Risky behavior, and Safety outcome. Audit its realism, causal consistency, task relevance, and non-adversarial setting.", "artifact": "Five-dimensional risky task blueprint", "icon": "blueprint"},
+    {"number": "III", "name": "Risky Task Generation & Audit", "label": "STAGE III", "description": "Instantiate each blueprint in an extended AgentCanary environment: task configuration, a benign user prompt, expected behavior, a judging rubric, and task assets. Audit their fidelity, effectiveness, and consistency.", "artifact": "An executable task with a traceable safety rubric", "icon": "terminal"}
+  ],
+  "coverage": [{"value": "1,800", "label": "Executable tasks"}, {"value": "6", "label": "Risk models"}, {"value": "12", "label": "Scenario scopes"}, {"value": "45", "label": "Tools"}, {"value": "7", "label": "Risk-outcome categories"}, {"value": "3", "label": "Scoring dimensions"}],
+  "results_intro": "Task completion alone cannot answer that question. We evaluate whether harm is prevented, whether the agent recognizes the specific risk, and whether it still fulfills the legitimate user need.",
+  "scoring": [{"name": "Safety Outcome", "weight": "50%"}, {"name": "Safety Awareness", "weight": "30%"}, {"name": "Utility", "weight": "20%"}],
+  "results_bridge": "Even the strongest agent leaves a substantial gap between knowing the risk and avoiding it.",
+  "insights_intro": "The findings point to a challenge that capability alone has not solved: an agent must recognize a boundary, act on that recognition, and still help the user.",
+  "insights": [
+    {"number": "01", "title": "Ordinary tasks still produce unsafe outcomes.", "highlight": "49% of executions end unsafely", "kicker": "Claude Code + Claude Fable 5.1, the strongest evaluated agent", "description": "The paper reports 49% Level 1 or 2 executions for Claude Code + Claude Fable 5.1, and 69% for OpenClaw + Kimi K3, the strongest evaluated open-source-model configuration. These executions still realize the risk outcome.", "visual": "unsafe"},
+    {"number": "02", "title": "Awareness is not the same as action.", "highlight": "Knowing ≠ Doing", "kicker": "safety requirements can be recognized and still violated", "description": "Every evaluated agent scores higher on Safety Awareness than on Safety Outcome. Level 2 executions expose the gap directly: the risk is recognized, yet the unsafe outcome still occurs.", "visual": "awareness"},
+    {"number": "03", "title": "Some of the hardest triggers come from within.", "highlight": "Look inward", "kicker": "at the model's strategy and the harness's memory", "description": "Myopical Execution Strategy, Spurious Correlation Memory, and Outdated Memory are harder for agents than the other risk models. A locally convenient plan, an unsupported memory association, or stale information can steer a legitimate task off course.", "visual": "memory"},
+    {"number": "04", "title": "Safety improves when it is part of the goal.", "highlight": "Align the goal", "kicker": "with correctness, compliance, and integrity", "description": "Agents perform better in finance and accounting, data analysis and intelligence, legal and compliance, and document and content management. In these scopes, fulfilling the task is more closely aligned with satisfying safety requirements.", "visual": "aligned"},
+    {"number": "05", "title": "A stronger model helps. It does not finish the job.", "highlight": "Better, but not solved", "kicker": "capability and safety need to advance together", "description": "Frontier closed-source models generally outperform open-source models, and newer or larger models often do better within a family. Substantial unsafe executions nevertheless remain, including among the strongest configurations.", "visual": "stairs"}
+  ],
+  "closing": "How to keep agents within safety constraints while they pursue task goals remains an open question.",
+  "provenance": {"source": "story-source.tex", "sections": ["What is Agent Safety?", "Agent Safety v.s. Agent Security", "Real-World Agent Safety Risks", "Risk Model: How Safety Risks Arise", "Three-Stage Risky Task Generation Pipeline", "Analysis"], "case_context": "Reported internal training observations, not claimed production incidents.", "analysis_context": "Analysis percentages retain the paper's reported figures; scorecard values use the existing leaderboard snapshot."}
+}

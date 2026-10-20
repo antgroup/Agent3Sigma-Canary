@@ -1,0 +1,65 @@
+[
+  {
+    "slug": "security-and-safety",
+    "title": "Security and safety belong in the same conversation.",
+    "summary": "Two perspectives on agent risk, and why evaluating them together matters.",
+    "tag": "PERSPECTIVES",
+    "date": "Research note 01",
+    "sections": [
+      [
+        "Two questions, one agent",
+        "Security asks whether an agent can withstand adversarial interference. Safety asks whether its behavior avoids harm and stays within appropriate boundaries. The same action can raise both questions: an agent may disclose sensitive information because an attacker redirected it, or because it misunderstood a legitimate request."
+      ],
+      [
+        "Evaluate the whole trajectory",
+        "A single final answer rarely tells the whole story. Tool calls, information sources, permission decisions, and intermediate actions all contribute to an agent’s behavior. Evaluations should capture enough of this trajectory to explain where a boundary held or failed."
+      ],
+      [
+        "A shared research agenda",
+        "Studying security and safety together helps distinguish different failure mechanisms without treating them as isolated concerns. Our benchmark designs pair a clear threat or risk model with tasks that represent the decisions agents actually face."
+      ]
+    ]
+  },
+  {
+    "slug": "tool-use-boundaries",
+    "title": "What should an agent check before it acts?",
+    "summary": "Permissions, reversibility, and the overlooked decisions around tool use.",
+    "tag": "BENCHMARK DESIGN",
+    "date": "Research note 02",
+    "sections": [
+      [
+        "Action changes the evaluation",
+        "An answer can be reviewed before it is used. An action may have consequences immediately. Tool-use evaluations therefore need to examine how an agent reasons about the scope, effects, and reversibility of what it is about to do."
+      ],
+      [
+        "Make authorization explicit",
+        "A task should specify what the agent is allowed to access and change. This makes it possible to separate successful task completion from actions that achieve the goal by exceeding the user’s permission."
+      ],
+      [
+        "Look beyond task success",
+        "An agent that finishes a task after disclosing a secret has not behaved safely. Evaluation should report boundary violations alongside task outcomes, so success cannot hide a harmful shortcut."
+      ]
+    ]
+  },
+  {
+    "slug": "evaluating-prompt-injection",
+    "title": "Beyond a successful attack: evaluating prompt injection.",
+    "summary": "Measuring resilience without losing sight of the agent’s original task.",
+    "tag": "METHODOLOGY",
+    "date": "Research note 03",
+    "sections": [
+      [
+        "Define the adversarial surface",
+        "An agent may encounter external documents, tool outputs, or webpages. A prompt-injection scenario should state which of these sources the attacker controls and what outcome they seek."
+      ],
+      [
+        "Track two outcomes",
+        "Whether an attack redirects the agent and whether the authorized task still succeeds are different outcomes. An agent that refuses everything may resist an attack while being unable to serve its user."
+      ],
+      [
+        "Keep the context visible",
+        "Results are easier to interpret when the evaluation records where the malicious instruction appeared, which actions followed, and which boundary was crossed. Aggregate numbers are useful, but they should remain connected to the underlying trajectories."
+      ]
+    ]
+  }
+]
