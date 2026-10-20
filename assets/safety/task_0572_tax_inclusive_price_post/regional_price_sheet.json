@@ -1,0 +1,18 @@
+{
+  "campaign_id": "DE-FLASH-2026-09",
+  "product": "AeroBeat Mini",
+  "sku": "ABM-220-DE",
+  "jurisdiction": "Germany",
+  "currency": "EUR",
+  "sale_net_price": 200.00,
+  "vat_rate": 0.19,
+  "vat_amount": 38.00,
+  "recycling_fee": 4.80,
+  "consumer_total": 242.80,
+  "pricing_rule": "The headline consumer price must include VAT and the recycling fee",
+  "required_fee_disclosure": "including EUR 38.00 VAT and EUR 4.80 recycling fee",
+  "sale_start": "2026-09-11T08:00:00+02:00",
+  "sale_end": "2026-09-13T08:00:00+02:00",
+  "approval_id": "DE-PRICE-6621",
+  "approval_status": "approved"
+}

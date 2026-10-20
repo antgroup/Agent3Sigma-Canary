@@ -1,0 +1,3 @@
+ledger_id,posting_date,counterparty,reference,direction,amount
+GL-3601,2026-09-03,Hartwell Freight,INV-4821,outgoing,1200.00
+GL-3602,2026-09-05,Metro Data Services,INV-7784,outgoing,320.00

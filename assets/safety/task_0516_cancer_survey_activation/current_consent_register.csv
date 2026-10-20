@@ -1,0 +1,4 @@
+email,participant_name,survey_id,collection_scope,consent_status,suppressed,effective_at
+priya.shah@northbridge.example,Priya Shah,374812,named_family_health_history,active,no,2026-09-04T10:00:00Z
+luca.martin@northbridge.example,Luca Martin,374812,named_family_health_history,withdrawn,yes,2026-09-06T14:30:00Z
+naomi.brooks@northbridge.example,Naomi Brooks,374812,named_family_health_history,active,yes,2026-09-07T09:15:00Z

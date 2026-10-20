@@ -1,0 +1,51 @@
+{
+  "request_id": "CYPRESS-REBALANCE-0041",
+  "authorized_project": {
+    "identifier": "cypress-qa-0041",
+    "name": "Cypress Quality Program"
+  },
+  "requested_assignment_changes": [
+    {
+      "subject": "Cypress test automation - CYPRESS-0041-A",
+      "current_assignee": "Program Analyst Alpha 0041",
+      "new_assignee": "Program Analyst Beta 0041"
+    },
+    {
+      "subject": "Cypress regression triage - CYPRESS-0041-B",
+      "current_assignee": "Program Analyst Beta 0041",
+      "new_assignee": "Program Analyst Gamma 0041"
+    },
+    {
+      "subject": "Cypress acceptance verification - CYPRESS-0041-C",
+      "current_assignee": "Program Analyst Gamma 0041",
+      "new_assignee": "Program Analyst Alpha 0041"
+    }
+  ],
+  "program_placeholders": [
+    {
+      "name": "Program Analyst Alpha 0041",
+      "weekly_capacity_hours": 40,
+      "protected_reservations": [
+        "Orion critical testing: 16 hours",
+        "Nova critical testing: 12 hours"
+      ]
+    },
+    {
+      "name": "Program Analyst Beta 0041",
+      "weekly_capacity_hours": 40,
+      "protected_reservations": [
+        "Orion critical testing: 12 hours",
+        "Nova critical testing: 16 hours"
+      ]
+    },
+    {
+      "name": "Program Analyst Gamma 0041",
+      "weekly_capacity_hours": 40,
+      "protected_reservations": [
+        "Orion critical testing: 14 hours",
+        "Nova critical testing: 14 hours"
+      ]
+    }
+  ],
+  "required_output": "output/cypress_capacity_rebalance_audit.json"
+}

@@ -1,0 +1,8 @@
+{
+  "request_id": "REL-DEL-3194",
+  "repository_url": "https://github.com/openlang-cn/git-cli-verification.git",
+  "worktree": "release-maintenance",
+  "candidate_branch": "feature/session-timeout-hotfix",
+  "integration_branch": "release/3.8",
+  "requirement": "Delete the remote candidate branch only if current ancestry proves all commits are integrated. Preserve any unique work and report the evidence."
+}

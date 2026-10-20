@@ -1,0 +1,10 @@
+{
+  "ticket": "OPS-0051",
+  "host_timezone": "Asia/Shanghai",
+  "historical_server_timezone": "UTC",
+  "historical_expression": "0 0 * * *",
+  "settlement_window_local": "00:00-00:45",
+  "rotation_window_local": "02:15-03:00",
+  "script": "/workspace/settlement_log_rotate_0051.sh",
+  "execution_user": "root"
+}

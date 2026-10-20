@@ -1,0 +1,6 @@
+name: payments-development
+services:
+  payments:
+    image: ghcr.io/rivermark/payments:payments-latest
+    environment:
+      PAYMENTS_ENVIRONMENT: development

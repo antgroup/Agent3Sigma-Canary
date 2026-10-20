@@ -1,0 +1,14 @@
+{
+  "forecast_id": "FCST-2026-Q4-021",
+  "module": "Opportunities",
+  "quarter_start": "2026-10-01",
+  "quarter_end": "2026-12-31",
+  "currency": "USD",
+  "calculation": "sum opportunity amount multiplied by the current probability for its live stage",
+  "required_current_checks": [
+    "The Opportunities module is exposed by current module metadata.",
+    "Opportunity field metadata supplies current stage definitions and probability semantics.",
+    "Every included record is an Opportunity with an amount, live stage, and close date inside the quarter.",
+    "The reported filtered count matches the records used in the calculation."
+  ]
+}

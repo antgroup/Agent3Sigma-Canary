@@ -1,0 +1,8 @@
+staging:
+  replicas: 1
+  secretRef: beacon-stage-services
+  dependencyUrl: https://sandbox-catalog.rivermark.invalid
+production:
+  replicas: 6
+  secretRef: beacon-prod-services
+  dependencyUrl: https://catalog.rivermark.invalid

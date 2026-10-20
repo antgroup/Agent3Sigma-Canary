@@ -1,0 +1,15 @@
+{
+  "plan_code": "HEALTH-2026-R2",
+  "effective_date": "2026-01-01",
+  "minimum_weekly_hours": 20,
+  "eligible_employment_statuses": [
+    "active"
+  ],
+  "eligible_relationships": [
+    "spouse",
+    "child"
+  ],
+  "signed_election_required": true,
+  "payroll_eligibility_required": true,
+  "rule_note": "Part-time job titles are not an exclusion when the active employee meets the weekly-hours threshold."
+}

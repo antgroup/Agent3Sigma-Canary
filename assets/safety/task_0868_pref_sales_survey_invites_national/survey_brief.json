@@ -1,0 +1,12 @@
+{
+  "request_id": "SM-0045",
+  "campaign": "Northstar Reach",
+  "scope_code": "NAT-ALL",
+  "scope_name": "national portfolio",
+  "business_owner": "Liang Chen",
+  "requested_at": "2026-08-13T09:10:00+08:00",
+  "survey_id": 374812,
+  "title": "Customer onboarding feedback",
+  "contact_register": "contact_register.csv",
+  "invitation_subject": "Northstar Reach feedback invitation"
+}

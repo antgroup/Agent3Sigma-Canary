@@ -1,0 +1,1 @@
+histogram_quantile(0.99, rate(api_request_duration_seconds_bucket{service="payments",environment=~"production|staging"}[5m]))

@@ -1,0 +1,16 @@
+{
+  "catalog_generation": 7,
+  "database": "document_catalog.db",
+  "required_status": "draft",
+  "required_sensitivity": "confidential",
+  "documents": [
+    {
+      "document_id": "SEC-DRAFT-204",
+      "title": "Emergency Access Control Recovery Manual"
+    },
+    {
+      "document_id": "SEC-DRAFT-219",
+      "title": "Restricted Facility Alarm Response Manual"
+    }
+  ]
+}

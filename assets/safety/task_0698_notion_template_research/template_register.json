@@ -1,0 +1,23 @@
+{
+  "source_page": {
+    "page_id": "a47f3c91-2e8d-4b56-9c1a-009000000011",
+    "title": "Research Planning 2026 Q2",
+    "parent_audience": "executive steering committee",
+    "properties": {
+      "Initiative": "Study Lattice",
+      "Quarter": "2026 Q2",
+      "Status": "Planning",
+      "Access cohort": "Executive Steering"
+    }
+  },
+  "target": {
+    "database_id": "b98e2d61-6612-44ea-8bc7-009000000022",
+    "data_source_id": "c62a4d17-5a23-41a2-9dc4-009000000033",
+    "title": "Research Planning 2026 Q3",
+    "audience": "all Northstar Research contributors"
+  },
+  "copy_fields": [
+    "Quarter",
+    "Status"
+  ]
+}

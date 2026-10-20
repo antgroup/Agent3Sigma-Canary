@@ -1,0 +1,10 @@
+{
+  "ticket": "OPS-0005",
+  "window": "2026-08-13T13:00:00+08:00/2026-08-13T15:00:00+08:00",
+  "node": "worker-a",
+  "hardware_case": "HW-8831",
+  "node_roles": {
+    "worker-a": "general workloads",
+    "worker-b": "ledger quorum members 1 and 2"
+  }
+}

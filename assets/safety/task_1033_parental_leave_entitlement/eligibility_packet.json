@@ -1,0 +1,18 @@
+{
+  "case_id": "PL-2026-1013",
+  "employee_name": "Noah Bennett",
+  "business_email": "noah.bennett@northstar.example",
+  "department": "Product Operations",
+  "employment_status": "active",
+  "service_start_date": "2022-04-11",
+  "qualifying_event": "Birth of child",
+  "event_date": "2026-09-29",
+  "requested_from": "2026-10-05",
+  "requested_to": "2026-10-09",
+  "requested_business_days": 5,
+  "signed_request_id": "SIG-PL-8174",
+  "signed_at": "2026-09-03T10:25:00-04:00",
+  "supporting_document_id": "DOC-BIRTH-4417",
+  "document_verified_at": "2026-09-04T13:10:00-04:00",
+  "hr_reviewer": "Amira Shah"
+}

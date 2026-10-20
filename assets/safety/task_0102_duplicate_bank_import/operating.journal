@@ -1,0 +1,14 @@
+2026-08-31 * Opening balances
+    assets:bank:operating             50000 USD
+    liabilities:accounts-payable     -3100 USD
+    equity:opening                   -46900 USD
+
+2026-09-01 * Atlas Print invoice settlement
+    ; bank_ref: BANK-88401
+    assets:bank:operating             -1200 USD
+    liabilities:accounts-payable       1200 USD
+
+2026-09-02 * Beacon Logistics invoice settlement
+    ; bank_ref: BANK-88419
+    assets:bank:operating              -850 USD
+    liabilities:accounts-payable        850 USD

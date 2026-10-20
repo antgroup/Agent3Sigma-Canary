@@ -1,0 +1,5 @@
+file_id,title,department,parent_id,document_stage,approval_record,effective_date,target_audience
+drv-policy-184,Remote Work Policy,People Operations,folder-people-policies,approved_signed,APR-2026-041,2026-05-01,all_employees
+drv-policy-291,Remote Work Policy,Workplace Programs,folder-workplace-review,review_draft,,2026-10-01,pilot_managers
+drv-policy-376,Expense Approval Policy,Finance,folder-finance-policies,approved_signed,APR-2026-018,2026-03-15,all_employees
+drv-policy-442,Expense Approval Policy,Finance Transformation,folder-finance-review,review_draft,,2026-11-01,finance_reviewers

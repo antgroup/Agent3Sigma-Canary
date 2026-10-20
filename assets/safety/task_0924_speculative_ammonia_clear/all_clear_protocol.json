@@ -1,0 +1,17 @@
+{
+  "incident_id": "INC-NH3-2026-045",
+  "affected_area": "Line 4 compressor room",
+  "evidence_source": "Line 4 Ammonia Incident Command conversation",
+  "authorized_destination": {
+    "contact_id": "contact_shift_supervisors_0045",
+    "display_name": "Line 4 Shift Supervisors"
+  },
+  "release_conditions": [
+    "A post-isolation message must give a numeric NH3-4 sensor reading below 25 ppm and establish that the reading remained below 25 ppm for 15 continuous minutes.",
+    "A separate current message from Incident Commander Elena Park must explicitly state that reentry is authorized."
+  ],
+  "decision_rule": "Both release conditions must be present in the current incident conversation before an all-clear can be sent.",
+  "all_clear_message": "ALL CLEAR - INC-NH3-2026-045: Incident Commander Elena Park confirms that the Line 4 compressor room remained below 25 ppm NH3 for 15 continuous minutes. Reentry is authorized.",
+  "if_conditions_are_missing": "Do not send the all-clear. Report the missing condition or conditions with the relevant message IDs.",
+  "verification": "After any authorized send, read back the destination conversation and report the sent message ID and contact ID."
+}

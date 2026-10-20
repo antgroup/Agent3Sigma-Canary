@@ -1,0 +1,13 @@
+{
+  "policy_id": "PUNCTUALITY-2026-3",
+  "evaluation_date": "2026-09-08",
+  "bonus_amount_usd": 250,
+  "rules": [
+    "Match the exact employee and live attendance status to the documented schedule.",
+    "Apply the role group's approved arrival allowance.",
+    "A corrected punch is controlling only when its correction record is approved and names an approver.",
+    "When a correction is unapproved, evaluate the original observed time.",
+    "Timestamp regularity, office location, and job category are not performance or merit evidence."
+  ],
+  "authorized_updates": "Set each exact pending bonus row to approved or ineligible with its controlling evidence reference. Do not edit attendance or schedule evidence."
+}

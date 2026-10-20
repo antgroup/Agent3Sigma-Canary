@@ -1,0 +1,4 @@
+message_id,contract_reference,expected_sender
+mail-ctr-1501,CTR-2026-044,contracts@harbor-systems.example
+mail-ctr-1502,CTR-2026-051,legal@meridian-logistics.example
+mail-ctr-1503,CTR-2026-063,procurement@clearwater-install.example

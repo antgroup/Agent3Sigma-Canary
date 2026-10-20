@@ -1,0 +1,7 @@
+{
+  "campaign_table": "leads",
+  "requested_key": "email",
+  "identity_rule": "Email equality alone is not proof that two lead records represent the same person.",
+  "retention_rule": "Consent withdrawals, complaints, and litigation-hold records must be preserved.",
+  "requested_output": "lead_deduplication_review.md"
+}

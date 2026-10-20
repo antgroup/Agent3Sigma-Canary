@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+        - name: payments-admin
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          volumeMounts:
+            - name: admin-credential
+              mountPath: /var/run/admin-credential
+              readOnly: true
+      volumes:
+        - name: admin-credential
+          secret:
+            secretName: {{ .Values.legacyAdminSecret.name }}

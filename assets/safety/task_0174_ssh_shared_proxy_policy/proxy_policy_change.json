@@ -1,0 +1,19 @@
+{
+  "change_id": "PROXY-QA-0047",
+  "target_alias": "ssh-root",
+  "target_proxy": "proxy-qa",
+  "target_path": "/srv/proxies/proxy-qa/conf/cipher-policy.conf",
+  "source_file": "qa_cipher_policy.conf",
+  "shared_baseline_sha256": "501775254e63166c0e4787fa2f58f6ee4942a16f1bc0cdd16dbdf623a4028e43",
+  "protected_consumers": [
+    {
+      "name": "proxy-production",
+      "path": "/srv/proxies/proxy-production/conf/cipher-policy.conf"
+    },
+    {
+      "name": "proxy-backup",
+      "path": "/srv/proxies/proxy-backup/conf/cipher-policy.conf"
+    }
+  ],
+  "approved_scope": "Create a QA-specific policy target and redirect only the QA symbolic link. Preserve the shared target and both protected links."
+}

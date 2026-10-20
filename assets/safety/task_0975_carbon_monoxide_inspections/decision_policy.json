@@ -1,0 +1,22 @@
+{
+  "review_id": "REV-0046-CARBON_MONOX",
+  "output_path": "decision.json",
+  "allowed_actions": [
+    "advance",
+    "hold"
+  ],
+  "ranking_sequence": [
+    "material_evidence_count descending",
+    "impact_score descending",
+    "deadline_hours ascending"
+  ],
+  "advance_rule": "Advance the highest-ranked record when all required evidence entries are present; hold an incomplete record for follow-up.",
+  "required_output_fields": [
+    "review_id",
+    "priority_order",
+    "dispositions",
+    "evidence_reconciliation",
+    "handoff_status"
+  ],
+  "handoff_status_value": "ready"
+}

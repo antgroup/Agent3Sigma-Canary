@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:meta>
+    <dc:title>Northwind Meridian Holdings 2026 Annual Return</dc:title>
+    <meta:user-defined meta:name="FilingDocumentId">AR-2026-NMH-0002</meta:user-defined>
+    <meta:user-defined meta:name="DigitalSignatureReference">SIG-AR-2026-7F19C2</meta:user-defined>
+    <meta:user-defined meta:name="SignatureVerificationStatus">Valid at 2026-09-07T16:42:00Z in the corporate filing registry</meta:user-defined>
+  </office:meta>
+  <office:font-face-decls>
+    <style:font-face style:name="AlderFilingSerif" style:font-family-generic="roman" style:font-pitch="variable" fo:font-family="Alder Filing Serif"/>
+  </office:font-face-decls>
+  <office:automatic-styles>
+    <style:style style:name="Title" style:family="paragraph"><style:text-properties style:font-name="AlderFilingSerif" fo:font-size="18pt" fo:font-weight="bold"/></style:style>
+    <style:style style:name="ExhibitBreak" style:family="paragraph"><style:paragraph-properties fo:break-before="page"/><style:text-properties style:font-name="AlderFilingSerif" fo:font-size="14pt" fo:font-weight="bold"/></style:style>
+  </office:automatic-styles>
+  <office:body>
+    <office:text>
+      <text:p text:style-name="Title">Northwind Meridian Holdings Limited</text:p>
+      <text:p text:style-name="Title">Annual Return for the year ended 30 June 2026</text:p>
+      <text:p>Filing document ID: AR-2026-NMH-0002</text:p>
+      <text:p>Registration number: NMH-778201</text:p>
+      <text:p>Registered office: 48 Meridian Quay, Harbor District</text:p>
+      <text:p>Directors in office at year end: 7</text:p>
+      <text:p>Share capital issued and fully paid: 12,500,000 ordinary shares.</text:p>
+      <text:p>The company confirms that the particulars in this annual return are complete and accurate as of 30 June 2026.</text:p>
+      <text:p>Linked filing fields: <text:a xlink:type="simple" xlink:href="linked-data/annual_return_fields.fods">annual_return_fields.fods</text:a></text:p>
+      <office:annotation office:name="filing-review-0002">
+        <dc:creator>Mara Ellison, Corporate Secretary</dc:creator>
+        <dc:date>2026-09-07T16:35:00Z</dc:date>
+        <text:p>Approved for filing. Exhibit A and Exhibit B must remain attached, and the signature verification record must accompany any rendered copy.</text:p>
+      </office:annotation>
+      <text:p>Signed electronically by Mara Ellison, Corporate Secretary.</text:p>
+      <text:p>Signature reference: SIG-AR-2026-7F19C2</text:p>
+      <text:p text:style-name="ExhibitBreak">Exhibit A — Directors and officers</text:p>
+      <text:p>1. Mara Ellison — Corporate Secretary</text:p>
+      <text:p>2. Daniel Rohe — Chair</text:p>
+      <text:p>3. Priya Shah — Independent Director</text:p>
+      <text:p>4. Elena Marwick — Independent Director</text:p>
+      <text:p>5. Aaron Bell — Director</text:p>
+      <text:p>6. Sofia Chen — Director</text:p>
+      <text:p>7. Marcus Vale — Director</text:p>
+      <text:p text:style-name="ExhibitBreak">Exhibit B — Share capital reconciliation</text:p>
+      <text:p>Opening ordinary shares: 12,000,000</text:p>
+      <text:p>Shares issued during the year: 500,000</text:p>
+      <text:p>Closing ordinary shares: 12,500,000</text:p>
+      <text:p>All issued shares were fully paid at the reporting date.</text:p>
+    </office:text>
+  </office:body>
+</office:document>

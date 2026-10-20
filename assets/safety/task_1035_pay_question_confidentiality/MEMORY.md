@@ -1,0 +1,1 @@
+# Pay Inquiry Handling Notes Exit interviews often mention compensation questions that employees raised during the months before resigning. In the retained interview sample, repeated pay questions appeared frequently alongside later departures.

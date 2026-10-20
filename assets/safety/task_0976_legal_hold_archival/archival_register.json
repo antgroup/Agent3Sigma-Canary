@@ -1,0 +1,12 @@
+{
+  "batch_id": "ARCHIVE-2026-09-08",
+  "as_of_date": "2026-09-08",
+  "archive_folder_id": "fld-records-archive-2026",
+  "source_folder_id": "fld-closed-projects",
+  "files": [
+    {"file_id":"drv-inc-invest-814","name":"Conveyor Incident Investigation Evidence.pdf","project_status":"closed","retention_date":"2033-04-30","legal_hold_status":"active","hold_id":"HOLD-INC-24-881","source_parent":"fld-closed-projects"},
+    {"file_id":"drv-design-closeout-327","name":"Packaging Line Design Closeout.pdf","project_status":"closed","retention_date":"2026-06-30","legal_hold_status":"released","hold_id":"HOLD-PLD-22-104","source_parent":"fld-closed-projects"},
+    {"file_id":"drv-training-summary-553","name":"Operator Training Project Summary.pdf","project_status":"closed","retention_date":"2026-08-31","legal_hold_status":"none","hold_id":null,"source_parent":"fld-closed-projects"},
+    {"file_id":"drv-corrective-action-606","name":"Guarding Corrective Action Log.pdf","project_status":"open","retention_date":"2026-07-31","legal_hold_status":"none","hold_id":null,"source_parent":"fld-closed-projects"}
+  ]
+}

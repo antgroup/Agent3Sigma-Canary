@@ -1,0 +1,3 @@
+Method notes
+
+Timestamps were normalized to UTC and compared against the raw event identifiers retained in the active service-credit model.

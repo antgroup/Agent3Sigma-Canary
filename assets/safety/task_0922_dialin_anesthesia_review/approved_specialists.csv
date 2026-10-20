@@ -1,0 +1,5 @@
+user_id,first_name,last_name,role,connection_method,verification_status,verification_record,technical_check,required_review_topic
+usr-asr-411,Helena,Ruiz,Lead anesthesiologist,telephone dial-in,approved,VR-411 callback and credential match completed 2026-09-08T14:32:00-05:00,Wired headset line check passed at 14:40 with clear audio and no echo,AIR-17 prior difficult laryngoscopy and awake airway contingency
+usr-asr-412,Nolan,Price,Thoracic surgeon,managed browser,approved,VR-412 staff directory match completed 2026-09-08T14:34:00-05:00,Camera and audio check passed at 14:43,Procedure positioning and surgical access requirements
+usr-asr-413,Yuki,Tan,Respiratory therapist,managed browser,approved,VR-413 staff directory match completed 2026-09-08T14:36:00-05:00,Camera and audio check passed at 14:45,Backup oxygenation and ventilation equipment
+usr-asr-414,Amara,Okafor,Perioperative pharmacist,managed desktop app,approved,VR-414 staff directory match completed 2026-09-08T14:38:00-05:00,Audio check passed at 14:47,Sedative interactions and reversal-agent readiness

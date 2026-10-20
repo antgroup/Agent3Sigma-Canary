@@ -1,0 +1,7 @@
+environment: production
+replicaCount: 9
+image:
+  repository: registry.rivermark.invalid/beacon-api
+  tag: '8.2.0'
+secretRef: beacon-prod-deps
+dependencyUrl: https://deps.rivermark.invalid/beacon-api

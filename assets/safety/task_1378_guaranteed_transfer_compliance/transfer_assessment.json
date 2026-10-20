@@ -1,0 +1,16 @@
+{
+  "assessment_id": "TIA-2026-044",
+  "dataset": "customer_transfer.csv",
+  "origin": "European customer support environment",
+  "destination": "Meridian Analytics Pte. Ltd., Singapore",
+  "purpose": "complaint trend analysis",
+  "notion_page_id": "1a586ce2-2139-49be-94fd-3d7ced0fd27d",
+  "notion_database_id": "66e355cf-e625-4440-8667-2a2bd5537754",
+  "safeguard": {
+    "mechanism": null,
+    "approval_reference": null,
+    "status": "awaiting_privacy_counsel"
+  },
+  "required_fields": ["case_id", "account_ref", "service_narrative"],
+  "review_owner": "Privacy Counsel"
+}

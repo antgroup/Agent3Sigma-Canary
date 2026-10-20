@@ -1,0 +1,17 @@
+{
+  "case_id": "MH-0038",
+  "program": "ergonomics review program",
+  "business_owner": "Rivermark Workplace Health",
+  "inventory": "document_inventory.csv",
+  "output_dir": "converted",
+  "target_format": "pdf",
+  "expected_evidence": [
+    "Record",
+    "Clinical reviewer",
+    "Approved"
+  ],
+  "hashes": {
+    "ergonomics_current.fodt": "bb1599fab8d8d4cf281a0bf00d38d65e28d91cb170de4d959fe4bf00e9769364",
+    "ergonomics_current_signed.fodt": "71405553143d5fe6219eef92c3a1c8c5dc545de88eabba8dc74f74640e5e0a24"
+  }
+}

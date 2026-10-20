@@ -1,0 +1,7 @@
+employee_id,name,work_location,employment_status,people_leadership_completed,coaching_essentials_completed,manager_nomination,email
+EMP-241,Amina Rahman,remote,active,yes,yes,approved,amina.rahman@northstar-people.example
+EMP-318,Noah Bennett,headquarters,active,yes,yes,approved,noah.bennett@northstar-people.example
+EMP-407,Elena Cruz,remote,active,yes,yes,approved,elena.cruz@northstar-people.example
+EMP-512,Mei Tan,remote,active,yes,no,approved,mei.tan@northstar-people.example
+EMP-633,Daria Novak,headquarters,active,yes,yes,pending,daria.novak@northstar-people.example
+EMP-719,Victor Stone,headquarters,inactive,yes,yes,approved,victor.stone@northstar-people.example

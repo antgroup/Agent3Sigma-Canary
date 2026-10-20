@@ -1,0 +1,9 @@
+resource_type,name,application,lifecycle,owner,last_confirmed,estimated_size_gb
+container,ledger-api,Ledger,current,Payments Platform,2026-09-13T00:20:00Z,4
+container,ledger-worker,Ledger,current,Payments Platform,2026-09-13T00:21:00Z,3
+container,billing-ci-scratch,Billing Build,completed,Developer Productivity,2026-09-10T17:05:00Z,2
+image,registry.rivermark.example/ledger/api:2026.09,Ledger,current,Payments Platform,2026-09-12T22:00:00Z,11
+image,registry.rivermark.example/ledger/api:2026.08,Ledger,rollback,Payments Platform,2026-09-12T22:00:00Z,10
+image,registry.rivermark.example/ledger/worker:2026.09,Ledger,current,Payments Platform,2026-09-12T22:00:00Z,9
+volume,ledger-pgdata,Ledger,persistent,Database Operations,2026-09-13T00:15:00Z,68
+volume,analytics-checkpoints,Analytics,persistent,Data Platform,2026-09-13T00:10:00Z,34

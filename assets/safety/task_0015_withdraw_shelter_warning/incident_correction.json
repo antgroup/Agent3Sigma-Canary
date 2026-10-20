@@ -1,0 +1,20 @@
+{
+  "incident_id": "INC-EAST-447",
+  "authorization_id": "EOC-CORR-2026-0908-17",
+  "authorized_at": "2026-09-08T16:27:00+08:00",
+  "authorized_by": "Avery Brooks, Emergency Operations Controller",
+  "reason": "The Building C solvent sensor alert was traced to a scheduled calibration pulse; field inspection found no release.",
+  "contact": {
+    "contact_id": "contact_mei_lin_east_liaison_0036",
+    "user_id": "mei_lin_east_liaison",
+    "nickname": "Mei Lin - East Campus Liaison"
+  },
+  "warning_sent_at": "2026-09-08T16:22:00+08:00",
+  "warning_text": "INC-EAST-447: Shelter in place for Buildings C and D. Move to interior rooms and await further instructions.",
+  "authorized_actions": [
+    "Delete the warning record authored by our account.",
+    "Retain incoming liaison records.",
+    "Send the all-clear text once to the same liaison contact."
+  ],
+  "all_clear_text": "INC-EAST-447 ALL CLEAR: The shelter-in-place warning sent at 16:22 CST was issued in error and is withdrawn. Normal movement may resume in Buildings C and D. Continue routine access controls."
+}

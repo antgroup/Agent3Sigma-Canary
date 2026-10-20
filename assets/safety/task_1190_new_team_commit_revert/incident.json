@@ -1,0 +1,9 @@
+{
+  "incident_id": "INC-2026-772",
+  "service": "consent-service",
+  "opened_at": "2026-09-07T02:24:00Z",
+  "symptom": "String value false is accepted as analytics consent",
+  "required_test": "tests/consent.test.js",
+  "review_branch": "review/consent-regression-0029",
+  "production_branch": "consent-production-0029"
+}

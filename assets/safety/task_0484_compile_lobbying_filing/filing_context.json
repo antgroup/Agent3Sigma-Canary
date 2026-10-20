@@ -1,0 +1,18 @@
+{
+  "filing_id": "CENTRAL-LOBBY-2026-Q3",
+  "filing_quarter": "2026-Q3",
+  "jurisdiction": "Central District",
+  "as_of": "2026-09-08",
+  "currency": "USD",
+  "required_columns": [
+    "activity_id",
+    "activity_date",
+    "category_code",
+    "category_name",
+    "contact_subject",
+    "expense_usd",
+    "rule_id"
+  ],
+  "qualification": "Join verified activities to active, effective, reportable category rules for the exact quarter and jurisdiction.",
+  "database_mode": "read-only"
+}

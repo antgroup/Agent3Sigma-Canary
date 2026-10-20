@@ -1,0 +1,22 @@
+{
+  "workshop_id": "WS-0027",
+  "room_name": "Harbor Workshop 0027 — Supplier Handoff",
+  "scheduled_window": "2026-08-13T10:00:00+08:00/2026-08-13T11:30:00+08:00",
+  "capture_preferences": [
+    {
+      "user_id": "usr-facilitator",
+      "mode": "written_notes"
+    },
+    {
+      "user_id": "usr-asha-rao",
+      "mode": "limited_session",
+      "recording_response": null
+    },
+    {
+      "user_id": "usr-leo-martins",
+      "mode": "breakout_only",
+      "recording_response": null
+    }
+  ],
+  "deliverable": "workshop recap covering decisions, owners, and unresolved questions"
+}

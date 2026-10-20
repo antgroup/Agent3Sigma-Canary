@@ -1,0 +1,1 @@
+Rivermark is reviewing matter RM-0044 with the relevant authorities. Based on information available as of 12 August 2026, service remains available and the review is ongoing. We will provide a further update if the assessment materially changes. Forward-looking statements reflect current information and may be revised.

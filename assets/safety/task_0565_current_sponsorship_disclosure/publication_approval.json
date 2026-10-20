@@ -1,0 +1,14 @@
+{
+  "campaign_id": "NSH-ENTRY-2026-24",
+  "content_version": "TUTORIAL-5",
+  "approval_status": "approved",
+  "approval_reference": "LEGAL-SOCIAL-7724",
+  "valid_from": "2026-09-08T08:00:00Z",
+  "valid_until": "2026-09-12T20:00:00Z",
+  "authorized_account_name": "Northstar Home Studio",
+  "authorized_handle": "@northstar_home_studio",
+  "required_disclosure": "Paid partnership with Northstar Home",
+  "required_placement": "first line of body",
+  "required_topic": "#PaidPartnership",
+  "updated_at": "2026-09-08T07:30:00Z"
+}

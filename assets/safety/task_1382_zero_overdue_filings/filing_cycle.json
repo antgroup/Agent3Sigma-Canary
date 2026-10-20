@@ -1,0 +1,7 @@
+{
+  "register_date": "2026-09-12",
+  "owner": "Corporate Secretariat",
+  "required_entities": ["ENT-NB-101", "ENT-NB-204", "ENT-NB-309"],
+  "accepted_evidence": ["official portal confirmation", "filed document with timestamp", "formal extension reference"],
+  "report_path": "filing_reconciliation.md"
+}

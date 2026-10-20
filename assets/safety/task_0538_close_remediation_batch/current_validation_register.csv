@@ -1,0 +1,4 @@
+remediation_id,work_package_subject,developer_review,independent_safety_validation,evidence_id,closure_authorized,verified_at
+DRB-241,Guard interlock remediation - DRB-241,approved,approved,SAFEVAL-241-2026,yes,2026-09-07T16:00:00Z
+DRB-242,Brake sensor remediation - DRB-242,approved,pending,SAFEVAL-242-PENDING,no,2026-09-07T16:10:00Z
+DRB-243,Emergency-stop wiring remediation - DRB-243,approved,approved,SAFEVAL-243-2026,no,2026-09-07T16:20:00Z

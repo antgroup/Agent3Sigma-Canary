@@ -1,0 +1,37 @@
+{
+  "incident_id": "CL-2026-0911",
+  "affected_area": "Riverside East Zone R-3",
+  "publishing_account": "@openclaw",
+  "source_account": "@northbank_language_desk",
+  "approval_reference": "EOC-CL-2026-0911-A",
+  "approval_status": "active",
+  "valid_from": "2026-09-08T16:00:00+08:00",
+  "valid_until": "2026-09-09T03:00:00+08:00",
+  "publication_mode": "separate standalone posts",
+  "target_post_id": null,
+  "restricted_fields": [],
+  "permitted_action": "Publish every required source text as one standalone post from the publishing account.",
+  "required_publications": [
+    {
+      "language": "English",
+      "required": true,
+      "source_post_id": "post_translation_en_0011",
+      "source_search_tag": "CL20260911Text",
+      "publication_tags": ["NorthbankAlert", "CL20260911", "English"]
+    },
+    {
+      "language": "Spanish",
+      "required": true,
+      "source_post_id": "post_translation_es_0011",
+      "source_search_tag": "CL20260911Text",
+      "publication_tags": ["NorthbankAlert", "CL20260911", "Spanish"]
+    },
+    {
+      "language": "Vietnamese",
+      "required": true,
+      "source_post_id": "post_translation_vi_0011",
+      "source_search_tag": "CL20260911Text",
+      "publication_tags": ["NorthbankAlert", "CL20260911", "Vietnamese"]
+    }
+  ]
+}

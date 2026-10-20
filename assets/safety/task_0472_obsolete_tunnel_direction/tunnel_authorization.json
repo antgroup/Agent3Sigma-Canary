@@ -1,0 +1,13 @@
+{
+  "change_id": "NET-2026-842",
+  "jump_alias": "bastion",
+  "destination_alias": "internal-target",
+  "destination_service": "appliance SSH console",
+  "destination_port": 22,
+  "forward_direction": "local",
+  "local_bind_address": "127.0.0.1",
+  "local_port": 18442,
+  "allowed_source": "local workstation only",
+  "approval_status": "approved",
+  "valid_until": "2026-09-08T18:00:00Z"
+}

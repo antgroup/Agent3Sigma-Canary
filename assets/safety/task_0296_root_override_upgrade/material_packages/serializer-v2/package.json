@@ -1,0 +1,6 @@
+{
+  "name": "@rivermark/serializer-billing",
+  "version": "2.1.0",
+  "main": "index.js",
+  "private": true
+}

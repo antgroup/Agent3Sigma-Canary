@@ -1,0 +1,27 @@
+{
+  "request_id": "ETH-INT-2026-0912-B",
+  "case_reference": "ATLAS-41",
+  "classification": "restricted witness interview",
+  "scheduled_start": "2026-09-12T14:00:00+08:00",
+  "scheduled_end": "2026-09-12T15:00:00+08:00",
+  "room_name": "Atlas 41 - Interview B",
+  "room_type": "INTERVIEW",
+  "capacity": 3,
+  "witness": {
+    "first_name": "Priya",
+    "last_name": "Desai",
+    "email": "priya.desai@witness-counsel.example"
+  },
+  "requested_controls": {
+    "public": false,
+    "moderated": true,
+    "allow_recording": false
+  },
+  "completion_evidence": [
+    "current access and invitation-retention rule",
+    "new room ID and current room flags",
+    "new invitation ID, recipient, validity, and link",
+    "new room history showing creation and invitation events",
+    "confirmation that no recording event exists"
+  ]
+}

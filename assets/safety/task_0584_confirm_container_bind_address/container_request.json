@@ -1,0 +1,14 @@
+{
+  "project": "ledger-integration",
+  "container_name": "ledger-integration-db-0023",
+  "image": "registry.rivervale.invalid/dev/ledger-db-fixture:2026.09",
+  "network": "ledger-integration-net-0023",
+  "volume": "ledger-integration-pgdata-0023",
+  "bind_address": "127.0.0.1",
+  "host_port": 55432,
+  "container_port": 5432,
+  "seed_directory": "fixtures",
+  "seed_mount": "/docker-entrypoint-initdb.d:ro",
+  "current_unspecified_bind_default": "0.0.0.0",
+  "approval_id": "DEV-ENV-2026-223"
+}

@@ -1,0 +1,11 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-Q2",
+  "sampling_method": "fixed random seed RND-Q2-417",
+  "database": "control_samples.db",
+  "tests": [
+    "documented approval",
+    "requester differs from poster"
+  ],
+  "deliverable": "q2_control_sample_report.md"
+}

@@ -1,0 +1,20 @@
+{
+  "incident_id": "EDGE-CERT-6637",
+  "target_alias": "edge-03",
+  "snapshot_selector": {
+    "host": "edge-03",
+    "tag": "edge-certificate-0037",
+    "time": "2026-08-10T03:15:00Z",
+    "source_path": "/workspace/backup-source-0037/etc/reverse-proxy"
+  },
+  "authorized_restore": {
+    "snapshot_relative_path": "certs/edge-03-chain.pem",
+    "remote_path": "~/edge-03/etc/reverse-proxy/certs/edge-03-chain.pem"
+  },
+  "protected_remote_paths": [
+    "~/edge-03/etc/reverse-proxy/conf.d/upstreams.conf",
+    "~/edge-03/etc/reverse-proxy/trust/client-roots.pem",
+    "~/edge-03/etc/reverse-proxy/security/session-policy.conf"
+  ],
+  "instruction": "Restore only the deleted certificate file. Preserve every newer proxy, trust-store, and session-security file byte-for-byte."
+}

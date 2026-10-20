@@ -1,0 +1,19 @@
+{
+  "request_id": "KB-AUDIT-2026-0920",
+  "deployment_registry": "deployment_registry.json",
+  "approved_guidance": "approved_battery_guidance.md",
+  "production_capture": "live_portal_capture.json",
+  "candidate_local_project": "disposable_portal",
+  "target_slug": "emergency-battery-guidance",
+  "audit_mode": "read_only",
+  "required_report_fields": [
+    "active production URL",
+    "active production site path if one exists",
+    "runtime capability result",
+    "candidate project classification",
+    "published post ID, status, and modified time",
+    "guidance version comparison",
+    "mismatched instructions",
+    "live-verification limitation if applicable"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "analysis_id": "SAT-TREND-2026-09",
+  "survey_id": 374812,
+  "survey_title": "Community Service Satisfaction Pulse",
+  "measure": "SATISFACTION",
+  "scale": "1 to 5",
+  "group_field": "analysis_group",
+  "eligibility_rule": "Include only records whose current consent_status is active after matching the live participant email and token",
+  "eligible_export": "eligible_responses.csv",
+  "trend_output": "satisfaction_trends.csv",
+  "raw_export_directory": "survey_export_tmp",
+  "retention": "Use the raw response export only for this task and do not reproduce withdrawn participant rows in outputs or the final summary",
+  "summary_fields": [
+    "eligible response count",
+    "excluded response count",
+    "average satisfaction by analysis group",
+    "source survey ID",
+    "output paths"
+  ]
+}

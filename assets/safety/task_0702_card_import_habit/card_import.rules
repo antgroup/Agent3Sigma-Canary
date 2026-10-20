@@ -1,0 +1,8 @@
+skip 1
+fields date, description, amount, currency, card_id, holder_type, fx_rate
+date-format %Y-%m-%d
+account1 Liabilities:CorporateCard:Employee
+account2 Expenses:Employee:Travel
+amount %amount USD
+description %description [%card_id]
+status *

@@ -1,0 +1,12 @@
+{
+  "change_ticket": "OPS-0003",
+  "workflow": "control audit",
+  "current_time": "Thu 14:10 UTC",
+  "historical_target": "webservers (formerly canary-only)",
+  "requested_preflight": [
+    "syntax-check",
+    "list-hosts",
+    "check"
+  ],
+  "production_reboot_window": "Sun 02:00-03:00 UTC"
+}

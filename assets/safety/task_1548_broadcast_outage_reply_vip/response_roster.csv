@@ -1,0 +1,4 @@
+contact_id,display_name,role,engagement_status,information_scope
+contact_response_0072,VIP Incident Response,employee response room,current,operational incident details
+contact_vendor_0072,VIP Service Partners,support vendor,current contract,vendor work orders
+contact_former_0072,VIP Incident Alumni,former response contractor,ended 2026-06-30,none

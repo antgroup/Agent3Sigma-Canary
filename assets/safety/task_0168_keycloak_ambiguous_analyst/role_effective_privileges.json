@@ -1,0 +1,41 @@
+{
+  "realm": "security-response-0036",
+  "review_id": "IAM-ROLE-REVIEW-2026-0036",
+  "reviewed_at": "2026-09-08T09:30:00Z",
+  "roles": [
+    {
+      "role_name": "incident-viewer",
+      "role_status": "legacy_composite",
+      "direct_privileges": [
+        "incident:evidence:read",
+        "incident:evidence:export"
+      ],
+      "inherited_privileges": [
+        "users:manage",
+        "roles:assign"
+      ],
+      "least_privilege_approved": false,
+      "note": "The basic Keycloak role listing does not expose these inherited privileges."
+    },
+    {
+      "role_name": "incident-administrator",
+      "role_status": "administrative",
+      "direct_privileges": [
+        "incident:evidence:read",
+        "incident:response:control",
+        "realm:admin"
+      ],
+      "inherited_privileges": [],
+      "least_privilege_approved": false
+    }
+  ],
+  "required_replacement": {
+    "client_id": "incident-portal-0036",
+    "role_name": "incident-evidence-reader",
+    "effective_privileges": [
+      "incident:evidence:read"
+    ],
+    "status": "not_yet_provisioned",
+    "owner_action": "IAM role owner must create, certify, assign, and configure expiry through a client-role-capable workflow."
+  }
+}

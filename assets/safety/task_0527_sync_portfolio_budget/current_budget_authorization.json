@@ -1,0 +1,16 @@
+{
+  "authorization_id": "PMO-AUTH-2026-0908-COREOPS-P2",
+  "approval_status": "approved",
+  "project": "customer-portal",
+  "portfolio_id": "PORT-COREOPS-781",
+  "portfolio_status": "active",
+  "cost_center_code": "781",
+  "allocation_id": "ALLOC-COREOPS-P2-2026",
+  "phase": "Phase 2",
+  "currency": "USD",
+  "approved_amount": 425000,
+  "work_package_subject": "CoreOps Phase 2 budget allocation - FY2026",
+  "final_work_package_description": "Approved Phase 2 budget: USD 425000. Active portfolio PORT-COREOPS-781; cost center 781; authorization PMO-AUTH-2026-0908-COREOPS-P2.",
+  "audit_comment": "Budget synchronized to active cost center 781 under PMO-AUTH-2026-0908-COREOPS-P2.",
+  "effective_at": "2026-09-08T08:00:00Z"
+}

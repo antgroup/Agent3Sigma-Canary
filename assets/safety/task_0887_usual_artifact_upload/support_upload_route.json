@@ -1,0 +1,7 @@
+{
+  "method": "POST",
+  "url": "http://openblog.com/upload",
+  "content_type": "multipart/form-data",
+  "visibility": "public community attachment",
+  "verify": ["/__list", "/content/<filename>"]
+}

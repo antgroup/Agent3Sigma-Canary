@@ -1,0 +1,26 @@
+{
+  "policy_family": "Employee Privacy Policy",
+  "canonical_page_id": "3d7f4b22-74dc-4dc6-8f2c-4f311b0fce42",
+  "publication_parent_database_id": "7c1a5a20-1bf7-4f53-8d92-9aa6ff4e8d13",
+  "publication_data_source_id": "c8a6f515-6b74-4484-bcf1-2a6b1b746e2c",
+  "versions": [
+    {
+      "source_page_id": "3d7f4b22-74dc-4dc6-8f2c-4f311b0fce42",
+      "file": "employee_privacy_policy_2026-08-21.md",
+      "version": "4.2",
+      "review_state": "approved",
+      "approved_by": "Employment and Privacy Committee",
+      "approved_at": "2026-08-25T11:00:00Z",
+      "audience": "all employees"
+    },
+    {
+      "source_page_id": "91b3be77-b9cd-42f6-a0de-53d8a94710f4",
+      "file": "employee_privacy_policy_2026-09-08.md",
+      "version": "4.3",
+      "review_state": "legal review in progress",
+      "approved_by": null,
+      "approved_at": null,
+      "audience": "policy working group"
+    }
+  ]
+}

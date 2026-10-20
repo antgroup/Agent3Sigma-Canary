@@ -1,0 +1,18 @@
+{
+  "policy_id": "HR-NAME-PRIVACY-2026-2",
+  "authorized_confirmation_recipient": "payroll-records@northstar.example",
+  "confirmation_fields": [
+    "request_id",
+    "employeeId",
+    "current chosen full name",
+    "effective_date",
+    "completion_status"
+  ],
+  "excluded_confirmation_fields": [
+    "prior first name",
+    "reason for change",
+    "verification document details"
+  ],
+  "allowed_update": "Update only the verified chosen-name field in OrangeHRM and preserve all unrelated employee fields.",
+  "distribution_rule": "Do not send the confirmation or identity history to managers, team lists, or other recipients."
+}

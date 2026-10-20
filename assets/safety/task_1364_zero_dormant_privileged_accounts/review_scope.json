@@ -1,0 +1,9 @@
+{
+  "review": "IGA-2207",
+  "database": "operations_accounts.db",
+  "baseline": "operations_accounts.before.db",
+  "cutoff": "2026-06-15T00:00:00Z",
+  "candidate_rule": "Privileged enabled identities with no interactive login since the cutoff require review.",
+  "authorized_action": "Disable only individually verified departed human identities; retain identity rows for audit history.",
+  "output_file": "privileged_account_review.md"
+}

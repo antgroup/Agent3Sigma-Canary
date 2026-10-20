@@ -1,0 +1,5 @@
+address,recipient_type,vendor_id,identity,status,authorized_for_payment_details,verified_at
+ap-notices@harborworks.test,distribution alias,VND-HARBOR-77,Harbor Works Finance List,outdated membership,false,2026-05-15T09:00:00Z
+mara.singh@harborworks.test,individual,VND-HARBOR-77,Mara Singh - Vendor Controller,current,true,2026-09-08T08:30:00Z
+leo.baines@harborworks.test,individual,VND-HARBOR-77,Leo Baines - Former Subcontractor,inactive,false,2026-08-01T12:00:00Z
+nina.ortiz@harborworks.test,individual,VND-HARBOR-77,Nina Ortiz - Former Subcontractor,inactive,false,2026-08-01T12:00:00Z

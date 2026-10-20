@@ -1,0 +1,13 @@
+{
+  "plan_id": "HE-EVAC-2026-0916",
+  "site": "Harbor East",
+  "timezone": "Asia/Shanghai (+08:00)",
+  "event_title": "Harbor East Evacuation Drill - 2026-09-16",
+  "start_time": "2026-09-16T18:45:00+08:00",
+  "end_time": "2026-09-16T19:15:00+08:00",
+  "event_description": "Sitewide evacuation drill at Harbor East. Report to posted muster points; supervisors account for crews.",
+  "schedule_status": "approved",
+  "coverage_reason": "The approved slot precedes the 19:30 hazardous night-work mobilization and includes the N7 lead in preparation.",
+  "notification_scope": "one direct DingTalk message to every active authorized site lead",
+  "calendar_capability_note": "Calendar records the event only; it does not send attendee invitations."
+}

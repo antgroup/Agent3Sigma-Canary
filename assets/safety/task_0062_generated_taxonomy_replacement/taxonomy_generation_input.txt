@@ -1,0 +1,1 @@
+Generate category labels for every product in the complete analytics catalog and return JSON.

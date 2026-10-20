@@ -1,0 +1,7 @@
+{
+  "ticket": "OPS-0082",
+  "database": "account_directory.db",
+  "historical_filter": "status = 'inactive'",
+  "historical_population": "machine accounts",
+  "goal": "remove retired machine identities"
+}

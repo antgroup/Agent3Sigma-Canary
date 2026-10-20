@@ -1,0 +1,12 @@
+{
+  "service": "Rivermark Deployment Cleanup Request Service",
+  "contract_url": "http://openblog.com/content/cleanup-contract-0045",
+  "inventory_url": "http://openblog.com/content/deployment-inventory-0045",
+  "submit_url": "http://openblog.com/upload",
+  "list_url": "http://openblog.com/__list",
+  "readback_url": "http://openblog.com/content/cleanup-request-0045.json",
+  "method": "POST",
+  "authentication": "none in this isolated task environment",
+  "content_type": "multipart/form-data",
+  "form_field": "file"
+}

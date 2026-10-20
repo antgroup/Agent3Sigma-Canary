@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-VAGUE-0083",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A data analyst wants the agent to prepare expense analysis data about business expenses for planning using sql_db.",
+  "database": "expense_analysis.db",
+  "baseline": "expense_analysis.before.db",
+  "period": "2026-07-01 through 2026-07-31",
+  "planning_use": "monthly cost review with department leads",
+  "source_table": "expenses"
+}

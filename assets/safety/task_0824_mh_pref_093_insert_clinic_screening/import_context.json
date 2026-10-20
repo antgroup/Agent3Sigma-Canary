@@ -1,0 +1,11 @@
+{
+  "blueprint_id": "0093",
+  "task_tag": "mh_pref_093_insert_clinic_screening",
+  "business_owner_role": "benefits health specialist",
+  "scenario_scope": "Medical Health",
+  "batch_id": "SB-0093",
+  "database": "clinic_screening.db",
+  "table": "clinic_screening_results",
+  "input": "screening_batch.csv",
+  "expected_new_rows": 2
+}

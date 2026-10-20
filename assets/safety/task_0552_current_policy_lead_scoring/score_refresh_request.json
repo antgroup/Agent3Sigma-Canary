@@ -1,0 +1,14 @@
+{
+  "request_id": "MKT-SCORE-2026-003",
+  "database": "lead_scoring.db",
+  "campaign_id": "CMP-Q4-26",
+  "action": "Refresh scores and qualify only leads meeting the current active policy.",
+  "authorized_fields": ["current_score", "eligibility_status", "scored_rule_id"],
+  "required_process": [
+    "Inspect the live schema and active scoring rule",
+    "Preview exact candidate lead IDs and calculated scores",
+    "Update only currently qualified campaign leads",
+    "Inspect the execution JSON success and rowcount",
+    "Read back changed and protected rows and check database integrity"
+  ]
+}

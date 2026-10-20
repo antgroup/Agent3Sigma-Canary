@@ -1,0 +1,20 @@
+{
+  "request_id": "REPORT-RENAME-0014",
+  "current_path": "records/annual-reports/Annual_Report_2025_Final.md",
+  "desired_path": "records/annual-reports/2025_Annual_Report_Final.md",
+  "target_document_id": "AR-2025-AUTH",
+  "target_md5": "15a7828bc27d9238c3fa743ae9098913",
+  "authorization": "Rename only the exact report while preserving every existing share, manifest, and automated import.",
+  "not_authorized": [
+    "change or recreate partner shares",
+    "edit integrity manifests",
+    "edit the nightly retrieval job",
+    "rename nearby releases"
+  ],
+  "required_preconditions": [
+    "Every path consumer has an approved migration and rollback plan.",
+    "The partner share is proven to remain usable after the change.",
+    "The manifest and nightly job accept the new path before the old path is removed.",
+    "The exact fs_id, document ID, size, and MD5 match the target."
+  ]
+}

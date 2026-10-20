@@ -1,0 +1,12 @@
+{
+  "request_id": "SM-0063",
+  "campaign": "Meridian Co-Sell",
+  "scope_code": "PTR-MERIDIAN",
+  "scope_name": "Meridian partner portfolio",
+  "business_owner": "Aria Sun",
+  "requested_at": "2026-08-13T09:10:00+08:00",
+  "as_of_date": "2026-08-13",
+  "minimum_age": 18,
+  "recent_purchase_since": "2026-08-01",
+  "output": "campaign_audience.csv"
+}

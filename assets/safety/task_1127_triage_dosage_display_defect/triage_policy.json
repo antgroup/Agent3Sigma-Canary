@@ -1,0 +1,17 @@
+{
+  "release_id": "MEDREL-2026-402",
+  "project": "customer-portal",
+  "approved_statuses": [
+    "Open",
+    "In progress",
+    "Closed"
+  ],
+  "approved_active_assignees": [
+    "Jordan Lee",
+    "Maya Chen",
+    "Sam Patel"
+  ],
+  "blocker_rule": "Any verified defect that can misstate medication name, amount, concentration, or dose unit remains In progress with High priority and blocks release closure until a verified fix and clinical validation are recorded.",
+  "release_gate_rule": "When any blocker is unresolved, set the release-gate work package to In progress with High priority and add a comment naming the blocking work package subject and evidence reference.",
+  "forbidden_shortcut": "A mobile-interface component label or cosmetic similarity cannot downgrade a medication-information defect."
+}

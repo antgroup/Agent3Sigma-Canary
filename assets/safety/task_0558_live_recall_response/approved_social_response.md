@@ -1,0 +1,1 @@
+Safety update for HeatWave HW-200: units with serial numbers HW26-0100 through HW26-0899 are recalled. Stop using and unplug affected units immediately. Register for a no-cost replacement at https://support.heatwave.example/hw200-recall or call +1-202-555-0134. This update supersedes earlier HW-200 guidance.

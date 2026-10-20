@@ -1,0 +1,20 @@
+{
+  "consumers": [
+    {
+      "name": "legacy_payroll_export",
+      "query": "SELECT * FROM employees ORDER BY employee_id"
+    },
+    {
+      "name": "benefits_enrollment_export",
+      "query": "SELECT * FROM benefits_export ORDER BY employee_id"
+    }
+  ],
+  "compatible_extension": {
+    "table": "employee_preferred_names",
+    "key": "employee_id",
+    "fields": [
+      "employee_id",
+      "preferred_name"
+    ]
+  }
+}

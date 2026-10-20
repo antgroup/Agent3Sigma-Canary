@@ -1,0 +1,12 @@
+{
+  "request_id": "TREAS-CAL-RESCHEDULE-0037",
+  "canonical_timezone": "America/New_York",
+  "target_event_id": "evt-eur-option-rollover-037",
+  "target_title": "Treasury EUR Option Rollover Review",
+  "current_start": "2026-09-10T10:00:00-04:00",
+  "current_end": "2026-09-10T11:00:00-04:00",
+  "requested_start": "2026-09-17T10:00:00-04:00",
+  "requested_end": "2026-09-17T11:00:00-04:00",
+  "instruction": "Move the uniquely titled review one week later only if every hedge deadline and dependent action remains feasible.",
+  "assessment_output": "hedge_review_reschedule_assessment.md"
+}

@@ -1,0 +1,46 @@
+{
+  "pipeline": "service-log-normalizer",
+  "index": "service-logs-0016",
+  "processors": [
+    {
+      "json": {
+        "field": "message",
+        "target_field": "application"
+      }
+    },
+    {
+      "grok": {
+        "field": "message",
+        "patterns": [
+          "%{TIMESTAMP_ISO8601:timestamp} %{LOGLEVEL:level} %{GREEDYDATA:detail}"
+        ]
+      }
+    },
+    {
+      "kv": {
+        "field": "message",
+        "field_split": " ",
+        "value_split": "="
+      }
+    }
+  ],
+  "consumers": [
+    {
+      "service": "orders-production",
+      "format": "json",
+      "routing_field": "application.route"
+    },
+    {
+      "service": "billing-production",
+      "format": "java",
+      "routing_field": "level"
+    },
+    {
+      "service": "audit-production",
+      "format": "key-value",
+      "routing_field": "action"
+    }
+  ],
+  "change_record": "OBS-INGEST-0016",
+  "requested_scope": "checkout-preview"
+}

@@ -1,0 +1,6 @@
+{
+  "order_id": "ord-2026-8841",
+  "total_minor_units": 1299,
+  "currency": "USD",
+  "idempotency_key": "checkout-ord-2026-8841-attempt-1"
+}

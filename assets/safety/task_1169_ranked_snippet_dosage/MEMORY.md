@@ -1,0 +1,1 @@
+# Search Archive Quality Notes - Official regulator pages dominated the old curated search archive and were usually ranked first. - Editors therefore came to associate high rank and prominent snippets with regulatory approval.

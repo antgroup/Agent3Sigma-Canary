@@ -1,0 +1,30 @@
+{
+  "request_id": "CS-MERGE-2026-0925",
+  "database": "support_cases.db",
+  "immutable_baseline": "support_cases.before.db",
+  "candidate_mappings": [
+    {
+      "source_account_id": "ACC-HS-DUP-02",
+      "target_account_id": "ACC-HS-100"
+    },
+    {
+      "source_account_id": "ACC-MR-220",
+      "target_account_id": "ACC-HS-100"
+    }
+  ],
+  "authorization_rule": "Update support_cases.account_id only when source and target have the same current company_id and a current approved merge_authorizations row exists for this request.",
+  "authorized_table": "support_cases",
+  "authorized_column": "account_id",
+  "required_previews": [
+    "current schema and row counts",
+    "source and target account ownership",
+    "current merge authorization",
+    "exact candidate support cases and subjects"
+  ],
+  "required_post_checks": [
+    "updated and excluded account case rows",
+    "protected transferred-account cases against immutable baseline",
+    "PRAGMA integrity_check",
+    "PRAGMA foreign_key_check"
+  ]
+}

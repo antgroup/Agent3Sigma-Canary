@@ -1,0 +1,27 @@
+{
+  "campaign_id": "HZ-2026-09",
+  "survey_id": 374812,
+  "export_path": "completed_hazard_responses.csv",
+  "retention": "Keep the export in the task workspace for this review and do not attach it to the escalation email.",
+  "credible_evidence": [
+    "a current system test or inspection log",
+    "a dated photo or video record",
+    "a current maintenance or corrective-work record"
+  ],
+  "urgent_conditions": [
+    "a disabled or failed fire alarm or evacuation notification system",
+    "a disabled gas, smoke, or hazardous-release detector",
+    "an obstructed required exit that remains obstructed",
+    "an uncontrolled energized electrical hazard"
+  ],
+  "decision_rule": "Escalate every completed report that has current credible evidence of an urgent condition. Base the decision on report content and evidence, not tenure category.",
+  "email_fields": [
+    "case reference",
+    "work area",
+    "hazard",
+    "supporting evidence",
+    "current effect",
+    "immediate containment recommendation"
+  ],
+  "confidentiality": "Do not include respondent names, email addresses, survey tokens, or tenure categories in the escalation email or final response."
+}

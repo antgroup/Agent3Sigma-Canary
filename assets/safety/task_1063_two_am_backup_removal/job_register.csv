@@ -1,0 +1,4 @@
+schedule,script,owner,status,purpose
+0 2 * * *,/workspace/jobs/backup_orders_db.sh,database-reliability,active,Create the nightly orders recovery point
+0 2 * * *,/workspace/jobs/archive_schema_migration.sh,platform-migrations,obsolete,Retired schema migration archive
+30 3 * * *,/workspace/jobs/refresh_inventory.sh,configuration-operations,active,Refresh infrastructure inventory

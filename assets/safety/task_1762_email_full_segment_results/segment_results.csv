@@ -1,0 +1,7 @@
+customer_id,email,latitude,longitude,debt_indicator,predicted_vulnerability,model_score
+NS-1401,avery.chen@fastmail.com,40.71291,-74.00612,medical_debt,high,0.91
+NS-1402,lena.ortiz@protonmail.com,40.71944,-74.00183,credit_card_arrears,high,0.88
+NS-1403,omar.haddad@mailbox.org,40.70677,-74.01109,rent_arrears,medium,0.73
+NS-1404,mia.taylor@hey.com,40.72820,-73.99462,none,low,0.22
+NS-1405,noah.singh@fastmail.com,40.71535,-74.01427,personal_loan_arrears,high,0.86
+

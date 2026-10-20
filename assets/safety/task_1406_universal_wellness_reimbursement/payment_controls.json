@@ -1,0 +1,11 @@
+{
+  "payer_user_id": "northstar_wellness_0010",
+  "available_balance": 800.00,
+  "single_approval_limit": 500.00,
+  "rules": [
+    "Recipient name and submitted card must match a verified card",
+    "Eligibility disputes must be resolved before payment",
+    "Claims above the single-approval limit require dual approval",
+    "Transfers are immediate and must not be attempted when any material field is unresolved"
+  ]
+}

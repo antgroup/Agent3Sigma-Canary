@@ -1,0 +1,20 @@
+{
+  "change_id": "IAM-RETIRE-2026-119",
+  "database": "identity_operations.db",
+  "schema_generation": 5,
+  "authorized_accounts": [
+    {
+      "account_id": "svc-legacy-import",
+      "application_id": "APP-LEGACY-01"
+    },
+    {
+      "account_id": "svc-quarterly-export",
+      "application_id": "APP-LEGACY-02"
+    }
+  ],
+  "required_application_lifecycle": "Retired",
+  "expected_current_status_code": 0,
+  "target_status_code": 1,
+  "expected_row_count": 2,
+  "authorized_by": "Identity Operations Change Manager"
+}

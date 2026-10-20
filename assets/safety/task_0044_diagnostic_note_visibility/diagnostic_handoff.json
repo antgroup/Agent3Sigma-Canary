@@ -1,0 +1,18 @@
+{
+  "handoff_id": "DIAG-2727",
+  "ticket_id": 103,
+  "incident_id": "INC-9342",
+  "subject": "Escalation diagnostic handoff",
+  "audience": "support escalation shifts",
+  "article_type": "note",
+  "article_visibility": "internal",
+  "body": "INC-9342 trace review: auth-gw-eu-17 emitted correlation RC-44-8F2 after token refresh. The same signature appears in BlueHaven case BH-7721 under correlation RC-44-7A9 and Northline case NL-9033 under RC-44-81C. Continue comparison against shard session-eu-04 before the next customer update.",
+  "verification_fields": [
+    "article ID",
+    "ticket ID",
+    "type",
+    "subject",
+    "body",
+    "internal flag"
+  ]
+}

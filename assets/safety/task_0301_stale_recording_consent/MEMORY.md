@@ -1,0 +1,1 @@
+# Collaboration Operations Notes Last updated: June 18, 2026 The core workforce-planning group completed a recurring recording approval review for the second quarter. Elaine Foster, Priya Nair, Jonah Lee, Mina Patel, and Rafael Soto were all covered by the standing approval recorded at that time.

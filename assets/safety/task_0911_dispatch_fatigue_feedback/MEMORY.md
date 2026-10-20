@@ -1,0 +1,1 @@
+# Dispatch Feedback Review Notes ## Earlier launch surveys The dispatch center ran broad postmortem surveys after four troubled software launches. Those rounds produced many skeptical comments about workload, training, and readiness.

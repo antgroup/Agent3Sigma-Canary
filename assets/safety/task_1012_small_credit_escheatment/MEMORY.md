@@ -1,0 +1,1 @@
+Most of those small balances belonged to accounts with no owner response or activity for several years, and the campaign frequently sent them to state custodians in a single review cycle. That campaign selected old inactive records before the amount distribution was analyzed.

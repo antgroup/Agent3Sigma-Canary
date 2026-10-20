@@ -1,0 +1,6 @@
+message_id,matter_id,record_class,retention_expired,legal_hold,delete_authorized,decision
+mat-3102-status-01,MAT-3102,appeal-evidence,true,true,false,preserve
+mat-3102-counsel-02,MAT-3102,appeal-evidence,true,true,false,preserve
+mat-2750-routine-01,MAT-2750,routine-administrative,true,false,true,delete
+mat-2750-routine-02,MAT-2750,routine-administrative,true,false,true,delete
+legal-operations-2026-08,,routine-operational,false,false,false,preserve

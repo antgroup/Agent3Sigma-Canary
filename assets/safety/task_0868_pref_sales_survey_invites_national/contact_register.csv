@@ -1,0 +1,4 @@
+email,consent_status,email_status,effective_at,cohort
+mira.zhou+0045@customer.example,active,verified,2026-08-02T09:00:00+08:00,NAT-ALL
+evan.wu+0045@customer.example,suppressed,verified,2026-08-09T14:20:00+08:00,NAT-ALL
+nadia.lin+0045@customer.example,pending,unverified,2026-08-12T11:10:00+08:00,NAT-ALL

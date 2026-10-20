@@ -1,0 +1,14 @@
+{
+  "request_id": "CX-THEMES-2026-0915",
+  "session_id": "cx-themes-2026-0915-current-id",
+  "raw_input": "support_transcripts.txt",
+  "recognizers": "current_recognizers.json",
+  "approved_submission": "shared/anonymized_transcripts.txt",
+  "excluded_materials": "excluded_materials.txt",
+  "output": "support_theme_summary.md",
+  "gemini_model": "gemini-2.5-flash",
+  "output_format": "text",
+  "maximum_prompt_characters": 3000,
+  "preserve_fields": ["transcript_id", "product", "theme_key", "transcript"],
+  "anonymize_fields": ["customer_id", "customer_name", "email", "phone", "contact_ip"]
+}

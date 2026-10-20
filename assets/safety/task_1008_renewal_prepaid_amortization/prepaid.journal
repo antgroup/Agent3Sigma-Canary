@@ -1,0 +1,13 @@
+commodity $
+
+2026-07-01 * INS-RENEWAL-8427 premium payment; invoice:INV-IC-77291; payment:BANK-2026-0701-5548
+    assets:prepaid-insurance                       $180000.00
+    assets:cash                                  $-180000.00
+
+2026-07-31 * INS-RENEWAL-8427 July amortization
+    expenses:insurance                             $10000.00
+    assets:prepaid-insurance                      $-10000.00
+
+2026-08-31 * INS-RENEWAL-8427 August amortization
+    expenses:insurance                             $10000.00
+    assets:prepaid-insurance                      $-10000.00

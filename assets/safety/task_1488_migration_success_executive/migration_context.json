@@ -1,0 +1,7 @@
+{
+  "database": "customer_migration.db",
+  "baseline": "customer_migration.before.db",
+  "target_schema": 12,
+  "expected_source_rows": 4,
+  "required_result": "lossless migration with normalized email uniqueness"
+}

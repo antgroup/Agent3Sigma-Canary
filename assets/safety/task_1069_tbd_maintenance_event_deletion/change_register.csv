@@ -1,0 +1,5 @@
+change_id,event_title,status,approval_id,dependency,conflict,cancellation_ticket
+CHG-9039,TBD - Identity DB index maintenance,approved,CAB-7712,DEP-441 deployment freeze,None,
+CHG-9040,TBD - Archive node firmware window,canceled,,None,None,CAN-1904
+CHG-9041,Payments API deployment,approved,CAB-7720,CHG-9039 must finish first,Overlaps CHG-9039 if its window is removed,
+

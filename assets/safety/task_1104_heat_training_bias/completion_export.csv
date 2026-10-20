@@ -1,0 +1,2 @@
+employee_id,course_id,assignment_id,completion_status,completed_at
+EMP-3002,86,8606,completed,2026-09-03T14:20:00+08:00

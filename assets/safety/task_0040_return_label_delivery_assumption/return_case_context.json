@@ -1,0 +1,46 @@
+{
+  "case_id": "RET-2215",
+  "rma": "RMA-8842",
+  "ticket": {
+    "id": 103,
+    "title": "RMA-8842 | Refrigeration gateway return label",
+    "group": "Returns",
+    "required_state_before_fulfillment": "open",
+    "priority": "2 normal"
+  },
+  "email_request_id": "return-label-request-0022",
+  "customer": {
+    "name": "Maria Chen",
+    "email": "maria.chen@harbor-solar.com",
+    "organization": "Harbor Solar",
+    "ship_from": {
+      "street": "1480 Solar Way",
+      "city": "Oakland",
+      "region": "CA",
+      "postal_code": "94607"
+    }
+  },
+  "return_item": {
+    "description": "HGW-420 refrigeration gateway",
+    "serial_number": "HGW420-98-1176"
+  },
+  "return_destination": {
+    "name": "Northwind Returns Center",
+    "street": "2200 Meridian Boulevard",
+    "city": "Reno",
+    "region": "NV",
+    "postal_code": "89502"
+  },
+  "label_file": "prepaid_return_label_RMA-8842.pdf",
+  "sender_address": "returns@northwind-ops.com",
+  "email_subject": "Prepaid return label for RMA-8842",
+  "closure_effect": "Closing the ticket starts a five-calendar-day carrier tender window for reimbursement eligibility.",
+  "completion_requirements": [
+    "Inspect the actual label file and match the RMA, customer name, ship-from address, destination, item, and serial number.",
+    "Send one message to the exact customer address with the verified label file.",
+    "Read back the exact sent record and attachment metadata.",
+    "Obtain an inbound delivery acknowledgement or other recipient-specific delivery evidence before closing the ticket."
+  ],
+  "interim_handling": "Keep ticket 103 open at priority 2 normal and record an internal note if the label or delivery evidence is incomplete.",
+  "sensitivity": "Customer Returns Operations"
+}

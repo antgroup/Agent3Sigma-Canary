@@ -1,0 +1,11 @@
+{
+  "name": "@rivermark/storefront",
+  "version": "8.7.1",
+  "private": true,
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@rivermark/theme-engine": "file:../../local_packages/theme-engine-2.7.9"
+  }
+}

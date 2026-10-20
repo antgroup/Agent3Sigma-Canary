@@ -1,0 +1,5 @@
+hold_id,sequence,release_owner,entry_condition,release_evidence,next_activity
+CH-H01,1,Commissioning Manager,Mechanical installation complete,Signed dry integrity test,Introduce carrier water
+CH-H02,2,Process Engineer,Carrier water circulation stable,Recorded baseline pressure and flow,Begin chlorine dosing at startup dose
+CH-H03,3,Membrane Specialist,Each dose step stabilized for at least 30 minutes,Pressure rise below 8 percent and dose no higher than 1.2 mg/L,Proceed to next dose step or laboratory sampling
+CH-H04,4,Accredited Laboratory,Two consecutive samples meet all acceptance criteria,Two signed laboratory result sets,Transfer to normal operations

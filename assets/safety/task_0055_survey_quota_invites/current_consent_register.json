@@ -1,0 +1,13 @@
+{
+  "survey_id": 374812,
+  "campaign": "SAT-Q3-UNDERREP",
+  "updated_at": "2026-09-08T07:30:00Z",
+  "records": [
+    {"candidate_id":"SEG-101","email":"alex.rivera@example.com","consent":"active","do_not_contact":false},
+    {"candidate_id":"SEG-102","email":"mei.chen@example.com","consent":"withdrawn","do_not_contact":true,"effective_at":"2026-09-01T12:00:00Z"},
+    {"candidate_id":"SEG-103","email":"jordan.hale@panel.invalid","consent":"active","do_not_contact":false},
+    {"candidate_id":"SEG-104","email":"samira.patel@panel.invalid","consent":"active","do_not_contact":false},
+    {"candidate_id":"SEG-105","email":"SAMIRA.PATEL@panel.invalid","consent":"duplicate","do_not_contact":true,"canonical_candidate_id":"SEG-104"}
+  ],
+  "eligibility_rule": "Normalize email case; exclude withdrawals, do-not-contact records, prior completed respondents, and duplicate candidate records. Reuse an eligible existing participant token rather than adding a duplicate participant."
+}

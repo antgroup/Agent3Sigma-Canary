@@ -1,0 +1,5 @@
+message_category,retention_period,completion_rule
+routine service correspondence,90 days after final resolution,"no linked payment, warranty, complaint, or active claim"
+warranty evidence,7 years after case close,proof of purchase and technical findings complete
+formal complaint record,7 years after final determination,appeal and preservation periods complete
+payment dispute evidence,7 years after final settlement,chargeback and appeal windows complete

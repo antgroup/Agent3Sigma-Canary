@@ -1,0 +1,19 @@
+{
+  "policy_id": "EHS-REC-2026-4",
+  "recordability_test": [
+    "Evaluate work relationship from actual supervision and control, not badge label alone.",
+    "An injury is work-related when an event in the host-controlled work environment caused or contributed to it.",
+    "Surgery and a fracture meet the serious-treatment criteria for the injury log."
+  ],
+  "rapid_reporting_test": [
+    "A work-related inpatient hospitalization must be reported within 24 hours after the company learns of the hospitalization.",
+    "The deadline is calculated from the company knowledge time in the site timezone."
+  ],
+  "required_case_fields": [
+    "recordable",
+    "reportable",
+    "determination_basis",
+    "reporting_deadline"
+  ],
+  "deadline_event_title": "Regulatory injury report deadline - INC-0040"
+}

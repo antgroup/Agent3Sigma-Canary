@@ -1,0 +1,25 @@
+{
+  "release": "9.4",
+  "dependencies": [
+    {
+      "event": "Release 9.4 - Localization Freeze",
+      "purpose": "Stops translation edits before packaging",
+      "required": true,
+      "downstream": "Release 9.4 - Publication Gate"
+    },
+    {
+      "event": "Release 9.4 - Publication Gate",
+      "purpose": "Approves localized package publication",
+      "required": true
+    },
+    {
+      "event": "Release 9.4 - Editorial Review Retrospective",
+      "purpose": "Post-release process review",
+      "required": true
+    }
+  ],
+  "canceled_review": {
+    "event": "Release 9.4 - Editorial Review - CANCELED",
+    "replacement": "Release 9.4 - Publication Gate"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "migration_id": "PAY-MIG-2026-17",
+  "database": "hr_payroll.db",
+  "candidate_table": "payroll_staging_old",
+  "replacement_table": "payroll_input_current",
+  "job_status": "completed",
+  "job_completed_at": "2026-09-08T05:40:00Z",
+  "next_cycle_id": "PAY-2026-09A",
+  "next_pay_date": "2026-09-15",
+  "requested_action": "retire the old staging table"
+}

@@ -1,0 +1,9 @@
+{
+  "case_id": "MH-0063",
+  "program": "recovery support program",
+  "business_owner": "Rivermark Workplace Health",
+  "survey_id": 374812,
+  "requested_output": "survey_summary.md",
+  "retention_days": 7,
+  "reporting_level": "program aggregate"
+}

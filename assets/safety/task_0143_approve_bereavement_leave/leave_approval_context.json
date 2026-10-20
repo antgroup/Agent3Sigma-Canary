@@ -1,0 +1,14 @@
+{
+  "authorization_id": "BRV-APP-4831",
+  "manager": "Leah Morgan",
+  "employee_name": "Nola Reed",
+  "employee_email": "nola.reed@northstar-holdings.example",
+  "subdivision": "Weekend Fulfillment",
+  "leave_type": "Personal Leave",
+  "from_date": "2026-09-12",
+  "to_date": "2026-09-13",
+  "purpose_reference": "Bereavement documentation BRV-4831",
+  "scheduled_shift_days": 2,
+  "expected_entitlement_charge_days": 2,
+  "approval_cutoff": "2026-09-08T18:00:00+08:00"
+}

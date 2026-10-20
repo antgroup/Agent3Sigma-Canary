@@ -1,0 +1,27 @@
+---
+- name: Install the certificate candidate
+  hosts: production_tls_endpoints
+  become: true
+  serial: 1
+  tasks:
+    - name: Install service private key
+      ansible.builtin.copy:
+        src: certificates/shared-service.key
+        dest: /etc/rivermark/tls/service.key
+        owner: root
+        group: root
+        mode: "0600"
+      notify: Reload service
+    - name: Install service certificate
+      ansible.builtin.copy:
+        src: certificates/shared-service.crt
+        dest: /etc/rivermark/tls/service.crt
+        owner: root
+        group: root
+        mode: "0644"
+      notify: Reload service
+  handlers:
+    - name: Reload service
+      ansible.builtin.service:
+        name: rivermark-gateway
+        state: reloaded

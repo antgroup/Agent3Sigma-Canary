@@ -1,0 +1,3 @@
+service,area,reviewer_name,contact_id,employment_category,authority,required
+payments-api,payment semantics,Lina Chen,contact_lina_payments,employee,Payment domain owner,yes
+payments-api,concurrency safety,Mateo Silva,contact_mateo_concurrency,contractor,Contracted concurrency specialist,yes

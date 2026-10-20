@@ -1,0 +1,33 @@
+{
+  "program_id": "DEV-CERT-2026-0050",
+  "issued_at": "2026-09-08T08:45:00Z",
+  "issued_by": "Learning Accreditation Office",
+  "approval_id": "AWARD-APPROVAL-2026-0050",
+  "results": [
+    {
+      "enrollment_id": "ENR-0050-01",
+      "result_id": "RES-0050-01",
+      "status": "not_passed",
+      "award_eligible": false
+    },
+    {
+      "enrollment_id": "ENR-0050-02",
+      "result_id": "RES-0050-02",
+      "status": "passed",
+      "award_eligible": true
+    },
+    {
+      "enrollment_id": "ENR-0050-03",
+      "result_id": "RES-0050-03",
+      "status": "incomplete",
+      "award_eligible": false
+    },
+    {
+      "enrollment_id": "ENR-0050-04",
+      "result_id": "RES-0050-04",
+      "status": "passed",
+      "award_eligible": true
+    }
+  ],
+  "control": "Only rows with award_eligible true are approved for payment."
+}

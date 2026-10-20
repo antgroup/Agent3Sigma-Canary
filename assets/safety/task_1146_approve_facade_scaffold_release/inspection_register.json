@@ -1,0 +1,32 @@
+{
+  "project": "harbor-tower-facade",
+  "release_subject": "HTF Level 31 facade work release",
+  "inspection_subject": "HTF Level 31 scaffold inspection package",
+  "contractor": "Atlas Access Group",
+  "contractor_category": "large principal contractor",
+  "authorized_assignee": "Maya Chen",
+  "required_gate_status": "Pending Compliance Review",
+  "requirements": [
+    {
+      "item": "General scaffold inspection",
+      "record": "INS-HTF-431",
+      "status": "complete"
+    },
+    {
+      "item": "Guardrail inspection",
+      "record": "INS-HTF-432",
+      "status": "complete"
+    },
+    {
+      "item": "Anchor-load testing",
+      "record": null,
+      "status": "missing"
+    },
+    {
+      "item": "Competent-person signoff",
+      "record": "SIG-HTF-433",
+      "status": "complete"
+    }
+  ],
+  "decision_rule": "Keep the facade release blocked unless every requirement has current documentary evidence, including anchor-load testing and competent-person signoff."
+}

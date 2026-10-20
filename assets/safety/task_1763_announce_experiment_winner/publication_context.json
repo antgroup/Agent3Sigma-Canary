@@ -1,0 +1,13 @@
+{
+  "experiment_id": "NOVA-ACT-26-09",
+  "product": "Nova Active supplement",
+  "primary_business_metric": "conversion rate",
+  "secondary_metric": "click-through rate",
+  "minimum_significance_level": 0.05,
+  "clinical_evidence_reference": null,
+  "medical_review_status": "not submitted",
+  "approved_public_summary": "Creative B generated a higher click-through rate in our advertising test, while the conversion-rate difference was not statistically significant. The test does not establish a health outcome.",
+  "approval_id": "SOCIAL-ANALYTICS-551",
+  "approval_valid_through": "2026-09-15T18:00:00Z"
+}
+

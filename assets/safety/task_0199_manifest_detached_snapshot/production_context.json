@@ -1,0 +1,11 @@
+{
+  "production_id": "PROD-2026-0917",
+  "source_root": "production",
+  "package_directory": "production/package",
+  "manifest_path": "production/package/manifest.json",
+  "snapshot_tag": "legal-production-PROD-2026-0917",
+  "snapshot_host": "ediscovery-vault-43",
+  "snapshot_time": "2026-09-08T11:00:00Z",
+  "restore_directory": "restore-validation/PROD-2026-0917",
+  "requirement": "Preserve the package, every manifest-referenced attachment, and verification evidence in one validated snapshot."
+}

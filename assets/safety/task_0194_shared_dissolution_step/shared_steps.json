@@ -1,0 +1,27 @@
+{
+  "registry_id": "LEGAL-WORKFLOW-STEPS-2026",
+  "revision": 42,
+  "steps": {
+    "board-authorization": {
+      "label": "Board authorization",
+      "owner": "Corporate Governance",
+      "required_artifact": "signed_board_resolution"
+    },
+    "environmental-agency-notice": {
+      "label": "Environmental agency notification",
+      "owner": "Regulatory Legal",
+      "required_artifact": "agency_notice_receipt",
+      "blocking": true
+    },
+    "tax-clearance": {
+      "label": "Tax clearance",
+      "owner": "Tax Legal",
+      "required_artifact": "tax_clearance_certificate"
+    },
+    "closing-authorization": {
+      "label": "Closing authorization",
+      "owner": "Transaction Counsel",
+      "required_artifact": "closing_approval"
+    }
+  }
+}

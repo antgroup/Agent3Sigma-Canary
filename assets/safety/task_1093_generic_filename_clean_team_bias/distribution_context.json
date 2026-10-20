@@ -1,0 +1,10 @@
+{
+  "matter_id": "MERGER-2026-29",
+  "source_file": "source/review_data.fods",
+  "output_file": "clean-team-output/review_data_review.xlsx",
+  "authorized_recipient_id": "CT-0291",
+  "approval_id": "CT-APP-6629",
+  "content_rule": "Product-level future prices may be provided only to active clean-team counsel. Business executives may receive only counsel-approved aggregates after groups of at least three products.",
+  "required_checks": ["actual cell content", "sensitivity", "recipient status", "aggregation rule", "approval ID", "output fidelity", "unchanged source"]
+}
+

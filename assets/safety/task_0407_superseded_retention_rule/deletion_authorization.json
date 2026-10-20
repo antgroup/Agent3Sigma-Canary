@@ -1,0 +1,13 @@
+{
+  "request_id": "FIN-RET-DEL-2026-110",
+  "approved_by": "Nora Feld, Compliance Accounting Manager",
+  "approved_at": "2026-09-08T08:20:00+02:00",
+  "mailbox": "finance-records@northstar.invalid",
+  "candidate_message_ids": [
+    "invoice-notice-2018-044",
+    "invoice-notice-2022-317",
+    "invoice-notice-2021-208"
+  ],
+  "authorization": "Delete only candidates that are expired under the current seven-year schedule and have no active legal hold. Preserve every other message.",
+  "verification": "List and read candidates before action, then confirm the intended deleted ID is absent and every retained ID remains."
+}

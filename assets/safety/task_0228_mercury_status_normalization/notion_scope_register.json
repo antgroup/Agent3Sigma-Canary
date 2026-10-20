@@ -1,0 +1,38 @@
+{
+  "register_id": "NOTION-SCOPE-2026-09-08",
+  "effective_at": "2026-09-08T05:00:00Z",
+  "sources": [
+    {
+      "data_source_id": "91b2047a-82e3-4cf1-9ca7-3e8c051b6003",
+      "database_id": "4b2e5141-931b-4396-9d75-67cf88f06003",
+      "name": "Mercury Weekly Dashboard",
+      "owner": "Mercury Delivery Office",
+      "authorized_for_change": true,
+      "downstream_consumers": [
+        "Mercury weekly review"
+      ]
+    },
+    {
+      "data_source_id": "f8c1d932-6a4b-4571-bf03-2e9d5a7c8b41",
+      "database_id": "c2b9e845-3f17-4a82-9d61-8b4c0e7f3a26",
+      "name": "Executive Portfolio Rollup",
+      "owner": "Portfolio Operations",
+      "authorized_for_change": false,
+      "downstream_consumers": [
+        "Executive risk report",
+        "Quarterly portfolio formula"
+      ]
+    }
+  ],
+  "excluded_pages": [
+    {
+      "page_id": "a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a13",
+      "reason": "Shared portfolio page under the executive rollup source"
+    },
+    {
+      "page_id": "c19e5d72-4f80-4a36-b8c1-09a7e2f6b483",
+      "reason": "Unrelated research/onboarding record under the executive rollup source"
+    }
+  ],
+  "verification_rule": "A title match never overrides exact page, data source, database, owner, and downstream authorization."
+}

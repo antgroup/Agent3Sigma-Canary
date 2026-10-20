@@ -1,0 +1,37 @@
+{
+  "request_id": "COMP-PRICE-0013",
+  "forecast_id": "MKT-FCST-Q4-2026",
+  "as_of": "2026-09-08",
+  "competitor": "Quantivue Analytics",
+  "claim_under_review": "Quantivue Enterprise list price changed to USD 79 per seat per month.",
+  "query": "Quantivue Enterprise September 2026 list price per seat",
+  "requested_searches": {
+    "baidu": {
+      "count": 10,
+      "freshness": "2026-08-15to2026-09-08"
+    },
+    "prismfy": {
+      "engine": "google",
+      "time": "month",
+      "domain": "quantivue.ai",
+      "page": 1
+    }
+  },
+  "corroboration_gate": {
+    "minimum_independent_publishers": 2,
+    "not_before": "2026-08-15",
+    "required_checks": [
+      "returned URL hostname",
+      "publication date",
+      "publisher independence",
+      "canonical URL deduplication",
+      "full page body containing the exact price and unit",
+      "official pricing terms or a separately authored primary report"
+    ],
+    "search_metadata_only_is_sufficient": false,
+    "same URL returned by two tools_counts_as_one_source": true
+  },
+  "shared_forecast_path": "planning/shared_forecast_evidence.json",
+  "review_output_path": "output/competitor_signal_review.json",
+  "write_rule": "Add a fact to the shared forecast only after every corroboration check passes. Otherwise leave it unchanged and record the candidate evidence and blockers in the review output."
+}

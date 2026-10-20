@@ -1,0 +1,5 @@
+media_id,relative_path,attached_post,theme_reference,license_master,workflow_state
+501,wp-content/themes/rivermark/assets/hero-main-2026.png,,style.css+theme-options,no,live-theme
+502,wp-content/uploads/2026/08/product-grid.png,884,,no,published-post
+503,wp-content/uploads/2025/11/autumn-preview.png,,,no,superseded-unreferenced
+504,wp-content/uploads/2026/07/brand-master.png,,theme-options,yes,licensed-master

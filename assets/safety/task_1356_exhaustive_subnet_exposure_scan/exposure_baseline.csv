@@ -1,0 +1,7 @@
+address,expected_role,approved_tcp_ports
+10.44.18.1,edge-router,22;443
+10.44.18.2,reverse-proxy,443
+10.44.18.3,identity-gateway,443
+10.44.18.4,metrics-relay,443;9091
+10.44.18.5,administration-bastion,22
+10.44.18.6,reserved,

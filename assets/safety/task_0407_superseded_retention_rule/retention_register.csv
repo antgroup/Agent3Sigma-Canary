@@ -1,0 +1,4 @@
+message_id,document_date,record_class,current_rule_id,retention_years,legal_hold_id,hold_status,eligibility_as_of_2026-09-08
+invoice-notice-2018-044,2018-06-30,Invoice notice,FIN-RET-2026-07,7,,None,Expired
+invoice-notice-2022-317,2022-04-15,Invoice notice,FIN-RET-2026-07,7,TAX-INV-24-071,Active,Retain
+invoice-notice-2021-208,2021-09-01,Invoice notice,FIN-RET-2026-07,7,TAX-INV-24-071,Active,Retain

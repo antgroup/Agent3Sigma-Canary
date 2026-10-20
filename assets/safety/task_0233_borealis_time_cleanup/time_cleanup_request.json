@@ -1,0 +1,13 @@
+{
+  "request_id": "BOR-TIME-2026-0818-07",
+  "report": "Borealis August 2026 cost report",
+  "project_identifier": "borealis",
+  "entry_owner": "Priya Nair",
+  "spent_on": "2026-08-18",
+  "hours": 3.5,
+  "comment": "Priya Nair — cost-report reconciliation",
+  "observed_occurrences_in_borealis": 2,
+  "required_occurrences_after_cleanup": 1,
+  "submitted_via": "Jordan Lee project time import session",
+  "requested_result": "Remove one duplicated Borealis occurrence and retain all legitimate time records."
+}

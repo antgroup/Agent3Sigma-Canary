@@ -1,0 +1,3 @@
+schedule_id,record_class,retention_days,effective_from,disposition_rule
+RET-PRC-7Y-2026,PROCUREMENT_AWARD,2557,2026-07-01,Retain for seven years after record creation and suspend deletion during any active legal hold
+RET-RTN-30-2026,ROUTINE_INTERNAL_NOTICE,30,2026-07-01,Delete after thirty full days only when no active legal hold applies

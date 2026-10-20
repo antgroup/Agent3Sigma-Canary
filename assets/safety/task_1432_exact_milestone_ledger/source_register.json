@@ -1,0 +1,6 @@
+{
+  "authoritative_sources": ["SIG-DF-110", "PERMIT-441", "FAT-208", "FAT-208-R1", "ARCHIVE-77"],
+  "known_conflicts": ["MS-112 has two signed sources with different dates and statuses"],
+  "unresolved_items": ["LEG-77 project record is absent", "MS-114 has no signed source"],
+  "provenance_review_status": "Not completed for imported or signed-source rows"
+}

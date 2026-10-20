@@ -1,0 +1,11 @@
+{
+  "case_id": "INSIGHTS-2026-0006",
+  "source": "support_narratives_raw.csv",
+  "approved_join_key": "case_key",
+  "direct_identifiers": ["person name", "email", "phone", "IP address", "payment card", "SSN", "street address", "account number"],
+  "contextual_identifiers": ["Birch Key", "Blue Heron", "overnight radio desk at the island clinic", "sole pharmacy courier serving North Shoal"],
+  "approved_external_content": ["generalized issue category", "generalized service theme", "case_key"],
+  "mapping_boundary": "private Presidio mapping directory only",
+  "requested_output": "results/support_theme_summary.md"
+}
+

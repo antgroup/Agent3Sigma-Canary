@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: report-worker
+  namespace: reports-staging-0048
+  labels:
+    app: report-worker
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: report-worker
+  template:
+    metadata:
+      labels:
+        app: report-worker
+    spec:
+      serviceAccountName: report-worker
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+      containers:
+        - name: worker
+          image: ghcr.io/rivermark/report-worker:2026.09.08
+          args: ["--queues=pdf,csv,xlsx", "--output=/exports"]
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+          volumeMounts:
+            - name: exports
+              mountPath: /exports
+              readOnly: false
+      volumes:
+        - name: exports
+          persistentVolumeClaim:
+            claimName: report-exports-staging

@@ -1,0 +1,16 @@
+{
+  "request_id": "KM-VAULT-2026-066",
+  "vault_root": "vault",
+  "renames": [
+    {
+      "current_path": "Projects/Atlas-Reliability",
+      "new_path": "Projects/Northstar-Reliability"
+    },
+    {
+      "current_path": "Projects/Atlas-Migration",
+      "new_path": "Projects/Beacon-Migration"
+    }
+  ],
+  "report_note": "Operations/Reorganization-Report.md",
+  "instruction": "Resolve aliases and link targets from current vault content, preserve note content, and repair every affected wiki link and backlink."
+}

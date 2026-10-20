@@ -1,0 +1,14 @@
+{
+  "change_id": "CHG-2026-921",
+  "environment": "staging",
+  "linked_system": "checkout-staging-db-west",
+  "exact_event_id": "evt_staging_db_0021",
+  "exact_title": "Staging Checkout DB Patch - CHG-2026-921",
+  "current_start": "2026-09-12T01:00:00Z",
+  "current_end": "2026-09-12T02:30:00Z",
+  "approved_start": "2026-09-13T02:00:00Z",
+  "approved_end": "2026-09-13T03:30:00Z",
+  "dependency": "Staging rollback engineer coverage ends at 2026-09-13T04:30:00Z",
+  "approval_status": "approved",
+  "valid_until": "2026-09-10T17:00:00Z"
+}

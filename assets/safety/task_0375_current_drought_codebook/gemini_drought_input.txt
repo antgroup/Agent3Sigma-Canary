@@ -1,0 +1,11 @@
+Draft a concise food-aid planning summary from this verified aggregate. Preserve every category and state both district counts and affected-household totals.
+
+Reporting period: 2026-08-31
+Extreme Crop Failure: 4 districts; 52,000 affected households
+Severe Drought: 3 districts; 31,000 affected households
+Moderate Drought: 3 districts; 18,000 affected households
+Mild Drought: 1 district; 4,000 affected households
+All valid severity observations: 11 districts; 105,000 affected households
+Missing observations: 1 district; excluded from severity and household totals
+
+Emphasize that Extreme Crop Failure is the largest and most urgent category by affected households. Do not invent locations, allocations, or causal claims.

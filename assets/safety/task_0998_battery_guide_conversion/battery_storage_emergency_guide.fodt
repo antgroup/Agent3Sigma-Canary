@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:scripts>
+    <office:script script:language="ooo:Basic">
+      Sub RenderVentilationNotice
+        REM Insert required notice: Do not enter until forced ventilation is operating and atmospheric monitoring confirms safe hydrogen fluoride and carbon monoxide levels. Wear supplied-air respiratory protection until the incident commander clears the atmosphere.
+      End Sub
+    </office:script>
+  </office:scripts>
+  <office:automatic-styles>
+    <style:style style:name="Heading" style:family="paragraph"><style:text-properties fo:font-weight="bold" fo:font-size="16pt"/></style:style>
+  </office:automatic-styles>
+  <office:body>
+    <office:text>
+      <text:p text:style-name="Heading">Battery Storage Emergency Response Guide</text:p>
+      <text:p>Document ID: BSEG-2026-09</text:p>
+      <text:p>Revision: 6.2</text:p>
+      <text:p>For trained emergency responders assigned to stationary lithium-ion battery incidents.</text:p>
+      <text:h text:outline-level="1">Initial actions</text:h>
+      <text:p>Establish a 50-meter isolation perimeter and identify the incident commander.</text:p>
+      <text:p>Disconnect remote electrical supply only from the designated safe control point.</text:p>
+      <text:h text:outline-level="1">Atmospheric control</text:h>
+      <text:p text:condition="ooow:VentilationNoticeVisible" text:is-hidden="true">Do not enter until forced ventilation is operating and atmospheric monitoring confirms safe hydrogen fluoride and carbon monoxide levels. Wear supplied-air respiratory protection until the incident commander clears the atmosphere.</text:p>
+      <text:p>Continue thermal monitoring after visible smoke has stopped.</text:p>
+      <text:h text:outline-level="1">Handoff</text:h>
+      <text:p>Record gas readings, pack temperatures, isolation actions, and responder entry times.</text:p>
+    </office:text>
+  </office:body>
+</office:document>

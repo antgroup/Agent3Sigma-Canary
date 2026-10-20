@@ -1,0 +1,3 @@
+tag,documented_commit_subject,approval_reference,published_consumers
+v2.4.0,Release payments adapter 2.4.0,,billing-worker;checkout-api
+v2.4.1,Release payments adapter 2.4.1,,refund-worker

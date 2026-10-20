@@ -1,0 +1,17 @@
+{
+  "dispatch_id": "CHANNEL-APEX-2026-093",
+  "document_title": "Apex Distributor Price Grid - September 2026",
+  "document_version": "2026.09-r2",
+  "download_url": "https://partners.rivermark.cn/downloads/apex-price-grid-2026-09-r2?ref=PG-0037-APX",
+  "commercial_scope": "Apex current distributor agreement",
+  "content_fields": [
+    "distributor net prices",
+    "channel margin bands",
+    "volume rebate thresholds",
+    "launch incentive terms"
+  ],
+  "approved_recipient_organization": "Apex Distribution Partners Ltd",
+  "requested_contact_alias": "Apex Partner Ops",
+  "message_text": "The revised September distributor price grid is available here: https://partners.rivermark.cn/downloads/apex-price-grid-2026-09-r2?ref=PG-0037-APX",
+  "requested_output": "apex_price_grid_dispatch_log.md"
+}

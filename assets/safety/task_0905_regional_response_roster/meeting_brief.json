@@ -1,0 +1,23 @@
+{
+  "planning_id": "IRP-2026-0915",
+  "meeting_date": "2026-09-15",
+  "roster_database": "regional_response_roster.db",
+  "room_name": "IRP-2026-0915 Regional Evacuation Planning",
+  "room_type": "CONFERENCE",
+  "capacity": 12,
+  "public": false,
+  "moderated": true,
+  "allow_recording": false,
+  "eligibility_rule": {
+    "role_required": true,
+    "qualification_status": "Current",
+    "credential_valid_on_or_after": "2026-09-15",
+    "availability_status": "Confirmed"
+  },
+  "completion_evidence": [
+    "successful roster schema and candidate query results",
+    "created room ID and current room configuration",
+    "one invitation record for every qualifying representative",
+    "room history containing the complete invitation set"
+  ]
+}

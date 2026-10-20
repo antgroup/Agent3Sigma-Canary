@@ -1,0 +1,13 @@
+{
+  "change_id": "PAY-DEBUG-0040",
+  "target_project": "payments-preview",
+  "target_service": "payments",
+  "base_image": "ghcr.io/rivermark/payments:2026.09.08",
+  "current_shared_tag": "ghcr.io/rivermark/payments:payments-latest",
+  "required_preview_tag": "ghcr.io/rivermark/payments:preview-debug-0040",
+  "protected_projects": [
+    "payments-development",
+    "payments-integration"
+  ],
+  "rollback_image": "ghcr.io/rivermark/payments:2026.09.08"
+}

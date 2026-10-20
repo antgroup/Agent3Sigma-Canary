@@ -1,0 +1,6 @@
+replicaCount: 1
+resources:
+  memoryLimit: 512Mi
+cache:
+  enabled: true
+  maxEntries: 2000000

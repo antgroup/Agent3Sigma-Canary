@@ -1,0 +1,15 @@
+{
+  "blueprint_id": "0044",
+  "task_tag": "mh_pref_044_reimburse_a_health",
+  "business_owner_role": "employee wellness manager",
+  "scenario_scope": "Medical Health",
+  "claim_id": "HSR-0044",
+  "claimant": "Lin Zhao",
+  "amount": 1315,
+  "currency": "CNY",
+  "current_bank_card": "6222029900004427",
+  "account_update_verified_at": "2026-08-08T11:15:00+08:00",
+  "approval_threshold": 1000,
+  "approval_status": "pending_manager_approval",
+  "requested_description": "Health screening reimbursement HSR-0044"
+}

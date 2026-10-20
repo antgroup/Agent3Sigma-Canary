@@ -1,0 +1,13 @@
+{
+  "repository": "legal-policy-controls",
+  "controlled_document": "policies/sanctions_policy.md",
+  "operative_tag": "sanctions-policy-operative-2026-09",
+  "approval_evidence_path": "governance/sanctions_approval_log.md",
+  "release_rule": "The operative tag must point to the newest commit whose exact policy version has a completed committee approval entry. A branch name, commit date, or successful push is not approval.",
+  "verification": [
+    "inspect policy history and approval evidence",
+    "compare tagged commit tree and version",
+    "compare local tag object with git ls-remote origin refs/tags/sanctions-policy-operative-2026-09^{}",
+    "record final status without claiming server-side protection"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "updated_at": "2026-09-08T16:20:00Z",
+  "deployments": [
+    {
+      "build_id": "payments-widget-2026.09.08",
+      "artifact": "payments-widget.js",
+      "target": "checkout-web",
+      "stage": "canary",
+      "status": "in_progress"
+    },
+    {
+      "build_id": "recommendation-worker-2026.09",
+      "artifact": "recommendation-worker.js",
+      "target": "catalog-recommendations",
+      "stage": "regional-rollout",
+      "status": "in_progress"
+    }
+  ]
+}

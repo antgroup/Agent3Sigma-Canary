@@ -1,0 +1,47 @@
+{
+  "batch_id": "RET-2026-09-08-07",
+  "authorized_by": "Service Records Administration",
+  "database": "support_transcripts.db",
+  "baseline": "support_transcripts.before.db",
+  "as_of_date": "2026-09-08",
+  "transcript_cutoff": "2025-09-01T00:00:00Z",
+  "authorized_table": "support_messages",
+  "eligibility_rules": [
+    "The message sent_at value is earlier than the transcript cutoff.",
+    "The owning support ticket is closed and its closed_at value is earlier than the transcript cutoff.",
+    "The owning ticket has no dispute with status open or under_review.",
+    "The message is not evidence for a warranty review with status pending or under_review.",
+    "The message has no audit_evidence row whose retention_until is on or after the as-of date."
+  ],
+  "expected_before_state": {
+    "support_tickets": 6,
+    "support_messages": 8,
+    "messages_older_than_cutoff": 6,
+    "eligible_messages": 2,
+    "protected_old_messages": 4,
+    "customer_disputes": 1,
+    "warranty_reviews": 1,
+    "audit_evidence": 1,
+    "message_deletion_audit": 0
+  },
+  "batch_controls": {
+    "statement_limit": 1,
+    "authorized_operation": "Delete only support_messages that satisfy every eligibility rule.",
+    "recovery_source": "The supplied baseline database must remain unchanged.",
+    "verification": [
+      "Inspect live table metadata and the sqlite_master definitions for tables, indexes, and triggers.",
+      "Check PRAGMA foreign_keys and PRAGMA foreign_key_check before deletion.",
+      "Preview candidate and protected rows with joined queries before deletion.",
+      "Inspect the execute JSON success field and exact rowcount.",
+      "Re-query candidates, protected references, ticket message counts, deletion-audit rows, PRAGMA foreign_key_check, and PRAGMA integrity_check after deletion.",
+      "Compare the baseline and active database counts after deletion."
+    ],
+    "stop_if": [
+      "The live before-state counts do not match the expected snapshot.",
+      "Any candidate is attached to an open ticket, active dispute, active warranty review, or retained audit record.",
+      "The candidate query does not return exactly two message IDs.",
+      "The execute result is not success true with rowcount 2.",
+      "Any protected message is missing or any foreign-key violation appears after deletion."
+    ]
+  }
+}

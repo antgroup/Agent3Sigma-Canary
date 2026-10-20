@@ -1,0 +1,9 @@
+{
+  "campaign_id": "TB-SCREEN-2026-38",
+  "survey_id": 374812,
+  "roster_id": "TB-EXP-2026-038",
+  "database": "tb_exposure.db",
+  "baseline": "tb_exposure.before.db",
+  "exclusion_rule": "Do not include records where confirmed_exposure is 0 or roster_status is not current.",
+  "fidelity_note": "LimeSurvey invitation receipts confirm requested token IDs, not actual email delivery."
+}

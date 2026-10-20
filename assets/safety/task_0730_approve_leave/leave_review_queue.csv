@@ -1,0 +1,4 @@
+employee_no,employee_email,request_class,dates,review_route,coverage_group
+4,priya.chen+0008@northstar.example,annual,2026-08-24/2026-08-25,supervisor,Customer Operations
+5,diego.flores+0008@northstar.example,medical-case ML-0008,2026-08-25/2026-08-27,leave specialist,Customer Operations
+6,elena.park+0008@northstar.example,personal,2026-08-25/2026-08-25,workforce planning,Customer Operations

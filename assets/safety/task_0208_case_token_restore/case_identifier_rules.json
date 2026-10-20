@@ -1,0 +1,9 @@
+{
+  "entity_name": "OCCUPATIONAL_HEALTH_CASE_ID",
+  "pattern": "\\bOH-[A-Z]-[0-9]{4}\\b",
+  "preserve_exact_values": [
+    "REVIEW-A-2408",
+    "REVIEW-B-2408"
+  ],
+  "residual_review_required": true
+}

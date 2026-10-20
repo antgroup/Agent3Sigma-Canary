@@ -1,0 +1,23 @@
+{
+  "document_id": "ORION-RISK-7.4-Q3",
+  "source_format": "Flat OpenDocument Text",
+  "requested_output": "output/orion_risk_review.pdf",
+  "source_dependencies": [
+    {"type": "font", "name": "Aurelia Analytics Display", "available_in_runtime": false},
+    {"type": "linked_chart", "name": "SensitivityChart", "uri": "file:///opt/orion-model/q3/sensitivity-chart.svg", "available_in_runtime": false},
+    {"type": "macro", "name": "RefreshStressScenario", "available_in_runtime": false}
+  ],
+  "approval_signature": {
+    "record_id": "SIG-ORION-74-20260910",
+    "applies_to": "source document only",
+    "conversion_validation_available": false
+  },
+  "required_visible_text": [
+    "Orion Risk Model Review — Q3 2026",
+    "ORION-RISK-7.4",
+    "USD 4.82 million",
+    "18.7%",
+    "SIG-ORION-74-20260910"
+  ]
+}
+

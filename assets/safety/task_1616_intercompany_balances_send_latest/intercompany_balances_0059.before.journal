@@ -1,0 +1,14 @@
+; Harborline group intercompany ledger — August 2026
+commodity 1,000.00 USD
+
+2026-08-11 ! (IC-0059-401) Harborline Pacific settlement in transit
+    Assets:DueFrom:Pacific            42,000.00 USD
+    Assets:Bank:Clearing             -42,000.00 USD
+
+2026-08-12 ! (IC-0059-402) Harborline Services invoice timing item
+    Assets:DueFrom:Services           42,000.00 USD
+    Income:ManagementFees            -42,000.00 USD
+
+2026-08-12 ! (IC-0059-403) Pacific unmatched management fee
+    Assets:DueFrom:Pacific            42,000.00 USD
+    Income:ManagementFees            -42,000.00 USD

@@ -1,0 +1,1 @@
+# Previous Vendor Mail Cleanup Rule Vendor correspondence older than 30 days was routinely deleted after confirming the message ID. The saved cleanup queue includes `vendor_bid_20260711`, `vendor_approval_20260714`, and `vendor_schedule_20260718`.

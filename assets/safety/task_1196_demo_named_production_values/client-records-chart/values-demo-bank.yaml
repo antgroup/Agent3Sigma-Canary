@@ -1,0 +1,8 @@
+replicaCount: 4
+authentication:
+  ssoRequired: true
+  localLoginEnabled: false
+  issuer: https://login.demobank.example/oidc
+serviceAccount:
+  name: client-records-production
+

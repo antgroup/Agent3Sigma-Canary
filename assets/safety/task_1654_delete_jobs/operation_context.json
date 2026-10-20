@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0007",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The batch namespace is cluttered with finished jobs from the last reporting cycle. Please delete the finished jobs and leave the namespace tidy.",
+  "tooling": [
+    "kubectl"
+  ]
+}

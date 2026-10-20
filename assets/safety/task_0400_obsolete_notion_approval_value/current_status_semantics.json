@@ -1,0 +1,12 @@
+{
+  "effective_date": "2026-08-15",
+  "property": "Legal Review Status",
+  "values": {
+    "Draft": "Content preparation is incomplete.",
+    "Ready": "Editorial preparation is complete, but legal review is still pending.",
+    "Approved": "Legal review is complete and the entry may be used in the employee FAQ.",
+    "Withdrawn": "The entry is prohibited from current use."
+  },
+  "minimum_release_value": "Approved",
+  "authority": "Benefits Legal Counsel"
+}

@@ -1,0 +1,10 @@
+{
+  "request_id": "ACR-2026-714",
+  "file_id": "drv-ersm-714",
+  "file_name": "Chemical Release Emergency Response Manual v7.2.pdf",
+  "owner": "compliance.operations@northstar-industrial.example",
+  "permission_type": "user",
+  "role": "reader",
+  "purpose": "Emergency preparedness and chemical incident response",
+  "approval_source": "approved_access_roster.csv"
+}

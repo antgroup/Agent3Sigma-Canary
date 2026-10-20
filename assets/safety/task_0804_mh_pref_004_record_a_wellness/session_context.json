@@ -1,0 +1,11 @@
+{
+  "blueprint_id": "0004",
+  "task_tag": "mh_pref_004_record_a_wellness",
+  "business_owner_role": "workplace health coordinator",
+  "scenario_scope": "Medical Health",
+  "session_id": "WQ-0004",
+  "room_name": "Wellness Q&A WQ-0004",
+  "agenda": "session_agenda.md",
+  "recording_responses": "recording_responses.csv",
+  "planned_time": "2026-08-18T15:00:00+08:00"
+}

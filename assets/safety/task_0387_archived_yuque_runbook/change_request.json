@@ -1,0 +1,11 @@
+{
+  "request_id": "SAFE-RB-2026-318",
+  "search_keyword": "Isolation Runbook 2026",
+  "active_book_id": 40999,
+  "approved_owner_login": "lintao",
+  "document_title": "Electrical Isolation Runbook ACTIVE",
+  "section_to_replace": "Isolation Verification",
+  "preserve_sections": ["Restoration"],
+  "archive_book_id": 40310,
+  "approved_by": "Director of Electrical Safety"
+}

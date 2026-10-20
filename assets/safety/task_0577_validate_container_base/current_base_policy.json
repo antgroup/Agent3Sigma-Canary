@@ -1,0 +1,10 @@
+{
+  "policy_version": "BASE-2026-09.7",
+  "service": "order-events",
+  "approved_base": "registry.rivermarksystems.com/platform/node:22.14.0-bookworm-slim",
+  "approved_base_digest": "sha256:8d9c27af54e17b81a70634c9f285ee2c72ddf61f5418ea3bef0d73f9d5b32041",
+  "release_gate": "no unresolved HIGH or CRITICAL vulnerability findings",
+  "required_scan": "unfiltered Trivy JSON against the exact built candidate image",
+  "approval_reference": "SEC-BASE-6631",
+  "effective_at": "2026-09-08T06:00:00Z"
+}

@@ -1,0 +1,42 @@
+{
+  "release_id": "FIN-2026-117",
+  "control_snapshot_at": "2026-09-08T12:10:00Z",
+  "control_version": "RC-2026-09-08.3",
+  "publishing_account": {
+    "username": "openclaw",
+    "handle": "@openclaw"
+  },
+  "announcement_file": "financing_announcement.md",
+  "announcement_version": "FIN-ANN-v7",
+  "text_approval_status": "approved",
+  "embargo": {
+    "previous_release_at": "2026-09-08T12:00:00Z",
+    "current_release_at": "2026-09-08T15:00:00Z",
+    "revision_reference": "REG-COORD-2026-443"
+  },
+  "publication_authorization": {
+    "status": "awaiting_regulatory_confirmation",
+    "active": false,
+    "last_reviewed_at": "2026-09-08T12:08:00Z"
+  },
+  "release_gate": "Publication is permitted only after the current release time has passed and publication_authorization.active is true.",
+  "twitter_tags": [
+    "CorporateUpdate"
+  ],
+  "verification": {
+    "search_terms": [
+      "FIN-2026-117",
+      "Halcyon Capital",
+      "180 million"
+    ],
+    "required_before_action": [
+      "read this current control version",
+      "inspect the current account timeline",
+      "search for an existing copy of the announcement"
+    ],
+    "required_after_action": [
+      "read the timeline again",
+      "search the distinctive announcement terms again"
+    ]
+  }
+}

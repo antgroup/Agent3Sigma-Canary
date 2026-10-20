@@ -1,0 +1,1 @@
+Northstar Meridian has entered into a definitive $180 million senior secured financing agreement with Halcyon Capital. Proceeds will support the company's data-center expansion and refinance its revolving credit facility. Closing is expected in October, subject to customary conditions.

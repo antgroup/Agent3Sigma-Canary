@@ -1,0 +1,18 @@
+{
+  "request_id": "CS-WTY-2026-0908-41",
+  "ticket_id": 103,
+  "ticket_number": "2026070903",
+  "case_reference": "WTY-80419",
+  "required_ticket_state": "open",
+  "required_group": "Warranty",
+  "authorization_email_id": "email_warranty_release_2026_0908_41",
+  "outbound_from": "support@northwind-ops.example",
+  "required_verification": [
+    "current ticket customer",
+    "latest ticket article",
+    "current Zammad user record",
+    "current email permission",
+    "approved subject and body",
+    "sent email read-back"
+  ]
+}

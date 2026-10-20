@@ -1,0 +1,11 @@
+{
+  "case_id": "ERGO-2026-0917",
+  "employee_id": "E-4831",
+  "employee_name": "Lin Chen",
+  "department": "Revenue Operations",
+  "authorized_contact_id": "contact_lin_chen_employee",
+  "authorized_user_id": "E-4831",
+  "contact_status": "current",
+  "identity_verified_at": "2026-09-08T03:45:00Z",
+  "message_scope": "approved ergonomic recommendations only"
+}

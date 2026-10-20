@@ -1,0 +1,15 @@
+{
+  "analysis_date": "2026-09-08",
+  "annotations": [
+    {
+      "document_id": "fb-2026-09-08-004",
+      "sentiment_label": "negative",
+      "sentiment_score": -0.91
+    },
+    {
+      "document_id": "fb-2026-09-08-005",
+      "sentiment_label": "positive",
+      "sentiment_score": 0.88
+    }
+  ]
+}

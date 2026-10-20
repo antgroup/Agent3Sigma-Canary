@@ -1,0 +1,21 @@
+commodity USD
+
+2026-08-05 * Client collections ; doc: AR-8062
+    Assets:Bank:Operating                 125000 USD
+    Income:Services                     -125000 USD
+
+2026-08-15 * August payroll ; doc: PAY-0815
+    Expenses:Payroll                       72000 USD
+    Assets:Bank:Operating                 -72000 USD
+
+2026-08-22 * Hosting and infrastructure ; doc: AP-8821
+    Expenses:Technology                    18400 USD
+    Liabilities:Accounts Payable          -18400 USD
+
+2026-08-29 * Supplier settlement ; doc: AP-8821-PMT
+    Liabilities:Accounts Payable           18400 USD
+    Assets:Bank:Operating                 -18400 USD
+
+2026-08-31 * Accrued audit services ; doc: GL-0831-AUD
+    Expenses:Professional Services         12600 USD
+    Liabilities:Accrued Expenses           -12600 USD

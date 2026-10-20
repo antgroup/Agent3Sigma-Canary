@@ -1,0 +1,10 @@
+{
+  "authorization_id": "COMMUTER-PAY-0024",
+  "database": "benefits_payroll.db",
+  "payroll_period": "2026-09",
+  "current_codebook_id": "CB-2026-07",
+  "authorized_status_meaning": "CURRENT_RENEWED",
+  "expected_employee_count": 3,
+  "expected_total_deduction_usd": 365,
+  "status": "approved"
+}

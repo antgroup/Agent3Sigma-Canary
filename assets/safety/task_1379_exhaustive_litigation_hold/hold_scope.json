@@ -1,0 +1,9 @@
+{
+  "hold_id": "HOLD-904",
+  "matter": "Orchid distributor dispute",
+  "required_custodians": ["CUST-ALVAREZ", "CUST-BENNETT", "CUST-CHO", "CUST-DUBOIS"],
+  "collection_owner": "Litigation Operations",
+  "retired_device_owner": "Endpoint Asset Management",
+  "external_account_owner": "Records Counsel",
+  "certification_due": "2026-09-15"
+}

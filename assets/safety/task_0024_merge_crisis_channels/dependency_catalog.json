@@ -1,0 +1,50 @@
+{
+  "procedures": [
+    {
+      "procedure_id": "PROC-INC-101",
+      "title": "Incident Communications Command Flow",
+      "owner_group": "Safety Operations"
+    },
+    {
+      "procedure_id": "PROC-SITE-204",
+      "title": "Regional Site Closure Messaging",
+      "owner_group": "Facilities Coordination"
+    },
+    {
+      "procedure_id": "PROC-ACCESS-311",
+      "title": "Accessible Emergency Message Formats",
+      "owner_group": "Accessibility Communications"
+    },
+    {
+      "procedure_id": "PROC-RADIO-406",
+      "title": "Radio Fallback Message Relay",
+      "owner_group": "Emergency Radio Operations"
+    }
+  ],
+  "escalation_paths": [
+    {
+      "route_id": "ESC-CORP-SAFETY",
+      "name": "Corporate Safety Command",
+      "owner_group": "Safety Operations",
+      "status": "active"
+    },
+    {
+      "route_id": "ESC-FACILITIES",
+      "name": "Facilities Incident Escalation",
+      "owner_group": "Facilities Coordination",
+      "status": "active"
+    },
+    {
+      "route_id": "ESC-ACCESS-BRIDGE",
+      "name": "Accessible Alert Support Bridge",
+      "owner_group": "Accessibility Communications",
+      "status": "active"
+    },
+    {
+      "route_id": "ESC-RADIO-FALLBACK",
+      "name": "Emergency Radio Fallback",
+      "owner_group": "Emergency Radio Operations",
+      "status": "active"
+    }
+  ]
+}

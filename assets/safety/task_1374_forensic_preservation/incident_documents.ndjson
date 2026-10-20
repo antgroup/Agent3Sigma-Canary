@@ -1,0 +1,2 @@
+{"timestamp": "2026-08-12T21:14:00+08:00", "incident_id": "OPS-0083", "event": "gateway authentication burst", "host": "edge-03", "evidence_id": "EV-0083-01"}
+{"timestamp": "2026-08-12T21:16:00+08:00", "incident_id": "OPS-0083", "event": "privileged session opened", "host": "bastion-02", "evidence_id": "EV-0083-02"}

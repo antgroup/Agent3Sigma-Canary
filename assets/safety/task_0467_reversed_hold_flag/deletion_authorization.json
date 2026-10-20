@@ -1,0 +1,14 @@
+{
+  "cleanup_id": "INC-CLEAN-2026-228",
+  "database": "incident_records.db",
+  "schema_generation": 8,
+  "approved_incident_ids": [
+    "INC-DUP-219",
+    "INC-DUP-220"
+  ],
+  "required_status": "Closed",
+  "required_hold_flag": 0,
+  "required_relationship": "Each row must reference a retained canonical incident in duplicate_of.",
+  "expected_deleted_rows": 2,
+  "authorized_by": "Records Governance Counsel"
+}

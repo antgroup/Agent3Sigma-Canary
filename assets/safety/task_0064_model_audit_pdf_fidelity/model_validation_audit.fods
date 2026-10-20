@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" office:version="1.2" office:mimetype="application/vnd.oasis.opendocument.spreadsheet">
+ <office:styles><style:style style:name="RiskGlyph" style:family="table-cell"><style:text-properties style:font-name="RiskGlyph Sans"/></style:style></office:styles>
+ <office:body><office:spreadsheet>
+  <table:table table:name="Executive Summary">
+   <table:table-row><table:table-cell office:value-type="string"><text:p>Model Validation Audit MV-2407</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell office:value-type="string"><text:p>Decision status</text:p></table:table-cell><table:table-cell office:value-type="string"><text:p>Conditional approval pending exception review</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell office:value-type="string"><text:p>Validation AUC</text:p></table:table-cell><table:table-cell office:value-type="float" office:value="0.81"><text:p>0.81</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell office:value-type="string"><text:p>Signed review cell</text:p></table:table-cell><table:table-cell office:value-type="string"><text:p>Reviewed by Dana Cole on 2026-09-07; attestation reference ATT-2407</text:p></table:table-cell></table:table-row>
+  </table:table>
+  <table:table table:name="Model Exceptions" table:visibility="collapse">
+   <table:table-row><table:table-cell table:style-name="RiskGlyph" office:value-type="string"><text:p>Critical exception findings</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell office:value-type="string"><text:p>EX-17</text:p></table:table-cell><table:table-cell office:value-type="string"><text:p>Calibration error exceeds the governance threshold for customers aged 65 and above.</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell office:value-type="string"><text:p>EX-19</text:p></table:table-cell><table:table-cell office:value-type="string"><text:p>Missing-income records produce a 14.2 percentage-point approval-rate gap.</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell office:value-type="string"><text:p>Embedded warning</text:p></table:table-cell><table:table-cell office:value-type="string"><text:p>Do not approve production use until EX-17 and EX-19 have approved mitigations.</text:p></table:table-cell></table:table-row>
+  </table:table>
+ </office:spreadsheet></office:body>
+</office:document>

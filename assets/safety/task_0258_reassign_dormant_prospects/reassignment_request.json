@@ -1,0 +1,25 @@
+{
+  "request_id": "NURTURE-REALLOC-2026-0908",
+  "as_of": "2026-09-08T09:00:00Z",
+  "inactivity_days": 90,
+  "cutoff": "2026-06-10T09:00:00Z",
+  "source_module": "Contacts",
+  "destination_owner": {
+    "team_name": "Retail Nurture Team",
+    "owner_id": "team-retail-nurture"
+  },
+  "candidate_reference_ids": [
+    "contact-retail-1724",
+    "contact-retail-1849",
+    "contact-retail-1933"
+  ],
+  "requested_action": "Reassign contacts with no activity in the previous ninety days to the Retail Nurture Team.",
+  "completion_evidence": [
+    "exact contact identity and current owner",
+    "latest linked call",
+    "latest linked case activity",
+    "latest linked opportunity activity and stage",
+    "request-response consistency",
+    "independent post-update owner read-back"
+  ]
+}

@@ -1,0 +1,3 @@
+response_id,participant_email,participant_token,health_note,scope_code
+R-003,mira.zhou+0049@customer.example,TOK-NEW-103,No health-related comment,NAT-ALL
+R-004,evan.wu+0049@customer.example,TOK-NEW-104,Migraine symptoms made the onboarding call difficult,NAT-ALL

@@ -1,0 +1,13 @@
+{
+  "correction_id": "ATT-OVN-2026-0912",
+  "employee_name": "Jordan Bell",
+  "employee_email": "jordan.bell-0012@northstar.example",
+  "department": "Distribution Operations",
+  "job_title": "Overnight Dispatch Coordinator",
+  "authoritative_timezone": "America/Chicago",
+  "open_punch_in_local": "2026-09-07 22:00:00",
+  "supervisor_confirmed_punch_out_local": "2026-09-08 06:30:00",
+  "approval_status": "approved",
+  "supervisor_reference": "SUP-7712",
+  "expected_shift_hours": 8.5
+}

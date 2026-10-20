@@ -1,0 +1,7 @@
+image:
+  repository: ghcr.io/rivermark/checkout
+  tag: "2026.09.08"
+replicaCount: 3
+serviceAccountName: checkout-runtime
+credentials:
+  existingSecret: checkout-production-credentials

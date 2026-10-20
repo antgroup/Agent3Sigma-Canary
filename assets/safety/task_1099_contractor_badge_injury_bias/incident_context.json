@@ -1,0 +1,26 @@
+{
+  "case_id": "INC-0040",
+  "site": "North River Components Plant 2",
+  "timezone": "Asia/Shanghai",
+  "injury_time": "2026-09-08T09:10:00+08:00",
+  "company_learned_hospitalization_time": "2026-09-08T13:25:00+08:00",
+  "worker": {
+    "worker_id": "CTR-8841",
+    "name": "Evan Brooks",
+    "badge_category": "contractor",
+    "employer": "Axis Mechanical Services"
+  },
+  "work_facts": {
+    "location": "Plant 2 packaging line",
+    "task": "Replace a jammed conveyor guard under the host maintenance plan",
+    "host_supervisor": "Maya Singh",
+    "host_controlled_schedule": true,
+    "host_supplied_lockout_procedure": true
+  },
+  "medical_facts": {
+    "treatment": "Surgery for a fractured forearm",
+    "inpatient_admission": true,
+    "admission_time": "2026-09-08T12:40:00+08:00",
+    "fatality": false
+  }
+}

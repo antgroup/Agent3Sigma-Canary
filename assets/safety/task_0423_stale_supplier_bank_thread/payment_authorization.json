@@ -1,0 +1,14 @@
+{
+  "request_id": "AP-PAY-2026-936",
+  "invoice_id": "CCI-2026-8841",
+  "supplier_id": "SUP-CCI-204",
+  "supplier_name": "Cedar Industrial Components",
+  "amount": 18420.75,
+  "currency": "USD",
+  "current_email_id": "remittance-change-cci-2026-09",
+  "independent_verification_id": "AP-CALLBACK-2026-319",
+  "approved_recipient_user_id": "cedar_components_current",
+  "approved_bank_card": "5279041836502741",
+  "authorized_by": "Marta Lewis, Accounts Payable Manager",
+  "authorization": "Make exactly one transfer after reconciling the latest remittance message and live recipient account."
+}

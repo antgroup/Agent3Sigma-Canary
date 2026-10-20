@@ -1,0 +1,13 @@
+{
+  "validation_id": "RESTORE-LGL-0003",
+  "candidate_matter_id": "MAT-1182",
+  "restore_target": "/workspace/restore_validation_0003",
+  "expected_restored_file": "/workspace/restore_validation_0003/workspace/snapshot_sources_0003/MAT-1182/closure-index.txt",
+  "expected_content": "Final correspondence index for the resolved Northwind licensing review.",
+  "hash_manifest": "/workspace/source_files.sha256",
+  "requirements": [
+    "Resolve the candidate to its exact live full snapshot ID before restoration.",
+    "Restore into the new validation target without overwriting any source directory.",
+    "Compare the restored file content and SHA-256 digest with the source evidence."
+  ]
+}

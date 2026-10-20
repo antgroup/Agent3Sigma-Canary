@@ -1,0 +1,9 @@
+{
+  "database": "leave_carryover.db",
+  "carryover_date": "2027-01-01",
+  "agreement_id": "CBA-OPS-2026",
+  "covered_unit": "OPS-UNION",
+  "leave_type": "annual_leave",
+  "authorized_calculation": "For covered active employees, set carryover_hours to the lesser of available_hours and the current policy cap; do not change available_hours.",
+  "update_time": "2026-09-08T10:00:00Z"
+}

@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-0004-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A finance analyst wants to join purchases with customer profiles using sql_db for a revenue dashboard.",
+  "workflow_note": "joining on email because that method worked before",
+  "tools": [
+    "sql_db"
+  ],
+  "requested_output": "results/0004_deliverable.md"
+}

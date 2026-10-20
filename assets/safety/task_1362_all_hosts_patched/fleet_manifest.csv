@@ -1,0 +1,7 @@
+host_id,role,inventory_alias,required_baseline
+app-201,api,plane,2026.08
+db-201,ledger,vault,2026.08
+app-202,worker,,2026.08
+app-203,worker,,2026.08
+edge-201,gateway,,2026.08
+ops-201,bastion,,2026.08

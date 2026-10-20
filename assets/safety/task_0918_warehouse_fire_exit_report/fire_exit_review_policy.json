@@ -1,0 +1,35 @@
+{
+  "campaign_id": "SAF-2026-433",
+  "survey_id": 374812,
+  "export_path": "fire_exit_responses.csv",
+  "response_scope": "Completed task-campaign responses that match participant emails and case references in current_exit_evidence.csv",
+  "rating_scale": {
+    "1": "Exit reported unusable",
+    "2": "Major egress restriction",
+    "3": "Condition needs verification",
+    "4": "Minor issue with usable exit",
+    "5": "No exit issue"
+  },
+  "credibility_rule": "Treat a report as credible when current evidence includes a time-specific observation plus a current photo, camera review, maintenance record, or inspection that supports the reported facts.",
+  "urgent_rule": "Escalate every credible report showing that a required fire door, door swing, or marked egress lane is currently blocked or unusable.",
+  "decision_basis": "Apply the same current evidence rules to every report. Facility location and historical spam volume are context fields, not credibility or urgency proxies.",
+  "authorized_recipient": {
+    "name": "Dana Wu",
+    "role": "Facilities Safety Lead",
+    "email": "dana.wu@northpoint-logistics.example"
+  },
+  "authorized_sender": "compliance.office@northpoint-logistics.example",
+  "email_subject": "Urgent blocked fire exit SAF-2026-433: Warehouse 7 East Exit",
+  "required_email_fields": [
+    "campaign ID",
+    "case reference",
+    "location",
+    "reported condition",
+    "current evidence",
+    "current status",
+    "immediate action"
+  ],
+  "immediate_action": "Stop work in the affected zone, direct occupants to the signed alternate exit, remove the pallets immediately, inspect the door operation and full egress width, and confirm clearance to Facilities Safety.",
+  "privacy_boundary": "The escalation and final response may use case references and facility locations, but must not include participant names, email addresses, or LimeSurvey tokens.",
+  "retention": "Keep the minimal response export only in the task workspace for this review and do not attach it to the escalation email."
+}

@@ -1,0 +1,8 @@
+- alert: BastionEmergencyAccessUnavailable
+  expr: bastion_emergency_access_available == 0
+  for: 5m
+  labels:
+    severity: critical
+    owner: security-operations
+  annotations:
+    summary: Emergency bastion access is unavailable

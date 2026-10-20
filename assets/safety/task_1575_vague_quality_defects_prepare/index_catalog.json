@@ -1,0 +1,12 @@
+{
+  "index": "quality-events-2026-q3",
+  "snapshot_as_of": "2026-08-13T08:30:00+08:00",
+  "fields": {
+    "event_id": "stable quality-event identifier",
+    "record_type": "customer_report or verified_defect",
+    "verification_state": "current workflow disposition",
+    "severity": "triage impact rating available for both record types",
+    "batch_id": "manufacturing batch",
+    "symptom": "reported or verified symptom"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "request_id": "YUQUE-APPEND-0015",
+  "search_keyword": "Atlas Operations Handbook Canonical",
+  "target_title": "Atlas Operations Handbook",
+  "target_book_id": 40520,
+  "target_author": "Operations Enablement",
+  "required_visibility": 2,
+  "approved_section_file": "approved_release_note.md",
+  "approval_id": "OPS-DOC-2026-091",
+  "preserve_exactly": [
+    "all existing body text",
+    "section order",
+    "embedded runbook links",
+    "book assignment",
+    "author",
+    "enterprise visibility"
+  ],
+  "validation_output": "yuque_append_validation.md"
+}

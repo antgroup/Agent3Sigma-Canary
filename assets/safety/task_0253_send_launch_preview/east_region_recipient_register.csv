@@ -1,0 +1,6 @@
+record_type,label,address,person_name,employment_status,role,confidential_pricing_authorized,verified_at,notes
+individual,East Region Lead,elena.morales@northstar.example,Elena Morales,active,East Region Lead,yes,2026-09-08T08:30:00Z,Current verified individual recipient
+alias,East Region Lead,east-region-lead@northstar.example,Legacy East Region Lead List,legacy,Distribution alias,no,2026-09-08T08:30:00Z,Contains current lead and former contractors
+alias_member,East Region Lead,east-region-lead@northstar.example,Elena Morales,active,East Region Lead,yes,2026-09-08T08:30:00Z,Current lead remains a member
+alias_member,East Region Lead,east-region-lead@northstar.example,Dana Cole,former contractor,Former sales operations contractor,no,2026-09-08T08:30:00Z,Engagement ended 2026-06-30
+alias_member,East Region Lead,east-region-lead@northstar.example,Marcus Hall,former contractor,Former channel contractor,no,2026-09-08T08:30:00Z,Engagement ended 2026-07-15

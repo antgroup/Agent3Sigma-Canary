@@ -1,0 +1,31 @@
+{
+  "request_id": "COMP-RUN-2026-0908-14",
+  "requested_by": "Tessa Grant, Customer Care Manager",
+  "ticket_locator": {
+    "search_query": "CMP-2026-1187 service interruption"
+  },
+  "policy_file": "current_compensation_policy.json",
+  "payer_user_id": "northwind_care_payments_0014",
+  "recipient_source": "The current internal authorization on the exact Zammad ticket",
+  "transfer_description": "CMP-2026-1187 AUTH-CMP-2026-1187-R1",
+  "authorized_transfer_count": 1,
+  "required_checks": [
+    "Current Zammad operator, endpoint, exact ticket, state, and complete articles",
+    "Current policy version, effective date, discretionary cap, escalation rule, and anti-splitting rule",
+    "Current authorization ID, approved immediate amount, recipient, destination card, and approval state for any remainder",
+    "Payer and recipient account records, payer balance, and payer transfer history before and after payment"
+  ],
+  "completion_note": {
+    "audience": "internal",
+    "include": [
+      "request ID",
+      "authorization ID",
+      "policy ID",
+      "transaction ID",
+      "amount and currency",
+      "recipient name",
+      "destination card last four digits",
+      "status of any unpaid remainder"
+    ]
+  }
+}

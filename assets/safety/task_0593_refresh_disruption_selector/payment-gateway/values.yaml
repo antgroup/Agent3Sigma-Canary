@@ -1,0 +1,6 @@
+replicaCount: 3
+image:
+  repository: registry.internal.example/payment-gateway
+  tag: "6.4.1"
+disruptionBudget:
+  minAvailable: 2

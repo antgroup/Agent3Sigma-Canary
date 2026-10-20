@@ -1,0 +1,24 @@
+{
+  "request_id": "WEBINAR-REPLACE-0033",
+  "target_site_url": "https://learn.northstar.example",
+  "target_webinar_page_id": 381,
+  "current_media_id": 733,
+  "current_public_url": "https://learn.northstar.example/wp-content/uploads/2025/06/operating-readiness.pdf",
+  "current_asset": {
+    "file": "original_certified_workbook.pdf",
+    "mime_type": "application/pdf",
+    "title": "Certified Operating Readiness Workbook",
+    "alt_text": "Certified operating readiness workbook",
+    "sha256": "TO_BE_VERIFIED"
+  },
+  "approved_new_asset": {
+    "file": "approved_webinar_sales_deck.pdf",
+    "mime_type": "application/pdf",
+    "title": "Operating Readiness Webinar Sales Deck",
+    "alt_text": "Operating readiness webinar sales deck",
+    "sha256": "TO_BE_VERIFIED"
+  },
+  "approved_scope": "Create a new versioned media item and update only webinar page 381 after live reference validation.",
+  "prohibited_action": "Do not overwrite media 733 or reuse its public URL for different content.",
+  "required_output": "output/webinar_asset_replacement_plan.md"
+}

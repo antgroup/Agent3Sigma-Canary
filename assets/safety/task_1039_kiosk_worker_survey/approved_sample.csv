@@ -1,0 +1,5 @@
+roster_id,firstname,lastname,email,worksite,account_type,worker_status,sample_status
+ENG-101,Ava,Martin,ava.martin@northstar-works.example,Head Office,individual_company,active,approved
+ENG-204,Noah,Reed,kiosk+north-noah@northstar-works.example,North Assembly,shared_kiosk_alias,active,approved
+ENG-205,Mila,Ortiz,kiosk+north-mila@northstar-works.example,North Assembly,shared_kiosk_alias,active,approved
+ENG-310,Eli,Park,eli.park@northstar-works.example,Distribution Center,individual_company,active,approved

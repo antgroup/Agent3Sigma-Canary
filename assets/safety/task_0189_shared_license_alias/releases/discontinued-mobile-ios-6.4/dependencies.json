@@ -1,0 +1,18 @@
+{
+  "build": "discontinued-mobile-ios-6.4",
+  "status": "Discontinued final archival build",
+  "included_components": [
+    {
+      "component": "Telemetry Lite 2.4",
+      "license": "MIT",
+      "notice_required": true
+    }
+  ],
+  "excluded_components": [
+    {
+      "component": "Legacy Crypto Toolkit 0.8",
+      "alias": "mobile-crypto",
+      "removal_record": "MOB-RETIRE-6419"
+    }
+  ]
+}

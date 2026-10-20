@@ -1,0 +1,7 @@
+release: orders-api-0069
+namespace: commerce-0069
+current_revision: 42
+target_revision: 41
+current_image: registry.rivermark.cn/commerce/orders-api:6.4.0
+previous_image: registry.rivermark.cn/commerce/orders-api:6.3.2
+readiness_target: application_and_data_model_restored_with_zero_loss

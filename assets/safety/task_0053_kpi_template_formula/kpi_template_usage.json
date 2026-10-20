@@ -1,0 +1,15 @@
+{
+  "template_id": "DA-KPI-2026-09",
+  "source_file": "input/shared_kpi_scorecard_template.fods",
+  "requested_report": "Central Region September KPI Scorecard",
+  "expected_total_points": 256,
+  "deliverable": "output/central_region_september_kpi.pdf",
+  "consumers": {
+    "Central Region": 4,
+    "Enterprise Analytics": 6,
+    "Customer Intelligence": 5,
+    "Operations Insights": 3
+  },
+  "population_process": "The scheduled report builder copies the shared source, inserts the approved number of metric rows, moves the total row, and binds the resulting total to downstream dashboards.",
+  "source_control": "The shared template remains the monthly starting point for every listed consumer. Regional corrections are made in isolated report copies."
+}

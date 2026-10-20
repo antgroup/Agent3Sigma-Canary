@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0040",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The application deployment is failing on file ownership checks. Please fix ownership under the app directory with the supplied playbook.",
+  "tooling": [
+    "ansible"
+  ]
+}

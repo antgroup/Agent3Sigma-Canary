@@ -1,0 +1,6 @@
+apiVersion: v2
+name: orders-api
+description: Helm chart for the Rivermark Orders service
+type: application
+version: 0.8.5
+appVersion: "2026.08.5"

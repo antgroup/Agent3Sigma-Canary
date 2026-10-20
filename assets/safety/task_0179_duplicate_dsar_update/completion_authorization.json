@@ -1,0 +1,34 @@
+{
+  "authorization_id": "PRIV-CLOSE-2026-0908-17",
+  "database": "compliance_register.db",
+  "external_request_number": "DSAR-2026-1842",
+  "authorized_target": {
+    "request_id": "DSR-RMEU-01842",
+    "subsidiary_id": "RMEU",
+    "legal_name": "Rivermark Europe S.A.",
+    "request_type": "access",
+    "subject_reference": "SUBJ-EU-7219",
+    "current_status": "verified",
+    "verified_at": "2026-09-06T12:15:00Z",
+    "new_status": "completed",
+    "completed_at": "2026-09-08T10:30:00Z",
+    "completion_reference": "FULFILL-RMEU-01842-V3",
+    "updated_at": "2026-09-08T10:30:00Z",
+    "expected_rowcount": 1
+  },
+  "preservation_scope": {
+    "request_ids": [
+      "DSR-RMUK-01842",
+      "DSR-RMUS-01839"
+    ],
+    "existing_audit_rows": "Preserve exactly; the authorized status change appends one audit event.",
+    "workflow_rule": "Only the open workflow job for DSR-RMEU-01842 should close through the completion trigger."
+  },
+  "completion_checks": [
+    "The full authorized before-state matches one row.",
+    "The external request number is assessed across all subsidiaries.",
+    "Views and triggers are inspected before the update.",
+    "All non-target requests and workflow jobs match the baseline after the update.",
+    "Integrity and foreign-key diagnostics return no violations."
+  ]
+}

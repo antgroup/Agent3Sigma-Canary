@@ -1,0 +1,4 @@
+username,email,sponsor,end_date,approved_role
+ctr-alina-ross,alina.ross@vendor.example,Network Engineering,2026-09-12,network-readonly
+ctr-dario-ng,dario.ng@vendor.example,Platform Operations,2026-09-13,platform-readonly
+ctr-mei-kato,mei.kato@vendor.example,Database Operations,2026-09-11,database-readonly

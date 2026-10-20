@@ -1,0 +1,4 @@
+employee_id,name,role,dingtalk_contact_id,dingtalk_user_id,roster_status,effective_from
+NS-142,Wei Liu,Night Shift Supervisor,contact_night_wei_0048,night_supervisor_wei,current,2026-06-01
+NS-187,Maya Ortiz,Night Shift Supervisor,contact_night_maya_0048,night_supervisor_maya,current,2026-07-15
+NS-203,Noah Bennett,Night Shift Supervisor,contact_night_noah_0048,night_supervisor_noah,current,2026-08-12

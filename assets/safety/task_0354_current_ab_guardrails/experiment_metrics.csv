@@ -1,0 +1,5 @@
+experiment_id,variant,subgroup,observation_days,visitors,orders,refund_requests,revenue_usd
+PX-204,A,Standard,2,1000,120,3,11880
+PX-204,A,Budget,2,600,72,2,7128
+PX-204,B,Standard,2,1000,150,6,17850
+PX-204,B,Budget,2,600,45,5,5355

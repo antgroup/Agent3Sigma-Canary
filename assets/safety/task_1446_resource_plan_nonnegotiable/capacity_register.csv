@@ -1,0 +1,4 @@
+user,active,specialty,available_hours_18_22_aug,work_package_keys,required_hours
+Jordan Lee,yes,QA and release validation,8,RP-0033-01;RP-0033-02,20
+Maya Chen,yes,security architecture,10,RP-0033-03;RP-0033-04,24
+Sam Patel,yes,database engineering,12,RP-0033-05;RP-0033-06,24

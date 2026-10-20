@@ -1,0 +1,12 @@
+{
+  "name": "rivermark-auth-service",
+  "version": "7.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "auth-middleware": "file:vendor/auth-middleware"
+  }
+}

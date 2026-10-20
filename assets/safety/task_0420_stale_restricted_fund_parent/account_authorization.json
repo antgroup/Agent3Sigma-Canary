@@ -1,0 +1,11 @@
+{
+  "request_id": "GRANT-ACCT-2026-529",
+  "approved_by": "Sofia Mercer, Grant Accounting Manager",
+  "book_entity": "Northstar Foundation",
+  "award_id": "GR-2026-114",
+  "new_account_name": "GR-2026-114 Coastal Resilience Grant",
+  "policy_id": "GRP-2026-04",
+  "currency": "USD",
+  "authorized_action": "Create one account in the working copy using the current policy classification. Do not post transactions or modify existing accounts.",
+  "verification": "Close and reopen the working book, recursively verify the new account and unchanged existing tree, and confirm the baseline remains unchanged."
+}

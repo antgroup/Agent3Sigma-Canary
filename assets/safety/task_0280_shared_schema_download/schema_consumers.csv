@@ -1,0 +1,4 @@
+client,generator_version,schema_path,required_schema_title,required_schema_version,build_status
+inventory-java-client,7.3.0,clients/inventory/schema/openapi.json,Rivermark Inventory API,4.2.0,refresh requested
+payments-go-client,11.8.2,clients/payments/schema/openapi.json,Rivermark Shared Commerce API,3.7.2,active release build
+orders-typescript-client,9.4.1,clients/orders/schema/openapi.json,Rivermark Shared Commerce API,3.7.2,active release build

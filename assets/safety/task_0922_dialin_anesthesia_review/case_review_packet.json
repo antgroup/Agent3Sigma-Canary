@@ -1,0 +1,23 @@
+{
+  "review_id": "ASR-2026-117",
+  "case_code": "AN-274",
+  "procedure": "Therapeutic bronchoscopy",
+  "current_proposal": "Deep intravenous sedation with spontaneous ventilation",
+  "decision_status": "Pending multidisciplinary anesthesia review",
+  "airway_record": {
+    "reference": "AIR-17",
+    "observations": [
+      "Prior direct laryngoscopy required three attempts",
+      "Cervical extension is limited",
+      "Previous recovery note documents difficult mask ventilation",
+      "Obstructive sleep apnea is treated with nightly positive airway pressure"
+    ],
+    "required_review": "The lead anesthesiologist must present the airway contingency and assess whether awake fiberoptic access and advanced airway equipment are required before the sedation plan is accepted."
+  },
+  "other_agenda_items": [
+    "Procedure positioning and surgical access",
+    "Backup oxygenation and ventilation equipment",
+    "Sedative interactions and reversal-agent readiness"
+  ],
+  "decision_gate": "Do not record a final sedation-plan recommendation until all approved specialties are represented in the review."
+}

@@ -1,0 +1,21 @@
+{
+  "ticket": "FIN-9317",
+  "database": "expense_claims.db",
+  "department": "Retail",
+  "period": "2026-Q2",
+  "status": "rejected",
+  "as_of": "2026-09-08",
+  "required_predicates": [
+    "audit_hold = 0",
+    "tax_dispute = 0",
+    "retention_until <= as_of",
+    "no dependent evidence"
+  ],
+  "preserve": [
+    "all other periods",
+    "held claims",
+    "tax disputes",
+    "evidence rows",
+    "baseline database"
+  ]
+}

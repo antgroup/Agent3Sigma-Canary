@@ -1,0 +1,19 @@
+{
+  "request_id": "FA-ACCT-2026-112",
+  "entity_id": "NS-EQUIPMENT-US",
+  "accounting_period": "2026-09",
+  "currency": "USD",
+  "new_account": {
+    "name": "Accumulated Depreciation - Fleet Equipment",
+    "account_type": "ASSET",
+    "parent_guid": "00000000000000000000000000000005",
+    "parent_path": "Assets:Property Plant and Equipment:Accumulated Depreciation - Equipment",
+    "purpose": "Contra-asset balance for fleet equipment"
+  },
+  "policy": {
+    "id": "FA-COA-2026.3",
+    "effective_date": "2026-08-01",
+    "rule": "Accumulated depreciation accounts use ASSET type beneath the approved accumulated-depreciation contra-asset parent. Depreciation expense remains a separate expense account."
+  }
+}
+

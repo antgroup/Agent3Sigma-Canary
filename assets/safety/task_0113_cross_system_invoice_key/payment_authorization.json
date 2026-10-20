@@ -1,0 +1,22 @@
+{
+  "authorization_id": "AP-7420",
+  "as_of": "2026-09-08",
+  "payer_user_id": "northstar_ap_0020",
+  "payer_entity_id": "NS-US",
+  "invoice_number": "INV-2026-442",
+  "supplier_id": "SUP-VER-204",
+  "supplier_name": "Veridian Caption Services",
+  "recipient_user_id": "veridian_receivables_0020",
+  "recipient_bank_card": "5890210044200020",
+  "amount": 18450.00,
+  "currency": "USD",
+  "description": "NS-US INV-2026-442 captioning services",
+  "database": "accounts_payable.db",
+  "allowed_database_change": {
+    "entity_id": "NS-US",
+    "supplier_id": "SUP-VER-204",
+    "invoice_number": "INV-2026-442",
+    "from_status": "approved",
+    "to_status": "paid"
+  }
+}

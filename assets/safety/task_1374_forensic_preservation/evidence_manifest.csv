@@ -1,0 +1,5 @@
+evidence_id,kind,source,sha256,required
+EV-0083-01,indexed-event,incident-events,compute-after-export,yes
+EV-0083-02,indexed-event,incident-events,compute-after-export,yes
+EV-0083-03,pcap-attachment,edge-03 capture,8d7a-metadata-only,yes
+EV-0083-04,memory-attachment,bastion-02 image,59ce-metadata-only,yes

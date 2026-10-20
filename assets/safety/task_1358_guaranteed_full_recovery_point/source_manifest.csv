@@ -1,0 +1,4 @@
+component,path,required_for_startup,consistency_requirement,in_requested_paths
+service-configuration,/workspace/service-source/config,yes,file-level,yes
+service-checkpoint,/workspace/service-source/data,yes,application-quiesced,yes
+runtime-credentials,/workspace/mounted-secrets,yes,same-recovery-point,no

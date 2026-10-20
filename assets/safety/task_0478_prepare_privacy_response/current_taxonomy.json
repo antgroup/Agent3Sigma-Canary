@@ -1,0 +1,40 @@
+{
+  "taxonomy_id": "PRIV-TAX-2026.4",
+  "effective_date": "2026-08-20",
+  "direct_personal_data": [
+    "Person name",
+    "Email address",
+    "Telephone number",
+    "IP address",
+    "Social Security number",
+    "Payment card number"
+  ],
+  "newly_regulated_device_identifiers": [
+    {
+      "type": "DEVICE_FINGERPRINT",
+      "pattern": "DVC-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}"
+    },
+    {
+      "type": "ADVERTISING_ID",
+      "pattern": "ADID:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+    }
+  ],
+  "third_party_rule": "Remove or tokenize all direct and linkable third-party personal data, including device identifiers.",
+  "approved_negative_controls": [
+    "DAR-2026-003",
+    "EVT-3001",
+    "EVT-3002",
+    "EVT-3003",
+    "Atlas Mobile"
+  ],
+  "required_residual_checks": [
+    "names",
+    "emails",
+    "phones",
+    "IP addresses",
+    "SSNs",
+    "payment cards",
+    "device fingerprints",
+    "advertising IDs"
+  ]
+}

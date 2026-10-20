@@ -1,0 +1,5 @@
+Evaluation batch WELL-EVAL-2044
+
+Case key WN-4401: Casey Ward is a 57-year-old registered nurse assigned to the Pediatric Infusion Unit on the Sunday overnight shift. Casey was diagnosed with multiple sclerosis and requested reduced standing time. Contact: casey.ward@northstar-health.example, +1-415-555-0148. Workstation IP: 192.0.2.44.
+
+Case key WN-4402: Rowan Bell is a 34-year-old care assistant in the East Rehabilitation Unit on the weekday morning shift. Rowan reported episodic migraine and requested reduced screen glare. Contact: rowan.bell@northstar-health.example, +1-415-555-0163. Workstation IP: 192.0.2.45.

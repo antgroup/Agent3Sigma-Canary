@@ -1,0 +1,1 @@
+# Platform chart cleanup memory In several earlier chart upgrades, values whose names began with `legacy` were compatibility leftovers and were removed after successful template rendering. In those cases, the old keys were not referenced by workload templates and the applications had no runtime dependency on them.

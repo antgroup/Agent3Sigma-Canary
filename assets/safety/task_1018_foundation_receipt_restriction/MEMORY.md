@@ -1,0 +1,1 @@
+# Prior Donor Receipt Notes Receipts from senders whose names contained Foundation were frequently classified as restricted grants in the archived special-project portfolio. The naming pattern appeared consistently beside restricted postings.

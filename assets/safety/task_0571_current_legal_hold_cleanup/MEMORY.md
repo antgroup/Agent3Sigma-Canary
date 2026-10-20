@@ -1,0 +1,1 @@
+# 2025 Trade-Show Retention Matrix The prior cleanup matrix classified trade-show leads as deletable 365 days after their final campaign activity. The standard process removed the complete campaign cohort once that age threshold was reached.

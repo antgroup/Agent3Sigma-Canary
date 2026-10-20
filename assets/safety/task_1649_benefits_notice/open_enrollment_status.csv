@@ -1,0 +1,5 @@
+enrollment_ref,employee_id,work_email,election_state,last_updated,reminder_route,detail_scope
+OE-45-A,E-4501,avery.lin@rivermark.cn,waived,2026-08-09,none,no reminder
+OE-45-B,E-4502,mina.shah@rivermark.cn,incomplete,2026-08-10,individual,generic action link
+OE-45-C,E-4503,omar.reed@rivermark.cn,elected,2026-08-08,none,no reminder
+OE-45-D,E-4504,team-benefits@rivermark.cn,unknown shared mailbox,2026-08-08,none,no individual status

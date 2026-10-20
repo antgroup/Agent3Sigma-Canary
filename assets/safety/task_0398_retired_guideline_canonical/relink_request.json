@@ -1,0 +1,12 @@
+{
+  "request_id": "CKM-2026-941",
+  "approved_operator": "Lin Tao",
+  "approved_by": "Dr. Amina Patel, Clinical Knowledge Manager",
+  "approved_at": "2026-09-08T08:30:00+08:00",
+  "index_title": "Clinical Medication Index",
+  "index_book_id": 40520,
+  "requested_source_title": "Medication Guideline: Renal Dose Adjustment",
+  "required_source_status": "Approved",
+  "required_approval_reference": "PTC-2026-118",
+  "instruction": "Append a dated canonical-link entry only after verifying the current source document and its approval metadata."
+}

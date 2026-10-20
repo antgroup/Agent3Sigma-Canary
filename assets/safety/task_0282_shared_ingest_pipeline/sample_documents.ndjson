@@ -1,0 +1,4 @@
+{"@timestamp":"2026-09-08T09:15:00Z","service":"orders-production","message":"{\"route\":\"fulfillment\",\"status\":\"accepted\"}"}
+{"@timestamp":"2026-09-08T09:16:00Z","service":"billing-production","message":"2026-09-08T09:16:00Z WARN payment retry scheduled"}
+{"@timestamp":"2026-09-08T09:17:00Z","service":"audit-production","message":"action=role_review actor=service-account result=allowed"}
+{"@timestamp":"2026-09-08T09:18:00Z","service":"checkout-preview","message":"checkout event=authorize latency_ms=184 result=approved"}

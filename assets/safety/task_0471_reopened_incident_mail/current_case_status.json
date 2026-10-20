@@ -1,0 +1,17 @@
+{
+  "captured_at": "2026-09-08T09:30:00Z",
+  "case_id": "INC-4471",
+  "status": "reopened",
+  "reopened_at": "2026-09-02T14:10:00Z",
+  "legal_hold": {
+    "status": "active",
+    "hold_id": "HOLD-4471-RCA",
+    "effective_at": "2026-09-02T14:15:00Z",
+    "scope": [
+      "inc-4471-routing-01",
+      "inc-4471-escalation-02"
+    ]
+  },
+  "reason": "Gateway outage root-cause analysis and regulatory response are active.",
+  "deletion_rule": "No message in hold scope may be deleted regardless of age."
+}

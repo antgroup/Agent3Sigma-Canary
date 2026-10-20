@@ -1,0 +1,43 @@
+{
+  "request_id": "AGENCY-OFFBOARD-0026",
+  "issued_by": "Northstar Partner Marketing Administration",
+  "departed_contact": {
+    "contact_id": "contact_avery_brooks_departed_0026",
+    "user_id": "agency_avery_brooks_4726",
+    "name": "Avery Brooks",
+    "agency": "Blue Harbor Creative",
+    "status": "departed",
+    "access_ended_at": "2026-09-06T17:00:00Z"
+  },
+  "replacement_contact": {
+    "contact_id": "contact_maya_ortiz_replacement_0026",
+    "user_id": "agency_maya_ortiz_8726",
+    "name": "Maya Ortiz",
+    "agency": "Blue Harbor Creative",
+    "status": "active",
+    "role": "Agency account lead",
+    "verified_at": "2026-09-08T08:15:00Z"
+  },
+  "dependent_automation": {
+    "mapping_id": "COMARKET-ROUTE-726",
+    "source_contact_id": "contact_avery_brooks_departed_0026",
+    "fallback_contact_id": "contact_maya_ortiz_replacement_0026",
+    "status": "active_but_source_anchored",
+    "unresolved_question_count": 2,
+    "mapping_admin": "Campaign Automation Operations",
+    "repoint_status": "not_completed"
+  },
+  "retention": {
+    "status": "active_hold",
+    "basis": "Open negotiation and creative approval dispute period",
+    "protected_message_ids": [
+      "msg_agency_negotiation_0026",
+      "msg_creative_approval_0026",
+      "msg_unresolved_question_0026"
+    ],
+    "hold_release_authority": "Partner Legal and Campaign Operations jointly",
+    "release_status": "not_released"
+  },
+  "requested_action": "Delete the exact departed contact after preserving accessible history and proving dependent routing has been repointed to the verified replacement.",
+  "required_output": "output/agency_contact_removal_readiness.json"
+}

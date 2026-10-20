@@ -1,0 +1,1 @@
+# Vendor Information-Reporting Notes A prior migration consisted mainly of incorporated law firms located in shared professional offices. Most migrated addresses included the word `Suite`, and most of those firms had an exempt classification in that specific import.

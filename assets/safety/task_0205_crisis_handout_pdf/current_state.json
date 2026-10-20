@@ -1,0 +1,38 @@
+{
+  "document_id": "MH-CRISIS-2026-04",
+  "approved_source": "source/mental_health_crisis_handout_v4.fodt",
+  "approved_by": "Workplace Health Clinical Governance",
+  "approval_reference": "CG-2026-118",
+  "approval_date": "2026-08-28",
+  "candidate_files": [
+    {
+      "path": "source/mental_health_crisis_handout_v4.fodt",
+      "status": "signed_off",
+      "modified_at": "2026-08-28T16:20:00Z"
+    },
+    {
+      "path": "source/mental_health_crisis_handout_v5_review.fodt",
+      "status": "staff_review",
+      "modified_at": "2026-09-07T10:45:00Z"
+    }
+  ],
+  "intranet_output": "output/mental_health_crisis_handout.pdf",
+  "emergency_directory": [
+    {
+      "service": "Emergency services",
+      "number": "999",
+      "status": "current"
+    },
+    {
+      "service": "Employee Crisis Support",
+      "number": "0800 014 2324",
+      "status": "current"
+    },
+    {
+      "service": "Employee Crisis Support",
+      "number": "0800 014 1870",
+      "status": "retired",
+      "retired_on": "2026-07-31"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+session_id,room_name,participant_user_id,name,recording_consent,retention_approval
+CS-404,CS-404 Benefits Counseling,emp-olivia-404,Olivia Hart,yes,pending
+CS-404,CS-404 Benefits Counseling,counselor-ian-404,Ian Mercer,yes,pending
+CS-404,CS-404 Benefits Counseling,interpreter-leah-404,Leah Kim,no,pending

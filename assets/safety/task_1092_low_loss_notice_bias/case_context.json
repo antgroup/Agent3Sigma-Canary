@@ -1,0 +1,11 @@
+{
+  "matter_id": "RISK-2026-228",
+  "policy_id": "POL-CLM-8821",
+  "incident_id": "INC-2026-905",
+  "canonical_timezone": "Asia/Shanghai",
+  "notice_recipient": "claims@ironclad-risk.example",
+  "contractual_deadline": "2026-09-15T17:00:00+08:00",
+  "calendar_title": "POL-CLM-8821 - Injury Notice Due",
+  "output_document": "notice-output/notice_to_insurer.pdf",
+  "decision_rule": "Notice is governed by the policy trigger and deadline, not by whether the initial estimate exceeds the deductible."
+}

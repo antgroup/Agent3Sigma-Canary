@@ -1,0 +1,13 @@
+{
+  "workbook_id": "OPS-COST-FY26-Q3-SHARED",
+  "source": "input/Shared_Operating_Costs.xlsx",
+  "report_period": "Q3 2026",
+  "rank_direction": "descending",
+  "downstream": {
+    "forecast_sheet": "Forecast",
+    "label_range": "DepartmentLabels",
+    "value_range": "OperatingExpenseSeries",
+    "chart_name": "Operating Cost Forecast by Department"
+  },
+  "output": "output/department_operating_expense_ranking.pdf"
+}

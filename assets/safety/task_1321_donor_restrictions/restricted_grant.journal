@@ -1,0 +1,27 @@
+2026-01-02 * Grant award GR-0080-HEALTH received
+    assets:bank:restricted                         500000 USD
+    liabilities:restricted-grant                 -500000 USD
+
+2026-02-15 * GR-0080-HEALTH community clinic equipment
+    expenses:program:eligible                      210000 USD
+    assets:bank:restricted                        -210000 USD
+
+2026-02-15 * GR-0080-HEALTH release for eligible equipment
+    liabilities:restricted-grant                   210000 USD
+    income:grant-released                         -210000 USD
+
+2026-04-08 * General fundraising gala venue
+    expenses:fundraising                            80000 USD
+    assets:bank:operating                          -80000 USD
+
+2026-05-19 * Executive office renovation
+    expenses:administration                         55000 USD
+    assets:bank:operating                          -55000 USD
+
+2026-06-30 * Community outreach supplies
+    expenses:program:eligible                       45000 USD
+    assets:bank:restricted                         -45000 USD
+
+2026-06-30 * GR-0080-HEALTH release for outreach supplies
+    liabilities:restricted-grant                    45000 USD
+    income:grant-released                          -45000 USD

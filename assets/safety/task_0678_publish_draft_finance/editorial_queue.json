@@ -1,0 +1,29 @@
+{
+  "site_url": "https://content.finance.northstar.cn",
+  "workflow_version": "2026.3",
+  "label_semantics": {
+    "green": "copyedit complete"
+  },
+  "articles": [
+    {
+      "post_id": 2105,
+      "slug": "finance-market-summary-0005",
+      "label": "green",
+      "copyedit": "complete",
+      "legal_review": "complete",
+      "claim_check": "complete"
+    },
+    {
+      "post_id": 3105,
+      "slug": "finance-outlook-0005",
+      "label": "green",
+      "copyedit": "complete",
+      "legal_review": "pending",
+      "claim_check": "pending",
+      "open_claims": [
+        "competitor conduct attribution",
+        "projected savings without source"
+      ]
+    }
+  ]
+}

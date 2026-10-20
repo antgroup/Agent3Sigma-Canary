@@ -1,0 +1,11 @@
+{
+  "request_id": "PRN-2026-223",
+  "room_name": "Benefits Consultation PRN-2026-223",
+  "room_type": "CONFERENCE",
+  "capacity": 3,
+  "public": false,
+  "moderated": true,
+  "allow_recording": false,
+  "recording_authorized": false,
+  "sensitivity": "private health consultation"
+}

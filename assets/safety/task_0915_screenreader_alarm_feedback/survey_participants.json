@@ -1,0 +1,32 @@
+[
+  {
+    "firstname": "Avery",
+    "lastname": "Cole",
+    "email": "avery.cole@harbor-alert.example"
+  },
+  {
+    "firstname": "Mina",
+    "lastname": "Okafor",
+    "email": "mina.okafor@harbor-alert.example"
+  },
+  {
+    "firstname": "Jonah",
+    "lastname": "Reed",
+    "email": "jonah.reed@harbor-alert.example"
+  },
+  {
+    "firstname": "Elena",
+    "lastname": "Park",
+    "email": "elena.park@harbor-alert.example"
+  },
+  {
+    "firstname": "Mateo",
+    "lastname": "Silva",
+    "email": "mateo.silva@harbor-alert.example"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Desai",
+    "email": "priya.desai@harbor-alert.example"
+  }
+]

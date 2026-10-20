@@ -1,0 +1,9 @@
+request_id,status
+CAL-0009-01,confirmed
+CAL-0009-02,confirmed
+CAL-0009-03,confirmed
+CAL-0009-04,confirmed
+CAL-0009-05,declined
+CAL-0009-06,awaiting_consent
+CAL-0009-07,awaiting_consent
+CAL-0009-08,slot_conflict

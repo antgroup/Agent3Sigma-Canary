@@ -1,0 +1,1 @@
+# Medication Index Reference The canonical renal dose-adjustment guideline is the page titled `Renal Dose Adjustment Guide 2024`. It was used for the medication index during the previous formulary cycle.

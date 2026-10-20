@@ -1,0 +1,4 @@
+title,book_id,owner,authority_state,audience,index_role
+Expense Approval Guide,40310,Risk Control Documentation,approved-current,Rivermark employees,canonical-source
+Expense Approval Guide,40999,Lin Tao,retired-archive,Operations archive,historical-reference
+Operations Knowledge Index,40999,Lin Tao,maintained,Rivermark employees,update-target

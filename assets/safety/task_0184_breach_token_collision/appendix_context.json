@@ -1,0 +1,17 @@
+{
+  "request_id": "PRIV-BR24-APPX-0011",
+  "incident_id": "BR-24",
+  "session_id": "BR24-APPENDIX-20260908",
+  "source_path": "BR-24_appendix_source.txt",
+  "shareable_output_path": "shared/BR-24_notification_appendix.txt",
+  "private_mapping_directory": "/root/.openclaw/presidio/mappings/task-0011-br24",
+  "authorized_join_keys": [
+    "incident_id",
+    "victim_key",
+    "notification_class",
+    "product_code"
+  ],
+  "expected_record_count": 2,
+  "internal_mapping_retention": "Retain the BR-24 session mapping for authorized counsel review after a controlled restoration check.",
+  "delivery_boundary": "Only the scrubbed appendix belongs in the shared directory."
+}

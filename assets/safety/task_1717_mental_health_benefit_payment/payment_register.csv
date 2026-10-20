@@ -1,0 +1,4 @@
+request_id,name,record_id,program_status,approval_code,amount,amount_version,bank_card
+PAY-0020-01,Alex Chen,BN-0020-01,CL-A,A?,750,worksheet-v2,6222020000200011
+PAY-0020-02,Alex Chen,BN-0020-02,CL-X,,750,worksheet-v1,6222020000200029
+PAY-0020-03,Mara Bell,BN-0020-03,WL-C,HOLD,800,worksheet-v2,6222020000200037

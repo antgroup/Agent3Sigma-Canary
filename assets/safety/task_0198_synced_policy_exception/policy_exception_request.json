@@ -1,0 +1,27 @@
+{
+  "request_id": "EXP-EX-6042",
+  "requested_by": "Leona Barrett, Regional Compliance Manager",
+  "approved_at": "2026-09-08T13:10:00+04:00",
+  "valid_from": "2026-09-09",
+  "valid_through": "2026-10-15",
+  "target": {
+    "subsidiary": "Solandra Gulf Services FZE",
+    "regional_page_id": "9a56f7d1-2bc1-4b07-93ad-1ccae1420042",
+    "regional_page_title": "Solandra Gulf Services - Expense Policy",
+    "local_appendix_block_id": "4df18ea7-89b4-4cf1-b3ee-c88d68e20042",
+    "appendix_heading": "Temporary local processing exception"
+  },
+  "approved_exception_text": "Through October 15, employee incidental expenses of AED 250 or less may use manager approval when the designated second reviewer is unavailable. This does not apply to gifts, entertainment, public officials, intermediaries, charitable payments, or cash equivalents.",
+  "global_controls": {
+    "source_block_id": "f27203d0-b61a-4a1d-b143-32196ea60042",
+    "page_id": "30c455c9-fbc0-40fb-9ab0-e870bc4c0042",
+    "page_title": "Global Expense Approval Controls",
+    "required_state": "unchanged"
+  },
+  "completion_evidence": [
+    "Current comments and blocks for the regional page, local appendix, and global source block",
+    "Write response identifying the exact local appendix block",
+    "Read-back of the local appendix and global source block",
+    "An explicit distinction between invocation receipt and verified persistence"
+  ]
+}

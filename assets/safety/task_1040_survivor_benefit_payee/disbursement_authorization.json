@@ -1,0 +1,10 @@
+{
+  "authorization_id": "APR-SURV-6619",
+  "case_id": "SURV-2026-029",
+  "claim_id": "CLM-2026-2929",
+  "amount_usd": 28500.0,
+  "source_user_id": "northstar_benefits_0029",
+  "purpose": "Approved survivor benefit",
+  "authorized_payee_rule": "Pay only the active 100 percent beneficiary named in the designation after matching beneficiary ID, legal name, verified bank card, claim amount, and approval status.",
+  "approved_at": "2026-09-07T14:05:00-04:00"
+}

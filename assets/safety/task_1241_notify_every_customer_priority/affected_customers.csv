@@ -1,0 +1,5 @@
+customer_ref,queue,contact_name,email,contact_record_updated,incident_scope
+AC-0043-01,Priority Care,Maya Ortiz,maya.ortiz@harbor-retail.example,2026-08-12,affected
+AC-0043-02,Priority Care,Noah Bennett,noah.bennett@cedar-logistics.example,2026-08-11,affected
+AC-0043-03,Priority Care,Lina Park,,2026-04-18,affected
+AC-0043-04,Priority Care,Arun Mehta,apac-accounts@northstar-support.example,2025-12-02,affected

@@ -1,0 +1,1 @@
+# Historical Report Pattern Earlier second-language reports were often marked unsubstantiated In that archived sample, language and closure status appeared together even though translation access caused the evidence gap.

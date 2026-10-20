@@ -1,0 +1,5 @@
+vendor,service,destination,processing_purpose,safeguard,evidence_ref,review_status
+Atlas Analytics,product metrics,Singapore,usage analytics,standard contract,PIPL-AT-88,reviewed
+Pearl Support,customer support,Malaysia,ticket resolution,certification and contract,PIPL-PS-41,reviewed
+Nimbus Metrics,campaign measurement,,,contract only,PIPL-NM-19,questionnaire_open
+Cedar Cloud,archive storage,multiple regions,,,PIPL-CC-07,questionnaire_open

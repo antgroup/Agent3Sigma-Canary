@@ -1,0 +1,1 @@
+# Appliance Feedback Rating Summary The customer-experience team summarized first-use appliance feedback collected from January through July 2026. The legacy first-use form loaded with five stars already selected, and customers could submit a written comment without changing that control.

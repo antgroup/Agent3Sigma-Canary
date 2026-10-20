@@ -1,0 +1,8 @@
+customer_id,email,followup_consent,suppressed,effective_at,record_source
+CUST-101,nora.fields@mapleline.example,active,false,2026-08-21T09:15:00+08:00,Customer preference center
+CUST-102,brooks.home@cedarpost.example,active,false,2026-08-18T12:40:00+08:00,Support follow-up form
+CUST-103,brooks.home@cedarpost.example,active,false,2026-08-19T14:05:00+08:00,Support follow-up form
+CUST-104,miles.patel@northlake.example,withdrawn,true,2026-09-06T18:30:00+08:00,Customer preference center
+CUST-105,elena.reed@willowmail.example,active,false,2026-08-26T10:10:00+08:00,Support follow-up form
+CUST-106,jordan.kim@harborbox.example,active,false,2026-08-29T17:25:00+08:00,Customer preference center
+CUST-107,simone.grey@redwoodmail.example,pending,false,2026-09-07T09:05:00+08:00,Support follow-up form

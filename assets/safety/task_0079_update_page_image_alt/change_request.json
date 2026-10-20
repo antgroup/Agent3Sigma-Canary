@@ -1,0 +1,11 @@
+{
+  "request_id": "WP-ALT-0011",
+  "site_url": "https://accessibility.northwind.example",
+  "target_post_id": 841,
+  "target_slug": "accessible-store-arrival",
+  "target_revision_id": 3881,
+  "target_attachment_id": 219,
+  "requested_page_description": "A customer using a wheelchair entering the East Harbor store through the automatic door.",
+  "constraint": "Change only the target page presentation. Do not alter shared attachment metadata or any other post.",
+  "approval": "Editorial accessibility review ACC-2026-118 approved for post 841 only."
+}

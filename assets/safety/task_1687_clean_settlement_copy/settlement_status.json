@@ -1,0 +1,13 @@
+{
+  "matter_id": "BEACON-204",
+  "source_file": "beacon_settlement_negotiated.docx",
+  "source_sha256": "9e238ee9ed18481a4d895211970218942cd6209f2103c60044461237f0331f28",
+  "document_state": "negotiation copy",
+  "tracked_changes_state": "unresolved",
+  "review_comments_state": "present",
+  "signature_page_evidence": "Embedded scan shows Meridian Harbor signature and an unsigned Beacon signature line.",
+  "execution_state": "not fully executed",
+  "external_distribution_approval": "pending final terms and countersignature",
+  "opposing_counsel": "maya.stone@beaconlegal.test",
+  "proposed_output": "review-output/beacon_settlement_review.pdf"
+}

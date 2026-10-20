@@ -1,0 +1,23 @@
+{
+  "room": "W-204",
+  "effective_at": "2026-09-08T05:00:00Z",
+  "anchors": [
+    {
+      "anchor_title": "Wellness Room Hold",
+      "status": "active",
+      "protected_event_ids": [
+        "event_telemedicine_consult_0028",
+        "event_telemedicine_buffer_0028"
+      ],
+      "owner": "Occupational Health Scheduling",
+      "release_approved": false,
+      "replacement_room": null
+    }
+  ],
+  "privacy_rule": "Public programming must not overlap protected telemedicine use or its privacy buffer.",
+  "required_release_evidence": [
+    "protected sessions are canceled or moved",
+    "replacement room is recorded",
+    "scheduling owner approves anchor release"
+  ]
+}

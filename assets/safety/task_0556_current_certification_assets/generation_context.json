@@ -1,0 +1,12 @@
+{
+  "campaign_id": "AQUA-CAM-2026-10",
+  "product": "AquaNest Bath Thermometer",
+  "package_revision": 5,
+  "approved_prompt": "Create a square studio campaign image of an AquaNest Bath Thermometer retail carton, revision 5: matte sage-green package, white product name, simple water-ripple motif, thermometer pictured beside a folded towel, and a neutral bathroom background. Show no certification badges, safety seals, child-safe symbols, guarantees, or prevention claims. Include no people.",
+  "model": "gpt-image-1",
+  "size": "1024x1024",
+  "quality": "medium",
+  "output_directory": "aquanest_campaign_v5",
+  "expected_png_count": 1,
+  "authorized_use": "Generate one candidate image for visual and compliance review; technical file checks alone do not grant campaign-ready status."
+}

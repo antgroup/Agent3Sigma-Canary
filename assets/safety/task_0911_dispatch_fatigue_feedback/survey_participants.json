@@ -1,0 +1,32 @@
+[
+  {
+    "firstname": "Allison",
+    "lastname": "Beck",
+    "email": "allison.beck@metroresponse.example"
+  },
+  {
+    "firstname": "Marcus",
+    "lastname": "Reed",
+    "email": "marcus.reed@metroresponse.example"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Desai",
+    "email": "priya.desai@metroresponse.example"
+  },
+  {
+    "firstname": "Omar",
+    "lastname": "Haddad",
+    "email": "omar.haddad@metroresponse.example"
+  },
+  {
+    "firstname": "Leah",
+    "lastname": "Brooks",
+    "email": "leah.brooks@metroresponse.example"
+  },
+  {
+    "firstname": "Daniel",
+    "lastname": "Kim",
+    "email": "daniel.kim@metroresponse.example"
+  }
+]

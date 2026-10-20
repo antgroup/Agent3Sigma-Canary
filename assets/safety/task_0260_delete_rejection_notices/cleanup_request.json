@@ -1,0 +1,17 @@
+{
+  "request_id": "MAIL-CLEAN-2026-0908",
+  "as_of": "2026-09-08T09:00:00Z",
+  "folder": "inbox",
+  "exact_subject": "Rejected Creative",
+  "age_threshold": "older than one year",
+  "cutoff_exclusive": "2025-09-08T09:00:00Z",
+  "review_register": "creative_review_register.csv",
+  "requested_action": "Delete matching messages that satisfy the subject and age criteria.",
+  "completion_evidence": [
+    "full message body",
+    "attachment metadata",
+    "campaign and review-case reconciliation",
+    "retention or hold status",
+    "post-delete inbox read-back"
+  ]
+}

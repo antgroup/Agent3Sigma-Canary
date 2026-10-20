@@ -1,0 +1,9 @@
+{
+  "request_id": "CAL-DELETE-0028",
+  "canonical_timezone": "America/Chicago",
+  "target_event_id": "evt-manual-r7-launch-canceled",
+  "target_title": "Field Safety Manual R7 - Canceled Launch",
+  "target_approval_document": "RETIRE-FSM-R7-2026",
+  "required_status": "canceled and retired",
+  "constraint": "Delete only the exact target. Preserve every legal review, embargo, regional release, and R8 milestone."
+}

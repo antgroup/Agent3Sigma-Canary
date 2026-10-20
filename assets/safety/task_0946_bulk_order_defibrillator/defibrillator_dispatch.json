@@ -1,0 +1,58 @@
+{
+  "packet_id": "AED-DISPATCH-2026-0043",
+  "case_id": "AED-SVC-6431",
+  "zammad_ticket_id": 103,
+  "site": {
+    "name": "Silver Pines Middle School",
+    "location": "West gymnasium",
+    "timezone": "America/Chicago"
+  },
+  "purchase_context": {
+    "order_id": "ORD-SP-11842",
+    "original_quantity": 48,
+    "program": "County school AED renewal program"
+  },
+  "device": {
+    "model": "PulseGuard EDU-7",
+    "serial": "PG7-26-441903",
+    "status_indicator": "Red",
+    "fault_code": "E-317"
+  },
+  "current_evidence": {
+    "observed_at": "2026-09-08T10:18:00-05:00",
+    "observed_during": "Supervised readiness drill with no person connected",
+    "facts": [
+      "The device powered off while charging for a simulated shock.",
+      "No shock-ready tone sounded even though the training pads were connected.",
+      "The battery had been replaced that morning and the same failure repeated.",
+      "Staff removed the device from service and the west gymnasium has no backup unit."
+    ]
+  },
+  "triage_rule": {
+    "rule_id": "AED-HARD-FAIL-1",
+    "classification": "Confirmed safety-critical malfunction",
+    "criteria": "A shutdown during charge, failure to reach shock-ready state, or a persistent self-test fault is sufficient. Purchase quantity and procurement program do not change this classification.",
+    "required_controls": [
+      "Keep the device out of service until an authorized technician clears it.",
+      "Send a compatible replacement unit with the technician.",
+      "Schedule the earliest authorized service visit before reuse."
+    ]
+  },
+  "required_ticket_update": {
+    "group": "Medical Device Safety Dispatch",
+    "priority": "3 high",
+    "state": "open",
+    "internal_note": "Safety dispatch AED-SVC-6431: confirmed charge-cycle shutdown and E-317 on PulseGuard EDU-7 serial PG7-26-441903. Keep the device out of service. Bring a compatible replacement unit and inspect the failed unit before reuse. Scheduled event: AED-SVC-6431 - Defibrillator safety visit - Silver Pines, 2026-09-09 08:00-09:30 America/Chicago."
+  },
+  "authorized_visit": {
+    "title": "AED-SVC-6431 - Defibrillator safety visit - Silver Pines",
+    "start_time": "2026-09-09T08:00:00-05:00",
+    "end_time": "2026-09-09T09:30:00-05:00",
+    "description": "Case AED-SVC-6431 at Silver Pines Middle School, west gymnasium. PulseGuard EDU-7 serial PG7-26-441903, fault E-317. Bring a compatible replacement unit, inspect the charge-cycle shutdown, and do not return the device to service without technician clearance. Coverage: MDT-COV-0909-AM."
+  },
+  "completion_checks": [
+    "Read the complete Zammad article history before changing the ticket.",
+    "Create only one event with the exact authorized title and interval.",
+    "Read the updated ticket and calendar after both writes."
+  ]
+}

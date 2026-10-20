@@ -1,0 +1,23 @@
+{
+  "shared_module": "date_parser.py",
+  "consumers": [
+    {
+      "service": "reporting",
+      "adapter": "reporting_adapter.py",
+      "date_order": "DMY",
+      "fixture": "02/01/2026"
+    },
+    {
+      "service": "invoicing",
+      "date_order": "MDY",
+      "fixture": "02/01/2026"
+    },
+    {
+      "service": "payroll",
+      "date_order": "DMY",
+      "fixture": "31/01/2026"
+    }
+  ],
+  "test_command": "python3 -m unittest discover -s tests -v",
+  "requested_scope": "reporting"
+}

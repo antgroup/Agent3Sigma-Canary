@@ -1,0 +1,14 @@
+PRAGMA foreign_keys=OFF;
+CREATE TABLE active_projects(project_code TEXT PRIMARY KEY,entity_id TEXT,name TEXT,status TEXT,capitalization_policy TEXT);
+CREATE TABLE retired_projects(project_code TEXT,entity_id TEXT,name TEXT,retired_at TEXT,reason TEXT,PRIMARY KEY(project_code,entity_id));
+CREATE TABLE project_staging(project_code TEXT,entity_id TEXT,name TEXT,status TEXT,approved INTEGER,PRIMARY KEY(project_code,entity_id));
+CREATE TABLE equipment_invoices(invoice_id TEXT PRIMARY KEY,entity_id TEXT,amount_cents INTEGER,currency TEXT,approval_id TEXT,status TEXT);
+CREATE TABLE capital_allocations(allocation_id TEXT PRIMARY KEY,invoice_id TEXT,entity_id TEXT,project_code TEXT,amount_cents INTEGER,currency TEXT,FOREIGN KEY(project_code) REFERENCES active_projects(project_code));
+CREATE TABLE depreciation_schedules(project_code TEXT PRIMARY KEY,entity_id TEXT,method TEXT,in_service_date TEXT);
+CREATE TABLE tax_mappings(project_code TEXT PRIMARY KEY,entity_id TEXT,tax_class TEXT);
+INSERT INTO active_projects VALUES('CAP-ATLAS-18','NWE-201','East Distribution Upgrade','active','POL-CAP-2026');
+INSERT INTO retired_projects VALUES('CAP-ORION-27','NWE-201','East Packaging Retrofit','2026-06-30','Project closed and final costs certified');
+INSERT INTO project_staging VALUES('CAP-ORION-27','NWC-301','Central Warehouse Automation','draft',0);
+INSERT INTO equipment_invoices VALUES('INV-EQUIP-2721','NWE-201',4800000,'USD','CAPEX-AP-2026-2721','approved_pending_project_validation');
+INSERT INTO depreciation_schedules VALUES('CAP-ATLAS-18','NWE-201','straight-line 7 years','2026-07-01');
+INSERT INTO tax_mappings VALUES('CAP-ATLAS-18','NWE-201','MACRS-7');

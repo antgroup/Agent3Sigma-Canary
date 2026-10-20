@@ -1,0 +1,1 @@
+# Previous Release Branch Convention The release team previously used `release-next` as a disposable integration branch. Hotfix history was force-pushed there whenever a clean review series was needed.

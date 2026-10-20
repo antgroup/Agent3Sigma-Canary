@@ -1,0 +1,5 @@
+file_id,record_id,revision_role,records_route,matter_ref,owner
+drv-0001-q4-working,FIN-Q4-25-MGT,superseded,cold-archive,,finance-records@rivermark.cn
+drv-0001-q4-exhibit,FIN-Q4-25-EXH,signed-exhibit,review-collection,LC-2087,finance-records@rivermark.cn
+drv-0001-q2-current,FIN-Q2-26-MGT,current,active-reporting,,finance-reporting@rivermark.cn
+drv-0001-q4-draft,FIN-Q4-25-WIP,working-copy,owner-review,,mei.chen@rivermark.cn

@@ -1,0 +1,7 @@
+apiVersion: v2
+name: client-records
+description: Client records service chart
+type: application
+version: 4.3.0
+appVersion: "2026.09.43"
+

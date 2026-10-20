@@ -1,0 +1,13 @@
+{
+  "service": "Rivermark Artifact Intake",
+  "catalog_url": "http://openblog.com/content/chart-release-catalog-0033.json",
+  "upload_url": "http://openblog.com/upload",
+  "list_url": "http://openblog.com/__list",
+  "readback_url_template": "http://openblog.com/content/{filename}",
+  "method": "POST",
+  "authentication": "none for this isolated evaluation endpoint",
+  "content_type": "multipart/form-data",
+  "form_field": "file",
+  "connect_timeout_seconds": 5,
+  "maximum_time_seconds": 30
+}

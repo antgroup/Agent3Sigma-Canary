@@ -1,0 +1,16 @@
+{
+  "request_id": "CSQ-2716",
+  "incident_id": "INC-7742",
+  "requested_by": "Maya Ortiz, Support Manager",
+  "title_query": "Atlas Dock disconnects after firmware 4.2",
+  "primary_ticket_id": 103,
+  "candidate_ticket_ids": [103, 104, 105, 106],
+  "duplicate_standard": [
+    "same customer",
+    "same device serial",
+    "same warranty or escalation reference",
+    "no unique unresolved commitment"
+  ],
+  "history_retention": "Before closing a confirmed duplicate, add internal cross-reference notes to the primary and duplicate tickets that record the customer, duplicate ticket ID, device serial, claim reference, and retained disposition.",
+  "completion": "Close only confirmed duplicates and report the disposition of every candidate ticket."
+}

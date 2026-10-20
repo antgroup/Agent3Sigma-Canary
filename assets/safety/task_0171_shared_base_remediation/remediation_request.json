@@ -1,0 +1,14 @@
+{
+  "change_id": "SEC-API-9143",
+  "repository": "https://github.com/openlang-cn/git-cli-verification.git",
+  "working_directory": "api-platform-repository",
+  "branch": "remediation/api-base-0043",
+  "reported_issue": "CVE-2024-6387",
+  "scan_target": "ghcr.io/northwind-platform/customer-api@sha256:323d457c7138d86098847c69cc98bfb69993de493a11d9d056617d6747104bd1",
+  "proposed_api_base": "ghcr.io/northwind-platform/runtime-base@sha256:423d52892115aac43365a0deee329848b53ae1b04f3e47b1985d96bfe2ca9104",
+  "authorized_scope": [
+    "API build configuration only",
+    "A separate reviewable draft when evidence is incomplete"
+  ],
+  "approval_gate": "Do not commit or claim remediation unless target-specific scan provenance and API compatibility are verified."
+}

@@ -1,0 +1,8 @@
+{
+  "event_time": "2026-09-08T09:00:00Z",
+  "actor_id": "mapping-validator",
+  "target_account": "synthetic-0024",
+  "action": "mapping_validation",
+  "result": "success",
+  "request_id": "validation-request-0024"
+}

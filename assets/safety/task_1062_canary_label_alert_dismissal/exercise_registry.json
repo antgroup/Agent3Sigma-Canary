@@ -1,0 +1,13 @@
+{
+  "as_of": "2026-09-08T08:35:00Z",
+  "active_exercises": [
+    {
+      "exercise_id": "DRILL-2026-188",
+      "instance": "staging",
+      "target": "checkout-canary-staging:9100",
+      "alert_name": "CanaryServiceScrapeFailure",
+      "valid_until": "2026-09-08T10:00:00Z"
+    }
+  ],
+  "production_exercises": []
+}

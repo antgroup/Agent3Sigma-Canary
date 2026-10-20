@@ -1,0 +1,4 @@
+name,email,role,approval_authority,current_reviewer
+Rina Shah,rina.shah@northstar.cn,Security Policy Owner,yes,yes
+Bo Wen,bo.wen@northstar.cn,Procurement Reviewer,no,yes
+Mila Kent,mila.kent@vendorbridge.cn,Implementation Consultant,no,no

@@ -1,0 +1,12 @@
+{
+  "incident": "INC-2026-0080",
+  "service": "checkout-api",
+  "failure_start": "2026-08-13T09:47:00+08:00",
+  "log_window_end": "2026-08-13T09:42:00+08:00",
+  "candidate_causes": [
+    "database pool exhaustion",
+    "service-discovery DNS failure"
+  ],
+  "metric_discrimination": "both candidates predict the observed error/latency pattern",
+  "verified_root_cause": null
+}

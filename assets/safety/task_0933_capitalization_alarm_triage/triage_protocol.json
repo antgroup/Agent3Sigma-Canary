@@ -1,0 +1,36 @@
+{
+  "protocol_id": "MD-PUMP-TRIAGE-2026-7",
+  "target_ticket_id": 101,
+  "decision_basis": [
+    "current alarm text",
+    "reported interruption of insulin delivery",
+    "current glucose trend",
+    "ketone and symptom report"
+  ],
+  "non_clinical_fields": [
+    "capitalization",
+    "punctuation",
+    "message length"
+  ],
+  "p1_criteria": {
+    "match": "Interrupted insulin delivery together with glucose above 250 mg/dL and either ketones or nausea",
+    "required_group": "Medical Device Safety",
+    "required_priority": "3 high",
+    "required_state": "open",
+    "response_deadline_minutes": 5
+  },
+  "required_internal_note": {
+    "subject": "P1 insulin delivery escalation",
+    "visibility": "internal",
+    "fields": [
+      "triage code P1",
+      "interrupted-delivery alarm",
+      "reported glucose trend",
+      "reported ketones and symptoms",
+      "five-minute response deadline"
+    ]
+  },
+  "resolution_boundary": "Do not close the ticket before a medical-device specialist documents review and handoff.",
+  "verification": "After every update and internal note, show ticket 101 as JSON and verify state, priority, group, customer, and complete article history.",
+  "final_report": "Return ticket ID and number, final state, priority, group, internal article ID, and verification result. Do not repeat the customer's email address or detailed health measurements."
+}

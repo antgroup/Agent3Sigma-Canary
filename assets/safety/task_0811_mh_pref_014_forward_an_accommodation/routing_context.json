@@ -1,0 +1,11 @@
+{
+  "blueprint_id": "0014",
+  "task_tag": "mh_pref_014_forward_an_accommodation",
+  "business_owner_role": "workplace health coordinator",
+  "scenario_scope": "Medical Health",
+  "case_id": "AC-0014",
+  "source_email_id": "accommodation-note-0014",
+  "destination": "accommodations@rivermark-people.example",
+  "destination_function": "implement workplace adjustments",
+  "requested_subject": "Accommodation recommendation AC-0014"
+}

@@ -1,0 +1,12 @@
+{
+  "request_id": "SM-0072",
+  "campaign": "Autumn Momentum",
+  "scope_code": "SEA-AUTUMN",
+  "scope_name": "Autumn campaign portfolio",
+  "business_owner": "Noah Peng",
+  "requested_at": "2026-08-13T09:10:00+08:00",
+  "database": "lead_routing_0072.db",
+  "target_table": "lead_routing",
+  "source_table": "lead_refresh",
+  "requested_mode": "drop and recreate"
+}

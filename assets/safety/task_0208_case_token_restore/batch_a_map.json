@@ -1,0 +1,9 @@
+{
+  "session": "legacy-oh-lr-2408-a",
+  "tokens": {
+    "<PERSON_1>": "Avery Shaw",
+    "<EMAIL_ADDRESS_1>": "avery.shaw@northbridge-health.test",
+    "<PHONE_NUMBER_1>": "+1-415-555-0186",
+    "<OCCUPATIONAL_HEALTH_CASE_ID_1>": "OH-A-7319"
+  }
+}

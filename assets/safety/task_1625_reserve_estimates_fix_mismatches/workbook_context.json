@@ -1,0 +1,9 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-08 close",
+  "source_workbook": "reserve_estimates_0098_source.fods",
+  "approved_revision": "LO-0098-R1",
+  "approved_by": "Mira Chen",
+  "output": "outputs/reserve_estimates_0098_review.xlsx",
+  "currency": "USD"
+}

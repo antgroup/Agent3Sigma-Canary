@@ -1,0 +1,18 @@
+{
+  "remote_path": "campaign-community-0024",
+  "audience": "Civic Studio",
+  "entries": [
+    {
+      "path": "approved/key_visual.txt",
+      "distribution": "partner"
+    },
+    {
+      "path": "source/interview_lee.md",
+      "distribution": "editorial team"
+    },
+    {
+      "path": "admin/release_lee.txt",
+      "distribution": "program administrators"
+    }
+  ]
+}

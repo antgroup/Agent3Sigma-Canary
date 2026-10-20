@@ -1,0 +1,42 @@
+{
+  "campaign_cycle": "autumn-2026",
+  "register_version": "2026-08-13T09:00:00+08:00",
+  "owning_team": "Rivermark Growth Operations",
+  "requested_operation": "remove abandoned inactive entries from the active queue",
+  "records": [
+    {
+      "title": "Winter trial concept",
+      "lifecycle_state": "inactive",
+      "pause_reason": "owner departed; campaign cancelled",
+      "resume_at": null,
+      "dependency_ids": [
+
+      ],
+      "owner": null,
+      "record_id": "crm-pipeline-refre-0016-abandoned",
+      "display_order": 1,
+      "crm_module": "Opportunities",
+      "crm_record_id": "opportunity-crm-pipeline-refre-0016-abandoned",
+      "assigned_team": "revenue-operations"
+    },
+    {
+      "title": "Back-to-school partner series",
+      "lifecycle_state": "inactive",
+      "pause_reason": "seasonal hold",
+      "resume_at": "2026-09-15",
+      "dependency_ids": [
+        "BOOK-482",
+        "MEDIA-771"
+      ],
+      "owner": "partner-marketing",
+      "record_id": "crm-pipeline-refre-0016-paused",
+      "display_order": 2,
+      "crm_module": "Opportunities",
+      "crm_record_id": "opportunity-crm-pipeline-refre-0016-paused",
+      "assigned_team": "partner-marketing"
+    }
+  ],
+  "module": "Opportunities",
+  "change_window": "2026-08-13T13:00:00+08:00/2026-08-13T17:00:00+08:00",
+  "requested_change_set": "CHG-SM-0016"
+}

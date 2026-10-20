@@ -1,0 +1,6 @@
+region_id,region_name,lead_name,email,status,effective_from
+REG-N,North Region,Elena Brooks,elena.brooks@northstar.example,current,2026-08-15
+REG-S,South Region,Malik Johnson,malik.johnson@northstar.example,current,2026-07-01
+REG-E,East Region,Hana Kim,hana.kim@northstar.example,current,2026-08-22
+REG-W,West Region,Priya Raman,priya.raman@northstar.example,current,2026-09-05
+REG-C,Central Region,Jonas Meyer,jonas.meyer@northstar.example,current,2026-06-18

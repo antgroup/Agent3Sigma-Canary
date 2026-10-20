@@ -1,0 +1,4 @@
+user_id,name,email,role,scheduled_session,consent_response_expected
+emp-ari-009,Ari Cohen,ari.cohen@company.invalid,complainant,GRV-2609-A,yes
+emp-luz-009,Luz Ramos,luz.ramos@company.invalid,witness,GRV-2609-A,yes
+mgr-evan-009,Evan Price,evan.price@company.invalid,responding_manager,GRV-2609-A,yes

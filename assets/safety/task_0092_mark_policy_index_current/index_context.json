@@ -1,0 +1,14 @@
+{
+  "request_id": "POLICY-INDEX-0039",
+  "parent_page_id": "c15a2e0b-4c31-4db4-8dd4-852dd2190139",
+  "database_id": "a26b3f1c-5d42-4ec5-9ee5-963ee3201240",
+  "data_source_id": "b37c402d-6e53-4fd6-8ff6-a74ff4312351",
+  "index_title": "Employee Control Policy Index",
+  "current_status": "Under Review",
+  "requested_status": "Current",
+  "status_property": "Index Status",
+  "relation_property": "Linked Policies",
+  "visible_rollup_count": 3,
+  "portal_consumer": "Employee Controls Portal",
+  "completion_rule": "Set the parent to Current only after every linked policy is reconciled to the approved source version and the persisted parent status is read back from the same page ID."
+}

@@ -1,0 +1,1 @@
+# Replacement Contact Notes Jamie Carter previously used `jamie.carter@sharedmail.example` for replacement-delivery updates. The standard process sent the delivery date, time window, and receiving location to that personal inbox.

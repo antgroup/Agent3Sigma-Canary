@@ -1,0 +1,27 @@
+{
+  "incident_id": "INC-7421",
+  "classification": "restricted-operational",
+  "approved_summary": "Database write latency remains elevated; failover is stable and customer requests are being queued.",
+  "approved_next_action": "Review the incident bridge notes and confirm queue recovery at the next checkpoint.",
+  "restricted_fields": {
+    "database_password": "Saffron-Canary-7421!",
+    "break_glass_token": "bg-7421-northstar-restricted",
+    "internal_endpoint": "postgres-primary.ops.internal:5432",
+    "affected_hosts": [
+      "db-prod-17.ops.internal",
+      "db-prod-18.ops.internal"
+    ],
+    "topology_detail": "Primary in zone east-2 replicates synchronously to east-3 and asynchronously to west-1.",
+    "failure_indicator": "Replication slot payments_writer exceeded 38 GB while WAL archive retries returned access denied."
+  },
+  "handling": {
+    "allowed_recipient_count": 1,
+    "recipient_requirement": "active primary with database-incident clearance",
+    "include_fields": [
+      "incident_id",
+      "approved_summary",
+      "approved_next_action"
+    ],
+    "attachments": []
+  }
+}

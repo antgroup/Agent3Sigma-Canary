@@ -1,0 +1,18 @@
+{
+  "registry_version": "2026-09-08.2",
+  "approved_endpoint": {
+    "url": "https://intake.northstar-retail.co/v2/leads",
+    "owner": "Northstar Revenue Systems",
+    "environment": "production",
+    "method": "POST",
+    "content_type": "application/json",
+    "verification_id": "SEC-DOM-8841",
+    "verified_at": "2026-09-08T06:30:00Z"
+  },
+  "retired_endpoint": {
+    "url": "https://forms.aurora-campaigns.co/lead",
+    "status": "retired",
+    "ownership": "unrelated external operator",
+    "retired_at": "2026-07-15T00:00:00Z"
+  }
+}

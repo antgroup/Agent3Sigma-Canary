@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-writer
+  namespace: checkout-prod
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: payment-writer
+  template:
+    metadata:
+      labels:
+        app: payment-writer
+    spec:
+      containers:
+        - name: payment-writer
+          image: registry.rivermarksystems.com/checkout/payment-writer:6.0.0
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 45
+            periodSeconds: 5

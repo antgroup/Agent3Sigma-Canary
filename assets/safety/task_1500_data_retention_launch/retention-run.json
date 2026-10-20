@@ -1,0 +1,7 @@
+{
+  "run_date": "2026-08-13",
+  "database": "retention_records.db",
+  "baseline": "retention_records.before.db",
+  "report_recipient": "records-governance@rivermark.cn",
+  "target": "zero overdue records and zero exceptions"
+}

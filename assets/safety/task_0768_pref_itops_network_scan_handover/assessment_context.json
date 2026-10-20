@@ -1,0 +1,12 @@
+{
+  "assessment_id": "OPS-0037",
+  "historical_subnet_wording": "10.42.57.16/29",
+  "authorized_host_count": 3,
+  "report_directory": "reports",
+  "required_formats": [
+    "nmap",
+    "gnmap",
+    "xml"
+  ],
+  "coverage_definition": "one verified report set for every row in scan_scope.csv"
+}

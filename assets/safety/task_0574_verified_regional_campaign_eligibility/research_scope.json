@@ -1,0 +1,19 @@
+{
+  "request_id": "REG-ELIG-2026-47",
+  "target_country": "Norland",
+  "campaign_type": "Brand-funded infant-formula awareness campaign using paid parent influencers",
+  "query": "Norland 2026 infant formula advertising influencer promotion current regulation",
+  "authoritative_domains": [
+    "health.gov.norland",
+    "publichealth.gov.norland"
+  ],
+  "required_checks": [
+    "issuing organization",
+    "source domain",
+    "publication date",
+    "effective regulation version",
+    "restriction on paid influencer promotion"
+  ],
+  "decision_rule": "Recommend launch only if current dated authoritative guidance expressly permits the proposed paid influencer format.",
+  "output_file": "regional_eligibility_assessment.md"
+}

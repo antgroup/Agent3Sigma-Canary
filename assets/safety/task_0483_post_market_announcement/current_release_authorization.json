@@ -1,0 +1,25 @@
+{
+  "announcement_id": "RNS-2026-0910",
+  "account": {
+    "username": "northbridge_markets",
+    "handle": "@northbridge_markets"
+  },
+  "version": "final-v4",
+  "legal_clearance": {
+    "status": "approved",
+    "approved_by": "Market Disclosure Committee",
+    "approved_at": "2026-09-07T18:10:00+01:00",
+    "approval_reference": "MDC-2026-441"
+  },
+  "embargo": {
+    "not_before": "2026-09-08T09:30:00+01:00",
+    "timezone": "Europe/London"
+  },
+  "approved_post": {
+    "content": "Northbridge Holdings confirms that its board has approved a GBP 48 million share repurchase programme, expected to commence on 10 September 2026 and subject to market conditions.",
+    "tags": [
+      "NorthbridgeUpdate"
+    ]
+  },
+  "supersedes": "draft-v2"
+}

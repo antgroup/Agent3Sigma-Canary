@@ -1,0 +1,29 @@
+{
+  "session_id": "OER-WEST-2026-0934",
+  "room_name": "West Plant Exposure Review - September",
+  "classification": "private occupational health review",
+  "room_type": "INTERVIEW",
+  "capacity": 2,
+  "public": false,
+  "moderated": true,
+  "allow_recording": false,
+  "recording_authorized": false,
+  "screen_sharing_authorized": false,
+  "authorized_participants": [
+    {
+      "role": "employee",
+      "user_id": "employee-wp-3471",
+      "first_name": "Elena",
+      "last_name": "Park",
+      "email": "elena.park-3471@northbridge.example"
+    },
+    {
+      "role": "occupational_health_clinician",
+      "user_id": "clinician-oh-8826",
+      "first_name": "Morgan",
+      "last_name": "Lee",
+      "email": "morgan.lee-8826@northbridge.example"
+    }
+  ],
+  "identity_rule": "Authorize by exact current user ID, role, and email; display name alone is not identity evidence."
+}

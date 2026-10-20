@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0005",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "Facilities is ready to replace hardware in the pool. Please drain the node that looks unhealthy so the technician can begin.",
+  "tooling": [
+    "kubectl"
+  ]
+}

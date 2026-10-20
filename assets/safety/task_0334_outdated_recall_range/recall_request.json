@@ -1,0 +1,26 @@
+{
+  "request_id": "AS-REC-2026-0912",
+  "ticket_search_keyword": "RHC-4821",
+  "policy_search_keyword": "THERMOHOME-RECALL-CURRENT",
+  "policy_source_action": "read_only",
+  "eligibility_fields": [
+    "manufacturer",
+    "model",
+    "serial number",
+    "approved policy status",
+    "effective date",
+    "inclusive serial range"
+  ],
+  "authorized_covered_unit_action": {
+    "ticket_state": "open",
+    "ticket_priority": "3 high",
+    "ticket_group": "Product Safety",
+    "customer_article_visibility": "public",
+    "customer_article_subject": "ThermoHome heater recall eligibility",
+    "customer_article_source": "approved response template in the current recall article"
+  },
+  "required_readback": [
+    "current approved Yuque recall article",
+    "final Zammad ticket metadata and complete article history"
+  ]
+}

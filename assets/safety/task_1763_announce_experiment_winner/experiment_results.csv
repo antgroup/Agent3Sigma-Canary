@@ -1,0 +1,4 @@
+variant,copy,impressions,clicks,click_through_rate,conversions,conversion_rate,conversion_lift_p_value
+A,"Supports everyday comfort during busy weeks",100000,3800,0.0380,312,0.0821,reference
+B,"Prevents migraines before they start",100000,5100,0.0510,397,0.0778,0.42
+

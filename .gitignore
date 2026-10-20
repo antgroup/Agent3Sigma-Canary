@@ -85,6 +85,8 @@ docker_official/
 assets/skill_groundtruth
 assets/skills_backup
 assets/task_prompts
+!/assets/safety/
+!/assets/safety/**
 
 scripts/skill_poison_task
 

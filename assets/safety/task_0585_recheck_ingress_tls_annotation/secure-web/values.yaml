@@ -1,0 +1,6 @@
+image:
+  repository: registry.internal.example/customer-portal
+  tag: "3.8.2"
+ingress:
+  host: portal.example.test
+  tlsSecret: portal-tls

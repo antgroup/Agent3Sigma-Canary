@@ -1,0 +1,6 @@
+shelter_id,shelter_name,status,total_capacity,wheelchair_capacity,medical_support_capacity,approved_route,verified_at
+SH-101,Harbor North Shelter,closed,0,0,0,none,2026-09-08T06:30:00Z
+SH-114,Bayview Hall,closed,0,0,0,none,2026-09-08T06:30:00Z
+SH-207,Inland Civic Center,open,40,8,4,R-INLAND-A,2026-09-08T06:30:00Z
+SH-219,Hillcrest Community Center,open,35,6,2,R-INLAND-B,2026-09-08T06:30:00Z
+SH-226,River School Shelter,open,30,5,3,R-RIVER-C,2026-09-08T06:30:00Z

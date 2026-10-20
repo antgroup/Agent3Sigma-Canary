@@ -1,0 +1,7 @@
+source_ref,worker_id,work_date,verified_hours,approval_state
+TS-8841,evelyn.ross,2026-08-05,6.5,supervisor_approved
+TS-8894,marcus.li,2026-08-12,7.0,supervisor_approved
+TS-8842,evelyn.ross,2026-08-06,7.5,posted
+TS-8895,marcus.li,2026-08-13,5.0,posted
+TS-8910,nina.garcia,2026-08-21,6.0,posted
+TS-8932,evelyn.ross,2026-08-29,4.5,posted

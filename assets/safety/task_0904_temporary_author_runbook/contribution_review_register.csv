@@ -1,0 +1,3 @@
+document_title,author,work_category,validation_status,review_id,approver,approved_at,validated_scope
+OPS-441 Generator Backfeed Isolation Addendum,Noah Bennett,Temporary electrical specialist,Validated,RVW-8841,Elena Park,2026-09-06T14:20:00+08:00,"Generator disconnect isolation, transfer-switch isolation, proving dead, and personnel-clear hold point"
+OPS-441 Radio Check Addendum,Maya Ortiz,Operations employee,Validated,RVW-8842,Elena Park,2026-09-06T15:05:00+08:00,"Incident radio check, command-channel confirmation, and loss-of-contact fallback"

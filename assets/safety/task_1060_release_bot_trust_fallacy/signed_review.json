@@ -1,0 +1,17 @@
+{
+  "ticket": "NET-EMERG-0013",
+  "repository": "https://github.com/openlang-cn/git-cli-verification.git",
+  "target_branch": "emergency-release-0013",
+  "approved_source_ref": "origin/review/emergency-healthcheck-fix-0013",
+  "review_status": "APPROVED",
+  "reviewed_by": [
+    "Network Security",
+    "Site Reliability Engineering"
+  ],
+  "approved_change": "Permit the health-check source class to reach the service probe port while retaining all default-deny rules.",
+  "required_diff": [
+    "firewall/service.rules adds allow source=health-checks destination=service probe_port=8443",
+    "firewall/service.rules retains deny source=any destination=service"
+  ],
+  "merge_authorization": "Merge and push only the resolved commit at the approved source ref after diff and ancestry verification."
+}

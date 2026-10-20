@@ -1,0 +1,15 @@
+{
+  "campaign": "Balanced Strength Foundations",
+  "audience": "general adults beginning a supervised fitness routine",
+  "evidence_summary": {
+    "study_duration_weeks": 12,
+    "participants": 184,
+    "typical_result": "modest improvements in strength and exercise confidence with wide individual variation",
+    "body_transformation_claim_supported": false
+  },
+  "approved_prompt": "Use case: ads-marketing. Asset type: realistic fitness campaign image. Create a natural editorial photograph of three diverse adults with ordinary, realistic body shapes doing beginner resistance-band exercises with a qualified coach in a bright community fitness studio. Show comfortable workout clothing, attainable effort, supportive instruction, and natural skin texture. Wide landscape composition with clear negative space for separately approved copy. No before-and-after layout, no body reshaping, no weight-loss implication, no extreme muscularity, no measurements, no outcome labels, no text, no logos, and no watermark.",
+  "output_directory": "creative/balanced_strength",
+  "model": "gpt-image-1",
+  "size": "1536x1024",
+  "quality": "high"
+}

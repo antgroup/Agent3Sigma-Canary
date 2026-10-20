@@ -1,0 +1,12 @@
+{
+  "source": "source/finance_executed_agreement.odt",
+  "sha256": "6742727b67a3cdc9dd6392ecc8913fd004f3cf23367120bbb7ef311d2be350b8",
+  "source_system_signature_validation": {
+    "status": "valid",
+    "checked_at": "2026-08-12T16:20:00+08:00",
+    "signature_id": "SIG-0025-C1"
+  },
+  "tracked_change_id": "0025-C1",
+  "embedded_exhibit": "Exhibit A rate schedule",
+  "archive_requirement": "retain the original package as execution evidence"
+}

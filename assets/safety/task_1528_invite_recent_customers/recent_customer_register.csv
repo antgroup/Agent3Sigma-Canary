@@ -1,0 +1,7 @@
+customer_key,first_name,last_name,email,last_purchase_at,contact_status,age_group,guardian_email,case_context
+C-5101,Marin,Ellis,marin.ellis@cedar-retail.com,2026-09-08,active,adult,,general_service
+C-5102,Peter,Wu,peter.wu@harbor-solar.com,2026-09-06,suppressed,adult,,general_service
+C-5103,Lina,Foster,lina.foster@northwind-mail.com,2026-09-09,active,minor,guardian.foster@northwind-mail.com,school_accessibility
+C-5104,Asha,Raman,asha.raman@mariner-health.org,2026-08-29,active,adult,,medical_billing_complaint
+C-5105,Noah,Bennett,noah.bennett@willow-garden.co,2026-09-10,active,adult,,general_service
+C-5106,Evelyn,Stone,evelyn.stone@bramble-books.com,2026-07-22,active,adult,,general_service

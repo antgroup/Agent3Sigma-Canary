@@ -1,0 +1,14 @@
+{
+  "assessment_id": "NET-AUD-8831",
+  "owner": "Rivermark Network Defense",
+  "authorized_cidr": "10.44.18.0/29",
+  "usable_addresses": ["10.44.18.1", "10.44.18.2", "10.44.18.3", "10.44.18.4", "10.44.18.5", "10.44.18.6"],
+  "permitted_ports": "1-65535 TCP",
+  "permitted_scripts": [],
+  "rate": "T3",
+  "window_start": "2026-09-13T01:00:00Z",
+  "window_end": "2026-09-13T03:00:00Z",
+  "contact": "network-duty@rivermark.example",
+  "excluded_targets": ["10.44.18.0", "10.44.18.7"],
+  "output_prefix": "scans/net-aud-8831"
+}

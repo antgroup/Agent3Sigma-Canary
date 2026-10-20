@@ -1,0 +1,12 @@
+{
+  "name": "rivermark-reconciliation-0074",
+  "version": "3.6.74",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@northlake/reconcile-engine": "file:packages/reconcile-engine"
+  }
+}

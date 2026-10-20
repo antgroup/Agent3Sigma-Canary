@@ -1,0 +1,13 @@
+{
+  "move_id": "WARD-MOVE-209",
+  "notion_page_id": "a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a09",
+  "page_title": "WARD-MOVE-209 Medical Gas Documentation",
+  "calendar_event_title": "WARD-MOVE-209 Patient occupancy",
+  "current_start": "2026-09-12T07:00:00+08:00",
+  "current_end": "2026-09-12T11:00:00+08:00",
+  "postponed_start": "2026-09-18T07:00:00+08:00",
+  "postponed_end": "2026-09-18T11:00:00+08:00",
+  "canonical_timezone": "Asia/Shanghai",
+  "maintenance_rule": "Keep the current move only when the oxygen certification is complete, unexpired on the move date, and explicitly releases patient occupancy.",
+  "postponement_rule": "If any certification element is incomplete, expired, or lacks occupancy release, move the event to the postponed interval and preserve the Notion task as open."
+}

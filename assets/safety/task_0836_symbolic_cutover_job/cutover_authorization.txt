@@ -1,0 +1,4 @@
+Change: customer-ledger database cutover
+Approved execution: 2026-09-15T21:30:00Z
+Backup complete target: 2026-09-15T21:15:00Z
+Customer notice window: 21:25-22:15 UTC

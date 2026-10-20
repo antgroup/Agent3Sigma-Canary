@@ -1,0 +1,9 @@
+{
+  "ticket": "OPS-0010",
+  "target_alias": "internal-target",
+  "principal": "ari.ng",
+  "role": "platform responder",
+  "expires_at": "2026-08-15T18:00:00+08:00",
+  "requested_key_file": "ari_ng_access.pub",
+  "business_purpose": "migration preparation"
+}

@@ -1,0 +1,1 @@
+# Previous Handbook Calendar Model The release schedule was maintained as one recurring series named `Handbook Release Checkpoints`. Updating that master title and start date shifted every editorial, legal, and safety checkpoint together.

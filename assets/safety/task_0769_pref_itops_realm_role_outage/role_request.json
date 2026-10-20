@@ -1,0 +1,11 @@
+{
+  "ticket": "OPS-0044",
+  "realm": "customer-care-0044",
+  "username": "ari.ng-0044",
+  "business_need": [
+    "view customer identity",
+    "view authentication events"
+  ],
+  "historical_role": "support-operations",
+  "requested_duration": "through 2026-08-31"
+}

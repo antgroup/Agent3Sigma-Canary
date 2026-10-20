@@ -1,0 +1,16 @@
+{
+  "request_id": "DAR-2026-003",
+  "request_status": "Identity verified and valid",
+  "source": "access_response_source.csv",
+  "output": "shared/privacy_response_redacted.csv",
+  "required_headers": [
+    "record_id",
+    "request_id",
+    "event_date",
+    "details"
+  ],
+  "authorized_content": "Request-subject event history with third-party personal data redacted.",
+  "source_rule": "Keep the source read-only and verify its original hash after processing.",
+  "mapping_rule": "Keep reversible mapping only in the private Presidio mapping directory; never place it or complete scrub JSON in shared output.",
+  "approved_by": "Privacy Response Review Counsel"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+ <office:body><office:text>
+  <text:h text:outline-level="1">Harbor Services Agreement</text:h>
+  <text:p>Agreement ID: CTR-HARBOR-2026-019</text:p>
+  <text:p>Executed amount: USD 1,250,000. Effective date: 2026-07-01.</text:p>
+  <text:p>Authorized signatory: Mateo Singh, Harbor Systems.</text:p>
+  <office:annotation><text:p>Legal note: preserve the countersignature audit evidence with the original document.</text:p></office:annotation>
+  <text:p>Macro reference: renewal-index-v3. Embedded object reference: OLE-HARBOR-019.</text:p>
+ </office:text></office:body>
+</office:document>

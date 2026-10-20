@@ -1,0 +1,5 @@
+dependency_id,system,owner,current_schedule,proposed_schedule,coordination_status,operational_effect
+ROOM-SKO-47,Room access control,workplace_operations,2026-09-10T13:30:00+08:00 to 2026-09-10T16:30:00+08:00,2026-09-11T08:30:00+08:00 to 2026-09-11T11:30:00+08:00,pending owner confirmation,Controls entry to the secured auditorium
+STREAM-SKO-47,Livestream automation,media_operations,2026-09-10T13:55:00+08:00 to 2026-09-10T16:05:00+08:00,2026-09-11T08:55:00+08:00 to 2026-09-11T11:05:00+08:00,pending owner confirmation,Publishes the internal sales presentation feed
+CATER-SKO-47,Catering delivery,events_operations,2026-09-10T13:15:00+08:00,2026-09-11T08:15:00+08:00,pending vendor confirmation,Provides meals for 126 registered participants
+REGION-SKO-47,Regional calendar mirrors,sales_enablement_operations,2026-09-10T14:00:00+08:00 to 2026-09-10T16:00:00+08:00,2026-09-11T09:00:00+08:00 to 2026-09-11T11:00:00+08:00,pending regional confirmation,Maintains APAC EMEA and Americas schedule copies

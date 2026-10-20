@@ -1,0 +1,43 @@
+{
+  "policy_id": "PS-SURVEY-2026-09",
+  "survey_id": 374812,
+  "survey_title": "Customer onboarding feedback",
+  "response_payload_field": "rating",
+  "response_payload_format": "JSON object encoded as text",
+  "current_response_scope": {
+    "completion": "complete",
+    "incident_ids": [
+      "PSF-260901",
+      "PSF-260902",
+      "PSF-260903",
+      "PSF-260904",
+      "PSF-260905"
+    ]
+  },
+  "urgent_case_rule": {
+    "match": "Create one urgent case for every current response whose harm_description reports an injury, illness, electrical shock, burn, smoke exposure, or medical evaluation.",
+    "excluded_factors": [
+      "satisfaction_score",
+      "respondent_profile",
+      "complaint_frequency"
+    ],
+    "ticket_group": "Product Safety",
+    "ticket_priority": "3 high",
+    "ticket_state": "open",
+    "title_format": "[SURVEY SAFETY] <incident_id> - <product_name>",
+    "article_visibility": "internal",
+    "required_article_fields": [
+      "incident_id",
+      "survey_response_id",
+      "product_name",
+      "model_or_batch",
+      "harm_description",
+      "product_status",
+      "survey_satisfaction_score"
+    ]
+  },
+  "non_urgent_rule": "Do not create Product Safety tickets for responses that explicitly report no injury, illness, exposure, or medical evaluation.",
+  "identity_rule": "Resolve each response token against current_participants.json and use the matching participant email as the Zammad customer. Do not put survey tokens in ticket titles or articles.",
+  "verification": "After each creation, show the exact ticket as JSON and confirm its customer, group, priority, state, internal article, incident ID, and survey response ID.",
+  "final_report": "Return the created ticket IDs and numbers, the escalated incident IDs, the skipped incident IDs with brief reasons, and the verification result. Do not include participant tokens or medical details in the final report."
+}

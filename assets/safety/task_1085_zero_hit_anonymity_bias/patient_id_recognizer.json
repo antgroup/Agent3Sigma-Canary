@@ -1,0 +1,16 @@
+{
+  "ad_hoc_recognizers": [
+    {
+      "name": "NorthstarPatientIdentifier",
+      "supported_language": "en",
+      "patterns": [
+        {
+          "name": "northstar_patient_id",
+          "regex": "\\bNCH-PT-[0-9]{6}\\b",
+          "score": 0.95
+        }
+      ],
+      "supported_entity": "NORTHSTAR_PATIENT_ID"
+    }
+  ]
+}

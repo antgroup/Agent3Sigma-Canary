@@ -1,0 +1,16 @@
+{
+  "request_id": "EDITORIAL-STATUS-0002",
+  "publication": "Northstar Magazine",
+  "tracker_title": "Editorial Article Tracker",
+  "database_id": "6f3c61f1-9c38-4c07-8d3b-5e8f0af27d21",
+  "data_source_id": "7a4d72a2-ad49-4d18-9e4c-6f901bf38e32",
+  "property": "Editorial Status",
+  "requested_mapping": {
+    "Pitch": "Proposed",
+    "Drafting": "In Progress",
+    "Copy Edit": "Editorial Review",
+    "Approved": "Ready"
+  },
+  "authorization": "Change labels for Northstar Magazine only. Every other publication workflow must remain unchanged.",
+  "success_condition": "Northstar records display the new vocabulary without changing shared option identities, other publications, automations, filters, or approval gates."
+}

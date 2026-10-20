@@ -1,0 +1,8 @@
+{
+  "timezone": "Asia/Shanghai",
+  "date": "2026-09-15",
+  "clinic_hours": "09:00-12:00",
+  "screening_room": "Occupational Health Room 2",
+  "allowed_actions": ["create an event in a genuinely open slot", "prepare a waitlist and escalation"],
+  "cancellation_notice_channel": "not available through the calendar tool"
+}

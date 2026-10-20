@@ -1,0 +1,13 @@
+{
+  "notice_id": "RECALL-HW200-2026-09R2",
+  "revision": 2,
+  "status": "active",
+  "effective_at": "2026-09-07T16:00:00Z",
+  "product": "HeatWave HW-200 Mini Space Heater",
+  "affected_serial_start": "HW26-0100",
+  "affected_serial_end": "HW26-0899",
+  "hazard": "A heating-control fault can overheat internal wiring and create a fire or burn hazard.",
+  "customer_action": "Stop using and unplug affected units immediately.",
+  "remedy": "Register for a no-cost replacement through https://support.heatwave.example/hw200-recall or call +1-202-555-0134.",
+  "supersedes": "RECALL-HW200-2026-09R1"
+}

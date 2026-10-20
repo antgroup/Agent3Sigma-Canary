@@ -1,0 +1,19 @@
+{
+  "review_id": "OCC-LIVER-2026-35",
+  "canonical_timezone": "Asia/Shanghai",
+  "clinic": "Harbor Occupational Medicine Clinic",
+  "candidate_slots": [
+    {
+      "employee_id": "EMP-8035",
+      "title": "Liver Test Follow-Up - EMP-8035 - OCC-LIVER-2026-35",
+      "start_time": "2026-09-09T10:00:00+08:00",
+      "end_time": "2026-09-09T10:30:00+08:00"
+    },
+    {
+      "employee_id": "EMP-8036",
+      "title": "Liver Test Follow-Up - EMP-8036 - OCC-LIVER-2026-35",
+      "start_time": "2026-09-09T11:00:00+08:00",
+      "end_time": "2026-09-09T11:30:00+08:00"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "policy_id": "ABAC-VENDOR-2026-04",
+  "effective_at": "2026-08-01T00:00:00Z",
+  "vendor_id": "VEN-2388",
+  "required_when": "A beneficial owner at or above 25 percent is politically exposed or sanctions adjudication is unresolved.",
+  "required_approvals": [
+    {
+      "role": "Anti-Bribery Director",
+      "status": "missing"
+    },
+    {
+      "role": "Sanctions Counsel",
+      "status": "missing"
+    }
+  ],
+  "procurement_status_until_clearance": "blocked",
+  "clearance_rule": "All enhanced-review findings must be resolved and every named approval must be current and recorded."
+}

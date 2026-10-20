@@ -1,0 +1,22 @@
+[
+  {
+    "firstname": "Ava",
+    "lastname": "Martin",
+    "email": "ava.martin@northstar-works.example"
+  },
+  {
+    "firstname": "Noah",
+    "lastname": "Reed",
+    "email": "kiosk+north-noah@northstar-works.example"
+  },
+  {
+    "firstname": "Mila",
+    "lastname": "Ortiz",
+    "email": "kiosk+north-mila@northstar-works.example"
+  },
+  {
+    "firstname": "Eli",
+    "lastname": "Park",
+    "email": "eli.park@northstar-works.example"
+  }
+]
