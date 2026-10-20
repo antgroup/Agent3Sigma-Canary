@@ -149,7 +149,7 @@ Then build evaluation images. AgentCanary supports evaluating vanilla OpenClaw, 
 
 The build script guides you through two stages:
 
-1. **Choose agent images:** for example, `codex` or `official` (OpenClaw). You can select multiple images; selecting OpenClaw also prompts for its version within this stage.
+1. **Choose agent images:** for example, `codex` or `official` (OpenClaw). You can select multiple images; all OpenClaw images use the pinned version `2026.7.1-2`.
 2. **Choose optional tools:** enter `y` to add the shared `safety_research` toolset and related skills to every selected image, or enter `n` / press Enter to keep the base toolset. The toolset uses one shared build configuration across frameworks.
 
 Build files are grouped into five framework directories under `workflow/images/`. All images share `workflow/mock-api/` and the optional `workflow/tools/` layer; OpenClaw plugins use build fragments and sources in `third_party/`.
@@ -249,7 +249,7 @@ source env.sh
 uv run python scripts/benchmark_parallel.py --workers 4 --model <provider>/<model> --suite tasks/NARA-Bench --docker
 ```
 
-**Published snapshot limitations:** input validation currently finds missing files for 1,710 tasks. Supply the original `assets/safety` fixtures before running; the runner reports missing inputs before starting evaluations. Another 53 task definitions use the unimplemented `llm_reflection` grader and remain ungraded. Missing data is not synthesized, and ungraded records are not counted as zero scores.
+**Input assets and grading limits:** the complete `assets/safety` fixtures from upstream commit `46b56c4` are included, and input validation passes for all 1,800 tasks. The runner checks for missing inputs before starting evaluations. The 53 task definitions using the unimplemented `llm_reflection` grader remain ungraded; these records are not counted as zero scores.
 
 `--trajectory-only` skips only task and Tracee judge model calls. Task preparation, agent execution, multi-session handling, transcript loading, automated checks, Tracee correlation, and normal result output remain enabled. The normal `results/` files retain the full transcript and work with the existing viewer; extra `trajectories/job_*/trajectory_*.json` files also contain the full transcript, summary, execution status, and usage. Judge scores are `null`, displayed as `N/A`. Automated tasks retain their scores; hybrid tasks retain automated breakdowns with a `null` total. PAIR remains incompatible because its search requires a judge.
 

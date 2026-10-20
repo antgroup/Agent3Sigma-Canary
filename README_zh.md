@@ -143,7 +143,7 @@ cd ..
 
 运行构建脚本后，按两个阶段选择：
 
-1. **选择 Agent 镜像**：例如 `codex` 或 `official`（OpenClaw），支持多选；选中 OpenClaw 时，在这个阶段继续选择版本。
+1. **选择 Agent 镜像**：例如 `codex` 或 `official`（OpenClaw），支持多选；所有 OpenClaw 镜像统一使用固定版本 `2026.7.1-2`。
 2. **选择是否添加工具集**：输入 `y`，为本次所有选中的镜像添加共享的 `safety_research` 工具集及相关技能；输入 `n` 或直接回车，使用基础工具环境。工具集复用同一份构建配置，不需要为每个框架单独维护研究镜像目录。
 
 构建文件按框架收敛为 `workflow/images/` 下的 5 个目录。所有镜像共用 `workflow/mock-api/` 和可选的 `workflow/tools/` 工具层；OpenClaw 插件通过构建片段组合，源码统一放在 `third_party/`。
@@ -243,7 +243,7 @@ source env.sh
 uv run python scripts/benchmark_parallel.py --workers 4 --model <provider>/<model> --suite tasks/NARA-Bench --docker
 ```
 
-**公开快照存在资源缺口：**当前任务输入预检发现 1,710 个任务缺少输入文件，需要补充原始 `assets/safety` 数据；运行器会在启动评测前报错。53 个任务使用尚未实现的 `llm_reflection`，会保留为未评分结果。没有用生成内容代替缺失数据，也没有把未评分结果当作零分。
+**输入资源与评分限制：**已包含上游提交 `46b56c4` 的完整 `assets/safety` 资源，1,800 个任务全部通过输入预检；运行器会在启动评测前检查输入是否缺失。53 个任务使用尚未实现的 `llm_reflection`，会保留为未评分结果，不会当作零分统计。
 
 `--trajectory-only` 仅跳过任务 Judge 和 Tracee Judge 的模型调用。任务准备、Agent 执行、多轮会话、轨迹读取、自动检查、Tracee 关联和正常结果输出均保留。原有 `results/` 结果可照常查看完整 transcript；额外的 `trajectories/job_*/trajectory_*.json` 也包含完整 transcript、摘要、执行状态和用量。Judge 分数为 `null`，查看页显示 `N/A`；`automated` 任务仍有自动评分，`hybrid` 任务保留自动检查明细，但总分为 `null`。不能与需要 Judge 参与搜索的 PAIR 攻击同时使用。
 
