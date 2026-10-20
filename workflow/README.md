@@ -155,8 +155,8 @@ by every image type; compatibility images additionally receive the mount at
 their native skill-discovery location.
 
 At runtime, benchmark runs keep outbound networking open by default. Passing
-`benchmark.py --netlock` asks `scripts/lib_docker.py` to apply the
-AgentCanary iptables allowlist. Research-profile images (identified by the `safety_research` tag or builder label) skip that lockdown by default. Set `DOCKER_OPEN_EGRESS_IMAGE_PATTERNS=""` to apply `--netlock` to research profiles as well.
+`benchmark.py --docker --netlock` asks `scripts/lib_docker.py` to apply the
+AgentCanary iptables allowlist to every image. Container restarts reapply the same policy.
 
 ## OpenClaw Runtime
 

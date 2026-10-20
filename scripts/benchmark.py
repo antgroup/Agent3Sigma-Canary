@@ -284,7 +284,7 @@ def _parse_args() -> argparse.Namespace:
         "--netlock",
         action="store_true",
         help=(
-            "Restrict Docker container egress to the configured allowlist. "
+            "Restrict Docker container egress to the configured allowlist for all images. "
             "Disabled by default; requires --docker."
         ),
     )

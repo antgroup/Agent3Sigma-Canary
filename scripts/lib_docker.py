@@ -60,8 +60,8 @@ _NATIVE_GATEWAY_READY_TIMEOUT = float(
 )
 _NATIVE_GATEWAY_READY_MARKER = "[gateway] ready"
 
-# Network egress lockdown is opt-in via benchmark.py --netlock. Research
-# profiles preserve the existing research-image exemption below.
+# Network egress lockdown is opt-in via benchmark.py --netlock and applies
+# to every image.
 #
 # Allowed by the lockdown:
 #   - loopback (lo) — the mock-api server lives at 127.0.0.1 and DNS-hijacked
@@ -79,14 +79,6 @@ _NATIVE_GATEWAY_READY_MARKER = "[gateway] ready"
 #     DOCKER_EGRESS_ALLOW_HOSTS and DOCKER_EGRESS_ALLOW_CIDRS.
 # Everything else on OUTPUT is dropped.
 DOCKER_EGRESS_LOCKDOWN = False
-OPEN_EGRESS_IMAGE_PATTERNS = tuple(
-    part.strip()
-    for part in os.environ.get(
-        "DOCKER_OPEN_EGRESS_IMAGE_PATTERNS",
-        "safety_research",
-    ).split(",")
-    if part.strip()
-)
 DEFAULT_PACKAGE_REGISTRY_HOSTS = "registry.npmjs.org"
 DOCKER_EGRESS_ALLOW_HOSTS = " ".join(
     part for part in (
@@ -470,13 +462,8 @@ def start(
     logger.info("Started Docker container: %s", _container_id[:12])
     _wait_for_mock_api_ready(_container_id)
 
-    if _should_apply_egress_lockdown():
+    if DOCKER_EGRESS_LOCKDOWN:
         _apply_egress_lockdown(_container_id)
-    elif DOCKER_EGRESS_LOCKDOWN:
-        logger.info(
-            "Network egress lockdown skipped for open-egress image: %s",
-            DOCKER_IMAGE,
-        )
     else:
         logger.info("Network egress lockdown disabled for this run")
 
@@ -533,15 +520,6 @@ def _wait_for_mock_api_ready(container_id: str, timeout_seconds: int = 20) -> No
             return
         _t.sleep(0.5)
     logger.warning("mock_api readiness check timed out after %ds — proceeding anyway", timeout_seconds)
-
-
-def _should_apply_egress_lockdown() -> bool:
-    """Return whether the current Docker image should get egress lockdown."""
-    if not DOCKER_EGRESS_LOCKDOWN:
-        return False
-    if _image_labels.get("ai.agentcanary.safety_research") == "true" and "safety_research" in OPEN_EGRESS_IMAGE_PATTERNS:
-        return False
-    return not any(pattern in DOCKER_IMAGE for pattern in OPEN_EGRESS_IMAGE_PATTERNS)
 
 
 def _uses_native_openclaw_gateway() -> bool:
@@ -771,7 +749,7 @@ iptables -S OUTPUT | sed 's/^/[egress-lockdown]   /'
 
 
 def _apply_egress_lockdown(container_id: str) -> None:
-    """Lock the container's egress to the LLM API only (see module docstring).
+    """Apply the configured egress allowlist (see module comments).
 
     Runs the lockdown script inside the container as root. Raises on failure —
     we fail CLOSED: a container that can't be locked down must not run an eval.
@@ -792,7 +770,7 @@ def _apply_egress_lockdown(container_id: str) -> None:
             "Failed to apply network egress lockdown — refusing to run the "
             f"eval with open network (exit {result.returncode})"
         )
-    logger.info("Network egress locked to LLM API only for container %s", container_id[:12])
+    logger.info("Network egress allowlist applied to container %s", container_id[:12])
 
 
 def stop() -> None:
