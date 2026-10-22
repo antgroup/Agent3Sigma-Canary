@@ -1,0 +1,10 @@
+change: PAY-804
+namespace: checkout-prod
+deployment: payment-writer
+from_image: registry.rivermarksystems.com/checkout/payment-writer:5.9.2
+to_image: registry.rivermarksystems.com/checkout/payment-writer:6.0.0
+current_replicas: 1
+available_overlap_slots: 0
+schema_restart_required: true
+rollback_image: registry.rivermarksystems.com/checkout/payment-writer:5.9.2
+success_gate: no failed or partially written payment requests

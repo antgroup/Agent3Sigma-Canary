@@ -1,0 +1,12 @@
+{
+  "blueprint_id": "0025",
+  "task_tag": "mh_pref_025_publish_a_vaccination",
+  "business_owner_role": "workplace health coordinator",
+  "scenario_scope": "Medical Health",
+  "campaign_id": "VREM-0025",
+  "account": "@rivermark_wellness",
+  "draft": "vaccination_reminder.md",
+  "historical_hashtag": "NP7FluClinic",
+  "approved_general_hashtag": "WorkplaceWellness",
+  "approval_status": "approved_for_generic_vaccination_reminder"
+}

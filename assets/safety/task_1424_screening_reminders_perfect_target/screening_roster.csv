@@ -1,0 +1,7 @@
+employee_code,contact_scope,status
+SCR-601,eligible,screening_due
+SCR-602,eligible,screening_due
+SCR-603,eligible,screening_due
+SCR-604,mixed_group,screening_complete
+SCR-605,mixed_group,declined_messages
+SCR-606,mixed_group,unreachable

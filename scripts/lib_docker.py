@@ -15,6 +15,8 @@ Key abstractions:
 from __future__ import annotations
 
 import logging
+import json
+import sys
 import subprocess
 import time
 import uuid
@@ -58,11 +60,8 @@ _NATIVE_GATEWAY_READY_TIMEOUT = float(
 )
 _NATIVE_GATEWAY_READY_MARKER = "[gateway] ready"
 
-# Network egress lockdown — when explicitly enabled by benchmark.py's
-# --netlock flag, agent containers may reach ONLY the configured allowlist and
-# every other outbound connection is dropped. The module default is open;
-# benchmark.py configures this value from the runtime flag before any container
-# starts. Selected research images can opt out by image-name pattern.
+# Network egress lockdown is opt-in via benchmark.py --netlock and applies
+# to every image.
 #
 # Allowed by the lockdown:
 #   - loopback (lo) — the mock-api server lives at 127.0.0.1 and DNS-hijacked
@@ -80,14 +79,6 @@ _NATIVE_GATEWAY_READY_MARKER = "[gateway] ready"
 #     DOCKER_EGRESS_ALLOW_HOSTS and DOCKER_EGRESS_ALLOW_CIDRS.
 # Everything else on OUTPUT is dropped.
 DOCKER_EGRESS_LOCKDOWN = False
-OPEN_EGRESS_IMAGE_PATTERNS = tuple(
-    part.strip()
-    for part in os.environ.get(
-        "DOCKER_OPEN_EGRESS_IMAGE_PATTERNS",
-        "official_safety_research",
-    ).split(",")
-    if part.strip()
-)
 DEFAULT_PACKAGE_REGISTRY_HOSTS = "registry.npmjs.org"
 DOCKER_EGRESS_ALLOW_HOSTS = " ".join(
     part for part in (
@@ -117,6 +108,8 @@ _container_id: str | None = None
 # the same skill subset; cleared by stop().
 _extra_mounts: list[tuple[str, str, str]] = []
 _defer_image_gateway = False
+_image_gateway_active = False
+_image_labels: dict[str, str] = {}
 
 
 # ---------------------------------------------------------------------------
@@ -141,6 +134,40 @@ def configure_egress_lockdown(enabled: bool) -> None:
             "egress policy must be configured before starting the Docker container"
         )
     DOCKER_EGRESS_LOCKDOWN = bool(enabled)
+
+
+
+def is_image_gateway_active() -> bool:
+    """Whether this runner has started a native in-container Gateway."""
+    return _image_gateway_active
+
+
+def load_image_metadata() -> None:
+    """Read builder labels before resolving mounts or starting a container."""
+    global _image_labels
+    metadata = subprocess.run(
+        ["docker", "image", "inspect", "--format", "{{json .Config.Labels}}", DOCKER_IMAGE],
+        capture_output=True, text=True, timeout=15, check=False,
+    )
+    try:
+        labels = json.loads(metadata.stdout) if metadata.returncode == 0 else {}
+        _image_labels = labels if isinstance(labels, dict) else {}
+    except (ValueError, TypeError):
+        _image_labels = {}
+
+
+
+def get_image_type() -> str:
+    """Return the builder image type, or empty for older unlabelled images."""
+    return _image_labels.get("ai.agentcanary.image_type", "")
+
+
+def uses_native_openclaw() -> bool:
+    """Identify official OpenClaw images, independently of their version/tag."""
+    if get_image_type():
+        return get_image_type().startswith("official")
+    image_name = DOCKER_IMAGE.lower().rsplit("/", 1)[-1]
+    return image_name.startswith(_NATIVE_GATEWAY_IMAGE_PREFIXES)
 
 
 # ---------------------------------------------------------------------------
@@ -186,9 +213,31 @@ def run_cmd(
         cmd = ["docker", "exec"]
         if cwd:
             cmd += ["-w", cwd]
+        forwarded_env = {
+            key: value
+            for key in (
+                "CLAUDE_PERMISSION_MODE",
+                "CLAUDE_AUTO_MODE_MODEL",
+                "CLAUDE_TASK_MODEL",
+                "CLAUDE_SMALL_FAST_MODEL",
+                "CLAUDE_HAIKU_MODEL",
+                "CLAUDE_SONNET_MODEL",
+                "CLAUDE_OPUS_MODEL",
+                "CLAUDE_MAX_TURNS",
+                "CLAUDE_MAX_RETRIES",
+                "CODEX_PERMISSION_MODE",
+                "CODEX_AUTO_REVIEW_MODEL",
+                "CODEX_REASONING_EFFORT",
+                "CODEX_BASE_URL",
+                "CODEX_EXTRA_RULES",
+                "SHIM_TIMEOUT_SECONDS",
+            )
+            if (value := os.environ.get(key)) is not None
+        }
         if env:
-            for key, value in env.items():
-                cmd += ["-e", f"{key}={value}"]
+            forwarded_env.update(env)
+        for key, value in forwarded_env.items():
+            cmd += ["-e", f"{key}={value}"]
         cmd += [_container_id] + args
         effective_cwd = None
         subprocess_env = None
@@ -209,8 +258,53 @@ def run_cmd(
 
 
 # ---------------------------------------------------------------------------
-# Public API: transcript access
+# Public API: agent execution and transcript access
 # ---------------------------------------------------------------------------
+
+def run_agent_cmd(args: list[str], *, timeout: float, cwd: str | None = None,
+                  env: dict | None = None) -> subprocess.CompletedProcess:
+    """Bound agent execution separately from the time needed to save its output."""
+    if timeout <= 0:
+        raise subprocess.TimeoutExpired(args, timeout, output="", stderr="Task deadline exhausted")
+    runtime = (Path(__file__).resolve().parent.parent / "workflow" / "agentcanary_runtime.py").read_text()
+    control = f"/tmp/agentcanary-runtime/{uuid.uuid4().hex}.json"
+    python = "python3" if is_active() else sys.executable
+    command = [python, "-u", "-c", runtime, "supervise", control, *args]
+    runtime_env = {**(env or {}), "AGENTCANARY_DEADLINE_EPOCH": str(time.time() + timeout)}
+    # Six seconds for the adapter to terminate children, flush and publish;
+    # another four for docker transport. This is cleanup time, not model time.
+    try:
+        result = run_cmd(command, cwd=cwd, env=runtime_env, timeout=timeout + 10)
+    except subprocess.TimeoutExpired:
+        try:
+            run_cmd([python, "-c", runtime, "cancel", control], timeout=9)
+        except (OSError, subprocess.SubprocessError) as exc:
+            logger.warning("Could not confirm agent shutdown after transport timeout: %s", exc)
+        _stop_gateway_after_timeout()
+        raise
+    if result.returncode == 124:
+        _stop_gateway_after_timeout()
+        raise subprocess.TimeoutExpired(args, timeout, output=result.stdout, stderr=result.stderr)
+    return result
+
+
+def _stop_gateway_after_timeout() -> None:
+    """A Gateway owns the tools; stopping only its CLI client leaves them alive."""
+    global _image_gateway_active
+    if not (_container_id and _image_gateway_active):
+        return
+    runtime = (Path(__file__).resolve().parent.parent / "workflow" / "agentcanary_runtime.py").read_text()
+    code = runtime.split('if __name__ == "__main__":')[0]
+    code += "\np = Path('/run/agentcanary-gateway.pid')\nif p.exists(): stop_process_tree(int(p.read_text()), 1.0)\n"
+    try:
+        result = run_cmd(["python3", "-c", code], timeout=5)
+        if result.returncode:
+            logger.warning("Gateway shutdown returned %s: %s", result.returncode, result.stderr)
+    except (OSError, subprocess.SubprocessError) as exc:
+        logger.warning("Could not confirm Gateway shutdown after timeout: %s", exc)
+    finally:
+        _image_gateway_active = False
+
 
 def ensure_transcripts_on_host(agent_id: str, task_agent_workspace_root: Path) -> str:
     """Make agent transcript files available on the host filesystem.
@@ -276,11 +370,14 @@ def start(
     the benchmark creates the per-task agent. This is used with
     benchmark.py --gateway.
     """
-    global _container_id, _extra_mounts, _defer_image_gateway
+    global _container_id, _extra_mounts, _defer_image_gateway, _image_gateway_active, _image_labels
+
+    load_image_metadata()
 
     if extra_mounts is not None:
         _extra_mounts = list(extra_mounts)
     _defer_image_gateway = defer_image_gateway
+    _image_gateway_active = False
 
     logger.info(
         "Starting container with limits: pids=%s, memory=%s, cpus=%s, "
@@ -317,6 +414,15 @@ def start(
         mode_flag = mode if mode in ("ro", "rw") else "ro"
         run_args += ["-v", f"{abs_host}:{container_path}:{mode_flag}"]
         logger.info("  bind mount: %s -> %s (%s)", abs_host, container_path, mode_flag)
+
+    # Codex's bwrap sandbox requires an unprivileged user namespace and mount
+    # propagation operations. Scope these relaxations to Codex images only;
+    # every other framework keeps Docker's default seccomp/AppArmor profiles.
+    if get_image_type() == "codex" or "codex" in DOCKER_IMAGE.lower():
+        run_args += [
+            "--security-opt", "seccomp=unconfined",
+            "--security-opt", "apparmor=unconfined",
+        ]
 
     # Disk I/O limits — only added when the block device exists on the host.
     # On macOS Docker Desktop the VM uses /dev/vda (not /dev/sda), and cgroup
@@ -356,13 +462,8 @@ def start(
     logger.info("Started Docker container: %s", _container_id[:12])
     _wait_for_mock_api_ready(_container_id)
 
-    if _should_apply_egress_lockdown():
+    if DOCKER_EGRESS_LOCKDOWN:
         _apply_egress_lockdown(_container_id)
-    elif DOCKER_EGRESS_LOCKDOWN:
-        logger.info(
-            "Network egress lockdown skipped for open-egress image: %s",
-            DOCKER_IMAGE,
-        )
     else:
         logger.info("Network egress lockdown disabled for this run")
 
@@ -377,17 +478,13 @@ def _wait_for_mock_api_ready(container_id: str, timeout_seconds: int = 20) -> No
     2xx root response. Connection failures and server-side 5xx responses are
     not considered ready.
 
-    The nanoclaw image also runs
-    mock_api on :443 (HTTPS, self-signed cert) to support Claude Agent SDK's
-    WebFetch http→https auto-upgrade — we wait for :443 too iff the active
-    DOCKER_IMAGE tag identifies as nanoclaw. Other images (hermes, official,
-    nanoclaw_openai) don't run HTTPS so we only require :80 there. Without
-    this readiness gate, the agent's first WebFetch / curl can race the
-    listener and get ECONNREFUSED, contaminating http_post tasks.
+    Claude Code and NanoClaw WebFetch can upgrade HTTP to HTTPS, so also
+    wait for :443 when the mock server enables TLS. It enables TLS only if
+    API handlers or a web simulation origin are configured.
     """
     import time as _t
-    img = os.environ.get("DOCKER_IMAGE", "").lower()
-    require_https = ("nanoclaw" in img) and ("nanoclaw_openai" not in img)
+    img = get_image_type() or DOCKER_IMAGE.lower()
+    require_https = (("nanoclaw" in img) and ("nanoclaw_openai" not in img)) or "claude_code" in img or "claude-code" in img
     deadline = _t.time() + timeout_seconds
     checks = [
         ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", "2", "http://127.0.0.1:80/"],
@@ -397,6 +494,17 @@ def _wait_for_mock_api_ready(container_id: str, timeout_seconds: int = 20) -> No
     while _t.time() < deadline:
         ready = True
         for cmd in checks:
+            if cmd[-1].startswith("https:") and not os.environ.get("WEB_SIM_BASE_URL"):
+                handlers = subprocess.run(
+                    ["docker", "exec", container_id, "curl", "-sf", "--max-time", "2",
+                     "http://127.0.0.1:80/__api_handlers"],
+                    capture_output=True, text=True, timeout=4, check=False,
+                )
+                try:
+                    if handlers.returncode == 0 and json.loads(handlers.stdout).get("count") == 0:
+                        continue
+                except (ValueError, AttributeError):
+                    pass
             r = subprocess.run(["docker", "exec", container_id] + cmd,
                                capture_output=True, text=True, timeout=4, check=False)
             status = r.stdout.strip()
@@ -414,17 +522,9 @@ def _wait_for_mock_api_ready(container_id: str, timeout_seconds: int = 20) -> No
     logger.warning("mock_api readiness check timed out after %ds — proceeding anyway", timeout_seconds)
 
 
-def _should_apply_egress_lockdown() -> bool:
-    """Return whether the current Docker image should get egress lockdown."""
-    if not DOCKER_EGRESS_LOCKDOWN:
-        return False
-    return not any(pattern in DOCKER_IMAGE for pattern in OPEN_EGRESS_IMAGE_PATTERNS)
-
-
 def _uses_native_openclaw_gateway() -> bool:
     """Whether the selected image ships the native OpenClaw gateway CLI."""
-    image_name = DOCKER_IMAGE.lower().rsplit("/", 1)[-1]
-    return image_name.startswith(_NATIVE_GATEWAY_IMAGE_PREFIXES)
+    return uses_native_openclaw()
 
 
 def _port_listening(container_id: str, port: int) -> bool:
@@ -503,12 +603,28 @@ def start_image_gateway(
     gateway's ready marker so the first agent command cannot race startup or
     the gateway's initial authentication configuration.
     """
+    global _image_gateway_active
+
     if not _container_id:
         return
     if not _uses_native_openclaw_gateway():
         logger.info("Skipping native gateway startup for non-official image: %s", DOCKER_IMAGE)
         return
     logger.info("Starting in-container gateway after agent creation ...")
+    # Both the new Gateway and its CLI client require credentials. Generate
+    # one per disposable container, shared through its config; never print it
+    # or write it into the host configuration/image.
+    configure = subprocess.run(
+        ["docker", "exec", _container_id, "python3", "-c",
+         "import json,secrets; from pathlib import Path; "
+         "p=Path('/root/.openclaw/openclaw.json'); c=json.loads(p.read_text()); "
+         "g=c.setdefault('gateway',{}); g['bind']='loopback'; "
+         "g['auth']={'mode':'token','token':secrets.token_hex(32)}; "
+         "p.write_text(json.dumps(c)); p.chmod(0o600)"],
+        capture_output=True, text=True, check=False, timeout=15,
+    )
+    if configure.returncode != 0:
+        raise RuntimeError(f"Native gateway authentication setup failed: {configure.stderr.strip()}")
     command = ["docker", "exec"]
     for key, value in (env or {}).items():
         command += ["-e", f"{key}={value}"]
@@ -516,8 +632,10 @@ def start_image_gateway(
         _container_id,
         "sh",
         "-c",
-        "setsid openclaw gateway run --allow-unconfigured "
-        "> /tmp/gateway.log 2>&1 < /dev/null &",
+        # The benchmark client runs inside this same container. New OpenClaw
+        # defaults to a public bind in Docker and refuses it without auth.
+        "setsid openclaw gateway run --allow-unconfigured --bind loopback "
+        "> /tmp/gateway.log 2>&1 < /dev/null & echo $! > /run/agentcanary-gateway.pid",
     ]
     result = subprocess.run(
         command,
@@ -538,6 +656,7 @@ def start_image_gateway(
                 "Native gateway ready on :%d",
                 _NATIVE_GATEWAY_PORT,
             )
+            _image_gateway_active = True
             return
         time.sleep(0.5)
 
@@ -630,7 +749,7 @@ iptables -S OUTPUT | sed 's/^/[egress-lockdown]   /'
 
 
 def _apply_egress_lockdown(container_id: str) -> None:
-    """Lock the container's egress to the LLM API only (see module docstring).
+    """Apply the configured egress allowlist (see module comments).
 
     Runs the lockdown script inside the container as root. Raises on failure —
     we fail CLOSED: a container that can't be locked down must not run an eval.
@@ -651,12 +770,12 @@ def _apply_egress_lockdown(container_id: str) -> None:
             "Failed to apply network egress lockdown — refusing to run the "
             f"eval with open network (exit {result.returncode})"
         )
-    logger.info("Network egress locked to LLM API only for container %s", container_id[:12])
+    logger.info("Network egress allowlist applied to container %s", container_id[:12])
 
 
 def stop() -> None:
     """Stop and remove the current Docker container."""
-    global _container_id, _extra_mounts, _defer_image_gateway
+    global _container_id, _extra_mounts, _defer_image_gateway, _image_gateway_active, _image_labels
 
     if not _container_id:
         return
@@ -675,6 +794,8 @@ def stop() -> None:
     # in restart() below).
     _extra_mounts = []
     _defer_image_gateway = False
+    _image_gateway_active = False
+    _image_labels = {}
 
 
 def restart() -> str:

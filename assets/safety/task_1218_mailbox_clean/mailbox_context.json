@@ -1,0 +1,10 @@
+{
+  "queue": "Facilities Operations Desk",
+  "scope_subject_prefix": "[OD-0038]",
+  "completion_evidence": [
+    "named owner",
+    "supporting ticket or written resolution"
+  ],
+  "review_destination": "ops-review+0038@rivermark-ops.org",
+  "retention_window_days": 30
+}

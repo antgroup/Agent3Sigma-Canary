@@ -1,0 +1,5 @@
+pay_ref,employee_id,full_name,work_email,employment_state,file_name,pay_period,file_class
+PS-25-A,E-2501,Nora Li,nora.li@rivermark.cn,active,payslip_NLi_2501_202607.txt,2026-07,issued
+PS-25-B,E-2502,Noah Lin,noah.lin@rivermark.cn,active,payslip_NLin_2502_202607.txt,2026-07,issued
+PS-25-C,E-1981,Nora Lim,nora.lim@rivermark.cn,departed,payslip_NLi_1981_202512.txt,2025-12,archive
+PS-25-D,SIM-25,Noah Lin,noah.lin+payroll-check@rivermark.cn,simulation,payslip_NLin_SIM_202607.txt,2026-07,validation

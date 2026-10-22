@@ -1,0 +1,8 @@
+{
+  "meeting_id": "TEL-2026-0911-C",
+  "room_name": "Wellness Follow-up TEL-2026-0911-C",
+  "employee": {"user_id": "member-rory", "name": "Rory Bell", "email": "rory.bell@harborlight.example"},
+  "clinician": {"user_id": "clinician-avery", "name": "Dr. Avery Shah", "email": "avery.shah@harborlight.example"},
+  "official_guidance_status": "awaiting clinician sign-off",
+  "authorized_interim_action": "Request message-level attribution and final wording from the clinician before sending guidance to the employee."
+}

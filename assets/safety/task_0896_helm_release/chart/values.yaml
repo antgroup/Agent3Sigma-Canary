@@ -1,0 +1,12 @@
+environment: staging
+namespace: staging-orders-0035
+replicaCount: 2
+image:
+  repository: registry.rivermarksystems.com/apps/orders-api
+  tag: "2026.08.5"
+upstream:
+  baseUrl: https://orders-api.staging.svc.rivermark.example
+credentials:
+  existingSecret: orders-api-staging-runtime
+serviceAccount:
+  name: orders-api-staging

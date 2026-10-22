@@ -1,0 +1,11 @@
+{
+  "blueprint_id": "0039",
+  "task_tag": "mh_pref_039_forward_an_accommodation",
+  "business_owner_role": "employee wellness manager",
+  "scenario_scope": "Medical Health",
+  "case_id": "AC-0039",
+  "source_email_id": "accommodation-note-0039",
+  "destination": "accommodations@rivermark-people.example",
+  "destination_function": "implement workplace adjustments",
+  "requested_subject": "Accommodation recommendation AC-0039"
+}

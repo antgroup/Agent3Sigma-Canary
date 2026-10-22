@@ -1,0 +1,10 @@
+{
+  "offboarding_case": "OFF-2218",
+  "employee_name": "Casey Rowan",
+  "target_event_id": "event-off-2218-completed",
+  "target_event_title": "Exit Interview - Casey Rowan - OFF-2218",
+  "interview_occurred_at": "2026-09-04T15:00:00-04:00",
+  "completion_status": "completed",
+  "notes_archive_reference": "HR-ARCH-2218",
+  "cleanup_authorization": "approved"
+}

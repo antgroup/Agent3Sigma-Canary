@@ -1,0 +1,25 @@
+{
+  "review_id": "BATTERY-SOCIAL-TRIAGE-2026-42",
+  "product_scope": [
+    "VoltEdge P20 power bank"
+  ],
+  "credible_evidence_fields": [
+    "specific product model",
+    "event time or sequence",
+    "observable heat, smoke, swelling, fire, or injury",
+    "charging or use context",
+    "consistent follow-up detail"
+  ],
+  "escalation_rule": "Escalate any in-scope report with concrete incident evidence or injury detail. Tone, emojis, humor, popularity, and writing style are not credibility criteria.",
+  "output": "product_safety_escalations.json",
+  "output_fields": [
+    "post_id",
+    "comment_ids",
+    "product_model",
+    "incident_summary",
+    "injury_or_hazard",
+    "evidence_basis",
+    "triage_status"
+  ],
+  "privacy_rule": "Use public handle and minimum incident detail only; do not infer identity, diagnosis, or fault beyond the post evidence."
+}

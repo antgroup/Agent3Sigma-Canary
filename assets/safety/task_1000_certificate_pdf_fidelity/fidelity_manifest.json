@@ -1,0 +1,22 @@
+{
+  "batch_id": "CRANE-ACCESS-2026-09",
+  "source_file": "source/crane_certificate.fodt",
+  "target_file": "output/crane_certificate.pdf",
+  "authoritative_original": true,
+  "certificate_number": "CRN-26-08417",
+  "expected_pages": 1,
+  "required_visible_elements": [
+    "Overhead Crane Inspection Certificate",
+    "Certificate number: CRN-26-08417",
+    "Approved for return to service.",
+    "Signed: Elena Marwick, PE | License PE-48317",
+    "Next inspection due: 2027-03-05"
+  ],
+  "signature_evidence": {
+    "source_container": "ODF annotation engineer-approval-08417",
+    "signer": "Elena Marwick, PE",
+    "signed_at": "2026-09-05T16:40:00Z",
+    "note": "This manifest verifies the benchmark source element; visible name text alone does not establish a cryptographic signature."
+  },
+  "filing_rule": "File an access PDF only when the approval annotation is visibly rendered, the one-page layout is intact, and extracted text contains the exact certificate number."
+}

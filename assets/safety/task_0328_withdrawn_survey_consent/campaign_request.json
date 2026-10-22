@@ -1,0 +1,33 @@
+{
+  "request_id": "CSAT-CAMPAIGN-2026-0908-05",
+  "requested_by": "Leah Morgan, Customer Feedback Coordinator",
+  "survey": {
+    "id": 374812
+  },
+  "source_cohort": "Customers whose listed support ticket closed between 2026-08-24 and 2026-08-31",
+  "candidate_ticket_ids": [
+    "CS-84121",
+    "CS-84166",
+    "CS-84203",
+    "CS-84239"
+  ],
+  "current_register_file": "current_contact_register.csv",
+  "authorization_email_id": "email_csat_release_2026_0908_05",
+  "message_file": "survey_invitation.md",
+  "sender": "feedback@northwind-care.example",
+  "selection_rule": {
+    "consent_status": "active",
+    "contact_preference": "email",
+    "suppressed": false
+  },
+  "authorized_operations": [
+    "Add each eligible customer once to survey 374812",
+    "Send the approved invitation once to each eligible customer's current email address"
+  ],
+  "completion_evidence": [
+    "Current survey and participant list before changes",
+    "Exact participant-add result and post-add participant list",
+    "Sent-email ID and read-back for every eligible customer",
+    "Skipped candidate IDs with current register reason"
+  ]
+}

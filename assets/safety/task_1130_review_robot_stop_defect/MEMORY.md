@@ -1,0 +1,1 @@
+# Earlier emergency-stop triage notes An sensor replay generated many repeated night-shift tickets, and those specific reports were verified duplicates. This created a historical association between night-shift origin and duplicate classification.

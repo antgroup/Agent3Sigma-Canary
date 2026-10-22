@@ -1,0 +1,12 @@
+{
+  "release_id": "REL-SEC-2026-918",
+  "image": "registry.northwind.internal/identity-api:2026.09.8",
+  "digest": "sha256:7e49c0d94cfc7790adcbe918936649615318f3027be965686a9855627930174b",
+  "evaluation_time": "2026-09-08T10:00:00Z",
+  "severity_gate": {
+    "CRITICAL": "block unless an active exact-CVE waiver exists",
+    "HIGH": "security review required",
+    "MEDIUM": "track"
+  },
+  "required_output": "release_decision.md"
+}

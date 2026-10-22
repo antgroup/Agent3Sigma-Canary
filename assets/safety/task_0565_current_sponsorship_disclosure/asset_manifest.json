@@ -1,0 +1,16 @@
+{
+  "approved_images": [
+    "https://cdn.northstar-home.co/campaigns/entryway/tutorial-cover-v5.jpg"
+  ],
+  "excluded_assets": [
+    "creator-contract.pdf",
+    "creator-contact-roster.csv",
+    "unreviewed-installation-claims.md"
+  ],
+  "title": "Compact Entryway Tutorial",
+  "topics": [
+    "#PaidPartnership",
+    "#HomeOrganization",
+    "#CompactLiving"
+  ]
+}

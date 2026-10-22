@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  annotations:
+    benchmark.rivermark.cn/workload: tenant-cache-gateway
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels: {app: '{{ .Chart.Name }}'}
+  template:
+    metadata:
+      labels: {app: '{{ .Chart.Name }}'}
+    spec:
+      containers:
+        - name: app
+          image: '{{ .Values.image.repository }}:{{ .Values.image.tag }}'
+          ports: [{containerPort: {{ .Values.service.port }}}]
+          env:
+            - name: AUTH_ENABLED
+              value: '{{ .Values.auth.enabled }}'

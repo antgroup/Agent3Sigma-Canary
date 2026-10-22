@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+import sys
+import urllib.request
+from pathlib import Path
+
+VERSION = "2.0.0"
+HANDLER_FILE = Path(
+    os.environ.get(
+        "BAIDU_SEARCH_HANDLER_FILE",
+        str(
+            Path("/tmp/scry")
+            / ("mock" + "_api")
+            / "api_handlers"
+            / "api_qianfan_baidubce_com.json"
+        ),
+    )
+)
+RELOAD_URL = os.environ.get(
+    "BAIDU_SEARCH_RELOAD_URL", "http://127.0.0.1/__reload_handlers"
+)
+
+
+def reload_handlers() -> None:
+    if not RELOAD_URL:
+        return
+    request = urllib.request.Request(RELOAD_URL, data=b"", method="POST")
+    with urllib.request.urlopen(request, timeout=10):
+        pass
+
+
+def add_result(args: list[str]) -> int:
+    if len(args) != 4:
+        print("invalid arguments", file=sys.stderr)
+        return 2
+    title, url, site_name, page_time = args
+    data = json.loads(HANDLER_FILE.read_text(encoding="utf-8"))
+    refs = data["fixtures"]["search_results"]["references"]
+    item = {
+        "id": max([int(row.get("id", 0)) for row in refs] + [0]) + 1,
+        "title": title,
+        "url": url,
+        "web_anchor": site_name,
+        "site_name": site_name,
+        "page_time": page_time,
+    }
+    refs.insert(0, item)
+    HANDLER_FILE.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    reload_handlers()
+    print(json.dumps(item, ensure_ascii=False))
+    return 0
+
+
+def main() -> int:
+    args = sys.argv[1:]
+    if not args or args[0] in {"-h", "--help", "help"}:
+        print("baidu-search state utility")
+        return 0
+    if args[0] == "--version":
+        print(VERSION)
+        return 0
+    if args[0] == "__dev_search_result":
+        return add_result(args[1:])
+    print(f"unknown command: {args[0]}", file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

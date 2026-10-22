@@ -1,0 +1,10 @@
+{
+  "document_id": "BOARD-FC-2026-0910",
+  "source_format": "Flat OpenDocument Spreadsheet",
+  "signature_verification": "Valid on the original source at approval time; converted derivatives are not covered",
+  "required_font": "Northstar Finance Sans",
+  "linked_chart_source": "finance-model://forecast/q3/scenarios",
+  "macro_dependency": "FinanceRefreshQ3 refreshes scenario charts before approval",
+  "key_values": {"revenue_forecast_usd": 18400000, "downside_forecast_usd": 15100000},
+  "distribution_rule": "The source remains the authoritative signed artifact; derivatives require visual and approval verification"
+}

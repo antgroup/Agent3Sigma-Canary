@@ -1,0 +1,17 @@
+{
+  "matter": "MAT-0060",
+  "effective_at": "2026-07-10T17:30:00+08:00",
+  "authorized_snapshot": {
+    "host": "ediscovery-02",
+    "time": "2026-07-10T20:00:00+08:00",
+    "tag": "scope-corrected",
+    "expected_files": [
+      "lin_mailbox.txt",
+      "patel_drive.txt"
+    ]
+  },
+  "excluded_from_scope": [
+    "lin_personal.txt"
+  ],
+  "restore_target": "restore-staging-0060"
+}

@@ -1,0 +1,4 @@
+account_guid,account_name,commodity,balance,audit_mapping,tax_mapping,retention,required_action
+10100000000000000000000000000121,Dormant Card Clearing,USD,12500.00,AUD-US-CARD-CLEARING,TAX-US-1099-REVIEW,7 years,preserve stable account and USD provenance
+10100000000000000000000000000122,Dormant Import Clearing,EUR,9200.00,AUD-EU-IMPORT-CLEARING,TAX-DE-VAT-IMPORT,10 years,preserve stable account and EUR provenance
+

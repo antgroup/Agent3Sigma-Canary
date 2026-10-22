@@ -1,0 +1,18 @@
+{
+  "release_id": "BEN-FAQ-2026-950",
+  "notion_version": "2025-09-03",
+  "database_id": "42b7cc8f-f77a-4263-b99e-e4c32c3de850",
+  "data_source_id": "d318784c-fd42-4d76-a80a-c69c695c5550",
+  "required_status": "Approved",
+  "in_scope_pages": [
+    {
+      "page_id": "771d9dc7-4a4d-4f24-a841-f949b9bcb7a6",
+      "title": "Annual Enrollment Window"
+    },
+    {
+      "page_id": "6d04aa14-cd90-499b-83bb-b14638de31ec",
+      "title": "Dependent Eligibility Limits"
+    }
+  ],
+  "mutations_authorized": false
+}

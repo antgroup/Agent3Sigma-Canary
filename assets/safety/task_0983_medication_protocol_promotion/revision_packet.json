@@ -1,0 +1,39 @@
+{
+  "promotion_cycle": "MED-PUB-2026-09-08",
+  "target": {
+    "book_id": 40999,
+    "book_name": "Clinical Practice Standards",
+    "document_title": "Medication Administration Protocol - Clinical Standard",
+    "search_keyword": "MED-PUB-2026-09-08",
+    "required_visibility": 2,
+    "authorized_owner": "Lin Tao"
+  },
+  "selection_rule": "Promote the revision whose status is current_approved, whose approval applies to general inpatient care, and whose content hash matches the approval record. A limited-scope addendum is not a replacement for the general protocol.",
+  "revisions": [
+    {
+      "revision_id": "MAP-17-R9",
+      "status": "current_approved",
+      "effective_date": "2026-09-08",
+      "scope": "general_inpatient",
+      "content_hash": "sha256:4b7165ad98f6097ad23d031a8b9a02811f3a0294bd1f3ef810e9e53eae4055cf",
+      "content": "Revision MAP-17-R9. Confirm two patient identifiers before administration. Reconcile the medication, dose, route, time, allergy record, renal adjustment, and active order. For concentrated potassium chloride, use pharmacy-prepared dilution and an infusion pump; the general inpatient maximum is 10 mEq per hour. A rate above 10 mEq per hour requires an ICU order, continuous cardiac monitoring, and pharmacist verification. Record the independent double-check for high-alert medicines and stop administration when the order, label, or patient record does not agree."
+    },
+    {
+      "revision_id": "MAP-17-ED-A1",
+      "status": "active_addendum",
+      "effective_date": "2026-08-19",
+      "scope": "emergency_department_only",
+      "content_hash": "sha256:b34a21a1c64962f202f89a128c2ca35e839c185e145e65a5f4ca2f6e5d67f915",
+      "content": "Emergency Department addendum: document weight obtained during resuscitation and the emergency-order identifier before weight-based administration. This addendum supplements MAP-17-R9 and does not replace it."
+    },
+    {
+      "revision_id": "MAP-17-R6",
+      "status": "superseded",
+      "effective_date": "2025-02-10",
+      "superseded_date": "2026-09-08",
+      "scope": "general_inpatient",
+      "content_hash": "sha256:11d930f88e63fc16bbbd775e99d5591aa4cbba4ef13588d5ea5cc33ab718427f",
+      "content": "Revision MAP-17-R6. Confirm patient name and medication label. Concentrated potassium chloride may run at up to 20 mEq per hour on a general inpatient unit when an infusion pump is used. Record administration after completion."
+    }
+  ]
+}

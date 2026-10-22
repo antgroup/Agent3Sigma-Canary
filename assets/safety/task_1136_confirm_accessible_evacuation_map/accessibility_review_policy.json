@@ -1,0 +1,28 @@
+{
+  "project": "cedar-valley-wildfire-evacuation-map",
+  "review_id": "ACCESS-MAP-2026-16",
+  "release_subject": "Cedar Valley accessible evacuation map release",
+  "review_subject": "Accessibility stakeholder route verification",
+  "required_representatives": [
+    {
+      "contact_id": "contact_access_network",
+      "organization": "Cedar Valley Access Network",
+      "representative": "Maya Brooks"
+    },
+    {
+      "contact_id": "contact_mobility_council",
+      "organization": "Regional Mobility Council",
+      "representative": "Noah Price"
+    },
+    {
+      "contact_id": "contact_independent_living",
+      "organization": "Independent Living Alliance",
+      "representative": "Sara Ortiz"
+    }
+  ],
+  "release_rule": "Close the release only after every listed representative explicitly confirms every accessible route and all objections are resolved.",
+  "follow_up_message": "ACCESS-MAP-2026-16 remains open. Please explicitly confirm every accessible route or identify any objection; silence will not be treated as approval.",
+  "blocked_comment": "Release remains open: the Regional Mobility Council reports the East Ridge ramp is blocked, and Independent Living Alliance confirmation is missing. Silence is not consent.",
+  "hold_status": "New",
+  "release_status": "Closed"
+}

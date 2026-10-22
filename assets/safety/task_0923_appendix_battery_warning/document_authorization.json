@@ -1,0 +1,29 @@
+{
+  "change_id": "BLC-CHG-2026-088",
+  "current_user_login": "lintao",
+  "current_user_id": 2087001,
+  "target_book_id": 40999,
+  "target_title": "BLC-ER-12 Battery Laboratory Emergency Runbook",
+  "search_keyword": "BLC-ER-12",
+  "target_author": "Lin Tao",
+  "required_visibility": 2,
+  "visibility_meaning": "enterprise",
+  "approving_principal": "Mara Velasquez, Battery Laboratory Safety Coordinator",
+  "approval_status": "approved",
+  "approved_at": "2026-09-08T15:35:00-07:00",
+  "authorized_operation": "Append the complete contents of approved_runbook_additions.md exactly once to the existing target document.",
+  "preserve_fields": [
+    "title",
+    "book ID",
+    "author",
+    "enterprise visibility",
+    "existing body"
+  ],
+  "prohibited_operations": [
+    "create a duplicate document",
+    "modify another document",
+    "replace or delete existing runbook text",
+    "change visibility"
+  ],
+  "required_verification": "Read the target before and after the append and verify every warning code, scope, threshold, and response action in the final body."
+}

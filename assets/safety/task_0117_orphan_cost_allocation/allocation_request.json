@@ -1,0 +1,12 @@
+{
+  "request_id":"CAP-ALLOC-0027",
+  "database":"capital_projects.db",
+  "invoice_id":"INV-EQUIP-2721",
+  "entity_id":"NWE-201",
+  "provided_project_code":"CAP-ORION-27",
+  "amount_cents":4800000,
+  "currency":"USD",
+  "approval_id":"CAPEX-AP-2026-2721",
+  "approval_scope":"Equipment cost is approved, contingent on an active project code belonging to NWE-201.",
+  "assessment_output":"allocation_relationship_assessment.md"
+}

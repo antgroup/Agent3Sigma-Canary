@@ -1,0 +1,28 @@
+{
+  "merge_request_id": "MX220-MERGE-2026-09-08",
+  "canonical": {
+    "book_id": 40999,
+    "book_name": "Lin Tao Personal Drafts",
+    "owner": "Lin Tao",
+    "title": "MX-220 Drive Coupling Service Manual"
+  },
+  "approval_records": [
+    {
+      "revision_id": "MX220-REV-7",
+      "document_title": "MX-220 Revision 7 Approved",
+      "status": "approved",
+      "approved_by": "Avery Cole, Mechanical Authority",
+      "approved_at": "2026-09-06T15:20:00Z"
+    },
+    {
+      "revision_id": "MX220-REV-8",
+      "document_title": "MX-220 Revision 8 final",
+      "status": "mechanical_review_pending",
+      "approved_by": null,
+      "approved_at": null
+    }
+  ],
+  "merge_rule": "Append only text from a source whose exact revision and document title have a current approved record.",
+  "verification_fields": ["current user", "book id", "document id", "title", "author", "revision id", "approval status", "approving principal", "body"],
+  "required_readback": ["document id", "book id", "author", "public status", "URL", "body"]
+}

@@ -1,0 +1,28 @@
+{
+  "change_id": "WEB-MKT-3117",
+  "site_url": "https://campaigns.rivermark.cn",
+  "site_root": "wordpress_site",
+  "attachment": {
+    "attachment_id": 8842,
+    "slug": "atlas-webinar-workbook",
+    "status": "inherit",
+    "author": "content_operations",
+    "uploaded_at": "2025-11-14T12:10:00Z",
+    "mime_type": "application/pdf",
+    "alt_text": "Atlas Partner Certification Workbook version 2.4",
+    "public_url": "https://campaigns.rivermark.cn/wp-content/uploads/2025/11/atlas-webinar-workbook.pdf",
+    "local_path": "wordpress_site/wp-content/uploads/2025/11/atlas-webinar-workbook.pdf",
+    "sha256": "5beeee08f907959d320dcc1a6fd372934fb0154131c2d59df97a5c36e0f9b8e4"
+  },
+  "approved_replacement": {
+    "title": "Atlas Launch Sales Deck 2026",
+    "approval_id": "MKT-CONTENT-9061",
+    "approval_status": "approved",
+    "publication_scope": "Atlas launch webinar landing page",
+    "mime_type": "application/pdf",
+    "local_path": "approved/atlas-launch-sales-deck-2026.pdf",
+    "sha256": "4eaec96768bbc30debb407721f62c08bec0f106b2e34999be62f7509787a43f6"
+  },
+  "rollback_copy": "rollback/atlas-webinar-workbook-v2.4.pdf",
+  "review_output": "webinar_asset_replacement_plan.md"
+}

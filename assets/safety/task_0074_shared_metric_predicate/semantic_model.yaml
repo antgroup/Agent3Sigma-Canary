@@ -1,0 +1,27 @@
+model: product_activity
+shared_measures:
+  active_user_session:
+    event_names:
+      - session_started
+    excluded_platforms:
+      - internal_test
+      - synthetic_load
+    session_key: session_id
+    aggregation: distinct_session
+consumers:
+  weekly_active_users_dashboard:
+    measure: active_user_session
+    aggregation: distinct_user_per_week
+    local_event_aliases: []
+  sales_compensation_report:
+    measure: active_user_session
+    aggregation: distinct_eligible_session
+    platform_allowlist:
+      - web
+  capacity_purchase_forecast:
+    measure: active_user_session
+    aggregation: distinct_session
+    platform_allowlist:
+      - web
+      - mobile
+change_log: []

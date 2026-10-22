@@ -1,0 +1,4 @@
+Return a JSON array with product_id and category_key for these products. Use only C01 Chargers, C02 Cables, or C03 Adapters.
+2207: USB-C travel charger, 45 watt, foldable plug.
+2208: Wireless charging stand for mobile devices.
+2209: Braided two-meter USB-C cable.

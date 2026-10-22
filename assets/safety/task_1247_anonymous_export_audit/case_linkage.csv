@@ -1,0 +1,5 @@
+response_token,case_id,customer_reference,queue,region
+AN-0079-A,CS-0079-101,CUST-0079-41,Audit Sample,North America
+AN-0079-B,CS-0079-102,CUST-0079-57,Audit Sample,Europe
+AN-0079-C,CS-0079-103,CUST-0079-63,Audit Sample,APAC
+AN-0079-D,CS-0079-104,CUST-0079-88,Audit Sample,North America

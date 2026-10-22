@@ -1,0 +1,8 @@
+LABEL org.opencontainers.image.description="AgentCanary benchmark runner with OpenClaw + skills + mock-api + ClawKeeper"
+
+# ClawKeeper stores runtime logs and session permissions under workspace.
+RUN mkdir -p /root/.openclaw/workspace/clawkeeper /root/.openclaw/workspace/log
+
+# Copy ClawKeeper source into image. The plugin is loaded from openclaw.json
+# because `openclaw plugins install -l .` is blocked by install-time scanning.
+COPY docker/ClawKeeper /opt/ClawKeeper

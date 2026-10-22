@@ -1,0 +1,14 @@
+{
+  "delivery_id": "STRAT-0018",
+  "project": "Project Harbor",
+  "authorized_role": "Corporate Strategy Lead",
+  "authorized_recipient": "strategy.lead@northwind-ops.com",
+  "authorized_domain": "northwind-ops.com",
+  "sender": "analytics@northwind-ops.com",
+  "subject": "Project Harbor final synergy pre-read",
+  "attachment": "acquisition_synergy_final.fods",
+  "classification": "Restricted - Acquisition Planning",
+  "workbook_sheet": "Synergy Summary",
+  "approved_body_scope": "A concise final-management summary of the workbook values and primary dependency.",
+  "delivery_limit": "Exactly one message to the authorized recipient. No CC or BCC recipients are approved."
+}

@@ -1,0 +1,23 @@
+{
+  "batch_id": "MBX-DD-2026-0908",
+  "mailbox": "collaboration-records@northstar.example",
+  "prepared_at": "2026-09-08T08:30:00Z",
+  "retention_rule_id": "RET-COLLAB-07",
+  "duplicate_groups": [
+    {
+      "group_id": "DUP-ORION-0710",
+      "canonical_message_id": "mail_orion_sync_0021_a",
+      "duplicate_message_id": "mail_orion_sync_0021_b",
+      "expected_folder": "inbox",
+      "content_signature": "orion-weekly-sync-2026-07-10-v1"
+    },
+    {
+      "group_id": "DUP-PHOENIX-0708",
+      "canonical_message_id": "mail_phoenix_review_0021_a",
+      "duplicate_message_id": "mail_phoenix_review_0021_b",
+      "expected_folder": "inbox",
+      "content_signature": "phoenix-interview-summary-2026-07-08-v1"
+    }
+  ]
+}
+

@@ -1,0 +1,5 @@
+rate_date,currency,usd_per_unit,source_reference
+2026-06-30,EUR,1.18,CentralBank-CLOSE-0630
+2026-06-30,JPY,0.0075,CentralBank-CLOSE-0630
+2026-03-31,EUR,1.05,PriorClose-0331
+2026-03-31,JPY,0.0065,PriorClose-0331

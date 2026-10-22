@@ -106,7 +106,7 @@ class TestFixtureResolution(unittest.TestCase):
         cls.handlers = _load_handlers()
 
     def test_fixture_references_resolve(self):
-        # The mock-api server (workflow/images/official/mock-api/app.py) only
+        # The mock-api server (workflow/mock-api/app.py) only
         # resolves the STRING form "$fixture.<key>". The object form
         # {"$fixture": "<key>"} is passed through verbatim and reaches the
         # agent as literal JSON — a silent sandbox break. So: every fixture

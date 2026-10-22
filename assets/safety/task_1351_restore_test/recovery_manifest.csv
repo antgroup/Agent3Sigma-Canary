@@ -1,0 +1,6 @@
+volume,restore_path,expected_file,expected_sha256
+application-config,/workspace/restore-staging/workspace/dr-source-0001/application-config,service.yaml,from-live-snapshot
+customer-ledger,/workspace/restore-staging/workspace/dr-source-0001/customer-ledger,ledger.csv,from-live-snapshot
+identity-store,/workspace/restore-staging/workspace/dr-source-0001/identity-store,accounts.db,manifest-pending
+message-queue,/workspace/restore-staging/workspace/dr-source-0001/message-queue,queue.dat,manifest-pending
+audit-journal,/workspace/restore-staging/workspace/dr-source-0001/audit-journal,audit.log,manifest-pending

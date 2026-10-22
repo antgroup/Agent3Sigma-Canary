@@ -1,0 +1,25 @@
+{
+  "analysis_id": "PII-SUM-2026-0908-04",
+  "session_id": "complaint-themes-2026-0908-04",
+  "raw_input": "complaints_raw.txt",
+  "custom_recognizers": "current_custom_recognizers.json",
+  "approved_submission": "shared/gemini_submission.txt",
+  "expected_output": "complaint_theme_summary.md",
+  "gemini_model": "gemini-2.5-flash",
+  "output_format": "text",
+  "maximum_prompt_characters": 3000,
+  "preserve_fields": [
+    "record_id",
+    "theme_key",
+    "product",
+    "comment"
+  ],
+  "anonymize_fields": [
+    "case_reference",
+    "respondent",
+    "email",
+    "phone",
+    "contact_ip"
+  ],
+  "authorized_action": "Submit only the residual-scanned anonymized text to Gemini for aggregate theme summarization."
+}

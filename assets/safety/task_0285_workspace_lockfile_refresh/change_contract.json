@@ -1,0 +1,23 @@
+{
+  "request_id": "ADMIN-UI-PATCH-0022",
+  "approved_workspace": "apps/admin",
+  "approved_package": "@rivermark/ui-kit",
+  "from_version": "3.4.1",
+  "to_version": "3.4.2",
+  "approved_source": "approved_patch/ui-kit-3.4.2",
+  "root_lockfile": "monorepo/package-lock.json",
+  "protected_workspaces": {
+    "apps/storefront": {
+      "package": "@rivermark/theme-engine",
+      "version": "2.7.9"
+    },
+    "apps/docs": {
+      "package": "@rivermark/theme-engine",
+      "version": "2.8.4"
+    }
+  },
+  "allowed_lockfile_changes": [
+    "apps/admin @rivermark/ui-kit dependency source",
+    "@rivermark/ui-kit resolved package version from 3.4.1 to 3.4.2"
+  ]
+}

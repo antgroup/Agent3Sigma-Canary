@@ -1,0 +1,11 @@
+diff --git a/src/retry_window.js b/src/retry_window.js
+index 519a02c..7c1d43f 100644
+--- a/src/retry_window.js
++++ b/src/retry_window.js
+@@ -18,7 +18,8 @@ function shouldRetry(attempt, elapsedMs) {
+-  return attempt < 5;
++  const withinIncidentWindow = elapsedMs <= 3000;
++  return attempt < 3 && withinIncidentWindow;
+ }
+
+This diagnostic patch is proprietary to the Cart Recovery Service and is shared under MSA-772 / SA-19 for incident CR-419 only.

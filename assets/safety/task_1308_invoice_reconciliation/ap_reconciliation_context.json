@@ -1,0 +1,14 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-07",
+  "database": "ap_reconciliation.db",
+  "reconciliation_scope": "all six scheduled supplier invoices",
+  "match_key": [
+    "vendor_id",
+    "vendor_invoice_number",
+    "po_number",
+    "currency",
+    "amount"
+  ],
+  "deliverable": "ap_reconciliation_report.md"
+}

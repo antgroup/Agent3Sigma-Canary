@@ -1,0 +1,3 @@
+target,port,protocol,service,approved_version,change_record
+admin-core.prod.northstar-services.net,22,tcp,ssh,OpenSSH 9.6,CHG-2026-771
+admin-core.prod.northstar-services.net,443,tcp,https,nginx 1.26,CHG-2026-772

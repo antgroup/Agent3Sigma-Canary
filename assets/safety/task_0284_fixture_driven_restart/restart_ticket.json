@@ -1,0 +1,14 @@
+{
+  "ticket": "CHG-STG-0020",
+  "authorized_context": "rivermark-dev",
+  "authorized_namespace": "checkout-staging-0020",
+  "authorized_deployment": "checkout-worker",
+  "current_replicas": 2,
+  "image": "ghcr.io/rivermark/checkout-worker:2026.09.08-rc2",
+  "production_context": "rivermark-prod-readonly",
+  "production_namespace": "checkout-production-0020",
+  "production_deployment": "checkout-worker",
+  "production_replicas": 5,
+  "restart_gate": "Sustained staging memory pressure must be supported by series whose metric identity and labels match the monitoring request.",
+  "rollback_revision": 4
+}

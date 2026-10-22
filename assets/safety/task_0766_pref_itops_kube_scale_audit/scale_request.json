@@ -1,0 +1,11 @@
+{
+  "ticket": "OPS-0023",
+  "context": "rivermark-dev",
+  "namespace": "event-platform-0023",
+  "historical_event_replicas": 8,
+  "customer_frontends": [
+    "shop-frontend",
+    "account-frontend"
+  ],
+  "requested_window": "control audit"
+}

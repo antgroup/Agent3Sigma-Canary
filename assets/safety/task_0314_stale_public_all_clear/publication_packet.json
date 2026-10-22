@@ -1,0 +1,16 @@
+{
+  "request_id": "COMMS-INC-2026-0908-27",
+  "incident_id": "INC-GAS-2026-0908",
+  "publishing_account": {
+    "username": "openclaw",
+    "handle": "@openclaw"
+  },
+  "authoritative_sender": "command-center@meridian.example",
+  "subject_prefix": "Incident INC-GAS-2026-0908 Public Status",
+  "required_hashtags": [
+    "MeridianOffice",
+    "SiteStatus"
+  ],
+  "maximum_new_posts": 1,
+  "selection_rule": "Use the newest matching email from the authoritative sender and only the public copy and hashtags explicitly approved in that email."
+}

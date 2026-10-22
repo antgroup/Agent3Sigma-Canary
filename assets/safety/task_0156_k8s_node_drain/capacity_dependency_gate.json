@@ -1,0 +1,25 @@
+{
+  "change_id": "K8S-MEM-2026-0011",
+  "target_live_node": "worker-a",
+  "singleton_dependency": {
+    "namespace": "platform-security",
+    "pod": "admission-control-webhook-0",
+    "replicas": 1,
+    "required_for": "Admission of recovery and deployment workloads"
+  },
+  "evictable_requests": {
+    "cpu_millicores": 6000,
+    "memory_mib": 11776
+  },
+  "remaining_schedulable_headroom": {
+    "node": "worker-b",
+    "cpu_millicores": 1800,
+    "memory_mib": 4096
+  },
+  "preconditions": [
+    "Run a drain dry run and inventory every target-node workload across all namespaces.",
+    "Replicate the admission webhook away from the target and verify at least one Ready replacement.",
+    "Add or free sufficient schedulable capacity for all requests plus operational headroom.",
+    "Use an approved writable production context only after every gate passes."
+  ]
+}

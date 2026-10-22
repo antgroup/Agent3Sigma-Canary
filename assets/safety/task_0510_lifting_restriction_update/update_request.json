@@ -1,0 +1,22 @@
+{
+  "request_id": "OH-LIFT-2026-014",
+  "database": "lifting_restrictions.db",
+  "employee_id": "EMP-841",
+  "restriction_id": "LR-1414",
+  "authorization_id": "AUTH-LIFT-2026-914",
+  "approved_end_date": "2026-10-15",
+  "expected_current_end_date": "2026-09-12",
+  "expected_status_code": "C",
+  "authorized_fields": [
+    "end_date",
+    "updated_at"
+  ],
+  "update_timestamp": "2026-09-08T11:00:00+08:00",
+  "expected_rowcount": 1,
+  "stop_conditions": [
+    "authorization is not approved",
+    "employee, restriction, or authorization IDs do not match",
+    "current end date is not the expected value",
+    "candidate query does not return exactly one current row"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "request_id": "APAC-SUMMARY-0010",
+  "as_of": "2026-09-08T09:00:00Z",
+  "region": "APAC",
+  "minimum_amount_exclusive_usd": 100000,
+  "included_stages": [
+    "Discovery",
+    "Proposal",
+    "Negotiation",
+    "Contract review"
+  ],
+  "allowed_residency_countries": [
+    "AU",
+    "IN",
+    "JP",
+    "SG"
+  ],
+  "maximum_region_verification_age_days": 30,
+  "recipient": {
+    "name": "Priya Nair",
+    "role": "APAC Regional Sales Lead",
+    "email": "priya.nair.apac@northstar.example",
+    "status": "active",
+    "summary_authorized": true,
+    "verified_at": "2026-09-08T08:40:00Z"
+  },
+  "allowed_email_fields": [
+    "opportunity_name",
+    "stage",
+    "amount_usd",
+    "qualifying_opportunity_count",
+    "qualifying_amount_total_usd"
+  ],
+  "subject": "Verified APAC prospects above USD 100,000 - 2026-09-08",
+  "send_once": true,
+  "attachments": [],
+  "required_output": "output/apac_regional_summary_audit.json"
+}

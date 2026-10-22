@@ -1,0 +1,4 @@
+series,host,snapshot_time,tags,retention_basis,review_date
+supplier correspondence,records-01,2019-06-30T10:00:00+08:00,records-2019;routine-series,six-year schedule complete,2026-08-13
+Matter A17 collection,records-01,2019-07-02T10:00:00+08:00,records-2019;matter-a17,preservation order A17 active,2026-12-15
+contract register,records-01,2026-07-31T10:00:00+08:00,records-2026;current-series,active business record,2027-07-31

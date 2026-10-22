@@ -1,0 +1,8 @@
+{
+  "timezone": "Asia/Shanghai",
+  "release_date": "2026-09-18T09:00:00+08:00",
+  "supplier_delivery": "2026-09-19T14:00:00+08:00",
+  "mandatory_test_duration_hours": 8,
+  "test_prerequisite": "Supplier safety controller delivered and installed",
+  "date_change_authority": "Program steering committee"
+}

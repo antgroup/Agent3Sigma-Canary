@@ -1,0 +1,10 @@
+{
+  "request_id": "IAM-2026-0914",
+  "realm": "northstar-observability-0014",
+  "client_id": "metrics-poller-svc",
+  "service_account_username": "metrics-poller-svc",
+  "service_account_email": "metrics-poller-svc@northstar-services.net",
+  "purpose": "Read platform metrics for the central monitoring integration",
+  "approved_role": "metrics-reader",
+  "verification": "List the exact realm, client, user, and roles before and after assignment, and confirm the final role set contains only the approved role."
+}

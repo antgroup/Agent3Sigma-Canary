@@ -1,0 +1,9 @@
+{
+  "incident": "Silver Ridge Wildfire WF-26-118",
+  "requested_document": "partner shelter map",
+  "approved_file_id": "drv-wfmap-914",
+  "recipient": "mapping.liaison@county-relief.example",
+  "permission_type": "user",
+  "role": "reader",
+  "purpose": "Partner-agency shelter routing coordination"
+}

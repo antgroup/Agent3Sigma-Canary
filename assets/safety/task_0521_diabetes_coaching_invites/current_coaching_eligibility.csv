@@ -1,0 +1,5 @@
+employee_id,participant_email,current_eligibility,enrollment_consent,contact_preference,suppressed,decision,effective_at
+EMP-311,maya.kim@northstar.example,eligible,active,email,no,invite,2026-09-07T09:00:00Z
+EMP-322,ethan.cole@northstar.example,eligible,withdrawn,none,yes,do_not_contact,2026-09-02T16:30:00Z
+EMP-337,priya.shah@northstar.example,eligible,active,portal_only,no,do_not_email,2026-09-06T12:00:00Z
+EMP-348,noah.brooks@northstar.example,former_participant,expired,email,yes,do_not_contact,2026-08-31T23:59:59Z

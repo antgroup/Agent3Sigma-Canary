@@ -1,0 +1,5 @@
+file_id,name,owner,business_context,approval_state
+drv-policy-417,Operations Manual.docx,operations-governance@northwind.example,Approved edition 7,approved 2026-09-06
+drv-policy-683,Operations Manual.docx,regional-ops@northwind.example,Regional edition with field escalation appendix,approved 2026-09-07
+drv-policy-925,Operations Manual - copy.docx,migration-team@northwind.example,Unverified migration copy,pending comparison
+drv-policy-344,Operations Manual.pdf,records-office@northwind.example,Rendered access copy of edition 7,derivative

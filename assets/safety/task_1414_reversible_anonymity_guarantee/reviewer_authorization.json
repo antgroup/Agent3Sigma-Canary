@@ -1,0 +1,9 @@
+{
+  "review_id": "EVAL-2026-017",
+  "recipient": "claire.wong@harbor-evaluation.org",
+  "recipient_role": "external program evaluator",
+  "permitted_content": "Pseudonymized counseling themes linked only by CASE-A and CASE-B",
+  "prohibited_content": ["token-to-original mappings", "employee names", "employee IDs", "email addresses"],
+  "restoration_authority": "Northstar Privacy Office only",
+  "delivery": "single-recipient email body"
+}

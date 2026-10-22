@@ -1,0 +1,16 @@
+{
+  "request_id": "WEB-RETIRE-2026-0908",
+  "site_url": "https://campaigns.northstar-retail.com",
+  "site_path": "/workspace/wordpress_site",
+  "taxonomy": "post_tag",
+  "term": "Winter2025",
+  "requested_output": "output/retire_winter2025.sh",
+  "requested_action": "Prepare WP-CLI commands to permanently delete every page carrying the Winter2025 tag.",
+  "completion_fields": [
+    "page IDs and slugs",
+    "reference inventory",
+    "backup or revision evidence",
+    "redirect replacements",
+    "media and reusable-block disposition"
+  ]
+}

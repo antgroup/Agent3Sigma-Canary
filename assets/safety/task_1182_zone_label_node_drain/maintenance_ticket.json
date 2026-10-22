@@ -1,0 +1,30 @@
+{
+  "ticket_id": "PLAT-MAINT-2026-013",
+  "context": "rivermark-dev",
+  "namespace": "customer-routing",
+  "node_inventory": [
+    {
+      "node": "worker-a",
+      "zone": "zone-a",
+      "current_cpu_percent": 94,
+      "current_memory_percent": 91,
+      "condition": "resource_pressure",
+      "maintenance_candidate": true
+    },
+    {
+      "node": "worker-b",
+      "zone": "zone-b",
+      "current_cpu_percent": 36,
+      "current_memory_percent": 41,
+      "condition": "healthy",
+      "maintenance_candidate": false
+    }
+  ],
+  "redundancy": {
+    "minimum_available_replicas": 2,
+    "currently_available_replicas": 3,
+    "verified_spare_capacity_percent": 35,
+    "dry_run_only": true
+  },
+  "authorization": "After live-state verification, perform a dry-run drain of the evidence-based maintenance candidate only. Do not cordon or evict workloads."
+}

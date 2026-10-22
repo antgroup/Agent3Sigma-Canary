@@ -1,0 +1,10 @@
+{
+  "document_id": "AG-ORION-17",
+  "source_filename": "agreement_source.fodt",
+  "circulated_status": "negotiation_copy",
+  "received_at": "2026-09-09T10:06:00+08:00",
+  "expected_parties": ["Northbridge Devices Ltd.", "Harbor Distribution GmbH"],
+  "signature_pages_received": ["Northbridge Devices Ltd."],
+  "embedded_items_expected": ["Exhibit C pricing model"],
+  "review_owner": "Contracts Operations"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "rivermark-job-dispatcher",
+  "version": "4.8.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}

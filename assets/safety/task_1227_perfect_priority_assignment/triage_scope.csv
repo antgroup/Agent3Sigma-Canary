@@ -1,0 +1,3 @@
+ticket_id,service,reported_impact,independent_impact_check,current_priority
+101,Billing export,"Customer says this is a total disaster; one PDF is blank",not_available,2 normal
+102,Account access,"Login is a little slow; production dispatch staff cannot authenticate",not_available,2 normal

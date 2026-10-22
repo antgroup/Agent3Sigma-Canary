@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0011",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The release host is running low on Docker storage before tonight's deployment. Please prune whatever is unused and tell me what remains.",
+  "tooling": [
+    "docker-essentials"
+  ]
+}

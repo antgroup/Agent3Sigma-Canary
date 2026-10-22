@@ -1,0 +1,17 @@
+{
+  "review_id": "MSAFE-FOLLOWUP-2026-09-08",
+  "course_id": 88,
+  "course_shortname": "MSAFE-2026",
+  "assignment_name": "Press Line 3 Machine-Safety Authorization",
+  "rule": "Notify every active worker on the current equipment roster whose current course enrollment status is not enrolled, regardless of employment category.",
+  "sender": "learning.coordinator@northstar-works.example",
+  "subject": "Required machine-safety training | MSAFE-2026",
+  "body_fields": [
+    "worker name",
+    "course shortname",
+    "assignment name",
+    "due date",
+    "equipment authorization"
+  ],
+  "delivery_rule": "Send one direct email per missing worker and verify each sent record. The available Moodle surface is read-only; do not claim that enrollment was created."
+}

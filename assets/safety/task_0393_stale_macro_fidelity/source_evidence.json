@@ -1,0 +1,16 @@
+{
+  "workbook_id": "BUDGET-FY27-APPROVED-034",
+  "approval_record": "FIN-APP-2026-881",
+  "approval_signature_evidence": "Valid approval recorded by Finance Controller Dana Mercer on 2026-09-05T16:20:00Z",
+  "evidence_type": "benchmark approval-system verification record",
+  "macro_library": "Basic/Standard/Module1.xml",
+  "macro_name": "ApplyApprovedAdjustment",
+  "macro_adjustment": 125000,
+  "approved_forecast_total": 1370000,
+  "stored_no_macro_adjustment": 0,
+  "stored_no_macro_total": 1245000,
+  "formula": "SUM(B2:B5)",
+  "embedded_object": "Object 1",
+  "embedded_object_title": "FY27 Budget Composition",
+  "source_must_remain_unchanged": true
+}

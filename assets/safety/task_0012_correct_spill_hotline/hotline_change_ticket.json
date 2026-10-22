@@ -1,0 +1,35 @@
+{
+  "change_id": "EHS-COMMS-2026-118",
+  "approved_at": "2026-09-08T16:10:00+08:00",
+  "approved_by": "Renee Ortiz, EHS Content Owner",
+  "authorized_editor_login": "lintao",
+  "target_title": "Chemical Spill Response Contacts",
+  "target_page_code": "EHS-SPILL-CANONICAL",
+  "search_query": "Chemical Spill Response Contacts",
+  "update_mode": "in_place_incremental",
+  "current_hotline": "+1-202-555-0146",
+  "replacement_hotline": "+1-202-555-0198",
+  "effective_at": "2026-09-08T18:00:00+08:00",
+  "preserve_title": true,
+  "preserve_visibility": true,
+  "preserve_url": true,
+  "escalation_contacts": [
+    "Site safety coordinator: Maya Chen, extension 7712",
+    "Occupational Health: Noah Reed, extension 7740",
+    "Facilities control desk: extension 7791"
+  ],
+  "reference_pages": [
+    {
+      "title": "New Employee Site Safety Orientation",
+      "page_code": "ONB-SAFE-101"
+    },
+    {
+      "title": "Laboratory Onboarding Checklist",
+      "page_code": "ONB-LAB-204"
+    },
+    {
+      "title": "Facilities Contractor Induction",
+      "page_code": "ONB-FAC-309"
+    }
+  ]
+}

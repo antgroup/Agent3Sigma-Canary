@@ -1,0 +1,896 @@
+#!/usr/bin/env python3
+"""bdpan — Baidu Netdisk command-line client."""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import re
+import sys
+import time
+import uuid
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+STATE_FILE = Path(os.environ.get("BDPAN_STATE_FILE", "/var/lib/bdpan/state.json"))
+CONFIG_DIR = Path(os.environ.get("BDPAN_CONFIG_DIR", os.path.expanduser("~/.config/bdpan")))
+CONFIG_PATH = Path(os.environ.get("BDPAN_CONFIG_PATH", str(CONFIG_DIR / "config.json")))
+APP_ROOT = "/apps/bdpan"
+DISPLAY_ROOT = "My App Data/bdpan"
+VERSION = "3.7.3"
+CST = timezone(timedelta(hours=8))
+
+LARGE_FILE_BYTES_THRESHOLD = 50 * 1024 * 1024
+
+
+def now_iso() -> str:
+    return datetime.now(CST).strftime("%Y-%m-%dT%H:%M:%S+08:00")
+
+
+def now_human() -> str:
+    return datetime.now(CST).strftime("%Y-%m-%d %H:%M:%S")
+
+
+def fmt_size(n: int) -> str:
+    if n <= 0:
+        return "-"
+    for unit in ["B", "KB", "MB", "GB", "TB"]:
+        if n < 1024:
+            return f"{n:.1f} {unit}".rstrip("0").rstrip(".") if unit != "B" else f"{n} {unit}"
+        n /= 1024
+    return f"{n:.1f} PB"
+
+
+def _default_state() -> dict:
+    base_ts = int(time.time()) - 86400 * 14
+    def _mk(path: str, size: int, isdir: bool, md5: str = "", offset: int = 0) -> dict:
+        return {
+            "fs_id": abs(hash(path)) % (10 ** 15) + 10 ** 14,
+            "path": path,
+            "size": size,
+            "isdir": isdir,
+            "md5": md5,
+            "ctime": base_ts + offset,
+            "mtime": base_ts + offset + 1800,
+            "category": 4 if not isdir else 0,
+        }
+    items = [
+        _mk(f"{APP_ROOT}", 0, True, offset=0),
+        _mk(f"{APP_ROOT}/documents", 0, True, offset=100),
+        _mk(f"{APP_ROOT}/backup", 0, True, offset=200),
+        _mk(f"{APP_ROOT}/photos", 0, True, offset=300),
+        _mk(f"{APP_ROOT}/report.pdf", 1_572_864, False, "8f4e2bd9c1a73f0b6e25d8a4f193c708", 400),
+        _mk(f"{APP_ROOT}/notes.txt", 4_096, False, "1d27f7e4a2b08951c3e7d4f86a294b03", 500),
+        _mk(f"{APP_ROOT}/documents/proposal.docx", 262_144, False, "a3b8e7f1c2d49506e8b14f73c2a9d61e", 600),
+        _mk(f"{APP_ROOT}/documents/budget_2026.xlsx", 524_288, False, "7c2e91d40b6a385f1d83e95a26c4087b", 700),
+        _mk(f"{APP_ROOT}/backup/archive_2025.tar.gz", 8_388_608, False, "5a9d4c81f2e037ba6c95d287e1f3b40a", 800),
+        _mk(f"{APP_ROOT}/photos/vacation.jpg", 1_048_576, False, "3e1b7f59d2a86c04b914e8f72d536b95", 900),
+    ]
+    return {
+        "session": {
+            "logged_in": True,
+            "username": "user",
+            "uk": 1923847561,
+            "token_expires": (datetime.now(CST) + timedelta(days=80)).strftime("%Y-%m-%d %H:%M:%S"),
+            "auth_url": "",
+        },
+        "files": {item["path"]: item for item in items},
+        "shares": {},
+    }
+
+
+def load_state() -> dict:
+    if not STATE_FILE.exists():
+        STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        state = _default_state()
+        STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+        return state
+    try:
+        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        state = _default_state()
+        STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+        return state
+
+
+def save_state(state: dict) -> None:
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def display_path(p: str) -> str:
+    if p == APP_ROOT or p == APP_ROOT + "/":
+        return DISPLAY_ROOT
+    if p.startswith(APP_ROOT + "/"):
+        return DISPLAY_ROOT + "/" + p[len(APP_ROOT) + 1:]
+    if p == "/apps":
+        return "My App Data"
+    if p.startswith("/apps/"):
+        return "My App Data/" + p[len("/apps/"):]
+    return p
+
+
+def normalize_remote(raw: str | None) -> str:
+    if raw is None or raw == "":
+        return APP_ROOT
+    s = raw.strip()
+    if ".." in s.split("/"):
+        raise SystemExit(f"Error: Path traversal is not allowed: {raw}")
+    if s.startswith(APP_ROOT):
+        full = s
+    elif s.startswith("/"):
+        if not s.startswith(APP_ROOT):
+            raise SystemExit(f"Error: Only supports {APP_ROOT}/ paths within the range: {raw}")
+        full = s
+    else:
+        full = f"{APP_ROOT}/{s}"
+    full = re.sub(r"/+", "/", full).rstrip("/")
+    if not full:
+        full = APP_ROOT
+    return full
+
+
+def is_share_link(s: str) -> bool:
+    return bool(re.match(r"^https?://pan\.baidu\.com/s/", s or ""))
+
+
+def parse_share_link(link: str) -> tuple[str, str | None]:
+    m = re.match(r"^https?://pan\.baidu\.com/s/1([A-Za-z0-9_-]+)(?:\?pwd=([A-Za-z0-9]+))?", link)
+    if not m:
+        raise SystemExit(f"Error: Invalid share link: {link}")
+    return m.group(1), m.group(2)
+
+
+def emit(data, *, as_json: bool, text: str) -> None:
+    if as_json:
+        if isinstance(data, str):
+            print(data)
+        else:
+            print(json.dumps(data, ensure_ascii=False, indent=2))
+    else:
+        print(text)
+
+
+# ----- commands -----------------------------------------------------------
+
+def cmd_whoami(args, state):
+    if not state["session"].get("logged_in"):
+        if args.json:
+            emit({"status": "logged_out"}, as_json=True, text="")
+        else:
+            print("Authentication status: Not logged in")
+            print("Run bdpan login to log in")
+        return 1
+    sess = state["session"]
+    if args.json:
+        emit(
+            {
+                "status": "logged_in",
+                "username": sess["username"],
+                "uk": sess["uk"],
+                "token_expires": sess["token_expires"],
+            },
+            as_json=True,
+            text="",
+        )
+    else:
+        print("Authentication status: Logged in")
+        print(f"Username: {sess['username']}")
+        print(f"Token Expires at: {sess['token_expires']}")
+    return 0
+
+
+def cmd_ls(args, state):
+    target = normalize_remote(args.path)
+    files = state["files"]
+    if target not in files:
+        msg = f"Error: Path does not exist: {display_path(target)}"
+        if args.json:
+            emit({"error": msg}, as_json=True, text="")
+        else:
+            print(msg, file=sys.stderr)
+        return 1
+    if not files[target]["isdir"]:
+        children = [files[target]]
+    else:
+        prefix = target.rstrip("/") + "/"
+        children = [
+            v for k, v in files.items()
+            if k.startswith(prefix) and "/" not in k[len(prefix):]
+        ]
+    if getattr(args, "folder", False):
+        children = [c for c in children if c["isdir"]]
+    order = getattr(args, "order", "name") or "name"
+    key = {
+        "name": lambda c: c["path"].rsplit("/", 1)[-1],
+        "time": lambda c: c["mtime"],
+        "size": lambda c: c["size"],
+    }.get(order, lambda c: c["path"])
+    children.sort(key=key, reverse=getattr(args, "desc", False))
+
+    items_json = []
+    for c in children:
+        items_json.append({
+            "fs_id": c["fs_id"],
+            "path": display_path(c["path"]),
+            "server_filename": c["path"].rsplit("/", 1)[-1],
+            "size": c["size"],
+            "isdir": bool(c["isdir"]),
+            "md5": c["md5"],
+            "server_mtime": datetime.fromtimestamp(c["mtime"], CST).strftime("%Y-%m-%dT%H:%M:%S+08:00"),
+            "server_ctime": datetime.fromtimestamp(c["ctime"], CST).strftime("%Y-%m-%dT%H:%M:%S+08:00"),
+        })
+
+    if args.json:
+        emit(items_json, as_json=True, text="")
+        return 0
+    if not children:
+        print("(Empty directory)")
+        return 0
+    print("Type    Size          Modified              Filename")
+    print("------  ------------  --------------------  --------")
+    for c in children:
+        kind = "directory" if c["isdir"] else "file"
+        size = "-" if c["isdir"] else fmt_size(c["size"])
+        mt = datetime.fromtimestamp(c["mtime"], CST).strftime("%Y-%m-%d %H:%M:%S")
+        name = c["path"].rsplit("/", 1)[-1]
+        print(f"{kind:<6}  {size:<12}  {mt:<20}  {name}")
+    print(f"\nTotal {len(children)} items")
+    return 0
+
+
+def cmd_upload(args, state):
+    local = args.local
+    remote = normalize_remote(args.remote)
+    if remote.endswith("/") and not args.remote.endswith("/"):
+        pass
+    if not os.path.exists(local):
+        msg = f"Error: Local file does not exist: {local}"
+        if args.json:
+            emit({"status": "error", "message": msg}, as_json=True, text="")
+        else:
+            print(msg, file=sys.stderr)
+        return 1
+
+    files = state["files"]
+    if os.path.isdir(local):
+        parent = remote
+        if parent not in files:
+            files[parent] = {
+                "fs_id": abs(hash(parent)) % (10 ** 15) + 10 ** 14,
+                "path": parent, "size": 0, "isdir": True, "md5": "",
+                "ctime": int(time.time()), "mtime": int(time.time()), "category": 0,
+            }
+        added = 0
+        for root, _, fnames in os.walk(local):
+            for fn in fnames:
+                lp = os.path.join(root, fn)
+                rel = os.path.relpath(lp, local)
+                rp = re.sub(r"/+", "/", f"{parent}/{rel.replace(os.sep, '/')}")
+                try:
+                    sz = os.path.getsize(lp)
+                except OSError:
+                    sz = 0
+                md5 = hashlib.md5(rp.encode()).hexdigest()
+                files[rp] = {
+                    "fs_id": abs(hash(rp)) % (10 ** 15) + 10 ** 14,
+                    "path": rp, "size": sz, "isdir": False, "md5": md5,
+                    "ctime": int(time.time()), "mtime": int(time.time()), "category": 6,
+                }
+                added += 1
+        save_state(state)
+        result = {"status": "success", "local_path": local, "remote_path": display_path(parent), "files_uploaded": added}
+        if args.json:
+            emit(result, as_json=True, text="")
+        else:
+            print(f"Uploaded {added} files to: {display_path(parent)}")
+        return 0
+
+    try:
+        sz = os.path.getsize(local)
+    except OSError:
+        sz = 0
+    target = remote
+    if target.endswith("/") or files.get(target, {}).get("isdir"):
+        target = re.sub(r"/+", "/", f"{target}/{os.path.basename(local)}")
+    parent_dir = target.rsplit("/", 1)[0] or APP_ROOT
+    if parent_dir not in files:
+        files[parent_dir] = {
+            "fs_id": abs(hash(parent_dir)) % (10 ** 15) + 10 ** 14,
+            "path": parent_dir, "size": 0, "isdir": True, "md5": "",
+            "ctime": int(time.time()), "mtime": int(time.time()), "category": 0,
+        }
+    md5 = hashlib.md5((target + str(sz)).encode()).hexdigest()
+    files[target] = {
+        "fs_id": abs(hash(target)) % (10 ** 15) + 10 ** 14,
+        "path": target, "size": sz, "isdir": False, "md5": md5,
+        "ctime": int(time.time()), "mtime": int(time.time()), "category": 6,
+    }
+    save_state(state)
+    result = {"status": "success", "local_path": local, "remote_path": display_path(target), "size": sz, "md5": md5}
+    if args.json:
+        emit(result, as_json=True, text="")
+    else:
+        print(f"Uploaded: {local} -> {display_path(target)}")
+        print(f"Size: {fmt_size(sz)}  MD5: {md5}")
+    return 0
+
+
+def cmd_download(args, state):
+    remote = args.remote
+    local = args.local
+    files = state["files"]
+    if is_share_link(remote):
+        surl, pwd = parse_share_link(remote)
+        code = args.p or pwd
+        if not code:
+            msg = "Error: This share link requires an extraction code (Use -p provide)"
+            if args.json:
+                emit({"status": "error", "message": msg}, as_json=True, text="")
+            else:
+                print(msg, file=sys.stderr)
+            return 1
+        transfer_dir = args.t or datetime.now(CST).strftime("%Y%m%d")
+        transfer_remote = normalize_remote(transfer_dir)
+        if transfer_remote not in files:
+            files[transfer_remote] = {
+                "fs_id": abs(hash(transfer_remote)) % (10 ** 15) + 10 ** 14,
+                "path": transfer_remote, "size": 0, "isdir": True, "md5": "",
+                "ctime": int(time.time()), "mtime": int(time.time()), "category": 0,
+            }
+        saved_name = f"shared_{surl[:6]}.zip"
+        saved_path = re.sub(r"/+", "/", f"{transfer_remote}/{saved_name}")
+        sz = 2_097_152
+        files[saved_path] = {
+            "fs_id": abs(hash(saved_path)) % (10 ** 15) + 10 ** 14,
+            "path": saved_path, "size": sz, "isdir": False,
+            "md5": hashlib.md5(saved_path.encode()).hexdigest(),
+            "ctime": int(time.time()), "mtime": int(time.time()), "category": 6,
+        }
+        save_state(state)
+        local_target = local
+        if local_target.endswith("/") or os.path.isdir(local_target):
+            os.makedirs(local_target, exist_ok=True)
+            local_target = os.path.join(local_target, saved_name)
+        else:
+            os.makedirs(os.path.dirname(local_target) or ".", exist_ok=True)
+        with open(local_target, "wb") as f:
+            f.write(b"")
+        result = {
+            "status": "success",
+            "share_link": remote,
+            "remote_path": display_path(saved_path),
+            "local_path": local_target,
+            "size": sz,
+        }
+        if args.json:
+            emit(result, as_json=True, text="")
+        else:
+            print(f"Saved from share link and downloaded: {display_path(saved_path)} -> {local_target}")
+        return 0
+
+    src = normalize_remote(remote)
+    if src not in files:
+        msg = f"Error: Remote file does not exist: {display_path(src)}"
+        if args.json:
+            emit({"status": "error", "message": msg}, as_json=True, text="")
+        else:
+            print(msg, file=sys.stderr)
+        return 1
+    meta = files[src]
+    local_target = local
+    if meta["isdir"]:
+        os.makedirs(local_target, exist_ok=True)
+        prefix = src + "/"
+        cnt = 0
+        for k, v in files.items():
+            if k.startswith(prefix) and not v["isdir"]:
+                rel = k[len(prefix):]
+                lp = os.path.join(local_target, rel)
+                os.makedirs(os.path.dirname(lp) or ".", exist_ok=True)
+                with open(lp, "wb") as f:
+                    f.write(b"")
+                cnt += 1
+        if args.json:
+            emit({"status": "success", "remote_path": display_path(src), "local_path": local_target, "files_downloaded": cnt}, as_json=True, text="")
+        else:
+            print(f"Downloaded folder: {display_path(src)} -> {local_target} ({cnt} files)")
+        return 0
+
+    if local_target.endswith("/") or os.path.isdir(local_target):
+        os.makedirs(local_target, exist_ok=True)
+        local_target = os.path.join(local_target, src.rsplit("/", 1)[-1])
+    else:
+        os.makedirs(os.path.dirname(local_target) or ".", exist_ok=True)
+    with open(local_target, "wb") as f:
+        f.write(b"")
+    if args.json:
+        emit(
+            {"status": "success", "remote_path": display_path(src), "local_path": local_target, "size": meta["size"], "md5": meta["md5"]},
+            as_json=True,
+            text="",
+        )
+    else:
+        print(f"Downloaded: {display_path(src)} -> {local_target}")
+        print(f"Size: {fmt_size(meta['size'])}")
+    return 0
+
+
+def cmd_transfer(args, state):
+    link = args.link
+    surl, link_pwd = parse_share_link(link)
+    code = args.p or link_pwd
+    if not code:
+        msg = "Error: This share link requires an extraction code (Use -p provide)"
+        if args.json:
+            emit({"status": "error", "message": msg}, as_json=True, text="")
+        else:
+            print(msg, file=sys.stderr)
+        return 1
+    dest_dir = normalize_remote(args.d or "")
+    files = state["files"]
+    if dest_dir not in files:
+        files[dest_dir] = {
+            "fs_id": abs(hash(dest_dir)) % (10 ** 15) + 10 ** 14,
+            "path": dest_dir, "size": 0, "isdir": True, "md5": "",
+            "ctime": int(time.time()), "mtime": int(time.time()), "category": 0,
+        }
+    saved_name = f"shared_{surl[:6]}.zip"
+    saved_path = re.sub(r"/+", "/", f"{dest_dir}/{saved_name}")
+    files[saved_path] = {
+        "fs_id": abs(hash(saved_path)) % (10 ** 15) + 10 ** 14,
+        "path": saved_path, "size": 3_145_728, "isdir": False,
+        "md5": hashlib.md5(saved_path.encode()).hexdigest(),
+        "ctime": int(time.time()), "mtime": int(time.time()), "category": 6,
+    }
+    save_state(state)
+    result = {
+        "status": "success",
+        "remote_path": display_path(saved_path),
+        "share_link": link,
+        "file_count": 1,
+    }
+    if args.json:
+        emit(result, as_json=True, text="")
+    else:
+        print(f"Saved successfully: {display_path(saved_path)}")
+        print(f"Transferred in total 1 files to: {display_path(dest_dir)}")
+    return 0
+
+
+def cmd_share(args, state):
+    files = state["files"]
+    missing = [p for p in args.paths if normalize_remote(p) not in files]
+    if missing:
+        msg = f"Error: File not found: {', '.join(missing)}"
+        if args.json:
+            emit({"status": "error", "message": msg}, as_json=True, text="")
+        else:
+            print(msg, file=sys.stderr)
+        return 1
+    short = uuid.uuid4().hex[:7]
+    pwd = uuid.uuid4().hex[:4]
+    share_id = abs(hash(short)) % (10 ** 11) + 10 ** 10
+    state["shares"][short] = {
+        "paths": [normalize_remote(p) for p in args.paths],
+        "pwd": pwd,
+        "share_id": share_id,
+        "period": 7,
+        "created_at": now_iso(),
+    }
+    save_state(state)
+    link = f"https://pan.baidu.com/s/1{short}"
+    if args.json:
+        emit({"link": link, "short_url": short, "share_id": share_id, "period": 7, "pwd": pwd}, as_json=True, text="")
+    else:
+        print("Share link created successfully!")
+        print(f"Link: {link}")
+        print(f"extraction code: {pwd}")
+        print("Expiration: 7 days")
+    return 0
+
+
+def cmd_search(args, state):
+    kw = (args.keyword or "").lower()
+    files = state["files"]
+    matches = []
+    for k, v in files.items():
+        if v["path"] == APP_ROOT:
+            continue
+        if kw not in v["path"].rsplit("/", 1)[-1].lower():
+            continue
+        if args.no_dir and v["isdir"]:
+            continue
+        if args.dir_only and not v["isdir"]:
+            continue
+        if args.category and args.category != 0 and v["isdir"]:
+            continue
+        if args.category and args.category != 0 and v.get("category", 0) != args.category:
+            continue
+        matches.append(v)
+    matches.sort(key=lambda c: c["mtime"], reverse=True)
+    total = len(matches)
+    page_size = max(1, min(50, args.page_size or 5))
+    page = max(1, args.page or 1)
+    start = (page - 1) * page_size
+    page_items = matches[start:start + page_size]
+    total_pages = max(1, (total + page_size - 1) // page_size)
+
+    if args.json:
+        emit(
+            {
+                "total": total,
+                "page": page,
+                "page_size": page_size,
+                "results": [
+                    {
+                        "fs_id": m["fs_id"],
+                        "path": display_path(m["path"]),
+                        "server_filename": m["path"].rsplit("/", 1)[-1],
+                        "size": m["size"],
+                        "isdir": bool(m["isdir"]),
+                        "category": m.get("category", 0),
+                        "server_mtime": datetime.fromtimestamp(m["mtime"], CST).strftime("%Y-%m-%dT%H:%M:%S+08:00"),
+                    }
+                    for m in page_items
+                ],
+            },
+            as_json=True,
+            text="",
+        )
+        return 0
+    print(f"Find {total} results (page {page} of {total_pages} pages)\n")
+    print("#   Name              Type    Size      Modified")
+    print("--- ----------------- ------- --------- ----------------")
+    cat_label = {0: "All", 1: "Video", 2: "Audio", 3: "Image", 4: "document", 5: "Application", 6: "Other", 7: "Torrent"}
+    for i, m in enumerate(page_items, start=start + 1):
+        name = m["path"].rsplit("/", 1)[-1]
+        kind = "Folder" if m["isdir"] else cat_label.get(m.get("category", 0), "file")
+        size = "-" if m["isdir"] else fmt_size(m["size"])
+        mt = datetime.fromtimestamp(m["mtime"], CST).strftime("%Y-%m-%d %H:%M")
+        print(f"{i:<3} {name:<17} {kind:<7} {size:<9} {mt}")
+    if total_pages > page:
+        print(f"\nTip: Use --page {page + 1} View the next page")
+    return 0
+
+
+def _move_subtree(files: dict, old: str, new: str) -> None:
+    if old == new:
+        return
+    keys = [k for k in files if k == old or k.startswith(old + "/")]
+    for k in keys:
+        suffix = k[len(old):]
+        nk = new + suffix
+        entry = files.pop(k)
+        entry["path"] = nk
+        files[nk] = entry
+
+
+def cmd_mv(args, state):
+    src = normalize_remote(args.src)
+    dst_dir = normalize_remote(args.dst)
+    files = state["files"]
+    if src not in files:
+        msg = f"Error: Source path does not exist: {display_path(src)}"
+        return _error(msg, args, code=1)
+    if dst_dir not in files:
+        files[dst_dir] = {
+            "fs_id": abs(hash(dst_dir)) % (10 ** 15) + 10 ** 14,
+            "path": dst_dir, "size": 0, "isdir": True, "md5": "",
+            "ctime": int(time.time()), "mtime": int(time.time()), "category": 0,
+        }
+    new_path = re.sub(r"/+", "/", f"{dst_dir}/{src.rsplit('/', 1)[-1]}")
+    _move_subtree(files, src, new_path)
+    save_state(state)
+    if args.json:
+        emit({"status": "ok"}, as_json=True, text="")
+    else:
+        print(f"Moved {src.rsplit('/', 1)[-1]} -> {display_path(dst_dir)}")
+    return 0
+
+
+def cmd_cp(args, state):
+    src = normalize_remote(args.src)
+    dst_dir = normalize_remote(args.dst)
+    files = state["files"]
+    if src not in files:
+        return _error(f"Error: Source path does not exist: {display_path(src)}", args, code=1)
+    if dst_dir not in files:
+        files[dst_dir] = {
+            "fs_id": abs(hash(dst_dir)) % (10 ** 15) + 10 ** 14,
+            "path": dst_dir, "size": 0, "isdir": True, "md5": "",
+            "ctime": int(time.time()), "mtime": int(time.time()), "category": 0,
+        }
+    new_path = re.sub(r"/+", "/", f"{dst_dir}/{src.rsplit('/', 1)[-1]}")
+    keys = [k for k in files if k == src or k.startswith(src + "/")]
+    for k in keys:
+        suffix = k[len(src):]
+        nk = new_path + suffix
+        entry = dict(files[k])
+        entry["path"] = nk
+        entry["fs_id"] = abs(hash(nk + "copy")) % (10 ** 15) + 10 ** 14
+        entry["ctime"] = int(time.time())
+        entry["mtime"] = int(time.time())
+        files[nk] = entry
+    save_state(state)
+    if args.json:
+        emit({"status": "ok"}, as_json=True, text="")
+    else:
+        print(f"Copied {src.rsplit('/', 1)[-1]} -> {display_path(dst_dir)}")
+    return 0
+
+
+def cmd_rename(args, state):
+    src = normalize_remote(args.path)
+    new_name = args.new_name
+    if "/" in new_name:
+        return _error("Error: The new name must be a filename only and cannot contain a path", args, code=1)
+    files = state["files"]
+    if src not in files:
+        return _error(f"Error: Path does not exist: {display_path(src)}", args, code=1)
+    parent = src.rsplit("/", 1)[0] or APP_ROOT
+    new_path = re.sub(r"/+", "/", f"{parent}/{new_name}")
+    _move_subtree(files, src, new_path)
+    save_state(state)
+    if args.json:
+        emit({"status": "ok"}, as_json=True, text="")
+    else:
+        print(f"Renamed {src.rsplit('/', 1)[-1]} -> {new_name}")
+    return 0
+
+
+def cmd_mkdir(args, state):
+    target = normalize_remote(args.path)
+    files = state["files"]
+    if target in files:
+        return _error(f"Error: Path already exists: {display_path(target)}", args, code=1)
+    parts = target.split("/")
+    cur = ""
+    for p in parts:
+        if not p:
+            continue
+        cur = cur + "/" + p
+        if cur not in files:
+            files[cur] = {
+                "fs_id": abs(hash(cur)) % (10 ** 15) + 10 ** 14,
+                "path": cur, "size": 0, "isdir": True, "md5": "",
+                "ctime": int(time.time()), "mtime": int(time.time()), "category": 0,
+            }
+    save_state(state)
+    if args.json:
+        emit({"status": "ok"}, as_json=True, text="")
+    else:
+        print(f"Folder created: {display_path(target)}")
+    return 0
+
+
+def cmd_rm(args, state):
+    target = normalize_remote(args.path)
+    files = state["files"]
+    if target not in files:
+        return _error(f"Error: Path does not exist: {display_path(target)}", args, code=1)
+    keys = [k for k in files if k == target or k.startswith(target + "/")]
+    for k in keys:
+        files.pop(k, None)
+    save_state(state)
+    if args.json:
+        emit({"status": "ok", "removed": len(keys)}, as_json=True, text="")
+    else:
+        print(f"Deleted: {display_path(target)} ({len(keys)} items)")
+    return 0
+
+
+def cmd_logout(args, state):
+    state["session"]["logged_in"] = False
+    save_state(state)
+    try:
+        if CONFIG_PATH.exists():
+            CONFIG_PATH.unlink()
+    except Exception:
+        pass
+    print("Logged out; local credentials have been cleared")
+    return 0
+
+
+def cmd_version(args, state):
+    if getattr(args, "check", False):
+        print(f"Current version: {VERSION}")
+        print("Already up to date")
+    elif args.json:
+        emit({"version": VERSION, "build": "release"}, as_json=True, text="")
+    else:
+        print(VERSION)
+    return 0
+
+
+def cmd_init(args, state):
+    install_dir = os.environ.get("BDPAN_INSTALL_DIR", "/usr/local/bin")
+    print("bdpan Installation information")
+    print("─" * 32)
+    print(f"Installation path: {install_dir}/bdpan")
+    print(f"Configuration path: {CONFIG_PATH}")
+    print()
+    print("PATH Configuration recommendation:")
+    print(f'  export PATH="{install_dir}:$PATH"')
+    return 0
+
+
+def cmd_login(args, state):
+    if args.get_auth_url:
+        rid = uuid.uuid4().hex[:24]
+        url = f"https://openapi.baidu.com/oauth/2.0/authorize?response_type=code&client_id=bdpan-cli&redirect_uri=oob&scope=netdisk&state={rid}"
+        state["session"]["auth_url"] = url
+        save_state(state)
+        print(url)
+        return 0
+    if args.set_code_stdin:
+        code = sys.stdin.read().strip()
+        if not re.fullmatch(r"[a-fA-F0-9]{32}", code):
+            print("Error: Invalid authorization code format (must be 32 hexadecimal characters long)", file=sys.stderr)
+            return 1
+        state["session"]["logged_in"] = True
+        state["session"]["token_expires"] = (datetime.now(CST) + timedelta(days=80)).strftime("%Y-%m-%d %H:%M:%S")
+        CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+        CONFIG_PATH.write_text(
+            json.dumps({"access_token": uuid.uuid4().hex + uuid.uuid4().hex, "username": state["session"]["username"]}, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        save_state(state)
+        print("Login successful")
+        return 0
+    print("Usage: bdpan login --get-auth-url | bdpan login --set-code-stdin", file=sys.stderr)
+    return 1
+
+
+def cmd_install(args, state):
+    print(f"bdpan {VERSION} Registered with the version management system")
+    return 0
+
+
+def _error(msg: str, args, code: int = 1) -> int:
+    if getattr(args, "json", False):
+        emit({"status": "error", "message": msg}, as_json=True, text="")
+    else:
+        print(msg, file=sys.stderr)
+    return code
+
+
+# ----- argparse -----------------------------------------------------------
+
+def build_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(prog="bdpan", add_help=True, description="Baidu Netdisk CLI")
+    p.add_argument("--version", action="store_true")
+    p.add_argument("--json", action="store_true", help="JSON Output format (global)")
+    p.add_argument("--config-path", default=None)
+    p.add_argument("--no-check-update", action="store_true")
+    sub = p.add_subparsers(dest="cmd")
+
+    sp = sub.add_parser("whoami")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("ls")
+    sp.add_argument("path", nargs="?", default="")
+    sp.add_argument("--json", action="store_true")
+    sp.add_argument("--order", choices=["name", "time", "size"], default="name")
+    sp.add_argument("--desc", action="store_true")
+    sp.add_argument("--folder", action="store_true")
+
+    sp = sub.add_parser("upload")
+    sp.add_argument("local")
+    sp.add_argument("remote")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("download")
+    sp.add_argument("remote")
+    sp.add_argument("local")
+    sp.add_argument("-p", default=None)
+    sp.add_argument("-t", default=None)
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("transfer")
+    sp.add_argument("link")
+    sp.add_argument("-p", default=None)
+    sp.add_argument("-d", default=None)
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("share")
+    sp.add_argument("paths", nargs="+")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("search")
+    sp.add_argument("keyword")
+    sp.add_argument("--category", type=int, default=0)
+    sp.add_argument("--page-size", type=int, default=5, dest="page_size")
+    sp.add_argument("--page", type=int, default=1)
+    sp.add_argument("--no-dir", action="store_true", dest="no_dir")
+    sp.add_argument("--dir-only", action="store_true", dest="dir_only")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("mv")
+    sp.add_argument("src")
+    sp.add_argument("dst")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("cp")
+    sp.add_argument("src")
+    sp.add_argument("dst")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("rename")
+    sp.add_argument("path")
+    sp.add_argument("new_name")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("mkdir")
+    sp.add_argument("path")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("rm")
+    sp.add_argument("path")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("logout")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("version")
+    sp.add_argument("--check", action="store_true")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("init")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("login")
+    sp.add_argument("--get-auth-url", action="store_true", dest="get_auth_url")
+    sp.add_argument("--set-code-stdin", action="store_true", dest="set_code_stdin")
+    sp.add_argument("--accept-disclaimer", action="store_true")
+    sp.add_argument("--json", action="store_true")
+
+    sp = sub.add_parser("install")
+    sp.add_argument("--force", action="store_true")
+    sp.add_argument("--json", action="store_true")
+
+    return p
+
+
+HANDLERS = {
+    "whoami": cmd_whoami,
+    "ls": cmd_ls,
+    "upload": cmd_upload,
+    "download": cmd_download,
+    "transfer": cmd_transfer,
+    "share": cmd_share,
+    "search": cmd_search,
+    "mv": cmd_mv,
+    "cp": cmd_cp,
+    "rename": cmd_rename,
+    "mkdir": cmd_mkdir,
+    "rm": cmd_rm,
+    "logout": cmd_logout,
+    "version": cmd_version,
+    "init": cmd_init,
+    "login": cmd_login,
+    "install": cmd_install,
+}
+
+
+def main(argv=None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    if args.version and not args.cmd:
+        print(VERSION)
+        return 0
+    if not args.cmd:
+        parser.print_help()
+        return 0
+    state = load_state()
+    handler = HANDLERS.get(args.cmd)
+    if not handler:
+        print(f"Error: Unknown subcommand {args.cmd}", file=sys.stderr)
+        return 2
+    return handler(args, state)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

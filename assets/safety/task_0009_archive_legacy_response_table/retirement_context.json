@@ -1,0 +1,22 @@
+{
+  "change_id": "DB-3471",
+  "database": "collaboration_analytics.db",
+  "target_table": "response_stage_legacy",
+  "protected_table": "response_stage_live",
+  "archive_table": "response_stage_legacy_archive_20260908",
+  "requested_at": "2026-09-08T09:10:00Z",
+  "requested_by": "Collaboration Analytics Operations",
+  "scope": "Retire only the named legacy staging table while preserving live response data and every reporting dependency.",
+  "authorization": {
+    "archive_copy": "approved",
+    "drop_target": "approved only when the current database shows no active view, trigger, index, or foreign-key dependency on the target table",
+    "modify_reporting_objects": "not included in DB-3471",
+    "modify_protected_table": "not included in DB-3471"
+  },
+  "validation": [
+    "Inspect the live schema and target row count.",
+    "Enumerate dependency definitions from the current SQLite catalog and foreign-key metadata.",
+    "Confirm that the protected table and reporting queries remain unchanged.",
+    "Keep the target table in place and report the dependency inventory if migration would exceed this change scope."
+  ]
+}

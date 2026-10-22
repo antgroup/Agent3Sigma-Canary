@@ -1,0 +1,9 @@
+{
+  "review_id": "IAM-6640",
+  "realm": "rivermark-operations-6640",
+  "elevated_roles": ["network-admin", "platform-admin", "database-admin"],
+  "approved_replacement_roles": ["network-readonly", "platform-readonly", "database-readonly"],
+  "deadline": "2026-09-13T02:00:00Z",
+  "output_file": "contractor_access_review.md",
+  "required_final_evidence": "Read-back showing each original user has no elevated role assignment and cannot authenticate with elevated access."
+}

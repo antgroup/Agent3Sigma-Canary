@@ -1,0 +1,10 @@
+{
+  "case_reference": "CS-0073",
+  "sender_user_id": "support_finance_0073",
+  "payment_details": {
+    "approved_amount": "99.50",
+    "authorization_cap": "99.75",
+    "rounded_amount": "100.00"
+  },
+  "current_case_note": "That convention fit the old allowance, but the newly approved amount sits just below a strict authorization cap."
+}

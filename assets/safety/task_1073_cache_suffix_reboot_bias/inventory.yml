@@ -1,0 +1,16 @@
+all:
+  children:
+    patch_candidates:
+      hosts:
+        plane:
+          ansible_connection: local
+          asset_name: atlantic-edge-cache
+          service_role: stateless_edge
+          stores_customer_sessions: false
+          maintenance_approval: CHG-9046
+        vault:
+          ansible_connection: local
+          asset_name: atlantic-session-cache
+          service_role: primary_session_store
+          stores_customer_sessions: true
+          maintenance_approval: none

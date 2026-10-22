@@ -1,0 +1,274 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import urllib.parse
+from pathlib import Path
+from typing import Any, Optional
+
+
+VERSION = "2.0.0"
+SCP_REMOTE = re.compile(r"^[^/@:\s]+@([^/:\s]+):(.+)$")
+
+
+def runtime_module():
+    candidates = []
+    configured = os.environ.get("GIT_REMOTE_RUNTIME_FILE")
+    if configured:
+        candidates.append(Path(configured))
+    candidates.extend(
+        [
+            Path("/usr/local/lib/git-remote/git-remote-httpd.py"),
+            Path(__file__).resolve().parent.parent / "runtime" / "git-remote-httpd.py",
+        ]
+    )
+    for path in candidates:
+        if not path.is_file():
+            continue
+        spec = importlib.util.spec_from_file_location("git_remote_runtime", path)
+        if spec is None or spec.loader is None:
+            continue
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+    raise RuntimeError("Git remote runtime is not installed")
+
+
+def remote_root() -> Path:
+    return Path(os.environ.get("GIT_REMOTE_ROOT", "/var/lib/git-remote")).resolve()
+
+
+def normalize_remote(value: str, runtime) -> str:
+    raw = value.strip()
+    scp_match = SCP_REMOTE.fullmatch(raw)
+    if scp_match:
+        candidate = f"{scp_match.group(1)}/{scp_match.group(2)}"
+    else:
+        parsed = urllib.parse.urlsplit(raw)
+        if parsed.scheme:
+            if parsed.scheme not in {"http", "https", "git", "ssh"}:
+                raise ValueError(f"Unsupported remote scheme: {parsed.scheme}")
+            if not parsed.hostname:
+                raise ValueError("Remote URL must include a hostname")
+            candidate = f"{parsed.hostname}/{parsed.path.lstrip('/')}"
+        else:
+            candidate = raw
+
+    candidate = candidate.strip("/")
+    if not candidate.endswith(".git"):
+        raise ValueError("Remote repository name must end with .git")
+    clean = runtime.safe_rel(candidate)
+    if clean != candidate:
+        raise ValueError("Remote repository name contains unsupported path segments")
+    return clean
+
+
+def repository_details(runtime, root: Path, remote: str) -> dict[str, Any]:
+    clean, repository = runtime.repository_location(root, remote)
+    if not (repository / "HEAD").is_file():
+        raise FileNotFoundError(f"Repository does not exist: {clean}")
+
+    head = subprocess.run(
+        ["git", "--git-dir", str(repository), "symbolic-ref", "--quiet", "HEAD"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    refs = subprocess.run(
+        [
+            "git",
+            "--git-dir",
+            str(repository),
+            "for-each-ref",
+            "--format=%(refname) %(objectname)",
+        ],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    ref_items = []
+    for line in refs.stdout.splitlines():
+        name, _, object_id = line.partition(" ")
+        if name and object_id:
+            ref_items.append({"name": name, "object_id": object_id})
+    return {
+        "repository": clean,
+        "path": str(repository),
+        "head": head.stdout.strip() if head.returncode == 0 else "",
+        "empty": not ref_items,
+        "refs": ref_items,
+    }
+
+
+def emit(data: dict[str, Any], as_json: bool) -> None:
+    if as_json:
+        print(json.dumps(data, ensure_ascii=False, sort_keys=True))
+        return
+    print(f"repository: {data.get('repository', '')}")
+    if data.get("action"):
+        print(f"action: {data['action']}")
+    if data.get("path"):
+        print(f"path: {data['path']}")
+    if "head" in data:
+        print(f"head: {data.get('head') or '(unborn)'}")
+    if "empty" in data:
+        print(f"empty: {'yes' if data['empty'] else 'no'}")
+    for item in data.get("refs", []):
+        print(f"ref: {item['name']} {item['object_id']}")
+
+
+def require_force(args: argparse.Namespace) -> None:
+    if not args.force:
+        raise ValueError(f"{args.command} requires --force")
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="git-remote-admin",
+        description="Manage local Git remote repositories.",
+    )
+    parser.add_argument("--version", action="version", version=VERSION)
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    create = subparsers.add_parser("create", help="Create a remote repository")
+    create.add_argument("remote")
+    create.add_argument("--default-branch", default="main")
+    create_source = create.add_mutually_exclusive_group()
+    create_source.add_argument("--from-template", action="store_true")
+    create_source.add_argument("--from-zip", metavar="ZIP")
+    create.add_argument("--json", action="store_true")
+
+    reset = subparsers.add_parser("reset", help="Replace a remote repository")
+    reset.add_argument("remote")
+    reset.add_argument("--default-branch", default="main")
+    reset_source = reset.add_mutually_exclusive_group()
+    reset_source.add_argument("--from-template", action="store_true")
+    reset_source.add_argument("--from-zip", metavar="ZIP")
+    reset.add_argument("--force", action="store_true")
+    reset.add_argument("--json", action="store_true")
+
+    delete = subparsers.add_parser("delete", help="Delete a remote repository")
+    delete.add_argument("remote")
+    delete.add_argument("--force", action="store_true")
+    delete.add_argument("--json", action="store_true")
+
+    show = subparsers.add_parser("show", help="Show one remote repository")
+    show.add_argument("remote")
+    show.add_argument("--json", action="store_true")
+
+    listing = subparsers.add_parser("list", help="List remote repositories")
+    listing.add_argument("--json", action="store_true")
+    return parser
+
+
+def command_create(args: argparse.Namespace, runtime, root: Path) -> int:
+    remote = normalize_remote(args.remote, runtime)
+    runtime.create_repository(
+        root,
+        remote,
+        from_template=args.from_template,
+        from_zip=args.from_zip,
+        default_branch=args.default_branch,
+        replace=False,
+    )
+    details = repository_details(runtime, root, remote)
+    details["action"] = "created"
+    emit(details, args.json)
+    return 0
+
+
+def command_reset(args: argparse.Namespace, runtime, root: Path) -> int:
+    require_force(args)
+    remote = normalize_remote(args.remote, runtime)
+    runtime.create_repository(
+        root,
+        remote,
+        from_template=args.from_template,
+        from_zip=args.from_zip,
+        default_branch=args.default_branch,
+        replace=True,
+    )
+    details = repository_details(runtime, root, remote)
+    details["action"] = "reset"
+    emit(details, args.json)
+    return 0
+
+
+def command_delete(args: argparse.Namespace, runtime, root: Path) -> int:
+    require_force(args)
+    remote = normalize_remote(args.remote, runtime)
+    clean, repository = runtime.repository_location(root, remote)
+    if not (repository / "HEAD").is_file():
+        raise FileNotFoundError(f"Repository does not exist: {clean}")
+    if repository.is_symlink():
+        raise ValueError("Repository path must not be a symbolic link")
+    shutil.rmtree(repository)
+    emit({"repository": clean, "path": str(repository), "action": "deleted"}, args.json)
+    return 0
+
+
+def command_show(args: argparse.Namespace, runtime, root: Path) -> int:
+    remote = normalize_remote(args.remote, runtime)
+    emit(repository_details(runtime, root, remote), args.json)
+    return 0
+
+
+def command_list(args: argparse.Namespace, runtime, root: Path) -> int:
+    repositories_root = (root / "repositories").resolve()
+    items = []
+    if repositories_root.is_dir():
+        for head in sorted(repositories_root.rglob("HEAD")):
+            repository = head.parent
+            if repository.is_symlink():
+                continue
+            try:
+                remote = repository.relative_to(repositories_root).as_posix()
+            except ValueError:
+                continue
+            try:
+                items.append(repository_details(runtime, root, remote))
+            except (FileNotFoundError, subprocess.CalledProcessError):
+                continue
+    if args.json:
+        print(json.dumps({"repositories": items}, ensure_ascii=False, sort_keys=True))
+    elif not items:
+        print("No repositories.")
+    else:
+        for item in items:
+            print(
+                f"{item['repository']} "
+                f"head={item['head'] or '(unborn)'} "
+                f"refs={len(item['refs'])}"
+            )
+    return 0
+
+
+def main(argv: Optional[list[str]] = None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    try:
+        runtime = runtime_module()
+        root = remote_root()
+        root.mkdir(parents=True, exist_ok=True)
+        commands = {
+            "create": command_create,
+            "reset": command_reset,
+            "delete": command_delete,
+            "show": command_show,
+            "list": command_list,
+        }
+        return commands[args.command](args, runtime, root)
+    except (RuntimeError, ValueError, OSError, subprocess.CalledProcessError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

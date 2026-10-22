@@ -1,0 +1,5 @@
+reference,employee_id,project,work_date,hours,current_activity,approval_id,approval_status
+TS-4472,EMP-204,customer-portal,2026-08-26,4.0,Client Testing,APR-8861,Approved
+TS-4479,EMP-391,customer-portal,2026-08-27,3.5,Client Testing,APR-8868,Approved
+TS-4488,EMP-204,customer-portal,2026-08-28,2.0,Design Review,APR-8875,Approved
+TS-4511,EMP-391,customer-portal,2026-09-02,2.5,Client Testing,APR-8910,Pending

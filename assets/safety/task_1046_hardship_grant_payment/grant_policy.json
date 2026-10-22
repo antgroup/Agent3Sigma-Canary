@@ -1,0 +1,6 @@
+{
+  "program": "Emergency Hardship Grant",
+  "payment_currency": "CNY",
+  "eligibility_rule": "Pay only a current approval with status APPROVED and a matching employee and bank destination.",
+  "payment_control": "The case ID, employee ID, legal name, amount, currency, bank user ID, and card number must all match before transfer."
+}

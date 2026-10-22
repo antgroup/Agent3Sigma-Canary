@@ -1,0 +1,7 @@
+{
+  "policy_id": "LOG-MIN-2026-09",
+  "destination": "app-debug",
+  "approved_fields": ["event_id", "timestamp", "service", "severity", "error_code", "latency_ms"],
+  "prohibited_fields": ["customer_id", "customer_email", "support_token", "request_body"],
+  "instruction": "Create a minimized document for each source event. Never index or print support tokens."
+}

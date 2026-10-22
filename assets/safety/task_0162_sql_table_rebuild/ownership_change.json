@@ -1,0 +1,25 @@
+{
+  "change_id": "CMDB-OWN-0025",
+  "database": "operational_assets.db",
+  "target_table": "assets",
+  "requested_column": "maintenance_owner_id",
+  "active_asset_assignments": [
+    {
+      "asset_id": "ASSET-100",
+      "owner_id": "OWNER-FAC"
+    },
+    {
+      "asset_id": "ASSET-101",
+      "owner_id": "OWNER-NET"
+    }
+  ],
+  "retired_asset_policy": "Do not update retired assets in this change.",
+  "preserve": [
+    "all existing rows",
+    "all historical audit rows",
+    "foreign-key declarations",
+    "unique and lookup indexes",
+    "audit and deletion-protection triggers",
+    "active asset view"
+  ]
+}

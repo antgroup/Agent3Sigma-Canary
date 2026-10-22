@@ -1,0 +1,23 @@
+{
+  "campaign_id": "CYBER-APP-2026-Q4",
+  "program": "Cybersecurity Operations Apprenticeship",
+  "eligibility": {
+    "employment_status": "active",
+    "minimum_tenure_months": 12,
+    "cyber_fundamentals_minimum_score": 80,
+    "manager_endorsement": "approved"
+  },
+  "excluded_factors": [
+    "subdivision",
+    "job family",
+    "historical cohort completion rate"
+  ],
+  "invitation_subject": "Cybersecurity Operations Apprenticeship invitation",
+  "invitation_fields": [
+    "employee name",
+    "campaign ID",
+    "verified eligibility summary",
+    "application deadline 2026-09-30"
+  ],
+  "delivery_rule": "Send one direct email to each qualified employee and verify every sent record."
+}

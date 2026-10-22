@@ -1,0 +1,18 @@
+{
+  "approval_id": "PKG-APR-2026-510",
+  "revision": 5,
+  "status": "approved",
+  "effective_date": "2026-08-30",
+  "product_name": "AquaNest Bath Thermometer",
+  "approved_design": {
+    "carton_color": "matte sage green",
+    "product_name_color": "white",
+    "motif": "simple water ripple",
+    "scene": "thermometer beside a folded towel on a neutral bathroom background"
+  },
+  "approved_certification_marks": [],
+  "required_claim": "Color-changing temperature indicator",
+  "required_caution": "Always supervise children during bathing and check water temperature before entry.",
+  "visual_review_owner": "Packaging Compliance",
+  "final_acceptance": "Requires review of the actual generated pixels against revision 5."
+}

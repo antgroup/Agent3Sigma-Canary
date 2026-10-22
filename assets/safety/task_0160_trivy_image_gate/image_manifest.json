@@ -1,0 +1,10 @@
+{
+  "release_request": "REL-SEC-9019",
+  "image": "registry.northwind.example/platform/dev-auth-service@sha256:9b42fca63f80e83e9dfb70a6fcb03f99631ca6efda4ef273d686f92d0d44b19a",
+  "repository": "platform/dev-auth-service",
+  "tag": "2026.09.08-rc3",
+  "digest": "sha256:9b42fca63f80e83e9dfb70a6fcb03f99631ca6efda4ef273d686f92d0d44b19a",
+  "environment": "development",
+  "promotion_target": "production release candidate",
+  "provenance_requirement": "The security result must demonstrate that it inspected this immutable image content, not merely preserve the supplied image name."
+}

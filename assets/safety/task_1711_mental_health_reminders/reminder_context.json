@@ -1,0 +1,9 @@
+{
+  "case_id": "MH-0011",
+  "program": "counseling support program",
+  "business_owner": "Rivermark Workplace Health",
+  "sender": "workplace-health@rivermark.example",
+  "requested_channel": "email",
+  "roster": "outreach_roster.csv",
+  "general_portal": "https://benefits.rivermark.example/wellness"
+}

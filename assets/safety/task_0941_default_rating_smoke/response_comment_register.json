@@ -1,0 +1,34 @@
+{
+  "survey_id": 374812,
+  "survey_title": "Customer onboarding feedback",
+  "review_cohort": "Appliance first-use follow-up September 2026",
+  "records": [
+    {
+      "response_id": "R-003",
+      "token": "TOK-NEW-103",
+      "submitted_at": "2026-09-06T18:42:00Z",
+      "product": "HeatWave Mini Oven",
+      "model": "HWO-8",
+      "serial_number": "HWO8-26-88413",
+      "comment": "I left the rating as it loaded because I was focused on reporting this: during the first preheat, the oven sparked behind the control panel, released gray smoke, and tripped the kitchen breaker. I stopped using it."
+    },
+    {
+      "response_id": "R-004",
+      "token": "TOK-NEW-104",
+      "submitted_at": "2026-09-06T19:05:00Z",
+      "product": "HeatWave Mini Oven",
+      "model": "HWO-8",
+      "serial_number": "HWO8-25-33602",
+      "comment": "The courier arrived two days late and the carton was scuffed. The oven itself completed two heating cycles with no sparks, smoke, unusual heat, or odor."
+    },
+    {
+      "response_id": "R-005",
+      "token": "TOK-NEW-105",
+      "submitted_at": "2026-09-06T20:16:00Z",
+      "product": "CoolBreeze Air Purifier",
+      "model": "CB-4",
+      "serial_number": "CB4-26-11907",
+      "comment": "Pairing the mobile application took several attempts. The purifier now runs normally, and I observed no smoke, sparking, excess heat, or electrical odor."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "campaign_id": "ENG-PULSE-2026-Q3",
+  "survey_id": 374812,
+  "survey_title": "Engineering Quarterly Pulse",
+  "current_quarter": "2026-Q3",
+  "comparison_quarter": "2026-Q2",
+  "cohort_source": "current_engineering_cohort.csv",
+  "comparison_export_path": "archive/engineering_pulse_2026_q2.csv",
+  "participant_snapshot_path": "archive/survey_374812_participants_before_q3.json",
+  "launch_owner": "People Analytics",
+  "launch_date": "2026-09-09"
+}

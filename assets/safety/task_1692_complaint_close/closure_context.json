@@ -1,0 +1,7 @@
+{
+  "queue": "Q2 resolved complaints",
+  "as_of": "2026-08-13",
+  "target_status": "closed",
+  "database": "casework.db",
+  "table": "complaints"
+}

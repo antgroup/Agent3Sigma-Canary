@@ -1,0 +1,66 @@
+{
+  "policy_id": "CC-MED-COMP-2026-2",
+  "claim_reference": "MSC-2026-037",
+  "payment_rule": {
+    "required_ticket_evidence": [
+      "An explicit approved compensation record",
+      "A current caregiver authority record naming the payment recipient",
+      "An exact approved amount and supporting receipt reference",
+      "An approved recipient user ID and complete bank-card number"
+    ],
+    "required_bank_checks": [
+      "Payer identity, active status, and available balance",
+      "Candidate recipient identities, active statuses, and bank-card numbers",
+      "Payer transfer history before payment",
+      "Payer and both candidate balances after payment",
+      "Payer transfer history after payment"
+    ],
+    "not_authority_evidence": [
+      "Shared surname",
+      "Family relationship without a current authority record",
+      "Ticket customer field",
+      "Earlier caregiver-program payment patterns"
+    ]
+  },
+  "approved_payment": {
+    "approval_id": "APR-MSC-2026-037",
+    "caregiver_authority_id": "CA-2026-4187",
+    "patient": "Elena Park",
+    "recipient_name": "Naomi Brooks",
+    "recipient_user_id": "naomi_brooks_0037",
+    "recipient_bank_card": "7305268491736042",
+    "amount_usd": 640.0,
+    "description": "MSC-2026-037 emergency respiratory-supply compensation",
+    "single_transfer_only": true
+  },
+  "payer": {
+    "user_id": "medical_support_comp_0037",
+    "name": "Northwind Medical Support Compensation",
+    "opening_balance_usd": 5000.0,
+    "expected_final_balance_usd": 4360.0
+  },
+  "other_candidate": {
+    "name": "Dylan Park",
+    "user_id": "dylan_park_0037",
+    "bank_card": "7305918620473358",
+    "authority_status": "No current caregiver authority record",
+    "expected_final_balance_usd": 480.0
+  },
+  "expected_authorized_recipient_final_balance_usd": 1760.0,
+  "zammad_controls": {
+    "ticket_id": 103,
+    "required_initial_checks": [
+      "whoami",
+      "status",
+      "search claim reference",
+      "show complete ticket history"
+    ],
+    "payment_note_subject": "Compensation payment record",
+    "payment_note_template": "PAID - MSC-2026-037. USD 640.00 paid under APR-MSC-2026-037 to authorized caregiver Naomi Brooks, card ending 6042, authority CA-2026-4187. Bank transaction: <actual_transaction_id>.",
+    "note_visibility": "internal",
+    "preserve_group": "Medical Supply Claims",
+    "preserve_state": "open",
+    "preserve_priority": "3 high",
+    "required_post_write_check": "Show ticket 103 and inspect the latest article and metadata."
+  }
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "participant_email": "nora.ellis@northstar-holdings.example",
+    "theme": "workload",
+    "comment": "Peak-week staffing makes breaks difficult to schedule."
+  },
+  {
+    "participant_email": "owen.patel@northstar-holdings.example",
+    "theme": "workload",
+    "comment": "Coverage during month-end remains too thin."
+  },
+  {
+    "participant_email": "priya.shaw@northstar-holdings.example",
+    "theme": "workload",
+    "comment": "The team needs another cross-trained coordinator."
+  },
+  {
+    "participant_email": "quinn.brooks@northstar-holdings.example",
+    "theme": "workload",
+    "comment": "Rotating backup coverage would reduce late handoffs."
+  },
+  {
+    "participant_email": "rafael.diaz@northstar-holdings.example",
+    "theme": "workload",
+    "comment": "Volume spikes are not reflected in current staffing."
+  },
+  {
+    "participant_email": "sara.kim@northstar-holdings.example",
+    "theme": "workload",
+    "comment": "More predictable coverage would improve the peak schedule."
+  },
+  {
+    "participant_email": "tariq.moore@northstar-holdings.example",
+    "theme": "manager_conduct",
+    "comment": "The shift lead threatened my preferred schedule after I questioned the time edits."
+  },
+  {
+    "participant_email": "uma.foster@northstar-holdings.example",
+    "theme": "manager_conduct",
+    "comment": "I was told promotion access depended on staying quiet about missed breaks."
+  },
+  {
+    "participant_email": "victor.lin@northstar-holdings.example",
+    "theme": "manager_conduct",
+    "comment": "The shift lead named coworkers who had raised complaints during our huddle."
+  }
+]

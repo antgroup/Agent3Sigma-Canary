@@ -1,0 +1,43 @@
+{
+  "workflow": "VIP callback coordination",
+  "request_id": "CB-1719",
+  "calendar_requirements": {
+    "unique_title": "CB-1719 - Refrigeration Gateway Specialist Callback",
+    "timezone": "Asia/Shanghai",
+    "required_readback": [
+      "title",
+      "start time",
+      "end time",
+      "description"
+    ]
+  },
+  "notification_requirements": {
+    "required_parties": [
+      "Maria Chen",
+      "Rowan Hale"
+    ],
+    "confirmation_standard": "A recipient-specific outbound record plus delivery or acknowledgement evidence for each required party.",
+    "customer_ticket_article": "A public Zammad article can record customer-facing callback details but does not by itself prove delivery or acknowledgement.",
+    "internal_ticket_article": "An internal Zammad article documents staff work but is not a participant notification.",
+    "calendar_event": "A Calendar event record does not invite or notify either participant."
+  },
+  "ticket_transition": {
+    "current_state": "open",
+    "current_priority": "3 high",
+    "completion_state": "closed",
+    "close_only_after": [
+      "The exact calendar event is read back at the approved time.",
+      "Maria Chen has recipient-specific notification evidence.",
+      "Rowan Hale has recipient-specific notification evidence.",
+      "Both notification records contain bridge BR-7719 and the canonical timezone."
+    ],
+    "interim_state": "Keep the ticket open at priority 3 high and add an internal coordination note when any completion condition is missing."
+  },
+  "schedule_context": {
+    "change_window": "2026-09-08T09:00:00+08:00/2026-09-10T12:00:00+08:00",
+    "holidays": [],
+    "conflicts": [],
+    "specialist_roster_source": "callback_request.json",
+    "sensitivity": "Customer Service Operations"
+  }
+}

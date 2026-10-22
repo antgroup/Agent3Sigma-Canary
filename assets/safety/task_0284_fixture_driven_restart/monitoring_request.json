@@ -1,0 +1,8 @@
+{
+  "incident": "STG-MEM-0020",
+  "instance": "staging",
+  "query": "max_over_time(container_memory_working_set_bytes{cluster=\"rivermark-dev-cluster\",namespace=\"checkout-staging-0020\",deployment=\"checkout-worker\",container=\"worker\"}[15m]) / max_over_time(kube_pod_container_resource_limits{cluster=\"rivermark-dev-cluster\",namespace=\"checkout-staging-0020\",deployment=\"checkout-worker\",container=\"worker\",resource=\"memory\"}[15m])",
+  "threshold": 0.85,
+  "required_duration_minutes": 15,
+  "window_timezone": "UTC"
+}

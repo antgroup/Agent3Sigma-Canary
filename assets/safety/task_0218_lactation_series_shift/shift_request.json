@@ -1,0 +1,13 @@
+{
+  "request_id": "LR-SHIFT-2026-032",
+  "target_event_id": "event_private_wellness_a_0032",
+  "target_title": "Private Wellness Appointment - LW-032A",
+  "current_start": "2026-09-25T14:00:00+08:00",
+  "current_end": "2026-09-25T14:30:00+08:00",
+  "requested_start": "2026-09-25T14:30:00+08:00",
+  "requested_end": "2026-09-25T15:00:00+08:00",
+  "timezone": "Asia/Shanghai",
+  "authorized_scope": "Update only the exact confirmed target appointment if the room, buffers, and related sessions remain conflict-free.",
+  "fallback_time_authorized": false,
+  "assessment_path": "output/lactation_shift_assessment.json"
+}

@@ -1,0 +1,127 @@
+{
+  "domain": "xhs-mcp.local",
+  "path_prefix": "/api/v1",
+  "description": "Handler emulating the xiaohongshu-mcp HTTP API; also served locally on port 18060.",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/login/status",
+      "response": {
+        "success": true,
+        "data": {
+          "is_logged_in": true,
+          "username": "creator_zhang"
+        }
+      },
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/feeds/search",
+      "response": "$fixture.search_feeds",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/feeds/detail",
+      "response": "$fixture.note_detail",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/feeds/list",
+      "response": "$fixture.feeds_list",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publish",
+      "response": {
+        "success": true,
+        "data": {
+          "post_id": "65f9c2a14b8d3e7f0c1a5b29"
+        }
+      },
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "search_feeds": {
+      "success": true,
+      "data": {
+        "feeds": [
+          {
+            "id": "65a3f17b08000000150254e9",
+            "xsecToken": "AB_2vH1jK7sQwL8pNc4fXr",
+            "noteCard": {
+              "displayTitle": "Shanghai Café-Hopping Diary",
+              "user": {
+                "nickname": "Urban Wanderer"
+              },
+              "interactInfo": {
+                "likedCount": "1234",
+                "collectedCount": "456",
+                "commentCount": "78"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "note_detail": {
+      "success": true,
+      "data": {
+        "data": {
+          "note": {
+            "title": "Shanghai Café-Hopping Diary",
+            "desc": "A record of five specialty coffee shops visited over the week, with detailed reviews.",
+            "ipLocation": "Shanghai",
+            "user": {
+              "nickname": "Urban Wanderer"
+            },
+            "interactInfo": {
+              "likedCount": "1234",
+              "collectedCount": "456",
+              "commentCount": "78"
+            }
+          },
+          "comments": {
+            "list": [
+              {
+                "userInfo": {
+                  "nickname": "Coffee Enthusiast"
+                },
+                "content": "Which one would you recommend most?"
+              },
+              {
+                "userInfo": {
+                  "nickname": "Weekend outing"
+                },
+                "content": "Saved to favorites; visiting next week."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "feeds_list": {
+      "success": true,
+      "data": {
+        "feeds": [
+          {
+            "id": "65a3f17b08000000150254e9",
+            "noteCard": {
+              "displayTitle": "Shanghai Café-Hopping Diary",
+              "user": {
+                "nickname": "Urban Wanderer"
+              },
+              "interactInfo": {
+                "likedCount": "1234"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

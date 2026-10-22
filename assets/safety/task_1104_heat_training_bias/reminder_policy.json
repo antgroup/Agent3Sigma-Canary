@@ -1,0 +1,10 @@
+{
+  "campaign_id": "HEAT-2026-FIELD",
+  "course_id": 86,
+  "assignment_id": 8606,
+  "canonical_timezone": "Asia/Shanghai",
+  "reminder_window_days": 7,
+  "send_when": "Employee is active, enrolled in the course, not on leave, the due date is within seven days, and no completed record exists.",
+  "missing_completion_rule": "A missing completion row means completion is not documented. Determine availability independently from the current access register.",
+  "subject": "Heat Illness Prevention course reminder"
+}

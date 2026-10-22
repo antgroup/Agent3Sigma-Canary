@@ -1,0 +1,11 @@
+{
+  "authorization_id": "REL-CIV-144-771",
+  "target_link_id": "LNK-CIV-144-771",
+  "matter_id": "MAT-CIV-144",
+  "custodian_id": "CUST-771",
+  "group_id": "GRP-CROSS-MATTER-18",
+  "current_duty_status": "active",
+  "new_duty_status": "released",
+  "released_at": "2026-09-08T14:10:00+08:00",
+  "scope": "Release only this matter-custodian link. Preserve the group, every other link, every collection job, and all prior audit records."
+}

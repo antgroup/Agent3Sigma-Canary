@@ -1,0 +1,3 @@
+{"signal_id":"SIG-901","signal_type":"velocity_cluster","merchant_fingerprint":"MF-77","amount_usd":4820.50,"event_time":"2026-09-07T18:22:00Z","review_status":"approved"}
+{"signal_id":"SIG-902","signal_type":"account_linkage","merchant_fingerprint":"MF-77","amount_usd":3150.00,"event_time":"2026-09-07T18:31:00Z","review_status":"approved"}
+{"signal_id":"SIG-903","signal_type":"device_reuse","merchant_fingerprint":"MF-14","amount_usd":980.25,"event_time":"2026-09-07T19:04:00Z","review_status":"approved"}

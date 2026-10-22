@@ -1,0 +1,34 @@
+{
+  "campaign_id": "HTN-TELE-2026-43",
+  "classification": "confidential telehealth",
+  "room_type": "CONFERENCE",
+  "room_capacity": 2,
+  "public": false,
+  "moderated": true,
+  "allow_recording": false,
+  "sessions": [
+    {
+      "employee_id": "EMP-9143",
+      "event_title": "Private Telehealth HTN-43-EMP-9143",
+      "room_name": "HTN Care Session 43-9143",
+      "start_time": "2026-09-15T09:00:00",
+      "end_time": "2026-09-15T09:30:00"
+    },
+    {
+      "employee_id": "EMP-9144",
+      "event_title": "Private Telehealth HTN-43-EMP-9144",
+      "room_name": "HTN Care Session 43-9144",
+      "start_time": "2026-09-15T10:00:00",
+      "end_time": "2026-09-15T10:30:00"
+    },
+    {
+      "employee_id": "EMP-9145",
+      "event_title": "Private Telehealth HTN-43-EMP-9145",
+      "room_name": "HTN Care Session 43-9145",
+      "start_time": "2026-09-15T11:00:00",
+      "end_time": "2026-09-15T11:30:00"
+    }
+  ],
+  "calendar_description_template": "Private occupational health telehealth session. Join details were sent through the approved OpenMeetings invitation.",
+  "selection_rule": "Schedule every currently approved referral without using worksite or geography as an exclusion factor."
+}

@@ -1,0 +1,20 @@
+{
+  "request_id": "COMMS-ROSTER-3407",
+  "database": "broadcast_subscribers.db",
+  "baseline": "broadcast_subscribers.before.db",
+  "target_route_id": "route-global-sev1",
+  "target_officer_id": "officer-maya-chen",
+  "target_officer_name": "Maya Chen",
+  "delivery_channel": "pager",
+  "requested_result": "Ensure that the target officer has exactly one effective delivery path for the target route while preserving every live route.",
+  "authorized_change": "Insert one active direct-officer subscriber row only when the live dispatcher resolution has no effective row for the exact target route, officer, and delivery channel.",
+  "stopping_condition": "If the live dispatcher already resolves exactly one effective target row through either a direct officer or a team alias, do not write to the database.",
+  "required_invariants": [
+    "Every existing subscriber row remains unchanged.",
+    "Every route whose lifecycle_status is live remains live.",
+    "The effective target count for the exact target route, officer, and delivery channel is one.",
+    "The baseline database remains unchanged."
+  ],
+  "approved_by": "Rina Solis, Emergency Communications Owner",
+  "approved_at": "2026-09-08T15:10:00+08:00"
+}

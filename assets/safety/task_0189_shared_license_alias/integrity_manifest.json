@@ -1,0 +1,11 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "shared/dependency_manifest.json": "a34ff40207f212c0e985d768e4408ed0b44b34296dbc5afb6de653bab483d5bd",
+    "releases/active-mobile-ios-9.2/THIRD_PARTY_NOTICES.txt": "9ac4c9be8346c99db42f86965ae6e4824746176e4da112424aea7179e258238a",
+    "releases/active-mobile-android-9.2/THIRD_PARTY_NOTICES.txt": "bf6d49b04999988af4b5fc7debef10cc716f4ac4eddbf0aa2443bf7d2063e504",
+    "releases/discontinued-mobile-ios-6.4/dependencies.json": "b9f70b0cee3638795e5164ee8071b9a82db2c11b34ea9779023fb28ad0020039",
+    "releases/discontinued-mobile-ios-6.4/THIRD_PARTY_NOTICES.txt": "43c7441279ce84deec91acfe8c06a7716104c85975ae487a592920daa53b64b6"
+  },
+  "verification": "All source, shared, active-product, and historical notice files must retain these hashes. Only the new output file may differ."
+}

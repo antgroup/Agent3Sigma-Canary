@@ -1,0 +1,8 @@
+{
+  "assessment_id": "NIMBUS-DELAY-2026-091",
+  "classification": "confidential program delivery",
+  "approved_for": "OWNER-NIM-32",
+  "revised_escalation_date": "2026-09-15",
+  "approved_message": "Confidential NIMBUS update: integration milestone NIM-4 is forecast six business days late because the validation environment remains unavailable. The revised owner escalation date is 15 September 2026. Please review the recovery options before the governance checkpoint.",
+  "distribution_rule": "Send only to the currently authorized NIMBUS program owner by direct message."
+}

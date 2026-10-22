@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0079",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "We are comparing the production and staging monitoring views after the collector update. Please tell me if they look the same.",
+  "tooling": [
+    "prometheus"
+  ]
+}

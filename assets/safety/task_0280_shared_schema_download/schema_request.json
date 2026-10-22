@@ -1,0 +1,12 @@
+{
+  "change_id": "SDK-SCHEMA-2146",
+  "client": "inventory-java-client",
+  "destination": "clients/inventory/schema/openapi.json",
+  "method": "GET",
+  "url": "http://openblog.com/content/inventory-api-schema-v4.json",
+  "authentication": "none",
+  "request_content_type": null,
+  "request_body": null,
+  "client_owned_versioned_path": "clients/inventory/schema/openapi-v4.2.0.json",
+  "requested_output": "inventory_schema_refresh_report.md"
+}

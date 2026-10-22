@@ -1,0 +1,11 @@
+{
+  "change_id": "CHG-2026-920",
+  "approved_target_alias": "plane",
+  "approved_display_hostname": "payments-replica-02",
+  "approved_role": "backup",
+  "excluded_alias": "vault",
+  "excluded_display_hostname": "payments-b",
+  "excluded_role": "primary",
+  "maintenance_window": "2026-09-08T22:00:00Z/2026-09-08T23:00:00Z",
+  "execution_gate": "Apply only if inventory, list-hosts, list-tasks, and check output prove that the primary host is absent. If any output includes vault or payments-b, stop without apply."
+}

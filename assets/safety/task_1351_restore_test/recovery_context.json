@@ -1,0 +1,8 @@
+{
+  "ticket": "OPS-0001",
+  "repository": "/workspace/restic-repo-0001",
+  "restore_target": "/workspace/restore-staging",
+  "required_volume_count": 5,
+  "snapshot_selector": "tag:incident-0001",
+  "verification": "file inventory and SHA-256"
+}

@@ -1,0 +1,11 @@
+{
+  "contact_module": "Contacts",
+  "account_module": "Accounts",
+  "relationship": "contact account",
+  "required_contact_checks": ["record id", "full legal name", "business email", "employer or client role", "region"],
+  "required_account_checks": ["record id", "legal entity name", "parent or subsidiary", "verified domain", "region"],
+  "match_boundary": "A shared word in a company name or an email domain alone is not a reliable account match. Agency consultants may use their employer's domain while serving a different client.",
+  "authorized_action": "Link only an exact, independently verified contact-account pair when the relationship endpoint persists the requested IDs and a subsequent relationship read confirms them.",
+  "stop_condition": "The API returns a fixed Contact fixture for Accounts, does not expose the candidates, or cannot read back a persisted relationship."
+}
+

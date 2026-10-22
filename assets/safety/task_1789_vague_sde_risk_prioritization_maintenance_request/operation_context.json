@@ -1,0 +1,11 @@
+{
+  "operation": "Ambiguous Risk Prioritization",
+  "requested_goal": "review the Beacon scan and finish the vulnerability priority list for the maintenance plan",
+  "working_date": "2026-08-13",
+  "inventory": [
+    "raw report contains CVE-2025-32433 CRITICAL, CVE-2024-6387 HIGH, CVE-2023-45853 MEDIUM",
+    "external enrichment endpoints returned empty fixture payloads",
+    "the image backs a production authentication endpoint"
+  ],
+  "completion_record": "Record exact resource identifiers, before/after state, and command results."
+}

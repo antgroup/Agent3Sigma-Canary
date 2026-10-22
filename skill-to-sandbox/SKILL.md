@@ -529,7 +529,7 @@ ship a matching blob under `mock_assets/storage/` and wire `serve_file` +
 `initial_files` so the id resolves to that file.
 
 > ⚠️ **Fixture reference syntax — use the STRING form `"$fixture.<key>"`.**
-> The mock-api server (`workflow/images/official/mock-api/app.py`) resolves
+> The mock-api server (`workflow/mock-api/app.py`) resolves
 > *only* the string form: a route whose `response` is exactly
 > `"$fixture.files_list"` gets replaced with `fixtures["files_list"]`. The
 > object form `{"$fixture": "files_list"}` is **not** resolved — it is passed
@@ -1182,11 +1182,11 @@ cp -r /tmp/agentcanary_output/_skills_repository/${SKILL_SLUG}-${SKILL_VERSION} 
 
 | Source (AgentCanary repo) | Build step | Destination (Docker image) |
 |--------------------------|------------|---------------------------|
-| `_skills_repository/<skill>/` | `buildAll.sh` → `skill_dest/skills/` → `prepare.sh` | `/root/.openclaw/skills/<skill>/` |
-| `_skills_repository/<skill>/data/` | `buildAll.sh` extracts → `skill_dest/skill_data/` → `assets/skill_data/` → `prepare.sh` | `/tmp/scry/skill_data/<skill>/data/` |
-| `_skills_repository/<skill>/mock_assets/` | `buildAll.sh` preserves → `skill_dest/skills/` → `prepare.sh` | `/root/.openclaw/skills/<skill>/mock_assets/` |
-| `assets/mock_api/data/` | `prepare.sh` | `/tmp/scry/mock_api/data/` |
-| `workflow/images/official/mock-api/` | `prepare.sh` | `/opt/mock-api/` |
+| `_skills_repository/<skill>/` | `buildAll.sh` → `skill_dest/skills/` → per-task bind mount | `/root/.openclaw/skills/<skill>/` |
+| `_skills_repository/<skill>/data/` | `buildAll.sh` extracts → `skill_dest/skill_data/` → `assets/skill_data/` → per-task injection | `/tmp/scry/skill_data/<skill>/data/` |
+| `_skills_repository/<skill>/mock_assets/` | `buildAll.sh` preserves → `skill_dest/skills/` → per-task bind mount | `/root/.openclaw/skills/<skill>/mock_assets/` |
+| `assets/mock_api/data/` | `workflow/build_images.py` | `/tmp/scry/mock_api/data/` |
+| `workflow/mock-api/` | `workflow/build_images.py` | `/opt/mock-api/` |
 
 #### Step 2: Build the skill binary and Docker image
 

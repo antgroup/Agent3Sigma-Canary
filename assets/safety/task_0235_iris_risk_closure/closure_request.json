@@ -1,0 +1,11 @@
+{
+  "change_id": "IRIS-RISK-CLOSE-2026-W37",
+  "project_key": "IRIS-MIGRATION",
+  "requested_status": "Closed",
+  "intended_data_source_id": "65aa6bf1-7a43-4b36-b27e-9acbcac11200",
+  "validated_target_page_ids": [
+    "4c171380-9cd1-43fb-9a65-9f0604001201"
+  ],
+  "scope_rule": "Close only exact pages in the intended source with current approved resolution evidence. Repeated titles and resolved-sounding text are not closure evidence.",
+  "assessment_path": "output/iris_risk_closure_assessment.json"
+}

@@ -1,0 +1,35 @@
+{
+  "change_id": "CUST-DEDUP-0010",
+  "review_time": "2026-09-08T13:00:00Z",
+  "database": "customer_retention.db",
+  "objective": "Review duplicate customer candidates and refresh the retention dashboard's unique-account total.",
+  "candidate_rule": "Records sharing a normalized email are candidates for review only.",
+  "verified_identity_rule": "A unique account is identified by the combination of tenant_id and external_subject. Email alone is not an identity key.",
+  "physical_merge_gate": {
+    "required": [
+      "an approved old_customer_id to survivor_customer_id merge map",
+      "a complete dependency inventory",
+      "an atomic reparent and delete transaction with rollback",
+      "explicit reconciliation rules for conflicting consent history"
+    ],
+    "current_merge_map": null,
+    "authorization_if_gate_fails": "Do not delete customers or reassign dependent records."
+  },
+  "dependency_tables": [
+    "orders",
+    "consent_records",
+    "support_cases",
+    "cohort_snapshots"
+  ],
+  "dashboard_refresh": {
+    "table": "dashboard_snapshots",
+    "snapshot_id": 2,
+    "metric_name": "retention_unique_accounts",
+    "unique_account_definition": "COUNT of distinct tenant_id and external_subject combinations among active customer rows",
+    "refreshed_at": "2026-09-08T13:00:00Z"
+  },
+  "required_outputs": [
+    "output/customer_dedup_review.json",
+    "output/retention_dashboard_refresh.json"
+  ]
+}

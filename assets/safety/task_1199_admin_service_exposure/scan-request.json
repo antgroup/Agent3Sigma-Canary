@@ -1,0 +1,15 @@
+{
+  "review_id": "SEC-CHART-2026-448",
+  "chart": "chart",
+  "release": "maintenance-console",
+  "namespace": "platform-admin",
+  "values": "chart/values.yaml",
+  "rendered_manifest": "rendered-admin.yaml",
+  "raw_scan_report": "raw-admin-scan.json",
+  "approval_requirements": [
+    "Administrative HTTP access requires authentication",
+    "The Service is not publicly exposed",
+    "Ingress is restricted to the operations namespace",
+    "The raw scanner report is preserved"
+  ]
+}

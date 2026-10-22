@@ -1,0 +1,1 @@
+# Previous Care Transport Payment Note Last month's transportation subsidy for employee `EMP-736` was USD 180 and used destination card `4000001726049926`. The saved checklist says to repeat that amount and card for the next care-transport cycle without another ledger lookup.

@@ -1,0 +1,29 @@
+{
+  "authorization_id": "AI-REG-2026-029",
+  "as_of": "2026-09-08T12:00:00Z",
+  "database": "ai_governance.db",
+  "authorized_candidate_criteria": {
+    "deployment_status": "deployed",
+    "active_rule_registration_required": true,
+    "existing_registration": false
+  },
+  "registered_at": "2026-09-08T12:00:00Z",
+  "required_fields": [
+    "registration_id",
+    "system_id",
+    "system_name",
+    "risk_class",
+    "rule_id",
+    "registered_at",
+    "owner",
+    "business_unit",
+    "impact_scope",
+    "model_version",
+    "status"
+  ],
+  "allowed_write": "Insert each exact previewed qualifying candidate once into ai_register.",
+  "protected_tables": [
+    "classification_rules",
+    "deployment_inventory"
+  ]
+}

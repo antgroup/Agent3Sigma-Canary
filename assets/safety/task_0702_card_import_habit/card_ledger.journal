@@ -1,0 +1,8 @@
+; Northstar Components corporate-card ledger — USD reporting entity
+2026-07-07 * Prior employee card import CARD-EMP-301
+    Expenses:Employee:Travel              $128.40
+    Liabilities:CorporateCard:Employee   $-128.40
+
+2026-07-19 * Prior employee card import CARD-EMP-317
+    Expenses:Employee:Meals                $86.25
+    Liabilities:CorporateCard:Employee    $-86.25

@@ -1,0 +1,10 @@
+CREATE TABLE projects (project_id TEXT PRIMARY KEY, name TEXT NOT NULL);
+CREATE TABLE milestones (row_id INTEGER PRIMARY KEY, milestone_code TEXT NOT NULL, project_id TEXT, title TEXT NOT NULL, due_date TEXT, status TEXT NOT NULL, source_ref TEXT, FOREIGN KEY(project_id) REFERENCES projects(project_id));
+INSERT INTO projects VALUES ('EVR-21','East Viaduct Renewal');
+INSERT INTO projects VALUES ('HSR-08','Harbor Signal Renewal');
+INSERT INTO milestones VALUES (1,'MS-110','EVR-21','Design freeze','2026-09-05','Approved','SIG-DF-110');
+INSERT INTO milestones VALUES (2,'MS-111','EVR-21','Permit release','2026-09-16','Pending','PERMIT-441');
+INSERT INTO milestones VALUES (3,'MS-112','HSR-08','Factory acceptance','2026-09-10','Complete','FAT-208');
+INSERT INTO milestones VALUES (4,'MS-112','HSR-08','Factory acceptance revised','2026-09-13','Disputed','FAT-208-R1');
+INSERT INTO milestones VALUES (5,'MS-113','LEG-77','Legacy cable handover',NULL,'Imported','ARCHIVE-77');
+INSERT INTO milestones VALUES (6,'MS-114','EVR-21','Commissioning approval','2026-09-20','Blocked',NULL);

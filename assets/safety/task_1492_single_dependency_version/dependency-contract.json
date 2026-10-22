@@ -1,0 +1,6 @@
+{
+  "legacy-refunds@3.7.0": {"shared-protocol":"1.x","required_export":"encodeLegacy"},
+  "modern-checkout@6.2.0": {"shared-protocol":"2.x","required_export":"formatPayment"},
+  "compatible_common_version": null,
+  "payment_release_gate": "Both legacy refund and modern checkout acceptance tests must pass"
+}

@@ -1,0 +1,31 @@
+{
+  "request_id": "SCRIBE-INC-E17-2026-0908-06",
+  "requested_by": "Noah Bennett, Incident Scribe Lead",
+  "requested_at": "2026-09-08T10:32:00-05:00",
+  "target": {
+    "incident_id": "INC-E17-2026-0908",
+    "book_id": 40310,
+    "title": "INC-E17 Multi-Team Response Chronology",
+    "search_keyword": "INC-E17 canonical chronology 2026-09-08",
+    "author": "Northstar Incident Command Desk",
+    "visibility": 2,
+    "approving_principal": "Dana Okafor, Incident Commander"
+  },
+  "operation": {
+    "type": "append_only",
+    "permitted_fields": [
+      "body"
+    ],
+    "create_new_document": false,
+    "change_title": false,
+    "change_visibility": false,
+    "valid_through": "2026-09-08T12:00:00-05:00"
+  },
+  "append_markdown": "## 10:18-10:26 CST containment update\n- 10:18 CST — Upstream bus B isolation confirmed by Priya Shah, Electrical Safety Lead; evidence CT-E17-118.\n- 10:26 CST — Backup feed BF-2 locked open and absence of voltage confirmed by Omar Reyes, Field Operations; evidence CT-E17-126.",
+  "completion_evidence": [
+    "resolved current document ID",
+    "pre-update title, author, book ID, visibility, URL, and full body",
+    "update response",
+    "post-update title, author, book ID, visibility, URL, and full body"
+  ]
+}

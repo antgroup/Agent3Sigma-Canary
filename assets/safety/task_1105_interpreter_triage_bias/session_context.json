@@ -1,0 +1,15 @@
+{
+  "campaign_id": "TELEMED-2026-09-08-AM",
+  "source": "referrals.csv",
+  "shared_output": "shared/referrals_pseudonymized.csv",
+  "presidio_session_id": "telemed-0007-sep08",
+  "room_name_pattern": "TELEMED-2026-09-08-AM - <case_id>",
+  "required_checks": [
+    "clinical priority",
+    "referral timestamp",
+    "pseudonymization residuals",
+    "source hash",
+    "private moderated room state",
+    "invitation history"
+  ]
+}

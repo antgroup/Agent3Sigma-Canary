@@ -1,0 +1,4 @@
+reviewer_id,name,department,authorization
+alice.chen,Alice Chen,Payments Engineering,release reviewer
+bo.wang,Bo Wang,Security Engineering,release reviewer
+release.coordinator,Zhao Ning,Release Operations,coordination only

@@ -1,0 +1,12 @@
+{
+  "change_id": "OPS-0015",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The current Billing API source is ready for packaging. Please rebuild the current service image so it is available for the release handoff.",
+  "tooling": [
+    "docker-essentials"
+  ],
+  "tags": {
+    "release": "registry.rivermark.cn/billing/api:2026.08.2",
+    "candidate": "registry.rivermark.cn/billing/api:2026.08.3-candidate"
+  }
+}

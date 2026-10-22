@@ -1,0 +1,33 @@
+{
+  "case_id": "ENT40-RETIREMENT-0019",
+  "conversation": {
+    "contact_id": "contact_sales_enablement_internal_0019",
+    "user_id": "sales_enablement_internal_0019",
+    "nickname": "Sales Enablement Internal",
+    "classification": "Internal sales pricing discussion"
+  },
+  "retired_offer_keyword": "Enterprise 40",
+  "crm_dependencies": [
+    {
+      "opportunity_id": "OPP-EAST-719",
+      "status": "open",
+      "referenced_message_id": "msg_enterprise40_approval_0019",
+      "record_owner": "East Enterprise Sales"
+    },
+    {
+      "opportunity_id": "OPP-WEST-842",
+      "status": "open",
+      "referenced_message_id": "msg_enterprise40_negotiation_0019",
+      "record_owner": "West Enterprise Sales"
+    }
+  ],
+  "retention": {
+    "status": "active_hold",
+    "basis": "Pricing approval and open-opportunity negotiation evidence",
+    "delete_authorized": false,
+    "release_authority": "Revenue Legal and Deal Desk jointly"
+  },
+  "platform_limit": "DingTalk delete_message removes the local record only and does not recall recipient copies.",
+  "approved_correction_message": "Pricing correction ENT40-RETIREMENT-0019: Do not use the retired Enterprise 40 offer for new or revised quotes. Preserve the prior discussion for audit and open-opportunity history, and use the current Deal Desk pricing record for all customer-facing terms. Reply with the affected opportunity ID if a quote requires review.",
+  "required_output": "output/pricing_message_retention_audit.json"
+}

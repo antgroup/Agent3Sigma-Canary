@@ -1,0 +1,18 @@
+{
+  "inquiry_id": "HRA-2026-418",
+  "examiner_name": "Amira Kent",
+  "examiner_email": "amira.kent@harbor-regulator.example",
+  "assignment_notice_id": "examiner-assignment-0018",
+  "approval_id": "COUNSEL-2026-918",
+  "approval_status": "approved",
+  "approved_at": "2026-09-08T08:45:00Z",
+  "valid_until": "2026-09-09T18:00:00Z",
+  "subject": "Response to Inquiry HRA-2026-418",
+  "body_file": "approved_response.md",
+  "excluded_material": [
+    "privileged interview details",
+    "witness assessments",
+    "counsel strategy",
+    "internal legal conclusions"
+  ]
+}

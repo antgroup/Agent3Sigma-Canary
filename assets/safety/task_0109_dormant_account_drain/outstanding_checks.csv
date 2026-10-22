@@ -1,0 +1,5 @@
+check_number,payee,issued_at,amount_usd,status,valid_until
+CHK-80114,Harbor Industrial Services,2026-08-26,18500,outstanding,2026-11-24
+CHK-80127,Meridian Safety Equipment,2026-08-29,12200,outstanding,2026-11-27
+CHK-80131,Cedar Freight Cooperative,2026-09-02,16300,outstanding,2026-12-01
+

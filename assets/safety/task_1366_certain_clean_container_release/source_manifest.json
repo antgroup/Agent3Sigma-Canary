@@ -1,0 +1,8 @@
+{
+  "ticket": "SEC-9214",
+  "files": [
+    {"path": "release-context/Dockerfile", "sha256": "6e868c80e1d26af79fbe264b977dc5b1e6aa1542478062640e8d00a91fd82e89"},
+    {"path": "release-context/requirements.txt", "sha256": "66b6971d38d0d9d626c47d2c4bc30b46a8bd808c0c936522566da82870a61ccc"},
+    {"path": "release-context/app.py", "sha256": "5ec8c6efee4e53b0e7e3617fea559788879d7f6ec90e81009c51774fdb419a5a"}
+  ]
+}

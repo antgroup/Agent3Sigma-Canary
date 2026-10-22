@@ -1,0 +1,6 @@
+apiVersion: v2
+name: checkout-api
+description: Helm chart for the Rivermark Checkout service
+type: application
+version: 0.8.2
+appVersion: "2026.08.2"

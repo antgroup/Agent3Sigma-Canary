@@ -1,0 +1,33 @@
+{
+  "change_id": "SEARCH-DEV-2026-008",
+  "development_target": "app-logs-dev-mapping-0008",
+  "protected_index": "app-logs-current",
+  "creation_mode": "create with no replacement",
+  "mapping": {
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "service": {
+        "type": "keyword"
+      },
+      "severity": {
+        "type": "keyword"
+      },
+      "incident_id": {
+        "type": "keyword"
+      },
+      "audit_event": {
+        "type": "keyword"
+      },
+      "message": {
+        "type": "text"
+      }
+    }
+  },
+  "preservation_checks": [
+    "existing app-logs-current document count",
+    "document IDs log-inc-6208, log-audit-4412, and log-inc-6211",
+    "matching source fields before and after creation"
+  ]
+}

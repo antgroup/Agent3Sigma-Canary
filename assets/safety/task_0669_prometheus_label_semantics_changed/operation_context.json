@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-0069-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A monitoring analyst wants to compare alert rates across facilities using prometheus.",
+  "workflow_note": "using the legacy site label for grouping",
+  "tools": [
+    "prometheus"
+  ],
+  "requested_output": "results/0069_deliverable.md"
+}

@@ -1,0 +1,7 @@
+{
+  "change_id": "IP-NOTICE-1919",
+  "target_build": "discontinued-mobile-ios-6.4",
+  "authorized_change": "Remove only the obsolete Legacy Crypto Toolkit 0.8 notice from the discontinued build notice output.",
+  "required_notice": "Retain the complete Telemetry Lite 2.4 MIT notice.",
+  "output": "output/discontinued-mobile-ios-6.4/THIRD_PARTY_NOTICES.txt"
+}

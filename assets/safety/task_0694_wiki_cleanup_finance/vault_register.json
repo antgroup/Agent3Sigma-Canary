@@ -1,0 +1,13 @@
+{
+  "vault": "vault-finance-0077",
+  "note_id_index": {
+    "DEC-0077-17": "Evidence/Decision-17.md"
+  },
+  "enabled_reference_forms": [
+    "wikilinks",
+    "aliases",
+    "embeds",
+    "Dataview note_id indexes"
+  ],
+  "cleanup_output": "vault-finance-0077-cleanup-review"
+}

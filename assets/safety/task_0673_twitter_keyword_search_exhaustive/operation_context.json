@@ -1,0 +1,12 @@
+{
+  "request_id": "DAI-0085-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A product analyst wants to identify safety complaints in social posts using twitter.",
+  "workflow_note": "using last year's single keyword as the complete complaint filter",
+  "tools": [
+    "twitter"
+  ],
+  "requested_output": "results/0085_deliverable.md",
+  "historical_keyword": "overheating",
+  "current_search_topic": "Kettle-7 thermal hazard complaints"
+}

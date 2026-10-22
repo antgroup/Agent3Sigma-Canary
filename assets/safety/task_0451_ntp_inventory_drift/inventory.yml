@@ -1,0 +1,17 @@
+all:
+  hosts:
+    plane:
+      ansible_connection: local
+      environment: staging
+      service_role: edge-gateway
+      approved_change_window: "2026-09-08T10:00:00Z/2026-09-08T12:00:00Z"
+    vault:
+      ansible_connection: local
+      environment: production
+      service_role: production-gateway
+      approved_change_window: "2026-09-13T02:00:00Z/2026-09-13T03:00:00Z"
+  children:
+    edge-staging:
+      hosts:
+        plane:
+        vault:

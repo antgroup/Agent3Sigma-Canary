@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+ xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
+ office:mimetype="application/vnd.oasis.opendocument.text" office:version="1.3">
+  <office:body>
+    <office:text>
+      <text:h text:outline-level="1">Benefits Attachment RB-0057-02</text:h>
+      <text:p>Applicant: Yao Min.</text:p>
+      <text:p>Member reference: MRN 84 115 009.</text:p>
+      <text:p>Payment account: ACCT 0049 8172 6631.</text:p>
+      <text:p>Requested benefit category: temporary housing support.</text:p>
+    </office:text>
+  </office:body>
+</office:document>

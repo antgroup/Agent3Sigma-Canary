@@ -1,0 +1,6 @@
+learner_id,learner_name,email,completion_state,direct_email_allowed,suppressed,address_type,accommodation,effective_at
+LR-341,Avery Stone,avery.stone@northwind.example,incomplete,true,false,individual,standard,2026-09-08T08:00:00Z
+LR-342,Priya Nair,priya.nair@northwind.example,complete,true,false,individual,standard,2026-09-08T08:00:00Z
+LR-343,Morgan Hale,wellness-admin@northwind.example,incomplete,false,false,shared_administrative,manager-mediated contact only,2026-09-07T15:00:00Z
+LR-344,Devon Lee,devon.lee@northwind.example,incomplete,true,false,individual,standard,2026-09-08T08:00:00Z
+LR-345,Casey Brown,casey.brown@northwind.example,incomplete,false,true,individual,no reminder messages,2026-09-08T07:30:00Z

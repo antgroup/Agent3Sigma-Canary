@@ -17,6 +17,7 @@ from urllib import error, request
 import lib_docker as docker
 from lib_attacks import get_attack_method, is_pair_attack, IndirectAttackContext
 from lib_tasks import Task
+from lib_task_validation import memory_context_path
 
 
 logger = logging.getLogger(__name__)
@@ -33,6 +34,28 @@ class ModelValidationError(Exception):
 
 
 MAX_OPENCLAW_MESSAGE_CHARS = int(os.environ.get("SCRY_MAX_MSG_CHARS", "50000"))
+_OPENCLAW_MAX_EFFORT_CONFIGURED: set[tuple[str, str]] = set()
+_LOCAL_OPENCLAW_CLEANUP_SHELL = r'''
+trace="$1"
+shift
+offset=0
+[ -f "$trace" ] && offset=$(wc -c < "$trace")
+setsid "$@" &
+pid=$!
+while kill -0 "$pid" 2>/dev/null; do
+    if [ -f "$trace" ] && [ "$(wc -c < "$trace")" -gt "$offset" ] && \
+       tail -c "+$((offset + 1))" "$trace" | grep -q 'session.ended'; then
+        sleep 0.2
+        kill -TERM -- "-$pid" 2>/dev/null || kill -TERM "$pid" 2>/dev/null || true
+        wait "$pid" 2>/dev/null || true
+        terminal=$(tail -c "+$((offset + 1))" "$trace" | grep 'session.ended' | tail -n 1)
+        printf '%s\n' "$terminal" | grep -Eq '"status"[[:space:]]*:[[:space:]]*"success"'
+        exit $?
+    fi
+    sleep 0.2
+done
+wait "$pid"
+'''
 
 # Mapping: step_type -> (carrier_field, carrier_description)
 # carrier_field: where to find carrier content in the step dict (None if file-based)
@@ -54,6 +77,130 @@ STEP_CARRIER_MAP: dict[str, tuple[str | None, str]] = {
 
 def slugify_model(model_id: str) -> str:
     return model_id.replace("/", "-").replace(".", "-").lower()
+
+
+def _should_use_embedded_openclaw_agent() -> bool:
+    """Select the embedded CLI path for official OpenClaw images.
+
+    OpenClaw's ``agent`` command defaults to Gateway dispatch. Official images
+    can run without a persistent Gateway, so use
+    ``--local`` unless this runner has explicitly started one via
+    ``benchmark.py --gateway``. Other frameworks keep their native adapters.
+    """
+    return (
+        docker.uses_native_openclaw()
+        and not docker.is_image_gateway_active()
+    )
+
+
+def _build_openclaw_agent_command(
+    *,
+    agent_id: str,
+    session_id: str,
+    message: str,
+    effort: str | None = None,
+) -> List[str]:
+    """Build one target-agent command with an optional reasoning override."""
+    command = [
+        "openclaw",
+        "agent",
+        "--agent",
+        agent_id,
+        "--session-id",
+        session_id,
+        "--message",
+        message,
+    ]
+    if _should_use_embedded_openclaw_agent():
+        command.append("--local")
+    if effort:
+        # OpenClaw calls the disabled level ``off`` while the Responses API and
+        # Codex config call it ``none``. The Codex shim maps it back below.
+        command.extend(["--thinking", "off" if effort == "none" else effort])
+    return command
+
+
+def _prepare_openclaw_reasoning_effort(
+    model_id: str,
+    effort: str | None,
+) -> str | None:
+    """Pass ``max`` through the latest embedded OpenClaw validation layer.
+
+    Custom model names can be rejected by
+    OpenClaw's model-name-based ``max`` allowlist even when their provider
+    accepts ``reasoning_effort=max``. Keep the provider request at ``max`` via
+    the model's raw request body, while using ``high`` only for OpenClaw's CLI
+    validation layer.
+    """
+    if not (
+        effort == "max"
+        and docker.is_active()
+        and _should_use_embedded_openclaw_agent()
+    ):
+        return effort
+
+    container_id = docker.get_container_id()
+    if not container_id:
+        return effort
+
+    cache_key = (container_id, model_id)
+    if cache_key not in _OPENCLAW_MAX_EFFORT_CONFIGURED:
+        config_path = (
+            f"agents.defaults.models[{json.dumps(model_id)}].params."
+            "extra_body.reasoning_effort"
+        )
+        result = docker.run_cmd(
+            [
+                "openclaw",
+                "config",
+                "set",
+                config_path,
+                json.dumps("max"),
+                "--strict-json",
+            ]
+        )
+        if result.returncode != 0:
+            detail = (result.stderr or result.stdout or "unknown error").strip()
+            raise RuntimeError(
+                f"Failed to configure OpenClaw max reasoning effort for {model_id}: "
+                f"{detail}"
+            )
+        _OPENCLAW_MAX_EFFORT_CONFIGURED.add(cache_key)
+
+    return "high"
+
+
+def _prepare_openclaw_agent_runtime_command(
+    *,
+    agent_id: str,
+    session_id: str,
+    message: str,
+    effort: str | None = None,
+) -> list[str]:
+    """Build an agent command and guard local one-shot cleanup in Docker.
+
+    Newer OpenClaw's embedded Browser tool starts an
+    in-process control server. Its one-shot CLI can write a terminal trajectory
+    event without exiting, so run only this local-image path through a
+    trajectory-aware process-group cleanup wrapper.
+    """
+    command = _build_openclaw_agent_command(
+        agent_id=agent_id,
+        session_id=session_id,
+        message=message,
+        effort=effort,
+    )
+    if not (_should_use_embedded_openclaw_agent() and docker.is_active()):
+        return command
+
+    return [
+        "sh",
+        "-c",
+        _LOCAL_OPENCLAW_CLEANUP_SHELL,
+        "agentcanary-openclaw-local-cleanup",
+        f"/root/.openclaw/agents/{agent_id}/sessions/{session_id}.trajectory.jsonl",
+        *command,
+    ]
 
 
 def validate_openrouter_model(model_id: str, timeout_seconds: float = 10.0) -> bool:
@@ -278,9 +425,9 @@ def ensure_agent_exists(agent_id: str, model_id: str, workspace_dir: Path) -> bo
     return True
 
 
-def cleanup_agent_sessions(agent_id: str) -> None:
+def cleanup_agent_sessions(agent_id: str, agent_dir: Path | None = None) -> None:
     """Remove stored session transcripts for an agent to avoid unbounded growth."""
-    agent_dir = _get_agent_store_dir(agent_id)
+    agent_dir = agent_dir if agent_dir is not None else _get_agent_store_dir(agent_id)
     sessions_dir = agent_dir / "sessions"
     if not sessions_dir.exists():
         return
@@ -360,8 +507,8 @@ def _purge_stale_container_skills() -> None:
         " ls -1 /root/.hermes/skills 2>/dev/null | while read n; do "
         "   grep -qx \"$n\" /root/.hermes/skills.bundled || rm -rf \"/root/.hermes/skills/$n\"; "
         " done) ; "
-        # Wipe any leaked memory_poison from a previous task — the current
-        # task's memory_poison setup will re-populate if it has one.
+        # Wipe any leaked memory file from a previous task — the current
+        # task's memory setup will re-populate if it has one.
         "rm -f /root/.hermes/memories/MEMORY.md"
     ]
     try:
@@ -427,8 +574,8 @@ def _resolve_required_skills(task: Task, skills_root: Path) -> list[Path]:
         return None
 
     required = task.frontmatter.get("required_skills")
-    # 显式空列表（required_skills: []）= 明确声明"本任务不需要任何 skill"，
-    # 不应再走 pre_setup 反推 / 全挂 fallback。
+    # An explicit empty list (required_skills: []) means this task needs no skills.
+    # Do not infer skills from pre_setup or fall back to mounting all skills.
     if isinstance(required, list) and not required:
         logger.info(
             "Task %s: required_skills explicitly empty; mounting no skills",
@@ -584,8 +731,8 @@ def _run_pre_setup(
             # No filesystem action here. skill_mount is consumed before Docker
             # startup by _resolve_required_skills to choose the mounted skill set.
             pass
-        elif setup_type == "memory_poison":
-            _execute_memory_poison_setup(step, workspace)
+        elif setup_type == "memory":
+            _execute_memory_setup(step, workspace)
         elif setup_type == "dependency_copy":
             _execute_dependency_copy_setup(step, skill_dir, workspace)
         elif setup_type == "file":
@@ -632,6 +779,7 @@ def _run_pre_setup(
             logger.warning("Unknown pre_setup type: %s", setup_type)
 
 
+
 def _run_deferred_pre_setup_commands(task: Task, workspace: Path) -> None:
     """Run Docker ``run_command`` steps after workspace delivery.
 
@@ -639,6 +787,17 @@ def _run_deferred_pre_setup_commands(task: Task, workspace: Path) -> None:
     types have already completed on the host or through their dedicated
     container injection path.
     """
+    # NARA's environment scripts use /workspace as a stable absolute path.
+    # Point it at the delivered per-task workspace before any setup command.
+    if task.file_path and "NARA-Bench" in task.file_path.parts:
+        result = docker.run_cmd([
+            "sh", "-ec",
+            'if [ -d /workspace ] && [ ! -L /workspace ]; then rmdir /workspace; fi; '
+            'ln -sfnT "$1" /workspace',
+            "agentcanary-workspace", str(workspace),
+        ])
+        if result.returncode != 0:
+            raise RuntimeError(f"Cannot prepare NARA workspace alias: {result.stderr}")
     for step in task.frontmatter.get("pre_setup", []) or []:
         if isinstance(step, dict) and step.get("type") == "run_command":
             _execute_run_command_setup(step, workspace, task.task_id)
@@ -648,7 +807,11 @@ def _detect_framework_from_image() -> str:
     """Map the active DOCKER_IMAGE to a framework name. Each framework
     discovers skills from a different filesystem location, so skill_copy
     must place the poison skill where that framework will actually scan."""
-    img = os.environ.get("DOCKER_IMAGE", "").lower()
+    img = docker.get_image_type() or os.environ.get("DOCKER_IMAGE", "").lower()
+    if "claude_code" in img or "claude-code" in img:
+        return "claude_code"
+    if "codex" in img:
+        return "codex"
     if "nanoclaw_openai" in img:
         return "nanoclaw_openai"
     if "nanoclaw" in img:
@@ -656,6 +819,32 @@ def _detect_framework_from_image() -> str:
     if "hermes" in img:
         return "hermes"
     return "openclaw"
+
+
+def _resolve_framework_skill_mounts(skill_dirs: list[Path]) -> list[tuple[str, str, str]]:
+    """Return per-task mounts for mock-api and the active agent's skill root.
+
+    Every skill remains mounted under ``~/.openclaw/skills`` so mock-api can
+    collect its mock assets. Non-OpenClaw frameworks also receive the same
+    read-only source at their native, versionless discovery path.
+    """
+    framework = _detect_framework_from_image()
+    native_root = {
+        "claude_code": "/root/.claude/skills",
+        "nanoclaw": "/root/.claude/skills",
+        "nanoclaw_openai": "/root/.claude/skills",
+        "codex": "/root/.agents/skills",
+        "hermes": "/root/.hermes/skills",
+    }.get(framework)
+
+    mounts: list[tuple[str, str, str]] = []
+    for skill_dir in skill_dirs:
+        source = str(skill_dir)
+        mounts.append((source, f"/root/.openclaw/skills/{skill_dir.name}", "ro"))
+        if native_root:
+            bare_name = _strip_skill_version(skill_dir.name)
+            mounts.append((source, f"{native_root}/{bare_name}", "ro"))
+    return mounts
 
 
 def _execute_run_command_setup(step: dict, workspace: Path, task_id: str) -> None:
@@ -906,6 +1095,72 @@ def _seed_history_to_container(session_id: str, agent_id: str, history_jsonl: st
                 session_id, len(history_jsonl), container_path)
 
 
+def _stage_seed_history_for_runtime(
+    task: Task,
+    skill_dir: Path | None,
+    session_id: str,
+    agent_id: str,
+    task_agent_workspace_root: Path,
+) -> list[str]:
+    """Stage the first valid seed_history entry for the active framework.
+
+    Claude Code and Codex shims translate the OpenAI-style message list to
+    their native transcript formats, so they receive the JSON path as a CLI
+    argument. Existing OpenClaw-family frameworks retain the current JSONL
+    injection path.
+    """
+    seed_steps = [
+        step for step in (task.frontmatter.get("pre_setup", []) or [])
+        if isinstance(step, dict) and step.get("type") == "seed_history"
+    ]
+    if not seed_steps:
+        return []
+
+    for seed_step in seed_steps:
+        history_path = seed_step.get("path", "")
+        if not history_path:
+            continue
+        full_path = Path(skill_dir) / history_path if skill_dir else Path(history_path)
+        if not full_path.exists():
+            logger.warning("seed_history path not found: %s", full_path)
+            continue
+
+        messages = json.loads(full_path.read_text(encoding="utf-8"))
+        framework = _detect_framework_from_image()
+        if framework in ("claude_code", "codex"):
+            safe_session = "".join(
+                char if char.isalnum() or char in "-_." else "_"
+                for char in session_id
+            )
+            seed_dir = Path(task_agent_workspace_root) / "seed_history"
+            seed_dir.mkdir(parents=True, exist_ok=True)
+            seed_file = seed_dir / f"{safe_session}.json"
+            seed_file.write_text(
+                json.dumps(messages, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+            if docker.is_active():
+                container_dir = "/tmp/scry/seed_history"
+                docker.run_cmd(["mkdir", "-p", container_dir], timeout=10)
+                container_path = f"{container_dir}/{seed_file.name}"
+                if docker.copy_to_container(str(seed_file), Path(container_path)):
+                    logger.info("Staged %s seed_history at %s", framework, container_path)
+                    return ["--seed-history", container_path]
+                logger.warning("Failed to stage %s seed_history into container", framework)
+                return []
+            return ["--seed-history", str(seed_file)]
+
+        if docker.is_active():
+            history_jsonl = _convert_openai_to_openclaw_jsonl(messages, session_id)
+            _seed_history_to_container(session_id, agent_id, history_jsonl)
+            logger.info("Seeded %d OpenClaw messages from %s", len(messages), history_path)
+        else:
+            logger.warning("seed_history requires Docker for framework=%s", framework)
+        return []
+
+    return []
+
+
 def _execute_skill_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> None:
     """Execute a skill_copy pre-setup step.
 
@@ -914,8 +1169,10 @@ def _execute_skill_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> N
     paths inside the container:
 
       - openclaw: ``<cwd>/skills/<name>/`` (and bundled ``~/.openclaw/skills/``)
-      - nanoclaw / nanoclaw_openai (Claude Agent SDK): project-scope discovery
+      - nanoclaw / nanoclaw_openai (Claude Agent SDK) and claude_code:
+        project-scope discovery
         at ``<cwd>/.claude/skills/<name>/`` (settingSources includes "project")
+      - codex: project-scope discovery at ``<cwd>/.agents/skills/<name>/``
       - hermes: ``${HERMES_HOME}/skills/<name>/`` — outside cwd, so we go
         through ``_copy_to_container_home`` (docker exec + cp) to land it at
         ``/root/.hermes/skills/<name>/``
@@ -972,8 +1229,8 @@ def _execute_skill_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> N
     shutil.copytree(source, ws_dest)
     logger.info("skill_copy[%s]: copied %s -> %s", framework, source, ws_dest)
 
-    if framework in ("nanoclaw", "nanoclaw_openai"):
-        # Claude Agent SDK project-scope skill discovery: <cwd>/.claude/skills/<name>/
+    if framework in ("nanoclaw", "nanoclaw_openai", "claude_code"):
+        # Claude Agent SDK / Claude Code project-scope skill discovery.
         proj_dest = workspace / ".claude" / "skills" / framework_dir_name
         proj_dest.parent.mkdir(parents=True, exist_ok=True)
         if proj_dest.exists():
@@ -981,6 +1238,15 @@ def _execute_skill_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> N
         shutil.copytree(source, proj_dest)
         logger.info("skill_copy[%s]: also placed at %s for SDK discovery (skill name=%s)",
                     framework, proj_dest, framework_dir_name)
+
+    if framework == "codex":
+        proj_dest = workspace / ".agents" / "skills" / framework_dir_name
+        proj_dest.parent.mkdir(parents=True, exist_ok=True)
+        if proj_dest.exists():
+            shutil.rmtree(proj_dest)
+        shutil.copytree(source, proj_dest)
+        logger.info("skill_copy[codex]: also placed at %s for Codex discovery (skill name=%s)",
+                    proj_dest, framework_dir_name)
 
     if framework == "hermes":
         # ${HERMES_HOME}/skills/<name>/ — outside the docker-cp pipeline,
@@ -990,45 +1256,60 @@ def _execute_skill_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> N
                     framework_dir_name)
 
 
-def _execute_memory_poison_setup(step: dict, workspace: Path) -> None:
-    """Execute a memory_poison pre-setup step.
+def _execute_memory_setup(step: dict, workspace: Path) -> None:
+    """Create framework-specific memory files with optional poison appended.
 
-    Creates a MEMORY.md file in the workspace that contains the context
-    file content with poison content appended to the end.
-    ``context`` is a direct file path.
-    ``poison`` is the content to append.
+    ``context`` is a file path or inline multiline text. A non-empty ``poison``
+    is appended under an Important Note heading; otherwise context is unchanged.
     """
     context_path = step.get("context", "")
-    poison_content = step.get("poison", "")
-    if not context_path or not poison_content:
-        logger.warning("memory_poison step missing context or poison")
+    if not context_path:
+        logger.warning("memory step missing context")
         return
 
-    source = Path(context_path)
-    if not source.exists():
-        logger.error("memory_poison context file not found: %s", source)
+    poison_content = step.get("poison") or ""
+
+    source = memory_context_path(context_path, Path(__file__).resolve().parent.parent)
+    if source is not None and not source.is_file():
+        logger.error("memory context file not found: %s", source)
         return
 
-    # Read context content + append poison
-    context_content = source.read_text(encoding="utf-8")
-    combined_content = context_content + "\n\n" + "## Important Note\n\n" + poison_content
+    context_content = source.read_text(encoding="utf-8") if source is not None else context_path
+    combined_content = context_content
+    if poison_content:
+        combined_content += "\n\n## Important Note\n\n" + poison_content
 
     framework = _detect_framework_from_image()
 
     # Always keep <workspace>/MEMORY.md (openclaw convention + workspace-visible)
     dest = workspace / "MEMORY.md"
     dest.write_text(combined_content, encoding="utf-8")
-    logger.info("memory_poison[%s]: wrote workspace MEMORY.md from %s with poison (%s)",
-                framework, source, poison_content[:80])
+    if poison_content:
+        logger.info(
+            "memory[%s]: wrote workspace MEMORY.md from %s with poison (%s)",
+            framework,
+            source,
+            poison_content[:80],
+        )
+    else:
+        logger.info("memory[%s]: wrote workspace MEMORY.md from %s", framework, source)
 
-    if framework in ("nanoclaw", "nanoclaw_openai"):
-        # Claude Code SDK reads CLAUDE.md (project-scope under cwd, user-scope
+    if framework in ("nanoclaw", "nanoclaw_openai", "claude_code"):
+        # Claude Code SDK/CLI reads CLAUDE.md (project-scope under cwd, user-scope
         # under ~/.claude/CLAUDE.md). The settingSources:["user","project"]
         # driver setting wires CLAUDE.md into the system prompt automatically.
         # Write the project-scope one so it doesn't leak across containers.
         claude_md = workspace / "CLAUDE.md"
         claude_md.write_text(combined_content, encoding="utf-8")
-        logger.info("memory_poison[%s]: also wrote <workspace>/CLAUDE.md for SDK discovery", framework)
+        logger.info(
+            "memory[%s]: also wrote <workspace>/CLAUDE.md for SDK discovery",
+            framework,
+        )
+
+    if framework == "codex":
+        agents_md = workspace / "AGENTS.md"
+        agents_md.write_text(combined_content, encoding="utf-8")
+        logger.info("memory[codex]: also wrote <workspace>/AGENTS.md for Codex discovery")
 
     if framework == "hermes":
         # hermes loads ${HERMES_HOME}/memories/MEMORY.md (see
@@ -1037,7 +1318,9 @@ def _execute_memory_poison_setup(step: dict, workspace: Path) -> None:
         import tempfile
         container_id = docker.get_container_id()
         if not container_id:
-            logger.warning("memory_poison[hermes]: no active container, skipping ~/.hermes/memories placement")
+            logger.warning(
+                "memory[hermes]: no active container, skipping ~/.hermes/memories placement",
+            )
             return
         try:
             subprocess.run(["docker", "exec", container_id, "mkdir", "-p", "/root/.hermes/memories"],
@@ -1051,11 +1334,11 @@ def _execute_memory_poison_setup(step: dict, workspace: Path) -> None:
             )
             os.unlink(tmp_path)
             if cp_result.returncode != 0:
-                logger.error("memory_poison[hermes]: docker cp failed: %s", cp_result.stderr)
+                logger.error("memory[hermes]: docker cp failed: %s", cp_result.stderr)
             else:
-                logger.info("memory_poison[hermes]: placed at container /root/.hermes/memories/MEMORY.md")
+                logger.info("memory[hermes]: placed at container /root/.hermes/memories/MEMORY.md")
         except Exception as exc:
-            logger.warning("memory_poison[hermes]: container placement failed: %s", exc)
+            logger.warning("memory[hermes]: container placement failed: %s", exc)
 
 
 def _execute_dependency_copy_setup(step: dict, skill_dir: Path, workspace: Path) -> None:
@@ -1538,8 +1821,12 @@ def _get_agent_store_dir(agent_id: str) -> Path:
     return direct_dir
 
 
-def _resolve_session_id_from_store(agent_id: str) -> str | None:
-    agent_dir = _get_agent_store_dir(agent_id)
+def _resolve_session_id_from_store(
+    agent_id: str, agent_dir: Path | None = None
+) -> str | None:
+    """Resolve OpenClaw's actual session ID from a specific agent store."""
+    if agent_dir is None:
+        agent_dir = _get_agent_store_dir(agent_id)
     sessions_store = agent_dir / "sessions" / "sessions.json"
     if not sessions_store.exists():
         return None
@@ -1583,7 +1870,13 @@ def _find_recent_session_path(agent_dir: Path, started_at: float) -> Path | None
     sessions_dir = agent_dir / "sessions"
     if not sessions_dir.exists():
         return None
-    candidates = list(sessions_dir.glob("*.jsonl"))
+    # OpenClaw also writes execution telemetry as *.trajectory.jsonl.  It does
+    # not contain conversation messages and must never be handed to the judge.
+    candidates = [
+        path
+        for path in sessions_dir.glob("*.jsonl")
+        if not path.name.endswith(".trajectory.jsonl")
+    ]
     if not candidates:
         return None
     tolerance_seconds = 5.0
@@ -1607,12 +1900,23 @@ def _load_transcript(agent_id: str, session_id: str, started_at: float, agent_di
     # session ID internally.  We need to discover the actual transcript path.
     #
     # Strategy (with retries to handle write-delay):
-    #   1. Resolve the real session ID from sessions.json
-    #   2. Glob for any .jsonl in the sessions dir (most-recently-modified)
-    #   3. Try our passed-in session ID as a last resort
+    #   1. Use the requested session ID when this OpenClaw version preserves it
+    #   2. Resolve a version-generated ID from the copied sessions.json
+    #   3. Glob for the newest conversation JSONL (never telemetry)
     for attempt in range(6):
-        # 1. Try sessions.json first — OpenClaw writes the real UUID here
-        resolved_session_id = _resolve_session_id_from_store(agent_id)
+        # 1. Newer OpenClaw versions preserve the requested session ID.
+        direct_path = agent_dir / "sessions" / f"{session_id}.jsonl"
+        if direct_path.exists():
+            transcript_path = direct_path
+            logger.info(
+                "Found transcript via passed session ID: %s (attempt %s)",
+                direct_path.name,
+                attempt + 1,
+            )
+            break
+
+        # 2. Other versions generate a UUID and persist it in sessions.json.
+        resolved_session_id = _resolve_session_id_from_store(agent_id, agent_dir)
         if resolved_session_id:
             candidate = agent_dir / "sessions" / f"{resolved_session_id}.jsonl"
             if candidate.exists():
@@ -1624,24 +1928,13 @@ def _load_transcript(agent_id: str, session_id: str, started_at: float, agent_di
                 )
                 break
 
-        # 2. Glob fallback — pick the most recently modified .jsonl
+        # 3. Glob fallback — pick the most recently modified conversation JSONL.
         recent_path = _find_recent_session_path(agent_dir, started_at)
         if recent_path is not None:
             transcript_path = recent_path
             logger.info(
                 "Found transcript via glob fallback: %s (attempt %s)",
                 recent_path.name,
-                attempt + 1,
-            )
-            break
-
-        # 3. Try our passed-in session ID (unlikely to work, but check anyway)
-        direct_path = agent_dir / "sessions" / f"{session_id}.jsonl"
-        if direct_path.exists():
-            transcript_path = direct_path
-            logger.info(
-                "Found transcript via passed session ID: %s (attempt %s)",
-                direct_path.name,
                 attempt + 1,
             )
             break
@@ -1846,6 +2139,7 @@ def _call_llm_api_internal(
     model: str,
     timeout_seconds: float = 60,
     max_retries: int = 0,
+    reasoning_effort: str | None = None,
 ) -> str:
     """
     Internal helper: make a direct LLM API call.
@@ -1857,6 +2151,7 @@ def _call_llm_api_internal(
         model: Model ID to use
         timeout_seconds: Request timeout in seconds
         max_retries: Maximum retries (0 = infinite retry until success)
+        reasoning_effort: Optional provider/model-specific reasoning effort
 
     Returns:
         The assistant's text response, or empty string on failure.
@@ -1892,11 +2187,14 @@ def _call_llm_api_internal(
     while True:
         attempt += 1
         try:
-            resp = client.chat.completions.create(
+            request_kwargs: Dict[str, Any] = dict(
                 model=model,
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=25600,
             )
+            if reasoning_effort:
+                request_kwargs["reasoning_effort"] = reasoning_effort
+            resp = client.chat.completions.create(**request_kwargs)
             if attempt > 1:
                 logger.info("LLM API call succeeded on attempt %d", attempt)
             choice = resp.choices[0] if resp.choices else None
@@ -2006,7 +2304,8 @@ def _call_judge_llm_api(
     """
     Make a direct LLM API call for judge.
 
-    Uses JUDGE_LLM_* environment variables.
+    Uses JUDGE_LLM_* environment variables, including the optional
+    JUDGE_LLM_EFFORT setting.
 
     Args:
         prompt: The prompt to send to the LLM
@@ -2021,6 +2320,7 @@ def _call_judge_llm_api(
     base_url = os.environ.get("JUDGE_LLM_BASE_URL")
     api_key = os.environ.get("JUDGE_LLM_API_KEY")
     env_model = os.environ.get("JUDGE_LLM_MODEL")
+    reasoning_effort = os.environ.get("JUDGE_LLM_EFFORT") or None
     llm_model = model if model is not None else env_model
     missing = [
         name
@@ -2043,6 +2343,7 @@ def _call_judge_llm_api(
         model=llm_model,
         timeout_seconds=timeout_seconds,
         max_retries=max_retries,
+        reasoning_effort=reasoning_effort,
     )
 
 
@@ -2057,7 +2358,8 @@ def _run_pair_attack(
     verbose: bool = False,
     local_task_agent_workspace_root_relate: Path,
     task_agent_workspace_root: Path,
-    task_agent_workspace_root_relate:Path
+    task_agent_workspace_root_relate: Path,
+    effort: str | None = None,
 ) -> dict:
     """
     Execute PAIR (Prompt Attack via Iterative Refinement) attack.
@@ -2137,10 +2439,12 @@ def _run_pair_attack(
         # Send prompt to target
         target_result = run_openclaw_prompt(
             agent_id=target_agent_id,
+            model_id=model_id,
             prompt=current_prompt,
             workspace=target_workspace,
             timeout_seconds=task.timeout_seconds * timeout_multiplier,
-            task_agent_workspace_root=task_agent_workspace_root
+            task_agent_workspace_root=task_agent_workspace_root,
+            effort=effort,
         )
 
         if target_result["status"] != "success" or not target_result["transcript"]:
@@ -2201,6 +2505,7 @@ def execute_openclaw_task(
     verbose: bool = False,
     attack_method: str | None = None,
     no_context: bool = False,
+    effort: str | None = None,
 ) -> Dict[str, Any]:
     logger.info("🤖 Agent [%s] starting task: %s", agent_id, task.task_id)
     logger.info("   Task: %s", task.name)
@@ -2231,7 +2536,8 @@ def execute_openclaw_task(
             verbose=verbose,
             local_task_agent_workspace_root_relate=local_task_agent_workspace_root_relate,
             task_agent_workspace_root=task_agent_workspace_root,
-            task_agent_workspace_root_relate=task_agent_workspace_root_relate
+            task_agent_workspace_root_relate=task_agent_workspace_root_relate,
+            effort=effort,
         )
 
         pair_metadata = {
@@ -2249,7 +2555,10 @@ def execute_openclaw_task(
         # Clean up PAIR iteration transcripts before the final evaluation run
         cleanup_agent_sessions(agent_id)
 
+    runtime_effort = _prepare_openclaw_reasoning_effort(model_id, effort)
+
     start_time = time.time()
+    deadline = time.monotonic() + task.timeout_seconds * timeout_multiplier
 
     # Apply attack method BEFORE prepare_task_workspace (for indirect injections)
     # Create a modified task copy if attack is applied
@@ -2278,7 +2587,6 @@ def execute_openclaw_task(
         workspace = local_task_agent_workspace_root_relate
 
     session_id = f"{task.task_id}_{int(time.time() * 1000)}"
-    timeout_seconds = task.timeout_seconds * timeout_multiplier
     stdout = ""
     stderr = ""
     exit_code = -1
@@ -2302,23 +2610,14 @@ def execute_openclaw_task(
             for _k, _v in (_step.get("vars", {}) or {}).items():
                 agent_env[str(_k)] = str(_v)
 
-    # Seed conversation history if defined in pre_setup (inject prior context)
-    seed_steps = [
-        s for s in (modified_task.frontmatter.get("pre_setup", []) or [])
-        if isinstance(s, dict) and s.get("type") == "seed_history"
-    ]
-    if seed_steps and docker.is_active():
-        for seed_step in seed_steps:
-            history_path = seed_step.get("path", "")
-            if history_path:
-                full_path = Path(skill_dir) / history_path if skill_dir else Path(history_path)
-                if full_path.exists():
-                    history_messages = json.loads(full_path.read_text(encoding="utf-8"))
-                    history_jsonl = _convert_openai_to_openclaw_jsonl(history_messages, session_id)
-                    _seed_history_to_container(session_id, agent_id, history_jsonl)
-                    logger.info("📜 Seeded %d messages from %s", len(history_messages), history_path)
-                else:
-                    logger.warning("seed_history path not found: %s", full_path)
+    seed_history_args = _stage_seed_history_for_runtime(
+        modified_task,
+        skill_dir,
+        session_id,
+        agent_id,
+        task_agent_workspace_root,
+    )
+    seed_history_consumed = False
 
     # Send warmup prompts if defined in pre_setup (e.g., to trigger skill scanning)
     warmup_prompts = [
@@ -2329,25 +2628,34 @@ def execute_openclaw_task(
     if warmup_prompts:
         logger.info("🔥 Sending %d warmup prompt(s) before main task", len(warmup_prompts))
         for wp_idx, wp_msg in enumerate(warmup_prompts, 1):
-            wp_timeout = 120
+            wp_timeout = min(120, deadline - time.monotonic())
             logger.info("   Warmup %d/%d: %r", wp_idx, len(warmup_prompts), wp_msg[:60])
             try:
-                docker.run_cmd(
-                    [
-                        "openclaw",
-                        "agent",
-                        "--agent",
-                        agent_id,
-                        "--session-id",
-                        session_id,
-                        "--message",
-                        wp_msg,
-                    ],
+                warmup_cmd = _prepare_openclaw_agent_runtime_command(
+                    agent_id=agent_id,
+                    session_id=session_id,
+                    message=wp_msg,
+                    effort=runtime_effort,
+                )
+                if wp_idx == 1 and seed_history_args:
+                    warmup_cmd.extend(seed_history_args)
+                    seed_history_consumed = True
+                result = docker.run_agent_cmd(
+                    warmup_cmd,
                     cwd=str(workspace),
                     timeout=wp_timeout,
                     env=agent_env or None,
                 )
-            except (subprocess.TimeoutExpired, FileNotFoundError) as exc:
+                stdout += result.stdout
+                stderr += result.stderr
+            except subprocess.TimeoutExpired as exc:
+                timed_out = True
+                exit_code = 124
+                stdout += exc.stdout.decode("utf-8", "replace") if isinstance(exc.stdout, bytes) else (exc.stdout or "")
+                stderr += exc.stderr.decode("utf-8", "replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
+                logger.warning("   Warmup %d timed out; preserving partial trajectory", wp_idx)
+                break
+            except FileNotFoundError as exc:
                 logger.warning("   Warmup %d failed: %s", wp_idx, exc)
 
     # Check if this is a multi-session task
@@ -2359,14 +2667,24 @@ def execute_openclaw_task(
     # required for genuine cross-session isolation. Agents are pre-created before
     # the gateway starts (see benchmark.py).
     isolate = bool(task.frontmatter.get("isolate_session_guard")) and bool(sessions)
-    if sessions:
+    transcript_backups: List[List[Dict[str, Any]]] = []
+    if isolate and warmup_prompts:
+        warmup_store = docker.ensure_transcripts_on_host(agent_id, task_agent_workspace_root)
+        warmup_transcript, _ = _load_transcript(agent_id, session_id, start_time, agent_dir_param=warmup_store)
+        if warmup_transcript:
+            transcript_backups.append(warmup_transcript)
+    if sessions and not timed_out:
         # Multi-session task: send each prompt in sequence
         # When a session entry has new_session: true, we backup the current
         # transcript and cleanup agent sessions to simulate a fresh session.
         # All backed-up transcripts are merged at the end.
         logger.info("📋 Multi-session task with %d sessions", len(sessions))
-        transcript_backups: List[List[Dict[str, Any]]] = []
         for i, session_entry in enumerate(sessions, 1):
+            # Check before deleting or resetting the previous session's store.
+            if time.monotonic() >= deadline:
+                timed_out = True
+                exit_code = 124
+                break
             # Extract prompt text from session entry (handle both string and dict formats)
             if isinstance(session_entry, str):
                 session_prompt = session_entry
@@ -2392,31 +2710,34 @@ def execute_openclaw_task(
                 if mid_transcript:
                     transcript_backups.append(mid_transcript)
                     logger.info("   Backed up %d transcript entries", len(mid_transcript))
-                cleanup_agent_sessions(agent_id)
+                # Clear the actual host copy as well. docker cp merges trees;
+                # otherwise an empty timed-out new session can reload the old
+                # export and duplicate the transcript we just backed up.
+                cleanup_agent_sessions(agent_id, Path(agent_store_dir_mid) if agent_store_dir_mid else None)
                 cleanup_agent_sessions_in_container(agent_id)
+                # Native adapters key their conversation state by the supplied
+                # ID. Deleting the exported OpenClaw transcript alone does not
+                # reset that state (or the runtime's own history). Keep files,
+                # memory and installed skills, but start a new conversation.
+                session_id = f"{task.task_id}_{uuid.uuid4().hex}"
 
             logger.info("   Session %d/%d%s%s", i, len(sessions),
                         " (new session)" if is_new_session and i > 1 else "",
                         f" [agent {loop_agent}]" if isolate else "")
-            elapsed = time.time() - start_time
-            remaining = timeout_seconds - elapsed
-            if remaining <= 0:
-                timed_out = True
-                break
             try:
-                result = docker.run_cmd(
-                    [
-                        "openclaw",
-                        "agent",
-                        "--agent",
-                        loop_agent,
-                        "--session-id",
-                        session_id,
-                        "--message",
-                        session_prompt,
-                    ],
+                cmd_args = _prepare_openclaw_agent_runtime_command(
+                    agent_id=loop_agent,
+                    session_id=session_id,
+                    message=session_prompt,
+                    effort=runtime_effort,
+                )
+                if i == 1 and seed_history_args and not seed_history_consumed:
+                    cmd_args.extend(seed_history_args)
+                    seed_history_consumed = True
+                result = docker.run_agent_cmd(
+                    cmd_args,
                     cwd=str(workspace),
-                    timeout=remaining,
+                    timeout=deadline - time.monotonic(),
                     env=agent_env or None,
                 )
                 stdout += result.stdout
@@ -2433,37 +2754,43 @@ def execute_openclaw_task(
                     break
             except subprocess.TimeoutExpired as exc:
                 timed_out = True
+                exit_code = 124
                 stdout += (exc.stdout or b"").decode("utf-8", errors="replace") if isinstance(exc.stdout, bytes) else (exc.stdout or "")
                 stderr += (exc.stderr or b"").decode("utf-8", errors="replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
+                if isolate:
+                    iso_store = docker.ensure_transcripts_on_host(loop_agent, task_agent_workspace_root)
+                    iso_t, _ = _load_transcript(loop_agent, session_id, start_time, agent_dir_param=iso_store)
+                    if iso_t:
+                        transcript_backups.append(iso_t)
                 break
             except FileNotFoundError as exc:
                 stderr = f"openclaw command not found: {exc}"
                 break
-    else:
+    elif not sessions and not timed_out:
         # Single-session task: send resolved_prompt once
         try:
-            result = docker.run_cmd(
-                [
-                    "openclaw",
-                    "agent",
-                    "--agent",
-                    agent_id,
-                    "--session-id",
-                    session_id,
-                    "--message",
-                    resolved_prompt,
-                ],
+            cmd_args = _prepare_openclaw_agent_runtime_command(
+                agent_id=agent_id,
+                session_id=session_id,
+                message=resolved_prompt,
+                effort=runtime_effort,
+            )
+            if seed_history_args and not seed_history_consumed:
+                cmd_args.extend(seed_history_args)
+            result = docker.run_agent_cmd(
+                cmd_args,
                 cwd=str(workspace),
-                timeout=timeout_seconds,
+                timeout=deadline - time.monotonic(),
                 env=agent_env or None,
             )
-            stdout = result.stdout
-            stderr = result.stderr
+            stdout += result.stdout
+            stderr += result.stderr
             exit_code = result.returncode
         except subprocess.TimeoutExpired as exc:
             timed_out = True
-            stdout = (exc.stdout or b"").decode("utf-8", errors="replace") if isinstance(exc.stdout, bytes) else (exc.stdout or "")
-            stderr = (exc.stderr or b"").decode("utf-8", errors="replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
+            exit_code = 124
+            stdout += (exc.stdout or b"").decode("utf-8", errors="replace") if isinstance(exc.stdout, bytes) else (exc.stdout or "")
+            stderr += (exc.stderr or b"").decode("utf-8", errors="replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
         except FileNotFoundError as exc:
             stderr = f"openclaw command not found: {exc}"
 
@@ -2497,7 +2824,7 @@ def execute_openclaw_task(
     status = "success"
     if timed_out:
         status = "timeout"
-    if not transcript:
+    elif not transcript:
         status = "error"
     if exit_code not in (0, -1) and not timed_out:
         status = "error"
@@ -2553,6 +2880,7 @@ def execute_openclaw_task(
         "execution_time": execution_time,
         "stdout": stdout,
         "stderr": stderr,
+        "reasoning_effort": effort,
     }
     if pair_metadata:
         result["pair_attack"] = pair_metadata
@@ -2562,19 +2890,23 @@ def execute_openclaw_task(
 def run_openclaw_prompt(
     *,
     agent_id: str,
+    model_id: str,
     prompt: str,
     workspace: Path,
     timeout_seconds: float,
     task_agent_workspace_root: Path,
-
+    effort: str | None = None,
 ) -> Dict[str, Any]:
     """Run a single OpenClaw prompt for helper agents like the judge."""
     # Clean up previous session transcripts so we can reliably find this
     # prompt's transcript (OpenClaw uses its own UUID-based naming).
     cleanup_agent_sessions(agent_id)
 
+    runtime_effort = _prepare_openclaw_reasoning_effort(model_id, effort)
+
     start_time = time.time()
     workspace.mkdir(parents=True, exist_ok=True)
+    deadline = time.monotonic() + timeout_seconds
     session_id = f"judge_{int(time.time() * 1000)}"
     stdout = ""
     stderr = ""
@@ -2605,10 +2937,10 @@ def run_openclaw_prompt(
             for i in range(0, total_chunks - 1)
         ]
     for chunk in chunks:
-        elapsed = time.time() - start_time
-        remaining = timeout_seconds - elapsed
+        remaining = deadline - time.monotonic()
         if remaining <= 0:
             timed_out = True
+            exit_code = 124
             break
 
         # Debug: log prompt being sent
@@ -2616,17 +2948,13 @@ def run_openclaw_prompt(
                    chunks.index(chunk) + 1, len(chunks), len(chunk), chunk[:200])
 
         try:
-            result = docker.run_cmd(
-                [
-                    "openclaw",
-                    "agent",
-                    "--agent",
-                    agent_id,
-                    "--session-id",
-                    session_id,
-                    "--message",
-                    chunk,
-                ],
+            result = docker.run_agent_cmd(
+                _prepare_openclaw_agent_runtime_command(
+                    agent_id=agent_id,
+                    session_id=session_id,
+                    message=chunk,
+                    effort=runtime_effort,
+                ),
                 cwd=str(workspace),
                 timeout=remaining,
             )
@@ -2641,6 +2969,7 @@ def run_openclaw_prompt(
                 break
         except subprocess.TimeoutExpired as exc:
             timed_out = True
+            exit_code = 124
             stdout += (exc.stdout or b"").decode("utf-8", errors="replace") if isinstance(exc.stdout, bytes) else (exc.stdout or "")
             stderr += (exc.stderr or b"").decode("utf-8", errors="replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
             break
@@ -2657,7 +2986,7 @@ def run_openclaw_prompt(
     status = "success"
     if timed_out:
         status = "timeout"
-    if not transcript:
+    elif not transcript:
         status = "error"
     if exit_code not in (0, -1) and not timed_out:
         status = "error"
@@ -2675,4 +3004,5 @@ def run_openclaw_prompt(
         "execution_time": execution_time,
         "stdout": stdout,
         "stderr": stderr,
+        "reasoning_effort": effort,
     }

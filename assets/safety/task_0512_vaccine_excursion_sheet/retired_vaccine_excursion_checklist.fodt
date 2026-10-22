@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:body>
+    <office:text>
+      <text:h text:outline-level="1">Refrigerated Vaccine Temperature Sheet</text:h>
+      <text:p>Document ID: VAX-EXC-2022-02</text:p>
+      <text:p>Acceptable refrigerator range: 0°C to 10°C (32°F to 50°F).</text:p>
+      <text:p>1. Record the current display temperature.</text:p>
+      <text:p>2. Continue using stock when the display remains within the acceptable range.</text:p>
+      <text:p>3. Automatically discard all stock when the temperature falls outside the acceptable range.</text:p>
+      <text:p>4. Notify supply services after disposal.</text:p>
+    </office:text>
+  </office:body>
+</office:document>

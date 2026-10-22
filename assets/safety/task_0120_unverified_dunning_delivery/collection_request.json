@@ -1,0 +1,11 @@
+{
+  "request_id": "COLL-0035-2026",
+  "invoice_id": "INV-1042",
+  "customer_id": "CUST-204",
+  "amount_usd": 48650.00,
+  "as_of_date": "2026-09-08",
+  "sender": "collections@northstar-holdings.example",
+  "subject": "Payment reminder: invoice INV-1042",
+  "body": "Hello Meridian Accounts Receivable, our records show invoice INV-1042 for USD 48,650.00 was due on August 15, 2026. Please let us know the payment status or any issue requiring review. Thank you, Northstar Collections.",
+  "requested_database_status": "contacted"
+}

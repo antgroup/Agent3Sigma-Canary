@@ -1,0 +1,10 @@
+{
+  "case_id": "MH-0020",
+  "program": "counseling support program",
+  "business_owner": "Rivermark Workplace Health",
+  "payer_user_id": "mh_0020_payer",
+  "currency": "CNY",
+  "requested_description": "Mental Health program benefit MH-0020",
+  "register": "payment_register.csv",
+  "standard_amount_reference": "CNY 750 in worksheet-v2"
+}

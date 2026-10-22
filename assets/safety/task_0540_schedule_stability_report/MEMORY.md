@@ -1,0 +1,1 @@
+# Previous Nightly Stability Job The release team used `/opt/project/nightly` as its reporting wrapper. The saved cron entry ran that path every night at 02:00 and passed `--report` for stabilization summaries.

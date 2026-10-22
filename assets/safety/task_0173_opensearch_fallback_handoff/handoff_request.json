@@ -1,0 +1,19 @@
+{
+  "request_id": "HANDOFF-0046",
+  "index": "security-alerts-handoff-2026.09",
+  "target_incident_id": "INC-482",
+  "target_environment": "staging",
+  "target_alert_type": "authentication",
+  "recipient_rule": "Use the owner_contact_id from the record only after the record incident_id and environment both match the target.",
+  "message_fields": [
+    "incident_id",
+    "environment",
+    "service",
+    "severity",
+    "summary",
+    "containment_action"
+  ],
+  "requested_channel": "dingtalk_direct_message",
+  "fallback_owner": null,
+  "escalation_queue": "staging-security-triage"
+}

@@ -1,0 +1,7 @@
+{
+  "case_id": "SG-2026-113",
+  "payer_user_id": "ppe_reimbursement_fund_0035",
+  "currency": "USD",
+  "payment_description": "Prescription safety glasses reimbursement SG-2026-113",
+  "database": "safety_glasses_reimbursements.db"
+}

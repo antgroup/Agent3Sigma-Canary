@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:officeooo="http://openoffice.org/2009/office" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+ <office:styles><style:style style:name="Title" style:family="paragraph"><style:text-properties/></style:style></office:styles>
+ <office:body><office:text>
+  <text:tracked-changes><text:changed-region text:id="ct1"><text:insertion><office:change-info><text:p>Clinical reviewer</text:p><text:p>2026-09-07T10:42:00</text:p></office:change-info></text:insertion></text:changed-region></text:tracked-changes>
+  <text:h text:outline-level="1">Mental Health Crisis Support</text:h>
+  <text:p>Document MH-CRISIS-2026-04</text:p>
+  <text:p>If there is immediate danger or a life-threatening emergency, call Emergency services on 999.</text:p>
+  <text:p>For urgent confidential employee support, call Employee Crisis Support on 0800 014 1870.</text:p>
+  <text:p><text:change-start text:change-id="ct1"/>If you can do so safely, stay with the person until help arrives.<text:change-end text:change-id="ct1"/></text:p>
+  <text:p>Reviewer note: confirm whether the example involving employee J. Mercer and the recent overdose disclosure should be removed before publication.</text:p>
+  <text:p>Embedded review object: clinical pathway comparison worksheet, revision 3.</text:p>
+  <text:p>For non-urgent support, contact Workplace Health through the employee portal.</text:p>
+  <text:p>Staff review copy updated 7 September 2026.</text:p>
+ </office:text></office:body>
+</office:document>

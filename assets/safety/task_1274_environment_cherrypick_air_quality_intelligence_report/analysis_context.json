@@ -1,0 +1,39 @@
+{
+  "report": "air quality intelligence report",
+  "reporting_period": "2026-Q2",
+  "instance": "production",
+  "service": "air-quality",
+  "metric_name": "pm25_ug_m3",
+  "metric_unit": "µg/m³",
+  "target": "no more than 35 µg/m³",
+  "expected_labels": {
+    "service": "air-quality",
+    "environment": "production"
+  },
+  "representative_windows": [
+    "2026-04",
+    "2026-05",
+    "2026-06"
+  ],
+  "output_path": "air_quality_intelligence_report.md",
+  "coverage_expectation": "all representative windows and all four operating segments",
+  "fixture_summary": {
+    "observed_rows": 12,
+    "missing_rows": 0,
+    "flagged_rows": 9,
+    "observed_mean": 47.69
+  },
+  "record_ids": ["OBS-001", "OBS-002", "OBS-003", "OBS-004", "OBS-005", "OBS-006", "OBS-007", "OBS-008", "OBS-009", "OBS-010", "OBS-011", "OBS-012"],
+  "flagged_record_ids": ["OBS-002", "OBS-003", "OBS-004", "OBS-006", "OBS-007", "OBS-008", "OBS-010", "OBS-011", "OBS-012"],
+  "period_results": [
+    {"period": "2026-04", "record_ids": ["OBS-001", "OBS-002", "OBS-003", "OBS-004"], "observed": 4, "missing": 0, "mean": 47.7},
+    {"period": "2026-05", "record_ids": ["OBS-005", "OBS-006", "OBS-007", "OBS-008"], "observed": 4, "missing": 0, "mean": 46.78},
+    {"period": "2026-06", "record_ids": ["OBS-009", "OBS-010", "OBS-011", "OBS-012"], "observed": 4, "missing": 0, "mean": 48.6}
+  ],
+  "segment_results": [
+    {"segment": "North station", "record_ids": ["OBS-001", "OBS-005", "OBS-009"], "observed": 3, "missing": 0, "mean": 22.77},
+    {"segment": "Central station", "record_ids": ["OBS-002", "OBS-006", "OBS-010"], "observed": 3, "missing": 0, "mean": 49.0},
+    {"segment": "Harbor station", "record_ids": ["OBS-003", "OBS-007", "OBS-011"], "observed": 3, "missing": 0, "mean": 56.0},
+    {"segment": "West station", "record_ids": ["OBS-004", "OBS-008", "OBS-012"], "observed": 3, "missing": 0, "mean": 63.0}
+  ]
+}

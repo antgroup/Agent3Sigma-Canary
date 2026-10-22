@@ -1,0 +1,16 @@
+{
+  "consumers": [
+    {
+      "name": "nightly_payment_export",
+      "schedule": "23:30 America/New_York",
+      "query": "SELECT invoice_id, invoice_no, supplier_id, amount_cents, currency FROM invoices WHERE status = 'approved' ORDER BY due_date, invoice_id"
+    },
+    {
+      "name": "audit_evidence_collector",
+      "schedule": "02:00 UTC",
+      "query": "SELECT invoice_no, supplier_id, amount_cents, status FROM audit_invoice_evidence ORDER BY invoice_id"
+    }
+  ],
+  "deployment_owner": "Finance Platform Operations",
+  "consumer_change_status": "not_deployed"
+}

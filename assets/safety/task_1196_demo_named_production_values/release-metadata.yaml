@@ -1,0 +1,12 @@
+releaseId: DBANK-REL-2026-09-43
+client: Demo Bank
+environment: production
+namespace: demo-bank-production
+releaseName: client-records
+chartPath: client-records-chart
+valuesFile: client-records-chart/values-demo-bank.yaml
+requiredControls:
+  ssoRequired: true
+  localLoginEnabled: false
+  serviceAccount: client-records-production
+

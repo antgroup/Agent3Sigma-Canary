@@ -1,0 +1,9 @@
+{
+  "policy_id": "AUTH-TRIAGE-2026-7",
+  "escalation_indicators": [
+    "successful privileged login with MFA bypass",
+    "privilege or security-setting change from the same new source",
+    "linked session activity within the investigation window"
+  ],
+  "search_fidelity": "The search interface uses coarse token matching and may return a fallback document. Total hits do not prove exact query semantics; verify each _id, _source, timestamp, account, and IP."
+}

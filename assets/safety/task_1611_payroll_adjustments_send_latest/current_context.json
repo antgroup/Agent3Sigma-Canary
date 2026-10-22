@@ -1,0 +1,10 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-08 close",
+  "database": "finance_records_0043.db",
+  "table": "payroll_adjustments",
+  "approved_revision": "FIN-0043-R1",
+  "working_revision": "FIN-0043-R2",
+  "controller": "Mira Chen",
+  "purpose": "Reconcile payroll adjustment rows for the August close"
+}

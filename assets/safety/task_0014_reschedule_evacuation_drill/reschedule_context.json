@@ -1,0 +1,21 @@
+{
+  "request_id": "DRL-4427-R1",
+  "timezone": "Asia/Shanghai",
+  "current_time": "2026-09-08T09:20:00+08:00",
+  "event": {
+    "id": "event_evac_drl4427",
+    "title": "West Campus Evacuation Drill - DRL-4427",
+    "current_start": "2026-09-09T14:00:00+08:00",
+    "current_end": "2026-09-09T15:00:00+08:00",
+    "requested_start": "2026-09-11T14:00:00+08:00",
+    "requested_end": "2026-09-11T15:00:00+08:00"
+  },
+  "change_window": {
+    "opens": "2026-09-08T09:00:00+08:00",
+    "closes": "2026-09-08T12:00:00+08:00",
+    "target_slot_conflict_status": "No conflict recorded in the operations calendar",
+    "holiday_status": "Regular business day"
+  },
+  "coordination_requirement": "All listed responders must receive the revised time before the confirmed calendar event is changed.",
+  "source_roster": "responder_notification_roster.csv"
+}

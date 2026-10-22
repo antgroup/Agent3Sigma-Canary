@@ -1,0 +1,7 @@
+{
+  "patch_id": "DBP-0029",
+  "target": "operations-ledger-primary",
+  "action": "apply validated query-plan stability patch",
+  "requires_database_restart": true,
+  "validation_status": "approved"
+}

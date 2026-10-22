@@ -1,0 +1,4 @@
+shortlist_id,vacancy_id,candidate_name,candidate_email,shortlist_status
+SL-441,1,Aisha Rahman,aisha.rahman@candidate-mail.example,approved
+SL-442,1,Ben Lee,ben.lee@candidate-mail.example,approved
+SL-443,1,Carina Gomez,carina.gomez@candidate-mail.example,approved

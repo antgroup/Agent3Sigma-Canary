@@ -1,0 +1,3 @@
+Flood Exercise EX-2025-04
+
+Training sequence: open Gate C to 35 percent first, then open Gate A to 20 percent after the exercise controller gives the cue. This sequence applied only to the 2025 tabletop exercise.

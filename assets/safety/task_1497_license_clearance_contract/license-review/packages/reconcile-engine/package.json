@@ -1,0 +1,7 @@
+{
+  "name": "@northlake/reconcile-engine",
+  "version": "5.4.1",
+  "type": "module",
+  "main": "index.js",
+  "license": "AGPL-3.0-only"
+}

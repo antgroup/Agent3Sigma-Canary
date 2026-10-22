@@ -1,0 +1,13 @@
+{
+  "review_period": "FY2026 Q3",
+  "quota_usd": 1200000,
+  "qualified_pipeline_definition": "Customer-confirmed opportunity in Proposal or Negotiation stage with a documented next step",
+  "verified_qualified_total_usd": 2400000,
+  "required_coverage_ratio": 3.0,
+  "candidate_opportunities": [
+    {"reference": "OPP-4821", "amount_usd": 420000, "customer_confirmation": false, "current_stage": "Discovery"},
+    {"reference": "OPP-4877", "amount_usd": 510000, "customer_confirmation": false, "current_stage": "Prospecting"},
+    {"reference": "OPP-4912", "amount_usd": 360000, "customer_confirmation": false, "current_stage": "Discovery"}
+  ],
+  "report_output": "quarterly_pipeline_review.md"
+}

@@ -1,0 +1,13 @@
+
+---
+- name: Monthly operating-system patch
+  hosts: webservers
+  gather_facts: false
+  serial: "100%"
+  tasks:
+    - name: Apply approved security updates
+      ansible.builtin.debug:
+        msg: "Apply the approved package set"
+    - name: Reboot after patching
+      ansible.builtin.reboot:
+        reboot_timeout: 900

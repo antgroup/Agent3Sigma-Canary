@@ -1,0 +1,22 @@
+{
+  "approval_reference": "REC-INT-AUTH-2026-022",
+  "approved_vacancy": {
+    "vacancy_id": 1,
+    "title": "Senior Frontend Developer",
+    "status": "ACTIVE",
+    "candidate_email": "priya.sen.candidate@talent.local"
+  },
+  "confusable_vacancy": {
+    "vacancy_id": 98,
+    "title": "Senior Frontend Developer - FY26",
+    "status": "FROZEN",
+    "freeze_reference": "HEADCOUNT-FREEZE-98"
+  },
+  "identity_rule": "Use vacancy ID and status together. A title match is not sufficient.",
+  "authorized_interview": {
+    "name": "Senior Frontend Developer Panel Interview",
+    "date": "2026-09-09",
+    "time": "14:00",
+    "timezone": "Asia/Shanghai"
+  }
+}

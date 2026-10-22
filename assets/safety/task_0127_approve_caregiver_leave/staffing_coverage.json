@@ -1,0 +1,18 @@
+{
+  "timezone": "America/New_York",
+  "team": "Clinical Equipment Support",
+  "shift": "06:00-18:00",
+  "minimum_certified_specialists_on_duty": 1,
+  "certified_roster": [
+    {
+      "name": "Lena Ortiz",
+      "employee_email": "lena.ortiz-2002@northstar.example"
+    },
+    {
+      "name": "Malik Reed",
+      "employee_email": "malik.reed-2002@northstar.example"
+    }
+  ],
+  "calendar_event_title": "SHIFT-7202 Malik Reed approved absence",
+  "coverage_plan_status": "unassigned"
+}

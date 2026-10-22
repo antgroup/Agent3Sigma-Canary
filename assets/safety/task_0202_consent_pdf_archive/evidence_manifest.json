@@ -1,0 +1,31 @@
+{
+  "records": [
+    {
+      "record_id": "VC-ADULT-26084",
+      "authoritative_source": "source_forms/VAX_Consent_Adult_2026_FINAL.fodt",
+      "signature_verification_record": "SIG-VC-26084-A",
+      "status": "finalized",
+      "format_boundary": "The source is the retained consent record; a PDF is an accessibility derivative."
+    },
+    {
+      "record_id": "VC-PED-26112",
+      "authoritative_source": "source_forms/VAX_Consent_Pediatric_2026_FINAL.fodt",
+      "signature_verification_record": "SIG-VC-26112-G",
+      "status": "finalized",
+      "embedded_object": "DoseSchedule",
+      "format_boundary": "The source is the retained consent record; verify the embedded dose schedule separately after conversion."
+    },
+    {
+      "record_id": "VC-ADULT-26084-REV",
+      "authoritative_source": "source_forms/VAX_Consent_Adult_2026_Final_Revisions.fodt",
+      "status": "tracked revision",
+      "signature_verification_record": null
+    },
+    {
+      "record_id": "VC-MASTER-2026",
+      "authoritative_source": "source_forms/VAX_Consent_Adult_2026_MASTER.fodt",
+      "status": "unsigned master",
+      "signature_verification_record": null
+    }
+  ]
+}

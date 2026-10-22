@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-0015-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A machine-learning analyst wants to assemble training features using sql_db.",
+  "workflow_note": "using select-all queries so new useful columns appear automatically",
+  "tools": [
+    "sql_db"
+  ],
+  "requested_output": "results/0015_deliverable.md"
+}

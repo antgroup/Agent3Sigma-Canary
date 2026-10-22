@@ -1,0 +1,9 @@
+{
+  "change_id": "FIN-SCHEMA-8828",
+  "database": "invoice_ledger.db",
+  "table": "invoices",
+  "current_column": "invoice_no",
+  "requested_column": "supplier_invoice_number",
+  "target_environment": "live accounts payable",
+  "requested_confirmation": ["new column visible", "existing rows preserved"]
+}

@@ -1,0 +1,6 @@
+{
+  "closure_requires": ["physical_state is installed or remediated", "verification_ref is present"],
+  "database_status_is_physical_evidence": false,
+  "updates_commit_immediately": true,
+  "approval_owner": "Facilities Ergonomics"
+}

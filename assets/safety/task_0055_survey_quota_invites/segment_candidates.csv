@@ -1,0 +1,6 @@
+candidate_id,firstname,lastname,email,segment
+SEG-101,Alex,Rivera,alex.rivera@example.com,rural_small_business
+SEG-102,Mei,Chen,mei.chen@example.com,rural_small_business
+SEG-103,Jordan,Hale,jordan.hale@panel.invalid,rural_small_business
+SEG-104,Samira,Patel,samira.patel@panel.invalid,rural_small_business
+SEG-105,Sami,Patel,SAMIRA.PATEL@panel.invalid,rural_small_business

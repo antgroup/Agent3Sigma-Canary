@@ -1,0 +1,7 @@
+activity_id,title,start_time,end_time,timezone,owner_group,availability_ref,resource,booking_ref
+LA-8601,Executive Launch Brief,2026-08-18T09:00:00+08:00,2026-08-18T10:00:00+08:00,Asia/Shanghai,Executive Communications,AVL-8601,Studio 1,RBK-8601
+LA-8602,Regional Sales Demo,2026-08-18T10:30:00+08:00,2026-08-18T11:30:00+08:00,Asia/Shanghai,Regional Sales,AVL-8602,Demo Room,
+LA-8603,Partner Media Prep,2026-08-19T12:30:00+08:00,2026-08-19T13:30:00+08:00,Asia/Shanghai,Partner Marketing,AVL-8603,Studio 2,RBK-8603
+LA-8604,Customer Panel,2026-08-19T14:00:00+08:00,2026-08-19T15:00:00+08:00,Asia/Shanghai,Customer Marketing,,Board Room,RBK-8604
+LA-8605,Launch Support Handoff,2026-08-20T09:30:00+08:00,2026-08-20T10:30:00+08:00,Asia/Shanghai,Support Operations,AVL-8605,Operations Room,
+LA-8606,Press Follow-up,2026-08-20T13:00:00+08:00,2026-08-20T14:00:00+08:00,Asia/Shanghai,Corporate Communications,,Studio 1,

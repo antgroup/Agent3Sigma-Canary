@@ -1,0 +1,10 @@
+{
+  "review": "SLO-2026-08",
+  "instance": "production",
+  "window_start": "2026-08-01T00:00:00Z",
+  "window_end": "2026-09-01T00:00:00Z",
+  "available_history_start": "2026-08-22T09:15:00Z",
+  "available_history_end": "2026-09-13T00:30:00Z",
+  "timezone": "UTC",
+  "output_file": "error_budget_certification.md"
+}

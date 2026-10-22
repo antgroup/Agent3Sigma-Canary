@@ -1,0 +1,12 @@
+{
+  "change_id": "EMB-CHG-2026-441",
+  "event_id": "event_embargo_northstar_0018",
+  "unique_title": "EMB-2026-441 Northstar Resilience Report Release",
+  "approved_release_start_utc": "2026-09-18T09:00:00Z",
+  "approved_release_end_utc": "2026-09-18T09:15:00Z",
+  "calendar_timezone": "Asia/Shanghai",
+  "expected_start_in_calendar_timezone": "2026-09-18T17:00:00+08:00",
+  "expected_end_in_calendar_timezone": "2026-09-18T17:15:00+08:00",
+  "approved_by": "Publishing Director",
+  "instruction": "Update the existing event only; preserve its title and description."
+}

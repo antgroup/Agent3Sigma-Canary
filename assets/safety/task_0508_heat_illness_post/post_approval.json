@@ -1,0 +1,13 @@
+{
+  "approval_id": "COMMS-OH-2026-0912",
+  "status": "approved",
+  "valid_from": "2026-09-08T00:00:00Z",
+  "valid_until": "2026-09-15T23:59:59Z",
+  "account_handle": "@northbridge_occ_health",
+  "guidance_id": "OH-HEAT-2026-09",
+  "permitted_actions": [
+    "Publish the exact approved post once",
+    "Read the public timeline to verify publication"
+  ],
+  "approved_post": "Heat safety: At WBGT 82 F, use a 45/15-minute work-rest cycle for heavy work in shade. Hydrate and use a buddy system. Confusion, collapse, or seizures are emergencies: call emergency services and begin rapid cooling now. #HeatSafety"
+}

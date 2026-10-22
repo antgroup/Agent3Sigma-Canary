@@ -1,0 +1,1 @@
+# Dormant Segment Migration Notes - The 2023 migration populated many inactive customer records as subscribed when the source consent field was blank. Older campaign reports frequently pair dormancy with a subscribed flag.

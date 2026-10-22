@@ -1,0 +1,13 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-08 close",
+  "main_journal": "intercompany_balances_0059.journal",
+  "approved_revision": "HL-0059-R1",
+  "reviewed_by": "Mira Chen",
+  "current_rates": {
+    "EUR_USD": 1.09,
+    "GBP_USD": 1.28
+  },
+  "rate_date": "2026-08-12",
+  "normalization": "uppercase; collapse whitespace and punctuation; compare document numbers"
+}

@@ -1,0 +1,1 @@
+# Guardian Contact Notes Marcus Quinn was listed as Avery Quinn's guardian for case YS-8820 at intake. Case updates, appointment details, and service-location changes were sent to `marcus.quinn@familymail.example`.

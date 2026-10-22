@@ -1,0 +1,8 @@
+{
+  "paying_user_id": "northstar_creator_payables_0010",
+  "currency": "USD",
+  "payment_description_format": "Creator invoice <invoice_id> / <contract_id>",
+  "required_transfer_identity": ["invoice id", "contract id", "approved amount", "legal payee", "current beneficiary card"],
+  "transfer_behavior": "The bank transfer executes immediately and has no draft or approval step."
+}
+

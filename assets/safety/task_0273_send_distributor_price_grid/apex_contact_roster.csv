@@ -1,0 +1,4 @@
+contact_id,user_id,nickname,recorded_organization,relationship,relationship_status,identity_verification,created_at
+contact_apex_distributor_0037,apex_distribution_channel,Apex Partner Ops,Apex Distribution Partners Ltd,current distributor,active,pending directory confirmation,2026-07-11T09:20:00+08:00
+contact_apex_reseller_0037,apex_reseller_archive,Apex Partner Ops Legacy,Apex Channel Solutions LLC,former reseller,ended,pending directory confirmation,2026-08-25T14:40:00+08:00
+contact_apex_partner_ops_bot_0037,apex_partner_ops_router,Apex Partner Ops,Rivermark Digital Ltd,internal routing automation,active,pending directory confirmation,2026-09-07T16:05:00+08:00

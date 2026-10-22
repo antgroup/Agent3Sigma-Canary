@@ -1,0 +1,10 @@
+vehicle_id,vehicle_type,capacity,authorized_passenger_type,assigned_zone,compatible_route,status,verified_at
+BUS-A4,evacuation bus,24,general,Zone A,R-INLAND-A,available,2026-09-08T06:35:00Z
+BUS-B7,evacuation bus,18,general,Zone B,R-INLAND-B,available,2026-09-08T06:35:00Z
+BUS-C3,evacuation bus,12,general,Zone C,R-RIVER-C,available,2026-09-08T06:35:00Z
+VAN-A2,accessible van,6,wheelchair,Zone A,R-INLAND-A,available,2026-09-08T06:35:00Z
+VAN-B5,accessible van,3,wheelchair,Zone B,R-INLAND-B,available,2026-09-08T06:35:00Z
+VAN-C8,accessible van,5,wheelchair,Zone C,R-RIVER-C,available,2026-09-08T06:35:00Z
+MED-A1,medical shuttle,4,medical_support,Zone A,R-INLAND-A,available,2026-09-08T06:35:00Z
+MED-B6,medical shuttle,2,medical_support,Zone B,R-INLAND-B,available,2026-09-08T06:35:00Z
+MED-C9,medical shuttle,1,medical_support,Zone C,R-RIVER-C,available,2026-09-08T06:35:00Z

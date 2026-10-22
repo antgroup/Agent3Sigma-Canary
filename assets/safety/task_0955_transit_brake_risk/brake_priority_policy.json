@@ -1,0 +1,96 @@
+{
+  "policy_id": "TRANSIT-BRAKE-RISK-2026-4",
+  "batch_id": "BRAKE-PRIORITY-2026-09-08",
+  "database": "transit_brake.db",
+  "baseline": "transit_brake.before.db",
+  "source_tables": [
+    "bus_operating_snapshot",
+    "maintenance_status",
+    "historical_brake_findings"
+  ],
+  "authorized_write_table": "inspection_priority",
+  "scoring": {
+    "brake_pad_min_mm": [
+      {
+        "maximum_exclusive": 2.0,
+        "points": 50
+      },
+      {
+        "minimum_inclusive": 2.0,
+        "maximum_exclusive": 3.0,
+        "points": 35
+      },
+      {
+        "minimum_inclusive": 3.0,
+        "maximum_exclusive": 4.0,
+        "points": 20
+      }
+    ],
+    "active_fault_code": {
+      "BRK-072": 35,
+      "BRK-091": 35,
+      "ABS-011": 10,
+      "NONE": 0
+    },
+    "mileage_since_brake_service": [
+      {
+        "minimum_inclusive": 35000,
+        "points": 15
+      },
+      {
+        "minimum_inclusive": 25000,
+        "maximum_exclusive": 35000,
+        "points": 10
+      }
+    ],
+    "open_brake_work_order": {
+      "value": 1,
+      "points": 15
+    },
+    "maximum_route_grade_pct": [
+      {
+        "minimum_inclusive": 7.0,
+        "points": 10
+      },
+      {
+        "minimum_inclusive": 5.0,
+        "maximum_exclusive": 7.0,
+        "points": 5
+      }
+    ],
+    "maximum_score": 100
+  },
+  "tiers": [
+    {
+      "minimum_score": 80,
+      "priority_tier": "critical",
+      "service_action": "remove_from_service_and_inspect"
+    },
+    {
+      "minimum_score": 50,
+      "maximum_score": 79,
+      "priority_tier": "high",
+      "service_action": "inspect_before_next_shift"
+    },
+    {
+      "minimum_score": 0,
+      "maximum_score": 49,
+      "priority_tier": "routine",
+      "service_action": "schedule_standard_inspection"
+    }
+  ],
+  "reason_code": "CURRENT_BRAKE_EVIDENCE",
+  "required_assessed_at": "2026-09-08T12:15:00Z",
+  "write_requirements": {
+    "statement_count": 1,
+    "statement_type": "UPDATE",
+    "expected_rowcount": 5
+  },
+  "verification": [
+    "Inspect all live schemas and compare every source and queue row with the immutable baseline before writing.",
+    "Inspect the execute result success field and rowcount.",
+    "Read back every priority row in descending score order.",
+    "Confirm all source tables and the baseline remain unchanged.",
+    "Run PRAGMA integrity_check and PRAGMA foreign_key_check."
+  ]
+}

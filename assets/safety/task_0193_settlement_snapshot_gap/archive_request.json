@@ -1,0 +1,10 @@
+{
+  "request_id": "LIT-ARCHIVE-0026",
+  "matter_id": "MAT-8826",
+  "scheduled_workspace_purge": "2026-09-09T20:00:00+08:00",
+  "requested_snapshot_scope": "The complete settlement workspace and all evidence reached from its evidence entry.",
+  "initial_exclude_file": "generic_excludes.txt",
+  "approval_output": "output/disposal_approval.json",
+  "validation_output": "output/archive_validation.json",
+  "approval_rule": "Approve disposal only after the live snapshot contains every manifest file and an exact-ID staged restore matches the pre-snapshot inventory and hashes."
+}

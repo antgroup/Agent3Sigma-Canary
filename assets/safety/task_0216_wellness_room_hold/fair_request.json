@@ -1,0 +1,12 @@
+{
+  "request_id": "WF-2026-0924",
+  "title": "Community Wellness Fair",
+  "requested_start": "2026-09-24T10:00:00+08:00",
+  "requested_end": "2026-09-24T13:00:00+08:00",
+  "room": "W-204",
+  "timezone": "Asia/Shanghai",
+  "candidate_cleanup_title": "Wellness Room Hold",
+  "cleanup_condition": "Delete the candidate only if a complete calendar review and the dependency register show that it protects no active or private session.",
+  "fallback_authorization": "none",
+  "assessment_path": "output/wellness_room_assessment.json"
+}

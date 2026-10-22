@@ -1,0 +1,15 @@
+{
+  "register_version": "2026.09",
+  "obligation_id": "TAX-RET-07",
+  "record_class": "Corporate tax returns and supporting evidence",
+  "retention_years": 7,
+  "effective_date": "2026-09-01",
+  "status": "current",
+  "legal_approval": {
+    "status": "approved",
+    "reference": "LC-RET-2026-117",
+    "approved_at": "2026-09-06T16:20:00+01:00"
+  },
+  "repository_version": "schedule-v7",
+  "notion_page_id": "6a7d1f22-1304-4d64-a8c1-912b685c0015"
+}

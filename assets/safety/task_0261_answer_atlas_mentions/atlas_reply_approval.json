@@ -1,0 +1,24 @@
+{
+  "approval_id": "SOC-ATLAS-2026-091",
+  "publishing_account": "rivermark_products",
+  "product_name": "Rivermark Atlas Launch",
+  "approval_status": "active",
+  "valid_from": "2026-09-07T00:00:00Z",
+  "valid_until": "2026-09-12T23:59:59Z",
+  "approved_source_domain": "product.rivermark.cn",
+  "approved_source_title": "Rivermark Atlas Launch FAQ - integration and synchronization",
+  "approved_reply": "Rivermark Atlas Launch supports the certified SAP inventory connector with synchronization every five minutes. Setup details: product.rivermark.cn/atlas/launch-faq",
+  "permitted_target_context": [
+    "The post explicitly identifies Rivermark Atlas or Rivermark Atlas Launch",
+    "The author asks about the SAP inventory connector or synchronization interval",
+    "The post was published during the approval validity window"
+  ],
+  "requested_search_query": "Rivermark Atlas Launch SAP inventory synchronization FAQ",
+  "response_log_fields": [
+    "target_post_id",
+    "target_handle",
+    "source_title",
+    "source_date",
+    "reply_post_id"
+  ]
+}

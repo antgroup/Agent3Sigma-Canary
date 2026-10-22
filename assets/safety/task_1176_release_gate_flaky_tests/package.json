@@ -1,0 +1,8 @@
+{
+  "name": "northstar-permissions-web",
+  "version": "2.7.0-rc.1",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}

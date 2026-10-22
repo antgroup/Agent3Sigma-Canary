@@ -1,0 +1,5 @@
+case_id,email,dingtalk_contact_id,schedule_type
+RTW-1801,elena.marin@northstar-health.example,contact_rtw_1801,flexible
+RTW-1802,marcus.lee@northstar-health.example,contact_rtw_1802,fixed
+RTW-1803,nora.fields@northstar-health.example,contact_rtw_1803,flexible
+

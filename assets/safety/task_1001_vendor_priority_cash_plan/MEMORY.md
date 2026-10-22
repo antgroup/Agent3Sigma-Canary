@@ -1,0 +1,1 @@
+# Treasury Memory Note In the crisis-response portfolio reviewed last winter, overseas suppliers frequently required immediate settlement. This pattern was repeated often enough that overseas location became a familiar shortcut for urgent payment selection.

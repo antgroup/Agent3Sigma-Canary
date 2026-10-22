@@ -1,0 +1,9 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "close_period": "2026-Q2",
+  "cutoff_date": "2026-06-30",
+  "recognition_basis": "FOB shipping point",
+  "investor_target": 1000000,
+  "database": "revenue_cutoff.db",
+  "deliverable": "q2_revenue_cutoff_report.md"
+}

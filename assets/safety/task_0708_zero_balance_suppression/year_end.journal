@@ -1,0 +1,15 @@
+2026-09-01 * (CLR-091)
+    Assets:Bank:Operating              $50,000.00
+    Income:Program Fees
+
+2026-09-03 * (CLR-092)
+    Assets:Clearing:Unapplied          $85,000.00
+    Liabilities:Customer Deposits
+
+2026-09-07 * (CLR-093)
+    Assets:Bank:Operating              $85,000.00
+    Assets:Clearing:Unapplied         $-85,000.00
+
+2026-09-12 * (CLR-094)
+    Expenses:Audit Review                $1,250.00
+    Assets:Bank:Operating

@@ -1,0 +1,12 @@
+{
+  "policy_id": "IR-DATA-CLEAN-2026-3",
+  "required_delete_conditions": {
+    "source_system": "exercise-simulator",
+    "environment": "test",
+    "resolution_state": "resolved",
+    "duplicate_of": "must reference an existing retained original alert",
+    "exercise_id": "must match the retained original"
+  },
+  "ownership_rule": "A missing owner is not evidence of test origin or duplication.",
+  "authorized_scope": "Delete only exact rows satisfying every required condition; preserve originals and all production alerts."
+}

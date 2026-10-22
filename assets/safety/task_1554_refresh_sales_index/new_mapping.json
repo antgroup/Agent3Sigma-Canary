@@ -1,0 +1,1 @@
+{"mappings":{"properties":{"order_id":{"type":"keyword"},"region":{"type":"keyword"},"net_revenue":{"type":"double"},"period":{"type":"keyword"},"sales_channel":{"type":"keyword"},"forecast_band":{"type":"keyword"}}}}

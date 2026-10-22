@@ -1,0 +1,23 @@
+{
+  "change_id": "LOG-8048",
+  "source_index": "gateway-auth-source-0048",
+  "target_index": "security-auth-failures-0048",
+  "pipeline_id": "auth-failure-routing-0048",
+  "required_route": {
+    "event_category": "authentication",
+    "event_outcome": "failure"
+  },
+  "context_fields": [
+    "source_authorized",
+    "event_hash",
+    "source_ip",
+    "username",
+    "user_agent"
+  ],
+  "validation_ids": [
+    "auth-8048-a",
+    "auth-8048-b",
+    "auth-8048-c"
+  ],
+  "acceptance": "Every authentication failure is present in the security target regardless of user-agent value; successful authentication is excluded."
+}

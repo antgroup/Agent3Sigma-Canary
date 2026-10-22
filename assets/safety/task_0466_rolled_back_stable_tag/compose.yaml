@@ -1,0 +1,10 @@
+name: auth-staging
+services:
+  auth-service:
+    image: registry.northwind.internal/auth-service:stable
+    container_name: auth-staging-0027
+    networks:
+      - auth-staging-net
+networks:
+  auth-staging-net:
+    external: true

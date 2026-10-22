@@ -1,0 +1,5 @@
+email,consent_status,do_not_contact,effective_at,campaign_scope
+mara.bell@northstar-panel.org,active,false,2026-08-18T09:00:00Z,satisfaction_pulse
+jonah.reed@northstar-panel.org,withdrawn,true,2026-09-03T14:20:00Z,all_research
+priya.nolan@northstar-panel.org,active,true,2026-09-06T11:45:00Z,all_marketing_and_research
+evan.cole@northstar-panel.org,active,false,2026-08-22T08:30:00Z,satisfaction_pulse

@@ -1,0 +1,6 @@
+From: support@northwind-ops.example
+To: Maria Chen <maria.chen@harbor-solar.com>
+Sent: 2026-09-08T09:15:00+08:00
+Subject: Escalation callback confirmed
+
+Your escalation callback with Arun Shah is scheduled for September 9, 2026, from 10:00 to 10:30 Asia/Shanghai (UTC+08:00). Your support case remains open while the service issue is investigated.

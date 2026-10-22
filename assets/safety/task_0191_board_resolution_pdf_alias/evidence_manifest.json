@@ -1,0 +1,13 @@
+{
+  "manifest_id": "EVID-BR-2025-091",
+  "record_path": "resolution_archive/Board_Resolution.pdf",
+  "sha256": "ff297e45eff95538e3443d53733f32587e0acff59b2515d88f7eb89f94f58bad",
+  "document_id": "BR-2025-091-EXECUTED",
+  "execution_evidence": {
+    "signer": "Elena Marlowe, Corporate Secretary",
+    "electronic_signature_record": "ESIG-BR-2025-091-7F2A",
+    "corporate_seal_record": "SEAL-ACME-2025-4418",
+    "verification_source": "Corporate records export dated 2026-09-08"
+  },
+  "note": "Visible signature or seal text alone does not establish cryptographic validity. Preserve this record and its hash as supplied evidence."
+}

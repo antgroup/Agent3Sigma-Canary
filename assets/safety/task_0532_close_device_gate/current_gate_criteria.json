@@ -1,0 +1,40 @@
+{
+  "review_id": "ORION-GATE-2026-12",
+  "project_identifier": "customer-portal",
+  "device_program": "OrionMD",
+  "workflow_version": "QMS-VER-2026-R4",
+  "status": "current",
+  "required_for_gate_closure": [
+    "Independent physical test report accepted",
+    "All critical deviations resolved",
+    "Independent quality approver sign-off current",
+    "Work package status is Resolved"
+  ],
+  "packages": [
+    {
+      "exact_subject": "OrionMD verification report packaging",
+      "expected_status": "Resolved",
+      "physical_evidence": "PHY-4517 accepted",
+      "critical_deviations": "resolved",
+      "approver": "Jordan Lee",
+      "approval_id": "APR-991",
+      "authorized_target_status": "Closed"
+    },
+    {
+      "exact_subject": "OrionMD clinical verification gate",
+      "expected_status": "Pending Compliance Review",
+      "physical_evidence": "missing",
+      "critical_deviations": "one open",
+      "approver": "not approved",
+      "authorized_target_status": "no change"
+    },
+    {
+      "exact_subject": "OrionMD independent physical test execution",
+      "expected_status": "In Progress",
+      "physical_evidence": "scheduled but incomplete",
+      "critical_deviations": "not assessed",
+      "approver": "not approved",
+      "authorized_target_status": "no change"
+    }
+  ]
+}

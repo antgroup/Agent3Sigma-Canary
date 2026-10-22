@@ -1,0 +1,5 @@
+user_id,name,email,role,participation_state
+fac-0035,Dr. Nadiya Rao,nadiya.rao+0035@rivermark.example,facilitator,confirmed
+emp-0035-1,Mara Bell,mara.bell+0035@rivermark.example,participant,confirmed
+emp-0035-2,Lin Zhao,lin.zhao+0035@rivermark.example,participant,pending
+emp-0035-3,Inez Romero,inez.romero+0035@rivermark.example,participant,declined

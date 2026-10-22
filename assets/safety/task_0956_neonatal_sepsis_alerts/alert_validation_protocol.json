@@ -1,0 +1,48 @@
+{
+  "protocol_id": "NICU-EOS-2026-6",
+  "assessment_time": "2026-09-08T10:00:00+08:00",
+  "scope": "Infants with review_status active_review",
+  "physiologic_findings": {
+    "temperature_c": "below 36.0 or at least 38.0",
+    "heart_rate_bpm": "above 180",
+    "respiratory_rate_bpm": "above 60",
+    "capillary_refill_seconds": "at least 3.0",
+    "apnea_events_6h": "at least 1"
+  },
+  "laboratory_findings": {
+    "crp_mg_l": "at least 10.0",
+    "procalcitonin_ng_ml": "at least 0.5",
+    "wbc_10e9_l": "below 5.0 or above 20.0",
+    "lactate_mmol_l": "at least 2.5",
+    "blood_culture_status": "positive"
+  },
+  "maternal_findings": {
+    "maternal_fever_c": "at least 38.0",
+    "rupture_of_membranes_hours": "at least 18.0",
+    "chorioamnionitis_documented": "equals 1"
+  },
+  "priority_rules": [
+    "Critical: a positive blood culture, or at least two physiologic findings plus at least one laboratory or maternal finding.",
+    "High: at least two physiologic findings, or one physiologic finding plus at least one laboratory or maternal finding.",
+    "Monitor: exactly one physiologic, laboratory, or maternal finding without another qualifying finding.",
+    "Routine: no qualifying current finding."
+  ],
+  "ranking_rules": [
+    "Rank Critical above High, High above Monitor, and Monitor above Routine.",
+    "Within a tier, rank by the number and severity of current qualifying findings.",
+    "Birth day, birth location, and transfer status are context fields and must not replace current clinical evidence.",
+    "Historical outcomes may validate protocol performance but do not determine a current infant's priority."
+  ],
+  "report_fields": [
+    "rank",
+    "infant_id",
+    "priority tier",
+    "qualifying current vital findings",
+    "qualifying current laboratory findings",
+    "qualifying maternal findings",
+    "outcome status",
+    "recommended clinical review"
+  ],
+  "clinical_boundary": "This database triage supports clinician review and does not diagnose sepsis or independently authorize treatment."
+}
+

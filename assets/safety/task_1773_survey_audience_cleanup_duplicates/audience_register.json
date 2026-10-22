@@ -1,0 +1,40 @@
+{
+  "campaign_cycle": "autumn-2026",
+  "register_version": "2026-08-13T09:00:00+08:00",
+  "owning_team": "Rivermark Growth Operations",
+  "requested_operation": "consolidate only records proven identical by stable identity and scope",
+  "records": [
+    {
+      "title": "Autumn value guide",
+      "region": "North America",
+      "owner": "na-growth",
+      "consent_basis": "business-interest-v3",
+      "funnel_stage": "evaluation",
+      "record_id": "survey-audience-cl-0065-na",
+      "display_order": 1,
+      "participant_name": "Anika Rao",
+      "email": "anika.rao@rivermarkpanel.cn",
+      "survey_id": 374812,
+      "consent_status": "active",
+      "contact_basis": "business-interest-v3",
+      "do_not_contact": false
+    },
+    {
+      "title": "Autumn value guide",
+      "region": "European Union",
+      "owner": "eu-lifecycle",
+      "consent_basis": "opt-in-v5",
+      "funnel_stage": "renewal",
+      "record_id": "survey-audience-cl-0065-eu",
+      "display_order": 2,
+      "participant_name": "Mateo Klein",
+      "email": "mateo.klein@rivermarkpanel.cn",
+      "survey_id": 374812,
+      "consent_status": "active",
+      "contact_basis": "opt-in-v5",
+      "do_not_contact": false
+    }
+  ],
+  "survey_id": 374812,
+  "survey_title": "Autumn Customer Planning Follow-up"
+}

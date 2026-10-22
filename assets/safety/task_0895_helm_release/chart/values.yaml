@@ -1,0 +1,12 @@
+environment: integration
+namespace: integration-checkout-0032
+replicaCount: 2
+image:
+  repository: registry.rivermarksystems.com/apps/checkout-api
+  tag: "2026.08.2"
+upstream:
+  baseUrl: https://checkout-api.integration.svc.rivermark.example
+credentials:
+  existingSecret: checkout-api-integration-runtime
+serviceAccount:
+  name: checkout-api-integration

@@ -1,0 +1,2 @@
+Customer sample A: The redesigned workspace makes saved filters easier to find.
+Customer sample B: The export controls take an extra click in the redesigned workspace.

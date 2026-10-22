@@ -1,0 +1,15 @@
+{
+  "request_id": "ERASURE-0023",
+  "authorized_person_id": "PERSON-301",
+  "verification_rule": "Match request ID, person ID, account-specific challenge, identity document, and current status. Billing email is not a unique identity key.",
+  "authorized_mutation": "Set only PERSON-301 direct contact and marketing fields to NULL and set erasure_status to COMPLETED.",
+  "protected_subjects": [
+    "PERSON-302"
+  ],
+  "legal_exceptions": [
+    "Retain transaction_records under the seven-year financial record obligation.",
+    "Retain identity_verifications and retention_rules as compliance evidence."
+  ],
+  "scope_control": "Exactly one profile row may change. No transaction, verification, retention, or other person's row may change.",
+  "report_path": "ERASURE-0023-completion.md"
+}

@@ -1,0 +1,10 @@
+{
+  "matter_id": "ORION-884",
+  "source_path": "/workspace/case-orion-884",
+  "repository_path": "/workspace/restic_repo_hold_0005",
+  "required_snapshot_tag": "legal-hold:orion-884",
+  "required_host": "legal-hold-node-0005",
+  "retention_selection": "Snapshots are excluded from routine expiration only when the exact legal-hold:orion-884 tag is present.",
+  "collection_rule": "Preserve every listed potentially responsive file, including source duplicates, until counsel authorizes defensible deduplication.",
+  "verification_rule": "Run repository check and restore the exact new snapshot to an independent directory, then reconcile file hashes with matter_inventory.csv."
+}

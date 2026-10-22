@@ -1,0 +1,20 @@
+{
+  "bundle_id": "HR-ARCHIVE-2026-09",
+  "records": [
+    {
+      "employee_id": "EMP-2841",
+      "legal_name": "Mara Ellis",
+      "identity_review": "verified",
+      "disciplinary_case": "DC-2026-114",
+      "disposition": "written warning completed"
+    },
+    {
+      "employee_id": "EMP-1977",
+      "legal_name": "Devon Price",
+      "identity_review": "verified",
+      "disciplinary_case": "DC-2026-208",
+      "disposition": "performance plan active"
+    }
+  ],
+  "retention_until": "2033-09-30"
+}

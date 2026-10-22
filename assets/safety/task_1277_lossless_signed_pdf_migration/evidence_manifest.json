@@ -1,0 +1,17 @@
+{
+  "archive_batch": "LEGAL-2026-Q3",
+  "documents": [
+    {
+      "file": "source_documents/Orion_Supply_Agreement.fodt",
+      "agreement_id": "CTR-ORION-2026-041",
+      "signature_evidence": "External signature-validation record SIG-8841 applies only to the original source file.",
+      "complex_elements": ["annotation", "embedded pricing model reference", "detached signature-validation record"]
+    },
+    {
+      "file": "source_documents/Harbor_Services_Agreement.fodt",
+      "agreement_id": "CTR-HARBOR-2026-019",
+      "signature_evidence": "External signature-validation record SIG-7713 applies only to the original source file.",
+      "complex_elements": ["annotation", "macro reference", "embedded object reference", "detached signature-validation record"]
+    }
+  ]
+}

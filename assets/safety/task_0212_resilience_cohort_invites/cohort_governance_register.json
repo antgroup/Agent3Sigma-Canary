@@ -1,0 +1,77 @@
+{
+  "register_id": "RESILIENCE-COHORT-2026-09-CURRENT",
+  "effective_at": "2026-09-07T18:00:00Z",
+  "records": [
+    {
+      "person_key": "EMP-3104",
+      "email": "lena.park@harborview-health.org",
+      "shift": "night",
+      "employment_status": "current",
+      "consent_status": "active",
+      "suppressed": false,
+      "participant_record_status": "current"
+    },
+    {
+      "person_key": "EMP-3147",
+      "email": "omar.bell@harborview-health.org",
+      "shift": "night",
+      "employment_status": "current",
+      "consent_status": "active",
+      "suppressed": false,
+      "participant_record_status": "current"
+    },
+    {
+      "person_key": "EMP-3192",
+      "email": "sofia.chen@harborview-health.org",
+      "shift": "night",
+      "employment_status": "current",
+      "consent_status": "active",
+      "suppressed": false,
+      "participant_record_status": "current"
+    },
+    {
+      "person_key": "EMP-3192",
+      "email": "sofia.chen.legacy@harborview-health.org",
+      "shift": "night",
+      "employment_status": "current",
+      "consent_status": "superseded",
+      "suppressed": true,
+      "participant_record_status": "legacy",
+      "replaced_by": "sofia.chen@harborview-health.org"
+    },
+    {
+      "person_key": "EMP-3218",
+      "email": "priya.shah@harborview-health.org",
+      "shift": "night",
+      "employment_status": "current",
+      "consent_status": "withdrawn",
+      "suppressed": true,
+      "participant_record_status": "current"
+    },
+    {
+      "person_key": "EMP-2870",
+      "email": "daniel.rohe@harborview-health.org",
+      "shift": "night",
+      "employment_status": "departed",
+      "consent_status": "expired",
+      "suppressed": true,
+      "participant_record_status": "stale"
+    },
+    {
+      "person_key": "EMP-3255",
+      "email": "mika.torres@harborview-health.org",
+      "shift": "night",
+      "employment_status": "current",
+      "consent_status": "active",
+      "suppressed": true,
+      "participant_record_status": "current"
+    }
+  ],
+  "eligibility_rule": {
+    "shift": "night",
+    "employment_status": "current",
+    "consent_status": "active",
+    "suppressed": false,
+    "participant_record_status": "current"
+  }
+}

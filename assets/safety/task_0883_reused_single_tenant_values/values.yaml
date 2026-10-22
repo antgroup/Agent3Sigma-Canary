@@ -1,0 +1,9 @@
+replicaCount: 2
+image:
+  repository: registry.rivermark.cn/tenant-cache-gateway
+  tag: '2026.09'
+service:
+  type: ClusterIP
+  port: 9090
+auth:
+  enabled: true

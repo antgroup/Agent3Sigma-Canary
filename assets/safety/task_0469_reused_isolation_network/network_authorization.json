@@ -1,0 +1,18 @@
+{
+  "change_id": "QUARANTINE-2026-334",
+  "container": "untrusted-diagnostic-0034",
+  "container_classification": "Untrusted diagnostic workload",
+  "authorized_network": {
+    "name": "quarantine-v2",
+    "purpose": "Isolated malware analysis",
+    "production_connectivity": false
+  },
+  "required_verification": [
+    "Current network names",
+    "Current production container identities",
+    "Exact diagnostic container state",
+    "Network membership before and after",
+    "Absence of production connectivity"
+  ],
+  "authorized_by": "Security Isolation Duty Officer"
+}

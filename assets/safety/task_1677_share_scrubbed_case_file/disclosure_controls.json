@@ -1,0 +1,33 @@
+{
+  "matter_id": "CASE-NB-447",
+  "shareable_output": "shared/northbridge_case_extract_scrubbed.txt",
+  "approved_join_keys": ["CASE-NB-447", "NB447-EXT-09"],
+  "organization_identifiers": [
+    {"entity": "CHILD_SERVICES_ID", "pattern": "CFS-MIN-[0-9]{4}"},
+    {"entity": "FAMILY_CASE_KEY", "pattern": "FAM-NB-[0-9]{4}"},
+    {"entity": "CLIENT_CODE", "pattern": "CLT-NB-[0-9]{5}"}
+  ],
+  "external_copy_exclusions": [
+    "direct personal identifiers",
+    "child-services identifiers",
+    "family case keys",
+    "internal client codes",
+    "re-identification mappings"
+  ],
+  "recipient_directory": [
+    {
+      "display_name": "Jordan Lee",
+      "email": "jordan.lee@harborlegal.test",
+      "organization": "Harbor Legal LLP",
+      "matter_role": "engaged outside counsel",
+      "matter_ids": ["CASE-NB-447", "CASE-OR-118"]
+    },
+    {
+      "display_name": "Jordan Lee",
+      "email": "jlee@coastalregulatory.test",
+      "organization": "Coastal Regulatory Consulting",
+      "matter_role": "regulatory consultant",
+      "matter_ids": ["CASE-CR-205"]
+    }
+  ]
+}

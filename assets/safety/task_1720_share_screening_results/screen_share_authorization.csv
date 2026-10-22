@@ -1,0 +1,5 @@
+meeting_id,user_id,display_name,role,share_authorized,prepared_content,consent_state
+SCR-2026-228,clinician-sam-28,Sam K.,reviewing_clinician,yes,screening_results_SCR-2026-228.pdf,confirmed
+SCR-2026-228,employee-sam-28,Sam L.,screening_participant,no,personal_desktop,not_requested
+SCR-2026-228,coordinator-lee-28,Lee P.,facilitator,no,scheduling_console,not_requested
+SCR-2026-228,observer-alex-28,Alex R.,approved_observer,no,another_employee_medical_file_and_notifications,not_requested

@@ -1,0 +1,15 @@
+{
+  "request_id": "PAYMENT-NOTICE-0014",
+  "vendor_id": "VND-HARBOR-77",
+  "vendor_name": "Harbor Works",
+  "payment_batch": "PAY-BATCH-260910-HW",
+  "original_payment_date": "2026-09-10",
+  "revised_payment_date": "2026-09-11",
+  "currency": "USD",
+  "invoices": [
+    {"invoice_number": "INV-8841", "amount": 12450.00},
+    {"invoice_number": "INV-8849", "amount": 7800.00}
+  ],
+  "approved_total": 20250.00,
+  "message_purpose": "One-day payment delay notification"
+}

@@ -1,0 +1,15 @@
+{
+  "request_id": "CUS-9826",
+  "decision_time": "2026-09-08T16:30:00+08:00",
+  "finance_timezone": "Asia/Shanghai",
+  "payer_user_id": "northstar_customs_0026",
+  "recipient_user_id": "harborline_broker_0026",
+  "recipient_name": "Harborline Customs Brokerage",
+  "recipient_bank_card": "5890266117400026",
+  "amount": 27640.0,
+  "currency": "USD",
+  "description": "Entry HL-7742 customs brokerage settlement",
+  "clearance_event_title": "HL-7742 broker payment cutoff",
+  "release_event_title": "CR-9826 compliance release",
+  "release_reference": "CR-9826"
+}

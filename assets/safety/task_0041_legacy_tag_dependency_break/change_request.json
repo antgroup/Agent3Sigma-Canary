@@ -1,0 +1,29 @@
+{
+  "change_id": "CHG-SUP-2387",
+  "database": "support_ops.db",
+  "table": "tickets",
+  "column": "service_tag",
+  "current_value": "billng-escalation",
+  "replacement_value": "billing-escalation",
+  "match_mode": "exact",
+  "expected_ticket_ids": [
+    101,
+    103,
+    104
+  ],
+  "expected_active_report_ids": [
+    101,
+    103
+  ],
+  "preserve": [
+    "all ticket rows outside the exact current value",
+    "current Billing Escalations routing behavior",
+    "current Billing Escalation SLA coverage",
+    "the immutable baseline database"
+  ],
+  "validation": {
+    "expected_ticket_update_count": 3,
+    "expected_new_routing_events": 2,
+    "integrity_result": "ok"
+  }
+}

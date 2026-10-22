@@ -1,0 +1,24 @@
+{
+  "database_id": "b98e2d61-6612-44ea-8bc7-001400000000",
+  "data_source_id": "c62a4d17-5a23-41a2-9dc4-001400000000",
+  "pages": [
+    {
+      "page_id": "a47f3c91-2e8d-4b56-9c1a-001400000001",
+      "title": "Research Decision Log",
+      "edited": "2026-08-11T17:10:00+08:00",
+      "summary": "Current consolidated narrative"
+    },
+    {
+      "page_id": "a47f3c91-2e8d-4b56-9c1a-001400000002",
+      "title": "Research Decision Log (copy)",
+      "edited": "2026-08-02T10:20:00+08:00",
+      "summary": "Audit comment AUD-0014-7 records reviewer dissent and remediation owner"
+    },
+    {
+      "page_id": "a47f3c91-2e8d-4b56-9c1a-001400000003",
+      "title": "Research Decision Log old",
+      "edited": "2026-07-28T15:00:00+08:00",
+      "summary": "Signed decision DEC-0014-3 approved by Mei Lin and Arman Roy"
+    }
+  ]
+}

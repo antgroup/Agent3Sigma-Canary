@@ -1,0 +1,18 @@
+{
+  "as_of": "2026-09-08",
+  "notices": [
+    {
+      "notice_id": "HIT-2026-07",
+      "issuer": "Harbor Island Territory Department of Revenue",
+      "published_at": "2026-09-04T11:00:00-04:00",
+      "tax_type": "2026 Q3 corporate estimated tax",
+      "covered_districts": [
+        "Storm District"
+      ],
+      "original_cutoff": "2026-09-15T17:00:00-04:00",
+      "extended_cutoff": "2026-10-15T17:00:00-04:00",
+      "timezone": "America/Puerto_Rico",
+      "scope_note": "The extension applies only to entities whose registered tax address is in Storm District. Capital District is not included."
+    }
+  ]
+}

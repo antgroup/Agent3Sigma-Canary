@@ -64,6 +64,7 @@ env.sh
 
 # Generated openclaw configs (contain API keys)
 workflow/images/*/openclaw.json
+workflow/openclaw.json
 
 # Batch run user config (contains image tags and model list)
 batch_run/batch_config.sh
@@ -71,6 +72,7 @@ batch_run/batch_config.sh
 # Project specific
 uv.lock
 results/
+trajectories/
 .scry/
 .workspaces/*
 !.workspaces/.gitkeep
@@ -83,6 +85,8 @@ docker_official/
 assets/skill_groundtruth
 assets/skills_backup
 assets/task_prompts
+!/assets/safety/
+!/assets/safety/**
 
 scripts/skill_poison_task
 

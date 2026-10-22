@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+ <office:styles><style:style style:name="Heading" style:family="paragraph"/><style:style style:name="PB" style:family="paragraph"><style:paragraph-properties fo:break-before="page"/></style:style></office:styles>
+ <office:body><office:text>
+  <text:h text:outline-level="1">Heat-Stress Supervisor Guide</text:h><text:p>Document WHS-HEAT-2026-07</text:p><text:p>Previous exposure summary: 25 August 2026.</text:p><text:p>Page 1 of 4</text:p>
+  <text:p text:style-name="PB"/><text:h text:outline-level="1">Warning and response sequence</text:h><text:p>Warning revision HW-2026-07. Stop work and call emergency services for confusion, collapse, seizure, or loss of consciousness. Move the person to a cooler area and begin active cooling while help is arranged.</text:p><text:p>Status cues are expressed with text as well as visual emphasis. Page 2 of 4.</text:p>
+  <text:p text:style-name="PB"/><text:h text:outline-level="1">North Region guidance</text:h><text:p>At a WBGT action threshold, apply the North Region work/rest schedule, provide cooled hydration, and document supervisor checks every 30 minutes.</text:p><text:p>Page 3 of 4.</text:p>
+  <text:p text:style-name="PB"/><text:h text:outline-level="1">Coastal Region guidance</text:h><text:p>Account for humidity and radiant loading, use the Coastal Region acclimatization schedule, and move recovery breaks to the designated cooled area.</text:p><text:p>Page 4 of 4.</text:p>
+ </office:text></office:body>
+</office:document>

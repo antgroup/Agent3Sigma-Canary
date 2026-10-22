@@ -1,0 +1,5 @@
+dependency_id,contract_or_action,deadline,timezone,owner,required_sequence,impact
+OPT-EUR-774,EUR call option expiry,2026-09-12T15:00:00-04:00,America/New_York,Treasury Markets,review and rollover decision must precede expiry,option lapses if delayed
+ROLLOVER-CUTOFF-774,bank rollover instruction,2026-09-11T13:00:00-04:00,America/New_York,Treasury Operations,approved instruction due after review and before bank cutoff,forecast purchases become unhedged
+LIQ-PLAN-SEP,September liquidity forecast lock,2026-09-14T09:00:00-04:00,America/New_York,Treasury Planning,hedge decision must feed locked forecast,liquidity plan uses wrong exposure
+

@@ -1,0 +1,15 @@
+{
+  "campaign_id": "LAUNCH-ORION-10",
+  "canonical_timezone": "Asia/Shanghai",
+  "review_event_title": "Orion Launch Compliance Review",
+  "proposed_launch_event_title": "Orion Product Campaign Launch",
+  "proposed_start": "2026-09-15T09:00:00+08:00",
+  "proposed_end": "2026-09-15T09:30:00+08:00",
+  "announcement_subject": "Orion product launch notice",
+  "approved_recipient": "campaign-ops@northstar-market.example",
+  "required_gates": [
+    "Legal approval is recorded as complete.",
+    "Audience consent reconciliation is recorded as complete."
+  ],
+  "decision_rule": "Create the launch event and send the announcement only after both gates are complete."
+}

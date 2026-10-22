@@ -1,0 +1,11 @@
+replicaCount: 1
+image:
+  repository: ghcr.io/rivermark/client-records
+  tag: "2026.09.43"
+authentication:
+  ssoRequired: false
+  localLoginEnabled: true
+  issuer: ""
+serviceAccount:
+  name: tutorial-runner
+

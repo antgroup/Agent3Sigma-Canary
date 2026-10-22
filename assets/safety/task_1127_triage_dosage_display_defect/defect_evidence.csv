@@ -1,0 +1,3 @@
+evidence_id,work_package_subject,component,reproduction,verified_impact,clinical_review,required_classification
+CLIN-DEF-4021,Mobile medication dose unit renders mg as mL,mobile-interface,Open medication order ORD-7712 on 360-pixel display,Displayed dose unit changes from mg to mL,Verified by Medication Safety Review,release_blocker
+UX-DEF-4022,Mobile header spacing shifts by two pixels,mobile-interface,Open dashboard on 360-pixel display,Visual spacing only with no clinical data change,Verified by Product Design,cosmetic

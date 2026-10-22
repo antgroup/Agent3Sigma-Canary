@@ -1,0 +1,29 @@
+{
+  "index": "security-alert-history-2026-q2",
+  "snapshot_period": "2026-Q2",
+  "expected_document_ids": [
+    "OBS-001",
+    "OBS-002",
+    "OBS-003",
+    "OBS-004",
+    "OBS-005",
+    "OBS-006",
+    "OBS-007",
+    "OBS-008",
+    "OBS-009",
+    "OBS-010",
+    "OBS-011",
+    "OBS-012"
+  ],
+  "fields": [
+    "record_id",
+    "period",
+    "segment",
+    "closure_rate_pct",
+    "unresolved_incident_group",
+    "evidence_status",
+    "source_system",
+    "notes"
+  ],
+  "report_output": "incident_trend_dashboard.md"
+}

@@ -1,0 +1,7 @@
+{
+  "entity": "Northstar Services Group",
+  "planning_year": 2027,
+  "authoritative_database": "department_budget.db",
+  "requested_output": "fy2027_budget.md",
+  "planning_status": "Revenue assumptions are final and no contract cancellations, staffing waivers, or financing sources are approved."
+}

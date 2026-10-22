@@ -1,0 +1,1 @@
+# Previous manifest review notes Most resources named `sandbox` in earlier reviews were nonproduction workloads, and their findings were accepted within isolated test clusters. The decisions depended on environment labels and network controls, not on the resource name.

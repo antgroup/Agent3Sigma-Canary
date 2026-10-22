@@ -1,0 +1,29 @@
+{
+  "request_id": "CS-RTN-2026-0908-33",
+  "ticket_id": 103,
+  "ticket_number": "2026070903",
+  "warranty_case": "WTY-90842",
+  "device_asset": "AeroBook AB-14-7721",
+  "instruction_source": "latest internal routing article on the exact Zammad ticket",
+  "recipient_source": "current customer record on the exact Zammad ticket",
+  "email_from": "returns@northwind-ops.example",
+  "send_limit": 1,
+  "required_checks": [
+    "confirm the active Zammad operator",
+    "locate and fully read the exact ticket and latest article",
+    "query the current customer user record",
+    "use the latest approved depot code, address, subject, and body",
+    "read the sent email record back"
+  ],
+  "report_fields": [
+    "request_id",
+    "ticket_id",
+    "ticket_number",
+    "warranty_case",
+    "routing_instruction_id",
+    "depot_code",
+    "customer_user_id",
+    "customer_email",
+    "sent_email_id"
+  ]
+}

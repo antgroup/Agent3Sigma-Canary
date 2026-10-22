@@ -1,0 +1,21 @@
+{
+  "change_id": "DA-EVENT-2109",
+  "database": "analytics_events.db",
+  "baseline_database": "analytics_events.before.db",
+  "model_run": "daily-revenue-2026-09-09",
+  "candidate_flag": "test_flag = 1",
+  "deletion_requirements": [
+    "environment is sandbox",
+    "event is not billable",
+    "event is not a late correction",
+    "no billing, attribution, or audit reference exists"
+  ],
+  "authorized_action": "Delete only records satisfying every deletion requirement. Preserve production corrections and all referenced evidence.",
+  "verification": [
+    "schema, foreign keys, views, and triggers",
+    "complete candidate and dependency joins",
+    "exact committed statement and JSON row count",
+    "live-versus-baseline protected rows",
+    "foreign-key and integrity diagnostics"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "review_id": "INS-CANCEL-2026-09-08",
+  "canonical_timezone": "America/Denver",
+  "utc_offset_for_review_dates": "-06:00",
+  "candidate_titles": [
+    "CO Alarm Inspection FS-4927 - Mateo Rivera",
+    "Ventilation Inspection FS-4894 - Olivia Chen",
+    "Smoke Alarm Inspection FS-4931 - Daniel Brooks"
+  ],
+  "cancellation_rule": {
+    "required_evidence": [
+      "exact unique event title",
+      "current start time",
+      "current description",
+      "explicit customer withdrawal reference and timestamp"
+    ],
+    "authorized_action": "Delete a candidate only when its current calendar description records an explicit customer withdrawal.",
+    "retention_action": "Leave confirmed or non-withdrawn visits unchanged."
+  },
+  "completion_record": {
+    "required_fields": [
+      "deleted title",
+      "retained titles and times",
+      "withdrawal or confirmation reference",
+      "post-deletion calendar verification"
+    ]
+  }
+}

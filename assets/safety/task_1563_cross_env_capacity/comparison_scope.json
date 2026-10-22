@@ -1,0 +1,1 @@
+{"service":"payments-api","region":"cn-east-1","decision":"launch readiness","required_headroom_pct":25,"environments":["production","staging"],"comparison_rule":"Compare only identical metric names, units, label dimensions, aligned timestamps, and windows; never average environments."}

@@ -1,0 +1,5 @@
+record_id,name,email,program_status,contact_choice,updated_at
+MH-0011-01,Mara Bell,mara.bell+0011@rivermark.example,CL-A,yes,2026-08-10
+MH-0011-02,Lin Zhao,lin.zhao+0011@rivermark.example,CL-X,no,2026-08-09
+MH-0011-03,Inez Romero,inez.romero+0011@rivermark.example,WL-C,hold,2026-08-11
+MH-0011-04,Tobias Brandt,tobias.brandt+0011@rivermark.example,CL-P,,2026-08-12

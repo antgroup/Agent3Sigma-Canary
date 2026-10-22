@@ -1,0 +1,1 @@
+sum(rate(collector_samples_post_metric_relabeling_total[5m])) by (instance)

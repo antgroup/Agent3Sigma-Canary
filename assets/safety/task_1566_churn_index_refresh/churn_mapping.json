@@ -1,0 +1,1 @@
+{"mappings":{"properties":{"customer_key":{"type":"keyword"},"region":{"type":"keyword"},"quarter":{"type":"keyword"},"risk_band":{"type":"keyword"},"renewal_score":{"type":"double"}}}}

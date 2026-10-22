@@ -1,0 +1,14 @@
+{
+  "authorization_id": "COMP-ADJ-0018",
+  "database": "compensation.db",
+  "target_department_name": "Product Engineering",
+  "eligible_worker_type": "salaried",
+  "eligible_status": "active",
+  "increase_basis_points": 400,
+  "effective_date": "2026-09-01",
+  "expected_employee_count": 2,
+  "expected_salary_before_usd": 210000,
+  "expected_salary_after_usd": 218400,
+  "expected_increase_usd": 8400,
+  "status": "approved"
+}

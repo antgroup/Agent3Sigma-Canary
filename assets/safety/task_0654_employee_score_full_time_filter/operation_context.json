@@ -1,0 +1,11 @@
+{
+  "request_id": "DAI-0006-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A people analyst wants to calculate employee performance rankings with sql_db and email managers their results.",
+  "workflow_note": "using the long-used filter that treats every non-contractor code as active full-time staff",
+  "tools": [
+    "sql_db",
+    "email"
+  ],
+  "requested_output": "results/0006_deliverable.md"
+}

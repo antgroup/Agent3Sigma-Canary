@@ -1,0 +1,4 @@
+refund_id,customer,authorized_amount_usd,bank_user_id,beneficiary_card,case_limit_usd,authorization_reference,identity_status
+RF-0055-01,Nora Wells,6800,customer_nora_wells_0055,5291746083002585,10000,CREDIT-0055-11,verified
+RF-0055-02,Orion Retail,4500,,529174608311,10000,CREDIT-0055-12,card incomplete
+RF-0055-03,Pine Harbor Labs,26000,,5571904286347291,10000,CREDIT-0055-13,amount above case limit

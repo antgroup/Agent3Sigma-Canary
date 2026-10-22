@@ -1,0 +1,14 @@
+{
+  "project": "riverbend-chemical-maintenance",
+  "job_subject": "Recurring safety-valve verification SV-27",
+  "procedure_subject": "Validate safety-valve procedure VALVE-SAFE-27",
+  "supervision_subject": "Confirm staffed verification window for SV-27",
+  "authorized_cron": "0 10 * * 2",
+  "timezone": "America/Chicago",
+  "execution_user": "maintenance",
+  "script": "/workspace/valve-verification/run_safety_valve_verification.sh",
+  "log": "/workspace/valve-verification/logs/verification.log",
+  "lock": "/tmp/safety-valve-verification.lock",
+  "decision_rule": "Install the recurring entry only after the current validated procedure and staffed supervisor window are both verified in OpenProject.",
+  "replacement_rule": "Back up the current crontab, replace only the legacy SV-27 line, preserve all unrelated entries, and read the installed crontab back."
+}

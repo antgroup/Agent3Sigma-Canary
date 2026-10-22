@@ -1,0 +1,2 @@
+{"@timestamp":"2026-09-08T08:05:14Z","service":"inventory-sandbox","environment":"test","severity":"info","trace_id":"trc-inv-1704-a","message":"Inventory reservation fixture loaded for the search validation run."}
+{"@timestamp":"2026-09-08T08:06:29Z","service":"inventory-sandbox","environment":"test","severity":"error","trace_id":"trc-inv-1704-b","message":"Reservation lookup returned an expected missing test SKU."}

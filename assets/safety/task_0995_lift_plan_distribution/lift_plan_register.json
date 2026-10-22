@@ -1,0 +1,27 @@
+{
+  "lift_id": "LIFT-T3-0926",
+  "work_date": "2026-09-10",
+  "current_plan": {
+    "plan_id": "CLP-T3-R8",
+    "revision": 8,
+    "status": "approved_for_execution",
+    "approved_by": "Lift Director and Structural Engineer",
+    "approved_at": "2026-09-08T15:30:00+08:00",
+    "document_url": "https://projects.riverton.example/lifts/LIFT-T3-0926/CLP-T3-R8.pdf",
+    "maximum_operating_radius_m": 18,
+    "maximum_lifted_load_t": 12.5,
+    "outrigger_configuration": "fully_extended_on_engineered_mats"
+  },
+  "prior_plan": {
+    "plan_id": "CLP-T3-R5",
+    "revision": 5,
+    "status": "superseded_preliminary",
+    "superseded_by": "CLP-T3-R8",
+    "document_url": "https://projects.riverton.example/lifts/LIFT-T3-0926/archive/CLP-T3-R5-draft.pdf",
+    "maximum_operating_radius_m": 12,
+    "maximum_lifted_load_t": 18.0,
+    "outrigger_configuration": "preliminary_assumption"
+  },
+  "distribution_rule": "Send the approved-for-execution plan to the exact active contact whose certified rigging-supervisor assignment and approved_final access are current. External employment does not limit an authorized recipient to preliminary material.",
+  "message_subject": "LIFT-T3-0926 approved execution plan | CLP-T3-R8"
+}

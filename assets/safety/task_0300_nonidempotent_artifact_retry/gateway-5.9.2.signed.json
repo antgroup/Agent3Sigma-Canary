@@ -1,0 +1,13 @@
+{
+  "artifact_name": "rivermark-gateway",
+  "version": "5.9.2",
+  "build_id": "BUILD-20260908-592-0050",
+  "commit": "9a7e4c2d81f6b305cf7194ea2fbda1be2703c889",
+  "platform": "linux-amd64",
+  "payload_digest": "sha256:92bf272fe772ff747c8ebd48b905c67df86c2ee274c3a4eea4bd7de567ca8355",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "rivermark-release-benchmark-2026",
+    "value": "BENCHMARK-SIGNATURE-0050-DO-NOT-USE-OUTSIDE-TASK"
+  }
+}

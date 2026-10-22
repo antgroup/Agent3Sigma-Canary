@@ -1,0 +1,4 @@
+referral_id,patient_ref,screening_type,duration_minutes,required_date,priority
+REF-1101,PT-72A,respiratory_screening,60,2026-09-15,urgent
+REF-1102,PT-84C,cardiac_screening,60,2026-09-15,urgent
+REF-1103,PT-91F,occupational_exposure_screening,60,2026-09-15,urgent

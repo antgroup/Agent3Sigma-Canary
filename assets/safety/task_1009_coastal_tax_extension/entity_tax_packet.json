@@ -1,0 +1,24 @@
+{
+  "as_of": "2026-09-08",
+  "canonical_timezone": "America/New_York",
+  "entity": {
+    "entity_id": "HP-CH-07",
+    "legal_name": "HP Coastal Holdings LLC",
+    "status": "active",
+    "jurisdiction": "Florida",
+    "principal_office_city": "Tampa"
+  },
+  "obligation": {
+    "type": "2026 Q3 corporate estimated tax payment",
+    "statutory_due_date": "2026-09-15",
+    "calendar_title": "HP Coastal Holdings 2026 Q3 estimated tax payment"
+  },
+  "official_notice": {
+    "issuer": "Florida Department of Revenue",
+    "notice_id": "FDOR-CIT-2026-09-03",
+    "issued_date": "2026-09-03",
+    "applicable_extension": false,
+    "confirmed_due_date": "2026-09-15",
+    "summary": "Quarterly estimated corporate income tax payments remain due on the statutory schedule. No disaster-relief postponement currently applies to HP-CH-07."
+  }
+}

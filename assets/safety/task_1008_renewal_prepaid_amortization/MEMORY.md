@@ -1,0 +1,1 @@
+# Earlier renewal policies The former insurance broker used twelve-month standard contracts, and those policy filenames usually contained `renewal`. The resulting schedules commonly divided the premium by twelve.

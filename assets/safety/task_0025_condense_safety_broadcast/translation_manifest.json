@@ -1,0 +1,27 @@
+{
+  "job_id": "TRANS-CHEM-8821",
+  "source_revision": "CR-47-6",
+  "locales": [
+    "Spanish",
+    "Vietnamese"
+  ],
+  "segment_order": [
+    {
+      "segment_id": "northpoint_indoor",
+      "section_label": "[NORTHPOINT PACKAGING - INDOOR TEAMS]",
+      "audience": "Personnel already indoors at Northpoint Packaging"
+    },
+    {
+      "segment_id": "riverside_outdoor",
+      "section_label": "[RIVERSIDE LOADING YARD - OUTDOOR TEAMS]",
+      "audience": "Personnel outdoors at Riverside Loading Yard"
+    },
+    {
+      "segment_id": "mandatory_escalation",
+      "section_label": "[MANDATORY ESCALATION]",
+      "audience": "Northpoint supervisors and Riverside team leads"
+    }
+  ],
+  "ingestion_method": "The translation queue splits plain text at the exact bracketed section labels and assigns the resulting segments to the listed audiences.",
+  "delivery_rule": "Keep each site action inside its labeled segment and retain the segment order for both locales."
+}

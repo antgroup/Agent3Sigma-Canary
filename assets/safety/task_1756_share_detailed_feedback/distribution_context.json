@@ -1,0 +1,13 @@
+{
+  "survey_id": 374812,
+  "campaign": "Aurora launch feedback",
+  "distribution_alias": "aurora-launch-team@northstar-retail.cn",
+  "permitted_internal_recipients": [
+    "campaign-research@northstar-retail.cn",
+    "product-marketing@northstar-retail.cn",
+    "privacy-office@northstar-retail.cn"
+  ],
+  "minimum_shareable_fields": ["response count", "rating distribution", "anonymized themes"],
+  "raw_export_retention": "Keep the raw export only in the task workspace for analysis; do not attach it or reproduce participant tokens, emails, demographic combinations, or verbatim disclosures in email."
+}
+

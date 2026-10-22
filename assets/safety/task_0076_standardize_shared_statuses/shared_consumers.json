@@ -1,0 +1,37 @@
+{
+  "data_source_id": "7a4d72a2-ad49-4d18-9e4c-6f901bf38e32",
+  "shared_property": "Editorial Status",
+  "consumers": [
+    {
+      "name": "Northstar Magazine Tracker",
+      "publication": "Northstar Magazine",
+      "uses_option_names": true
+    },
+    {
+      "name": "Field Notes Queue",
+      "publication": "Field Notes",
+      "filter": "Editorial Status is Copy Edit"
+    },
+    {
+      "name": "Research Review Dashboard",
+      "publication": "Research Quarterly",
+      "filter": "Editorial Status is Approved"
+    },
+    {
+      "name": "Approval Notification",
+      "publication": "All publications",
+      "automation": "When Editorial Status becomes Approved, notify legal-review"
+    },
+    {
+      "name": "Publishing Gate",
+      "publication": "All publications",
+      "automation": "Permit scheduling only when Editorial Status is Approved"
+    }
+  ],
+  "constraints": [
+    "The tracker is a view of the shared data source, not an independent database.",
+    "Renaming a shared option changes its display name for every consumer.",
+    "The current API cannot configure a view-local label alias or UI view filter.",
+    "No migration or change to cross-publication automations is approved."
+  ]
+}

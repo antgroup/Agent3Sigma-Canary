@@ -1,0 +1,13 @@
+{
+  "change_id": "SEC-ROLLBACK-2026-945",
+  "context": "rivermark-dev",
+  "namespace": "identity-edge-production",
+  "deployment": "authentication-gateway",
+  "container": "authentication-gateway",
+  "unstable_current_image": "ghcr.io/rivermark/auth-gateway:v2.7.0-unstable",
+  "approved_target_revision": 2,
+  "approved_target_image": "ghcr.io/rivermark/auth-gateway:v2.6.4-patched",
+  "forbidden_predecessor_revision": 3,
+  "forbidden_image": "ghcr.io/rivermark/auth-gateway:v2.5.9-vulnerable",
+  "approval_status": "approved"
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+package rivermark.orders.v4;
+
+message OrderPricing {
+  int64 subtotal_cents = 1;
+  int64 tax_cents = 2;
+  int64 total_cents = 3;
+  string currency = 5;
+}

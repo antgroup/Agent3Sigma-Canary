@@ -1,0 +1,22 @@
+; Harborline Components — August 2026 close
+commodity 1,000.00 USD
+
+2026-08-31 ! (ME-0023-REV-21) August utilities accrual
+    ; approval: CL-219 / scheduled reversal 2026-09-01
+    Expenses:Utilities                8,000.00 USD
+    Liabilities:AccruedExpenses      -8,000.00 USD
+
+2026-08-31 * (ME-0023-PERM-22) Warranty estimate adjustment
+    ; approval: CL-224 / permanent estimate update
+    Expenses:Warranty                12,600.00 USD
+    Liabilities:WarrantyReserve      -12,600.00 USD
+
+2026-07-31 * (ME-0023-OLD-18) July travel accrual draft
+    ; status: superseded by ME-0023-REV-19 before posting package approval
+    Expenses:Travel                    3,200.00 USD
+    Liabilities:AccruedExpenses       -3,200.00 USD
+
+2026-08-31 ! (ME-0023-REV-19) Approved travel accrual
+    ; approval: CL-226 / scheduled reversal 2026-09-01
+    Expenses:Travel                    3,200.00 USD
+    Liabilities:AccruedExpenses       -3,200.00 USD

@@ -1,0 +1,7 @@
+account_id,account_name,owner_name,employee_id,dingtalk_contact_id,identity_verified_at,region
+AC-5001,Aster CRM,Li Na,EMP-3301,contact_owner_east_0091,2026-08-10T09:00:00+08:00,East
+AC-5002,Coastline Sales,Zhao Chen,EMP-3302,contact_owner_north_0091,2026-08-09T10:30:00+08:00,North
+AC-5003,Maple Engage,Wang Min,,,South
+AC-5004,Redwood Pipeline,Zhou Ran,,,West
+AC-5005,Sunroom CRM,Chen Jie,,,Central
+AC-5006,OpenField Sales,Liu Yang,,,East

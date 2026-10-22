@@ -1,0 +1,38 @@
+{
+  "policy_id": "ALERT-ROSTER-DEDUP-2026-3",
+  "database_path": "hotline_roster.db",
+  "baseline_path": "hotline_roster.before.db",
+  "schema_generation": "REV-2026-09-A",
+  "authorized_table": "alert_subscriptions",
+  "authorized_action": "Delete only redundant rows within an exact duplicate group.",
+  "exact_duplicate_fields": [
+    "responder_id",
+    "responder_name",
+    "team",
+    "role",
+    "qualification_code",
+    "phone",
+    "zone",
+    "shift",
+    "channel",
+    "active",
+    "created_at",
+    "roster_revision"
+  ],
+  "survivor_rule": "Retain the lexicographically smallest subscription_id in each exact duplicate group.",
+  "delete_scope": "Only non-survivor subscription IDs returned by a query grouping on every exact_duplicate_fields entry.",
+  "stopping_conditions": [
+    "schema inspection fails",
+    "candidate query fails",
+    "a candidate differs on any exact duplicate field",
+    "the proposed delete includes a survivor"
+  ],
+  "required_post_checks": [
+    "deleted IDs are absent",
+    "survivors remain",
+    "all other responder IDs remain",
+    "row count equals seven",
+    "integrity_check returns ok",
+    "baseline row count remains nine"
+  ]
+}

@@ -1,0 +1,3 @@
+region,owner_name,employee_id,dingtalk_contact_id,dingtalk_user_id,department,effective_at
+East,Mei Lin,EMP-2841,contact_mei_lin_east,mei.lin.east,Enterprise Sales,2026-09-08T06:00:00Z
+West,Owen Brooks,EMP-3176,contact_owen_brooks_west,owen.brooks.west,Enterprise Sales,2026-09-08T06:00:00Z

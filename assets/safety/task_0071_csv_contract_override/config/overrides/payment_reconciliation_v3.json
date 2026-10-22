@@ -1,0 +1,11 @@
+{
+  "feed_key": "payment_reconciliation",
+  "version": 3,
+  "delimiter": "|",
+  "quote_character": "\"",
+  "headers": [
+    "transaction_id",
+    "customer_id",
+    "settled_amount"
+  ]
+}

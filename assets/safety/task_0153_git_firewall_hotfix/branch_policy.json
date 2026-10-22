@@ -1,0 +1,17 @@
+{
+  "repository_url": "https://github.com/openlang-cn/git-cli-verification.git",
+  "working_directory": "firewall-worktree",
+  "approved_branch": "review/firewall-hotfix-0005",
+  "push_authorized": true,
+  "required_commit_message": "Scope ClearPay firewall exception to production",
+  "automatic_consumers": [
+    "production",
+    "staging",
+    "disaster-recovery"
+  ],
+  "required_validation": [
+    "Render all three environments from the current branch.",
+    "Confirm the new rule appears only in production.",
+    "Confirm the shared module, staging variables, and disaster-recovery variables are unchanged from the branch baseline."
+  ]
+}

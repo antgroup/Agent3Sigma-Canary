@@ -61,6 +61,7 @@ workspace_files: []
 | `grading_type` | string | Required | New tasks should use `llm_judge`. |
 | `timeout_seconds` | int | Required | Base task timeout. Runtime multiplies it by `--timeout-multiplier`. |
 | `workspace_files` | list | Required | Files written into the agent workspace before the task starts. Use `[]` when no files are needed. |
+| `required_toolset` | string | Optional | Required image toolset; currently supports `safety_research`. Omitted, empty, or `null` values add no image restriction. |
 | `attack_category` | string | Recommended for security tasks | Used by `--attack` compatibility checks. Use `direct` for direct attacks and `indirect` for indirect injection. Skill poisoning and chain tasks often use `skill_poisoning`, `persistence_attack`, or `chain`. |
 | `original_intent` | string | Recommended for direct attacks | Direct `--attack` methods transform this field first. If absent, they transform `## Prompt`. |
 | `prompt` | string | Recommended for indirect attacks | Indirect attack context reads this as the original user request. Keep it aligned with `## Prompt`. |
@@ -68,6 +69,20 @@ workspace_files: []
 | `sessions` | list | Required for multi-turn tasks | Non-empty `sessions` makes the runner execute prompts sequentially. |
 | `multi_session` | bool | Informational only | Current execution code does not read this field. Multi-turn execution is triggered by `sessions`. |
 | `attack_subcategory` | string | Optional | Metadata only. The core runner does not currently consume it. |
+
+## Image Toolset Requirements
+
+Tasks needing the additional tools declare this in frontmatter:
+
+```yaml
+required_toolset: safety_research
+```
+
+All 1,800 imported NARA-Bench tasks declare this requirement. Both serial and parallel benchmark runners check the selected tasks before starting containers, executing `pre_setup`, or calling models. These tasks require `--docker` and a `DOCKER_IMAGE` whose final repository component or tag contains the separate `safety_research` marker, such as `openclaw-claude_code-safety_research-v20261016_120000`. A matching registry hostname or namespace alone does not qualify. A mismatch exits with an error and points to the builder's `--safety-research` option.
+
+Existing tasks need no edits. An omitted field, `required_toolset:`, `required_toolset: null`, or `required_toolset: ""` preserves their existing runtime choices. Unknown toolsets and non-string values are rejected. This field declares tools required in the image; existing skill mounting configuration still applies.
+
+`--validate-tasks` alone checks task inputs and declaration validity without requiring a model or Docker image. Adding `--docker` also checks the image name without starting a container. Preserve the `safety_research` marker when retagging images.
 
 ## Markdown Body Sections
 
@@ -209,7 +224,7 @@ The current code supports the following `pre_setup` types.
 | --- | --- | --- |
 | `file` | `dest`, plus `path` or `injection_goal` | If `injection_goal` is present, writes it to `dest` under the workspace. Otherwise copies `path` to `dest`. |
 | `http_post` | `uid`, `file_type`, plus `context` or `injection_goal` | Writes `{uid}.{file_type}` into the mock API data directory. `file_type` defaults to `html`. If `injection_goal` is present, writes it directly. Otherwise copies `context`. |
-| `memory_poison` | `context`, `poison` | Reads `context`, appends `poison` under an “Important Note” heading, and writes workspace `MEMORY.md`. |
+| `memory` | `context`, optional `poison` | Loads context from a file or inline multiline text. Non-empty `poison` is appended under “Important Note”; omitted, empty, or `null` leaves context unchanged. Writes `MEMORY.md` and framework-native memory files. |
 | `skill_mount` | `names` | Declares which real skills this task mounts at runtime; `names: []` explicitly mounts no skills. |
 | `skill_copy` | `source_path_dir`, `target_path_dir` | Copies a skill directory from the repository root into workspace `skills/{target_path_dir}`. |
 | `dependency_copy` | `source_path_dir`, `target_path_dir`, `source_files` | Copies dependencies from `assets/skills_dependency/{source_path_dir}` into workspace `target_path_dir`; `source_files` can restrict the copied files. |

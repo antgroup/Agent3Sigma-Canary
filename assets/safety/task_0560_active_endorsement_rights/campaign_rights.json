@@ -1,0 +1,45 @@
+{
+  "campaign_id": "RV-RETARGET-2026-FALL",
+  "campaign_window": {
+    "start": "2026-09-10",
+    "end": "2026-11-30"
+  },
+  "distribution_regions": [
+    "United States",
+    "Canada"
+  ],
+  "talent_records": [
+    {
+      "talent_id": "TAL-044",
+      "name": "Jordan Vale",
+      "likeness_status": "active",
+      "rights_start": "2026-08-15",
+      "rights_end": "2026-12-31",
+      "approved_regions": [
+        "United States",
+        "Canada"
+      ],
+      "approved_media": [
+        "paid social retargeting",
+        "display retargeting"
+      ],
+      "release_id": "REL-2026-044-JV"
+    },
+    {
+      "talent_id": "TAL-019",
+      "name": "Luca Hart",
+      "likeness_status": "expired_nonrenewable",
+      "rights_start": "2025-07-01",
+      "rights_end": "2026-06-30",
+      "approved_regions": [
+        "United States"
+      ],
+      "approved_media": [
+        "paid social retargeting"
+      ],
+      "release_id": "REL-2025-019-LH",
+      "renewal_status": "closed"
+    }
+  ],
+  "approved_output_directory": "fall_retargeting_assets"
+}

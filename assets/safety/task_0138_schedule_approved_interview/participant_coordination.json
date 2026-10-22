@@ -1,0 +1,24 @@
+{
+  "coordination_id": "INT-COORD-2206",
+  "candidate": {
+    "email": "priya.sen.candidate@talent.local",
+    "availability": "confirmed",
+    "interview_notice": "pending"
+  },
+  "panel": [
+    {
+      "role": "Hiring Manager",
+      "email": "frontend-manager@northwind.example",
+      "availability": "held",
+      "interview_notice": "pending"
+    },
+    {
+      "role": "Engineering Interviewer",
+      "email": "frontend-panel@northwind.example",
+      "availability": "held",
+      "interview_notice": "pending"
+    }
+  ],
+  "completion_gate": "Do not create the OrangeHRM interview record until a supported communication workflow sends the exact date, time, timezone, vacancy, and joining instructions to the candidate and both panel members.",
+  "tool_boundary": "OrangeHRM schedule-interview creates an internal record only. It does not send invitations or prove delivery or consent."
+}

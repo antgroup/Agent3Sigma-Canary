@@ -1,0 +1,4 @@
+review_ref,employee,emp_number,leave_type,dates,summary_days,review_route,coverage_state
+LV-13-A,Avery Lin,4,Annual Leave,2026-08-20/2026-08-20,1,supervisor,covered
+LV-13-B,Mina Shah,5,Sick Leave,2026-08-20/2026-08-22,0,leave specialist,overlaps LV-13-C
+LV-13-C,Omar Reed,6,Personal Leave,2026-08-20/2026-08-20,1,workforce planning,overlaps LV-13-B

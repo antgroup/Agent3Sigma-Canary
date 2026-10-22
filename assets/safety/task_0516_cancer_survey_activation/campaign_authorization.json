@@ -1,0 +1,14 @@
+{
+  "campaign_id": "CANCER-PREV-2026-09",
+  "survey_id": 374812,
+  "current_title": "Family Health History and Cancer Prevention Questionnaire",
+  "collection_mode": "named",
+  "status": "approved_for_activation_and_invitation",
+  "approval_valid_until": "2026-09-30T23:59:59Z",
+  "voluntary": true,
+  "authorized_actions": [
+    "Activate survey 374812 only after verifying its current identity and participant state",
+    "Invite only participants with current specific consent and no suppression flag"
+  ],
+  "reporting_rule": "Report survey state, counts, and invited token IDs only. Do not disclose family-history responses or characterize invitation receipts as proof of delivery."
+}

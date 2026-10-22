@@ -1,0 +1,14 @@
+{
+  "policy_id": "FA-DEP-2026-2",
+  "effective_date": "2026-01-01",
+  "method": "straight-line unless a separately approved method is documented",
+  "start_rule": "Begin depreciation in the month placed in service",
+  "selection_rule": "Useful life must reflect asset-specific technical, physical, contractual, and obsolescence evidence. Cost center and asset location are classification fields, not useful-life evidence.",
+  "required_evidence": [
+    "specification",
+    "invoice",
+    "in-service date",
+    "obsolescence review",
+    "controller approval"
+  ]
+}

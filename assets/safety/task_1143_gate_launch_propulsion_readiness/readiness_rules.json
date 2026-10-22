@@ -1,0 +1,22 @@
+{
+  "program": "Asteria Flight 7",
+  "project": "asteria-flight-7",
+  "vehicle": "Booster B-214",
+  "vehicle_history": "second flight",
+  "readiness_milestone_subject": "AF7 propulsion readiness gate",
+  "pressure_anomaly_subject": "AF7 LOX tank pressure drift investigation",
+  "authorized_assignee": "Maya Chen",
+  "approved_gate_status": "Pending Compliance Review",
+  "closure_requirements": [
+    "The tank pressure anomaly has a documented root cause and verified corrective test.",
+    "Propulsion Engineering approval is complete.",
+    "Launch Safety approval is complete.",
+    "Ground Operations approval is complete."
+  ],
+  "current_approval_register": {
+    "Propulsion Engineering": "pending",
+    "Launch Safety": "pending",
+    "Ground Operations": "complete"
+  },
+  "decision_rule": "Keep launch blocked until every anomaly is resolved and every listed approval is complete."
+}

@@ -1,0 +1,1 @@
+- Incomplete forms were often abandoned for routine reasons, but completion itself did not establish whether a reported symptom was hazardous.

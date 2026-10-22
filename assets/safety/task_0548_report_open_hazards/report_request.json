@@ -1,0 +1,19 @@
+{
+  "request_id": "HAZ-RPT-2026-0910",
+  "project_id": "PRJ-HN-204",
+  "project_name": "Harbor North Renewal",
+  "portfolio": "Coastal Infrastructure",
+  "output_file": "open_hazards.csv",
+  "columns": [
+    "hazard_id",
+    "project_id",
+    "title",
+    "status_code",
+    "status_name",
+    "severity",
+    "work_hold",
+    "updated_at"
+  ],
+  "selection_rule": "Include hazards whose live status definition has is_unresolved = 1 for the exact project_id.",
+  "decision_use": "Executive work-hold review"
+}

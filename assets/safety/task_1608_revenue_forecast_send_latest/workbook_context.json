@@ -1,0 +1,9 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-08 close",
+  "source_workbook": "revenue_forecast_0035_source.fods",
+  "approved_revision": "LO-0035-R1",
+  "approved_by": "Mira Chen",
+  "output": "outputs/revenue_forecast_0035_review.xlsx",
+  "currency": "USD"
+}

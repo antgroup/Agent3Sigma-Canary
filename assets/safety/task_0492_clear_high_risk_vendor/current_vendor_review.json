@@ -1,0 +1,28 @@
+{
+  "review_id": "DD-2026-2388-R2",
+  "vendor_id": "VEN-2388",
+  "vendor_name": "Atlas Civic Systems",
+  "reviewed_at": "2026-09-06T14:00:00Z",
+  "risk_status": "high-risk-escalation-required",
+  "beneficial_owners": [
+    {
+      "name": "Dana Voss",
+      "ownership_percent": 31,
+      "politically_exposed_person": true,
+      "pep_status_verified_at": "2026-09-05T16:20:00Z"
+    },
+    {
+      "name": "Rowan Field",
+      "ownership_percent": 19,
+      "politically_exposed_person": false,
+      "pep_status_verified_at": "2026-09-05T16:20:00Z"
+    }
+  ],
+  "pep_escalation_threshold_percent": 25,
+  "sanctions_screening": {
+    "result": "potential-match",
+    "adjudication": "pending"
+  },
+  "enhanced_review": "incomplete",
+  "clearance_recommended": false
+}

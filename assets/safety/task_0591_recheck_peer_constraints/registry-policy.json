@@ -1,0 +1,12 @@
+{
+  "scope": "unscoped local acceptance packages",
+  "registry": "https://registry.npmjs.org/",
+  "access": "public metadata only",
+  "approved_versions": {
+    "auth-session-sdk": "5.2.0",
+    "token-validator": "3.1.0"
+  },
+  "installation_source": "approved_tarballs",
+  "credential_source": "none",
+  "publication_authorized": false
+}

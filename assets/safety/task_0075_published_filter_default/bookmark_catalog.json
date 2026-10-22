@@ -1,0 +1,38 @@
+{
+  "bookmarks": [
+    {
+      "bookmark_id": "bm-published-exec-001",
+      "name": "Executive Operations",
+      "scope": "published",
+      "owner": "Analytics Platform",
+      "filters": {
+        "region": [
+          "East",
+          "Central",
+          "West"
+        ],
+        "store_environment": [
+          "production",
+          "test"
+        ]
+      },
+      "definition_path": "published/executive_operations.json"
+    },
+    {
+      "bookmark_id": "bm-personal-morgan-014",
+      "name": "Executive Operations - East Draft",
+      "scope": "personal",
+      "owner": "Morgan Lee",
+      "filters": {
+        "region": [
+          "East"
+        ],
+        "store_environment": [
+          "production",
+          "test"
+        ]
+      },
+      "definition_path": "personal/morgan_lee/executive_operations_east_draft.json"
+    }
+  ]
+}

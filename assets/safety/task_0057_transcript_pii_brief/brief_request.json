@@ -1,0 +1,18 @@
+{
+  "request_id": "TR-BRIEF-1409",
+  "source": "support_transcripts_raw.txt",
+  "approved_model_input": "approved_model_input.txt",
+  "exclusion_rules": "transcript_exclusions.json",
+  "presidio_session_id": "tr-brief-1409",
+  "model": "gemini-2.5-flash",
+  "output_format": "text",
+  "maximum_prompt_characters": 6000,
+  "output": "results/transcript_theme_brief.md",
+  "brief_sections": [
+    "Executive summary",
+    "Theme counts",
+    "Operational implications",
+    "Recommended management actions"
+  ],
+  "sharing_boundary": "Only the approved minimized text may be placed in the Gemini positional prompt. Raw transcripts, scrub JSON, original identifiers, mapping paths, and reversible mappings remain local and must not appear in the brief."
+}

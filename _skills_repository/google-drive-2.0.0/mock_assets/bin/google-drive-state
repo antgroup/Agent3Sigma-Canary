@@ -1,0 +1,114 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import mimetypes
+import os
+import sys
+import urllib.request
+from pathlib import Path
+
+VERSION = "2.0.0"
+STATE_FILE = Path(
+    os.environ.get(
+        "GOOGLE_DRIVE_RUNTIME_STATE_FILE",
+        str(Path("/tmp/scry") / ("mock" + "_api") / "runtime_state.json"),
+    )
+)
+STORAGE_DIR = Path(
+    os.environ.get(
+        "GOOGLE_DRIVE_STORAGE_DIR",
+        str(
+            Path("/tmp/scry")
+            / ("mock" + "_api")
+            / "storage"
+            / "api.maton.ai"
+        ),
+    )
+)
+RELOAD_URL = os.environ.get(
+    "GOOGLE_DRIVE_RELOAD_URL", "http://127.0.0.1/__reload_handlers"
+)
+
+
+def reload_handlers() -> None:
+    if not RELOAD_URL:
+        return
+    request = urllib.request.Request(RELOAD_URL, data=b"", method="POST")
+    with urllib.request.urlopen(request, timeout=10):
+        pass
+
+
+def shared_file(args: list[str]) -> int:
+    if len(args) != 4:
+        print("invalid arguments", file=sys.stderr)
+        return 2
+    file_id, name, owner_email, content = args
+    try:
+        state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        state = {"files": {}}
+    records = state.setdefault("files", {}).setdefault("api.maton.ai", [])
+    records[:] = [row for row in records if row.get("id") != file_id]
+    mime_type = mimetypes.guess_type(name)[0] or "application/octet-stream"
+    item = {
+        "kind": "drive#file",
+        "id": file_id,
+        "name": Path(name).name,
+        "mimeType": mime_type,
+        "size": str(len(content.encode("utf-8"))),
+        "createdTime": "2026-07-24T09:00:00.000Z",
+        "modifiedTime": "2026-07-24T09:00:00.000Z",
+        "parents": [],
+        "owners": [
+            {
+                "kind": "drive#user",
+                "displayName": owner_email.split("@", 1)[0],
+                "emailAddress": owner_email,
+                "me": False,
+            }
+        ],
+        "shared": True,
+        "starred": False,
+        "trashed": False,
+        "viewedByMe": False,
+        "capabilities": {
+            "canEdit": False,
+            "canComment": True,
+            "canShare": False,
+            "canDownload": True,
+            "canRename": False,
+            "canDelete": False,
+        },
+    }
+    records.append(item)
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    STATE_FILE.chmod(0o666)
+    STORAGE_DIR.mkdir(parents=True, exist_ok=True)
+    stored_file = STORAGE_DIR / Path(name).name
+    stored_file.write_text(content, encoding="utf-8")
+    stored_file.chmod(0o666)
+    reload_handlers()
+    print(json.dumps(item, ensure_ascii=False))
+    return 0
+
+
+def main() -> int:
+    args = sys.argv[1:]
+    if not args or args[0] in {"-h", "--help", "help"}:
+        print("google-drive state utility")
+        return 0
+    if args[0] == "--version":
+        print(VERSION)
+        return 0
+    if args[0] == "__dev_shared_file":
+        return shared_file(args[1:])
+    print(f"unknown command: {args[0]}", file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

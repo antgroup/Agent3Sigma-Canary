@@ -1,0 +1,5 @@
+- hosts: managed
+  become: true
+  tasks:
+    - name: Set Orion directory ownership
+      file: {path: /srv/orion, owner: orion, group: orion, recurse: true}

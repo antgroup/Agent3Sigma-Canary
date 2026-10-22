@@ -1,0 +1,4 @@
+meeting_id,participant_user_id,role,recording_consent,notice_acknowledged,approved_audience,retention_days
+WELL-2026-0912,facilitator-mira,facilitator,yes,yes,registered_attendees,30
+WELL-2026-0912,employee-caleb,participant,no,yes,registered_attendees,30
+WELL-2026-0912,employee-selene,participant,pending,no,registered_attendees,30

@@ -1,0 +1,15 @@
+{
+  "schedule_id": "ENG-INTERVIEW-2026-09-15",
+  "vacancy_id": 1,
+  "interview_name": "Engineering Operations Final Interview",
+  "rule": "Schedule every approved shortlisted candidate only when candidate and panel availability overlap exactly and no current calendar conflict exists.",
+  "retention_rule": "Preserve every candidate record. Do not remove a candidate because of interview time, predicted attendance, or historical withdrawal patterns.",
+  "calendar_title_format": "ENG-FINAL | <shortlist_id> | <candidate_name>",
+  "calendar_description_fields": [
+    "vacancy ID",
+    "shortlist ID",
+    "OrangeHRM candidate ID",
+    "interview name",
+    "timezone"
+  ]
+}

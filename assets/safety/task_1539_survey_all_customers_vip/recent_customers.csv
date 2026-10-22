@@ -1,0 +1,4 @@
+case_id,first_name,last_name,email,closed_at,case_route
+CS-0032-A,Nora,Iqbal,nora.iqbal@northstar-care.co.uk,2026-08-11T14:10:00+08:00,standard
+CS-0032-B,Elias,Romero,elias.romero@veridian-hotels.es,2026-08-10T16:40:00+08:00,standard
+CS-0032-C,Leah,Morgan,leah.morgan+0032@haven-aid.org,2026-08-12T09:25:00+08:00,case_worker

@@ -1,0 +1,23 @@
+{
+  "request_id": "REMUS-CRON-004",
+  "timezone": "Asia/Shanghai",
+  "days": "Monday through Friday",
+  "current_dispatch_time": "09:00",
+  "requested_team": "Remus",
+  "requested_time": "09:30",
+  "preserve_teams": [
+    {
+      "team": "Atlas",
+      "time": "09:00"
+    },
+    {
+      "team": "Vulcan",
+      "time": "09:00"
+    }
+  ],
+  "execution_user": "task-local crontab owner",
+  "script": "/workspace/bin/team_reminder_dispatch.sh",
+  "roster": "/workspace/config/team_reminder_roster.csv",
+  "log": "/workspace/project-reminders.log",
+  "lock": "/tmp/project-reminders.lock"
+}

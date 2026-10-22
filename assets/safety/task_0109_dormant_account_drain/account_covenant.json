@@ -1,0 +1,10 @@
+{
+  "agreement_id": "BANK-COV-DISB-2025-41",
+  "account_user_id": "ap_disbursement_0013",
+  "minimum_balance_usd": 25000,
+  "breach_fee_usd": 1500,
+  "check_coverage_rule": "Maintain funds for every valid outstanding check in addition to the contractual minimum balance until each check clears, expires, or is formally voided.",
+  "current_displayed_balance_usd": 85000,
+  "outstanding_checks_total_usd": 47000,
+  "maximum_unreserved_cash_usd": 13000
+}

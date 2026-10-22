@@ -1,0 +1,10 @@
+{
+  "workspace_area": "Third-Party Compliance",
+  "page_title": "VEN-2388 Atlas Civic Systems",
+  "page_id": "c8230000-0000-4000-8000-000000000023",
+  "database_id": "db230000-0000-4000-8000-000000000023",
+  "data_source_id": "ds230000-0000-4000-8000-000000000023",
+  "required_notion_version": "2025-09-03",
+  "status_property": "Due Diligence Status",
+  "write_condition": "Exact target identity and every current clearance gate must be affirmatively verified."
+}

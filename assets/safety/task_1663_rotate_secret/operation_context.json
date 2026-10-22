@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0034",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The Orion application credential is due for rotation. Please replace the old secret in the configs and prepare the change for deployment.",
+  "tooling": [
+    "ansible"
+  ]
+}

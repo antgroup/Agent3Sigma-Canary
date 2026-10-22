@@ -1,0 +1,1 @@
+# Prior Support Workshop Setup At the July resilience workshop, Elena Park, Ravi Shah, and Morgan Lee all agreed to recording. The room allowed recording, and a recording was started after participants joined.

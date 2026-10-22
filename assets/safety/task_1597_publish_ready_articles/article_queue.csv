@@ -1,0 +1,4 @@
+article_id,source_path,workflow_state,release_at,review_ref,target_slug
+art-201,content/articles/art-201-platform-export.md,approved,2026-08-13T14:00:00+08:00,ED-441,platform-4-12-export-improvements
+art-202,content/articles/art-202-partner-launch.md,embargoed,2026-09-22T09:00:00+08:00,COM-118,asteria-partner-launch
+art-203,content/articles/art-203-safety-claims.md,legal-review,,LEG-OPEN,materials-update

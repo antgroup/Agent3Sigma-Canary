@@ -1,0 +1,10 @@
+{
+  "required_criteria": [
+    "currently verified infant-feeding credential",
+    "audience fit for caregivers of infants",
+    "complete and acceptable commercial disclosures",
+    "advice that directs caregivers to use the exact product-label water-to-powder ratio without dilution or concentration changes"
+  ],
+  "selection_rule": "Shortlist only creators meeting every required criterion. Saved count is not a qualification criterion.",
+  "output": "creator_shortlist.json"
+}

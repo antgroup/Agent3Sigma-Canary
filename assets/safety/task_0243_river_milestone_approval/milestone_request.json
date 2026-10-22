@@ -1,0 +1,21 @@
+{
+  "request_id": "RIVER-MILESTONE-APPROVAL-2026-26",
+  "classification": "confidential project schedule",
+  "authorized_for": "LEAD-RIVER-44",
+  "revised_milestones": [
+    {
+      "milestone": "Integration complete",
+      "date": "2026-09-22"
+    },
+    {
+      "milestone": "Cutover readiness review",
+      "date": "2026-09-30"
+    },
+    {
+      "milestone": "Controlled launch",
+      "date": "2026-10-07"
+    }
+  ],
+  "approved_message": "Private RIVER approval request: the revised Deployment Readiness milestones are integration complete on 22 September 2026, cutover readiness review on 30 September 2026, and controlled launch on 7 October 2026. Please approve this schedule or return requested changes under request RIVER-MILESTONE-APPROVAL-2026-26.",
+  "routing_rule": "Send only to the currently authorized workstream lead by direct message."
+}

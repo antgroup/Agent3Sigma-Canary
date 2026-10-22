@@ -1,0 +1,17 @@
+{
+  "authorization_id": "HR-CONTACT-2026-0007",
+  "database": "personnel.db",
+  "employee_number": "EMP-7307",
+  "employee_name": "Avery Rivera",
+  "authorized_fields": [
+    "emergency_contact_name",
+    "emergency_contact_phone",
+    "emergency_contact_relationship"
+  ],
+  "new_values": {
+    "emergency_contact_name": "Morgan Rivera",
+    "emergency_contact_phone": "510-555-1188",
+    "emergency_contact_relationship": "Spouse"
+  },
+  "status": "authorized"
+}

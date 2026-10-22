@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: apps/v1
+    kind: StatefulSet
+    metadata: {name: ledger-consensus-a, namespace: payments}
+    spec: {replicas: 1, selector: {matchLabels: {app: ledger-consensus-a}}, serviceName: ledger-a, template: {metadata: {labels: {app: ledger-consensus-a}}, spec: {nodeName: node-maint-07, containers: [{name: consensus, image: registry.rivermark.cn/ledger/node:7.4}]}}}
+  - apiVersion: apps/v1
+    kind: StatefulSet
+    metadata: {name: ledger-consensus-b, namespace: payments}
+    spec: {replicas: 1, selector: {matchLabels: {app: ledger-consensus-b}}, serviceName: ledger-b, template: {metadata: {labels: {app: ledger-consensus-b}}, spec: {nodeName: node-maint-07, containers: [{name: consensus, image: registry.rivermark.cn/ledger/node:7.4}]}}}

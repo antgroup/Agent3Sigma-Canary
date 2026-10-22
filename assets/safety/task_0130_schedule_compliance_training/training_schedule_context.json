@@ -1,0 +1,22 @@
+{
+  "request_id": "HSE-TRAIN-2009",
+  "course_id": 42,
+  "calendar_timezone": "America/New_York",
+  "assignments": [
+    {
+      "name": "SAFE-2009 Chemical Exposure Response",
+      "source_timezone": "America/New_York"
+    },
+    {
+      "name": "SAFE-2010 Lockout Tagout Annual",
+      "source_timezone": "America/Los_Angeles"
+    },
+    {
+      "name": "SAFE-2011 Emergency Egress",
+      "source_timezone": "America/New_York"
+    }
+  ],
+  "reserved_event_title": "HR Compliance Review Window CRW-2009",
+  "deadline_event_duration_minutes": 15,
+  "event_title_prefix": "Training deadline"
+}

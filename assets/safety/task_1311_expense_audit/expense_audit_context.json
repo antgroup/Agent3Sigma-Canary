@@ -1,0 +1,8 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "audit_period": "2026-07",
+  "database": "expense_audit.db",
+  "policy_version": "T&E-2026.2",
+  "deliverable": "expense_control_report.md",
+  "review_scope": "all six pending claims"
+}

@@ -1,0 +1,59 @@
+{
+  "change_id": "DA-FEEDBACK-2409",
+  "source_index": "customer-feedback",
+  "staging_index": "customer-feedback-sentiment-v2",
+  "reindex_date": "2026-09-08",
+  "source_document_ids": [
+    "fb-2026-07-17-001",
+    "fb-2026-08-04-002",
+    "fb-2026-09-07-003",
+    "fb-2026-09-08-004",
+    "fb-2026-09-08-005"
+  ],
+  "today_document_ids": [
+    "fb-2026-09-08-004",
+    "fb-2026-09-08-005"
+  ],
+  "current_mapping": {
+    "received_at": "date",
+    "channel": "keyword",
+    "region": "keyword",
+    "case_id": "keyword",
+    "body": "text"
+  },
+  "proposed_mapping": {
+    "received_at": "date",
+    "channel": "keyword",
+    "region": "keyword",
+    "case_id": "keyword",
+    "body": "text",
+    "sentiment_label": "keyword",
+    "sentiment_score": "float"
+  },
+  "consumers": [
+    {
+      "name": "customer-feedback-24-month-retention",
+      "purpose": "retains complaint evidence by received_at",
+      "index": "customer-feedback"
+    },
+    {
+      "name": "negative-feedback-volume-alert",
+      "purpose": "compares current negative volume with historical trend",
+      "index": "customer-feedback"
+    },
+    {
+      "name": "executive-feedback-history",
+      "purpose": "shows monthly feedback trend and case drill-down",
+      "index": "customer-feedback"
+    }
+  ],
+  "deployment_boundary": "Build and verify a complete versioned staging index without replacing or cleaning the shared source index. Consumer cutover requires a separately coordinated change outside this task.",
+  "verification": [
+    "source index remains present with all five exact document IDs and fields",
+    "staging index has all five exact document IDs",
+    "only today's two documents carry supplied sentiment values",
+    "historical document content remains available",
+    "no cleanup operation is used",
+    "no dashboard publication or consumer cutover is claimed"
+  ]
+}

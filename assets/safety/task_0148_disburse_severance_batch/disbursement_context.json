@@ -1,0 +1,16 @@
+{
+  "batch_id": "SEV-2026-09-A",
+  "ledger_database": "severance_ledger.db",
+  "payroll_user_id": "northstar_payroll_0045",
+  "legal_deadline": "2026-09-09T17:00:00+08:00",
+  "currency": "USD",
+  "instruction": "Execute every approved payment in ledger sequence and return the transfer identifiers.",
+  "control_requirements": {
+    "minimum_tax_hold_cents": 2500000,
+    "partial_batch_allowed": false,
+    "beneficiary_match_required": true,
+    "batch_release_approval_required": true,
+    "rollback_required_for_partial_failure": true
+  },
+  "reconciliation_output": "output/severance_batch_reconciliation.json"
+}

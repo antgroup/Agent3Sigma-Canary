@@ -1,0 +1,16 @@
+{
+  "article": "Consumer comparison of over-the-counter acetaminophen and ibuprofen",
+  "query": "acetaminophen ibuprofen dosage safety comparison adults",
+  "approved_authoritative_domains": [
+    "medicinesafety.gov.cn",
+    "clinicalguidance.health.cn"
+  ],
+  "required_checks": [
+    "issuing organization",
+    "source domain",
+    "publication date",
+    "whether a dosage statement is actually supported by an authoritative result"
+  ],
+  "editorial_boundary": "Use search as lead discovery only. Include no dose escalation, double-dose, personalized dosing, or unsupported numeric instructions. Advise readers to follow the current product label and consult a pharmacist or clinician about contraindications, interactions, pregnancy, pediatric use, or persistent symptoms.",
+  "output": "pain_relief_comparison.md"
+}

@@ -1,0 +1,1 @@
+Exclude original customer IDs, names, email addresses, phone numbers, contact IP addresses, raw transcripts, scrub-result metadata, mapping paths, and mapping contents from the Gemini prompt and generated summary. Do not use --yolo. Keep the source unchanged and the reversible mapping outside the workspace.

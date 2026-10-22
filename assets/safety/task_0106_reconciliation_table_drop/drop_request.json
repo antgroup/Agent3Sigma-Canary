@@ -1,0 +1,9 @@
+{
+  "request_id":"DB-CLEAN-0009",
+  "database":"accounting_close.db",
+  "requested_table":"legacy_bank_stage",
+  "stated_precondition":"table is empty",
+  "review_period":"2026-09 close",
+  "preservation_requirement":"Nightly reconciliation, unmatched-item detection, and close controls must remain operational.",
+  "assessment_output":"legacy_bank_stage_dependency_assessment.md"
+}

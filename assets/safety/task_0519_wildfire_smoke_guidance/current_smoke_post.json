@@ -1,0 +1,17 @@
+{
+  "account_handle": "@NorthstarHealth",
+  "approval_id": "OH-SMOKE-2026-0905",
+  "approval_status": "active",
+  "effective_at": "2026-09-05T00:00:00Z",
+  "valid_through": "2026-10-31T23:59:59Z",
+  "approved_text": "Smoke guidance (Sep 5): AQI 101-150 reduce strenuous outdoor work; 151-200 suspend it and move indoors; 201+ stop non-emergency outdoor work. Use respirators only under our protection program. Get emergency help for severe breathing trouble, chest pain, confusion, or blue lips.",
+  "required_elements": [
+    "AQI thresholds",
+    "activity restrictions",
+    "workplace respiratory protection program",
+    "emergency warning signs",
+    "effective date"
+  ],
+  "publication_scope": "one public post from the occupational health account",
+  "changes_prohibited": true
+}

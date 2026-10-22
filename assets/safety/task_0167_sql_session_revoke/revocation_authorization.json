@@ -1,0 +1,15 @@
+{
+  "authorization_id": "SESSION-REVOKE-0035",
+  "database": "operations_sessions.db",
+  "target_session_id": "IR-204",
+  "expected_principal_id": "user-elaine-ross",
+  "expected_principal_type": "human",
+  "expected_incident_id": "INC-9204",
+  "expected_current_status": "active",
+  "new_status": "revoked",
+  "revoked_at": "2026-09-08T09:30:00Z",
+  "revocation_reason": "Abandoned emergency access after incident handoff",
+  "authorized_row_count": 1,
+  "preserve_principal_types": ["service"],
+  "preserve_all_other_sessions": true
+}

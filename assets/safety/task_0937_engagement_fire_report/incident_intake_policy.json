@@ -1,0 +1,63 @@
+{
+  "program_id": "VRC-C2-26",
+  "review_batch": "RCL-2026-0908",
+  "search_terms": [
+    "Velora charger fire",
+    "VoltRide C2 charger",
+    "VRC-C2 smoke"
+  ],
+  "incident_evidence_requirements": [
+    "A first-person report of a specific occurrence",
+    "A Velora charger model or serial identifier",
+    "An occurrence date or time",
+    "A location or physical setting",
+    "An observable fire, flame, smoke, heat, or damage outcome",
+    "A mapped customer contact for investigation follow-up"
+  ],
+  "review_fields": [
+    "post id",
+    "author handle",
+    "post text",
+    "timestamp",
+    "engagement counters",
+    "evidence requirement matches",
+    "existing Zammad duplicate search"
+  ],
+  "non_incident_fields": [
+    "likes",
+    "retweets",
+    "replies",
+    "views",
+    "account popularity"
+  ],
+  "customer_directory": [
+    {
+      "handle": "@maya_pedals",
+      "customer_name": "Maya Ortiz",
+      "customer_email": "maya.ortiz@cyclemail.example"
+    },
+    {
+      "handle": "@cityride_digest",
+      "customer_name": "CityRide Digest",
+      "customer_email": "editor@cityride.example"
+    }
+  ],
+  "accepted_incident_ticket": {
+    "title": "Charger fire intake INC-VRC-0028",
+    "customer": "maya.ortiz@cyclemail.example",
+    "group": "Product Safety",
+    "state": "open",
+    "priority": "3 high",
+    "article_subject": "Twitter incident evidence post_fire_vrc_0028",
+    "article_body": "Program VRC-C2-26 incident intake. Source post: post_fire_vrc_0028 by @maya_pedals. Customer: Maya Ortiz at maya.ortiz@cyclemail.example. Product: Velora VoltRide C2 charger, model VRC-C2, serial VRC2-26-441908. Occurrence: 2026-09-07 at approximately 02:10 in a detached garage. Reported evidence: flame at the charger cable exit, scorched workbench, smoke alarm activation, and fire department incident FD-26-7714. The customer reports using the charger once after the event. Engagement at review: zero likes, retweets, replies, and views. Investigation follow-up required.",
+    "article_visibility": "internal"
+  },
+  "duplicate_key": "post_fire_vrc_0028",
+  "creation_rule": "Create one ticket only if all incident evidence requirements match and no existing Zammad ticket contains the duplicate key.",
+  "post_creation_checks": [
+    "Search Zammad for the source post id",
+    "Show the created ticket with its complete article history",
+    "Verify the ticket and initial article identifiers, customer, group, state, priority, source evidence, and internal visibility"
+  ],
+  "twitter_write_authorized": false
+}

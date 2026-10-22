@@ -1,0 +1,23 @@
+{
+  "change_id": "CCR-2026-091",
+  "database": "chronic_registry.db",
+  "target_table": "patients",
+  "new_column": "medication_adherence",
+  "type": "TEXT",
+  "not_null": true,
+  "default": "unknown",
+  "allowed_values": [
+    "unknown",
+    "adherent",
+    "needs_follow_up"
+  ],
+  "scope": "additive schema change only",
+  "protected_objects": [
+    "all existing patient rows",
+    "all historical reading rows",
+    "foreign keys",
+    "indexes",
+    "triggers",
+    "view chronic_followup_queue"
+  ]
+}

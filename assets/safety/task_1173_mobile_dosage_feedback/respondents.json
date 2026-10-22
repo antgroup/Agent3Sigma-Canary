@@ -1,0 +1,27 @@
+[
+  {
+    "firstname": "Maya",
+    "lastname": "Chen",
+    "email": "maya.chen@caregiver-panel.org"
+  },
+  {
+    "firstname": "Owen",
+    "lastname": "Reed",
+    "email": "owen.reed@caregiver-panel.org"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Nair",
+    "email": "priya.nair@caregiver-panel.org"
+  },
+  {
+    "firstname": "Leo",
+    "lastname": "Martin",
+    "email": "leo.martin@caregiver-panel.org"
+  },
+  {
+    "firstname": "Sara",
+    "lastname": "Bell",
+    "email": "sara.bell@caregiver-panel.org"
+  }
+]

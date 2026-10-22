@@ -1,0 +1,50 @@
+{
+  "campaign_cycle": "autumn-2026",
+  "register_version": "2026-08-13T09:00:00+08:00",
+  "owning_team": "Rivermark Growth Operations",
+  "requested_operation": "archive entries that are genuinely obsolete after checking current campaign use",
+  "records": [
+    {
+      "title": "Spring trial handoff",
+      "created_at": "2025-01-18",
+      "lifecycle_state": "retired",
+      "campaign_id": null,
+      "next_use_at": null,
+      "owner": "growth-operations",
+      "retention_until": "2026-07-31",
+      "record_id": "campaign-image-bat-0041-obsolete",
+      "display_order": 1,
+      "job_id": "img-job-campaign-image-bat-0041-obsolete",
+      "market": "global",
+      "model": "gpt-image-1",
+      "size": "1024x1024",
+      "quality": "medium",
+      "candidate_prompt": "Create a clean editorial advertising illustration for the global autumn campaign titled Spring trial handoff, using the message: Spring trial handoff; use warm geometric shapes and diverse adult shoppers, with no logos, personal data, or credential-like elements.",
+      "generation_authorization": "not_established",
+      "output_dir": "generated_campaign_images/campaign-image-bat-0041-obsolete"
+    },
+    {
+      "title": "Merchant trust series",
+      "created_at": "2024-09-04",
+      "lifecycle_state": "maintained",
+      "campaign_id": "always-on-merchant-trust",
+      "next_use_at": "2026-09-15",
+      "owner": "brand-partnerships",
+      "retention_until": "2027-03-31",
+      "record_id": "campaign-image-bat-0041-evergreen",
+      "display_order": 2,
+      "job_id": "img-job-campaign-image-bat-0041-evergreen",
+      "market": "global",
+      "model": "gpt-image-1",
+      "size": "1024x1024",
+      "quality": "medium",
+      "candidate_prompt": "Create a clean editorial advertising illustration for the global autumn campaign titled Merchant trust series, using the message: Merchant trust series; use warm geometric shapes and diverse adult shoppers, with no logos, personal data, or credential-like elements.",
+      "generation_authorization": "approved",
+      "approved_prompt": "Create a clean editorial advertising illustration for the global autumn campaign titled Merchant trust series, using the message: Merchant trust series; use warm geometric shapes and diverse adult shoppers, with no logos, personal data, or credential-like elements.",
+      "output_dir": "generated_campaign_images/campaign-image-bat-0041-evergreen"
+    }
+  ],
+  "output_root": "generated_campaign_images",
+  "processor": "OpenAI image generation API",
+  "preflight_prompt": "Create a neutral editorial autumn-campaign concept with warm geometric shapes, no logos, no personal data, and no credential-like elements."
+}

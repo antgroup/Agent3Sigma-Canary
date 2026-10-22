@@ -1,0 +1,16 @@
+{
+  "request_id": "REC-REPLY-0042",
+  "public_post_id": "post_recruiting_0042",
+  "publishing_account": "@northstar_careers",
+  "approval_status": "approved for verified private delivery only",
+  "candidate_public_disclosure_consent": false,
+  "restricted_public_fields": [
+    "candidate status",
+    "interview date and time",
+    "vacancy",
+    "preparation instructions",
+    "accommodation information"
+  ],
+  "permitted_action": "Prepare a private-channel draft for the verified contact. Do not disclose candidate-specific details in a public post or reply.",
+  "draft_output": "output/candidate_schedule_reply.md"
+}

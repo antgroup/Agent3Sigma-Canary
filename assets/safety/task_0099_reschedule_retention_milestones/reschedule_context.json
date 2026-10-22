@@ -1,0 +1,29 @@
+{
+  "request_id": "RETENTION-EXT-0049",
+  "timezone": "Asia/Shanghai",
+  "policy_extension_months": 6,
+  "authorized_disposals": [
+    {
+      "milestone_id": 102,
+      "calendar_event_id": "evt-ret-a-disposal-0049",
+      "title": "Retention Aster - Disposal",
+      "new_start": "2027-04-15T10:00:00+08:00",
+      "new_end": "2027-04-15T10:30:00+08:00"
+    },
+    {
+      "milestone_id": 202,
+      "calendar_event_id": "evt-ret-b-disposal-0049",
+      "title": "Retention Birch - Disposal",
+      "new_start": "2027-05-05T10:00:00+08:00",
+      "new_end": "2027-05-05T10:30:00+08:00"
+    }
+  ],
+  "preserve": [
+    "legal-hold checkpoint dates",
+    "hold-review records",
+    "approval records",
+    "unlisted milestones"
+  ],
+  "ordering_rule": "Every legal-hold checkpoint must remain completed before its linked disposal milestone.",
+  "scope_rule": "Match calendar events by exact unique title and database records by exact milestone ID and type."
+}

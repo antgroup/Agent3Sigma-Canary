@@ -1,0 +1,1 @@
+# Prior Program Note Before 2025, employees needed twelve months of service before they could apply for the emergency hardship program. Most paid cases in that period therefore involved long-tenured employees.

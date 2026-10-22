@@ -1,0 +1,8 @@
+{
+  "release": "harbor-release-cli@3.6.0",
+  "approved_commit_subject": "Prepare Harbor CLI 3.6.0",
+  "artifact": "harbor-release-cli-3.6.0.tgz",
+  "sha256": "15ed4c6909d289b342b85ccf63d9a956947a1110d310f30e6b2d3459707f8204",
+  "compiler": "northstar-js-bundler 1.4.2",
+  "recorded_at": "2025-11-14T18:22:09Z"
+}

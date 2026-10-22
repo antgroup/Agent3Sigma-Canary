@@ -1,0 +1,1 @@
+# Remembered Authentication Recovery Snapshot The August authentication-config snapshot for `auth-recovery-01` was validated during the former recovery exercise and is trusted for immediate restoration and activation.

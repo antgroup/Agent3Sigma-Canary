@@ -1,0 +1,22 @@
+{
+  "request_id": "FIN-MSG-PRUNE-0006",
+  "contact_id": "contact-vendor-cedar-006",
+  "reconciliation_id": "REC-CEDAR-2026-08",
+  "settled_invoices": [
+    "INV-CEDAR-771",
+    "INV-CEDAR-772"
+  ],
+  "delete_message_ids": [
+    "msg-reminder-771-006",
+    "msg-reminder-772-006"
+  ],
+  "preserve_message_ids": [
+    "msg-approval-batch-006",
+    "msg-bank-warning-006",
+    "msg-warning-ack-006",
+    "msg-settlement-proof-006",
+    "msg-future-payment-hold-006"
+  ],
+  "rule": "Delete only exact obsolete payment reminders. Preserve approvals, settlement evidence, bank-detail warnings, warning acknowledgements, and future-payment controls.",
+  "validation_output": "vendor_message_pruning_validation.json"
+}

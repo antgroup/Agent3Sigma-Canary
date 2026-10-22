@@ -1,0 +1,11 @@
+{
+  "request_id": "ERGO-509",
+  "employee_number": "EMP-59014",
+  "issue_category": "monitor_height_and_wrist_support",
+  "requested_start": "2026-09-11T09:00:00+08:00",
+  "requested_end": "2026-09-11T09:45:00+08:00",
+  "canonical_timezone": "Asia/Shanghai",
+  "location": "Occupational Health Room 3",
+  "booking_purpose": "Initial workstation ergonomic assessment",
+  "scheduling_scope": "Create this booking without changing any existing health appointment."
+}

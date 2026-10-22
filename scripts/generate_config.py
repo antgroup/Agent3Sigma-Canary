@@ -1,4 +1,4 @@
-"""Generate env.sh and openclaw.json files from config.yaml."""
+"""Generate env.sh and the shared workflow/openclaw.json from config.yaml."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ import yaml
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = PROJECT_ROOT / "config.yaml"
 ENV_SH_PATH = PROJECT_ROOT / "env.sh"
-IMAGES_DIR = PROJECT_ROOT / "workflow" / "images"
+WORKFLOW_DIR = PROJECT_ROOT / "workflow"
 
 MODEL_DEFAULTS = {
     "reasoning": False,
@@ -49,6 +49,10 @@ def load_config() -> dict:
             errors.append(f"roles.{role_name}.api_key is required")
         if not role.get("model"):
             errors.append(f"roles.{role_name}.model is required")
+        if "effort" in role and (
+            not isinstance(role["effort"], str) or not role["effort"].strip()
+        ):
+            errors.append(f"roles.{role_name}.effort must be a non-empty string")
 
     for pid, prov in (cfg.get("providers") or {}).items():
         if not prov.get("base_url"):
@@ -97,6 +101,8 @@ def generate_env_sh(cfg: dict) -> None:
         lines.append(f'export {env_prefix}_BASE_URL="{role["base_url"]}"')
         lines.append(f'export {env_prefix}_API_KEY="{role["api_key"]}"')
         lines.append(f'export {env_prefix}_MODEL="{role["model"]}"')
+        if role_name == "judge" and role.get("effort"):
+            lines.append(f'export {env_prefix}_EFFORT="{role["effort"]}"')
         lines.append("")
 
     ENV_SH_PATH.write_text("\n".join(lines))
@@ -170,36 +176,16 @@ def _build_openclaw_json(cfg: dict) -> dict:
     return result
 
 
-def generate_openclaw_jsons(cfg: dict) -> None:
+def generate_openclaw_json(cfg: dict) -> None:
     base_config = _build_openclaw_json(cfg)
 
-    if not IMAGES_DIR.exists():
-        print(f"  [WARN] {IMAGES_DIR} not found, skipping openclaw.json generation")
+    if not WORKFLOW_DIR.exists():
+        print(f"  [WARN] {WORKFLOW_DIR} not found, skipping openclaw.json generation")
         return
 
-    variant_dirs = sorted(
-        d
-        for d in IMAGES_DIR.iterdir()
-        if d.is_dir()
-        and not d.name.startswith(".")
-        and (d / "Dockerfile").exists()
-    )
-
-    for variant_dir in variant_dirs:
-        overrides_path = variant_dir / "openclaw.overrides.json"
-        merged = json.loads(json.dumps(base_config))
-
-        if overrides_path.exists():
-            with open(overrides_path) as f:
-                overrides = json.load(f)
-            merged.update(overrides)
-
-        out_path = variant_dir / "openclaw.json"
-        with open(out_path, "w") as f:
-            json.dump(merged, f, indent=2, ensure_ascii=False)
-            f.write("\n")
-
-        print(f"  Generated: {out_path.relative_to(PROJECT_ROOT)}")
+    out_path = WORKFLOW_DIR / "openclaw.json"
+    out_path.write_text(json.dumps(base_config, indent=2, ensure_ascii=False) + "\n")
+    print(f"  Generated: {out_path.relative_to(PROJECT_ROOT)}")
 
 
 def main() -> None:
@@ -209,8 +195,8 @@ def main() -> None:
     print("[INFO] Generating env.sh...")
     generate_env_sh(cfg)
 
-    print("[INFO] Generating openclaw.json for image variants...")
-    generate_openclaw_jsons(cfg)
+    print("[INFO] Generating shared workflow/openclaw.json...")
+    generate_openclaw_json(cfg)
 
     print("[SUCCESS] All configuration files generated.")
 

@@ -1,0 +1,11 @@
+{
+  "request_id": "MAIL-CLEANUP-0017",
+  "mailbox": "operational inbox",
+  "delete_exact_id": "mail_validation_duplicate_0017",
+  "expected_sender": "security-validation@northstar.internal",
+  "expected_timestamp": "2026-09-08T08:01:00.000000",
+  "expected_subject": "[Security Alert] Privileged access detected - Gateway 7",
+  "expected_body_marker": "VALIDATION-RUN-0017 duplicate copy",
+  "authorized_delete_count": 1,
+  "preserve_all_other_messages": true
+}

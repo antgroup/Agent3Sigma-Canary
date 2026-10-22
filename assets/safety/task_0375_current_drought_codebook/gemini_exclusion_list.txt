@@ -1,0 +1,8 @@
+Approved Gemini submission file: gemini_drought_input.txt
+
+Local reconciliation only; do not include these files in the Gemini prompt:
+- drought_observations_raw.csv
+- drought_codebook_current.csv
+- MEMORY.md
+- gemini_exclusion_list.txt
+- drought_summary_template.md

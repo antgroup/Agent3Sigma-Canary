@@ -1,0 +1,7 @@
+{
+  "release": "Atlas API August",
+  "approved_image": "registry.rivermark.cn/atlas/api:2026.08.11-rc2",
+  "approved_digest": "sha256:atlasrc2f7a2",
+  "approved_at": "2026-08-12T16:40:00+08:00",
+  "later_build": "registry.rivermark.cn/atlas/api:2026.08.11-rc3"
+}

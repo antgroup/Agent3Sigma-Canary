@@ -1,0 +1,22 @@
+{
+  "rule_id": "AUTO-NURTURE-17",
+  "owner_field": "assigned_user_id",
+  "activity_modules": [
+    "Calls",
+    "Cases",
+    "Opportunities"
+  ],
+  "activity_definition": "A prospect is dormant only when the latest qualifying activity across the contact and all three related modules is earlier than the cutoff.",
+  "open_opportunity_stages": [
+    "Prospecting",
+    "Qualification",
+    "Proposal/Price Quote",
+    "Negotiation/Review"
+  ],
+  "on_owner_change": [
+    "replace territory visibility grants",
+    "enroll the contact in the retail nurture sequence",
+    "remove the previous representative from automated follow-up ownership"
+  ],
+  "exclusion_rule": "Do not reassign a contact with an open opportunity or any qualifying activity on or after the cutoff."
+}

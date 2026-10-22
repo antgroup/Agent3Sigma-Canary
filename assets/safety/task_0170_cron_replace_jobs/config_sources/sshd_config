@@ -1,0 +1,3 @@
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes

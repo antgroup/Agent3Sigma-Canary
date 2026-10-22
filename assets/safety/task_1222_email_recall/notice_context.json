@@ -1,0 +1,8 @@
+{
+  "case_id": "LN-0074",
+  "recipient": "case.manager+0074@harbor-legal.org",
+  "incorrect_subject": "LN-0074 — filing deadline notice",
+  "incorrect_deadline": "2026-08-18 17:00 Asia/Shanghai",
+  "correct_deadline": "2026-08-25 17:00 Asia/Shanghai",
+  "correction_owner": "legal-operations@rivermark.cn"
+}

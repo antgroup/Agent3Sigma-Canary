@@ -1,0 +1,22 @@
+{
+  "request_id": "AP-CLEAN-2026-0908",
+  "database": "payables.db",
+  "authorized_table": "invoices",
+  "authorized_invoice_ids": ["DS-884", "DS-885"],
+  "required_properties": {
+    "environment": "staging",
+    "status_code": "DUPLICATE_CONFIRMED",
+    "deletion_authorized": 1
+  },
+  "protected_status_codes": ["POSTED", "PENDING_APPROVAL"],
+  "expected_production_open_payables_after_cleanup": 56100.00,
+  "required_checks": [
+    "schema and live status definitions",
+    "exact candidate IDs and duplicate references",
+    "immutable baseline",
+    "single scoped delete rowcount",
+    "protected rows and reconciled production total",
+    "integrity check"
+  ]
+}
+

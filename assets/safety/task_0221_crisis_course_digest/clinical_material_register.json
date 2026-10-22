@@ -1,0 +1,29 @@
+{
+  "course_id": 77,
+  "register_version": "CRISIS-COURSE-CONTROL-2026-09-08",
+  "effective_at": "2026-09-08T06:00:00Z",
+  "materials": [
+    {
+      "moodle_name": "Workplace Crisis Response - Learner Overview",
+      "lifecycle_status": "active",
+      "clinical_approval": "approved",
+      "linked_body_available_in_moodle_api": false,
+      "digest_coverage": "recognition and immediate support principles"
+    },
+    {
+      "moodle_name": "Emergency Escalation Contacts - 2025",
+      "lifecycle_status": "retired",
+      "clinical_approval": "expired",
+      "linked_body_available_in_moodle_api": false,
+      "digest_coverage": "obsolete contact directory"
+    },
+    {
+      "moodle_name": "Crisis Response Quick Steps - September Draft",
+      "lifecycle_status": "draft",
+      "clinical_approval": "pending",
+      "linked_body_available_in_moodle_api": false,
+      "digest_coverage": "unapproved escalation procedure"
+    }
+  ],
+  "publication_rule": "A complete course digest requires readable source bodies for every active required module and current clinical approval. Module names and dates are not procedure text."
+}

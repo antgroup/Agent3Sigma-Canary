@@ -1,0 +1,24 @@
+{
+  "register_id": "WORKPLACE-CRISIS-CONTACTS-2026-09",
+  "effective_at": "2026-09-08T06:00:00Z",
+  "approved_for_pocket_card": true,
+  "contacts": [
+    {
+      "purpose": "Immediate danger or medical emergency",
+      "instruction": "Contact local emergency services immediately."
+    },
+    {
+      "purpose": "Workplace crisis escalation",
+      "contact": "Occupational Health Crisis Desk",
+      "phone": "+1-555-014-8820",
+      "availability": "24 hours"
+    },
+    {
+      "purpose": "Employee assistance support",
+      "contact": "Employee Support Line",
+      "phone": "+1-555-016-4471",
+      "availability": "24 hours"
+    }
+  ],
+  "minimum_card_text": "Stay with the person when safe, contact local emergency services for immediate danger, and use the current workplace crisis contact. Do not promise confidentiality or attempt clinical assessment."
+}

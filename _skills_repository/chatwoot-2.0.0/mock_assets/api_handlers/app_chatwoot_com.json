@@ -1,0 +1,346 @@
+{
+  "domain": "app.chatwoot.com",
+  "path_prefix": "",
+  "description": "Chatwoot Cloud Application API responses for customer support workflows.",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/profile",
+      "response": "$fixture.profile",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/accounts/{account_id}/inboxes",
+      "response": "$fixture.inboxes",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/accounts/{account_id}/agents",
+      "response": "$fixture.agents",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/accounts/{account_id}/conversations/meta",
+      "response": "$fixture.conversation_counts",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/accounts/{account_id}/contacts/search",
+      "response": "$fixture.contact_search",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/accounts/{account_id}/contacts/{contact_id}",
+      "response": "$fixture.contact_detail",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/accounts/{account_id}/contacts",
+      "response": "$fixture.contact_created",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/accounts/{account_id}/conversations",
+      "response": "$fixture.conversation_list",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/accounts/{account_id}/conversations/{conversation_id}",
+      "response": "$fixture.conversation_detail",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/accounts/{account_id}/conversations",
+      "response": "$fixture.conversation_created",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/accounts/{account_id}/conversations/{conversation_id}/messages",
+      "response": "$fixture.message_created",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/accounts/{account_id}/conversations/{conversation_id}/assignments",
+      "response": "$fixture.assignment_updated",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/accounts/{account_id}/conversations/{conversation_id}/toggle_status",
+      "response": "$fixture.status_updated",
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "profile": {
+      "id": 7,
+      "name": "Morgan Lee",
+      "email": "morgan.lee@northstar.example",
+      "type": "administrator",
+      "accounts": [
+        {
+          "id": 42,
+          "name": "Northstar Support",
+          "role": "administrator"
+        }
+      ]
+    },
+    "inboxes": {
+      "payload": [
+        {
+          "id": 1,
+          "name": "Website Support",
+          "channel_type": "Channel::WebWidget",
+          "website_url": "https://support.northstar.example",
+          "greeting_enabled": true
+        },
+        {
+          "id": 2,
+          "name": "Email Support",
+          "channel_type": "Channel::Email",
+          "email": "help@northstar.example"
+        }
+      ]
+    },
+    "agents": [
+      {
+        "id": 1,
+        "name": "Morgan Lee",
+        "email": "morgan.lee@northstar.example",
+        "role": "administrator",
+        "availability_status": "online"
+      },
+      {
+        "id": 2,
+        "name": "Priya Shah",
+        "email": "priya.shah@northstar.example",
+        "role": "agent",
+        "availability_status": "busy"
+      }
+    ],
+    "contact_created": {
+      "id": 42001,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone_number": "+1234567890",
+      "identifier": "customer_123",
+      "custom_attributes": {
+        "company": "Acme Inc",
+        "plan": "premium"
+      },
+      "payload": {
+        "contact": {
+          "id": 42001,
+          "name": "John Doe",
+          "email": "john@example.com",
+          "phone_number": "+1234567890",
+          "identifier": "customer_123",
+          "custom_attributes": {
+            "company": "Acme Inc",
+            "plan": "premium"
+          }
+        },
+        "contact_inboxes": [
+          {
+            "source_id": "web-42001",
+            "inbox": {
+              "id": 1,
+              "name": "Website Support"
+            }
+          }
+        ]
+      }
+    },
+    "contact_search": {
+      "payload": [
+        {
+          "id": 42001,
+          "name": "John Doe",
+          "email": "john@example.com",
+          "phone_number": "+1234567890",
+          "identifier": "customer_123",
+          "custom_attributes": {
+            "company": "Acme Inc",
+            "plan": "premium"
+          }
+        }
+      ],
+      "meta": {
+        "count": 1,
+        "current_page": 1
+      }
+    },
+    "contact_detail": {
+      "id": 42001,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone_number": "+1234567890",
+      "identifier": "customer_123",
+      "payload": {
+        "id": 42001,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "phone_number": "+1234567890",
+        "identifier": "customer_123",
+        "custom_attributes": {
+          "company": "Acme Inc",
+          "plan": "premium"
+        }
+      }
+    },
+    "conversation_created": {
+      "id": 87001,
+      "source_id": "api_conversation_123",
+      "inbox_id": 1,
+      "status": "open",
+      "contact_id": 42001,
+      "messages": [
+        {
+          "id": 99001,
+          "content": "Hello! How can I help you today?",
+          "message_type": "incoming",
+          "private": false,
+          "status": "sent"
+        }
+      ],
+      "meta": {
+        "sender": {
+          "id": 42001,
+          "name": "John Doe",
+          "email": "john@example.com"
+        }
+      },
+      "payload": {
+        "id": 87001,
+        "status": "open",
+        "inbox_id": 1,
+        "contact_id": 42001
+      }
+    },
+    "conversation_list": {
+      "data": {
+        "payload": [
+          {
+            "id": 87001,
+            "source_id": "api_conversation_123",
+            "inbox_id": 1,
+            "status": "open",
+            "meta": {
+              "sender": {
+                "id": 42001,
+                "name": "John Doe",
+                "email": "john@example.com"
+              },
+              "assignee": {
+                "id": 1,
+                "name": "Morgan Lee"
+              }
+            }
+          },
+          {
+            "id": 87002,
+            "source_id": "email_conversation_188",
+            "inbox_id": 2,
+            "status": "pending",
+            "meta": {
+              "sender": {
+                "id": 42002,
+                "name": "Riley Chen",
+                "email": "riley.chen@example.com"
+              }
+            }
+          }
+        ]
+      },
+      "meta": {
+        "all_count": 2,
+        "open_count": 1,
+        "pending_count": 1,
+        "resolved_count": 0
+      }
+    },
+    "conversation_detail": {
+      "id": 87001,
+      "source_id": "api_conversation_123",
+      "inbox_id": 1,
+      "status": "open",
+      "contact_id": 42001,
+      "assignee": {
+        "id": 1,
+        "name": "Morgan Lee",
+        "email": "morgan.lee@northstar.example"
+      },
+      "meta": {
+        "sender": {
+          "id": 42001,
+          "name": "John Doe",
+          "email": "john@example.com"
+        }
+      },
+      "messages": [
+        {
+          "id": 99001,
+          "content": "Hello! How can I help you today?",
+          "message_type": "incoming",
+          "private": false,
+          "status": "sent"
+        },
+        {
+          "id": 99002,
+          "content": "Thank you for contacting us! Let me help you with that.",
+          "message_type": "outgoing",
+          "private": false,
+          "status": "sent"
+        }
+      ]
+    },
+    "message_created": {
+      "id": 99002,
+      "conversation_id": 87001,
+      "content": "Thank you for contacting us! Let me help you with that.",
+      "message_type": "outgoing",
+      "private": false,
+      "status": "sent",
+      "sender": {
+        "id": 7,
+        "name": "Morgan Lee"
+      }
+    },
+    "assignment_updated": {
+      "id": 87001,
+      "status": "open",
+      "assignee": {
+        "id": 1,
+        "name": "Morgan Lee",
+        "email": "morgan.lee@northstar.example"
+      }
+    },
+    "status_updated": {
+      "id": 87001,
+      "status": "resolved",
+      "previous_status": "open"
+    },
+    "conversation_counts": {
+      "meta": {
+        "all_count": 2,
+        "mine_count": 1,
+        "assigned_count": 1,
+        "unassigned_count": 1,
+        "open_count": 1,
+        "resolved_count": 1,
+        "pending_count": 0
+      }
+    }
+  }
+}

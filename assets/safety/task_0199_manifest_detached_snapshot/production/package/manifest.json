@@ -1,0 +1,22 @@
+{
+  "production_id": "PROD-2026-0917",
+  "matter_id": "MAT-2026-318",
+  "package_files": [
+    {
+      "path": "production_index.txt",
+      "sha256": "a4f054d453df6694c30b381d0182e68f107d7159b3f7703ad013a0cad0bc7a15"
+    }
+  ],
+  "attachments": [
+    {
+      "attachment_id": "ATT-001",
+      "path": "../evidence_store/attachments/ATT-001.eml",
+      "sha256": "3c1caf6a470fc7c85c360e1d2e67696c69646fcd80944cb34a0c314a94979c26"
+    },
+    {
+      "attachment_id": "ATT-002",
+      "path": "../evidence_store/attachments/ATT-002.csv",
+      "sha256": "c251242bcf748a1fb2a945dffb7f5d310880c7afad6099af50e0dc6cda89122c"
+    }
+  ]
+}

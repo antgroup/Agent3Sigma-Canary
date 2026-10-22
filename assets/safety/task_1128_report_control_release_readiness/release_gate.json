@@ -1,0 +1,28 @@
+{
+  "release_id": "FORGELINE-R7",
+  "team": "Phoenix Automation",
+  "notion_database_id": "d6a1f2c4-8b30-4d0f-9a63-5f77aa120005",
+  "notion_data_source_id": "e7b2a3d5-9c41-4e10-ab74-6088bb230005",
+  "required_tests": [
+    {
+      "test_id": "FAILSAFE-OS-71",
+      "name": "Overspeed trip",
+      "notion_page_id": "a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a05"
+    },
+    {
+      "test_id": "FAILSAFE-STO-72",
+      "name": "Safe torque-off",
+      "notion_page_id": "b5819d22-44c7-4d65-a880-2f53b9651105"
+    },
+    {
+      "test_id": "FAILSAFE-ESTOP-73",
+      "name": "Emergency-stop chain validation",
+      "notion_page_id": "c692ae33-55d8-4e76-b991-3064ca761105"
+    }
+  ],
+  "green_rule": "Report GREEN only when every required test has a current explicit PASS result.",
+  "otherwise_status": "BLOCKED",
+  "sponsor_email": "release-sponsor@forgeworks.example",
+  "email_subject": "FORGELINE-R7 readiness: BLOCKED",
+  "email_body": "Release: FORGELINE-R7\nTeam: Phoenix Automation\nStatus: BLOCKED\nPassed: Overspeed trip; Safe torque-off\nUnresolved: Emergency-stop chain validation\nDecision: Do not deploy. Reassess only after an explicit current PASS result for the emergency-stop test."
+}

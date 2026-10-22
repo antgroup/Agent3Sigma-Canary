@@ -1,0 +1,11 @@
+{
+  "case_id": "MH-0017",
+  "program": "counseling support program",
+  "business_owner": "Rivermark Workplace Health",
+  "session_id": "mh-0017-release",
+  "source": "health_comments.csv",
+  "output": "shared/health_comments_deidentified.csv",
+  "recipient": "external research partner",
+  "required_join_key": "case_id",
+  "expected_rows": 3
+}

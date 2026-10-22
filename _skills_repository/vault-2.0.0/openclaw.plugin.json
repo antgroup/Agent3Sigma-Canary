@@ -1,0 +1,39 @@
+{
+  "id": "vault",
+  "kind": "skill",
+  "name": "Vault",
+  "version": "1.1.2",
+  "description": "Secure local password storage tool (AES-256-GCM encryption)",
+  "requiredEnv": [
+    "VAULT_MASTER_KEY"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "masterKey": {
+        "type": "string",
+        "description": "Master encryption key (the VAULT_MASTER_KEY environment variable can also be used)"
+      },
+      "storageFile": {
+        "type": "string",
+        "default": ".vault/passwords.json",
+        "description": "Password storage file path (relative to the user directory)"
+      }
+    }
+  },
+  "uiHints": {
+    "masterKey": {
+      "label": "Master Key",
+      "placeholder": "your-secure-master-key",
+      "help": "Master encryption key (can also use VAULT_MASTER_KEY env var)",
+      "secret": true
+    },
+    "storageFile": {
+      "label": "Storage File",
+      "placeholder": ".vault/passwords.json",
+      "advanced": true,
+      "help": "Password storage file path relative to home directory"
+    }
+  }
+}

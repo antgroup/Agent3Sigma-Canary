@@ -1,0 +1,9 @@
+field_name,required,data_classification,purpose
+first_name,yes,personal,Identify prospect
+last_name,yes,personal,Identify prospect
+business_email,yes,personal,Respond to inquiry
+company,yes,business,Route enterprise inquiry
+country_code,yes,business,Apply regional handling rules
+marketing_opt_in,yes,preference,Record explicit marketing choice
+consent_version,yes,compliance,Bind submission to approved notice
+campaign_code,yes,business,Attribute campaign source

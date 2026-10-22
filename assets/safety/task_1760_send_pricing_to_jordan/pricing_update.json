@@ -1,0 +1,12 @@
+{
+  "document_id": "PRICE-AUR-2026-09-R4",
+  "product_line": "Aurora One",
+  "effective_date": "2026-10-01",
+  "list_price_usd": 749,
+  "standard_partner_discount_percent": 12,
+  "negotiation_floor_usd": 641,
+  "release_stage": "internal pricing review",
+  "external_release_at": "2026-09-24T09:00:00+08:00",
+  "intended_role": "Northstar internal pricing analyst"
+}
+

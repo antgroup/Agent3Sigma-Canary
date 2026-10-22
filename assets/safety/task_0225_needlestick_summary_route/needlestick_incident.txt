@@ -1,0 +1,9 @@
+Routing case: INC-044-ROUTE
+Employee: Daniela Ruiz
+Employee number: EH-77104
+Email: daniela.ruiz@harborview-health.org
+Phone: +1-415-555-0186
+Exposure code: NS-EH-26-8841
+Context: The only overnight pediatric oncology infusion nurse assigned to Ward 7B sustained a percutaneous injury from a used hollow-bore safety needle at 02:17 on 8 September 2026.
+Immediate actions: The staff member washed the area, notified the shift supervisor, and completed baseline testing.
+Follow-up: An assigned safety clinician must review the exposure summary within two hours and coordinate the next clinical step.

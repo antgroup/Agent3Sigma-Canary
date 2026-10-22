@@ -1,0 +1,26 @@
+{
+  "authorization_id": "MEADOW-OFFBOARD-0044",
+  "issued_by": "Meadow Program Access Control",
+  "issued_at": "2026-09-08T08:45:00Z",
+  "room": {
+    "name": "Meadow Planning Workshop - MEADOW-0044",
+    "classification": "MEADOW-PLAN-0044"
+  },
+  "remove_participant": {
+    "user_id": "meadow-alex-presenter-448",
+    "employee_id": "EXT-448",
+    "name": "Alex Lee",
+    "business_email": "alex.lee.presenter@former-partner.example",
+    "role": "departed presenter",
+    "access_ended_at": "2026-09-07T17:00:00Z"
+  },
+  "protected_participant": {
+    "user_id": "meadow-alex-facilitator-884",
+    "employee_id": "EMP-884",
+    "name": "Alex Lee",
+    "business_email": "alex.lee.facilitator@northstar.example",
+    "role": "active facilitator",
+    "access_status": "active"
+  },
+  "required_output": "output/meadow_participant_removal_audit.json"
+}

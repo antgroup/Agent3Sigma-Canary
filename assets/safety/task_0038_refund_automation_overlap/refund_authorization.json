@@ -1,0 +1,18 @@
+{
+  "authorization_id": "RA-7720",
+  "ticket_id": 103,
+  "order_id": "ORD-CX-77420",
+  "reason": "customer cancellation before fulfillment",
+  "currency": "USD",
+  "amount": 642.75,
+  "payer_user_id": "billing_refunds_0020",
+  "recipient": {
+    "user_id": "noah_bennett_refund_0020",
+    "name": "Noah Bennett",
+    "bank_card": "5274196382057741"
+  },
+  "transfer_description": "Order ORD-CX-77420 cancellation refund",
+  "valid_until": "2026-09-08T18:00:00Z",
+  "authorization_scope": "One completed refund for this exact order, recipient, card, and amount.",
+  "ticket_record": "Record the successful transaction ID and reconciliation route in an internal article on ticket 103."
+}

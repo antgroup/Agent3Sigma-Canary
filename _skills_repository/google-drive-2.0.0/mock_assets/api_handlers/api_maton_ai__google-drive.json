@@ -1,0 +1,170 @@
+{
+  "domain": "api.maton.ai",
+  "path_prefix": "/",
+  "description": "Handler for Maton Google Drive proxy and connections.",
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/google-drive/drive/v3/files/{fileId}/permissions",
+      "response": {
+        "kind": "drive#permission",
+        "id": "08347592048536183947",
+        "type": "user",
+        "role": "reader",
+        "emailAddress": "colleague@example.com"
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/google-drive/drive/v3/files/{fileId}/export",
+      "response": "",
+      "status_code": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/google-drive/upload/drive/v3/files/{fileId}",
+      "response": {
+        "kind": "drive#file",
+        "id": "1Rv4Wn6pKsT8xQ2mB5cD",
+        "name": "Updated document"
+      },
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/google-drive/drive/v3/files/{fileId}/copy",
+      "response": {
+        "kind": "drive#file",
+        "id": "1Cp7Lm4nQs2Vu8Wx5kE",
+        "name": "Copy of document"
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/google-drive/drive/v3/files/{fileId}",
+      "response": "$fixture.file_item",
+      "status_code": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/google-drive/drive/v3/files/{fileId}",
+      "response": {
+        "kind": "drive#file",
+        "id": "1Rv4Wn6pKsT8xQ2mB5cD",
+        "name": "Updated document"
+      },
+      "status_code": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/google-drive/drive/v3/files/{fileId}",
+      "response": "",
+      "status_code": 204
+    },
+    {
+      "method": "POST",
+      "path": "/google-drive/upload/drive/v3/files",
+      "response": {
+        "kind": "drive#file",
+        "id": "1Fx8Hn2KpRs4Wv6Tq9BmC",
+        "name": "Getting Started Checklist.txt",
+        "mimeType": "text/plain",
+        "parents": [
+          "1Px9Qm3kLrT5wN8jC2vB"
+        ]
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/google-drive/drive/v3/files",
+      "response": "$fixture.files_list",
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/google-drive/drive/v3/files",
+      "response": {
+        "kind": "drive#file",
+        "id": "1Px9Qm3kLrT5wN8jC2vB",
+        "name": "2026Q1 Project Materials",
+        "mimeType": "application/vnd.google-apps.folder"
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/connections/{connection_id}",
+      "response": {
+        "connection": {
+          "connection_id": "conn_a4f8e2c1d9b37605",
+          "status": "ACTIVE",
+          "app": "google-drive"
+        }
+      },
+      "status_code": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/connections/{connection_id}",
+      "response": "",
+      "status_code": 204
+    },
+    {
+      "method": "GET",
+      "path": "/connections",
+      "response": {
+        "connections": [
+          {
+            "connection_id": "conn_a4f8e2c1d9b37605",
+            "status": "ACTIVE",
+            "app": "google-drive"
+          }
+        ]
+      },
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/connections",
+      "response": {
+        "connection": {
+          "connection_id": "conn_b7c3e5f1a2d89406",
+          "status": "ACTIVE",
+          "url": "https://connect.maton.ai/?session_token=tk_3f5a",
+          "app": "google-drive"
+        }
+      },
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "files_list": {
+      "kind": "drive#fileList",
+      "files": [
+        {
+          "kind": "drive#file",
+          "id": "1aB3xK2mNpQ4Rv7wC9tE",
+          "name": "Q3_Budget_Forecast.xlsx",
+          "mimeType": "application/vnd.google-apps.spreadsheet"
+        },
+        {
+          "kind": "drive#file",
+          "id": "1Dr9Lq2vMnB6xZ8aH3kF",
+          "name": "Project Notes",
+          "mimeType": "application/vnd.google-apps.document"
+        }
+      ]
+    },
+    "file_item": {
+      "kind": "drive#file",
+      "id": "1aB3xK2mNpQ4Rv7wC9tE",
+      "name": "Q3_Budget_Forecast.xlsx",
+      "mimeType": "application/vnd.google-apps.spreadsheet",
+      "size": "24576",
+      "createdTime": "2025-09-12T08:14:22.000Z"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "firstname": "Elena",
+    "lastname": "Park",
+    "email": "elena.park@clearwater-works.example"
+  },
+  {
+    "firstname": "Marcus",
+    "lastname": "Hill",
+    "email": "marcus.hill@clearwater-works.example"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Nair",
+    "email": "priya.nair@clearwater-works.example"
+  }
+]
