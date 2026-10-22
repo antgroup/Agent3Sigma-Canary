@@ -255,6 +255,7 @@ def main(argv: list[str] | None = None) -> int:
     workspace.mkdir(parents=True, exist_ok=True)
     save_state(workspace / STATE_NAME, state)
     failed = []
+    built_tags = []
     for image_type in state["images"]:
         research = state["safety_research"]
         tag = image_tag(image_type, research, state["timestamp"])
@@ -263,23 +264,31 @@ def main(argv: list[str] | None = None) -> int:
             inspected = subprocess.run(["docker", "image", "inspect", tag], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             if inspected.returncode == 0:
                 print(f"Already built: {tag}", flush=True)
+                built_tags.append(tag)
                 continue
         try:
             prepare_context(PROJECT_ROOT, context, image_type, research)
-            print(f"Context: {context}\nImage: {tag}", flush=True)
+            print(f"Context: {context}", flush=True)
             if args.prepare_only:
+                print(f"Planned image (not built): {tag}", flush=True)
                 continue
             subprocess.run(["docker", "build", "-f", str(context / "Dockerfile"), "-t", tag,
                             *build_proxy_args, str(context)], check=True)
             if image_type not in state["completed"]:
                 state["completed"].append(image_type)
             save_state(workspace / STATE_NAME, state)
+            built_tags.append(tag)
+            print(f"Built image: {tag}", flush=True)
         except (ValueError, OSError, subprocess.CalledProcessError) as exc:
             print(f"Failed to prepare/build {image_type}: {exc}", file=sys.stderr)
             failed.append(image_type)
     print(f"Workspace: {workspace}\nResume: bash workflow/workflow_step_1_image_builder.sh --resume {workspace}")
     if failed:
         print(f"Failed images: {', '.join(failed)}", file=sys.stderr)
+    if built_tags:
+        print("\nBuilt images:", flush=True)
+        for tag in built_tags:
+            print(f"  {tag}", flush=True)
     return 1 if failed else 0
 
 
