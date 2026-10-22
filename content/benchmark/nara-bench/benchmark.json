@@ -68,5 +68,18 @@
     "citation": "@misc{chen2026securitytosafety,\n  title = {From Security to Safety: Towards Non-Adversarial Risks of AI Agents},\n  author = {Chen, Yukun and Li, Jiayuan and Liu, Yige and Hang, Sheng and Feng, Chao and Li, Peiyang and Li, Fengting and Li, Yiming and Qin, Zhan and Ren, Kui},\n  year = {2026},\n  note = {Preprint}\n}"
   },
   "nav_description": "Non-adversarial agent risks",
-  "badge": "SAFETY"
+  "badge": "SAFETY",
+  "leaderboard": {
+    "order": 10,
+    "name": "NARA-Bench",
+    "category": "SAFETY",
+    "description": "Non-adversarial agent risks: compare safety outcomes, risk awareness, and task utility under benign user intent.",
+    "url": "/benchmark/nara-bench/leaderboard",
+    "overview": "/benchmark/nara-bench/overview",
+    "dimensions": [
+      "Safety outcome",
+      "Safety awareness",
+      "Utility"
+    ]
+  }
 }

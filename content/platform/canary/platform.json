@@ -1,0 +1,23 @@
+{
+  "name": "Canary Framework",
+  "summary": "Build task-level sandboxes, run real agents, and connect every evaluation to execution evidence.",
+  "category": "AGENT EVALUATION FRAMEWORK",
+  "badge": "FRAMEWORK",
+  "nav_description": "Real environments & traceable evaluation",
+  "scope": [
+    {
+      "value": "3",
+      "label": "Agent runtimes"
+    }
+  ],
+  "links": {
+    "github": "https://github.com/antgroup/Agent3Sigma-Canary",
+    "docs": "https://github.com/antgroup/Agent3Sigma-Canary/blob/master/README.md"
+  },
+  "home_feature": {
+    "eyebrow": "CANARY FRAMEWORK",
+    "title": "From environments to evidence.",
+    "description": "Build task-level sandboxes, connect real agent runtimes, and follow every evaluation from setup to its execution trace.",
+    "link_label": "Explore the framework"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "category": "benchmark",
+  "slug": "agent-canary",
+  "backend": "app.benchmark.agent_canary.routes",
+  "metadata": "benchmark/agent-canary/benchmark.json",
+  "entry": "/static/benchmark/agent-canary/index.js",
+  "styles": [
+    "/static/canary/shared/typography.css",
+    "/static/canary/shared/navigation.css",
+    "/static/canary/shared/visuals.css",
+    "/static/benchmark/agent-canary/scenes.css",
+    "/static/benchmark/agent-canary/tokens.css",
+    "/static/benchmark/agent-canary/base.css",
+    "/static/benchmark/agent-canary/style.css"
+  ],
+  "base_path": "/benchmark/agent-canary",
+  "config_url": "/api/benchmark/agent-canary/config"
+}

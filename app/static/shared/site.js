@@ -6,8 +6,19 @@ const benchmarkHeader=document.querySelector('#module-header');
 const brandHero=document.querySelector('.brand-hero');
 const footer=()=>`<footer class="footer"><span>◈ &nbsp; Agent Safety · Security & safety research</span><span>Agent Safety research</span></footer>`;
 const cards = () => `<div class="benchmark-catalog">${Object.entries(benchmark).map(([id,b]) => `<a class="research-card benchmark-card" href="/benchmark/${id}"><div><div class="card-top"><span class="eyebrow">${escape(b.category || 'RESEARCH')}</span><span class="pill">${escape(b.badge || 'RESEARCH')}</span></div><h3>${escape(b.name)}</h3><p>${escape(b.summary)}</p></div><div class="benchmark-card-aside"><strong>${escape(b.scope?.[0]?.value || '↗')}</strong><span>${escape(b.scope?.[0]?.label?.toUpperCase() || 'EXPLORE')}</span><span class="card-arrow" aria-hidden="true">↗</span></div></a>`).join('')}</div>`;
-function home() { return `<section class="section" id="research"><div class="section-heading"><div><h2>Research you can explore.</h2><p>Evidence for safer AI agents.</p></div><a class="text-link" href="/benchmark">Explore benchmark <span>↗</span></a></div>${cards()}</section><div class="lower-grid"><section><span class="eyebrow">EVALUATION PLATFORM</span><h3>From questions to reproducible runs.</h3><p>A shared workspace for configuring evaluations, inspecting agent trajectories, and understanding failure modes.</p><a class="text-link" href="/platform">Explore the platform <span>→</span></a></section><section><span class="eyebrow">FROM THE BLOG</span><h3>Security and safety belong<br>in the same conversation.</h3><p>Two perspectives on agent risk, and why evaluating them together matters.</p><a class="text-link" href="/blog/security-and-safety">Read the research note <span>→</span></a></section></div>${footer()}`; }
-function catalog() { return `<section class="page-intro"><span class="eyebrow">BENCHMARK</span><h1 class="page-title">Understanding<br><em>agent risk.</em></h1><p>Explore our benchmark for evaluating the safety of AI agents in non-adversarial settings.</p></section>${cards()}<div class="catalog-space"></div>${footer()}`; }
+function homeFeature() {
+  const featured = Object.entries(platforms).find(([, platform]) => platform.home_feature);
+  const [slug, platform] = featured || [];
+  const feature = platform?.home_feature || {
+    eyebrow:'EVALUATION PLATFORM', title:'From questions to reproducible runs.',
+    description:'A shared workspace for configuring evaluations, inspecting agent trajectories, and understanding failure modes.',
+    link_label:'Explore the platform',
+  };
+  const href = featured ? modules['platform/' + slug].base_path : '/platform';
+  return `<section><span class="eyebrow">${escape(feature.eyebrow)}</span><h3>${escape(feature.title)}</h3><p>${escape(feature.description)}</p><a class="text-link" href="${escape(href)}">${escape(feature.link_label)} <span>→</span></a></section>`;
+}
+function home() { return `<section class="section" id="research"><div class="section-heading"><div><h2>Research you can explore.</h2><p>Evidence for safer AI agents.</p></div><a class="text-link" href="/benchmark">Explore benchmarks <span>↗</span></a></div>${cards()}</section><div class="lower-grid">${homeFeature()}<section><span class="eyebrow">FROM THE BLOG</span><h3>Security and safety belong<br>in the same conversation.</h3><p>Two perspectives on agent risk, and why evaluating them together matters.</p><a class="text-link" href="/blog/security-and-safety">Read the research note <span>→</span></a></section></div>${footer()}`; }
+function catalog() { return `<section class="page-intro"><span class="eyebrow">BENCHMARK</span><h1 class="page-title">Understanding<br><em>agent risk.</em></h1><p>Explore security under adversarial inputs and safety in non-adversarial settings. Follow each benchmark from its evaluation design to the evidence.</p></section>${cards()}<div class="catalog-space"></div>${footer()}`; }
 function notFound(){return `<section class="page-intro"><span class="eyebrow">404</span><h1 class="page-title">A path still<br>to be explored.</h1><a class="btn primary" href="/">Back to overview →</a></section>${footer()}`}
 let currentRoute = '';
 const surface = document.querySelector('#site-surface');
@@ -37,7 +48,7 @@ function resolveModule(path) {
   return null;
 }
 function platformCatalog() {
-  return `<section class="page-intro"><span class="eyebrow">PLATFORM</span><h1 class="page-title">Evaluation infrastructure.</h1></section><div class="benchmark-catalog">${Object.entries(platforms).map(([slug,platform]) => `<a class="research-card" href="/platform/${slug}"><h3>${escape(platform.name)}</h3><p>${escape(platform.summary)}</p></a>`).join('')}</div>${footer()}`;
+  return `<section class="page-intro"><span class="eyebrow">PLATFORM</span><h1 class="page-title">From environments<br>to <em>evidence.</em></h1><p>Build controlled environments, run real agents, and inspect the behavior behind each result.</p></section><div class="benchmark-catalog">${Object.entries(platforms).map(([slug,platform]) => `<a class="research-card benchmark-card" href="/platform/${slug}"><div><div class="card-top"><span class="eyebrow">${escape(platform.category || 'EVALUATION WORKFLOW')}</span><span class="pill">${escape(platform.badge || 'PREVIEW')}</span></div><h3>${escape(platform.name)}</h3><p>${escape(platform.summary)}</p></div><div class="benchmark-card-aside"><strong>${escape(platform.scope?.[0]?.value || '↗')}</strong><span>${escape(platform.scope?.[0]?.label?.toUpperCase() || 'EXPLORE')}</span><span class="card-arrow" aria-hidden="true">↗</span></div></a>`).join('')}</div>${footer()}`;
 }
 async function render() {
   const version = ++renderVersion;
@@ -237,7 +248,11 @@ document.addEventListener('click', event => {
   render();
   main.focus({preventScroll:true});
 });
-window.addEventListener('popstate', render);
+window.addEventListener('popstate', () => {
+  // In-page chapter history should preserve the active module and its controls.
+  const path = location.pathname.replace(/\/+$/, '') || '/';
+  if (path !== currentRoute) render();
+});
 // Upgrade bookmarked URLs from the previous version without retaining a fragment.
 if (location.hash.startsWith('#/')) history.replaceState(null, '', location.hash.slice(1));
 render();

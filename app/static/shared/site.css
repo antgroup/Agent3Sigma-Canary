@@ -95,6 +95,12 @@ main{ margin:0 auto; max-width:1440px; }
 body.navigation-open #brand,body.brand-moving #brand,body.brand-moving .panel-brand{ opacity:0; }
 @media (max-width:540px){.brand-transition{ font-size:18px; }}
 .benchmark-catalog{ margin-bottom:36px; }
+.benchmark-catalog{display:grid;gap:20px}
+.team-project-list{padding:8px 0 14px;border-bottom:1px solid var(--line)}
+.team-project-list a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 12px;border-radius:4px;font:500 14px 'IBM Plex Sans',Arial,sans-serif}
+.team-project-list small{display:block;margin-top:4px;font-size:11px;font-weight:400;color:#999;line-height:1.6}
+.team-project-list a>span:last-child{color:#999}
+.team-project-list a:hover{background:var(--wash)}
 .benchmark-card{ display:grid; grid-template-columns:1fr 190px; align-items:center; gap:50px; min-height:240px; padding:32px 36px; }
 .benchmark-card .card-top{ justify-content:flex-start; gap:18px; margin-bottom:24px; }
 .benchmark-card .card-top .eyebrow{ margin:0; }

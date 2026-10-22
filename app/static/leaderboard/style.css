@@ -1,5 +1,19 @@
-:where(body[data-module="leaderboard/team"]) .team-leaderboard{ padding:56px 0 80px; min-height:60svh; }
-:where(body[data-module="leaderboard/team"]) .team-leaderboard .page-title{ margin:0; }
+:where(body[data-module="leaderboard/team"]) .team-leaderboard{padding-bottom:65px;min-height:70svh}
+:where(body[data-module="leaderboard/team"]) .leaderboard-directory{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px;margin:5px 0 28px}
+:where(body[data-module="leaderboard/team"]) .leaderboard-project{border:1px solid var(--line);border-radius:5px;padding:30px;display:flex;flex-direction:column}
+:where(body[data-module="leaderboard/team"]) .leaderboard-project-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:27px}
+:where(body[data-module="leaderboard/team"]) .leaderboard-project-top .eyebrow{margin:0}
+:where(body[data-module="leaderboard/team"]) .leaderboard-project-number{font:10px 'IBM Plex Mono',monospace;color:#aaa}
+:where(body[data-module="leaderboard/team"]) .leaderboard-project h2{font:400 33px 'Fraunces',Georgia,serif;letter-spacing:-.03em;margin:0 0 17px}
+:where(body[data-module="leaderboard/team"]) .leaderboard-project>p{font:14px/1.85 'IBM Plex Sans',Arial,sans-serif;color:#888;margin:0 0 24px;max-width:48ch}
+:where(body[data-module="leaderboard/team"]) .leaderboard-dimensions{display:flex;gap:12px 20px;flex-wrap:wrap;padding-bottom:28px;margin-top:auto;font:11px 'IBM Plex Sans',Arial,sans-serif;color:#888}
+:where(body[data-module="leaderboard/team"]) .leaderboard-dimensions>span{display:flex;align-items:center;gap:7px}
+:where(body[data-module="leaderboard/team"]) .leaderboard-dimensions i{width:9px;height:9px;border-radius:2px;background:#ddbbca}
+:where(body[data-module="leaderboard/team"]) .leaderboard-dimensions .dimension-1{background:#ecd09e}
+:where(body[data-module="leaderboard/team"]) .leaderboard-dimensions .dimension-2{background:#c9c2df}
+:where(body[data-module="leaderboard/team"]) .leaderboard-project-links{display:flex;align-items:center;flex-wrap:wrap;gap:20px;padding-top:22px;border-top:1px solid var(--line)}
+:where(body[data-module="leaderboard/team"]) .leaderboard-scope-note{font:12px/1.8 'IBM Plex Sans',Arial,sans-serif;color:#999;max-width:85ch}
+@media(max-width:800px){:where(body[data-module="leaderboard/team"]) .leaderboard-directory{grid-template-columns:1fr}}
 @media (max-width:540px){
-  :where(body[data-module="leaderboard/team"]) .team-leaderboard{ padding-top:45px; }
+  :where(body[data-module="leaderboard/team"]) .leaderboard-project{padding:24px}
 }

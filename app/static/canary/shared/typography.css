@@ -1,0 +1,9 @@
+/* Shared Canary reading sizes. Keep the same floor on phones; reflow the layout. */
+:where(body[data-module="platform/canary"], body[data-module="benchmark/agent-canary"]) {
+  --canary-type-label: 12px;
+  --canary-type-small: 13px;
+  --canary-type-control: 14px;
+  --canary-type-body: 15px;
+  --canary-type-code: 13px;
+  --canary-muted-ink: #70716d;
+}

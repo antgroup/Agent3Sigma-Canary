@@ -1,0 +1,62 @@
+:where(body[data-module="benchmark/agent-canary"]) .canary-research {
+
+  color-scheme: light;
+
+
+  --page: #ffffff;
+  --surface: #ffffff;
+  --surface-subtle: #f6f7f9;
+  --surface-muted: #eef0f3;
+  --text: #141923;
+  --text-muted: #59616e;
+  --text-secondary: #677180;
+  --border: #dce0e6;
+  --border-strong: #bbc3ce;
+  --accent: #044cb6;
+  --on-accent: #ffffff;
+
+
+  --inverse: #18212d;
+  --on-inverse: #f3f6fa;
+  --inverse-muted: #bdc8d6;
+
+
+  --success: #24704e;
+  --danger: #b53737;
+
+
+  --accent-hover: color-mix(in srgb, var(--accent) 84%, var(--text));
+  --accent-soft: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  --accent-highlight: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  --accent-border: color-mix(in srgb, var(--accent) 27%, var(--surface));
+  --inverse-raised: color-mix(in srgb, var(--inverse) 90%, var(--surface));
+  --inverse-border: color-mix(in srgb, var(--inverse) 72%, var(--surface));
+  --inverse-accent: color-mix(in srgb, var(--accent) 30%, var(--surface));
+  --success-soft: color-mix(in srgb, var(--success) 8%, var(--surface));
+  --danger-soft: color-mix(in srgb, var(--danger) 8%, var(--surface));
+  --header-bg: color-mix(in srgb, var(--page) 96%, transparent);
+  --shadow: color-mix(in srgb, var(--text) 8%, transparent);
+  --shadow-strong: color-mix(in srgb, var(--text) 20%, transparent);
+  --overlay: color-mix(in srgb, var(--inverse) 58%, transparent);
+
+
+  --diagram-top: var(--surface-subtle);
+  --diagram-front: var(--surface-muted);
+  --diagram-side: var(--border);
+  --diagram-edge: var(--border-strong);
+  --diagram-accent-top: var(--accent-soft);
+  --diagram-accent-front: var(--accent-highlight);
+  --diagram-accent-side: var(--accent-border);
+  --chart-point: var(--accent);
+  --chart-point-featured: var(--text);
+  --chart-region: var(--accent-soft);
+
+  --page:#fff; --surface:#fff; --surface-subtle:#f7f7f5; --surface-muted:#f0f0ed;
+  --text:var(--ink); --text-muted:#727272; --text-secondary:#888;
+  --border:var(--line); --border-strong:#ccc; --accent:#454545;
+  --inverse:#292929; --on-inverse:#f7f7f5; --inverse-muted:#c4c4bf;
+  --success:#52665b; --danger:#925a52;
+  --sans:'DM Sans',Arial,sans-serif; --mono:'IBM Plex Mono',monospace;
+  color:var(--ink); font-family:var(--sans); font-size:var(--canary-type-body);
+
+}

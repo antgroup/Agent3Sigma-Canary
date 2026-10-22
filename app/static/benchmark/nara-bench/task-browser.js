@@ -55,13 +55,15 @@ const TaskBrowser = (() => {
   function unmount() {
     if (!mounted) return;
     clearTimeout(mounted.timer);
+    mounted.events.abort();
     if (mounted.request) mounted.request.abort();
     mounted = null;
   }
   function mount(root) {
     unmount();
     if (!root) return;
-    const instance = {root, state:stateFromURL(), request:null, timer:null};
+    const instance = {root, state:stateFromURL(), request:null, timer:null,
+      events:new AbortController(), pathname:location.pathname};
     mounted = instance;
     root.innerHTML = shell();
     const input = root.querySelector('#task-search');
@@ -143,6 +145,17 @@ const TaskBrowser = (() => {
         root.querySelector('.task-controls').scrollIntoView({behavior:'instant',block:'start'});
       }
     });
+    // Pagination creates history entries without remounting the shared shell.
+    // Restore both controls and results when navigating between those entries.
+    window.addEventListener('popstate', () => {
+      if (mounted !== instance || location.pathname !== instance.pathname) return;
+      const next = stateFromURL();
+      if (JSON.stringify(next) === JSON.stringify(instance.state)) return;
+      clearTimeout(instance.timer);
+      instance.state = next;
+      input.value = next.q;
+      load();
+    }, {signal:instance.events.signal});
     load();
   }
   return {mount, unmount};

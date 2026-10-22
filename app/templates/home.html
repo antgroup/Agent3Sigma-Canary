@@ -31,6 +31,13 @@
 {% endfor %}
 </div></div>
 <a data-route="platform" href="/platform"><span>Platform</span><span aria-hidden="true">↗</span></a>
+{% if catalog.platforms|length > 1 %}
+<div class="team-project-list" aria-label="Evaluation platforms">
+{% for slug, project in catalog.platforms.items() %}
+<a href="/platform/{{ slug }}"><span>{{ project.name }}<small>{{ project.get('nav_description', project.summary) }}</small></span><span aria-hidden="true">↗</span></a>
+{% endfor %}
+</div>
+{% endif %}
 <a data-route="blog" href="/blog"><span>Blog</span><span aria-hidden="true">↗</span></a>
 </nav>
 <div class="panel-footer">Security & safety. One shared mission.</div>

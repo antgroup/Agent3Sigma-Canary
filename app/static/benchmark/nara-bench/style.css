@@ -22,13 +22,13 @@
 :where(body[data-module="benchmark/nara-bench"]) .nara-identity{ padding-left:20px; }
 :where(body[data-module="benchmark/nara-bench"]) .nara-nav{ gap:22px; }
 :where(body[data-module="benchmark/nara-bench"]) .nara-nav a{ font-size:15px; }}
-@media (max-width:720px){:where(body[data-module="benchmark/nara-bench"]) .brand-hero.has-module{ flex-wrap:wrap; gap:8px 18px; padding-top:26px; padding-bottom:0; }
+@media (max-width:1000px){:where(body[data-module="benchmark/nara-bench"]) .brand-hero.has-module{ flex-wrap:wrap; gap:8px 18px; padding-top:26px; padding-bottom:0; }
 :where(body[data-module="benchmark/nara-bench"]) .has-module #module-header{ display:contents; }
 :where(body[data-module="benchmark/nara-bench"]) .nara-identity{ margin-left:auto; padding-left:0; border:0; }
 :where(body[data-module="benchmark/nara-bench"]) .nara-identity h1{ font-size:16px; }
 :where(body[data-module="benchmark/nara-bench"]) .nara-nav{ flex-basis:100%; justify-content:space-between; margin:0; gap:16px; border-bottom:1px solid var(--line); }
 :where(body[data-module="benchmark/nara-bench"]) .nara-nav a{ min-height:52px; font-size:14px; }}
-@media (max-width:720px){:where(body[data-module="benchmark/nara-bench"]) .nara-nav{ flex-wrap:wrap; gap:0 12px; }
+@media (max-width:1000px){:where(body[data-module="benchmark/nara-bench"]) .nara-nav{ flex-wrap:wrap; gap:0 12px; }
 :where(body[data-module="benchmark/nara-bench"]) .nara-resources{ gap:6px; padding-left:12px; }
 :where(body[data-module="benchmark/nara-bench"]) .nara-nav .nara-resource{ width:28px; min-height:30px; }}
 @media (max-width:400px){:where(body[data-module="benchmark/nara-bench"]) .nara-nav{ gap:8px; }
@@ -139,7 +139,7 @@
 :where(body[data-module="benchmark/nara-bench"]) .task-configuration pre{ margin-bottom:0; }
 :where(body[data-module="benchmark/nara-bench"]) .task-results-intro{ display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:22px; }
 :where(body[data-module="benchmark/nara-bench"]) .task-results-intro p,:where(body[data-module="benchmark/nara-bench"]) .task-results-intro>span{ font:13px/1.6 'IBM Plex Sans',Arial,sans-serif; color:#888; margin:0; }
-:where(body[data-module="benchmark/nara-bench"]) .task-results-scroll{ overflow-x:auto; overflow-anchor:none; border:1px solid var(--line); border-radius:6px; }
+:where(body[data-module="benchmark/nara-bench"]) .task-results-scroll{ position:relative; overflow-x:auto; overflow-anchor:none; border:1px solid var(--line); border-radius:6px; }
 :where(body[data-module="benchmark/nara-bench"]) .task-results-table{ table-layout:fixed; width:100%; min-width:1280px; border-collapse:collapse; font:14px/1.5 'IBM Plex Sans',Arial,sans-serif; }
 :where(body[data-module="benchmark/nara-bench"]) .task-results-table th{ font-weight:600; color:#777; background:#fafaf9; font-size:15px; text-align:left; padding:16px 18px; border-bottom:1px solid var(--line); }
 :where(body[data-module="benchmark/nara-bench"]) .task-results-table th small{ display:inline; color:#aaa; font-size:12px; font-weight:400; margin-left:6px; }

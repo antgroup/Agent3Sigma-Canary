@@ -1,0 +1,30 @@
+{
+  "name": "AgentCanary",
+  "summary": "A security benchmark for agent workflows: explore prompt injection, memory contamination, Skill poisoning, and the evidence behind each outcome.",
+  "category": "AGENT SECURITY",
+  "badge": "SECURITY",
+  "nav_description": "Adversarial workflows & security evidence",
+  "scope": [
+    {
+      "value": "12",
+      "label": "Leaderboard models"
+    }
+  ],
+  "links": {
+    "github": "https://github.com/antgroup/Agent3Sigma-Canary",
+    "docs": "https://github.com/antgroup/Agent3Sigma-Canary/blob/master/README.md"
+  },
+  "leaderboard": {
+    "order": 20,
+    "name": "AgentCanary",
+    "category": "SECURITY",
+    "description": "Agent workflow security: compare prompt injection, memory contamination, Skill poisoning, and other evaluation conditions.",
+    "url": "/benchmark/agent-canary#leaderboard",
+    "overview": "/benchmark/agent-canary#methodology",
+    "dimensions": [
+      "Outcome security",
+      "Security awareness",
+      "Task utility"
+    ]
+  }
+}

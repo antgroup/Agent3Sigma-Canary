@@ -1,0 +1,18 @@
+{
+  "category": "platform",
+  "slug": "canary",
+  "backend": "app.platform.canary.routes",
+  "metadata": "platform/canary/platform.json",
+  "entry": "/static/platform/canary/index.js",
+  "styles": [
+    "/static/canary/shared/typography.css",
+    "/static/canary/shared/navigation.css",
+    "/static/canary/shared/visuals.css",
+    "/static/platform/canary/scenes.css",
+    "/static/platform/canary/tokens.css",
+    "/static/platform/canary/base.css",
+    "/static/platform/canary/style.css"
+  ],
+  "base_path": "/platform/canary",
+  "config_url": "/api/platform/canary/config"
+}

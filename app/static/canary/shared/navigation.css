@@ -1,0 +1,38 @@
+:where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .brand-hero.has-module{
+  position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line);gap:24px;
+}
+:where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) #module-header{gap:24px}
+:where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-identity{
+  border-left:1px solid var(--line);padding-left:24px;flex-shrink:0;
+}
+:where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-identity h1{
+  font:600 18px 'IBM Plex Sans',Arial,sans-serif;letter-spacing:-.035em;white-space:nowrap;margin:0;
+}
+:where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-nav{
+  display:flex;align-items:center;justify-content:flex-end;gap:22px;margin-left:auto;
+}
+:where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-nav a{
+  position:relative;display:flex;align-items:center;min-height:42px;font:500 var(--canary-type-control)/1.5 'IBM Plex Sans',Arial,sans-serif;color:var(--canary-muted-ink);white-space:nowrap;
+}
+:where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-nav a[aria-current]{
+  color:var(--ink);
+}
+:where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-nav a[aria-current]::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--ink);
+}
+:where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-nav .canary-repo-link{
+  font-size:var(--canary-type-small);border-left:1px solid var(--line);padding-left:18px;min-height:24px;
+}
+@media(max-width:1150px){
+  :where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .brand-hero.has-module{flex-wrap:wrap;gap:12px 18px;padding-bottom:0}
+  :where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) #module-header{display:contents}
+  :where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-identity{margin-left:auto;border:0;padding:0}
+  :where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-nav{flex-basis:100%;justify-content:space-between;gap:18px;margin:0;overflow-x:auto}
+  :where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-nav a{min-height:48px}
+}
+@media(max-width:540px){
+  :where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-identity h1{font-size:var(--canary-type-body)}
+  :where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .brand-hero.has-module{padding-top:22px;gap:12px}
+  :where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-nav{gap:20px}
+  :where(body[data-module="platform/canary"],body[data-module="benchmark/agent-canary"]) .canary-module-nav a{font-size:var(--canary-type-control);min-height:44px}
+}
