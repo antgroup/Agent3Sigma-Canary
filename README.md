@@ -38,6 +38,8 @@ git lfs pull
 | `/benchmark/agent-canary` | AgentCanary：7 组、11 张排行榜条件表，模型/机构搜索、列排序、CSV 导出、可键盘操作的安全–效用散点图、风险分类、6 个案例的完整轨迹弹窗、评测方法、JSON 下载 |
 | `/platform` | 平台目录，同时保留原 Evaluation Platform 工作流预览 |
 
+首页的 Canary 独立介绍区由 `app/platform/canary/module.json` 的可选 `home` 入口注册，正文在 `content/platform/canary/home.json`，样式与三个章节的图解、切换交互在 `app/static/platform/canary/home.*`。公共首页只加载已注册的入口，不包含 Canary 业务文案；离开首页时清理监听器与动画。介绍区加载失败时保留研究目录及重试入口。
+
 页面章节使用原生 hash 链接，如 `/platform/canary#sandbox`、`/benchmark/agent-canary#leaderboard`、`/benchmark/agent-canary#cases`。章节的浏览器前进/后退保留当前交互状态；离开模块时取消请求、滚动监听、动画帧和 ResizeObserver。案例弹窗按当前安全/不安全筛选翻页，缺失 impact 显示 `Not categorized`。
 
 后端、页面正文、样式及交互分别位于：

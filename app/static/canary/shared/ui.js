@@ -22,8 +22,9 @@ export function glyph(name, className = '') {
   return `<svg class="canary-glyph ${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${strokes[name] || strokes.file}</svg>`;
 }
 export function animateChange(element) {
-  if (!element || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!element) return;
   element.getAnimations().forEach(animation => animation.cancel());
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   element.animate([{opacity:.3, transform:'translateY(7px)'}, {opacity:1, transform:'translateY(0)'}],
     {duration:240, easing:'cubic-bezier(.23,1,.32,1)'});
 }

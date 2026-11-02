@@ -28,7 +28,7 @@ PATTERNS = {name: re.compile(pattern) for name, pattern in RULES.items()}
 PUBLIC_ROUTES = (
     '/', '/platform', '/leaderboard', '/benchmark',
     '/platform/canary', '/benchmark/agent-canary',
-    '/api/platform/canary/config', '/api/benchmark/agent-canary/config',
+    '/api/platform/canary/config', '/api/platform/canary/home', '/api/benchmark/agent-canary/config',
     '/api/benchmark/agent-canary/data', '/api/benchmark/agent-canary/data?download=1',
     '/api/leaderboard/config',
 )

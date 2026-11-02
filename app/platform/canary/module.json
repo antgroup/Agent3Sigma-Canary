@@ -4,6 +4,11 @@
   "backend": "app.platform.canary.routes",
   "metadata": "platform/canary/platform.json",
   "entry": "/static/platform/canary/index.js",
+  "home": {
+    "entry": "/static/platform/canary/home.js",
+    "styles": ["/static/platform/canary/home.css"],
+    "config_url": "/api/platform/canary/home"
+  },
   "styles": [
     "/static/canary/shared/typography.css",
     "/static/canary/shared/navigation.css",

@@ -35,6 +35,10 @@ class ModuleRegistry:
         catalog.update(benchmark={}, platforms={}, modules={})
         for key, module in self.modules.items():
             catalog['modules'][key] = {field:module[field] for field in ('category','slug','entry','styles','base_path','config_url')}
+            if 'home' in module:
+                catalog['modules'][key]['home'] = {
+                    field: module['home'][field] for field in ('entry', 'styles', 'config_url')
+                }
             if module['category'] in {'benchmark','platform'}:
                 metadata = json.loads((self.content_root / module['metadata']).read_text(encoding='utf-8'))
                 summary = {field:metadata[field] for field in ('name','summary','category','scope','badge','nav_description','home_feature','leaderboard') if field in metadata}

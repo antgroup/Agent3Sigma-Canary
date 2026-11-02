@@ -6,8 +6,8 @@ const benchmarkHeader=document.querySelector('#module-header');
 const brandHero=document.querySelector('.brand-hero');
 const footer=()=>`<footer class="footer"><span>◈ &nbsp; Agent Safety · Security & safety research</span><span>Agent Safety research</span></footer>`;
 const cards = () => `<div class="benchmark-catalog">${Object.entries(benchmark).map(([id,b]) => `<a class="research-card benchmark-card" href="/benchmark/${id}"><div><div class="card-top"><span class="eyebrow">${escape(b.category || 'RESEARCH')}</span><span class="pill">${escape(b.badge || 'RESEARCH')}</span></div><h3>${escape(b.name)}</h3><p>${escape(b.summary)}</p></div><div class="benchmark-card-aside"><strong>${escape(b.scope?.[0]?.value || '↗')}</strong><span>${escape(b.scope?.[0]?.label?.toUpperCase() || 'EXPLORE')}</span><span class="card-arrow" aria-hidden="true">↗</span></div></a>`).join('')}</div>`;
-function homeFeature() {
-  const featured = Object.entries(platforms).find(([, platform]) => platform.home_feature);
+function homeFeature(expanded = []) {
+  const featured = Object.entries(platforms).find(([slug, platform]) => platform.home_feature && !expanded.includes('platform/' + slug));
   const [slug, platform] = featured || [];
   const feature = platform?.home_feature || {
     eyebrow:'EVALUATION PLATFORM', title:'From questions to reproducible runs.',
@@ -17,7 +17,7 @@ function homeFeature() {
   const href = featured ? modules['platform/' + slug].base_path : '/platform';
   return `<section><span class="eyebrow">${escape(feature.eyebrow)}</span><h3>${escape(feature.title)}</h3><p>${escape(feature.description)}</p><a class="text-link" href="${escape(href)}">${escape(feature.link_label)} <span>→</span></a></section>`;
 }
-function home() { return `<section class="section" id="research"><div class="section-heading"><div><h2>Research you can explore.</h2><p>Evidence for safer AI agents.</p></div><a class="text-link" href="/benchmark">Explore benchmarks <span>↗</span></a></div>${cards()}</section><div class="lower-grid">${homeFeature()}<section><span class="eyebrow">FROM THE BLOG</span><h3>Security and safety belong<br>in the same conversation.</h3><p>Two perspectives on agent risk, and why evaluating them together matters.</p><a class="text-link" href="/blog/security-and-safety">Read the research note <span>→</span></a></section></div>${footer()}`; }
+function home(features = [], failed = false) { return `${features.map(({key,entry,config}) => `<div data-home-module="${escape(key)}">${entry.render(config)}</div>`).join('')}${failed ? '<p class="prose" role="status">A project introduction could not be loaded. <button class="btn" data-route-retry>Retry</button></p>' : ''}<section class="section" id="research"><div class="section-heading"><div><h2>Research you can explore.</h2><p>Evidence for safer AI agents.</p></div><a class="text-link" href="/benchmark">Explore benchmarks <span>↗</span></a></div>${cards()}</section><div class="lower-grid">${homeFeature(features.map(feature => feature.key))}<section><span class="eyebrow">FROM THE BLOG</span><h3>Security and safety belong<br>in the same conversation.</h3><p>Two perspectives on agent risk, and why evaluating them together matters.</p><a class="text-link" href="/blog/security-and-safety">Read the research note <span>→</span></a></section></div>${footer()}`; }
 function catalog() { return `<section class="page-intro"><span class="eyebrow">BENCHMARK</span><h1 class="page-title">Understanding<br><em>agent risk.</em></h1><p>Explore security under adversarial inputs and safety in non-adversarial settings. Follow each benchmark from its evaluation design to the evidence.</p></section>${cards()}<div class="catalog-space"></div>${footer()}`; }
 function notFound(){return `<section class="page-intro"><span class="eyebrow">404</span><h1 class="page-title">A path still<br>to be explored.</h1><a class="btn primary" href="/">Back to overview →</a></section>${footer()}`}
 let currentRoute = '';
@@ -33,6 +33,7 @@ layer.hidden = false;
 layer.inert = true;
 
 let activeModule = null;
+let homeDisposers = [];
 let renderVersion = 0;
 let routeRequest = null;
 function resolveModule(path) {
@@ -60,7 +61,21 @@ async function render() {
   let title = page === 'home' ? 'Agent Safety' : page[0].toUpperCase() + page.slice(1);
   let html = path === '/' ? home() : path === '/benchmark' ? catalog() : path === '/platform' ? platformCatalog() : notFound();
   let header = '', module = null, route = null, context = null;
+  let homeFeatures = [];
   const target = resolveModule(path);
+  if (path === '/') {
+    const results = await Promise.allSettled(Object.entries(modules)
+      .filter(([, definition]) => definition.home)
+      .map(async ([key, definition]) => {
+        const [entry, config] = await Promise.all([
+          loadModule(definition.home), loadConfig(definition.home, routeRequest.signal),
+        ]);
+        return {key, entry, config};
+      }));
+    if (version !== renderVersion) return;
+    homeFeatures = results.filter(result => result.status === 'fulfilled').map(result => result.value);
+    html = home(homeFeatures, results.some(result => result.status === 'rejected'));
+  }
   if (target) {
     try {
       const [entry,config] = await Promise.all([loadModule(target.definition),loadConfig(target.definition,routeRequest.signal)]);
@@ -92,6 +107,7 @@ async function render() {
   const reusedView = module === activeModule && Boolean(module?.update?.(main,route,context));
   if (!reusedView) {
     activeModule?.unmount?.();
+    homeDisposers.splice(0).forEach(dispose => dispose());
     main.innerHTML = html;
   }
   document.querySelectorAll('.team-links a').forEach(anchor => {
@@ -104,7 +120,11 @@ async function render() {
   if (!same) window.scrollTo({top:0,left:0,behavior:'instant'});
   closeLayer(false);
   activeModule = module;
-  if (!reusedView) module?.mount?.(main,route,context);
+  if (!reusedView) {
+    module?.mount?.(main,route,context);
+    homeDisposers = homeFeatures.map(({key, entry, config}) =>
+      entry.mount?.(main.querySelector(`[data-home-module="${key}"]`), config)).filter(Boolean);
+  }
 }
 main.addEventListener('click',event => { if(event.target.closest('[data-route-retry]')) render(); });
 let brandFlight = null;

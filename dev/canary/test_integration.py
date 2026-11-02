@@ -161,6 +161,8 @@ class CanaryIntegrationTest(unittest.TestCase):
                     self.assertEqual('AgentCanary' in names, 'benchmark/agent-canary' not in disabled)
                     self.assertEqual(any(item.get('home_feature') for item in catalog['platforms'].values()),
                                      'platform/canary' not in disabled)
+                    self.assertEqual(any('home' in definition for definition in catalog['modules'].values()),
+                                     'platform/canary' not in disabled)
                     self.assertEqual(self.client.get('/').status_code, 200)
 
     def test_frontend_dependencies_respect_project_boundaries(self):
@@ -171,8 +173,12 @@ class CanaryIntegrationTest(unittest.TestCase):
             allowed = [static / key, static / 'shared']
             if key != 'benchmark/nara-bench':
                 allowed.append(static / 'canary/shared')
+            definitions = [definition]
+            if definition.get('home'):
+                definitions.append(definition['home'])
+                self.assertEqual(self.client.get(definition['home']['config_url']).status_code, 200)
             pending = [static / asset.removeprefix('/static/')
-                       for asset in [definition['entry'], *definition['styles']]]
+                       for entry in definitions for asset in [entry['entry'], *entry['styles']]]
             seen = set()
             while pending:
                 asset = pending.pop().resolve()

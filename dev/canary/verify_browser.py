@@ -23,6 +23,54 @@ def run():
         page.on('pageerror', lambda error: errors.append(str(error)))
         page.on('console', lambda message: errors.append(message.text) if message.type == 'error' else None)
 
+        page.goto(BASE + '/', wait_until='networkidle')
+        expect(page.locator('.canary-home')).to_have_count(1)
+        expect(page.locator('[data-home-chapter]')).to_have_count(3)
+        expect(page.locator('#canary-home-panel')).to_have_attribute('data-chapter', 'philosophy')
+        for index, chapter in ((1, 'environment'), (2, 'design'), (0, 'philosophy')):
+            page.locator(f'[data-home-chapter="{index}"]').click()
+            expect(page.locator('#canary-home-panel')).to_have_attribute('data-chapter', chapter)
+        page.locator('[data-home-chapter="0"]').focus()
+        page.keyboard.press('ArrowRight')
+        expect(page.locator('[data-home-chapter="1"]')).to_be_focused()
+        expect(page.locator('.canary-home-state')).to_contain_text('Read back')
+        page.keyboard.press('End')
+        expect(page.locator('[data-home-chapter="2"]')).to_have_attribute('aria-selected', 'true')
+        for width in (1440, 768, 390):
+            page.set_viewport_size({'width': width, 'height': 1000})
+            for index in range(3):
+                page.locator(f'[data-home-chapter="{index}"]').click()
+                assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), (width, index)
+                assert page.locator('.canary-home-tabs').evaluate('(tabs) => tabs.scrollWidth <= tabs.clientWidth')
+                assert page.locator('.canary-home').evaluate('''root => [...root.querySelectorAll('*')].every(node =>
+                    !node.getClientRects().length || node.closest('[aria-hidden="true"]') ||
+                    ![...node.childNodes].some(child => child.nodeType === 3 && child.textContent.trim()) ||
+                    parseFloat(getComputedStyle(node).fontSize) >= 12)''')
+        page.set_viewport_size({'width': 1440, 'height': 1000})
+        page.locator('.canary-home-link').click()
+        expect(page).to_have_url(BASE + '/platform/canary')
+        expect(page.locator('.canary-home')).to_have_count(0)
+        expect(page.locator('.canary-framework')).to_be_visible()
+        page.go_back()
+        expect(page.locator('.canary-home')).to_be_visible()
+        page.locator('[data-home-chapter="2"]').click()
+        expect(page.locator('.canary-home-runtimes')).to_contain_text('NanoClaw')
+        page.emulate_media(reduced_motion='reduce')
+        page.locator('[data-home-chapter="1"]').click()
+        assert page.locator('#canary-home-panel').evaluate('(panel) => panel.getAnimations().length') == 0
+        page.emulate_media(reduced_motion='no-preference')
+        # A failed optional introduction must leave the research directory usable.
+        fallback = browser.new_page()
+        fallback.route('**/api/platform/canary/home', lambda route: route.fulfill(status=503, body='Unavailable'))
+        fallback.goto(BASE + '/', wait_until='networkidle')
+        expect(fallback.locator('.benchmark-card')).to_have_count(2)
+        expect(fallback.locator('[data-route-retry]')).to_be_visible()
+        fallback.unroute('**/api/platform/canary/home')
+        fallback.locator('[data-route-retry]').click()
+        expect(fallback.locator('.canary-home')).to_be_visible()
+        fallback.close()
+        print('PASS homepage chapters, keyboard controls, mobile type, navigation cleanup, reduced motion and failure/retry')
+
         page.goto(BASE + '/benchmark/nara-bench', wait_until='networkidle')
         nara_footer = page.locator('footer.footer').inner_html()
         page.goto(BASE + '/platform/canary', wait_until='networkidle')

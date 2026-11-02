@@ -19,4 +19,8 @@ def register(app):
         data['content_html'] = (data_root / 'overview.html').read_text(encoding='utf-8')
         return jsonify(data)
 
+    @bp.get('/api/platform/canary/home')
+    def home():
+        return jsonify(json.loads((data_root / 'home.json').read_text(encoding='utf-8')))
+
     app.register_blueprint(bp)

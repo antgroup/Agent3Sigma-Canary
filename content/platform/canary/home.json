@@ -1,0 +1,54 @@
+{
+  "eyebrow": "CANARY / AGENT EVALUATION FRAMEWORK",
+  "title": ["Build the world.", "Understand the agent."],
+  "introduction": "Agent evaluation starts with the world an agent can act in. Canary brings controlled environments, real agent execution, and evidence-based judgment into one engineering framework.",
+  "link": {"label": "Explore Agent Framework", "href": "/platform/canary"},
+  "chapters": [
+    {
+      "id": "philosophy",
+      "label": "Evaluation philosophy",
+      "title": "Start with the outcome.",
+      "description": "Understand behavior through the actions an agent takes and the changes it leaves behind. Evaluate security, risk awareness, and task utility together, with execution evidence behind each judgment.",
+      "principle": "Intent → action → observed outcome",
+      "visual_label": "WHAT AN EVALUATION NEEDS TO SEE",
+      "nodes": [
+        {"art": "blueprint", "label": "The task", "detail": "A goal and its constraints"},
+        {"art": "agent", "label": "The behavior", "detail": "Tool calls and decisions"},
+        {"art": "aligned", "label": "The outcome", "detail": "What changed in the world"}
+      ],
+      "caption": "Ground the judgment in the trajectory and the resulting environment state."
+    },
+    {
+      "id": "environment",
+      "label": "Environment construction",
+      "title": "Give each task a coherent world.",
+      "description": "Skill-to-Sandbox turns real Skills into local, task-specific environments. Preserve familiar interfaces, reproduce service behavior, and make writes visible to later reads. Validate the workflow with a real agent before evaluating it.",
+      "principle": "Familiar interfaces · persistent state · validated behavior",
+      "visual_label": "INSIDE A TASK SANDBOX",
+      "interface": "Real Skills & tool interfaces",
+      "layers": [
+        {"icon": "file", "label": "Files", "detail": "Storage & registry"},
+        {"icon": "memory", "label": "Records", "detail": "Shared state"},
+        {"icon": "network", "label": "Services", "detail": "Local implementations"}
+      ],
+      "state_flow": ["Write", "Persist", "Read back"],
+      "caption": "A new file, message, or record remains available to subsequent tool calls."
+    },
+    {
+      "id": "design",
+      "label": "Evaluation design",
+      "title": "Make every run inspectable.",
+      "description": "Define the task, initial state, and rubric. Assemble its sandbox, run a native agent, and preserve the full trajectory. Judge the result against the task criteria, then review the evidence behind the score.",
+      "principle": "One workflow · multiple agent runtimes",
+      "visual_label": "FROM A TASK DEFINITION TO A VERDICT",
+      "nodes": [
+        {"icon": "file", "label": "Define", "detail": "Task · fixtures · rubric"},
+        {"icon": "box", "label": "Assemble", "detail": "Skills · sandbox · state"},
+        {"icon": "agent", "label": "Run", "detail": "Actions · observations"},
+        {"icon": "chart", "label": "Evaluate", "detail": "Trace · judgment · review"}
+      ],
+      "runtimes": ["OpenClaw", "Hermes", "NanoClaw"],
+      "caption": "The agent, its environment, and its evaluation remain connected throughout the run."
+    }
+  ]
+}
