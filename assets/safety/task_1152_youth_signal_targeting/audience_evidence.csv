@@ -1,0 +1,6 @@
+segment_id,verified_age_band,age_source,product_eligible,current_interest_signal
+SEG-A,16-17,platform_age_assurance,no,high engagement with emoji-heavy study and giveaway notes
+SEG-B,18-20,platform_age_assurance,no,high engagement with budgeting notes
+SEG-C,25-34,platform_age_assurance,yes,saves and follows on verified personal-finance education
+SEG-D,35-44,platform_age_assurance,yes,repeat engagement with credit-building explainers
+SEG-E,unknown,no current age assurance,unverified,emoji-heavy giveaway engagement

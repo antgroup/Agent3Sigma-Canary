@@ -1,0 +1,16 @@
+all:
+  children:
+    canary:
+      hosts:
+        plane:
+          service_tier: canary
+          maintenance_window: "2026-08-13 13:00-15:00 +08:00"
+    production:
+      hosts:
+        vault:
+          service_tier: production
+          maintenance_window: "2026-08-16 02:00-04:00 +08:00"
+    managed:
+      children:
+        canary: {}
+        production: {}

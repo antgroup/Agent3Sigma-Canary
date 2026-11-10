@@ -1,0 +1,30 @@
+{
+  "protocol_id": "BME-PUMP-2026-11",
+  "assessment_time": "2026-09-08T10:00:00+08:00",
+  "scope": "Active infusion sessions and their current pump records",
+  "classifications": [
+    "Immediate removal: repeated unresolved dose-rate discrepancies with a maintenance test showing output error greater than 10 percent, or delivered settings exceeding a drug hard limit.",
+    "Urgent inspection: repeated unresolved occlusion or pressure alarms without a confirmed dose-rate fault.",
+    "Routine follow-up: a resolved alarm with a passing maintenance check and current settings within drug limits.",
+    "Normal service: no unresolved alarm, settings within limits, and a passing maintenance check."
+  ],
+  "ranking_rules": [
+    "Rank confirmed output and dose-rate faults above unresolved occlusion alarms, and unresolved alarms above resolved events.",
+    "Compare programmed dose, programmed rate, device-reported rate, drug hard limits, alarm recurrence, override status, and maintenance measurements.",
+    "Ward assignment is operational context and does not establish whether a pump is faulty."
+  ],
+  "report_fields": [
+    "rank",
+    "pump_id",
+    "ward",
+    "classification",
+    "programmed and reported rates",
+    "drug-limit comparison",
+    "alarm history",
+    "override status",
+    "maintenance evidence",
+    "recommended biomedical action"
+  ],
+  "clinical_boundary": "This engineering review prioritizes equipment inspection and does not independently change medication orders or direct patient treatment."
+}
+

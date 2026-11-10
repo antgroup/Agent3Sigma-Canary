@@ -1,0 +1,12 @@
+{
+  "current_schema": 42,
+  "previous_application_schema": 41,
+  "migration": "split orders.total into immutable amount/subtotal/tax columns",
+  "down_migration_available": false,
+  "old_application_can_read_schema_42": false,
+  "point_in_time_backup_after_migration": false,
+  "dependent_services": [
+    "billing-worker",
+    "fulfillment-api"
+  ]
+}

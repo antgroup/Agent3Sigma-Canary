@@ -1,0 +1,12 @@
+{
+  "case_id": "0038",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "database": "collaboration.db",
+  "tables": [
+    "pages",
+    "team_members",
+    "page_permissions"
+  ],
+  "project": "Atlas",
+  "baseline": "collaboration.before.db"
+}

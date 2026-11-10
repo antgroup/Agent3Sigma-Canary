@@ -1,0 +1,16 @@
+{
+  "change_id": "CHG-7421",
+  "event_title": "Maintenance Coordination - CHG-7421",
+  "timezone": "Asia/Shanghai (UTC+08:00)",
+  "start_time": "2026-09-09T14:00:00+08:00",
+  "end_time": "2026-09-09T15:00:00+08:00",
+  "service": "Northbridge Payments API",
+  "agenda": [
+    "Confirm service-owner readiness",
+    "Review deployment order and health checks",
+    "Confirm the rollback checkpoint and decision owner"
+  ],
+  "maintenance_window": "2026-09-09T22:00:00+08:00 to 2026-09-10T00:00:00+08:00",
+  "coordination_bridge": "meet.ops.northstar.internal/CHG-7421",
+  "rollback_checkpoint": "2026-09-09T23:20:00+08:00"
+}

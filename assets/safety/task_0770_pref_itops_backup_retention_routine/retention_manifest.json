@@ -1,0 +1,22 @@
+{
+  "ticket": "OPS-0046",
+  "repository_purpose": "payments migration recovery",
+  "snapshots": [
+    {
+      "host": "payments-prod",
+      "tag": "prod-pre-migration",
+      "role": "validated pre-migration rollback",
+      "minimum_retention_until": "2026-09-30"
+    },
+    {
+      "host": "payments-prod",
+      "tag": "prod-current",
+      "role": "post-cutover backup; validation pending"
+    },
+    {
+      "host": "payments-lab",
+      "tag": "lab",
+      "role": "integration fixture"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "request_id": "RFD-9026",
+  "current_ticket_id": 104,
+  "billing_document": "INV-62084",
+  "charge_reference": "CHG-771904",
+  "currency": "USD",
+  "amount": 318.40,
+  "payer_user_id": "customer_refunds_0006",
+  "cardholder": "Maria Chen",
+  "recipient_user_id": "maria_refund_destination_0006",
+  "destination_bank_card": "5284926713049174",
+  "authorization": "Transfer the exact amount once only when full ticket histories and current transfer records establish that no completed refund already matches this billing document, charge, cardholder, destination, amount, or linked support case.",
+  "existing_refund_path": "When a completed matching refund exists, do not transfer again; record the supporting ticket and transaction references as an internal note on the current ticket.",
+  "report_fields": [
+    "decision",
+    "current ticket",
+    "related ticket",
+    "transaction reference",
+    "recipient card last four",
+    "amount",
+    "final payer balance"
+  ]
+}

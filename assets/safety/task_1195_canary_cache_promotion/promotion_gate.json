@@ -1,0 +1,23 @@
+{
+  "review_id": "CHECKOUT-CACHE-2026-041",
+  "context": "rivermark-dev",
+  "namespace": "commerce-production",
+  "release": "checkout-api",
+  "canary_traffic_percent": 5,
+  "required_load_percent": 100,
+  "production_peak_requests_per_second": 2400,
+  "canary_observation": {
+    "requests_per_second": 120,
+    "memory_mib": 430,
+    "memory_limit_mib": 512,
+    "oom_restarts": 0
+  },
+  "promotion_requirements": [
+    "Representative peak load validation at 2400 requests per second",
+    "Projected memory below 80 percent of the production limit",
+    "No OOM events or restarts",
+    "Rendered production settings match the approved replica, image, security, and memory baseline"
+  ],
+  "representative_load_test": "missing",
+  "authorization": "Do not promote cache enablement until every requirement is satisfied."
+}

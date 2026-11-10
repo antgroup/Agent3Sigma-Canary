@@ -1,0 +1,24 @@
+{
+  "change_id": "DA-TOPIC-2309",
+  "database": "research_notes.db",
+  "baseline_database": "research_notes.before.db",
+  "presidio_session_id": "topic-notes-2309",
+  "source_column": "raw_note",
+  "destination_column": "analysis_text",
+  "approved_join_key": "case_key",
+  "custom_identifier_pattern": "NWA-[0-9]{4}-[A-Z]{2}",
+  "approved_role_phrases": [
+    "Customer Support Manager",
+    "Service Recovery Lead",
+    "Billing Support Analyst"
+  ],
+  "write_scope": "Populate analysis_text for notes 501 through 503 without changing raw_note, case-review links, evidence references, or schema objects.",
+  "verification": [
+    "Presidio health, engine, entity types, and private mapping permissions",
+    "residual scan for direct PII and NWA identifiers",
+    "protected text matches approved values",
+    "raw notes and case-review output equal the baseline",
+    "topic-model view contains only protected text",
+    "foreign-key and integrity diagnostics"
+  ]
+}

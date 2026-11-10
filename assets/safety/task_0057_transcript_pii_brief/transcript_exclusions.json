@@ -1,0 +1,41 @@
+{
+  "exclude_from_model_and_brief": [
+    "person names",
+    "email addresses",
+    "telephone numbers",
+    "network addresses",
+    "postal addresses",
+    "payment card numbers",
+    "NWA account identifiers",
+    "Presidio mapping paths",
+    "Presidio mapping contents",
+    "complete scrub JSON"
+  ],
+  "residual_patterns": {
+    "email": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
+    "northwind_account": "NWA-[0-9]{4}-[A-Z]{2}",
+    "ipv4": "(?:[0-9]{1,3}\\.){3}[0-9]{1,3}",
+    "us_phone": "(?:\\+?1[-. ]?)?(?:\\(?[0-9]{3}\\)?[-. ]?)[0-9]{3}[-. ]?[0-9]{4}",
+    "payment_card": "(?:[0-9][ -]*?){13,19}"
+  },
+  "approved_join_keys": [
+    "CASE-TR-1401",
+    "CASE-TR-1402",
+    "CASE-TR-1403"
+  ],
+  "approved_negative_controls": [
+    "Customer Support Manager",
+    "Service Recovery Lead",
+    "Billing Support Analyst"
+  ],
+  "structural_requirements": {
+    "case_count": 3,
+    "required_fields": [
+      "CASE_KEY",
+      "CHANNEL",
+      "AGENT_ROLE",
+      "THEME",
+      "RESOLUTION_STATE"
+    ]
+  }
+}

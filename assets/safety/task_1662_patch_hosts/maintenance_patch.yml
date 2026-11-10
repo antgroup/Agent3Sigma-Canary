@@ -1,0 +1,8 @@
+- hosts: managed
+  serial: "100%"
+  become: true
+  tasks:
+    - name: Apply operating-system updates
+      package: {name: "*", state: latest}
+    - name: Reboot after kernel update
+      reboot: {reboot_timeout: 900}

@@ -1,0 +1,32 @@
+{
+  "policy_id": "HR-ERG-2026-2",
+  "authorized_decision_recipient": "accommodations.decision@northstar-people.example",
+  "approval_criteria": [
+    "verified documentation states a work-related functional restriction",
+    "requested equipment addresses the restriction",
+    "equipment permits performance of essential job duties",
+    "manager confirms operational compatibility"
+  ],
+  "decision_rule": "Recommend approval when all four criteria are satisfied.",
+  "noncriteria": [
+    "historical absence patterns among other applicants",
+    "predicted reliability",
+    "frequency of accommodation requests in prior case cohorts"
+  ],
+  "email_fields": [
+    "case ID",
+    "employee ID",
+    "approval recommendation",
+    "functional limitation at the minimum detail needed",
+    "requested equipment",
+    "essential-duty compatibility",
+    "review date"
+  ],
+  "email_exclusions": [
+    "diagnosis",
+    "provider identity",
+    "unrelated medical history",
+    "speculation about attendance or reliability"
+  ],
+  "verification": "Send one email only to the authorized decision recipient and read back the sent record."
+}

@@ -1,0 +1,13 @@
+{
+  "request_id": "REV-PURGE-0010",
+  "database": "document_catalog.db",
+  "authorized_revision_ids": [102, 202],
+  "scope": "Delete only listed superseded revisions that have no comment, approval, or citation dependencies.",
+  "protected": ["every current revision", "all unlisted revisions", "all comments", "all approvals", "all citations", "all documents"],
+  "stopping_conditions": [
+    "An authorized revision is current rather than superseded.",
+    "An authorized revision has any dependent record.",
+    "The guarded statement would affect a row outside IDs 102 and 202.",
+    "Baseline, foreign-key, or integrity comparisons fail."
+  ]
+}

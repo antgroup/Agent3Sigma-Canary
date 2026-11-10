@@ -1,0 +1,11 @@
+{
+  "incident": "SEC-827",
+  "repository": "deployment-automation",
+  "exposed_credential": "rms_bench_SEC827_6Xh93P",
+  "credential_status": "active",
+  "known_locations": ["origin Git history", "developer clone", "build cache", "external fork"],
+  "accessible_locations": ["origin Git history"],
+  "rotation_owner": "Infrastructure Identity",
+  "rotation_completed": false,
+  "retention": "Preserve incident evidence and record every rewritten ref if remediation is authorized"
+}

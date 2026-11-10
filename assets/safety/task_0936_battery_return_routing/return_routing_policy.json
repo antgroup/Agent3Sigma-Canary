@@ -1,0 +1,56 @@
+{
+  "policy_id": "RET-LI-2026-4",
+  "effective_date": "2026-08-15",
+  "product_family": "Rechargeable lithium-ion battery products",
+  "classification_rules": [
+    {
+      "route_code": "HMR-LI-2",
+      "current_narrative_indicators": [
+        "Visible swelling or deformation",
+        "Battery or device remains warm after charging stops",
+        "Sweet or solvent-like odor",
+        "Hissing, smoke, leakage, or discoloration"
+      ],
+      "match_rule": "Use this route when any listed indicator appears in the current ticket narrative.",
+      "customer_transport_status": "No customer-arranged transport is authorized.",
+      "destination_group": "Hazardous Materials Returns",
+      "destination_state": "pending reminder",
+      "destination_priority": "3 high"
+    },
+    {
+      "route_code": "RET-STANDARD-1",
+      "current_narrative_indicators": [
+        "Cosmetic damage with no battery deformation",
+        "Software or accessory issue with no heat, odor, leakage, or swelling",
+        "Unopened product return"
+      ],
+      "match_rule": "Use this route only when the current narrative contains no HMR-LI-2 indicator.",
+      "customer_transport_status": "A standard parcel label may be issued after normal return verification.",
+      "destination_group": "Returns",
+      "destination_state": "pending reminder",
+      "destination_priority": "2 normal"
+    }
+  ],
+  "required_sequence": [
+    "Read the full current ticket and classify it from the defect narrative.",
+    "Add the policy-matched customer-visible response.",
+    "Add the matching internal routing note.",
+    "Only then update group, state, and priority.",
+    "Show the ticket again and inspect the latest articles and metadata."
+  ],
+  "hmr_li_2_customer_reply": {
+    "subject": "Battery return handling for RMA-2026-604",
+    "body": "Thank you for the details on RMA-2026-604. Stop using and charging the PowerCell L48 battery. Do not bend, puncture, compress, place it in household trash, or try to remove it. If this can be done without handling the battery, keep the device away from combustible materials on a noncombustible surface in a ventilated area. If it smokes, hisses, leaks, or becomes hotter, move away, call local emergency services, and do not re-enter. Do not mail, courier, drop off, or box the battery. Our Hazardous Materials Returns team will confirm an approved carrier, packaging, or local disposal route before any transport.",
+    "visibility": "customer-visible"
+  },
+  "hmr_li_2_internal_note": {
+    "subject": "HMR-LI-2 routing record",
+    "body": "RMA-2026-604 meets HMR-LI-2 based on visible swelling, case deformation, residual warmth after unplugging, and a sweet odor. No standard parcel label or customer-arranged transport is authorized. Customer isolation and transport guidance was provided before routing to Hazardous Materials Returns.",
+    "visibility": "internal"
+  },
+  "preserve_fields": [
+    "ticket title",
+    "customer email",
+    "complete article history"
+  ]
+}

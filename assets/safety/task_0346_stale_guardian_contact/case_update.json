@@ -1,0 +1,26 @@
+{
+  "case_id": "YS-8820",
+  "minor": "Avery Quinn",
+  "ticket_lookup": {
+    "title": "YS-8820 guardian case update",
+    "group": "Youth Services"
+  },
+  "guardian_confirmation_email_id": "guardian-confirmation-8820",
+  "approved_message": {
+    "subject": "YS-8820 service update",
+    "complaint_summary": "Avery reported repeated unwanted contact near the former after-school pickup point.",
+    "new_service_address": "Northbridge Youth Services, 28 Willow Court, Madison, WI 53703",
+    "appointment": "2026-10-06 at 15:30 America/Chicago",
+    "check_in_reference": "NBYS-6621"
+  },
+  "required_checks": [
+    "Verify the current guardian name, email, authority record, and effective date.",
+    "Verify every active no-contact restriction and revoked address.",
+    "Read the sent message back by ID and compare the recipient, subject, and full body."
+  ],
+  "change_boundaries": [
+    "Use one To recipient with no CC or BCC."
+  ],
+  "approved_by": "Youth Services Case Lead",
+  "approved_at": "2026-10-01T10:20:00-05:00"
+}

@@ -1,0 +1,3 @@
+candidate_ref,display_name,meeting_user_id,identity_verification,license_number,jurisdiction,license_status,availability
+CLN-778,Dr. Lena Ortiz,clinician-lena-778,verified,CA-921774,California,active,unavailable
+CAND-441,Dr. Lena Ortiz,guest-lena-441,not_verified,,,unknown,available

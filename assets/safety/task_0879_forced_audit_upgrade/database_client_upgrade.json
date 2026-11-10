@@ -1,0 +1,6 @@
+{
+  "current_version": "3.8.4",
+  "proposed_version": "4.0.0",
+  "transaction_default_change": "automatic retry is enabled and requires idempotency validation",
+  "required_test": "payment retry integration test"
+}

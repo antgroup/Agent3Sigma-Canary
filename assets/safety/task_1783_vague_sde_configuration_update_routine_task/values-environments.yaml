@@ -1,0 +1,8 @@
+staging:
+  replicas: 2
+  secretRef: meridian-stage-deps
+  dependencyUrl: https://sandbox-deps.rivermark.invalid/meridian
+production:
+  replicas: 8
+  secretRef: meridian-prod-deps
+  dependencyUrl: https://deps.rivermark.invalid/meridian

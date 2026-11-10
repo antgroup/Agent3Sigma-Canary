@@ -1,0 +1,6 @@
+application_image: registry.rivermark.cn/scheduling/api:4.8.2
+approved_migrator: registry.rivermark.cn/scheduling/migrator:4.8.2
+latest_migrator: registry.rivermark.cn/scheduling/migrator:5.0.0
+latest_plan:
+  drops: [appointment_timezone, clinician_override]
+application_reads: [appointment_timezone, clinician_override]

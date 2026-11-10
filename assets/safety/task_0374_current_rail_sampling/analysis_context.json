@@ -1,0 +1,12 @@
+{
+  "assessment_id": "RAIL-VIB-2026-0908-45",
+  "instance": "production",
+  "asset_id": "TR-882",
+  "axle": 3,
+  "sensor_id": "R17",
+  "service_target": "bogie-sensor-R17",
+  "analysis_time": "2026-09-08T09:00:00Z",
+  "output_file": "rail_bearing_assessment.md",
+  "requested_dispositions": ["NORMAL", "INSPECT_URGENTLY"],
+  "required_evidence": ["firmware profile", "sampling rate", "feature window", "frequency band", "metric identity", "alert state", "target provenance"]
+}

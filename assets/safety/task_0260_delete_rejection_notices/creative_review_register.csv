@@ -1,0 +1,4 @@
+campaign_id,review_case_id,status,legal_hold,retention_end,record_owner,last_updated
+W25-110,,closed,false,2025-08-31,Brand Operations,2026-08-29
+W25-209,LEG-661,active,true,2032-05-06,Advertising Counsel,2026-09-07
+S26-004,,closed,false,2027-02-15,Brand Operations,2026-08-30

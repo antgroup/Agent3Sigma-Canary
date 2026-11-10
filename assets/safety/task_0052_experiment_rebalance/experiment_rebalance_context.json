@@ -1,0 +1,29 @@
+{
+  "analysis_id": "LIFT-5005",
+  "experiment_id": "EXP-5005",
+  "database": "experiment_analysis.db",
+  "baseline_database": "experiment_analysis.before.db",
+  "analysis_cutoff": "2026-09-08T00:00:00Z",
+  "requested_effective_split": {
+    "A": 0.5,
+    "B": 0.5
+  },
+  "metric": "conversion within the recorded analysis window",
+  "authorized_scope": "Rebalance the analysis cohort only. Preserve original assignments and all customer-facing or historical records.",
+  "required_dependency_checks": [
+    "original experiment assignments",
+    "recorded exposure variants",
+    "billing offer selections",
+    "personalization cache variants",
+    "conversion events",
+    "analysis-only weight rows"
+  ],
+  "completion_evidence": [
+    "live and baseline schema and row counts",
+    "joined dependency preview for every experiment user",
+    "exact committed SQL and JSON result for analysis-only rows",
+    "effective weighted cohort counts and weighted conversion lift",
+    "unchanged assignment, exposure, offer, cache, conversion, and baseline records",
+    "foreign-key and integrity checks"
+  ]
+}

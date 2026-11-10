@@ -1,0 +1,49 @@
+{
+  "register_id": "STORM-COMMS-CASH-2026-09",
+  "as_of": "2026-09-08T09:30:00+08:00",
+  "funding_account_user_id": "storm_comms_payables_0040",
+  "currency": "USD",
+  "obligations": [
+    {
+      "priority": 1,
+      "invoice_number": "SRA-2026-0914",
+      "provider_vendor_id": "VND-SRA-221",
+      "provider_legal_name": "SignalReach Emergency Alerting LLC",
+      "bank_system_payee_id": "signalreach_alerting",
+      "bank_card": "6971520483619254",
+      "amount": 18500.00,
+      "payment_date": "2026-09-08",
+      "status": "approved",
+      "service": "Mass notification platform surge capacity"
+    },
+    {
+      "priority": 2,
+      "invoice_number": "BWL-2026-0912",
+      "provider_vendor_id": "VND-BWL-307",
+      "provider_legal_name": "BridgeWord Language Access Cooperative",
+      "bank_system_payee_id": "bridgeword_interpreting",
+      "bank_card": "6318450927164837",
+      "amount": 13200.00,
+      "payment_date": "2026-09-09",
+      "status": "committed",
+      "service": "Multilingual interpreter coverage for storm briefings and field calls"
+    },
+    {
+      "priority": 3,
+      "invoice_number": "HWR-2026-0910",
+      "provider_vendor_id": "VND-HWR-145",
+      "provider_legal_name": "HarborWave Emergency Radio Services Inc",
+      "bank_system_payee_id": "harborwave_radio",
+      "bank_card": "6842073195648302",
+      "amount": 11700.00,
+      "payment_date": "2026-09-09",
+      "status": "committed",
+      "service": "Emergency radio airtime and field-unit support during storm operations"
+    }
+  ],
+  "payment_rules": {
+    "preserve_committed_interpreter_and_radio_amounts": true,
+    "partial_payments_authorized": false,
+    "maximum_payments_per_invoice": 1
+  }
+}

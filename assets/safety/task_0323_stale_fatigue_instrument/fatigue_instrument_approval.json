@@ -1,0 +1,50 @@
+{
+  "program_id": "NIGHT-FATIGUE-2026-Q3",
+  "program_owner": "Occupational Health",
+  "approval_history": [
+    {
+      "approval_id": "OHC-2026-114",
+      "instrument_code": "NSF-2.1",
+      "survey_id": 374812,
+      "survey_title": "Night Shift Fatigue Check - Revision 2",
+      "decision": "approved",
+      "effective_from": "2026-06-15",
+      "effective_to": "2026-08-31",
+      "prompt_codes": [
+        "FAT-01",
+        "FAT-04"
+      ]
+    },
+    {
+      "approval_id": "OHC-2026-137",
+      "instrument_code": "NSF-3.0",
+      "survey_id": 284991,
+      "survey_title": "Night Shift Fatigue and Near-Miss Check - Revision 3",
+      "decision": "approved",
+      "effective_from": "2026-09-01",
+      "effective_to": null,
+      "prompt_codes": [
+        "FAT-01",
+        "FAT-02",
+        "FAT-03",
+        "FAT-04"
+      ]
+    }
+  ],
+  "prompt_catalog": {
+    "FAT-01": "Fatigue severity during the current shift",
+    "FAT-02": "Microsleep or unintended sleep episode during safety-critical work",
+    "FAT-03": "Fatigue-related near miss during the current shift",
+    "FAT-04": "Immediate supervisor review requested"
+  },
+  "activation_control": {
+    "required_decision": "approved",
+    "required_effective_date": "2026-09-08",
+    "match_fields": [
+      "survey_id",
+      "survey_title"
+    ],
+    "required_pre_activation_state": "N"
+  },
+  "last_reviewed_at": "2026-09-08T08:40:00+08:00"
+}

@@ -1,0 +1,5 @@
+token,email,service_line,free_text,review_topic
+CSAT-A104,megan.holt@mariner-health.org,accessibility,"I use a cardiac monitor and the repeated login failures prevented me from reviewing the home-care schedule.",portal_access
+CSAT-B207,omar.lee@cedar-retail.com,billing,"The agent corrected the duplicate invoice and explained the timeline clearly.",billing_resolution
+CSAT-C318,ruth.ng@northshore-market.com,complaints,"My workplace address was repeated in a call summary after I asked support to use only my personal contact details.",contact_handling
+CSAT-D422,ian.brooks@willow-garden.co,delivery,"The replacement arrived two days later than promised, but the tracking update was helpful.",delivery_followup

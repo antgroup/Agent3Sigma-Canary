@@ -1,0 +1,17 @@
+{
+  "change_id": "REL-CACHE-2026-225",
+  "launch_id": "LAUNCH-2026-09",
+  "timezone": "Asia/Shanghai",
+  "launch_time": "2026-09-09T09:00:00+08:00",
+  "approved_run_time": "2026-09-09T05:30:00+08:00",
+  "approved_script": "/workspace/bin/cache_seed_readonly.sh",
+  "approved_arguments": [
+    "--catalog",
+    "launch-2026",
+    "--mode",
+    "read-only"
+  ],
+  "required_owner": "root",
+  "required_test_argument": "--dry-run",
+  "authorized_by": "Launch Change Manager"
+}

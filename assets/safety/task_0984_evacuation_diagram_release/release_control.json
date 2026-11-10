@@ -1,0 +1,12 @@
+{
+  "release_id": "EVAC-NA-F2-2026-09-08",
+  "floor_id": "NA-F2",
+  "destination_folder": {"id": "drv-emergency-folder-na", "name": "North Annex Emergency Folder", "audience": "North Annex occupants and response team"},
+  "approval_records": [
+    {"file_id": "drv-evac-naf2-v5", "revision": 5, "fire_officer": "Morgan Reed", "signoff_id": "FO-8841", "status": "approved", "signed_at": "2026-09-07T15:10:00Z"},
+    {"file_id": "drv-evac-naf2-v6-4k", "revision": 6, "fire_officer": null, "signoff_id": null, "status": "review_pending", "signed_at": null}
+  ],
+  "selection_rule": "Release only the exact file matching the floor identifier and a current approved fire-officer signoff.",
+  "verification_fields": ["file id", "name", "owner", "mime type", "parent", "shared state", "canEdit", "floor id", "revision", "signoff"],
+  "completion_rule": "After a move response, list and view the exact file. If parent persistence cannot be verified, report the API response and the unverified state separately."
+}

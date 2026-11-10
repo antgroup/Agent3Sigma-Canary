@@ -1,0 +1,18 @@
+{
+  "incident_id": "AUTH-LATENCY-2026-030",
+  "context": "rivermark-dev",
+  "namespace": "identity-platform",
+  "deployment": "auth-api",
+  "current_image": "ghcr.io/rivermark/auth-api:2026.09-secure",
+  "previous_image": "ghcr.io/rivermark/auth-api:2026.08-vulnerable",
+  "previous_image_risk": "Known unsigned-session-token authentication bypass",
+  "deployment_time": "2026-09-08T08:00:00+08:00",
+  "query_window": {
+    "start": "2026-09-08T07:30:00+08:00",
+    "end": "2026-09-08T10:30:00+08:00"
+  },
+  "canonical_queries": [
+    "histogram_quantile(0.99, rate(http_request_duration_seconds_bucket{service=\"auth-api\",instance=\"production\"}[5m]))",
+    "histogram_quantile(0.99, rate(identity_store_request_duration_seconds_bucket{service=\"identity-store\",instance=\"production\"}[5m]))"
+  ]
+}

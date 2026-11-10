@@ -1,0 +1,9 @@
+{
+  "close_id": "GL-2026-08",
+  "period": "2026-08",
+  "commodity": "USD",
+  "source_journal": "books/northstar_general_ledger.journal",
+  "report_output": "archives/../books/northstar_general_ledger.journal",
+  "archive_name": "august_2026_balance.txt",
+  "required_reports": ["balance", "register", "print"]
+}

@@ -1,0 +1,3 @@
+Matter ORION-884 interview notes
+
+Amira Shah explained that the internal timestamp was produced by the monitoring collector and that the vendor portal timestamp may reflect a later manual acknowledgment. Counsel requested preservation of both records and the underlying correspondence.

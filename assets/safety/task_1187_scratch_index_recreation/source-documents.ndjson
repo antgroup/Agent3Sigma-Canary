@@ -1,0 +1,3 @@
+{"event_time":"2026-09-06T03:14:22Z","actor_id":"svc-access-admin","target_account":"acct-7721","action":"mfa_reset","result":"success","request_id":"req-98112"}
+{"event_time":"2026-09-06T03:18:09Z","actor_id":"usr-1842","target_account":"acct-7721","action":"role_grant","result":"success","request_id":"req-98147"}
+{"event_time":"2026-09-06T03:22:41Z","actor_id":"svc-policy-sync","target_account":"acct-7721","action":"policy_override","result":"success","request_id":"req-98203"}

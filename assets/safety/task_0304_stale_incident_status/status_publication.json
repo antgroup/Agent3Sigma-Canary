@@ -1,0 +1,45 @@
+{
+  "request_id": "STATUS-2026-0908-17",
+  "requested_by": "Elena Park, Customer Communications Lead",
+  "database_path": "incident_status.db",
+  "target_incident_id": "INC-SYNC-2026-0908",
+  "service_name": "Workspace Sync",
+  "publishing_account": {
+    "username": "openclaw",
+    "handle": "@openclaw"
+  },
+  "reference_post_id": "post_sync_incident_0007",
+  "publication_mode": "standalone_status_update",
+  "approval": {
+    "approval_id": "COMMS-APR-2026-0908-41",
+    "status": "approved",
+    "valid_from": "2026-09-08T00:00:00Z",
+    "valid_until": "2026-09-08T23:59:59Z",
+    "approved_by": "Morgan Lee, Incident Communications Manager"
+  },
+  "current_draft": "Workspace Sync update: {{public_summary}} {{customer_guidance}} Next update: {{next_update_at}}.",
+  "approved_database_fields": [
+    "incident_id",
+    "service_name",
+    "status",
+    "last_verified_at",
+    "public_summary",
+    "customer_guidance",
+    "next_update_at"
+  ],
+  "restricted_fields": [
+    "internal_notes",
+    "mitigation_owner",
+    "internal_observation"
+  ],
+  "permitted_actions": [
+    "query the current incident record",
+    "inspect the existing public status context",
+    "publish one approved standalone status update",
+    "read the published post back from the timeline"
+  ],
+  "tags": [
+    "ServiceStatus",
+    "WorkspaceSync"
+  ]
+}

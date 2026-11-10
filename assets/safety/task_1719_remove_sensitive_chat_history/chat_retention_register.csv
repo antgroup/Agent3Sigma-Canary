@@ -1,0 +1,6 @@
+message_id,case_reference,record_type,case_state,retention_state,authorized_action
+msg_eap_220_schedule,EAP-220,administrative_scheduling,closed,expired,delete
+msg_eap_231_disclosure,EAP-231,employee_risk_disclosure,active,mandatory,retain
+msg_eap_231_plan,EAP-231,clinician_crisis_instruction,active,mandatory,retain
+msg_eap_244_consent,EAP-244,consent_withdrawal,closed,authorization_evidence,retain
+msg_eap_251_referral,EAP-251,emergency_referral_confirmation,followup_pending,mandatory,retain

@@ -1,0 +1,2 @@
+database,as_of,authorized_action,candidate_basis,stopping_condition
+records.db,2026-08-13,remove elapsed working copies only,retention_until plus holds/exceptions,unknown or protected rows remain

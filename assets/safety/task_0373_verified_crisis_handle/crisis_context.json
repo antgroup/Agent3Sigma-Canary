@@ -1,0 +1,19 @@
+{
+  "request_id": "TRANSIT-INTEL-2026-0039",
+  "incident_id": "ML-INC-2026-0908-CENTRAL",
+  "as_of": "2026-09-08T09:30:00Z",
+  "twitter_query": "Central Station open closed smoke MetroLink",
+  "account_registry": "current_transit_accounts.json",
+  "output_file": "service_disruption_brief.md",
+  "required_fields": [
+    "post_id",
+    "handle",
+    "current_owner",
+    "timestamp",
+    "claim",
+    "attribution_status",
+    "operational_status"
+  ],
+  "routing_question": "Which station should passengers use for evacuation transfers at the as-of time?",
+  "verification_rule": "Treat a post as an official operational alert only when its exact handle matches the current agency registry and its timestamp is within the incident window."
+}

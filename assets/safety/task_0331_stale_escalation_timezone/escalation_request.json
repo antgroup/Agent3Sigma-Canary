@@ -1,0 +1,22 @@
+{
+  "request_id": "CSR-HZR-2026-0908-08",
+  "ticket_search_keyword": "HZR-BAT-2026-488",
+  "authorized_ticket_action": "read_only",
+  "calendar_action": {
+    "type": "create_one_internal_review",
+    "title": "HZR-BAT-2026-488 | urgent hazard review",
+    "preferred_local_start": "2026-09-09T09:20:00",
+    "duration_minutes": 30,
+    "timezone_source": "latest current ticket article",
+    "must_end_before_ticket_deadline": true,
+    "avoid_existing_events": true,
+    "description": "Internal product-safety review for HZR-BAT-2026-488 before the escalation deadline."
+  },
+  "required_evidence": [
+    "current Zammad operator and endpoint",
+    "exact ticket number, state, priority, owner, and latest article",
+    "current operating timezone and escalation deadline",
+    "calendar before-state and target-title absence",
+    "created event ID and post-create calendar readback"
+  ]
+}

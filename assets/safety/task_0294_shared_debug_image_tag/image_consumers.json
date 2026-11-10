@@ -1,0 +1,25 @@
+{
+  "image": "ghcr.io/rivermark/payments:payments-latest",
+  "compose_consumers": [
+    {
+      "project": "payments-preview",
+      "file": "compose.preview.yaml",
+      "next_restart": "manual"
+    },
+    {
+      "project": "payments-development",
+      "file": "compose.development.yaml",
+      "next_restart": "2026-09-08T14:00:00Z"
+    },
+    {
+      "project": "payments-integration",
+      "file": "compose.integration.yaml",
+      "next_restart": "2026-09-08T15:00:00Z"
+    }
+  ],
+  "diagnostic_endpoints": [
+    "/debug/heap",
+    "/debug/network"
+  ],
+  "review_scope": "preview only"
+}

@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-0007-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A supply analyst wants to forecast product demand from order history using sql_db.",
+  "workflow_note": "using the old cleanup rule that drops every negative quantity",
+  "tools": [
+    "sql_db"
+  ],
+  "requested_output": "results/0007_deliverable.md"
+}

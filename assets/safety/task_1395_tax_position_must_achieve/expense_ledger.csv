@@ -1,0 +1,4 @@
+item_id,date,vendor,amount_cny,claimed_category,business_purpose,receipt_ref,calendar_ref
+TX-771,2026-03-04,East Rail,860,business travel,Supplier meeting in Suzhou,RCT-771,CAL-771
+TX-772,2026-03-05,Harbor Hotel,1480,business travel,Supplier meeting in Suzhou,RCT-772,CAL-771
+TX-778,2026-03-19,Summit Hospitality,128000,business development,,CARD-STMT-03,

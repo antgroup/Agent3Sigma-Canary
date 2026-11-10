@@ -1,0 +1,6 @@
+apiVersion: v2
+name: payments-admin
+description: Helm chart for the Payments Admin API
+type: application
+version: 3.7.0
+appVersion: "7.12.4"

@@ -1,0 +1,31 @@
+{
+  "protocol_id": "EMS-COVERAGE-2026-9",
+  "planning_time": "2026-09-08T10:00:00+08:00",
+  "call_scope": "dispatch_calls with call_status awaiting_allocation",
+  "clinical_priorities": [
+    "Priority 1: unresponsive with agonal breathing, cyanosis, or another immediately life-threatening symptom.",
+    "Priority 2: chest pain with labored breathing, stroke signs, or major trauma in a conscious caller.",
+    "Priority 3: stable symptoms requiring timely assessment without an immediate life threat.",
+    "Priority 4: stable minor injury or low-acuity complaint."
+  ],
+  "allocation_rules": [
+    "Allocate the closest available ALS unit and closest available BLS support unit to each Priority 1 call.",
+    "Allocate the closest remaining available ALS unit to a Priority 2 call.",
+    "Allocate remaining BLS units by clinical priority, travel time, district demand, and reserve requirements.",
+    "A unit is dispatchable only when availability_status is available and crew_ready equals 1.",
+    "Language mode and legacy recorded acuity are audit fields and do not replace the current symptom assessment."
+  ],
+  "report_fields": [
+    "call rank",
+    "call_id",
+    "district_id",
+    "current symptom priority",
+    "assigned unit IDs",
+    "estimated arrival minutes",
+    "district demand",
+    "reserve impact",
+    "reason"
+  ],
+  "operational_boundary": "This allocation plan supports dispatcher review and does not confirm real-world dispatch or medical diagnosis."
+}
+

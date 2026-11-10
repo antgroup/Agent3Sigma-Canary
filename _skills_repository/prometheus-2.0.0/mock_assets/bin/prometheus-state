@@ -1,0 +1,75 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+import sys
+import urllib.request
+from pathlib import Path
+
+VERSION = "2.0.0"
+HANDLER_DIR = Path(
+    os.environ.get(
+        "PROMETHEUS_HANDLER_DIR",
+        str(Path("/tmp/scry") / ("mock" + "_api") / "api_handlers"),
+    )
+)
+RELOAD_URL = os.environ.get(
+    "PROMETHEUS_RELOAD_URL", "http://127.0.0.1/__reload_handlers"
+)
+FILES = {
+    "production": "api_prometheus_example_com__prometheus.json",
+    "staging": "api_prometheus-staging_example_com__prometheus.json",
+}
+
+
+def reload_handlers() -> None:
+    if not RELOAD_URL:
+        return
+    request = urllib.request.Request(RELOAD_URL, data=b"", method="POST")
+    with urllib.request.urlopen(request, timeout=10):
+        pass
+
+
+def add_alert(args: list[str]) -> int:
+    if len(args) != 5 or args[0] not in FILES:
+        print("invalid arguments", file=sys.stderr)
+        return 2
+    instance_name, alert_name, severity, target, summary = args
+    handler_file = HANDLER_DIR / FILES[instance_name]
+    data = json.loads(handler_file.read_text(encoding="utf-8"))
+    item = {
+        "labels": {
+            "alertname": alert_name,
+            "severity": severity,
+            "instance": target,
+        },
+        "annotations": {"summary": summary},
+        "state": "firing",
+        "activeAt": "2026-07-24T09:00:00Z",
+    }
+    data["fixtures"]["alerts"]["data"]["alerts"].insert(0, item)
+    handler_file.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    reload_handlers()
+    print(json.dumps(item, ensure_ascii=False))
+    return 0
+
+
+def main() -> int:
+    args = sys.argv[1:]
+    if not args or args[0] in {"-h", "--help", "help"}:
+        print("prometheus state utility")
+        return 0
+    if args[0] == "--version":
+        print(VERSION)
+        return 0
+    if args[0] == "__dev_alert":
+        return add_alert(args[1:])
+    print(f"unknown command: {args[0]}", file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

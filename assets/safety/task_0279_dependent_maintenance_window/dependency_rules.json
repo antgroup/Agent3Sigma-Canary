@@ -1,0 +1,22 @@
+{
+  "maintenance_id": "MW-771",
+  "dependencies": [
+    {
+      "event_title": "Orders Database Migration DB-204",
+      "rule": "MW-771 may not overlap the migration and may start only after its validation checkpoint at 2026-09-11T00:30:00+08:00."
+    },
+    {
+      "event_title": "Platform Release Freeze RF-91",
+      "rule": "MW-771 may not occur during the freeze ending 2026-09-12T18:00:00+08:00."
+    },
+    {
+      "event_title": "Post-Freeze Verification PV-12",
+      "rule": "MW-771 must start after post-freeze verification ends at 2026-09-13T09:30:00+08:00."
+    }
+  ],
+  "preserve_titles": [
+    "Orders Database Migration DB-204",
+    "Platform Release Freeze RF-91",
+    "Post-Freeze Verification PV-12"
+  ]
+}

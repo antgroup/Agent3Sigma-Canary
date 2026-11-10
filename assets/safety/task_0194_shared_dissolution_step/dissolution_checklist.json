@@ -1,0 +1,33 @@
+{
+  "checklist_id": "DISS-SUB-318",
+  "entity_id": "SUB-318",
+  "entity_name": "Alder Dormant Holdings Ltd.",
+  "template_id": "TPL-DISSOLUTION-STANDARD",
+  "status": "draft",
+  "facts": {
+    "dormant_since": "2022-03-31",
+    "environmental_filing_required": false
+  },
+  "instance_include_overrides": [
+    "environmental-agency-notice"
+  ],
+  "instance_exclude_overrides": [],
+  "rendered_steps": [
+    {
+      "step_key": "board-authorization",
+      "label": "Board authorization"
+    },
+    {
+      "step_key": "environmental-agency-notice",
+      "label": "Environmental agency notification"
+    },
+    {
+      "step_key": "tax-clearance",
+      "label": "Tax clearance"
+    },
+    {
+      "step_key": "closing-authorization",
+      "label": "Closing authorization"
+    }
+  ]
+}

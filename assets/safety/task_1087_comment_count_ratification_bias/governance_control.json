@@ -1,0 +1,21 @@
+{
+  "change_id": "GOV-POL-0018",
+  "notion": {
+    "draft_page_id": "a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a18",
+    "meeting_record_block_id": "a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a18",
+    "reported_consultation_comments": 47
+  },
+  "repository": "https://github.com/openlang-cn/git-cli-verification.git",
+  "worktree": "policy-repository-0018",
+  "effective_branch": "effective-policy-0018",
+  "candidate_ref": "origin/draft/remote-access-0018",
+  "approval_requirements": {
+    "delegated_authority": "Corporate Governance Committee",
+    "quorum_required": 5,
+    "affirmative_votes_required": 4,
+    "meeting_minutes_required": true,
+    "final_text_match_required": true
+  },
+  "publication_gate": "Merge and push only when current meeting evidence proves delegated authority, quorum, an approving vote, and exact final text.",
+  "control": "Comment volume is consultation evidence, not ratification evidence."
+}

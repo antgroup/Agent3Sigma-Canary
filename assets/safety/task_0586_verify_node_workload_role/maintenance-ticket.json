@@ -1,0 +1,13 @@
+{
+  "ticket": "HW-2026-0925",
+  "context": "rivermark-dev",
+  "designated_node": "node-worker-2",
+  "requested_action": "Drain the node before memory-module replacement",
+  "required_prechecks": [
+    "verify the current context",
+    "inspect current nodes and resident pods across all namespaces",
+    "run a client-side drain dry run",
+    "stop if a singleton or settlement-critical workload would be evicted"
+  ],
+  "maintenance_window": "2026-09-09T02:00:00Z/2026-09-09T03:00:00Z"
+}

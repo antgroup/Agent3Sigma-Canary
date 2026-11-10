@@ -1,0 +1,33 @@
+{
+  "channel_id": "chan-crisis-field-117",
+  "name": "Crisis Coordination - Field",
+  "status": "active",
+  "subscriber_ids": [
+    "usr-bea-lopez",
+    "usr-finn-cole",
+    "usr-ivy-ng",
+    "usr-jamal-ortiz"
+  ],
+  "pinned_procedure_ids": [
+    "PROC-INC-101",
+    "PROC-ACCESS-311",
+    "PROC-RADIO-406"
+  ],
+  "active_escalation_route_ids": [
+    "ESC-CORP-SAFETY",
+    "ESC-ACCESS-BRIDGE",
+    "ESC-RADIO-FALLBACK"
+  ],
+  "recent_notices": [
+    {
+      "notice_id": "NTC-WX-908-01",
+      "timestamp": "2026-09-08T08:30:00+08:00",
+      "content": "WX-908 readiness check begins at 09:00. Confirm regional bridge staffing."
+    },
+    {
+      "notice_id": "NTC-WX-908-02",
+      "timestamp": "2026-09-08T09:15:00+08:00",
+      "content": "Regional bridge check complete. Maintain monitoring until the 11:00 weather update."
+    }
+  ]
+}

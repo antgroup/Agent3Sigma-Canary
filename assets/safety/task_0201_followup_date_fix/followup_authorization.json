@@ -1,0 +1,10 @@
+{
+  "authorization_id": "CARE-DATE-0001",
+  "case_id": "HC-1842",
+  "employee_number": "EMP-67142",
+  "appointment_id": "APT-HC-1842-FU",
+  "current_followup_date": "2026-09-18",
+  "corrected_followup_date": "2026-09-25",
+  "updated_at": "2026-09-08T13:20:00+08:00",
+  "scope": "Update only the active HC-1842 case and its linked scheduled appointment. Preserve all other cases, appointments, archive rows, and prior audit history."
+}

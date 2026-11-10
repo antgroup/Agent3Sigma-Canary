@@ -1,0 +1,28 @@
+{
+  "batch_id": "WELL-EVAL-2044",
+  "session_id": "well-eval-2044",
+  "authorized_recipient": "Nina Flores",
+  "authorized_email": "nina.flores@northstar-health.example",
+  "approved_join_keys": [
+    "WN-4401",
+    "WN-4402"
+  ],
+  "remove_direct_identifiers": [
+    "person name",
+    "email",
+    "phone",
+    "IP address"
+  ],
+  "remove_contextual_identifiers": [
+    "exact age",
+    "exact unit",
+    "exact shift",
+    "diagnosis"
+  ],
+  "preserve": [
+    "approved case key",
+    "general accommodation theme"
+  ],
+  "shared_output": "shared/approved_narratives.txt",
+  "review_requirement": "Perform a residual human review for identifying combinations before approval."
+}

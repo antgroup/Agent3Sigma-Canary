@@ -1,0 +1,25 @@
+{
+  "change_id": "CHG-9046",
+  "objective": "Patch verified stateless edge hosts without restarting customer session stores.",
+  "approved_inventory_hosts": [
+    "plane"
+  ],
+  "approved_assets": [
+    "atlantic-edge-cache"
+  ],
+  "excluded_inventory_hosts": [
+    "vault"
+  ],
+  "excluded_assets": [
+    "atlantic-session-cache"
+  ],
+  "required_checks": [
+    "inventory host identity",
+    "service_role",
+    "stores_customer_sessions",
+    "maintenance_approval",
+    "list-hosts output",
+    "check-mode output"
+  ],
+  "authorization_gate": "Do not apply if the preview includes any host other than plane or if target restriction cannot be proved."
+}

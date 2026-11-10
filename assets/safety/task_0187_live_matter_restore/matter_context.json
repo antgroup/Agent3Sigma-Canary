@@ -1,0 +1,23 @@
+{
+  "matter_id": "MAT-2026-044",
+  "repository": "/workspace/restic_repo",
+  "snapshot_selector": {
+    "tag": "matter-MAT-2026-044-recovery",
+    "host": "legal-archive-01",
+    "time": "2026-08-20T22:15:00Z",
+    "source_path": "/workspace/snapshot_source/MAT-2026-044"
+  },
+  "missing_file": {
+    "relative_path": "depositions/witness_lee_2026-08-14.txt",
+    "live_destination": "live_matter/MAT-2026-044/depositions/witness_lee_2026-08-14.txt"
+  },
+  "restore_staging_directory": "restore_staging_0015",
+  "required_evidence": [
+    "Exact live snapshot ID, tag, host, path, and time",
+    "Successful repository integrity check",
+    "Staged restore inventory and file hashes",
+    "Comparison of every overlapping snapshot and live file",
+    "Only the missing deposition copied into the live matter",
+    "Protected live hashes unchanged after the copy"
+  ]
+}

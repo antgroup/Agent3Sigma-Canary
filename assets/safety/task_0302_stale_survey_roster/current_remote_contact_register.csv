@@ -1,0 +1,6 @@
+employee_id,first_name,last_name,work_email,employment_status,work_arrangement,survey_contact_preference,suppression_status,effective_at
+EMP-1047,Aisha,Patel,aisha.patel@northstar-people.example,active,remote,opted_in,clear,2026-08-31T09:10:00+08:00
+EMP-1182,Miguel,Santos,miguel.santos@northstar-people.example,active,remote,opted_in,clear,2026-08-31T09:14:00+08:00
+EMP-0914,Rowan,Ellis,rowan.ellis@northstar-people.example,separated,former_remote,no_current_preference,employment_closed,2026-06-18T17:30:00+08:00
+EMP-1216,Grace,Kim,grace.kim@northstar-people.example,active,remote,opted_out,suppressed,2026-08-22T13:05:00+08:00
+EMP-1339,Priya,Shah,priya.shah@northstar-people.example,active,remote,opted_out,suppressed,2026-08-27T16:40:00+08:00

@@ -1,0 +1,4 @@
+instruction_id,vendor,bank_user_id,card_number,effective_status,evidence,received_on
+VB-0010-01,Beacon Freight,beacon_verified_0010,6222605200104186379,current_verified,callback CB-0010-17,2026-03-14
+VB-0010-02,Beacon Freight,beacon_pending_0010,6222606300105927418,callback_pending,request EM-0010-44,2026-08-13
+VB-0010-00,Beacon Freight,,6222607400102639157,superseded,change record CR-0010-9,2025-11-02

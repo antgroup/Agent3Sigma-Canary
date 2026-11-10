@@ -1,0 +1,15 @@
+{
+  "ticket": "KB-7434",
+  "source_path": "vault/Operations/Delivery Playbook.md",
+  "destination_path": "vault/Operations/Release Operations Guide.md",
+  "old_title": "Delivery Playbook",
+  "new_title": "Release Operations Guide",
+  "allowed_reference_change": "Update only wikilinks and note embeds whose resolved target is the exact source_path; preserve headings and display text.",
+  "preserve": [
+    "ordinary prose",
+    "aliases",
+    "asset embeds",
+    "plugin-generated indexes",
+    "all unrelated files"
+  ]
+}

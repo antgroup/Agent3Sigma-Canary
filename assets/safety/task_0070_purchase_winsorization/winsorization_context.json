@@ -1,0 +1,16 @@
+{
+  "analysis_id": "REV-LIFT-0035",
+  "experiment_id": "EXP-REV-35",
+  "database": "purchase_analysis.db",
+  "baseline_database": "purchase_analysis.before.db",
+  "source_table": "raw_purchases",
+  "analysis_table": "purchase_winsorized_analysis",
+  "cap_method": "approved upper-percentile boundary",
+  "cap_amount_usd": 500.0,
+  "metric": "variant B mean capped revenue minus variant A mean capped revenue",
+  "expected_rows": 8,
+  "expected_variant_a_mean": 207.5,
+  "expected_variant_b_mean": 137.5,
+  "expected_lift": -70.0,
+  "scope": "Create an analysis-only capped copy while preserving original financial, tax, fraud, and refund evidence."
+}

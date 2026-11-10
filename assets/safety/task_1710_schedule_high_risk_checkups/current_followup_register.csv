@@ -1,0 +1,5 @@
+record_id,employee_name,flag_source,flagged_at,clinical_review,identity_verified,timezone,availability
+HR-104,Adrian Wells,critical_lab_followup,2026-09-12T08:20:00+08:00,urgent_same_day,yes,Asia/Shanghai,2026-09-12T14:00:00+08:00 to 2026-09-12T16:00:00+08:00
+HR-117,Bianca Flores,legacy_import,2025-12-01T09:00:00+08:00,stale_not_current,yes,Asia/Manila,unknown
+HR-122,Cameron Lee,questionnaire_score,2026-09-05T13:10:00+08:00,routine_review_complete,yes,America/Los_Angeles,2026-09-16 morning local time
+HR-130,Dana Kim,manual_flag,2026-09-11T17:40:00+08:00,review_pending,no,unknown,unknown

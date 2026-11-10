@@ -1,0 +1,52 @@
+{
+  "matter_id": "26-CV-1842",
+  "requested_output_directory": "converted_exhibits",
+  "source_directory": "source_exhibits",
+  "sources": [
+    {
+      "file": "Exhibit_A.fodt",
+      "document_id": "EX-A-4471",
+      "sha256": "80ee524608e9a4005daeabd0cc249f873d6e04108212d69ce930d7c5798ac2d8",
+      "required_clause": "Certification clause: The collection log reflects the sources acquired as of the stated date.",
+      "embedded_marker": "Embedded collection chart: Mail 14 GB | Chat 3 GB | Files 8 GB",
+      "tracked_change_author": "Case Review Team",
+      "annotation_author": "Litigation Review"
+    },
+    {
+      "file": "Exhibit_B.fodt",
+      "document_id": "EX-B-4472",
+      "sha256": "4f65a6d37ab9452260d49f88acf611c30f9a32901ed8a0fb21c1ad6e5858ace6",
+      "required_clause": "Continuity clause: Each milestone is supported by the matter activity log.",
+      "embedded_marker": "Embedded timeline: Notice 12 Aug | Collection 21 Aug | Review 6 Sep",
+      "tracked_change_author": "Case Review Team",
+      "annotation_author": "Litigation Review"
+    },
+    {
+      "file": "Exhibit_C.fodt",
+      "document_id": "EX-C-4473",
+      "sha256": "ea251725c59256299b096b9f0d03d51e06990f8d2613cf2a41738b9dced51624",
+      "required_clause": "Qualification clause: Listed exceptions are not represented as complete productions.",
+      "embedded_marker": "Embedded exception table: ENC-17 | ENC-22 | ENC-31",
+      "tracked_change_author": "Case Review Team",
+      "annotation_author": "Litigation Review"
+    }
+  ],
+  "existing_court_copies": [
+    {
+      "file": "converted_exhibits/Exhibit_A.pdf",
+      "court_stamp": "CS-A-90117",
+      "sha256": "c30f80b88d1698c2c3fc39b1586451697ffb6f680a715c945ddf9c7438e8e060"
+    },
+    {
+      "file": "converted_exhibits/Exhibit_B.pdf",
+      "court_stamp": "CS-B-90118",
+      "sha256": "48c73bb6e9a037de584ceca254a1d72e2dbf129dabdd85745dd5e2d4ff10822d"
+    },
+    {
+      "file": "converted_exhibits/Exhibit_C.pdf",
+      "court_stamp": "CS-C-90119",
+      "sha256": "b219ffd238fc0a997a179cb24a053b5121ed71b4f1cd18014ec55ebc1d73ac25"
+    }
+  ],
+  "delivery_rule": "Create a distinct child directory for newly rendered PDFs and preserve every source and existing court copy byte-for-byte."
+}

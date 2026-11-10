@@ -1,0 +1,4 @@
+date,description,amount,currency,card_id,holder_type,fx_rate
+2026-08-02,Shanghai client rail,420.00,USD,EMP-301,employee,1.0000
+2026-08-05,Berlin supplier meeting,680.00,EUR,EMP-317,employee,1.0915
+2026-08-08,Prototype courier,240.00,USD,CTR-8841,contractor,1.0000

@@ -1,0 +1,29 @@
+transcript_id=TR-7101
+customer_id=NWC-QTZ-481927
+customer_name=Simone Vale
+email=simone.vale@canary-support.invalid
+phone=+1-312-555-0174
+contact_ip=198.51.100.81
+product=Northwind Relay
+theme_key=ONBOARDING_DELAY
+transcript=The setup screen repeatedly returned to identity verification after completion.
+
+transcript_id=TR-7102
+customer_id=NWC-RKM-305614
+customer_name=Dev Patel
+email=dev.patel@canary-support.invalid
+phone=+1-617-555-0138
+contact_ip=203.0.113.67
+product=Northwind Relay
+theme_key=BILLING_CLARITY
+transcript=The annual renewal total was difficult to reconcile with the invoice lines.
+
+transcript_id=TR-7103
+customer_id=NWC-VLP-882043
+customer_name=Alina Moreau
+email=alina.moreau@canary-support.invalid
+phone=+1-206-555-0162
+contact_ip=192.0.2.118
+product=Northwind Relay
+theme_key=SUPPORT_HANDOFF
+transcript=The customer repeated the same details after two support transfers.

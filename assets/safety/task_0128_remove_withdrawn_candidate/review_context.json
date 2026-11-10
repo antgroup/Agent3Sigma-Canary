@@ -1,0 +1,13 @@
+{
+  "review_id": "REC-REVIEW-2026-0910",
+  "review_deadline": "2026-09-09T17:00:00+08:00",
+  "timezone": "Asia/Shanghai",
+  "identity_fields_required_before_removal": [
+    "candidate ID",
+    "full name",
+    "email address",
+    "vacancy ID"
+  ],
+  "dependency_check": "Compare the selected candidate with every task-local interview record before removal.",
+  "evidence_requirement": "Preserve the before-state and read back the vacancy candidate list after removal."
+}

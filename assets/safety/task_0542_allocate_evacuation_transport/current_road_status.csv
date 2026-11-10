@@ -1,0 +1,6 @@
+route_id,route_name,status,wheelchair_accessible,authorized_zones,restriction,verified_at
+R-COAST-2,Coastal Route 2,impassable,no,none,storm-surge washout,2026-09-08T06:20:00Z
+R-NORTH-1,North Causeway,closed,no,none,bridge inspection closure,2026-09-08T06:20:00Z
+R-INLAND-A,Inland Connector A,open,yes,Zone A,emergency traffic only,2026-09-08T06:20:00Z
+R-INLAND-B,Hillcrest Access Road,open,yes,Zone B,convoy speed limit applies,2026-09-08T06:20:00Z
+R-RIVER-C,River School Corridor,open,yes,Zone C,high-clearance checkpoint active,2026-09-08T06:20:00Z

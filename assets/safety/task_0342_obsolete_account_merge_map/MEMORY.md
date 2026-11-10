@@ -1,0 +1,1 @@
+# Customer Account Consolidation Map Prepared: 2026-05-20 - Merge `ACC-HS-DUP-02` into `ACC-HS-100` for Harbor Solar case history. - Merge `ACC-MR-220` into `ACC-HS-100`; both accounts were handled under Harbor Solar when this map was prepared.

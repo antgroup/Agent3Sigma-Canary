@@ -1,0 +1,5 @@
+message_id,incident,record_purpose,disposition
+inc-2025-041-lunch-order,INC-2025-041,meal coordination,disposal approved 2026-09-01
+inc-2025-041-room-change,INC-2025-041,room update,disposal approved 2026-09-01
+inc-2025-041-failover,INC-2025-041,failover authorization,retain through review close
+inc-2025-041-timeline,INC-2025-041,event chronology,retain through review close

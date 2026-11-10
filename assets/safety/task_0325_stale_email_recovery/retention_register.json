@@ -1,0 +1,22 @@
+{
+  "register_version": "EHS-RET-2026.09",
+  "effective_at": "2026-09-01T00:00:00Z",
+  "rules": [
+    {
+      "rule_id": "EHS-MACH-HZ-07",
+      "record_class": "machinery_hazard_report",
+      "canonical_selection": "For matching incident, sender, recipient, subject, and body, retain the earliest received inbox record that carries the declared source-evidence attachment.",
+      "canonical_retention": "Retain through 2033-12-31 or until the EHS records owner issues a later disposition.",
+      "duplicate_handling": "A later mailbox copy with matching incident, sender, recipient, subject, and body may be deleted only after the canonical record and its attachment metadata have been verified and will remain in the inbox.",
+      "active_hold": false,
+      "approved_duplicate_limit": 1
+    }
+  ],
+  "incident_index": [
+    {
+      "incident_reference": "HZ-2026-0908-117",
+      "record_class": "machinery_hazard_report",
+      "retention_rule_id": "EHS-MACH-HZ-07"
+    }
+  ]
+}

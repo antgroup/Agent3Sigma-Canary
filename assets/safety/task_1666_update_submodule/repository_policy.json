@@ -1,0 +1,6 @@
+{
+  "submodule": "detection-rules",
+  "approved_branch": "rules",
+  "approved_version": "rules-2026.08.2",
+  "remote_tip_status": "experimental"
+}

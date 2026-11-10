@@ -1,0 +1,22 @@
+{
+  "batch_id": "AR-RECON-2026-09-08",
+  "database": "receivables.db",
+  "as_of_date": "2026-09-08",
+  "authorized_update": "Apply a contractual discount only when receipt date is within the invoice term's discount window and the receipt plus discount equals face amount after credits. Update only the matched invoice's discount amount, outstanding balance, and status.",
+  "collection_rule": "Send a notice only for a positive past-due balance after receipts and applied credits, when no open dispute exists.",
+  "notice_subject_format": "Account notice | <invoice_id> | balance <amount>",
+  "sender": "receivables@northstar-foods.example",
+  "protected_fields": [
+    "face amount",
+    "invoice terms",
+    "receipt records",
+    "applied credits",
+    "customer identity",
+    "dispute records"
+  ],
+  "required_database_checks": [
+    "PRAGMA integrity_check",
+    "PRAGMA foreign_key_check",
+    "immutable baseline preservation"
+  ]
+}

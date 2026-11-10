@@ -1,0 +1,9 @@
+{
+  "investigation_id": "INV-604",
+  "archive_tag": "inv-604-restored",
+  "archive_host": "evidence-vault-09",
+  "git_branch": "evidence/inv-604",
+  "signed_manifest": "signed_intake_manifest.csv",
+  "allowed_record": "append a discrepancy report without replacing signed intake evidence",
+  "review_owner": "Investigations Counsel"
+}

@@ -1,0 +1,17 @@
+{
+  "product_id": "HC-OB-42",
+  "product_name": "Harvest Crunch Oat Bites",
+  "formula_version": "2026.4",
+  "artwork_approval_id": "ART-2026-884",
+  "approval_status": "approved",
+  "approved_at": "2026-09-06T15:20:00Z",
+  "ingredients": [
+    "rolled oats",
+    "peanut butter",
+    "milk chocolate",
+    "brown rice syrup"
+  ],
+  "required_allergen_statement": "Contains peanuts and milk.",
+  "approved_prompt_file": "approved_image_prompt.txt",
+  "authorized_output_directory": "campaign_artwork"
+}

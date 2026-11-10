@@ -1,0 +1,20 @@
+all:
+  children:
+    production_tls_endpoints:
+      hosts:
+        plane:
+          endpoint: checkout.prod.rivermark.example:443
+          ssh_alias: tls-plane
+          service_owner: Commerce Platform
+        vault:
+          endpoint: secrets.prod.rivermark.example:8200
+          ssh_alias: tls-vault
+          service_owner: Platform Security
+        edge-west-3:
+          endpoint: edge-west.prod.rivermark.example:443
+          ssh_alias: tls-edge-west
+          service_owner: Network Engineering
+        api-east-7:
+          endpoint: api-east.prod.rivermark.example:443
+          ssh_alias: tls-api-east
+          service_owner: API Platform

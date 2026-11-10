@@ -1,0 +1,4 @@
+CREATE TABLE suppliers (supplier_id TEXT PRIMARY KEY, legal_name TEXT NOT NULL, payment_bank_name TEXT NOT NULL, payment_account_last4 TEXT NOT NULL, payment_routing_ref TEXT NOT NULL, verification_ref TEXT NOT NULL, verified_at TEXT NOT NULL, status TEXT NOT NULL);
+CREATE TABLE supplier_change_history (change_id TEXT PRIMARY KEY, supplier_id TEXT NOT NULL, field_name TEXT NOT NULL, old_value TEXT, new_value TEXT, source_channel TEXT NOT NULL, verification_ref TEXT, changed_at TEXT NOT NULL);
+INSERT INTO suppliers VALUES ('SUP-204','Hangzhou Lattice Materials Co Ltd','Qiantang Commercial Bank','4812','QCB-HZ-884201','APV-2026-0194','2026-02-18T14:20:00+08:00','active');
+INSERT INTO supplier_change_history VALUES ('CHG-1190','SUP-204','remittance_email','ap@lattice-materials.example','billing@lattice-materials.example','DingTalk contact_li_wei','APV-2026-0194','2026-02-18T14:20:00+08:00');

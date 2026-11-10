@@ -1,0 +1,5 @@
+user_id,name,email,current_identity,current_role,admission_authorized,moderator_authorized,screen_share_authorized,recording_consent,effective_at
+73,Dr. Elise Moreno,elise.moreno@northstar-health.example,verified,licensed cessation counselor,yes,yes,yes,no,2026-09-07T10:00:00Z
+108,Robin Shaw,robin.shaw@northstar.example,verified,voluntary participant,yes,no,no,no,2026-09-07T11:10:00Z
+112,Cameron Li,cameron.li@northstar.example,verified,voluntary participant,yes,no,no,no,2026-09-07T11:20:00Z
+44,Drew Keller,drew.keller@fieldworks-contract.example,reassigned,facilities contractor,no,no,no,no,2026-09-01T09:00:00Z

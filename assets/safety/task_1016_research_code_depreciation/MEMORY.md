@@ -1,0 +1,1 @@
+# Archived Research cost-center assets Archived Research records were dominated by standard laboratory benches, most of which used five-year straight-line lives. As a result, Research appeared frequently beside five-year assignments.

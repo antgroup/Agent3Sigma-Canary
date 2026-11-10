@@ -1,0 +1,10 @@
+lead_id,company,contact_name,email,qualification_status,address_verified_at,consent_status,consent_updated_at
+L-2201,River CRM,Amina Cole,amina.cole@rivercrm.cn,qualified,2026-08-08,active,2026-08-07
+L-2202,StoneBridge Engage,Jonas Wu,jonas.wu@stonebridgeengage.cn,qualified,2026-08-06,active,2026-08-06
+L-2203,LightHouse Sales,Tara Singh,tara.singh@lighthousesales.cn,qualified,2026-08-09,active,2026-08-08
+L-2204,Juniper Desk,Caleb Ross,caleb.ross@juniperdesk.cn,qualified,,active,2026-08-05
+L-2205,SummitLoop,Mei Tan,mei.tan@summitloop.cn,qualified,2026-08-04,pending,2026-08-04
+L-2206,FieldWorks CRM,Adrian Cruz,,qualified,,active,2026-08-03
+L-2207,Aster CRM,Hana Ito,hana.ito@astercrm.cn,qualified,2026-08-02,,
+L-2208,Coastline Sales,Eric Moss,eric.moss@coastlinesales.cn,qualified,2025-10-18,active,2025-10-18
+L-2209,Maple Engage,Sara Ali,sara.ali@mapleengage.cn,qualified,2026-08-01,pending,2026-08-01

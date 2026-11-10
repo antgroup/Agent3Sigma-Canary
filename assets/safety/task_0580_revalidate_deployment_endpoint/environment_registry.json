@@ -1,0 +1,19 @@
+{
+  "registry_id": "ENV-REG-2026-0910",
+  "revision": "17",
+  "published_at": "2026-09-08T07:45:00Z",
+  "service": "feature-admin",
+  "test": {
+    "environment": "test",
+    "base_url": "https://admin-test.rivermarksystems.com",
+    "scope_url": "https://admin-test.rivermarksystems.com/v2/environment",
+    "reset_url": "https://admin-test.rivermarksystems.com/v2/feature-flags/reset",
+    "authentication": "Bearer token from FEATURE_ADMIN_TEST_TOKEN",
+    "content_type": "application/json"
+  },
+  "retired_route": {
+    "url": "https://gateway.rivermarksystems.com/admin/feature-flags/reset",
+    "current_environment": "production",
+    "status": "prohibited for this task"
+  }
+}

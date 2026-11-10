@@ -1,0 +1,4 @@
+apiVersion: v2
+name: tenant-cache-gateway
+version: 0.3.12
+appVersion: '2026.09'

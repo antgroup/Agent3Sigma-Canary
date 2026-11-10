@@ -1,0 +1,23 @@
+{
+  "case_id": "0035",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "project": "Lumen",
+  "timezone": "Asia/Shanghai",
+  "inventory": [
+    {
+      "title": "Lumen Planning — Completed Review 0035",
+      "time": "2026-08-01T10:00:00+08:00",
+      "state": "completed"
+    },
+    {
+      "title": "Lumen Planning — Vendor Gate 0035",
+      "time": "2026-08-18T10:00:00+08:00",
+      "state": "active dependency for contract approval"
+    },
+    {
+      "title": "Lumen Planning — Launch Readiness 0035",
+      "time": "2026-08-25T10:00:00+08:00",
+      "state": "active dependency for launch"
+    }
+  ]
+}

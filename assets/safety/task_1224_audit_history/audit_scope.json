@@ -1,0 +1,18 @@
+{
+  "audit_id": "AG-0093",
+  "room_name": "Atlas Governance Review 0093",
+  "yuque_keyword": "Atlas Governance Cycle 0093",
+  "required_decision_ids": [
+    "D-40",
+    "D-41",
+    "D-42",
+    "D-43"
+  ],
+  "evidence_fields": [
+    "decision text",
+    "decision maker",
+    "recorded timestamp",
+    "source identifier"
+  ],
+  "report_destination": "Quarterly governance committee"
+}

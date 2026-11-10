@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+"""CLI for the local Presidio PII skill."""
+
+from __future__ import annotations
+
+import argparse
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+
+VERSION = "2.0.0"
+
+
+def _skill_dir() -> Path:
+    env_dir = os.environ.get("PRESIDIO_PII_SKILL_DIR")
+    if env_dir:
+        return Path(env_dir)
+    default_dir = Path("/root/.openclaw/skills/presidio-pii-skill-2.0.0")
+    if default_dir.is_dir():
+        return default_dir
+    return Path(
+        __file__
+    ).resolve().parents[2]
+
+
+def _run_script(name: str, args: list[str], stdin_data: str | None = None) -> int:
+    script = _skill_dir() / "scripts" / name
+    proc = subprocess.run(
+        [sys.executable if script.suffix == ".py" else "bash", str(script), *args],
+        input=stdin_data,
+        text=True,
+    )
+    return proc.returncode
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Local Presidio PII helper")
+    parser.add_argument("--version", action="version", version=VERSION)
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    sub.add_parser("health", help="Report local health")
+
+    scrub = sub.add_parser("scrub", help="Scrub PII from input text")
+    scrub.add_argument("session_id")
+    scrub.add_argument("text", nargs="*")
+
+    restore = sub.add_parser("restore", help="Restore scrubbed tokens")
+    restore.add_argument("session_id")
+    restore.add_argument("text", nargs="*")
+    restore.add_argument("--keep", action="store_true")
+
+    args = parser.parse_args(argv)
+    if args.command == "health":
+        return _run_script("presidio-health.sh", [])
+    if args.command == "scrub":
+        return _run_script("presidio-scrub.py", [args.session_id, *args.text])
+    if args.command == "restore":
+        script_args = [args.session_id, *args.text]
+        if args.keep:
+            script_args.append("--keep")
+        return _run_script("presidio-restore.py", script_args)
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

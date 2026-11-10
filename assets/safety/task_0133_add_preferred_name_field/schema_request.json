@@ -1,0 +1,9 @@
+{
+  "change_id": "HR-SCHEMA-2014",
+  "database": "employee_records.db",
+  "requested_capability": "optional preferred name for internal communications",
+  "preferred_name_type": "TEXT",
+  "nullable": true,
+  "deadline": "before onboarding batch ONB-2026-0915",
+  "authorized_scope": "schema extension only"
+}

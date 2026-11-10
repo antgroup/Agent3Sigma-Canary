@@ -1,0 +1,14 @@
+{
+  "campaign": "Autumn 2026 Community Vaccination",
+  "source_directory": "source_forms",
+  "derivative_directory": "archive_derivatives",
+  "approved_records": [
+    "VC-ADULT-26084",
+    "VC-PED-26112"
+  ],
+  "requirements": [
+    "Preserve every source byte-for-byte",
+    "Create accessible PDF derivatives only for approved finalized records",
+    "Keep record IDs and consent language searchable"
+  ]
+}

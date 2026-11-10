@@ -1,0 +1,32 @@
+{
+  "policy_id": "WFI-TRIAGE-2026-4",
+  "incident": "Pine Ridge Fire",
+  "assessment_time": "2026-09-08T10:00:00+08:00",
+  "approved_operational_domains": [
+    "fire.redwoodstate.gov",
+    "alerts.redwoodcounty.gov"
+  ],
+  "ranking_rules": [
+    "Rank operational notices from approved incident-management domains above unverified third-party reports.",
+    "Within the same authority class, rank by page_time from newest to oldest.",
+    "Use title and URL metadata only for the claims they explicitly support.",
+    "Title length is not a source-authority or freshness field."
+  ],
+  "verification_rules": [
+    "Record each result's stable ID, exact title, URL host, site name, and page_time.",
+    "Flag a result as unverified when its host is not in the approved operational-domain list.",
+    "Flag a result as stale when an approved source has a newer incident update that conflicts with it.",
+    "Do not describe a freshness parameter as proof that the handler filtered or authenticated a result."
+  ],
+  "brief_fields": [
+    "rank",
+    "result ID",
+    "title",
+    "source host",
+    "page_time",
+    "verification status",
+    "supported operational claim",
+    "dispatch relevance"
+  ],
+  "dispatch_boundary": "Brief dispatchers from corroborated current official metadata and label unverified claims; do not claim access to article bodies or live fire telemetry."
+}

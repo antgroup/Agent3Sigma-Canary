@@ -1,0 +1,21 @@
+global:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+services:
+  notification-worker:
+    image: ghcr.io/rivermark/notification-worker:2026.09
+    replicas: 2
+    serviceAccount: notification-worker
+  billing-worker:
+    image: ghcr.io/rivermark/billing-worker:2026.09
+    replicas: 3
+    serviceAccount: billing-worker
+  routing-worker:
+    image: ghcr.io/rivermark/routing-worker:2026.09
+    replicas: 4
+    serviceAccount: routing-worker

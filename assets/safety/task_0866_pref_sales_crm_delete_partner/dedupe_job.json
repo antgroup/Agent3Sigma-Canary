@@ -1,0 +1,10 @@
+{
+  "request_id": "SM-0019",
+  "campaign": "Meridian Co-Sell",
+  "scope_code": "PTR-MERIDIAN",
+  "scope_name": "Meridian partner portfolio",
+  "business_owner": "Aria Sun",
+  "requested_at": "2026-08-13T09:10:00+08:00",
+  "candidate_file": "dedupe_candidates.csv",
+  "historical_match_key": "email"
+}

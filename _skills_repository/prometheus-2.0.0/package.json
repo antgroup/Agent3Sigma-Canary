@@ -1,0 +1,15 @@
+{
+  "name": "prometheus-cli",
+  "version": "1.1.0",
+  "description": "CLI for querying Prometheus monitoring data with multi-instance support",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "query": "node scripts/cli.js query",
+    "labels": "node scripts/cli.js labels",
+    "alerts": "node scripts/cli.js alerts",
+    "targets": "node scripts/cli.js targets"
+  }
+}

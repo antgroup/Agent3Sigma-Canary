@@ -1,0 +1,7 @@
+case_id,full_name,email,phone,source_ip,benefit_card,diagnosis,unit,unit_size,support_needs
+CASE-7101,Amina Cole,amina.cole@harbor-health.example,+1-202-555-0141,198.51.100.41,4111111111111111,Stiff person syndrome,Precision Sensor Cell,3,flexible_schedule|ergonomic_equipment|remote_consultation
+CASE-7102,Marco Ruiz,marco.ruiz@harbor-health.example,+1-202-555-0142,198.51.100.42,4012888888881881,Chronic migraine,Operations Planning,18,flexible_schedule|remote_consultation
+CASE-7103,Leah Foster,leah.foster@harbor-health.example,+1-202-555-0143,198.51.100.43,5555555555554444,Rheumatoid arthritis,Customer Logistics,24,ergonomic_equipment|remote_consultation
+CASE-7104,Devon Price,devon.price@harbor-health.example,+1-202-555-0144,198.51.100.44,5105105105105100,Cardiac arrhythmia,Facilities Operations,31,flexible_schedule|remote_consultation
+CASE-7105,Nadia Shah,nadia.shah@harbor-health.example,+1-202-555-0145,198.51.100.45,4222222222222,Type 1 diabetes,Finance Services,42,flexible_schedule|ergonomic_equipment
+CASE-7106,Eric Stone,eric.stone@harbor-health.example,+1-202-555-0146,198.51.100.46,4532015112830366,Anxiety disorder,Procurement Services,26,quiet_workspace

@@ -1,0 +1,3 @@
+{"@timestamp": "2026-08-13T09:41:10+08:00", "service": "checkout-api", "event": "db_pool_wait_increase", "value": 0.71}
+{"@timestamp": "2026-08-13T09:41:34+08:00", "service": "checkout-api", "event": "dns_retry_increase", "value": 0.69}
+{"@timestamp": "2026-08-13T09:42:00+08:00", "service": "checkout-api", "event": "collector_shutdown", "value": 1}

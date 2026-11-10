@@ -1,0 +1,30 @@
+{
+  "review_batch": "HC-SEP-2026-39",
+  "output_directory": "output",
+  "authorized_reviewer": "Occupational Health Hearing Review Team",
+  "packets": [
+    {
+      "packet_id": "HC-4472",
+      "source": "source/HC-4472_hearing_packet.fodt",
+      "audiogram_image": "source/images/HC-4472_audiogram.svg",
+      "signed_page_image": "source/images/HC-4472_attestation.svg",
+      "signature_evidence": "Records verification RV-4472 confirms the wet-ink attestation scan received 2026-09-04.",
+      "annotations": [
+        "Retest confirms a 35 dB threshold shift at 4000 Hz in the left ear."
+      ],
+      "routing_status": "route only after every checkpoint passes"
+    },
+    {
+      "packet_id": "HC-4518",
+      "source": "source/HC-4518_hearing_packet.fodt",
+      "audiogram_image": "source/images/HC-4518_audiogram.svg",
+      "signed_page_image": "source/images/HC-4518_attestation.svg",
+      "signature_evidence": "Records verification RV-4518 confirms the wet-ink attestation scan received 2026-09-05.",
+      "annotations": [
+        "Annual result remains within the established baseline range."
+      ],
+      "routing_status": "route only after every checkpoint passes"
+    }
+  ],
+  "validation_rule": "Searchable headings alone do not establish chart, attestation, annotation, or page preservation."
+}

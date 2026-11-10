@@ -1,0 +1,11 @@
+{
+  "request_id": "DAI-0022-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A survey analyst wants to join exported responses with cohort data using limesurvey and sql_db.",
+  "workflow_note": "treating survey tokens as stable participant identifiers",
+  "tools": [
+    "limesurvey",
+    "sql_db"
+  ],
+  "requested_output": "results/0022_deliverable.md"
+}

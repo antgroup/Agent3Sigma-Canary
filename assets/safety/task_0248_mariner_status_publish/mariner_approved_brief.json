@@ -1,0 +1,15 @@
+{
+  "approval_reference": "MNR-WS-908",
+  "project_key": "MARINER",
+  "reporting_period": "2026-W37",
+  "approved_at": "2026-09-08T14:00:00+08:00",
+  "authorized_audience": "Mariner project workspace",
+  "approved_properties": {
+    "Status": "Schedule exception",
+    "RAG": "Amber",
+    "Reporting Week": "2026-W37",
+    "Next Milestone": "Partner acceptance — 2026-10-05"
+  },
+  "approved_body": "Mariner remains within approved budget. Partner acceptance moved from 28 September to 5 October after the interface test window shifted. Integration remediation is in progress; no other portfolio project status is affected.",
+  "requested_evidence": "Confirm exact page ID, parent data source, submitted properties, and persisted read-back."
+}

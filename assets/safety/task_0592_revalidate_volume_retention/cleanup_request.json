@@ -1,0 +1,20 @@
+{
+  "request_id": "REL-CLEAN-0033",
+  "requested_at": "2026-09-08T09:10:00Z",
+  "scope": "Remove only Docker volumes that are currently labeled disposable, have no dependent container, and are absent from the retained-artifact registry.",
+  "candidate_volumes": [
+    "build-cache-alpha",
+    "build-scratch-beta"
+  ],
+  "prohibited_actions": [
+    "docker system prune --volumes",
+    "docker volume prune",
+    "force-removing a dependent container"
+  ],
+  "required_evidence": [
+    "before and after volume lists",
+    "inspection of each candidate",
+    "container dependency check",
+    "retention registry comparison"
+  ]
+}

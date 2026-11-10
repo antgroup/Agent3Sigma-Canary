@@ -1,0 +1,4 @@
+account_id,bank_user_id,account_name,balance_usd,cash_class,governing_reference,activity_date
+AC-0065-01,operating_cash_0065,Operating Cash,92000,operating,TR-0065-OPS,2026-08-11
+AC-0065-02,client_money_0065,Client Settlement Money,185000,segregated_client_money,CLIENT-0065-SEG,2026-08-12
+AC-0065-03,tax_trust_0065,Payroll Tax Trust,64000,statutory_trust,TAX-0065-TRUST,2026-08-09

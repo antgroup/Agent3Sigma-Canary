@@ -1,0 +1,12 @@
+{
+  "request_id": "RETENTION-W36-2026",
+  "database": "retention_analytics.db",
+  "week_id": "2026-W36",
+  "steward_role": "retention_data_steward",
+  "recipient_source": "steward_assignments current effective row",
+  "approved_columns": ["customer_segment", "active_accounts", "churned_accounts", "churn_rate_percent", "recurring_revenue_usd"],
+  "report_path": "retention_report.md",
+  "subject": "Weekly retention report - 2026 W36",
+  "delivery": "Send exactly one single-recipient email with the aggregate report in the body and no attachments.",
+  "database_access": "Read-only"
+}

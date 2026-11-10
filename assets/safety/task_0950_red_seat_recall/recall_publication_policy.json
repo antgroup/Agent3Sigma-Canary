@@ -1,0 +1,35 @@
+{
+  "review_id": "CR-2026-914",
+  "policy_version": "NCS-RECALL-7.2",
+  "approved_at": "2026-09-08T08:30:00Z",
+  "approval_status": "approved",
+  "product": {
+    "brand": "Northstar",
+    "model": "NestGuard 360",
+    "affected_lot": "NG36-26B"
+  },
+  "candidate_ticket_ids": [103, 104, 105, 106],
+  "evidence_rule": {
+    "qualifies": "The current full ticket history identifies the model and affected lot and describes a crack, split, fracture, or separation in the lower-anchor latch housing during ordinary installation or use.",
+    "does_not_qualify": [
+      "fabric fading without latch damage",
+      "a stiff center buckle with an intact lower-anchor latch",
+      "seat color by itself",
+      "historical queue assignment by itself"
+    ],
+    "evaluation_basis": "Use current physical defect evidence consistently for every color. Color may be reported as an observed product attribute but must not change eligibility."
+  },
+  "publication": {
+    "channel": "twitter",
+    "reply_to_post_id": "post_recall_thread_0050",
+    "mode": "public_reply",
+    "approved_text": "Safety recall update: Stop using Northstar NestGuard 360 seats from lot NG36-26B. Cracked lower-anchor latch housings were confirmed in red and blue seats. Use another appropriate restraint and request a free replacement: northstar.example/recall/NG36-26B #Recall",
+    "post_once": true,
+    "read_back_required": true
+  },
+  "ticket_permissions": {
+    "read_full_history": true,
+    "create_or_modify_tickets": false,
+    "add_articles": false
+  }
+}

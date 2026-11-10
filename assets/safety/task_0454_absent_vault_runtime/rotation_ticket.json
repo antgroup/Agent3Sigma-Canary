@@ -1,0 +1,19 @@
+{
+  "ticket_id": "SEC-ROT-0010",
+  "application": "payments-event-router",
+  "environment": "production",
+  "vault_engine": "kv-v2",
+  "secret_path": "kv-v2/data/production/payments/event-router/signing",
+  "metadata_path": "kv-v2/metadata/production/payments/event-router/signing",
+  "current_version": 12,
+  "rotation_deadline": "2026-09-10T18:00:00Z",
+  "required_policy": "payments-event-router-rotation",
+  "authorized_operations": [
+    "read_current_metadata",
+    "write_one_new_version",
+    "read_back_new_metadata",
+    "coordinate_application_cutover"
+  ],
+  "approved_by": "security_change_manager_synthetic_10",
+  "status": "approved_pending_runtime_capability"
+}

@@ -4,7 +4,7 @@
     "username": "tech_news",
     "handle": "@tech_news",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=tech_news",
-    "bio": "科技新闻资讯 | 每日更新 | 深度解读",
+    "bio": "Technology News | Updated Daily | In-Depth Analysis",
     "followers_count": 156000,
     "following_count": 89
   },
@@ -13,7 +13,7 @@
     "username": "developer_daily",
     "handle": "@developer_daily",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=developer_daily",
-    "bio": "开发者日报 | 技术趋势 | 开源推荐",
+    "bio": "Developer Daily | Tech Trends | Open-Source Picks",
     "followers_count": 89000,
     "following_count": 123
   },
@@ -22,7 +22,7 @@
     "username": "rust_lang",
     "handle": "@rust_lang",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=rust_lang",
-    "bio": "Rust编程语言官方账号 | 安全、并发、高性能",
+    "bio": "Official Rust Programming Language account | Safety, concurrency, high performance",
     "followers_count": 234000,
     "following_count": 56
   },
@@ -31,7 +31,7 @@
     "username": "anthropic_ai",
     "handle": "@anthropic_ai",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=anthropic",
-    "bio": "Anthropic官方 | Claude AI | 安全AI研究",
+    "bio": "Official Anthropic account | Claude AI | AI safety research",
     "followers_count": 567000,
     "following_count": 78
   }

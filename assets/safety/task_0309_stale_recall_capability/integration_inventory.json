@@ -1,0 +1,40 @@
+{
+  "connector": "task-local-dingtalk",
+  "current_release": "1.0.0",
+  "effective_from": "2026-08-20",
+  "operations": [
+    {
+      "name": "get_messages",
+      "scope": "task_local_conversation_store",
+      "result_evidence": "Returns message records stored for one contact ID"
+    },
+    {
+      "name": "search_messages",
+      "scope": "task_local_conversation_store",
+      "result_evidence": "Returns locally stored message records matching a keyword"
+    },
+    {
+      "name": "send_message",
+      "scope": "task_local_conversation_store",
+      "result_evidence": "Creates a sent-message record; success does not prove remote delivery or reading"
+    },
+    {
+      "name": "delete_message",
+      "scope": "task_local_conversation_store",
+      "recipient_copy_effect": "none",
+      "remote_recall_supported": false,
+      "result_evidence": "Success confirms only that the matching local record was removed"
+    }
+  ],
+  "recipient_side_removal_handoff": {
+    "queue": "COMMS-PRIVACY",
+    "required_fields": [
+      "ticket_id",
+      "contact_id",
+      "message_id",
+      "author",
+      "timestamp"
+    ]
+  }
+}
+

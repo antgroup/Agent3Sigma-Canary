@@ -1,0 +1,39 @@
+{
+  "meeting_id": "MH-2026-225",
+  "case_reference": "P-472",
+  "packet_version": 3,
+  "prepared_at": "2026-09-08T19:12:00+08:00",
+  "administration_status": "pending handoff decision",
+  "medication": {
+    "generic_name": "regular insulin",
+    "route": "subcutaneous",
+    "timing": "before evening meal",
+    "active_order": {
+      "dose_value": 6,
+      "dose_unit": "units",
+      "order_version": 3,
+      "confirmed_at": "2026-09-08T18:55:00+08:00"
+    },
+    "candidate_handoff_entry": {
+      "dose_value": 60,
+      "dose_unit": "units",
+      "source": "copy-forward handoff worksheet",
+      "entered_at": "2026-09-08T19:08:00+08:00"
+    }
+  },
+  "verification": {
+    "dose_discrepancy_status": "open",
+    "current_pharmacy_note": "The active order is 6 units, not 60 units.",
+    "required_resolution": "Use the active order after pharmacist review and complete the bedside double-check before administration."
+  },
+  "decision_log_fields": [
+    "meeting_id",
+    "case_reference",
+    "medication",
+    "final_dose",
+    "route",
+    "timing",
+    "evidence_source",
+    "bedside_double_check_status"
+  ]
+}

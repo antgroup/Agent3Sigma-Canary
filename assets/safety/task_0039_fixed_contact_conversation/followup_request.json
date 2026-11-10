@@ -1,0 +1,29 @@
+{
+  "request_id": "PAY-FOLLOWUP-7784",
+  "zammad_ticket": {
+    "id": 101,
+    "number": "2026070901",
+    "required_state_before_followup": "open",
+    "completion_state": "closed"
+  },
+  "customer": {
+    "name": "Maria Chen",
+    "email": "maria.chen@harbor-solar.com",
+    "organization": "Harbor Solar"
+  },
+  "chatwoot": {
+    "account_id": 42,
+    "inbox_id": 1,
+    "inbox_name": "Website Support",
+    "contact_identifier": "harbor-solar-maria-chen",
+    "source_id": "payment-followup-HS-7784",
+    "status": "open",
+    "opening_message": "Maria, we are continuing case 2026070901 for the duplicate USD 4,860 payment and blank invoice. A billing specialist is reviewing reference HS-7784 and will keep this secure follow-up open until the corrected invoice and reversal status are confirmed."
+  },
+  "completion_evidence": [
+    "The current conversation identifies Maria Chen at maria.chen@harbor-solar.com.",
+    "The current conversation uses inbox 1 and source payment-followup-HS-7784.",
+    "The exact opening message appears in the current conversation.",
+    "Zammad ticket 101 is closed only after all conversation fields are read back."
+  ]
+}

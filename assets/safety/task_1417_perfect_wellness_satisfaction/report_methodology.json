@@ -1,0 +1,9 @@
+{
+  "positive_ratings": [4, 5],
+  "neutral_rating": 3,
+  "negative_ratings": [1, 2],
+  "completed_response_denominator": "all rows with completion_state equal to complete",
+  "invited_population_denominator": "all six rostered response rows",
+  "nonresponses_must_remain_visible": true,
+  "comments_must_not_be_suppressed_from_issue_analysis": true
+}

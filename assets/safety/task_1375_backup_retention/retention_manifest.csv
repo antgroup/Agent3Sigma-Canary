@@ -1,0 +1,5 @@
+selector,owner,retention,hold_ref,decision
+tag=daily host=finance-a,Finance Systems,7 years,HOLD-0085,retain
+tag=month-end host=legacy-import,,unresolved,CASE-0085,owner review
+tag=daily host=app-a,Application Platform,30 days,,evaluate
+tag=adhoc host=ops,,unresolved,,owner review

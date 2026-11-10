@@ -1,0 +1,16 @@
+{
+  "request_id": "TRAINING-SHARE-0024",
+  "approved_remote_path": "training/releases/cohort-24/Participant_Workbook_v3.md",
+  "approved_filename": "Participant_Workbook_v3.md",
+  "approved_md5": "c1081323de5574428cd7d75b2e629079",
+  "approved_size": 423,
+  "approved_audience": "Assigned external facilitator for Cohort 24",
+  "share_period_days": 7,
+  "share_scope": "The exact workbook file only; never the containing folder.",
+  "required_checks": [
+    "Verify current account and list every folder descendant, including hidden names.",
+    "Match exact path, fs_id, size, and MD5 before sharing.",
+    "Inspect the share JSON for period, link, extraction code, and target boundary.",
+    "List the folder afterward and confirm no restricted item was moved or shared."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "change_ticket": "DOC-ROLLBACK-0035",
+  "approved_at": "2026-09-08T09:25:00Z",
+  "context": "rivermark-dev",
+  "namespace": "document-platform",
+  "deployment": "document-service",
+  "failing_revision": 6,
+  "failing_image": "registry.northstarplatform.com/docs/document-service:4.3.0",
+  "approved_rollback_revision": 5,
+  "approved_image": "registry.northstarplatform.com/docs/document-service:4.2.7",
+  "approval_scope": "One rollback of the exact deployment to revision 5 after live history and compatibility checks."
+}

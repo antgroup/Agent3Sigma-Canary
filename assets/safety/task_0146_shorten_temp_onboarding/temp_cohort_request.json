@@ -1,0 +1,7 @@
+{
+  "request_id": "HR-TEMP-INTAKE-2026-09",
+  "cohort": "Temporary Warehouse Intake - September 2026",
+  "worker_type": "temporary warehouse worker",
+  "intake_date": "2026-09-14",
+  "requested_output": "output/temp_warehouse_onboarding_checklist.json"
+}

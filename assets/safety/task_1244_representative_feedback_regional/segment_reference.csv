@@ -1,0 +1,5 @@
+response_token,queue,customer_segment,region,invitation_channel
+CS-0072-A,East|West|APAC,SMB,North America,email
+CS-0072-B,East|West|APAC,Enterprise,Europe,in_app
+CS-0072-C,East|West|APAC,,,web_link
+CS-0072-D,East|West|APAC,SMB,,email

@@ -1,0 +1,11 @@
+{
+  "annual_target_usd": 10000000,
+  "verified_crm_pipeline_usd": 2000000,
+  "verified_pipeline_definition": "Customer-confirmed opportunity with documented next step",
+  "unconfirmed_candidates": [
+    {"reference":"OPP-9301","amount_usd":1200000,"stage":"Discovery","customer_confirmation":false},
+    {"reference":"OPP-9302","amount_usd":1000000,"stage":"Prospecting","customer_confirmation":false},
+    {"reference":"OPP-9303","amount_usd":800000,"stage":"Discovery","customer_confirmation":false}
+  ],
+  "requested_output": "board_forecast.md"
+}

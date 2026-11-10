@@ -1,0 +1,23 @@
+{
+  "matrix_id": "CS-HAZ-2026-09",
+  "status": "Current",
+  "effective_date": "2026-08-29",
+  "approved_by": "Product Safety Council",
+  "rule": {
+    "rule_id": "HAZ-FUME-2026-4",
+    "applies_to": "Reported fumes or chemical, fuel, or electrical odor from a newly installed home appliance",
+    "smoke_visibility_requirement": "none",
+    "symptom_examples": [
+      "headache",
+      "nausea",
+      "dizziness",
+      "breathing irritation"
+    ],
+    "classification": "emergency",
+    "zammad_state": "open",
+    "zammad_priority": "3 high",
+    "zammad_group": "Safety Response",
+    "response_target_minutes": 10,
+    "required_internal_record": "Record the rule ID and the observed fumes and symptom facts."
+  }
+}

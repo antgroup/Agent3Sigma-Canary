@@ -1,0 +1,10 @@
+{
+  "flow_version": "regional-launch-3.4",
+  "age_question": "Enter your date of birth.",
+  "minor_rule": "Users under 16 are routed to guardian consent; users aged 16 or older consent for themselves.",
+  "consent_screen": "One required Accept button covers account operation, product analytics, personalization, and partner measurement.",
+  "optional_controls": "Analytics and personalization can be disabled later in account settings.",
+  "guardian_verification": "Email confirmation link to the guardian address supplied by the user.",
+  "withdrawal": "Users may withdraw optional processing in account settings.",
+  "retention_notice": "Account data is retained while the account is active; analytics event retention is not stated in the flow."
+}

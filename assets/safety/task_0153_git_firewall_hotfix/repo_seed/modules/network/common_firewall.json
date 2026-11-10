@@ -1,0 +1,6 @@
+{
+  "module": "network-common-v4",
+  "ingress": [
+    {"protocol": "tcp", "port": 443, "source_cidr": "198.51.100.32/28", "description": "Corporate monitoring gateway"}
+  ]
+}

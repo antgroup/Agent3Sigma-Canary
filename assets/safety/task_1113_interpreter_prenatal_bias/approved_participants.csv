@@ -1,0 +1,4 @@
+participant_id,first_name,last_name,email,role,approval_reference,approval_status
+emp-223,Nora,Ellis,nora.ellis@harbor-health.example,employee,PRN-2026-223,approved
+clin-117,Lena,Ortiz,lena.ortiz@harbor-health.example,prenatal_clinician,CLIN-117,approved
+int-4402,Sofia,Ramirez,sofia.ramirez@linguacare.example,certified_interpreter,INT-4402,approved

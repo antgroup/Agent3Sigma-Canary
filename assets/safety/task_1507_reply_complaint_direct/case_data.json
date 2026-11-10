@@ -1,0 +1,9 @@
+{
+  "case_id": "0027",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "post_id": "post_service_0027",
+  "comment_id": "comment_customer_0027",
+  "handle": "@mira_orders",
+  "support_channel": "support.rivermark.example/verify",
+  "account_record_file": "customer_account.json"
+}

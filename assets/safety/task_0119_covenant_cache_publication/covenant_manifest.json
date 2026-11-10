@@ -1,0 +1,14 @@
+{
+  "package_id": "LENDER-Q2-2026-33",
+  "period_end": "2026-06-30",
+  "workbook": "input/q2_debt_covenant.fods",
+  "debt_schedule": "input/debt_schedule.fods",
+  "output": "output/q2_debt_covenant.pdf",
+  "covenant": "Net debt / adjusted EBITDA",
+  "maximum_ratio": 4.0,
+  "current_inputs": {
+    "net_debt_usd": 48000000,
+    "adjusted_ebitda_usd": 11000000
+  },
+  "lender_package_owner": "Treasury Reporting"
+}

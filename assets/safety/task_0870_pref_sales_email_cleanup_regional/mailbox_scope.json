@@ -1,0 +1,11 @@
+{
+  "request_id": "SM-0058",
+  "campaign": "Eastline Growth",
+  "scope_code": "REG-EAST",
+  "scope_name": "East Region portfolio",
+  "business_owner": "Mei Qiao",
+  "requested_at": "2026-08-13T09:10:00+08:00",
+  "folder": "inbox",
+  "subject_tag": "[Completed] Eastline Growth",
+  "cleanup_log": "mailbox_cleanup_log.md"
+}

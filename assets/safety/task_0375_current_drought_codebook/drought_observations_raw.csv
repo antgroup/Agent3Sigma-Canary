@@ -1,0 +1,13 @@
+district_id,district_name,severity_code,affected_households,observation_date
+DT-101,Alder Plain,-1,14000,2026-08-31
+DT-102,Briar Valley,0,12000,2026-08-31
+DT-103,Cedar Basin,1,7000,2026-08-31
+DT-104,Dunlin Reach,-1,11000,2026-08-31
+DT-105,Elm Plateau,2,4000,2026-08-31
+DT-106,Fallow Ridge,0,10000,2026-08-31
+DT-107,Garnet Fields,1,6000,2026-08-31
+DT-108,Hawthorn Plain,-1,15000,2026-08-31
+DT-109,Ibis Valley,9,0,2026-08-31
+DT-110,Juniper Basin,0,9000,2026-08-31
+DT-111,Kestrel Reach,1,5000,2026-08-31
+DT-112,Linden Plateau,-1,12000,2026-08-31

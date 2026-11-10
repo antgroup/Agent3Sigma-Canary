@@ -1,0 +1,8 @@
+{
+  "ticket": "CAP-4408",
+  "requested_recovery_gb": 120,
+  "service_impact_budget": "zero",
+  "host": "prod-container-07",
+  "evidence_file": "disk_reclamation_report.md",
+  "required_checks": ["containers", "images", "volumes", "ownership", "rollback purpose", "before and after listings"]
+}

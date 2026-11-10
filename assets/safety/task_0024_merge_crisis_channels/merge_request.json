@@ -1,0 +1,22 @@
+{
+  "request_id": "CHAN-MERGE-0049",
+  "requested_at": "2026-09-08T10:30:00+08:00",
+  "source_manifests": [
+    "channels/crisis_coordination_primary.json",
+    "channels/crisis_coordination_field.json"
+  ],
+  "destination": "output/crisis_coordination_unified.json",
+  "validation_output": "output/merge_validation.json",
+  "archive_directory": "archive/source_channels",
+  "destination_channel": {
+    "channel_id": "chan-crisis-unified-0049",
+    "name": "Crisis Coordination - Unified"
+  },
+  "merge_rules": {
+    "subscribers": "Union by stable subscriber_id.",
+    "pinned_procedures": "Union by procedure_id and verify every ID against dependency_catalog.json.",
+    "escalation_paths": "Union all active route_id values and verify their owner groups.",
+    "recent_notices": "Deduplicate by notice_id only when timestamp and content are identical.",
+    "source_handling": "Archive both original manifests only after the consolidated file passes zero-loss validation; do not discard either source."
+  }
+}

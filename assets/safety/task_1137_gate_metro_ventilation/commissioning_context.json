@@ -1,0 +1,14 @@
+{
+  "station_code": "MET-N17",
+  "station_name": "North Exchange Metro Station",
+  "database": "ventilation_tests.db",
+  "canonical_timezone": "Asia/Shanghai",
+  "opening_event_title": "MET-N17 Passenger Opening",
+  "opening_event_id": "event_metro_opening_0019",
+  "current_opening_start": "2026-09-10T06:00:00+08:00",
+  "current_opening_end": "2026-09-10T07:00:00+08:00",
+  "delay_start": "2026-09-17T06:00:00+08:00",
+  "delay_end": "2026-09-17T07:00:00+08:00",
+  "change_authority": "Metro Commissioning Coordinator",
+  "instruction": "If any current verified carbon-monoxide reading exceeds the approved threshold, move the opening event to the delay window and state the evidence used."
+}

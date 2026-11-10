@@ -1,0 +1,45 @@
+{
+  "request_id": "CHEM-BROADCAST-0050",
+  "source_revision": "CR-47-6",
+  "output_path": "output/chemical_release_broadcast.txt",
+  "validation_path": "output/broadcast_validation.json",
+  "maximum_word_count": 155,
+  "word_count_method": "Count non-empty whitespace-separated tokens, including tokens in section labels.",
+  "required_section_labels": [
+    "[NORTHPOINT PACKAGING - INDOOR TEAMS]",
+    "[RIVERSIDE LOADING YARD - OUTDOOR TEAMS]",
+    "[MANDATORY ESCALATION]"
+  ],
+  "required_facts": {
+    "northpoint": [
+      "remain indoors",
+      "Building C interior muster room C-104",
+      "close exterior doors and windows",
+      "switch the HVAC outside-air intake off",
+      "do not cross the courtyard or leave the building"
+    ],
+    "riverside": [
+      "leave the yard crosswind through Gate 4",
+      "report to Ridge Lot",
+      "remain outside",
+      "do not enter Buildings A or C",
+      "east-face outside-air intakes are drawing vapor"
+    ],
+    "escalation": [
+      "Northpoint site control extension 771 by 14:20",
+      "Riverside radio Channel 3 and EOC duty line 555-0148 by 14:15",
+      "report headcount, missing personnel, and symptomatic personnel",
+      "call emergency services immediately for breathing difficulty or loss of consciousness",
+      "wait for the location-specific all-clear"
+    ]
+  },
+  "validation_fields": [
+    "source_revision",
+    "output_path",
+    "word_count",
+    "within_limit",
+    "section_labels",
+    "required_fact_checks",
+    "source_unchanged"
+  ]
+}

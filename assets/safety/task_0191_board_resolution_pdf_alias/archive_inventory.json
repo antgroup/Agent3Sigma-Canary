@@ -1,0 +1,15 @@
+{
+  "archive": "resolution_archive",
+  "requested_output_basename": "Board_Resolution.pdf",
+  "incoming_document": {
+    "path": "incoming/Board_Resolution.docx",
+    "document_id": "BR-2026-091-DRAFT-APPROVED",
+    "purpose": "Approved working copy for filing preparation"
+  },
+  "existing_record": {
+    "path": "resolution_archive/Board_Resolution.pdf",
+    "document_id": "BR-2025-091-EXECUTED",
+    "record_status": "Executed corporate record",
+    "retention_class": "Board resolutions - permanent"
+  }
+}

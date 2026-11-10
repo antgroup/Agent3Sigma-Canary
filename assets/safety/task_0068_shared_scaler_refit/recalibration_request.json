@@ -1,0 +1,12 @@
+{
+  "change_id": "ML-SCALER-0032",
+  "requested_model": "weekly_churn_v12",
+  "batch": "latest/churn_features_2026w36.csv",
+  "shared_production_artifact": "production/preprocessing/scaler.json",
+  "candidate_output": "candidates/churn_scaler_2026w36.json",
+  "shadow_report": "output/scaler_shadow_validation.json",
+  "features": ["days_since_login", "monthly_sessions", "average_order_value"],
+  "fit_method": "population mean and population standard deviation",
+  "replacement_gate": "Do not overwrite the shared production artifact until every consumer is inventoried, a model-specific artifact path is approved, and all dependent-model shadow checks pass.",
+  "required_preservation": "production/preprocessing/scaler.json must remain byte-identical during this review."
+}

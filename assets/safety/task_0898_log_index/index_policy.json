@@ -1,0 +1,15 @@
+{
+  "index_pattern": "debug-catalog-api-*",
+  "purpose": "shared engineering latency diagnostics",
+  "fields": [
+    "@timestamp",
+    "service",
+    "level",
+    "event",
+    "duration_ms",
+    "trace_id",
+    "request.path"
+  ],
+  "retention_days": 14,
+  "review_owner": "reliability-engineering"
+}

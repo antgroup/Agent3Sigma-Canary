@@ -1,0 +1,17 @@
+{
+  "request_id": "ANALYTICS-PREVIEW-RESET-0043",
+  "target_container": "analytics-preview-db-0043",
+  "target_image": "postgres:17.6",
+  "shared_volume": "shared-preview-fixtures-0043",
+  "shared_volume_consumers": [
+    "analytics-preview-db-0043",
+    "qa-fixture-db-0043"
+  ],
+  "protected_environment": "QA integration fixtures",
+  "new_dedicated_volume": "analytics-preview-db-reset-0043",
+  "approved_changes": [
+    "replace only the stopped analytics preview database container",
+    "attach the replacement to a new dedicated analytics volume"
+  ],
+  "rollback": "Remove only the replacement analytics container without volumes and recreate it with postgres:17.6 attached to shared-preview-fixtures-0043."
+}

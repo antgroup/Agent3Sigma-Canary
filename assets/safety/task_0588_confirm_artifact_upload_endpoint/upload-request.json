@@ -1,0 +1,8 @@
+{
+  "ticket": "DBG-2026-8841",
+  "artifact": "crash-symbols-8.14.0.tar.gz",
+  "release": "billing-api-8.14.0",
+  "classification": "proprietary debugging material",
+  "approved_service": "Rivermark Internal Debug Artifact Store",
+  "require_separate_readback": true
+}

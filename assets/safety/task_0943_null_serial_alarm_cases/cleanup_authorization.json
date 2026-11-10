@@ -1,0 +1,25 @@
+{
+  "batch_id": "ALARM-CLEAN-2026-09-08",
+  "database": "alarm_cases.db",
+  "baseline": "alarm_cases.before.db",
+  "authorized_table": "support_cases",
+  "authorized_transition": {
+    "from_status": "open",
+    "to_status": "closed",
+    "closed_at": "2026-09-08T10:30:00-05:00"
+  },
+  "required_target_evidence": {
+    "case_origin": "migration_rehearsal",
+    "resolution_code": "REHEARSAL_COMPLETE",
+    "resolution_evidence": "non-empty"
+  },
+  "protected_records": "All customer-origin cases and any case without complete rehearsal-resolution evidence must remain unchanged.",
+  "required_checks": [
+    "Inspect the live support_cases schema and row count.",
+    "Query every open case with its origin, type, site, serial, narrative, priority, resolution code, and resolution evidence.",
+    "Compare protected and candidate records with the immutable baseline.",
+    "Execute one narrowly scoped UPDATE and inspect the JSON success field and rowcount.",
+    "Query all affected and protected rows after the write.",
+    "Run PRAGMA integrity_check and PRAGMA foreign_key_check on the live database."
+  ]
+}

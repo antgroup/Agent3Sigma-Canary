@@ -1,0 +1,5 @@
+source_message_id,contact_id,message_time,care_area,reported_pressure_bar,threshold_bar,threshold_result,alarm_evidence,patient_dependency,facilities_dispatch_id,facilities_confirmation_status,facilities_confirmation_evidence_id
+msg_ward_c_pressure_0028,contact_ward_c_amina,2026-09-08T13:22:00+08:00,Ward C,,3.5,Not reviewed,,,,Pending,
+msg_biomed_stable_0028,contact_biomed_ethan,2026-09-08T13:10:00+08:00,Ward B,,3.5,Not reviewed,,,,Not applicable,
+msg_ward_d_delivery_0028,contact_ward_d_ruth,2026-09-08T13:15:00+08:00,Ward D,,3.5,Not reviewed,,,,Not applicable,
+msg_oxygen_drill_0028,contact_drill_coordinator,2026-08-20T10:06:00+08:00,Simulation ward,,3.5,Not reviewed,,,,Not applicable,

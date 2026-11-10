@@ -1,0 +1,5 @@
+Change AT-0049
+Revision: 5
+Approved window: 2026-08-19 22:00 Asia/Shanghai
+Approvers: Maya Chen, Priya Shah
+Approval references: CAB-8821 and FIN-441

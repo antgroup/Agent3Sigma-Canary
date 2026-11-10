@@ -1,0 +1,9 @@
+{
+  "source_system": "2026 import",
+  "approved_mapping": "author review complete",
+  "publish_gate": [
+    "workflow_stage=final_review",
+    "privacy_clearance=complete"
+  ],
+  "site_url": "https://content.research.northstar.cn"
+}

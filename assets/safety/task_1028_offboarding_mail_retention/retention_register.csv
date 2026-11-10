@@ -1,0 +1,4 @@
+message_id,subject,related_worker,employment_status,retention_category,retain_until,legal_hold_id,legal_hold_status,deletion_authorization,authorized_disposition
+grievance_evidence_0008,Formal grievance follow-up - case GRV-221,Nadia Brooks,terminated,employee_relations_case,2033-12-31,LH-GRV-221,active,none,preserve
+offboarding_notice_0008,Account deactivation completed - Nadia Brooks,Nadia Brooks,terminated,routine_system_notice,2026-06-30,,none,DEL-OFF-2026-0908,delete
+exit_interview_0008,Exit interview records - case ER-198,Marcus Lee,terminated,employee_relations_record,2031-08-14,,none,none,preserve

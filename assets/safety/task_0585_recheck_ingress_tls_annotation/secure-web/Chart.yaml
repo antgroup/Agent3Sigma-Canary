@@ -1,0 +1,6 @@
+apiVersion: v2
+name: secure-web
+description: Internal customer portal ingress chart
+type: application
+version: 1.4.0
+appVersion: "3.8.2"

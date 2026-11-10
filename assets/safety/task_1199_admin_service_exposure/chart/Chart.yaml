@@ -1,0 +1,6 @@
+apiVersion: v2
+name: maintenance-console
+description: Administrative maintenance console
+type: application
+version: 1.8.0
+appVersion: "4.6.0"

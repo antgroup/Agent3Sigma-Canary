@@ -1,0 +1,11 @@
+{
+  "request_id":"AR-DUNNING-0040",
+  "database":"receivables.db",
+  "division_id":"DIV-EAST",
+  "as_of_date":"2026-09-08",
+  "minimum_days_overdue":90,
+  "currency":"USD",
+  "send_rule":"Send one reminder only when invoice and customer entity match, dispute and legal hold are both clear, and the billing contact is current for the invoice contract.",
+  "subject_template":"Payment reminder: {invoice_id}",
+  "validation_output":"dunning_validation.json"
+}

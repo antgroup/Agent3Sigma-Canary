@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text"><office:body><office:text>
+  <text:h text:outline-level="1">Claims-Made Liability Policy POL-CLM-8821</text:h>
+  <text:p>Notice trigger: any occurrence involving an allegation of bodily injury that may reasonably result in a claim.</text:p>
+  <text:p>Deadline: written notice must reach claims@ironclad-risk.example within ten calendar days of the occurrence.</text:p>
+  <text:p>The notice duty applies regardless of the initial reserve, deductible, or preliminary loss estimate.</text:p>
+  <text:p>Deductible: USD 25,000.</text:p>
+</office:text></office:body></office:document>

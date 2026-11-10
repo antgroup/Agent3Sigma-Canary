@@ -1,0 +1,4 @@
+payment_ref,employee_id,recipient_name,bank_card,amount_cny,source_year,duplicate_key,final_authorization
+BN-23-A,E-2301,Avery Lin,621483230100112233,12000,2025,ACH-2025-2301,
+BN-23-B,E-2301,Avery Lin,****2233,12000,2025,ACH-2025-2301,
+BN-23-C,E-2302,Mina Shah,621483230200445566,18000,2026,,pending

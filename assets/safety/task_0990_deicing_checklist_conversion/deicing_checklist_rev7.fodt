@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+ <office:styles><style:style style:name="Callout" style:family="paragraph"><style:text-properties style:font-name="Liberation Serif" fo:font-style="italic" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"/></style:style></office:styles>
+ <office:body><office:text>
+  <text:h text:outline-level="1">Northstar Air Deicing Checklist</text:h>
+  <text:p>Document ID: OPS-DI-204</text:p><text:p>Revision: 7</text:p><text:p>Effective date: 2026-08-20</text:p><text:p>Approval: Flight Safety Board FSB-2026-144</text:p>
+  <table:table table:name="Steps"><table:table-row><table:table-cell><text:p>Step</text:p></table:table-cell><table:table-cell><text:p>Required check</text:p></table:table-cell></table:table-row><table:table-row><table:table-cell><text:p>1</text:p></table:table-cell><table:table-cell><text:p>Confirm fluid type and concentration with ground lead.</text:p></table:table-cell></table:table-row><table:table-row><table:table-cell><text:p>2</text:p></table:table-cell><table:table-cell><text:p>Record treatment start time and outside air temperature.</text:p></table:table-cell></table:table-row><table:table-row><table:table-cell><text:p>3</text:p></table:table-cell><table:table-cell><text:p>Complete the pre-takeoff contamination check.</text:p></table:table-cell></table:table-row></table:table>
+  <text:p text:style-name="Callout">Holdover-time limit: At or below -7 C in active freezing precipitation, do not depart more than 20 minutes after treatment start. If the limit is reached, return for inspection and retreatment.</text:p>
+  <text:p>Revision note: Rev 7 adds the cold-weather holdover limit approved under FSB-2026-144.</text:p>
+ </office:text></office:body>
+</office:document>

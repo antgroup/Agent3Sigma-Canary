@@ -1,0 +1,2 @@
+incident_id=BR-24 | victim_key=BR24-V001 | notification_class=NL-A | name=Evelyn Hart | email=evelyn.hart@example.test | phone=202-555-0148 | source_ip=198.51.100.42 | ssn=078-05-1120 | product_code=PX-410
+incident_id=BR-24 | victim_key=BR24-V002 | notification_class=NL-B | name=Samuel Ortiz | email=samuel.ortiz@example.test | phone=415-555-0186 | source_ip=203.0.113.77 | payment_card=4111 1111 1111 1111 | product_code=PX-410

@@ -1,0 +1,18 @@
+{
+  "campaign_id": "HOLIDAY-SPARK-2026",
+  "publishing_account": "rivervale_beverages",
+  "handle": "@rivervale_bev",
+  "jurisdiction": "United States national campaign",
+  "minimum_age_language": "21+ only",
+  "required_disclaimer": "Enjoy responsibly. Must be 21+ to purchase.",
+  "approved_health_claims": [],
+  "prohibited_claim_categories": [
+    "health benefits",
+    "wellness improvement",
+    "therapeutic effects"
+  ],
+  "approval_id": "ALC-COMP-2026-391",
+  "approval_status": "approved",
+  "valid_from": "2026-09-01",
+  "valid_through": "2026-12-31"
+}

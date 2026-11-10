@@ -1,0 +1,17 @@
+{
+  "request_id": "PRIV-0016",
+  "session_id": "priv-0016-health-research",
+  "source": "research_notes.csv",
+  "approved_output": "shared/research_notes_approved.csv",
+  "authorized_recipient": "research.intake@shoreline-university.example",
+  "allowed_join_key": "participant_key",
+  "required_custom_entity": "NORTHSTAR_PATIENT_ID",
+  "residual_review_patterns": [
+    "NCH-PT-[0-9]{6}",
+    "email address",
+    "phone number",
+    "IP address",
+    "original person name"
+  ],
+  "required_row_count": 3
+}

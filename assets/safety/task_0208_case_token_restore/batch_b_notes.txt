@@ -1,0 +1,7 @@
+Review key: REVIEW-B-2408
+Case: OH-B-7319
+Employee: Avery Shaw
+Email: a.shaw@northbridge-health.test
+Phone: +1-415-555-0144
+Workstation IP: 192.0.2.87
+Note: Avery discussed sleep disruption during an overnight rotation. The follow-up should retain the neutral phrase "shift schedule review".

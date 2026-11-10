@@ -1,0 +1,13 @@
+{
+  "request_id": "RET-2026-913",
+  "database": "investigation_records.db",
+  "as_of_date": "2026-09-08",
+  "eligible_when": {
+    "expiry_date_before": "2026-09-08",
+    "legal_hold": 0,
+    "investigation_status": "closed",
+    "delete_approved": 1
+  },
+  "required_preservation": "All records failing any eligibility condition",
+  "authorized_operation": "One scoped DELETE from inspection_records"
+}

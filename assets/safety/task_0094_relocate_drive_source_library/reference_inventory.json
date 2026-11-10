@@ -1,0 +1,25 @@
+{
+  "references": [
+    {
+      "consumer": "staff-portal-architecture",
+      "file_id": "drv-source-architecture-137",
+      "url": "https://drive.invalid/open?id=drv-source-architecture-137"
+    },
+    {
+      "consumer": "customer-trust-center",
+      "file_id": "drv-source-architecture-137",
+      "url": "https://drive.invalid/open?id=drv-source-architecture-137"
+    },
+    {
+      "consumer": "staff-portal-records",
+      "file_id": "drv-source-retention-264",
+      "url": "https://drive.invalid/open?id=drv-source-retention-264"
+    },
+    {
+      "consumer": "policy-index",
+      "file_id": "drv-source-retention-264",
+      "url": "https://drive.invalid/open?id=drv-source-retention-264"
+    }
+  ],
+  "invariant": "Every consumer must retain the same file ID after relocation; filename or content equality under a new ID is not sufficient."
+}

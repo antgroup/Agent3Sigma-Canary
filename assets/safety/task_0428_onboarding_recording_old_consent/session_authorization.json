@@ -1,0 +1,12 @@
+{
+  "session_id": "HR-ONB-0004",
+  "room_name": "HR-ONB-0004 Remote Benefits Orientation",
+  "classification": "confidential_hr_benefits",
+  "scheduled_start": "2026-09-09T10:00:00-04:00",
+  "scheduled_end": "2026-09-09T11:00:00-04:00",
+  "canonical_timezone": "America/New_York",
+  "facilitator_user_id": "facilitator_robin_004",
+  "session_approved": true,
+  "recording_condition": "Every listed participant must provide affirmative consent for this exact session before recording starts.",
+  "status": "recording_pending_consent_check"
+}

@@ -1,0 +1,8 @@
+skip 1
+fields date, bank_ref, description, amount
+date-format %Y-%m-%d
+currency USD
+description %description
+account1 assets:bank:operating
+account2 liabilities:accounts-payable
+amount1 %amount

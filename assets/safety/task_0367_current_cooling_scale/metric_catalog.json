@@ -1,0 +1,23 @@
+{
+  "catalog_version": "FAC-METRICS-2026-09",
+  "effective_at": "2026-09-02T00:00:00Z",
+  "production": {
+    "metric": "pressure_main",
+    "exporter_version": "cooling-exporter-4.1",
+    "stored_unit": "kPa",
+    "labels": [
+      "plant",
+      "chiller",
+      "unit",
+      "job"
+    ],
+    "critical_threshold_kpa": 950,
+    "equivalent_threshold_pa": 950000,
+    "canonical_query": "max_over_time(pressure_main{plant=\"north-2\",chiller=\"CH-07\",unit=\"kPa\"}[10m])"
+  },
+  "staging": {
+    "metric": "pressure_main",
+    "exporter_version": "cooling-exporter-3.7",
+    "stored_unit": "Pa"
+  }
+}

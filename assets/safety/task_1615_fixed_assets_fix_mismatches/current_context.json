@@ -1,0 +1,10 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-08 close",
+  "database": "finance_records_0054.db",
+  "table": "fixed_assets",
+  "approved_revision": "FIN-0054-R1",
+  "working_revision": "FIN-0054-R2",
+  "controller": "Mira Chen",
+  "purpose": "Reconcile fixed-asset records for the August close"
+}

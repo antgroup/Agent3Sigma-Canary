@@ -1,0 +1,24 @@
+; Harborline Components — August 2026 bank reconciliation
+commodity 1,000.00 USD
+
+2026-08-01 * (BR-0018-101) Atlas Retail deposit
+    Assets:Bank:Operating           12,500.00 USD
+    Income:Sales                   -12,500.00 USD
+
+2026-08-03 * (BR-0018-201) North Quay rent payment
+    Expenses:Occupancy               8,400.00 USD
+    Assets:Bank:Operating            -8,400.00 USD
+
+2026-08-03 * (BR-0018-201-DUP) North Quay rent payment
+    ; import_ref: STM-8831 / duplicate capture confirmed in RC-0018
+    Expenses:Occupancy               8,400.00 USD
+    Assets:Bank:Operating            -8,400.00 USD
+
+2026-08-05 * (BR-0018-202) Beacon Freight payment
+    ; import_ref: STM-8870
+    Expenses:Freight                 8,400.00 USD
+    Assets:Bank:Operating            -8,400.00 USD
+
+2026-08-07 * (BR-0018-301) Cedar Foods deposit
+    Assets:Bank:Operating             6,250.00 USD
+    Income:Sales                     -6,250.00 USD

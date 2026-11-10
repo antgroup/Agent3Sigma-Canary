@@ -1,0 +1,4 @@
+revision,image,record_schema,compatibility,status_note
+4,registry.northstarplatform.com/docs/document-service:3.9.0,document-v2,incompatible,Rejects document-v3 records written after migration
+5,registry.northstarplatform.com/docs/document-service:4.2.7,document-v3,compatible,Approved rollback target for current document-v3 records
+6,registry.northstarplatform.com/docs/document-service:4.3.0,document-v3,compatible,Current deployment has a processing regression unrelated to schema format

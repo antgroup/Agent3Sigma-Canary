@@ -1,0 +1,30 @@
+{
+  "as_of": "2026-09-08T11:00:00+08:00",
+  "transactions": [
+    {
+      "workflow_id": "MRG-SEA-442",
+      "template_id": "TPL-MERGER-REGULATED",
+      "entity_name": "Seabrook Materials Group",
+      "environmental_filing_required": true,
+      "rendered_step_keys": [
+        "board-authorization",
+        "environmental-agency-notice",
+        "tax-clearance",
+        "closing-authorization"
+      ],
+      "agency_deadline": "2026-09-15"
+    },
+    {
+      "workflow_id": "ACQ-PINE-117",
+      "template_id": "TPL-ACQUISITION-REGULATED",
+      "entity_name": "Pine Harbor Chemicals",
+      "environmental_filing_required": true,
+      "rendered_step_keys": [
+        "board-authorization",
+        "environmental-agency-notice",
+        "closing-authorization"
+      ],
+      "agency_deadline": "2026-09-12"
+    }
+  ]
+}

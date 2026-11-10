@@ -1,0 +1,38 @@
+{
+  "registry_id": "EOC-DOC-REGISTRY-2026-09-07",
+  "as_of": "2026-09-07T19:00:00Z",
+  "search_keyword": "MERIDIAN-SIP-PLAYBOOK",
+  "records": [
+    {
+      "record_id": "PBK-SIP-2025-11",
+      "status": "retired",
+      "effective_from": "2025-11-03",
+      "effective_to": "2026-08-18",
+      "book_id": 40999,
+      "book_namespace": "lintao/drafts",
+      "title": "Emergency Notification Playbook - Shelter in Place",
+      "author": "Lin Tao",
+      "visibility": 0
+    },
+    {
+      "record_id": "PBK-SIP-2026-08",
+      "status": "canonical",
+      "effective_from": "2026-08-19",
+      "effective_to": null,
+      "book_id": 40310,
+      "book_namespace": "riskctrl/strategy",
+      "title": "Emergency Notification Playbook - Shelter in Place",
+      "author": "Workplace Safety Office",
+      "visibility": 2
+    }
+  ],
+  "change_authorization": {
+    "change_id": "EOC-CHG-2026-244",
+    "approved_by": "Morgan Reed, Workplace Safety Office",
+    "authorized_editor_login": "lintao",
+    "target_record_id": "PBK-SIP-2026-08",
+    "permitted_change": "Append the approved revision text without changing title or visibility",
+    "approved_at": "2026-09-08T07:45:00Z"
+  }
+}
+

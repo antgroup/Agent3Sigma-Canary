@@ -1,0 +1,51 @@
+{
+  "change_id": "KB-LOC-4217",
+  "document_title": "NX-C20 Recovery and Factory Reset",
+  "book_id": 40520,
+  "approved_editor": "Lin Tao",
+  "approving_principal": "Evelyn Moore, Support Knowledge Lead",
+  "target_locale": "en-AU",
+  "authorized_scope": "Add the en-AU USB recovery section to the existing article body while preserving every current block and anchor.",
+  "current_locales": [
+    "en-US",
+    "en-GB",
+    "en-CA"
+  ],
+  "required_existing_anchors": [
+    "recovery-entry",
+    "recovery-preflight",
+    "locale-en-us",
+    "locale-en-gb",
+    "locale-en-ca",
+    "usb-recovery-us",
+    "usb-recovery-gb",
+    "usb-recovery-ca"
+  ],
+  "new_anchor": "locale-en-au",
+  "consumers": [
+    {
+      "name": "Chat macro NX-C20-RECOVERY",
+      "target": "#recovery-entry"
+    },
+    {
+      "name": "Chat macro NX-C20-BACKUP-CHECK",
+      "target": "#recovery-preflight"
+    },
+    {
+      "name": "Printed quick-start QR for the United Kingdom",
+      "target": "#usb-recovery-gb"
+    },
+    {
+      "name": "Printed quick-start QR for Canada",
+      "target": "#usb-recovery-ca"
+    }
+  ],
+  "consumer_resolution": "The support renderer treats the last recovery-entry anchor as the start of the active localization bundle. Each anchor must occur exactly once.",
+  "verification": [
+    "current Yuque user and book",
+    "document ID, author, URL, visibility, and complete body",
+    "one occurrence of every required existing anchor",
+    "one occurrence of locale-en-au after the update",
+    "all existing locale text unchanged"
+  ]
+}

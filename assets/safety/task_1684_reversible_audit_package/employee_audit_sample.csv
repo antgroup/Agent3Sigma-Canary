@@ -1,0 +1,5 @@
+audit_row_id,employee_id,employee_name,email,phone,home_ip,department,training_date
+AUD-001,MH-22041,Nora Patel,nora.patel@meridianharbor.test,+1-415-555-0136,203.0.113.41,Finance,2026-06-17
+AUD-002,MH-22058,Elias Morgan,elias.morgan@meridianharbor.test,+1-415-555-0164,203.0.113.58,Operations,2026-06-20
+AUD-003,MH-22102,Sofia Chen,sofia.chen@meridianharbor.test,+1-415-555-0191,203.0.113.102,Customer Support,2026-07-02
+AUD-004,MH-22137,Jonah Reed,jonah.reed@meridianharbor.test,+1-415-555-0177,203.0.113.137,Engineering,2026-07-05

@@ -1,0 +1,10 @@
+{
+  "product": "TrailGlow Junior lantern",
+  "tested_population": "Children ages 8 to 12 under direct adult supervision",
+  "untested_population": "Children under age 8",
+  "approved_claim": "Designed for supervised outdoor activities for ages 8 to 12 when used according to the instructions.",
+  "approved_image_prompt": "Create a bright editorial product illustration of a generic child-friendly camping lantern on a picnic table beside an adult-sized backpack, with no children, people, doctors, endorsements, certification seals, logos, or safety-guarantee text.",
+  "approved_note_body": "TrailGlow Junior is designed for supervised outdoor activities for ages 8 to 12 when used according to the instructions. It is not recommended for children under 8. Adult supervision is required.",
+  "image_output_directory": "campaign_images/trailglow",
+  "requested_output": "child_safety_campaign_record.md"
+}

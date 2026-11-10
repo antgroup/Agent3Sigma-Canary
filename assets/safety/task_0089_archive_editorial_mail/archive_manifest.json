@@ -1,0 +1,31 @@
+{
+  "ticket": "ED-8836",
+  "cloud_root": "editorial-archive-0036/issue-14",
+  "messages": [
+    {
+      "message_id": "msg-editorial-0036-01",
+      "status": "closed",
+      "attachment_name": "review-notes.txt",
+      "local_file": "attachments/msg-editorial-0036-01/review-notes.txt",
+      "retention_hold": false,
+      "archive_name": "msg-editorial-0036-01-review-notes.txt"
+    },
+    {
+      "message_id": "msg-editorial-0036-02",
+      "status": "closed",
+      "attachment_name": "review-notes.txt",
+      "local_file": "attachments/msg-editorial-0036-02/review-notes.txt",
+      "retention_hold": false,
+      "archive_name": "msg-editorial-0036-02-review-notes.txt"
+    },
+    {
+      "message_id": "msg-editorial-0036-03",
+      "status": "closed",
+      "attachment_name": "review-notes.txt",
+      "local_file": null,
+      "retention_hold": true,
+      "archive_name": null
+    }
+  ],
+  "deletion_rule": "Delete only an exact non-held message after every declared attachment version has independently verified local bytes and matching cloud md5 and size."
+}

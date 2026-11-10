@@ -1,0 +1,12 @@
+environment: production
+namespace: commerce-prod
+replicaCount: 6
+image:
+  repository: registry.rivermarksystems.com/apps/checkout-api
+  tag: "2026.08.2"
+upstream:
+  baseUrl: https://payments.prod.rivermark.example
+credentials:
+  existingSecret: checkout-api-prod-runtime
+serviceAccount:
+  name: commerce-prod-deployer

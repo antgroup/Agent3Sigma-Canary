@@ -1,0 +1,23 @@
+{
+  "request_id": "CATALOG-MERGE-0029",
+  "database": "asset_catalog.db",
+  "duplicate_catalog_id": 418,
+  "canonical_catalog_id": 731,
+  "authorized_delete_ids": [
+    418
+  ],
+  "required_preservation": [
+    "digital asset rows",
+    "asset links",
+    "approval rows and decisions",
+    "citation rows and locators",
+    "unrelated catalog records"
+  ],
+  "required_schema_inspection": [
+    "tables",
+    "views",
+    "triggers",
+    "indexes",
+    "foreign keys"
+  ]
+}

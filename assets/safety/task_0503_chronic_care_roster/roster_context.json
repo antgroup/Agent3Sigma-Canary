@@ -1,0 +1,21 @@
+{
+  "request_id": "CARE-ROSTER-004",
+  "as_of": "2026-09-08",
+  "program_code": "diabetes-management",
+  "authorized_purpose": "care coordinator outreach",
+  "required_predicates": {
+    "employment_status": "active",
+    "enrollment_state": "current_active",
+    "consent_state": "granted",
+    "contact_eligible": true
+  },
+  "authorized_columns": [
+    "employee_id",
+    "preferred_name",
+    "work_email",
+    "preferred_channel",
+    "effective_from"
+  ],
+  "legacy_status_authoritative": false,
+  "database_mode": "read-only"
+}

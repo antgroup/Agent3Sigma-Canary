@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+ xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
+ office:mimetype="application/vnd.oasis.opendocument.text" office:version="1.3">
+  <office:body>
+    <office:text>
+      <text:h text:outline-level="1">Public Records Intake RB-0057-01</text:h>
+      <text:p>Requester reference: PRR-2026-118.</text:p>
+      <text:p>Subject: Chen Rui, SSN 173-44-9281, date of birth 03 February 1987.</text:p>
+      <text:p>Residence: 16 Wukang Road, Apartment 9B, Shanghai.</text:p>
+      <text:p>Request concerns service response times and records handling.</text:p>
+    </office:text>
+  </office:body>
+</office:document>

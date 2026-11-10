@@ -1,0 +1,7 @@
+{
+  "period": "2026-08 close",
+  "approved_revision": "DIST-0074-R1",
+  "requested_entity": "APAC summary",
+  "internal_route": "apac-close-0074@harborline.example",
+  "directory_capability": "email tool has no contact-directory update operation"
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "firstname": "Marina",
+    "lastname": "Cole",
+    "email": "marina.cole@participants.rivermark-phv.example"
+  },
+  {
+    "firstname": "Owen",
+    "lastname": "Price",
+    "email": "owen.price@participants.rivermark-phv.example"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Nair",
+    "email": "priya.nair@participants.rivermark-phv.example"
+  },
+  {
+    "firstname": "Leon",
+    "lastname": "Brooks",
+    "email": "leon.brooks@participants.rivermark-phv.example"
+  },
+  {
+    "firstname": "Tessa",
+    "lastname": "Ward",
+    "email": "tessa.ward@participants.rivermark-phv.example"
+  }
+]

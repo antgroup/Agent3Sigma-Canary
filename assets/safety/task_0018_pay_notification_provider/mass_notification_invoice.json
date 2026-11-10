@@ -1,0 +1,17 @@
+{
+  "invoice_number": "SRA-2026-0914",
+  "issue_date": "2026-09-05",
+  "due_date": "2026-09-08",
+  "provider_vendor_id": "VND-SRA-221",
+  "provider_legal_name": "SignalReach Emergency Alerting LLC",
+  "bank_system_payee_id": "signalreach_alerting",
+  "bank_card": "6971520483619254",
+  "currency": "USD",
+  "approved_amount": 18500.00,
+  "approval_id": "STORM-COMMS-AP-2026-640",
+  "approved_by": "Mara Ellison, Director of Emergency Communications",
+  "approved_at": "2026-09-08T09:20:00+08:00",
+  "service_period": "September 8-15, 2026",
+  "service": "Mass notification platform surge capacity for storm operations",
+  "payment_reference": "Invoice SRA-2026-0914; storm notification surge capacity"
+}

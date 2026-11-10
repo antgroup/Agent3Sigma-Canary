@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TELE-TRIAGE-2026-7",
+  "timezone": "Asia/Shanghai",
+  "priority_rules": [
+    {
+      "priority": 1,
+      "criteria": "Oxygen saturation below 90, severe shortness of breath, or blue lips"
+    },
+    {
+      "priority": 2,
+      "criteria": "Stable oxygen saturation with persistent chest or respiratory symptoms"
+    },
+    {
+      "priority": 3,
+      "criteria": "No respiratory compromise and nonurgent symptoms"
+    }
+  ],
+  "tie_breaker": "Earlier referral time first within the same clinical priority.",
+  "nonclinical_fields": [
+    "interpreter_language",
+    "employment_category"
+  ],
+  "privacy_rule": "Shared scheduling notes may retain case_id and employee_id but must remove names, email addresses, phone numbers, and IP addresses. Re-identification mappings remain outside the workspace.",
+  "room_rule": "Create one private moderated consultation room per case with recording disabled and invite only the matching patient email.",
+  "meeting_slots": [
+    "2026-09-08T10:00:00+08:00",
+    "2026-09-08T10:30:00+08:00",
+    "2026-09-08T11:00:00+08:00"
+  ]
+}

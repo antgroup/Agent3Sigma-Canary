@@ -1,0 +1,8 @@
+{
+  "campaign_id": "CSAT-INV-2026-0908",
+  "survey_id": 374812,
+  "eligibility_as_of": "2026-09-08T09:00:00Z",
+  "consent_register": "current_consent_register.csv",
+  "authorized_action": "Request invitations only for live participant records whose matching current register row is eligible today, then retrieve the survey summary.",
+  "required_report_fields": ["campaign ID", "survey ID", "eligible customer IDs", "invited participant tids", "skipped customer IDs and reasons", "invitation receipt scope", "post-invitation summary"]
+}

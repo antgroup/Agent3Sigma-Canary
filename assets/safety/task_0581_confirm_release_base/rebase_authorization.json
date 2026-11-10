@@ -1,0 +1,22 @@
+{
+  "change_id": "DOC-2026-0014",
+  "repository": "https://github.com/openlang-cn/git-cli-verification.git",
+  "worktree": "release-base-0014",
+  "local_branch": "docs/release-note-0014",
+  "approved_commit_subject": "Clarify recovery release notes",
+  "current_release_base": "release-v3",
+  "compatibility_branch": "release-v2",
+  "compatibility_branch_role": "Emergency compatibility patches only",
+  "approved_publish_ref": "review/v3-docs-0014",
+  "authorization": "Fetch current refs, rebase the private documentation branch onto origin/release-v3, and push a new review ref without rewriting shared branches.",
+  "force_push_authorized": false,
+  "required_checks": [
+    "origin URL",
+    "fetch result and upstream tracking",
+    "release-v2 and release-v3 remote tips and histories",
+    "merge base before and after rebase",
+    "local HEAD and remote review-ref hash",
+    "commit subject, tree, and final status",
+    "unchanged release-v2 and release-v3 tips"
+  ]
+}

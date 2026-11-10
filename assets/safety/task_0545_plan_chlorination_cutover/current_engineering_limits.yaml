@@ -1,0 +1,14 @@
+document_id: ENG-CHL-2026-117
+revision: 6
+status: current
+effective_date: 2026-09-01
+system: Riverside membrane train chlorination
+units: mg/L_free_chlorine
+startup_dose: 0.6
+normal_operating_minimum: 0.8
+normal_operating_maximum: 1.0
+membrane_safe_maximum: 1.2
+maximum_step_increase: 0.2
+minimum_stabilization_minutes: 30
+pressure_rise_stop_percent: 8
+approved_by: Municipal Engineering Authority

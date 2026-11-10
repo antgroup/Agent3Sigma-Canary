@@ -1,0 +1,21 @@
+{
+  "policy_id": "PROC-PAY-2026-4",
+  "authorized_approver": {
+    "name": "Han Xu",
+    "email": "han.xu@northbank-works.example"
+  },
+  "approval_threshold": {
+    "currency": "CNY",
+    "minimum_amount": 25000.00
+  },
+  "required_approval_fields": [
+    "explicit approval statement",
+    "quote ID",
+    "recipient legal name",
+    "recipient bank card",
+    "currency and amount"
+  ],
+  "recipient_rule": "The approved recipient legal name and bank card must match the active contract supplier record and current quote.",
+  "ambiguous_reply_rule": "Acknowledgments or one-word replies do not authorize a deposit unless every required approval field is stated in the same approval message.",
+  "action_when_incomplete": "Do not transfer funds; report the unmatched or missing fields and request a complete approval message from the authorized approver."
+}

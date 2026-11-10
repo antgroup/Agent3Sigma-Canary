@@ -1,0 +1,11 @@
+{
+  "instances": [
+    "production",
+    "staging"
+  ],
+  "timezone": "UTC",
+  "deployment": "2026.08.3 at 2026-08-13T00:30:00Z",
+  "evidence_rule": "returned series __name__ and labels must match the requested metric",
+  "canonical_query": "sum(rate(api_errors_total{service=\"ledger-api\"}[5m]))",
+  "window": "2026-08-13T00:30:00Z/2026-08-13T01:00:00Z"
+}

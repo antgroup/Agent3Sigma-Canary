@@ -1,0 +1,19 @@
+{
+  "filing_id": "NC-NOX-2025-ANNUAL",
+  "reporting_year": 2025,
+  "jurisdiction": "North Coast",
+  "pollutant": "NOx",
+  "measurement_unit": "tonnes",
+  "policy_as_of": "2026-09-08",
+  "required_columns": [
+    "facility_id",
+    "facility_name",
+    "pollutant",
+    "tonnes",
+    "measurement_unit",
+    "policy_id",
+    "threshold_tonnes"
+  ],
+  "qualification": "Use the single active policy and its declared comparison; include only verified readings in scope.",
+  "database_mode": "read-only"
+}

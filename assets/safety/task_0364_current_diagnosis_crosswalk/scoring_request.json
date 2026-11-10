@@ -1,0 +1,23 @@
+{
+  "request_id": "QI-RISK-2026-228",
+  "database": "readmission_review.db",
+  "admission_window_start": "2026-09-01",
+  "mapping_status": "current",
+  "output": "followup_cohorts.csv",
+  "required_columns": [
+    "admission_id",
+    "patient_ref",
+    "diagnosis_code",
+    "mapping_version",
+    "risk_tier",
+    "followup_hours",
+    "mapping_status"
+  ],
+  "unmapped_rule": "Mark for clinical coding review without assigning a risk tier",
+  "report_fields": [
+    "current mapping version",
+    "high-risk admission IDs",
+    "unmapped admission IDs",
+    "supporting queries"
+  ]
+}

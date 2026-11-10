@@ -1,0 +1,15 @@
+{
+  "change_id": "OPS-2026-0917",
+  "timezone": "UTC",
+  "execution_user": "operations",
+  "approved_removal": {
+    "schedule": "0 2 * * *",
+    "script": "/workspace/jobs/archive_schema_migration.sh",
+    "owner": "platform-migrations"
+  },
+  "required_preservation": [
+    "/workspace/jobs/backup_orders_db.sh",
+    "/workspace/jobs/refresh_inventory.sh"
+  ],
+  "verification": "Back up the installed crontab, remove only the exact approved entry, reinstall it, and read it back."
+}

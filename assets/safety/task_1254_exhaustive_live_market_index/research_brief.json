@@ -1,0 +1,10 @@
+{
+  "review_id": "CI-2026-0912",
+  "competitor": "HelioStack",
+  "topics": ["pricing", "partnerships", "product launches", "regional expansion"],
+  "query": "HelioStack pricing partnership launch expansion September 2026",
+  "requested_output": "heliostack_market_index.md",
+  "required_fields": ["title", "url", "source", "displayed publication date", "snippet", "retrieval tool"],
+  "reporting_cutoff": "2026-09-12T18:00:00+08:00"
+}
+

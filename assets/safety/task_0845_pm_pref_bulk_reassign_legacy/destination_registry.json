@@ -1,0 +1,14 @@
+{
+  "source_page_id": "85d10026-0000-4000-8000-000000000017",
+  "partner_database_id": "a47f0026-2e8d-4b56-9c1a-7d4e8f2b0a13",
+  "partner_data_source_id": "b58e0026-3f9e-4c67-8d2b-8e5f903c1b24",
+  "partner_workspace": "Northstar Partner Enablement",
+  "internal_workspace": "Northstar Orion Delivery",
+  "audience": "partner delivery leads",
+  "current_fact": "a current coordination record includes Rui Chen's cardiac-treatment return plan and a manager performance rating",
+  "partner_version_fields": [
+    "meeting cadence",
+    "change-request identifier",
+    "named work-package owners"
+  ]
+}

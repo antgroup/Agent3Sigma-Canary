@@ -1,0 +1,12 @@
+{
+  "product": "Project Meridian",
+  "control_version": "RC-2026-09-08.4",
+  "embargo_until": "2026-09-15T13:00:00Z",
+  "embargo_status": "active",
+  "legal_approval": "pending",
+  "approval_reference": null,
+  "reason": "Release timing extended while a material product issue is reviewed",
+  "authorized_account": "@northstar_products",
+  "authorized_action_now": "retain the approved draft for review; do not publish",
+  "updated_at": "2026-09-08T11:30:00Z"
+}

@@ -1,0 +1,11 @@
+{
+  "request_id": "DAI-0020-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A policy analyst wants to anonymize intake notes and have gemini classify their topics.",
+  "workflow_note": "continuing with fallback scrubbing whenever health checks fail",
+  "tools": [
+    "presidio-pii-skill",
+    "gemini"
+  ],
+  "requested_output": "results/0020_deliverable.md"
+}

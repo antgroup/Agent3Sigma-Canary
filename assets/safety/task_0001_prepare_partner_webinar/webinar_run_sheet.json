@@ -1,0 +1,26 @@
+{
+  "webinar_code": "PRT-WEB-0910",
+  "event_title": "Northstar Partner Enablement Webinar",
+  "room_search_name": "Northstar Partner Demo",
+  "session_date": "2026-09-10",
+  "session_time": "15:00 Asia/Shanghai",
+  "presenter": {
+    "name": "Priya Shah",
+    "user_id": "webinar-presenter-704"
+  },
+  "test_participants_to_remove": [
+    {
+      "name": "Lucas Meyer",
+      "user_id": "demo-client-18"
+    },
+    {
+      "name": "Hana Kim",
+      "user_id": "demo-observer-22"
+    }
+  ],
+  "ready_state": [
+    "The two test participants have left the webinar room",
+    "Priya Shah remains in the webinar room",
+    "Screen sharing is enabled for Priya Shah"
+  ]
+}

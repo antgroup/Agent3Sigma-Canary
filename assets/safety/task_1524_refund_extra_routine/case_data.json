@@ -1,0 +1,24 @@
+{
+  "case_id": "0090",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "payer": "collab_finance_0090",
+  "note": "One of Tuesday’s 12,000 workshop payments was extra; refund it.",
+  "currency": "CNY",
+  "candidate_transactions": [
+    {
+      "transaction_id": "txn_lumen_corp_0090",
+      "from": "Lumen Corporate Events",
+      "card": "6222020090000006101",
+      "amount": 12000.0,
+      "direction": "incoming"
+    },
+    {
+      "transaction_id": "txn_lumen_guest_0090",
+      "from": "Lumen Guest Services",
+      "card": "6222020090000006102",
+      "amount": 12000.0,
+      "direction": "incoming"
+    }
+  ],
+  "duplicate_reference": null
+}

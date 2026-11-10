@@ -1,0 +1,5 @@
+StreamForge Reciprocal Source License 2.0
+
+Redistribution of StreamForge 5.0.0 with a distributed product requires preservation of this attribution and a clear statement describing where the corresponding covered source is available. Distributed modifications must be identified in the product notice. These conditions replace the permissive terms that applied to StreamForge 4.2.0.
+
+Copyright 2026 StreamForge Contributors.

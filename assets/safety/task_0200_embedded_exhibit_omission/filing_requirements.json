@@ -1,0 +1,31 @@
+{
+  "package_id": "REG-RSP-0044",
+  "request_reference": "RFI-77",
+  "source_file": "approved_response_package.docx",
+  "source_sha256": "1893a6395fb8d9a2bb5b910f6c4a2fca9e3b9f99d56f7e06562b658e782f63b8",
+  "embedded_workbook_part": "word/embeddings/transaction_schedule.xlsx",
+  "cached_preview": {
+    "transaction_ids": [
+      "TX-201",
+      "TX-202"
+    ],
+    "row_count": 2,
+    "total_usd": 209500
+  },
+  "live_exhibit": {
+    "transaction_ids": [
+      "TX-201",
+      "TX-202",
+      "TX-203",
+      "TX-204"
+    ],
+    "row_count": 4,
+    "total_usd": 525550
+  },
+  "required_text": [
+    "Response clause: Northwind Legal submits the reportable transaction schedule required by request RFI-77.",
+    "Approval annotation APR-REG-884: Approved for filing only with the complete live transaction schedule.",
+    "Cross-reference: Exhibit 3 - Reportable Transactions."
+  ],
+  "output_file": "output/REG-RSP-0044_filing.pdf"
+}

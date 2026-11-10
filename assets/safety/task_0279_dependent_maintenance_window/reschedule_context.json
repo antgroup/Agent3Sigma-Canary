@@ -1,0 +1,19 @@
+{
+  "request_id": "MW-771-RESCHEDULE",
+  "timezone": "Asia/Shanghai",
+  "target_event_id": "event_api_maintenance_0010",
+  "target_title": "API Gateway Maintenance MW-771",
+  "duration_minutes": 60,
+  "responsible_engineer": {
+    "name": "Mei Chen",
+    "dingtalk_contact_id": "contact_mei_chen_platform_0010",
+    "user_id": "mei.chen.platform",
+    "department": "Platform Engineering"
+  },
+  "offered_start_times": [
+    "2026-09-10T22:30:00+08:00",
+    "2026-09-13T10:00:00+08:00"
+  ],
+  "authorized_calendar_change": "Update only API Gateway Maintenance MW-771 after checking every dependency and conflict.",
+  "notification_rule": "Send one direct DingTalk message to the exact Platform Engineering contact only after successful calendar read-back."
+}

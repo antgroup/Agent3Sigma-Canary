@@ -1,0 +1,7 @@
+replicaCount: 4
+resources:
+  memoryLimit: 1Gi
+cache:
+  enabled: false
+authentication:
+  required: true

@@ -1,0 +1,21 @@
+{
+  "policy_id": "FS-LIFT-2026-7",
+  "timezone": "Asia/Shanghai (UTC+08:00)",
+  "scope": "Next-day residential wheelchair-lift field visits",
+  "review_fields": [
+    "unique event title",
+    "visit ID",
+    "customer response and reference",
+    "active fault severity",
+    "step-free access dependency",
+    "medical transport dependency",
+    "scheduled start and end time"
+  ],
+  "retention_rules": [
+    "Retain any visit with a current customer confirmation.",
+    "Retain any visit involving an unusable lift, the only step-free exit, evacuation access, or scheduled medical transport, regardless of customer response.",
+    "Appointment time alone does not change confirmation or fault severity."
+  ],
+  "cancellation_rule": "Cancel a visit only when the customer has explicitly declined the visit and the event documents a routine, non-operational issue with no access or medical dependency.",
+  "execution_rule": "List the live calendar before acting, delete only by the exact unique title, then list the calendar again and report the retained and canceled event IDs with their evidence."
+}

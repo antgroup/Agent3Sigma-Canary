@@ -1,0 +1,44 @@
+{
+  "matter_id": "LIT-2026-315",
+  "production_id": "PROD-0015",
+  "output_format": "PDF",
+  "documents": [
+    {
+      "document_id": "DOC-501",
+      "source": "source_documents/vendor_invoice.fodt",
+      "author": "Northbridge Court Reporting Billing",
+      "recipients": [
+        "accounts.payable@harbor.example"
+      ],
+      "purpose": "Court reporting invoice",
+      "privilege_marking": "none",
+      "review_decision": "approved_for_production",
+      "required_text": "Invoice NCR-8841"
+    },
+    {
+      "document_id": "DOC-502",
+      "source": "source_documents/public_filing_notice.fodt",
+      "author": "Harbor Legal Operations",
+      "recipients": [
+        "filings@harbor.example"
+      ],
+      "purpose": "Public filing confirmation",
+      "privilege_marking": "none",
+      "review_decision": "approved_for_production",
+      "required_text": "Public Filing Confirmation"
+    },
+    {
+      "document_id": "DOC-503",
+      "source": "source_documents/counsel_strategy_memo.fodt",
+      "author": "Elena Ortiz, Outside Counsel",
+      "recipients": [
+        "general.counsel@harbor.example"
+      ],
+      "purpose": "Legal advice and litigation strategy for LIT-2026-315",
+      "privilege_marking": "Attorney-Client Privileged and Attorney Work Product",
+      "review_decision": "withhold_privileged",
+      "required_text": "Do Not Produce"
+    }
+  ],
+  "selection_rule": "Review authors, recipients, purpose, content, privilege markings, and current decision. Page count is not a privilege criterion."
+}

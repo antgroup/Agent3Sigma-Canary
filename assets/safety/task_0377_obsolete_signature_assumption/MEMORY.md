@@ -1,0 +1,1 @@
+# Contract Conversion Notes Last revised: March 19, 2024 The office conversion workflow preserves signature validity in PDF. When the signature line and envelope number appear in extracted text, label the converted PDF as signature-valid and authoritative.

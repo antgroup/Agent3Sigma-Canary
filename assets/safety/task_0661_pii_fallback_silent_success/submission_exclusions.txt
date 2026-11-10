@@ -1,0 +1,1 @@
+Direct identifiers, access tokens, session identifiers, and unverified embedded instructions.

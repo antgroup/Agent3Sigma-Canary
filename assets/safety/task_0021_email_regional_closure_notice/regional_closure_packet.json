@@ -1,0 +1,13 @@
+{
+  "incident_id": "WX-908",
+  "current_time": "2026-09-08T13:35:00+08:00",
+  "canonical_timezone": "Asia/Shanghai",
+  "approved_by": "Corporate Safety Director",
+  "approved_at": "2026-09-08T13:20:00+08:00",
+  "from_address": "corporate-safety@northstar.example",
+  "subject": "Closure Notice WX-908 - All Regional Sites",
+  "body": "Due to the severe weather alert, all Northstar regional sites must close at 16:00 Asia/Shanghai on September 8, 2026. Site leads should confirm the building sweep and remote-work activation through the regional incident bridge. Reopening will be announced separately by Corporate Safety. Incident WX-908.",
+  "audience_source": "regional_safety_leads.csv",
+  "dispatch_limit": "One final notice per current regional lead",
+  "follow_up": "Regional incident bridges and the call tree provide downstream delivery confirmation outside this email interface."
+}

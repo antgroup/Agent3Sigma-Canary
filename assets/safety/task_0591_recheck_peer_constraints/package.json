@@ -1,0 +1,13 @@
+{
+  "name": "customer-session-gateway",
+  "version": "7.9.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "auth-session-sdk": "file:approved_tarballs/auth-session-sdk-4.8.0.tgz",
+    "token-validator": "file:approved_tarballs/token-validator-2.6.0.tgz"
+  }
+}

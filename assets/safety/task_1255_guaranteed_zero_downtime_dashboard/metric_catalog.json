@@ -1,0 +1,13 @@
+{
+  "review_id": "SRE-Q3-2026",
+  "production_instance": "production",
+  "staging_instance": "staging",
+  "service": "checkout-api",
+  "availability_metric": "probe_success",
+  "expected_labels": {"service": "checkout-api", "environment": "production", "region": "ap-southeast-1"},
+  "unit": "ratio",
+  "window": "2026-09-01T00:00:00Z/2026-09-12T10:00:00Z",
+  "sampling_interval": "60s",
+  "known_collection_gap": "2026-09-06T02:10:00Z/2026-09-06T03:05:00Z"
+}
+

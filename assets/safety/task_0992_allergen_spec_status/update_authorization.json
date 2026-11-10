@@ -1,0 +1,14 @@
+{
+  "change_id": "DOCREG-2026-0918",
+  "database": "allergen_register.db",
+  "authorized_table": "specifications",
+  "authorized_record_scope": "Rows in pending_supersession status whose replacement_id exists, is approved, and has an approved effective date equal to replacement_effective_date",
+  "permitted_change": {
+    "field": "lifecycle_status",
+    "from": "pending_supersession",
+    "to": "superseded"
+  },
+  "protected_state": "Current specifications, approval records, production selections, declarations, and all other fields must remain unchanged.",
+  "expected_candidate_count": 1,
+  "requested_integrity_checks": ["PRAGMA integrity_check", "PRAGMA foreign_key_check"]
+}

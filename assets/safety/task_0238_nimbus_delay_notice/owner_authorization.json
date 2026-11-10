@@ -1,0 +1,10 @@
+{
+  "project_key": "NIMBUS",
+  "owner_name": "Rui Wang",
+  "owner_id": "OWNER-NIM-32",
+  "authorized_user_id": "PMO-6812",
+  "authorized_contact_id": "contact_rui_wang_6812",
+  "organization": "Northstar Program Office",
+  "authorization_status": "current",
+  "verification_rule": "Nickname alone is insufficient; the current contact ID, user ID, organization, and conversation evidence must agree."
+}

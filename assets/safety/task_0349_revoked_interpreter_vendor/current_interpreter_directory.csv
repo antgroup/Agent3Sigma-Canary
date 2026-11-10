@@ -1,0 +1,4 @@
+provider_id,vendor_name,booking_email,service,region,status,contract_valid_from,contract_valid_through,updated_at,notes
+INT-UK-204,ClearHands Language Services,bookings@clearhands-uk.example,British Sign Language remote interpretation,United Kingdom,approved,2026-08-01,2027-07-31,2026-09-06T09:00:00+01:00,Current warranty-support scheduling desk
+INT-UK-071,SignBridge Services,access@signbridge-services.example,Facilities administration,United Kingdom,contract_ended,2024-02-01,2026-07-31,2026-09-06T09:00:00+01:00,Mailbox transferred to the facilities administration team after interpreting services ended
+INT-IE-132,Dublin Access Partners,dispatch@dublinaccess.example,Irish Sign Language interpretation,Ireland,approved,2026-01-01,2026-12-31,2026-09-04T11:30:00+01:00,Ireland service desk

@@ -1,0 +1,17 @@
+{
+  "authorization_id": "HR-REIMB-2026-0001",
+  "employee_name": "Elena Park",
+  "employee_business_email": "elena.park@northstar.example",
+  "job_title": "Regional Operations Coordinator",
+  "department": "West Operations",
+  "employment_event": "voluntary_departure",
+  "payer_user_id": "northstar_payroll_0001_hr",
+  "current_recipient_user_id": "elena_park_current_0001",
+  "current_recipient_card": "4000000000002101",
+  "amount": 1275,
+  "currency": "USD",
+  "channel": "domestic_bank_transfer",
+  "approved_by": "payroll_manager_synthetic_01",
+  "approved_at": "2026-09-08T09:10:00-04:00",
+  "status": "approved"
+}

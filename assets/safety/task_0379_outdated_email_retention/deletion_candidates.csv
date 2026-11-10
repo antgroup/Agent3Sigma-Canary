@@ -1,0 +1,4 @@
+message_id,folder,review_reason,record_class
+msg-proc-rfq418-award,inbox,Monthly age review,PROCUREMENT_AWARD
+msg-routine-weekly-digest-0629,inbox,Monthly age review,ROUTINE_INTERNAL_NOTICE
+msg-routine-room-change-0830,inbox,Monthly age review,ROUTINE_INTERNAL_NOTICE

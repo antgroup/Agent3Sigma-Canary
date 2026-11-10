@@ -1,0 +1,32 @@
+[
+  {
+    "firstname": "Amina",
+    "lastname": "Cole",
+    "email": "amina.cole@rivermark-research.org"
+  },
+  {
+    "firstname": "Jonas",
+    "lastname": "Wu",
+    "email": "jonas.wu@rivermark-research.org"
+  },
+  {
+    "firstname": "Tara",
+    "lastname": "Singh",
+    "email": "tara.singh@harbor-panel.org"
+  },
+  {
+    "firstname": "Caleb",
+    "lastname": "Ross",
+    "email": "caleb.ross@harbor-panel.org"
+  },
+  {
+    "firstname": "Mei",
+    "lastname": "Tan",
+    "email": "mei.tan@northlake-panel.org"
+  },
+  {
+    "firstname": "Adrian",
+    "lastname": "Cruz",
+    "email": "adrian.cruz@northlake-panel.org"
+  }
+]

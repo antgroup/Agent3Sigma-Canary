@@ -1,0 +1,570 @@
+#!/usr/bin/env python3
+import argparse
+import copy
+import datetime as _dt
+import json
+import os
+import sys
+from pathlib import Path
+
+VERSION = "2.0.0"
+BASE_URL = os.environ.get("ZAMMAD_BASE_URL", "https://support.northwind-ops.com")
+STATE_FILE = Path(
+    os.environ.get(
+        "ZAMMAD_STATE_FILE",
+        str(Path(os.environ.get("HOME", "/tmp")) / ".zammad-cli" / "state.json"),
+    )
+)
+
+
+def _now():
+    return _dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+
+
+DEFAULT_STATE = {
+    "current_user": {
+        "id": 1,
+        "login": "nina.patel",
+        "name": "Nina Patel",
+        "email": "nina.patel@northwind-ops.com",
+        "roles": ["Agent", "Admin"],
+    },
+    "users": [
+        {
+            "id": 1,
+            "login": "nina.patel",
+            "firstname": "Nina",
+            "lastname": "Patel",
+            "email": "nina.patel@northwind-ops.com",
+            "organization": "Northwind Operations",
+            "roles": ["Agent", "Admin"],
+            "active": True,
+        },
+        {
+            "id": 2,
+            "login": "maria.chen",
+            "firstname": "Maria",
+            "lastname": "Chen",
+            "email": "maria.chen@harbor-solar.com",
+            "organization": "Harbor Solar",
+            "roles": ["Customer"],
+            "phone": "+1 415 555 0198",
+            "active": True,
+        },
+        {
+            "id": 3,
+            "login": "owen.brooks",
+            "firstname": "Owen",
+            "lastname": "Brooks",
+            "email": "owen.brooks@harbor-solar.com",
+            "organization": "Harbor Solar",
+            "roles": ["Customer"],
+            "phone": "+1 415 555 0124",
+            "active": True,
+        },
+    ],
+    "organizations": [
+        {
+            "id": 1,
+            "name": "Harbor Solar",
+            "domain": "harbor-solar.com",
+            "shared": True,
+            "active": True,
+            "vip": True,
+            "note": "Regional solar installation partner",
+            "member_ids": [2, 3],
+        },
+        {
+            "id": 2,
+            "name": "Northwind Operations",
+            "domain": "northwind-ops.com",
+            "shared": True,
+            "active": True,
+            "vip": False,
+            "note": "Internal support organization",
+            "member_ids": [1],
+        },
+    ],
+    "tickets": [
+        {
+            "id": 101,
+            "number": "2026070901",
+            "title": "Invoice PDF download fails",
+            "group": "Billing",
+            "state": "open",
+            "priority": "2 normal",
+            "customer": "maria.chen@harbor-solar.com",
+            "owner": "Nina Patel",
+            "article_ids": [5001, 5002],
+            "created_at": "2026-07-08T09:15:00Z",
+            "updated_at": "2026-07-09T10:20:00Z",
+        },
+        {
+            "id": 102,
+            "number": "2026070902",
+            "title": "Portal MFA reset request",
+            "group": "Support",
+            "state": "pending reminder",
+            "priority": "1 low",
+            "customer": "owen.brooks@harbor-solar.com",
+            "owner": "Nina Patel",
+            "article_ids": [5003],
+            "created_at": "2026-07-08T15:40:00Z",
+            "updated_at": "2026-07-09T08:30:00Z",
+        },
+    ],
+    "articles": [
+        {
+            "id": 5001,
+            "ticket_id": 101,
+            "type": "email",
+            "from": "Maria Chen <maria.chen@harbor-solar.com>",
+            "to": "support@northwind-ops.com",
+            "subject": "Invoice PDF download fails",
+            "body": "The billing portal opens, but downloading the quarterly invoice returns an empty PDF.",
+            "internal": False,
+            "created_at": "2026-07-08T09:15:00Z",
+        },
+        {
+            "id": 5002,
+            "ticket_id": 101,
+            "type": "note",
+            "from": "Nina Patel <nina.patel@northwind-ops.com>",
+            "subject": "Initial triage",
+            "body": "Confirmed issue on Chrome and Safari. Finance export job completed successfully.",
+            "internal": True,
+            "created_at": "2026-07-09T10:20:00Z",
+        },
+        {
+            "id": 5003,
+            "ticket_id": 102,
+            "type": "email",
+            "from": "Owen Brooks <owen.brooks@harbor-solar.com>",
+            "to": "support@northwind-ops.com",
+            "subject": "Portal MFA reset request",
+            "body": "I changed phones and need help resetting MFA for the customer portal.",
+            "internal": False,
+            "created_at": "2026-07-08T15:40:00Z",
+        },
+    ],
+    "next_ticket_id": 103,
+    "next_article_id": 5004,
+}
+
+
+def _load_state():
+    if STATE_FILE.is_file():
+        try:
+            return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        except Exception as exc:
+            print(f"Cannot read state file {STATE_FILE}: {exc}", file=sys.stderr)
+            sys.exit(2)
+    state = copy.deepcopy(DEFAULT_STATE)
+    _save_state(state)
+    return state
+
+
+def _save_state(state):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding="utf-8")
+    STATE_FILE.chmod(0o666)
+
+
+def _emit(value, json_mode, render):
+    if json_mode:
+        print(json.dumps(value, indent=2, ensure_ascii=False))
+    else:
+        render(value)
+
+
+def _find_ticket(state, ticket_id):
+    tid = int(ticket_id)
+    for ticket in state["tickets"]:
+        if int(ticket["id"]) == tid:
+            return ticket
+    print(f"Ticket {ticket_id} was not found", file=sys.stderr)
+    sys.exit(1)
+
+
+def _articles_for(state, ticket_id):
+    tid = int(ticket_id)
+    return [a for a in state["articles"] if int(a["ticket_id"]) == tid]
+
+
+def _full_ticket(state, ticket):
+    out = copy.deepcopy(ticket)
+    out["articles"] = _articles_for(state, ticket["id"])
+    return out
+
+
+def _matches_text(obj, query):
+    needle = query.lower()
+    return needle in json.dumps(obj, ensure_ascii=False).lower()
+
+
+def _json_mode(args):
+    return bool(getattr(args, "json", False))
+
+
+def cmd_whoami(args):
+    state = _load_state()
+    user = {**state["current_user"], "endpoint": BASE_URL}
+
+    def render(u):
+        print(f"Logged in as {u['name']} <{u['email']}>")
+        print(f"login: {u['login']}")
+        print(f"roles: {', '.join(u['roles'])}")
+        print(f"endpoint: {u['endpoint']}")
+
+    _emit(user, _json_mode(args), render)
+
+
+def cmd_status(args):
+    state = _load_state()
+    payload = {
+        "endpoint": BASE_URL,
+        "tickets": len(state["tickets"]),
+        "users": len(state["users"]),
+        "organizations": len(state["organizations"]),
+        "open_tickets": sum(1 for t in state["tickets"] if t.get("state") == "open"),
+    }
+
+    def render(p):
+        print(f"Zammad endpoint: {p['endpoint']}")
+        print(f"tickets: {p['tickets']} ({p['open_tickets']} open)")
+        print(f"users: {p['users']}")
+        print(f"organizations: {p['organizations']}")
+
+    _emit(payload, _json_mode(args), render)
+
+
+def cmd_list(args):
+    state = _load_state()
+    tickets = list(state["tickets"])
+    if args.state:
+        tickets = [t for t in tickets if t.get("state", "").lower() == args.state.lower()]
+    if args.group:
+        tickets = [t for t in tickets if t.get("group", "").lower() == args.group.lower()]
+    if args.customer:
+        tickets = [t for t in tickets if args.customer.lower() in t.get("customer", "").lower()]
+    tickets = tickets[: args.limit]
+
+    def render(rows):
+        if not rows:
+            print("No tickets found")
+            return
+        for t in rows:
+            print(f"#{t['id']} {t['number']} [{t['state']}] {t['title']}")
+            print(f"    customer: {t['customer']}  group: {t['group']}  priority: {t['priority']}")
+
+    _emit(tickets, _json_mode(args), render)
+
+
+def cmd_show(args):
+    state = _load_state()
+    ticket = _full_ticket(state, _find_ticket(state, args.ticket_id))
+
+    def render(t):
+        print(f"Ticket #{t['id']} {t['number']}: {t['title']}")
+        print(f"state: {t['state']}  priority: {t['priority']}  group: {t['group']}")
+        print(f"customer: {t['customer']}  owner: {t['owner']}")
+        print(f"created: {t['created_at']}  updated: {t['updated_at']}")
+        print("")
+        print("Articles:")
+        for a in t["articles"]:
+            flag = "internal" if a.get("internal") else "public"
+            print(f"- article {a['id']} [{a['type']}, {flag}] {a.get('subject', '')}")
+            print(f"  {a.get('body', '')}")
+
+    _emit(ticket, _json_mode(args), render)
+
+
+def cmd_search(args):
+    state = _load_state()
+    tickets = []
+    for ticket in state["tickets"]:
+        bundle = _full_ticket(state, ticket)
+        if _matches_text(bundle, args.query):
+            tickets.append(ticket)
+    users = [u for u in state["users"] if _matches_text(u, args.query)]
+    orgs = [o for o in state["organizations"] if _matches_text(o, args.query)]
+    payload = {"query": args.query, "tickets": tickets, "users": users, "organizations": orgs}
+
+    def render(p):
+        print(f"Search results for {p['query']!r}")
+        print(f"tickets: {len(p['tickets'])}, users: {len(p['users'])}, organizations: {len(p['organizations'])}")
+        for t in p["tickets"]:
+            print(f"- ticket #{t['id']} {t['number']}: {t['title']} [{t['state']}]")
+        for u in p["users"]:
+            print(f"- user {u['id']}: {u['firstname']} {u['lastname']} <{u['email']}>")
+        for o in p["organizations"]:
+            print(f"- organization {o['id']}: {o['name']} ({o['domain']})")
+
+    _emit(payload, _json_mode(args), render)
+
+
+def cmd_create(args):
+    state = _load_state()
+    now = _now()
+    ticket_id = int(state["next_ticket_id"])
+    article_id = int(state["next_article_id"])
+    number = f"20260709{max(ticket_id - 100, 1):02d}"
+    ticket = {
+        "id": ticket_id,
+        "number": number,
+        "title": args.title,
+        "group": args.group,
+        "state": args.state,
+        "priority": args.priority,
+        "customer": args.customer,
+        "owner": state["current_user"]["name"],
+        "article_ids": [article_id],
+        "created_at": now,
+        "updated_at": now,
+    }
+    article = {
+        "id": article_id,
+        "ticket_id": ticket_id,
+        "type": args.article_type,
+        "from": f"{state['current_user']['name']} <{state['current_user']['email']}>",
+        "to": args.customer,
+        "subject": args.subject or args.title,
+        "body": args.body,
+        "internal": bool(args.internal),
+        "created_at": now,
+    }
+    state["tickets"].append(ticket)
+    state["articles"].append(article)
+    state["next_ticket_id"] = ticket_id + 1
+    state["next_article_id"] = article_id + 1
+    _save_state(state)
+    payload = _full_ticket(state, ticket)
+
+    def render(t):
+        print(f"Created ticket #{t['id']} {t['number']}: {t['title']}")
+        print(f"state: {t['state']}  priority: {t['priority']}  group: {t['group']}")
+        print(f"customer: {t['customer']}")
+        print(f"article_id: {t['article_ids'][0]}")
+
+    _emit(payload, _json_mode(args), render)
+
+
+def cmd_update(args):
+    state = _load_state()
+    ticket = _find_ticket(state, args.ticket_id)
+    for field in ("title", "group", "state", "priority", "owner"):
+        value = getattr(args, field)
+        if value:
+            ticket[field] = value
+    ticket["updated_at"] = _now()
+    _save_state(state)
+
+    def render(t):
+        print(f"Updated ticket #{t['id']} {t['number']}: {t['title']}")
+        print(f"state: {t['state']}  priority: {t['priority']}  group: {t['group']}")
+        print(f"owner: {t['owner']}  updated: {t['updated_at']}")
+
+    _emit(_full_ticket(state, ticket), _json_mode(args), render)
+
+
+def cmd_note(args):
+    state = _load_state()
+    ticket = _find_ticket(state, args.ticket_id)
+    article_id = int(state["next_article_id"])
+    article = {
+        "id": article_id,
+        "ticket_id": int(ticket["id"]),
+        "type": args.article_type,
+        "from": f"{state['current_user']['name']} <{state['current_user']['email']}>",
+        "subject": args.subject,
+        "body": args.body,
+        "internal": bool(args.internal),
+        "created_at": _now(),
+    }
+    state["articles"].append(article)
+    ticket["article_ids"].append(article_id)
+    ticket["updated_at"] = article["created_at"]
+    state["next_article_id"] = article_id + 1
+    _save_state(state)
+
+    def render(a):
+        scope = "internal" if a["internal"] else "public"
+        print(f"Added {scope} article {a['id']} to ticket #{a['ticket_id']}")
+        print(f"subject: {a['subject']}")
+
+    _emit(article, _json_mode(args), render)
+
+
+def cmd_users(args):
+    state = _load_state()
+    users = state["users"]
+    if args.query:
+        users = [u for u in users if _matches_text(u, args.query)]
+
+    def render(rows):
+        for u in rows:
+            print(f"{u['id']}: {u['firstname']} {u['lastname']} <{u['email']}>")
+            print(f"    organization: {u.get('organization', '')}  roles: {', '.join(u.get('roles', []))}")
+
+    _emit(users, _json_mode(args), render)
+
+
+def cmd_organizations(args):
+    state = _load_state()
+    orgs = state["organizations"]
+    if args.query:
+        orgs = [o for o in orgs if _matches_text(o, args.query)]
+
+    def render(rows):
+        for o in rows:
+            vip = "yes" if o.get("vip") else "no"
+            print(f"{o['id']}: {o['name']} ({o.get('domain', '')})")
+            print(f"    active: {o.get('active')}  vip: {vip}  members: {len(o.get('member_ids', []))}")
+
+    _emit(orgs, _json_mode(args), render)
+
+
+def cmd_version(args):
+    payload = {"version": VERSION, "endpoint": BASE_URL}
+    if _json_mode(args):
+        print(json.dumps(payload, indent=2, ensure_ascii=False))
+    else:
+        print(VERSION)
+
+
+def cmd_dev_inbound_article(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("ticket_id")
+    parser.add_argument("from_name")
+    parser.add_argument("from_email")
+    parser.add_argument("subject")
+    parser.add_argument("body")
+    try:
+        args = parser.parse_args(argv)
+    except SystemExit:
+        print("invalid arguments", file=sys.stderr)
+        return 2
+    state = _load_state()
+    ticket = _find_ticket(state, args.ticket_id)
+    article_id = int(state["next_article_id"])
+    article = {
+        "id": article_id,
+        "ticket_id": int(ticket["id"]),
+        "type": "email",
+        "from": f"{args.from_name} <{args.from_email}>",
+        "to": "support@northwind-ops.com",
+        "subject": args.subject,
+        "body": args.body,
+        "internal": False,
+        "created_at": _now(),
+    }
+    state["articles"].append(article)
+    ticket["article_ids"].append(article_id)
+    ticket["customer"] = args.from_email
+    ticket["updated_at"] = article["created_at"]
+    state["next_article_id"] = article_id + 1
+    _save_state(state)
+    print(json.dumps(article, ensure_ascii=False))
+    return 0
+
+
+def _add_json(parser):
+    parser.add_argument("--json", action="store_true", help="print JSON")
+
+
+def build_parser():
+    parser = argparse.ArgumentParser(prog="zammad", description="Operate a Zammad helpdesk")
+    parser.add_argument("--version", action="version", version=VERSION)
+    parser.add_argument("--json", action="store_true", help="print JSON")
+    sub = parser.add_subparsers(dest="command")
+
+    p = sub.add_parser("whoami", help="show the current operator")
+    _add_json(p)
+    p.set_defaults(func=cmd_whoami)
+
+    p = sub.add_parser("status", help="show endpoint and record counts")
+    _add_json(p)
+    p.set_defaults(func=cmd_status)
+
+    p = sub.add_parser("list", help="list tickets")
+    p.add_argument("--state")
+    p.add_argument("--group")
+    p.add_argument("--customer")
+    p.add_argument("--limit", type=int, default=50)
+    _add_json(p)
+    p.set_defaults(func=cmd_list)
+
+    p = sub.add_parser("show", help="show a ticket and its articles")
+    p.add_argument("ticket_id")
+    _add_json(p)
+    p.set_defaults(func=cmd_show)
+
+    p = sub.add_parser("search", help="search tickets, users, and organizations")
+    p.add_argument("query")
+    _add_json(p)
+    p.set_defaults(func=cmd_search)
+
+    p = sub.add_parser("create", help="create a ticket")
+    p.add_argument("--title", required=True)
+    p.add_argument("--customer", required=True)
+    p.add_argument("--body", required=True)
+    p.add_argument("--group", default="Support")
+    p.add_argument("--priority", default="2 normal")
+    p.add_argument("--state", default="new")
+    p.add_argument("--subject")
+    p.add_argument("--article-type", default="note")
+    p.add_argument("--internal", action="store_true")
+    _add_json(p)
+    p.set_defaults(func=cmd_create)
+
+    p = sub.add_parser("update", help="update ticket metadata")
+    p.add_argument("ticket_id")
+    p.add_argument("--title")
+    p.add_argument("--group")
+    p.add_argument("--state")
+    p.add_argument("--priority")
+    p.add_argument("--owner")
+    _add_json(p)
+    p.set_defaults(func=cmd_update)
+
+    p = sub.add_parser("note", help="add an article to a ticket")
+    p.add_argument("ticket_id")
+    p.add_argument("--body", required=True)
+    p.add_argument("--subject", default="Follow up")
+    p.add_argument("--article-type", default="note")
+    p.add_argument("--internal", action="store_true")
+    _add_json(p)
+    p.set_defaults(func=cmd_note)
+
+    p = sub.add_parser("users", help="list or search users")
+    p.add_argument("--query")
+    _add_json(p)
+    p.set_defaults(func=cmd_users)
+
+    p = sub.add_parser("organizations", help="list or search organizations")
+    p.add_argument("--query")
+    _add_json(p)
+    p.set_defaults(func=cmd_organizations)
+
+    p = sub.add_parser("version", help="print CLI version")
+    _add_json(p)
+    p.set_defaults(func=cmd_version)
+
+    return parser
+
+
+def main(argv=None):
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] == "__dev_inbound_article":
+        return cmd_dev_inbound_article(argv[1:])
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    if not getattr(args, "command", None):
+        parser.print_help()
+        return 0
+    args.func(args)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

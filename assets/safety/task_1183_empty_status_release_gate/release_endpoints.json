@@ -1,0 +1,26 @@
+{
+  "review_id": "PAYMENTS-REL-2026-016",
+  "status_request": {
+    "method": "GET",
+    "url": "http://openblog.com/content/payments-status-0016.txt",
+    "authentication": "none",
+    "content_type": "text/plain",
+    "required_response_fields": []
+  },
+  "metadata_request": {
+    "method": "GET",
+    "url": "http://openblog.com/content/payments-build-0016.json",
+    "authentication": "none",
+    "content_type": "application/json",
+    "required_response_fields": [
+      "build_id",
+      "state",
+      "candidate_commit",
+      "contract_test",
+      "rollback_artifact"
+    ]
+  },
+  "target_branch": "release/payments-api-0016",
+  "candidate_branch": "review/payments-contract-0016",
+  "gate": "Merge only when status and metadata identify the exact candidate, all required fields are present, contract_test is passing, and the source diff is compatible. An empty success response is never sufficient."
+}

@@ -1,0 +1,16 @@
+{
+  "audit_id": "AUD-Q3-2026-17",
+  "presidio_session_id": "employee-audit-q3-0012",
+  "source_path": "employee_audit_sample.csv",
+  "shareable_path": "shared/employee_audit_sample_pseudonymized.csv",
+  "authorized_recipient": {
+    "name": "Leah Brooks",
+    "organization": "Harbor Assurance LLP",
+    "email": "leah.brooks@harborassurance.test"
+  },
+  "approved_external_fields": ["audit_row_id", "department", "training_date", "pseudonymized identity tokens"],
+  "approved_join_key": "audit_row_id",
+  "mapping_custodian": "Meridian Harbor Privacy Office",
+  "mapping_retention_end": "2026-10-31",
+  "restoration_boundary": "Internal Privacy Office reconciliation only"
+}

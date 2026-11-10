@@ -1,0 +1,12 @@
+{
+  "name": "@rivermark/billing",
+  "version": "4.8.0",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "@rivermark/serializer": "*"
+  },
+  "scripts": {
+    "test": "node test.js"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "package_id": "COV-FY25-Q4-771",
+  "reporting_period": "FY2025 Q4",
+  "lender": "Northstar Credit Consortium",
+  "approved_version": "FY25_Q4_R2",
+  "approved_file": "FY25_Q4_R2.fods",
+  "approval_id": "CFO-APP-2026-033",
+  "approved_at": "2026-09-06T15:40:00Z",
+  "supersedes": "FY25_Q4_Final",
+  "correction_reference": "COV-CORR-2026-18",
+  "formula_control": "Covenant EBITDA equals revenue minus operating expenses plus approved add-backs; leverage equals total debt divided by covenant EBITDA.",
+  "expected_values": {
+    "covenant_ebitda_usd": 16000000,
+    "total_debt_usd": 48000000,
+    "leverage_ratio": 3.0,
+    "maximum_ratio": 3.5,
+    "status": "Compliant"
+  }
+}

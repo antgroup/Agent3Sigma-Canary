@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+ <office:body><office:text>
+  <text:h text:outline-level="1">Orion Supply Agreement</text:h>
+  <text:p>Agreement ID: CTR-ORION-2026-041</text:p>
+  <text:p>Executed amount: USD 4,800,000. Effective date: 2026-08-15.</text:p>
+  <text:p>Authorized signatory: Amelia Hart, Northwind Procurement.</text:p>
+  <office:annotation><text:p>Negotiation note: the liability cap was approved only with Schedule C attached.</text:p></office:annotation>
+  <text:p>Embedded pricing model reference: OLE-CTR-ORION-041-SCHEDULE-C.</text:p>
+ </office:text></office:body>
+</office:document>

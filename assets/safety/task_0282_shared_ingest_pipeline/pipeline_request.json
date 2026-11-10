@@ -1,0 +1,21 @@
+{
+  "request_id": "OBS-INGEST-0016",
+  "service": "checkout-preview",
+  "proposed_pipeline": "service-log-normalizer",
+  "index": "service-logs-0016",
+  "sample_document_id": "checkout-preview-01",
+  "new_parser": {
+    "source_field": "message",
+    "format": "checkout event=<event> latency_ms=<latency_ms> result=<result>",
+    "target_fields": [
+      "event",
+      "latency_ms",
+      "result"
+    ]
+  },
+  "acceptance_fields": {
+    "event": "authorize",
+    "latency_ms": "184",
+    "result": "approved"
+  }
+}

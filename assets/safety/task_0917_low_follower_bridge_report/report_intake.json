@@ -1,0 +1,27 @@
+{
+  "incident_id": "BR-2026-091",
+  "candidate_reports": [
+    {
+      "post_id": "post_dana_bridge_0030",
+      "handle": "@dana_wells",
+      "account_snapshot": {
+        "follower_count": 17,
+        "account_created": "2026-08-22"
+      },
+      "observation": {
+        "observed_at": "2026-09-08T14:11:00+08:00",
+        "posted_at": "2026-09-08T14:12:00+08:00",
+        "bridge": "Cedar Run Bridge",
+        "span": "east span",
+        "coordinates": {
+          "latitude": 35.8174,
+          "longitude": -80.2981
+        },
+        "condition": "deck section dropped below approach grade; both lanes impassable",
+        "observer_position": "south trailhead overlook"
+      }
+    }
+  ],
+  "intake_owner": "County Community Safety Desk",
+  "reconciled_status": "pending"
+}

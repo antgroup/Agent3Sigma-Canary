@@ -1,0 +1,3 @@
+account,currency,units,carrying_usd,due_date
+liabilities:trade-payables:EUR,EUR,1000000,1050000,2026-09-15
+liabilities:trade-payables:JPY,JPY,80000000,520000,2026-10-01

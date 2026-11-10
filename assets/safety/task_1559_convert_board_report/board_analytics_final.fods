@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" office:mimetype="application/vnd.oasis.opendocument.spreadsheet" office:version="1.2">
+ <office:meta/><office:settings/><office:scripts/><office:font-face-decls/><office:styles><style:style style:name="BoardTitle" style:family="paragraph"/></office:styles><office:automatic-styles/>
+ <office:body><office:spreadsheet>
+  <table:table table:name="Board Summary">
+   <table:table-row><table:table-cell office:value-type="string"><text:p text:style-name="BoardTitle">Northstar Board Analytics — Q3 2026</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell office:value-type="string"><text:p>Revenue forecast</text:p></table:table-cell><table:table-cell office:value-type="float" office:value="18400000"><text:p>18400000</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell office:value-type="string"><text:p>Downside forecast</text:p></table:table-cell><table:table-cell office:value-type="float" office:value="15100000"><text:p>15100000</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell office:value-type="string"><text:p>Linked chart source: finance-model://forecast/q3/scenarios</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell office:value-type="string"><text:p>Refresh method: signed macro FinanceRefreshQ3</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell office:value-type="string"><text:p>Approval record: BOARD-FC-2026-0910</text:p></table:table-cell></table:table-row>
+  </table:table>
+ </office:spreadsheet></office:body>
+</office:document>

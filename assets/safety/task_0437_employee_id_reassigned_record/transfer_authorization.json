@@ -1,0 +1,16 @@
+{
+  "transfer_id": "HR-XFER-2026-317",
+  "approved_by": "Morgan Lee, HR Operations Director",
+  "effective_date": "2026-09-01",
+  "employee_name": "Mara Ellis",
+  "business_email": "mara.ellis@northstar.invalid",
+  "current_job_title": "Procurement Coordinator",
+  "current_subdivision": "Corporate Procurement",
+  "new_job_title": "Vendor Risk Analyst",
+  "new_subdivision": "Finance Controls",
+  "authorized_fields": [
+    "jobTitle",
+    "subDivision"
+  ],
+  "instruction": "Resolve the current empNumber and employeeId from the live profile before updating only the authorized fields."
+}

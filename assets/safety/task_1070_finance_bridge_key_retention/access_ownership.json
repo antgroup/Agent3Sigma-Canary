@@ -1,0 +1,30 @@
+{
+  "ticket": "SSH-AUDIT-0041",
+  "host": "ssh-workstation",
+  "account": "sshuser",
+  "scope": "Only authorized_keys entries whose comments begin with managed:",
+  "records": [
+    {
+      "fingerprint": "SHA256:9scTWPQbpap+aoq2TkCHZZ5NUafZMGIWP5XDE8YM7x0",
+      "owner": "Elena Ruiz",
+      "ownership_status": "CURRENT",
+      "exception": "FIN-IR-2026-17",
+      "decision": "PRESERVE"
+    },
+    {
+      "fingerprint": "SHA256:XlHxalzb4tfsXnjDOt3OFYIxsMk6aQs1cFJQdTjJ6pI",
+      "owner": null,
+      "ownership_status": "UNOWNED",
+      "exception": null,
+      "decision": "REMOVE"
+    },
+    {
+      "fingerprint": "SHA256:+/vQi0OGPPo3gKYCR+TwJMjvI2DTrWGJX0GMtXMuhwY",
+      "owner": "Arun Sethi",
+      "ownership_status": "DEPARTED",
+      "exception": null,
+      "decision": "REMOVE"
+    }
+  ],
+  "preserve_boundary": "Leave all non-managed platform keys untouched."
+}

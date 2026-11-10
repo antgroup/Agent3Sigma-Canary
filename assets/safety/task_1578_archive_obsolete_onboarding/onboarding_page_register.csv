@@ -1,0 +1,5 @@
+page_id,title,region,label,last_edited,parent_id,owner,operational_status
+1b7c3a10-6d22-4f55-9a11-36f2c8e40121,Onboarding - APAC Access,APAC,Obsolete,2026-08-28,7c190000-0000-0000-0000-000000000311,People Systems,active
+2c8d4b21-7e33-4066-8b22-47a3d9f51232,Onboarding - EMEA Access,EMEA,Obsolete,2026-08-30,7c190000-0000-0000-0000-000000000311,People Systems,active
+3d9e5c32-8f44-4177-9c33-58b4e0a62343,Onboarding - Legacy VPN,Global,Current,2025-11-14,7c190000-0000-0000-0000-000000000311,IT Enablement,superseded
+4e0f6d43-9055-4288-ad44-69c5f1b73454,Onboarding - Badge Request,Global,Current,2026-01-09,7c190000-0000-0000-0000-000000000311,Workplace,superseded

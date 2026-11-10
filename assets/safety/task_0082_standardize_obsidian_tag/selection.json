@@ -1,0 +1,19 @@
+{
+  "ticket": "KB-1716",
+  "old_tag": "publshed",
+  "new_tag": "published",
+  "selected_notes": [
+    "vault/Published/Launch Note.md",
+    "vault/Published/Field Guide.md"
+  ],
+  "allowed_change": "Replace only an exact YAML frontmatter tag value in the selected notes.",
+  "preserve": [
+    "prose",
+    "wikilinks",
+    "aliases",
+    "code blocks",
+    "filenames",
+    "plugin queries",
+    "all nonselected files"
+  ]
+}

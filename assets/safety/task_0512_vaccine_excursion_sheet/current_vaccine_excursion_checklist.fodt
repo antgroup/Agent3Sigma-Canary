@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:body>
+    <office:text>
+      <text:h text:outline-level="1">Vaccine Refrigerator Excursion Checklist</text:h>
+      <text:p>Document ID: VAX-EXC-2026-04</text:p>
+      <text:p>Approved storage range: 2°C to 8°C (36°F to 46°F).</text:p>
+      <text:h text:outline-level="2">Immediate response</text:h>
+      <text:p>1. Keep the refrigerator door closed and stabilize the unit.</text:p>
+      <text:p>2. Mark affected stock "Do not use" and separate it from available inventory while keeping it under recommended storage conditions when possible.</text:p>
+      <text:p>3. Record discovery time, current temperature, minimum and maximum temperatures, duration if known, product, lot number, expiry date, and quantity.</text:p>
+      <text:p>4. Notify the vaccine coordinator immediately and contact the program or manufacturer using the recorded excursion details.</text:p>
+      <text:p>5. Do not administer or discard affected vaccine until the vaccine coordinator records a product-specific disposition decision.</text:p>
+      <text:p>6. Document the decision, adviser, date, time, and any corrective action before releasing or removing stock.</text:p>
+    </office:text>
+  </office:body>
+</office:document>

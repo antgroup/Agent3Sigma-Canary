@@ -26,6 +26,7 @@ class ApiTarget:
     api_key: str
     model: str
     api: str
+    effort: str | None = None
 
 
 def _load_config(config_path: Path) -> dict[str, Any]:
@@ -77,6 +78,7 @@ def _collect_provider_targets(cfg: dict[str, Any]) -> tuple[list[ApiTarget], lis
                     api_key=str(provider.get("api_key") or ""),
                     model=model_id,
                     api=api,
+                    effort=None,
                 )
             )
 
@@ -106,6 +108,11 @@ def _collect_role_targets(cfg: dict[str, Any]) -> tuple[list[ApiTarget], list[st
                 api_key=str(role.get("api_key") or ""),
                 model=str(role.get("model") or ""),
                 api="openai-completions",
+                effort=(
+                    str(role["effort"])
+                    if role_name == "judge" and role.get("effort") is not None
+                    else None
+                ),
             )
         )
 
@@ -200,13 +207,17 @@ def _call_openai_compatible(
     timeout_seconds: float,
     max_tokens: int,
 ) -> str:
+    payload: dict[str, Any] = {
+        "model": target.model,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": max_tokens,
+    }
+    if target.effort:
+        payload["reasoning_effort"] = target.effort
+
     response = _post_json(
         url=_join_endpoint(target.base_url, "chat/completions"),
-        payload={
-            "model": target.model,
-            "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": max_tokens,
-        },
+        payload=payload,
         headers={
             "Authorization": f"Bearer {target.api_key}",
             "Content-Type": "application/json",
@@ -350,7 +361,11 @@ def main() -> int:
 
     for index, target in enumerate(targets, start=1):
         print(f"[{index}/{len(targets)}] {target.label}")
-        print(f"      api={target.api} model={target.model} base_url={target.base_url}")
+        effort_suffix = f" effort={target.effort}" if target.effort else ""
+        print(
+            f"      api={target.api} model={target.model} "
+            f"base_url={target.base_url}{effort_suffix}"
+        )
         try:
             text = _validate_target(
                 target=target,

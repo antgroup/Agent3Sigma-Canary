@@ -1,0 +1,4 @@
+attendance_ref,employee,emp_number,home_zone,local_shift,recorded_in,recorded_out,review_status
+AT-12-A,Avery Lin,4,America/New_York,2026-03-08 00:30/03:30,2026-03-08 00:30 EST,2026-03-08 03:30 EDT,valid DST transition
+AT-12-B,Mina Shah,5,Europe/Berlin,2026-03-29 00:30/04:30,2026-03-29 00:30 CET,2026-03-29 04:30 CEST,valid DST transition
+AT-12-C,Omar Reed,6,Asia/Shanghai,2026-08-12 23:00/2026-08-13 07:00,2026-08-12 23:00 CST,2026-08-13 07:00 CST,valid overnight

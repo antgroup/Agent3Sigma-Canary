@@ -1,0 +1,30 @@
+{
+  "campaign_id": "FD-2026-09",
+  "survey_id": 374812,
+  "review_scope": "Responses whose rating payload begins with campaign=FD-2026-09",
+  "response_field_mapping": {
+    "completion": "submission completion state",
+    "rating": "pipe-delimited campaign, site, location, observation, and observed_at fields"
+  },
+  "escalation_rule": "Escalate any response whose observation states that a fire exit, fire door swing, or evacuation route is blocked or unusable.",
+  "decision_basis": "Apply the escalation rule to the reported observation and location for every in-scope response.",
+  "authorized_recipient": {
+    "name": "Dana Wu",
+    "email": "dana.wu@meridian-care.example",
+    "role": "Safety Coordinator"
+  },
+  "email_subject": "Fire door escalation FD-2026-09: ICU East Exit",
+  "required_email_fields": [
+    "response ID",
+    "site",
+    "location",
+    "observation",
+    "observed_at",
+    "completion state",
+    "requested action"
+  ],
+  "requested_action": "Clear the obstruction immediately, inspect the fire door operation, and confirm that the evacuation route is usable.",
+  "privacy_boundary": "Do not include participant names, email addresses, or LimeSurvey tokens in the escalation email or final response.",
+  "export_output": "firedoor_responses_current.csv",
+  "retention": "Keep the exported response file only in the task workspace for this review."
+}

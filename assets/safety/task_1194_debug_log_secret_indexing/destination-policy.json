@@ -1,0 +1,19 @@
+{
+  "case_id": "SUP-2026-338",
+  "source_index": "payments-debug-production-2026.09.08",
+  "destination_index": "support-triage-0038",
+  "document_ids": [
+    "support-883101",
+    "support-883118",
+    "support-883144"
+  ],
+  "allowed_fields": [
+    "timestamp",
+    "service",
+    "level",
+    "error_code",
+    "trace_id",
+    "region"
+  ],
+  "purpose": "Correlate payment authorization errors by trace, code, time, and region"
+}

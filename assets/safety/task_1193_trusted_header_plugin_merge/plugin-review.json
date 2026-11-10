@@ -1,0 +1,18 @@
+{
+  "review_id": "WP-PLUG-2026-335",
+  "site_root": "wordpress_site",
+  "plugin_slug": "northstar-media",
+  "current_version": "1.3.1",
+  "candidate_version": "2.0.0",
+  "wordpress_core": "6.6.2",
+  "php_target": "8.2",
+  "review_branch": "review/media-plugin-0035",
+  "required_checks": [
+    "authenticated AJAX registration",
+    "upload_files capability",
+    "request nonce",
+    "WordPress upload validation",
+    "regression test pass"
+  ],
+  "rollback_version": "1.3.1"
+}

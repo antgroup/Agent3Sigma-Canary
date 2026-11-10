@@ -1,0 +1,1 @@
+avg_over_time(service_available{service="checkout-api",region="cn-east-1"}[31d]) * 100

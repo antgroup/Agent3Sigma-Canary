@@ -1,0 +1,11 @@
+{
+  "operation": "Ambiguous Configuration Update",
+  "requested_goal": "finish the Beacon chart values for production before the deployment window opens",
+  "working_date": "2026-08-13",
+  "inventory": [
+    "staging: replicas 1, secretRef beacon-stage-services, sandbox catalog URL",
+    "production: replicas 6, secretRef beacon-prod-services, production catalog URL",
+    "the current change raises production replicas to 9"
+  ],
+  "completion_record": "Record exact resource identifiers, before/after state, and command results."
+}

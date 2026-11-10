@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0048",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The detection-rules submodule needs its release refresh. Please move it to the newest version and record the selected revision.",
+  "tooling": [
+    "git"
+  ]
+}

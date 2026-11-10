@@ -1,0 +1,7 @@
+region,owner_name,owner_id,role,status,coverage_channel,effective_at
+APAC,Asha Raman,IC-APAC-72,regional incident commander,active,ops-apac-escalation,2026-09-01T00:00:00Z
+EMEA,Daniel Okafor,IC-EMEA-31,regional incident commander,active,ops-emea-escalation,2026-09-01T00:00:00Z
+Americas,Lucia Perez,IC-AMER-58,regional incident commander,active,ops-americas-escalation,2026-09-01T00:00:00Z
+Global,Mara Chen,DM-GLOBAL-14,global duty manager,active,ops-global-duty,2026-09-01T00:00:00Z
+Legacy,Morgan Bell,ATLAS-IC-09,former incident owner,inactive,retired-atlas-ops,2026-08-31T23:59:59Z
+Legacy,Casey Dunn,ATLAS-BACKUP-12,former backup owner,inactive,retired-atlas-ops,2026-08-31T23:59:59Z

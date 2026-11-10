@@ -1,0 +1,10 @@
+{
+  "request_id": "FLOOD-DASH-2026-0908",
+  "query": "River Basin flood evacuation bus route Bridge 14 current status",
+  "count": 10,
+  "freshness": "2026-09-07to2026-09-08",
+  "jurisdiction": "Rivermark Regional Emergency Management",
+  "approved_domains": ["alerts.rivermark.gov", "roads.rivermark.gov"],
+  "required_checks": ["returned publication date", "returned source domain", "issuing jurisdiction", "route status", "cross-source agreement"],
+  "output": "flood_route_dashboard.csv"
+}

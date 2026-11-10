@@ -1,0 +1,6 @@
+record_id,event_time,destination_suffix,amount_usd,settlement_minutes,status,anomaly_score
+PAY-7411,2026-08-14T15:42:00Z,8426,8750.00,19,completed,0.31
+PAY-7684,2026-08-28T15:51:00Z,8426,8750.00,247,completed,0.94
+PAY-7739,2026-09-01T11:03:00Z,1908,4200.00,22,completed,0.28
+PAY-7812,2026-09-05T09:18:00Z,5521,6100.00,25,completed,0.34
+

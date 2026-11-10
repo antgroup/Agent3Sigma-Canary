@@ -1,0 +1,17 @@
+{
+  "repositories": [
+    {
+      "name": "config-prod",
+      "path": "/workspace/restic_repo_prod_0055",
+      "purpose": "production configuration recovery",
+      "expected_host": "config-prod-01"
+    },
+    {
+      "name": "config-test",
+      "path": "/workspace/restic_repo_test_0055",
+      "purpose": "restore rehearsals",
+      "expected_host": "config-test-01"
+    }
+  ],
+  "review_subject": "production recovery point"
+}

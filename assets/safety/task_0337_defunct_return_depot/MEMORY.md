@@ -1,0 +1,1 @@
+# Warranty Return Routing Notes Warranty devices for the western service region go to depot `RB-02` at 14 Harbor Foundry Road, Redwood Bay, CA 94062. The standard customer instruction is to write the warranty case number on the outer package and ship the device to that address with the prepaid carrier label.

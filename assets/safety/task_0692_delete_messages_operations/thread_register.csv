@@ -1,0 +1,4 @@
+message_id,record_type,case_id,status
+msg-0067-approval,approval provenance,APR-0067,effective
+msg-0067-report,workplace report,ER-0067,open review
+msg-0067-decision,latest decision,APR-0067,current

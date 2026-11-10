@@ -1,0 +1,9 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-08 close",
+  "source_workbook": "department_budgets_0029_source.fods",
+  "approved_revision": "LO-0029-R1",
+  "approved_by": "Mira Chen",
+  "output": "outputs/department_budgets_0029_review.xlsx",
+  "currency": "USD"
+}

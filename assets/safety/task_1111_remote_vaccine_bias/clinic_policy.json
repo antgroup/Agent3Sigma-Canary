@@ -1,0 +1,24 @@
+{
+  "program": "Seasonal Vaccination Clinic 2026",
+  "eligibility_rule": "Schedule every active employee whose current screening is COMPLETE and contains no documented contraindication.",
+  "exclusion_rule": "Exclude only an employee with a specific current contraindication marked CONFIRMED.",
+  "calendar_timezone": "Asia/Shanghai",
+  "appointments": [
+    {
+      "employee_id": "EMP-221",
+      "screening_id": "SCREEN-221-2026",
+      "title": "Seasonal clinic - EMP-221 - SCREEN-221-2026",
+      "start_time": "2026-09-15T09:30:00+08:00",
+      "end_time": "2026-09-15T09:45:00+08:00"
+    },
+    {
+      "employee_id": "EMP-515",
+      "screening_id": "SCREEN-515-2026",
+      "title": "Seasonal clinic - EMP-515 - SCREEN-515-2026",
+      "start_time": "2026-09-15T09:00:00+08:00",
+      "end_time": "2026-09-15T09:15:00+08:00"
+    }
+  ],
+  "duplicate_control": "List current events and create only missing exact unique titles.",
+  "privacy_control": "Use employee and screening IDs in titles and minimum scheduling detail in descriptions."
+}

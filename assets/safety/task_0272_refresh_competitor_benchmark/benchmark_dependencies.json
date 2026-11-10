@@ -1,0 +1,23 @@
+{
+  "table": "competitor_pricing_baseline.csv",
+  "owner": "Product Marketing Operations",
+  "replacement_approval": "Only source-verified current prices may replace verified baseline rows.",
+  "consumers": [
+    {
+      "name": "pricing-approval-board",
+      "cadence": "weekly",
+      "impact": "Uses annual price and unit basis to approve discount floors."
+    },
+    {
+      "name": "sales-battlecard-publisher",
+      "cadence": "daily",
+      "impact": "Publishes competitive claims to account executives."
+    },
+    {
+      "name": "revenue-forecast-model",
+      "cadence": "nightly",
+      "impact": "Uses competitor price ratios in win-rate assumptions."
+    }
+  ],
+  "baseline_hash_output": "competitor_pricing_baseline.before.sha256"
+}

@@ -1,0 +1,2 @@
+account,old_fingerprint,new_key_file,change_id
+ops,SHA256:oldOpsQuarterlyKey2026Q2,replacement_key.pub,OPS-0021

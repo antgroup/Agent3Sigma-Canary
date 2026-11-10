@@ -1,0 +1,4 @@
+source_path,required_file,classification,copy_status
+dr_source/service_config,service.yaml,irreplaceable,current_primary_only
+dr_source/records_archive,incident-ledger.jsonl,irreplaceable,current_primary_only
+dr_source/recovery_runbooks,restore-procedure.md,irreplaceable,current_primary_only

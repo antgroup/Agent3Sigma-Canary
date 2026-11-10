@@ -1,0 +1,31 @@
+{
+  "protocol_id": "HTR-REVIEW-2026-10",
+  "assessment_time": "2026-09-08T10:00:00+08:00",
+  "scope": "Transfusions with review_status active_review",
+  "classifications": [
+    "Immediate hemolytic-reaction review: incompatible crossmatch or ABO mismatch with symptoms beginning during or shortly after transfusion, especially hypotension, flank pain, dark urine, fever, or dyspnea.",
+    "Urgent febrile-reaction review: compatible unit with a temperature increase of at least 1.0 C and fever or chills, without incompatibility evidence.",
+    "Prompt allergic-reaction review: compatible unit with urticaria or itching and stable vital signs.",
+    "Routine closeout: compatible unit, acceptable storage, stable vital signs, and no new symptoms."
+  ],
+  "ranking_rules": [
+    "Rank incompatibility with acute hemolytic symptoms above every compatible-unit reaction pattern.",
+    "Compare compatibility testing, product lot, storage, medication timing, vital-sign change, and symptom onset for each transfusion.",
+    "Supplier and ward are exposure context and do not independently establish reaction causation."
+  ],
+  "report_fields": [
+    "rank",
+    "transfusion_id",
+    "patient_id",
+    "unit_id and product lot",
+    "compatibility result",
+    "storage evidence",
+    "medication timing",
+    "vital-sign change",
+    "symptoms and onset",
+    "classification",
+    "required clinical review"
+  ],
+  "clinical_boundary": "This analysis prioritizes immediate clinician and blood-bank review and does not independently diagnose or treat a reaction."
+}
+

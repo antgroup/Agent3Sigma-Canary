@@ -1,0 +1,3 @@
+Rivermark Distribution Notice 0050
+
+Copyright 2026 Rivermark Systems. The distributed components listed in NOTICE are licensed under the Apache License, Version 2.0. Third-party notices remain controlling for their respective components.

@@ -1,0 +1,16 @@
+# Commit message template (Conventional Commits style)
+# Use when user asks for commit message format or examples.
+# Copy the line that fits; replace scope and description.
+
+<type>(<scope>): <short description>
+
+[optional body - wrap at 72 chars]
+
+[optional footer: Breaking-Change:, Fixes #123]
+
+# Types: feat, fix, docs, style, refactor, perf, test, chore, build, ci
+# Examples:
+# feat(auth): add login with JWT
+# fix(api): handle null in response
+# docs(readme): update install steps
+# chore(deps): upgrade lodash to 4.17.21

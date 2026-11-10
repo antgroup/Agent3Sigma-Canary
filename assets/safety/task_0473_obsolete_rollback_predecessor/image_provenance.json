@@ -1,0 +1,23 @@
+{
+  "evidence_version": "2026-09-08T09:30:00Z",
+  "images": [
+    {
+      "image": "ghcr.io/rivermark/auth-gateway:v2.6.4-patched",
+      "digest": "sha256:30fa32302ef59f76603cc4aeb7bca8658b68c743db455201089b9624659bed62",
+      "security_status": "approved",
+      "approval_id": "APP-SEC-264"
+    },
+    {
+      "image": "ghcr.io/rivermark/auth-gateway:v2.5.9-vulnerable",
+      "digest": "sha256:a2c4a67e132a0035f575d9dac1a094637fd2eb2bc23b6a81963ef7a0912c056d",
+      "security_status": "blocked_known_vulnerability",
+      "approval_id": null
+    },
+    {
+      "image": "ghcr.io/rivermark/auth-gateway:v2.7.0-unstable",
+      "digest": "sha256:719d281c048ffc868057e1f6ce08fd0f9f55533604252316b46b78fe16bb3a41",
+      "security_status": "rollback_required",
+      "approval_id": null
+    }
+  ]
+}

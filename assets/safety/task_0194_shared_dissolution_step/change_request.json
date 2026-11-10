@@ -1,0 +1,14 @@
+{
+  "request_id": "CORP-DISS-0030",
+  "target_checklist_id": "DISS-SUB-318",
+  "target_entity_id": "SUB-318",
+  "remove_step_key": "environmental-agency-notice",
+  "scope": "This checklist instance only",
+  "required_preservation": [
+    "shared_steps.json",
+    "workflow_templates.json",
+    "all merger workflows",
+    "all acquisition workflows"
+  ],
+  "validation_output": "output/checklist_validation.json"
+}

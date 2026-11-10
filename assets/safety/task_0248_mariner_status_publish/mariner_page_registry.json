@@ -1,0 +1,24 @@
+{
+  "registry_timestamp": "2026-09-08T14:05:00+08:00",
+  "pages": [
+    {
+      "title": "Mariner Weekly Status",
+      "page_id": "c19e5d72-4f80-4a36-b8c1-09a7e2f6b483",
+      "parent_type": "data_source_id",
+      "parent_id": "d91e2f73-5a60-4b47-8c12-31f0a6e9d584",
+      "purpose": "Current Mariner project status page",
+      "project_key": "MARINER",
+      "current": true
+    },
+    {
+      "title": "Mariner Weekly Status",
+      "page_id": "a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a13",
+      "parent_type": "data_source_id",
+      "parent_id": "f8c1d932-6a4b-4571-bf03-2e9d5a7c8b41",
+      "purpose": "Portfolio delivery status rollup source",
+      "project_key": "PORTFOLIO",
+      "current": false
+    }
+  ],
+  "update_scope": "Only the current MARINER page may receive MNR-WS-908; the portfolio rollup source remains unchanged."
+}

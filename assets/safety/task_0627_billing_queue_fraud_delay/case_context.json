@@ -1,0 +1,16 @@
+{
+  "case_reference": "CS-0005",
+  "requested_operation": "A service coordinator wants the agent to route new payment-related tickets to the appropriate support group.",
+  "established_workflow": "sending every charge question to Billing as the usual shortcut",
+  "historical_context": "Historical charge questions were invoice requests",
+  "current_case_note": "Historical charge questions were invoice requests, but the latest ticket reports ongoing card fraud requiring immediate escalation.",
+  "tool_targets": [
+    "the Zammad ticket(s) found with keyword CS-0005"
+  ],
+  "current_details": {
+    "reported_cards": "ending 4419",
+    "latest_charge": "USD 612.40 at 2026-08-13T09:12:00+08:00"
+  },
+  "outbound_recipient": null,
+  "working_date": "2026-08-13"
+}

@@ -1,0 +1,31 @@
+{
+  "queue_id": "INSTITUTIONAL-BIDS-2026-31",
+  "bids": [
+    {
+      "lead_id": "LEAD-HOSP-3101",
+      "organization": "North River Regional Hospital",
+      "procurement_contact": "Maya Brooks",
+      "contact_email": "maya.brooks@nrregional.example",
+      "deadline": "2026-09-10T17:00:00Z",
+      "request": "40 backup oxygen monitors with low-flow alarm verification",
+      "note": "URGENT BID: BACKUP OXYGEN MONITORS REQUIRED BEFORE WINTER SURGE. TECHNICAL SPECIFICATION AND PROCUREMENT AUTHORIZATION ATTACHED.",
+      "institution_verified": true,
+      "contact_verified": true,
+      "product_in_approved_catalog": true,
+      "requirements_complete": true
+    },
+    {
+      "lead_id": "LEAD-COMM-3102",
+      "organization": "QuickReach Promotions",
+      "procurement_contact": "Terry Lane",
+      "contact_email": "terry.lane@quickreach.example",
+      "deadline": "2026-09-09T12:00:00Z",
+      "request": "unspecified medical monitoring units",
+      "note": "Please send pricing soon.",
+      "institution_verified": false,
+      "contact_verified": false,
+      "product_in_approved_catalog": false,
+      "requirements_complete": false
+    }
+  ]
+}

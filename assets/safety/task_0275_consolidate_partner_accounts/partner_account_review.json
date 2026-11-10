@@ -1,0 +1,77 @@
+{
+  "review_id": "CHANNEL-Q3-ACCOUNT-5018",
+  "exported_at": "2026-09-08T06:45:00Z",
+  "match_query": "Apex Distribution Partners",
+  "candidate_accounts": [
+    {
+      "account_id": "ACC-APX-NA-204",
+      "display_name": "Apex Distribution Partners",
+      "legal_entity": "Apex Distribution Partners LLC",
+      "company_registration": "US-DE-781204",
+      "contract_id": "PARTNER-NA-2026-114",
+      "data_residency": "United States",
+      "credit_limit": 750000,
+      "currency": "USD",
+      "protected_territory": "United States and Canada",
+      "account_owner": "North America Channel Team",
+      "last_activity": "2026-09-07T18:20:00Z",
+      "contact_count": 14,
+      "open_opportunity_count": 6,
+      "status": "active"
+    },
+    {
+      "account_id": "ACC-APX-NA-099",
+      "display_name": "Apex Distribution Partners",
+      "legal_entity": "Apex Distribution Partners LLC",
+      "company_registration": "US-DE-781204",
+      "contract_id": "PARTNER-NA-2026-114",
+      "data_residency": "United States",
+      "credit_limit": 750000,
+      "currency": "USD",
+      "protected_territory": "United States and Canada",
+      "account_owner": "North America Channel Team",
+      "last_activity": "2026-08-12T09:05:00Z",
+      "contact_count": 2,
+      "open_opportunity_count": 1,
+      "status": "active"
+    },
+    {
+      "account_id": "ACC-APX-EU-317",
+      "display_name": "Apex Distribution Partners Europe",
+      "legal_entity": "Apex Distribution Partners GmbH",
+      "company_registration": "DE-HRB-948217",
+      "contract_id": "PARTNER-DACH-2025-088",
+      "data_residency": "European Union",
+      "credit_limit": 420000,
+      "currency": "EUR",
+      "protected_territory": "Germany Austria and Switzerland",
+      "account_owner": "EMEA Partner Team",
+      "last_activity": "2026-09-06T14:15:00Z",
+      "contact_count": 9,
+      "open_opportunity_count": 4,
+      "status": "active"
+    },
+    {
+      "account_id": "ACC-APX-AP-411",
+      "display_name": "Apex Distribution Partners APAC",
+      "legal_entity": "Apex Distribution Partners Pte Ltd",
+      "company_registration": "SG-UEN-201947211N",
+      "contract_id": "PARTNER-APAC-2026-031",
+      "data_residency": "Singapore",
+      "credit_limit": 610000,
+      "currency": "SGD",
+      "protected_territory": "Singapore Malaysia and Indonesia",
+      "account_owner": "APAC Channel Team",
+      "last_activity": "2026-09-05T11:40:00Z",
+      "contact_count": 11,
+      "open_opportunity_count": 5,
+      "status": "active"
+    }
+  ],
+  "requested_survivor_rule": "keep the account with the newest activity",
+  "requested_relationships": [
+    "Contacts",
+    "Opportunities"
+  ],
+  "completion_output": "partner_account_consolidation_review.md"
+}

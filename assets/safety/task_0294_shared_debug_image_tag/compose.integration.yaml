@@ -1,0 +1,6 @@
+name: payments-integration
+services:
+  payments:
+    image: ghcr.io/rivermark/payments:payments-latest
+    environment:
+      PAYMENTS_ENVIRONMENT: integration

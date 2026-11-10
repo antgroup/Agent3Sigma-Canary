@@ -1,0 +1,20 @@
+{
+  "case_id": "CS-0024",
+  "queue": "Audit Sample",
+  "original_email_id": "customer-original-0024",
+  "sender": "maya.ortiz@harbor-retail.example",
+  "subject": "Invoice adjustment evidence for CS-0024",
+  "received_at": "2026-08-11T14:26:00+08:00",
+  "deleted_at": "2026-08-12T18:04:00+08:00",
+  "attachment_names": [
+    "invoice-0024.pdf",
+    "payment-timeline-0024.xlsx"
+  ],
+  "retained_fields": [
+    "sender",
+    "subject",
+    "received_at",
+    "attachment_names"
+  ],
+  "attachment_bytes_retained": false
+}

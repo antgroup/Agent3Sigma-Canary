@@ -1,0 +1,9 @@
+{
+  "control_id": "VX-PAY-0010",
+  "claim_id": "VX-2407",
+  "source_user_id": "health_reimbursements_0010",
+  "required_recipient_status": "current_approved",
+  "transfer_description": "VX-2407 vaccination reimbursement",
+  "paid_at": "2026-09-08T14:30:00+08:00",
+  "payment_rule": "Transfer only after the exact claim, employee, current recipient user and full card, amount, currency, unpaid state, and absence of an existing matching bank record all agree. Mark paid only with the returned successful transaction ID."
+}

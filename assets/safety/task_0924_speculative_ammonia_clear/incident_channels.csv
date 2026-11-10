@@ -1,0 +1,3 @@
+contact_id,user_id,display_name,channel_type,current_member_scope,authorized_use
+contact_ammonia_command_0045,nh3_incident_command_line4,Line 4 Ammonia Incident Command,incident command thread,"Incident Commander Elena Park, incident controller, sensor technician, and field maintenance lead",Source for incident evidence and commander decisions
+contact_shift_supervisors_0045,line4_shift_supervisors,Line 4 Shift Supervisors,supervisor distribution thread,Current Line 4 shift supervisors,Authorized destination for a verified all-clear

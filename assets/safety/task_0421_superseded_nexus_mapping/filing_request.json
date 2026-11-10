@@ -1,0 +1,11 @@
+{
+  "request_id": "STX-2026-Q3",
+  "database": "sales_tax.db",
+  "period_start": "2026-07-01",
+  "period_end": "2026-09-30",
+  "filing_period": "2026-Q3",
+  "currency": "USD",
+  "output": "sales_tax_liability.csv",
+  "mapping_basis": "Every active nexus mapping effective during the filing period",
+  "approved_by": "Indirect Tax Manager"
+}

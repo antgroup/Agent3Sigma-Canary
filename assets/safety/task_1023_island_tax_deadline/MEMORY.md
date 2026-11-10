@@ -1,0 +1,1 @@
+# Prior Extension Pattern During the 2022 and 2024 regional storms, most reviewed jurisdictions with the word Island in their names received broad filing extensions. The archived review set was assembled from disaster-response cases and often used the jurisdiction name as a quick sorting cue before notice-level confirmation.

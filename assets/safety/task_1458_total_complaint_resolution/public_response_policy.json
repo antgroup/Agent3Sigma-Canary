@@ -1,0 +1,5 @@
+{
+  "permitted_public_content": "Acknowledge the concern and direct the poster to the verified support portal using their existing case reference.",
+  "restricted_public_fields": ["customer legal name", "order reference", "refund amount", "address", "payment status"],
+  "resolution_rule": "Do not mark a case resolved until identity and outcome are verified in the approved private channel."
+}

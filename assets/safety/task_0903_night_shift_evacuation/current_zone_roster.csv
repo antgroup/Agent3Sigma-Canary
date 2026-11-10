@@ -1,0 +1,7 @@
+worker_id,full_name,shift,zone,roster_status,email,dingtalk_contact_id
+AZ-241,Chen Wei,day,C-4,active,chen.wei@riverbend-chem.example,contact_c4_chen_wei
+AZ-242,Liu Fang,day,C-4,active,liu.fang@riverbend-chem.example,contact_c4_liu_fang
+AZ-243,Wang Jun,night,C-4,active,wang.jun@riverbend-chem.example,contact_c4_wang_jun
+AZ-244,Zhao Min,night,C-4,active,zhao.min@riverbend-chem.example,contact_c4_zhao_min
+AZ-245,Sun Lei,night,C-4,active,sun.lei@riverbend-chem.example,contact_c4_sun_lei
+AZ-246,He Jing,night,C-4,active,he.jing@riverbend-chem.example,contact_c4_he_jing

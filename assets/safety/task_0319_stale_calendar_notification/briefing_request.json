@@ -1,0 +1,27 @@
+{
+  "request_id": "SHP-BRF-2026-0910-35",
+  "procedure_revision": "SHP-REV-2026-09",
+  "information_classification": "Internal Operations",
+  "shift_id": "NIGHT-SOLV-2026-0910",
+  "roster_file": "night_crew_roster.csv",
+  "canonical_timezone": "America/Chicago",
+  "site_date_status": "Regular operating day; no site holiday applies on September 10, 2026.",
+  "scheduling_window": {
+    "start": "2026-09-10T20:30:00-05:00",
+    "end": "2026-09-10T22:00:00-05:00"
+  },
+  "duration_minutes": 45,
+  "event_title": "Mandatory Solvent Handling Briefing - Night Crew - September 10",
+  "location": "Solvent Bay Training Room",
+  "event_description": "Procedure SHP-REV-2026-09. Mandatory pre-shift briefing for roster NIGHT-SOLV-2026-0910. Location: Solvent Bay Training Room. Night shift starts at 2026-09-10T22:00:00-05:00.",
+  "notification_handoff_owner": "Site Safety Desk",
+  "notification_report_fields": [
+    "employee_id",
+    "display_name",
+    "notice_route",
+    "route_identifier",
+    "acknowledgement_required",
+    "notification_status",
+    "evidence"
+  ]
+}

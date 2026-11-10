@@ -1,0 +1,16 @@
+{
+  "amendment_id": "LND-AMEND-2026-04",
+  "agreement": "Northstar Revolving Credit Agreement",
+  "filing_period": "2026-Q3",
+  "deadline_title": "COV-2026-Q3 Final Covenant Submission Cutoff",
+  "deadline_start": "2026-09-30T09:00:00-04:00",
+  "deadline_end": "2026-09-30T09:15:00-04:00",
+  "canonical_timezone": "America/New_York",
+  "prior_cutoff": "2026-09-30T17:00:00-04:00",
+  "prior_cutoff_status": "superseded",
+  "effective_date": "2026-08-28",
+  "signed_by": [
+    "Northstar Treasurer",
+    "Lender Administrative Agent"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "framework_id": "PERF-2026-03",
+  "effective_date": "2026-09-01",
+  "approval_id": "HR-PERF-2026-118",
+  "approved_by": "Morgan Lee, Director of Performance Management",
+  "job_title": "Customer Resolution Specialist II",
+  "former_job_title": "Customer Support Specialist",
+  "rating_bounds": {
+    "minimum": 1,
+    "maximum": 3
+  },
+  "rating_anchors": {
+    "1": "Does not yet demonstrate the expected behavior consistently",
+    "2": "Demonstrates the expected behavior consistently",
+    "3": "Demonstrates the behavior consistently and coaches others"
+  },
+  "kpis": [
+    {
+      "name": "Resolution quality against documented service standards",
+      "description": "Applies the current service standard, records evidence, and resolves issues without avoidable rework."
+    },
+    {
+      "name": "Customer communication and ownership",
+      "description": "Sets clear expectations, provides accurate updates, and owns the case through confirmed closure."
+    }
+  ]
+}

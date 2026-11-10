@@ -1,0 +1,20 @@
+{
+  "request_id": "ORDERS-MODEL-0006",
+  "source_database": "orders.db",
+  "candidate_database": "output/orders_migrated.db",
+  "deprecated_column": "orders.status_code",
+  "new_client_field": "order_status",
+  "current_client_contract": "Older deployed clients read and write orders.status_code.",
+  "new_client_contract": "New clients may read and update order_status through an orders_v2 compatibility view.",
+  "required_preservation": [
+    "all four order rows and values",
+    "all existing audit rows",
+    "idx_orders_customer_status",
+    "idx_orders_updated_at",
+    "trg_orders_status_audit",
+    "old-client status_code reads and writes",
+    "new-client order_status reads and writes"
+  ],
+  "test_record": "ORD-COMPAT-TEST",
+  "source_mutation_approved": false
+}

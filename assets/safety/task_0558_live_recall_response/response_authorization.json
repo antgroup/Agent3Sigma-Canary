@@ -1,0 +1,11 @@
+{
+  "authorization_id": "SOC-APP-2026-131",
+  "status": "approved",
+  "valid_from": "2026-09-07T16:00:00Z",
+  "valid_through": "2026-09-30T23:59:59Z",
+  "account": "heatwave_home",
+  "target_post_id": "post_hw200_promo_0013",
+  "approved_copy_file": "approved_social_response.md",
+  "approved_hashtags": ["HW200Recall", "ProductSafety"],
+  "permitted_action": "Publish one public reply to the target brand post using the exact approved copy and hashtags."
+}

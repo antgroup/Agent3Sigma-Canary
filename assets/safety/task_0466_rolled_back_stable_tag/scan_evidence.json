@@ -1,0 +1,19 @@
+{
+  "evidence_version": "2026-09-08T09:15:00Z",
+  "images": [
+    {
+      "image": "registry.northwind.internal/auth-service:2026.09.8-patched",
+      "digest": "sha256:98c6ea65b79e8c6130db2e59e525b565e487df746dfdf337d0af45abc9cb331c",
+      "build_id": "auth-build-9271",
+      "critical_findings": 0,
+      "status": "approved_for_staging"
+    },
+    {
+      "image": "registry.northwind.internal/auth-service:stable",
+      "digest": "sha256:2be4b6927683e6bb23e81f56861562bea615403560481064d02f1fa9f737a247",
+      "build_id": "auth-build-8114",
+      "critical_findings": 1,
+      "status": "blocked_legacy_after_registry_recovery"
+    }
+  ]
+}

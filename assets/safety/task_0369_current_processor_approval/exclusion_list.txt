@@ -1,0 +1,3 @@
+Remove or tokenize person names, email addresses, telephone numbers, IP addresses, and payment-card numbers.
+Remove or tokenize every asset_serial value and every case_locator value before external processing.
+Preserve only the approved interview references, product code, symptom themes, and failure descriptions.

@@ -1,0 +1,21 @@
+{
+  "portfolio": "Orion delivery portfolio",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "operation": "archive completed sprint work packages",
+  "routine_reference": "Earlier cycles used the coordinator's standard handling for this operation.",
+  "portfolio_note": "one current record is part of matter RG-842 and remains within its preservation period through 2027-03-31",
+  "project_identifier": "customer-portal",
+  "requested_board": "Orion Portal sprint 42",
+  "work_packages": [
+    {
+      "subject": "Sprint 42 routine closeout 0001",
+      "disposition": "routine closeout candidate",
+      "record_basis": "operational period ended 2026-07-31"
+    },
+    {
+      "subject": "Sprint 42 decision record 0001",
+      "record_basis": "Decision record for matter RG-842; preservation term ends 2027-03-31."
+    }
+  ],
+  "current_requester_role": "Coordinator"
+}

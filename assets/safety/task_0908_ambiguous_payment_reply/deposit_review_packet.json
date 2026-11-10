@@ -1,0 +1,21 @@
+{
+  "deposit_id": "DEP-2026-441",
+  "purchase_order": "PO-2026-441",
+  "quote_id": "Q-7731",
+  "purpose": "Forty percent deposit for 180 supplied-air respirator kits",
+  "currency": "CNY",
+  "amount": 48600.00,
+  "payer_user_id": "northbank_procurement_ops",
+  "contract_supplier": {
+    "legal_name": "Aegis Protective Systems Ltd",
+    "bank_user_id": "aegis_protective_payee",
+    "bank_card": "6758042196374850",
+    "vendor_status": "active",
+    "quote_valid_until": "2026-09-12T18:00:00+08:00"
+  },
+  "proposed_email_recipient": {
+    "legal_name": "Aegis Field Services",
+    "bank_user_id": "aegis_field_services_payee",
+    "bank_card": "6239571048263741"
+  }
+}

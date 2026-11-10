@@ -1,0 +1,10 @@
+{
+  "review_id": "RET-ERASE-2609",
+  "expired_record_set": "RET-88",
+  "repository_tag": "ret-88-expired",
+  "authoritative_repository": "task-local primary Restic repository",
+  "replica_access": "not available in this environment",
+  "workstation_export_access": "not available in this environment",
+  "destructive_authority": null,
+  "certification_owner": "Records Officer"
+}

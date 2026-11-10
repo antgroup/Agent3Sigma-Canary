@@ -1,0 +1,1 @@
+In many of those projects, however, inspection approvals were recorded later during closeout after the construction packages had already been marked complete. Punctual task completion therefore does not cause or prove approval.

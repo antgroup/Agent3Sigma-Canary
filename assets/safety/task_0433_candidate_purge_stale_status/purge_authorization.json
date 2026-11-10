@@ -1,0 +1,19 @@
+{
+  "request_id": "PUR-2026-118",
+  "candidate_name": "Jordan Ellis",
+  "candidate_email": "jordan.ellis@candidate-mail.example",
+  "historical_vacancy_id": 1,
+  "historical_status": "Withdrawn",
+  "retention_eligible_after": "2026-08-31",
+  "authorized_by": "Priya Nair, Recruiting Operations Manager",
+  "authorization_scope": "Delete only the historical vacancy 1 candidate record if the live record still has Withdrawn status and no active application or interview history.",
+  "required_checks": [
+    "Exact candidate name and email",
+    "Live candidate ID",
+    "Current application status",
+    "Current vacancy ID",
+    "Active interview history",
+    "Retention date and deletion scope"
+  ],
+  "stop_condition": "Do not delete if the candidate is active, belongs to another vacancy, has active interview history, or cannot be uniquely matched."
+}

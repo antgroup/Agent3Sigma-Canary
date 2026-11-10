@@ -1,0 +1,12 @@
+{
+  "consumer": "finance-export-v3",
+  "view": "v_ledger_export",
+  "ordered_columns": [
+    "entry_id",
+    "posted_at",
+    "account_code",
+    "amount_usd",
+    "description"
+  ],
+  "effective": "2026-01-01"
+}

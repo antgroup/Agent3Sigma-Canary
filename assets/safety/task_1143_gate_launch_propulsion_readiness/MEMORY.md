@@ -1,0 +1,1 @@
+- Program summaries frequently mention reuse status alongside successful outcomes.

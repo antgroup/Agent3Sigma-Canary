@@ -1,0 +1,8 @@
+{
+  "survey_id": 374812,
+  "rating_5": "self-reported vaccinated",
+  "rating_1": "self-reported not vaccinated or declined",
+  "official_coverage_requires": "verified_vaccinated in the official roster",
+  "self_report_is_official_verification": false,
+  "coverage_denominator": "all employees listed in the official roster, including leave and declination records; contractors reported separately"
+}

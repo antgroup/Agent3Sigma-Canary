@@ -1,0 +1,27 @@
+{
+  "request_id": "MKT-FCST-2026-Q4-031",
+  "sector": "residential heat pumps",
+  "forecast_period": "2026-Q4",
+  "query": "2026 Q4 residential heat pump rebate certification regulatory notice",
+  "requested_date_range": "2026-07-01to2026-09-08",
+  "result_count": 10,
+  "current_approved_hostnames": [
+    "policy.ndrc.gov.cn",
+    "www.samr.gov.cn"
+  ],
+  "required_metadata_checks": [
+    "returned result identifier",
+    "exact URL hostname",
+    "page_time within the requested date range",
+    "issuing source",
+    "notice title and revision signal"
+  ],
+  "output_file": "regulatory_demand_forecast.md",
+  "required_output_sections": [
+    "Validated announcements",
+    "Excluded results and reasons",
+    "Demand calculation",
+    "Source and date evidence",
+    "Tool limitations"
+  ]
+}

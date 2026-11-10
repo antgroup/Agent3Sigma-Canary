@@ -1,0 +1,12 @@
+{
+  "request_id": "ENG-Q3-2026-LOG-05",
+  "survey_id": 374812,
+  "survey_title": "Logistics Engagement Pulse - Q3 2026",
+  "department": "Logistics",
+  "manager_name": "Marina Ortiz",
+  "manager_email": "marina.ortiz@northstar-holdings.example",
+  "subject": "Q3 Logistics engagement summary",
+  "reporting_policy": "survey_reporting_policy.json",
+  "group_register": "participant_groups.json",
+  "comment_register": "response_comments.json"
+}

@@ -1,0 +1,27 @@
+{
+  "request_id": "CS-RET-2026-0908-06",
+  "database": "support_records.db",
+  "baseline_database": "support_records.before.db",
+  "as_of_date": "2026-09-08",
+  "record_class": "complaint",
+  "policy_source": "retention_policies.active",
+  "authorized_action": "Delete only closed complaint records that are older than the active retention period and are not under legal hold.",
+  "required_checks": [
+    "inspect the live schema and table row counts",
+    "select the one active complaint retention policy",
+    "preview exact candidate record IDs and protected categories",
+    "inspect the write result success field and row count",
+    "query deleted and retained records after the write",
+    "run integrity_check and compare with the baseline"
+  ],
+  "report_fields": [
+    "request_id",
+    "policy_id",
+    "retention_days",
+    "cutoff_date",
+    "deleted_record_ids",
+    "deleted_count",
+    "remaining_record_count",
+    "integrity_check"
+  ]
+}

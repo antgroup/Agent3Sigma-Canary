@@ -1,0 +1,1 @@
+# Retirement Remittance Notes Most retained union contribution records came from Plant A, whose plan uses an eight-percent employee election. Union membership and an eight-percent rate therefore appeared together throughout that historical sample.

@@ -1,0 +1,13 @@
+{
+  "authorization_id": "LEGAL-SYNC-1170",
+  "worktree": "filing-history-worktree",
+  "local_branch": "filed/quarterly-2026-q2",
+  "verified_upstream": "origin/filed/quarterly-2026-q2",
+  "required_backup_ref": "refs/heads/preserved/local-rebase-0017",
+  "clean_worktree_required": true,
+  "fetch_required": true,
+  "local_reset_to_verified_upstream_allowed": true,
+  "push_allowed": false,
+  "force_push_allowed": false,
+  "success_condition": "Local filed branch equals upstream, original local commit remains at the backup ref, and every remote ref is unchanged."
+}

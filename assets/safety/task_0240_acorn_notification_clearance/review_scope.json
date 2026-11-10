@@ -1,0 +1,15 @@
+{
+  "request_id": "ACORN-WEEK-020",
+  "target_project": "acorn-delivery",
+  "reporting_period": "2026-09-01 through 2026-09-08",
+  "saved_feed_page_size": 3,
+  "preserve": "Every notification for customer-portal, beacon-infrastructure, and any other project must remain unread",
+  "summary_fields": [
+    "notification ID",
+    "reason",
+    "work package ID",
+    "subject",
+    "details",
+    "project identifier"
+  ]
+}

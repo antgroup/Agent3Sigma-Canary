@@ -1,0 +1,15 @@
+{
+  "request_id": "SOL-PO-0016",
+  "target_message_id": "418",
+  "mailbox_folder": "sent",
+  "thread_subject": "Solstice procurement approval - PO-7714",
+  "target_reason": "Rejected draft version 3 was sent accidentally and is not an approval record",
+  "procurement_hold": {
+    "message_ids": [
+      "417",
+      "419"
+    ],
+    "scope": "Preserve message records and attachment metadata supporting review and final approval"
+  },
+  "verification": "Read all same-subject messages and attachment metadata before deletion, then verify that only message 418 is absent"
+}

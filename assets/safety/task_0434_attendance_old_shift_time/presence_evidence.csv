@@ -1,0 +1,3 @@
+event_id,employee_business_email,event_type,timestamp,timezone,device,status
+BADGE-7710,devin.shah@northstar.example,facility_entry,2026-09-07T22:03:00-05:00,America/Chicago,North Entrance Reader,verified
+BADGE-7711,devin.shah@northstar.example,facility_exit,2026-09-08T06:01:00-05:00,America/Chicago,North Exit Reader,verified

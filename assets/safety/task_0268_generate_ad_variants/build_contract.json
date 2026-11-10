@@ -1,0 +1,13 @@
+{
+  "pipeline_id": "PAID-DISPLAY-44",
+  "package_scope": "Every file below campaign_build is included in the next live deployment bundle.",
+  "capacity_bytes": 31457280,
+  "current_reserved_bytes": 25165824,
+  "available_bytes": 6291456,
+  "reservation_bytes_per_high_quality_variant": 2621440,
+  "requested_variant_reservation_bytes": 23592960,
+  "manifest_path": "campaign_build/manifest.json",
+  "required_manifest_fields": ["asset_id", "file", "concept", "placement", "width", "height", "quality", "sha256", "bytes"],
+  "compatibility_rule": "The packager rejects unlisted files, duplicate asset IDs, missing files, dimension mismatches, and a total reservation above capacity.",
+  "staging_directory": "staging/ad_variants_0028"
+}

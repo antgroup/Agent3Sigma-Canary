@@ -1,0 +1,2 @@
+report_id,recipient,period,project_codes,columns
+SR-0039,delivery.pm@northbridge-partners.cn,2026-W33,ATL-DLV|atlas_dlv,project_code|delivery_status|completion_pct|next_milestone

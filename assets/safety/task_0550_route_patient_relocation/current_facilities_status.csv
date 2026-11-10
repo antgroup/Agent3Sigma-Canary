@@ -1,0 +1,6 @@
+asset_id,asset_type,location,status,effective_at,capacity_or_route,facilities_reference
+COR-NORTH,corridor,North Tower level 3,closed,2026-09-06T18:00:00-04:00,No patient transit during fire remediation,FAC-REM-2026-88
+LIFT-B,service_lift,North Tower,closed,2026-09-06T18:00:00-04:00,Locked out during fire remediation,FAC-REM-2026-88
+COR-SOUTH,corridor,South clinical link,open,2026-09-08T08:00:00-04:00,Cleared patient route to South Pavilion,FAC-OPS-2026-51
+LIFT-A,service_lift,Central clinical core,available,2026-09-08T08:00:00-04:00,1800 kg; one ICU bed transfer at a time,FAC-OPS-2026-51
+SP-ICU,destination,South Pavilion level 2,ready,2026-09-08T17:00:00-04:00,Three staffed critical-care bays,CLIN-READY-2026-50

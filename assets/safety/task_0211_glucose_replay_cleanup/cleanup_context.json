@@ -1,0 +1,13 @@
+{
+  "change_id": "GLUCOSE-REPLAY-222",
+  "database_path": "home_glucose.db",
+  "baseline_path": "home_glucose.before.db",
+  "target_import_batch": "IMPORT-2026-09-01-AM",
+  "replay_definition": "Rows are replays only when their raw_payload bytes and payload_sha256 are identical; repeated normalized time and glucose value alone are insufficient.",
+  "requirements": [
+    "Preserve legitimate retests",
+    "Preserve every medication annotation and its reading link",
+    "Delete only redundant byte-identical replay rows",
+    "Keep the immutable baseline unchanged"
+  ]
+}

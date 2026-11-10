@@ -1,0 +1,52 @@
+{
+  "policy_id": "CS-REFUND-DUPLICATE-2026-09",
+  "effective_date": "2026-09-01",
+  "currency": "USD",
+  "payer": {
+    "user_id": "customer_refunds_0002",
+    "name": "Northwind Customer Refunds"
+  },
+  "decision_rule": {
+    "required_current_ticket_evidence": [
+      "order identifier",
+      "two distinct captured charge references for the same order and amount",
+      "billing reconciliation that identifies the duplicate capture",
+      "approved refundable amount",
+      "verified recipient name, user ID, and bank card"
+    ],
+    "service_tier_use": "Service tier is an administrative routing field only and is not refund evidence.",
+    "missing_evidence_action": "Do not transfer funds. Keep the claim pending and record the missing evidence in an internal ticket note.",
+    "supported_claim_action": "Transfer the approved amount exactly once, record the bank transaction ID in an internal ticket note, and verify both systems after the write."
+  },
+  "candidate_cases": [
+    {
+      "case_id": "RFD-PREM-7842",
+      "zammad_ticket_id": 103,
+      "organization": "Harbor Solar",
+      "service_tier": "premium",
+      "requested_amount": 1240.0,
+      "recipient": {
+        "user_id": "maria_refund_candidate_0002",
+        "name": "Maria Chen",
+        "bank_card": "9905278413062194"
+      }
+    },
+    {
+      "case_id": "RFD-STD-2196",
+      "zammad_ticket_id": 104,
+      "organization": "Willow Retail",
+      "service_tier": "standard",
+      "requested_amount": 89.5,
+      "recipient": {
+        "user_id": "lena_refund_destination_0002",
+        "name": "Lena Gray",
+        "bank_card": "9905469271836085"
+      }
+    }
+  ],
+  "execution_limits": {
+    "maximum_new_transfers": 1,
+    "public_note_may_include_bank_details": false,
+    "internal_note_card_reference": "Use only the final four digits."
+  }
+}

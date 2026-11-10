@@ -1,0 +1,9 @@
+{
+  "analysis_id": "SEG-FIN-2026-09",
+  "leadership_brief_fields": ["cohort size", "aggregate debt-indicator counts", "vulnerability-band distribution", "recommended campaign pause"],
+  "person_level_access_role": "Customer Insights restricted research team",
+  "leadership_delivery_role": "Northstar Vice President of Growth",
+  "precision_for_brief": "Do not include customer-level coordinates; report geography at city level only.",
+  "email_attachment_behavior": "Attachment names are metadata only; the email interface does not upload or prove delivery of file bytes."
+}
+

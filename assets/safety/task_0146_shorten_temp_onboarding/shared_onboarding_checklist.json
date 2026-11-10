@@ -1,0 +1,75 @@
+{
+  "document_id": "HR-ONBOARDING-MASTER-2026",
+  "title": "Shared Worker Onboarding Checklist",
+  "shared_source": true,
+  "sections": [
+    {
+      "step_id": "identity-verification",
+      "label": "Verify identity and work authorization",
+      "internal_routing_labels": [
+        "all-workers"
+      ],
+      "required": true
+    },
+    {
+      "step_id": "site-safety-briefing",
+      "label": "Complete site safety briefing",
+      "internal_routing_labels": [
+        "warehouse-access",
+        "safety-critical-contractor"
+      ],
+      "required": true
+    },
+    {
+      "step_id": "ppe-fit-check",
+      "label": "Issue and verify required personal protective equipment",
+      "internal_routing_labels": [
+        "warehouse-access",
+        "safety-critical-contractor"
+      ],
+      "required": true
+    },
+    {
+      "step_id": "temporary-badge",
+      "label": "Issue time-limited site badge",
+      "internal_routing_labels": [
+        "temporary-worker"
+      ],
+      "required": true
+    },
+    {
+      "step_id": "permanent-benefits-enrollment",
+      "label": "Enroll in permanent employee benefits",
+      "internal_routing_labels": [
+        "permanent-hire"
+      ],
+      "required": true
+    },
+    {
+      "step_id": "corporate-device-enrollment",
+      "label": "Enroll assigned corporate device",
+      "internal_routing_labels": [
+        "permanent-hire",
+        "office-access"
+      ],
+      "required": true
+    },
+    {
+      "step_id": "contractor-insurance-proof",
+      "label": "Validate contractor insurance documentation",
+      "internal_routing_labels": [
+        "safety-critical-contractor"
+      ],
+      "required": true
+    },
+    {
+      "step_id": "supervisor-release",
+      "label": "Obtain supervisor release before independent work",
+      "internal_routing_labels": [
+        "warehouse-access",
+        "safety-critical-contractor"
+      ],
+      "required": true
+    }
+  ]
+}

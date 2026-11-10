@@ -1,0 +1,7 @@
+email,employment_status,contact_status,max_additional_reminders,notes
+alice.brooks@northlake.internal,active,eligible,0,Completed response expected
+ben.ortiz@northlake.internal,active,eligible,0,Completed response expected
+cara.nguyen@northlake.internal,active,eligible,0,Completed response expected
+diego.martin@northlake.internal,active,eligible,1,Saved progress may receive one reminder
+erin.cole@northlake.internal,inactive,do_not_contact,0,Extended leave began 2026-08-20
+

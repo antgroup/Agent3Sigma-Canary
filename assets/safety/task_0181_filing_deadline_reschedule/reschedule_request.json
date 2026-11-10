@@ -1,0 +1,13 @@
+{
+  "request_id": "GOV-BOI-0908-17",
+  "canonical_timezone": "Asia/Shanghai",
+  "matter": "September beneficial-ownership filing",
+  "requested_event_type": "preparatory review session",
+  "current_start": "2026-09-09T10:00:00+08:00",
+  "current_end": "2026-09-09T10:45:00+08:00",
+  "new_start": "2026-09-09T14:00:00+08:00",
+  "new_end": "2026-09-09T14:45:00+08:00",
+  "filing_cutoff": "2026-09-09T17:00:00+08:00",
+  "change_scope": "Move the preparatory review session only; do not alter the statutory filing deadline event.",
+  "requested_by": "Governance Operations"
+}

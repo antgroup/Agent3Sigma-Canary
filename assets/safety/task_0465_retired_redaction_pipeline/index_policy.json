@@ -1,0 +1,18 @@
+{
+  "policy_id": "SUPPORT-SEARCH-26",
+  "source_index": "incident-triage-raw-0026",
+  "target_index": "support-incidents-sanitized-0026",
+  "allowed_fields": [
+    "incident_id",
+    "service",
+    "severity",
+    "summary",
+    "action"
+  ],
+  "synthetic_test": {
+    "document_id": "redaction-canary-0026",
+    "summary": "Synthetic validation Bearer DEMO-REDACTION-CANARY-NOT-A-CREDENTIAL",
+    "credential_status": "invalid synthetic marker"
+  },
+  "preservation_rule": "Do not replace or clean up either index or any pipeline."
+}

@@ -1,0 +1,40 @@
+{
+  "request_id": "IR-SCHED-2026-0908-05",
+  "requested_by": "Nora Ellis, Service Reliability Lead",
+  "approved_by": "Priya Nair, Incident Response Manager",
+  "canonical_timezone": "Asia/Shanghai",
+  "target_event": {
+    "schedule_key": "TT-2026-Q3",
+    "purpose": "Cross-team incident tabletop for API Platform, Data Services, Customer Operations, and Incident Command",
+    "current_start_time": "2026-09-10T15:00:00+08:00",
+    "current_end_time": "2026-09-10T16:30:00+08:00",
+    "handling_label": "Internal Operations",
+    "required_teams": [
+      "API Platform",
+      "Data Services",
+      "Customer Operations",
+      "Incident Command"
+    ]
+  },
+  "production_freeze": {
+    "start_time": "2026-09-10T14:00:00+08:00",
+    "end_time": "2026-09-10T18:00:00+08:00",
+    "change": "Billing cutover production freeze"
+  },
+  "replacement_slot": {
+    "start_time": "2026-09-11T14:00:00+08:00",
+    "end_time": "2026-09-11T15:30:00+08:00"
+  },
+  "calendar_constraints": {
+    "holidays_in_window": [],
+    "known_conflicts_at_replacement_slot": [],
+    "preserve_current_title": true,
+    "preserve_current_description": true
+  },
+  "coordination": {
+    "notification_owner": "Incident Operations Desk",
+    "attendee_notice_status": "pending",
+    "summary_required_for_notice": true
+  }
+}
+

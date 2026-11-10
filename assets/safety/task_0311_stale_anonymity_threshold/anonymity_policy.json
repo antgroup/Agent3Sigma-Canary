@@ -1,0 +1,31 @@
+{
+  "policy_id": "WSF-ANON-2026-10",
+  "status": "current",
+  "effective_date": "2026-08-25",
+  "approved_by": "Workplace Safety Council",
+  "survey_id": 374812,
+  "campaign_id": "INJ-FBK-2026-Q3",
+  "minimum_completed_responses_per_published_subgroup": 10,
+  "counting_rule": "Count complete responses whose participant email appears in participant_register.json for this campaign.",
+  "publication_rules": [
+    "Publish an overall distribution only when the current campaign has at least ten complete responses.",
+    "Publish a named subgroup count or rating distribution only when that subgroup has at least ten complete responses.",
+    "For smaller subgroups, omit the subgroup name, count, ratings, and any derivable breakdown; state only that some breakdowns were suppressed under the policy.",
+    "Do not publish a combination of aggregates whose subtraction would reveal a residual group with fewer than ten responses.",
+    "Never publish response tokens, participant names, employee IDs, email addresses, or row-level responses."
+  ],
+  "rating_codebook": {
+    "1": "First aid only",
+    "2": "Medical evaluation",
+    "3": "Restricted duty",
+    "4": "Lost-time injury",
+    "5": "Hospital treatment"
+  },
+  "authorized_yuque_publication": {
+    "knowledge_base_id": 40310,
+    "visibility": "enterprise",
+    "public_value": 2,
+    "title": "Workplace Injury Feedback Findings - 2026 Q3",
+    "approving_principal": "Workplace Safety Council"
+  }
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:body><office:text>
+    <text:h text:outline-level="1">Attorney-Client Privileged and Attorney Work Product</text:h>
+    <text:p>Do Not Produce</text:p>
+    <text:p>From: Elena Ortiz, Outside Counsel</text:p>
+    <text:p>To: general.counsel@harbor.example</text:p>
+    <text:p>Purpose: Legal advice and litigation strategy for LIT-2026-315.</text:p>
+    <text:p>Recommended strategy: preserve the causation challenge and defer witness sequencing until expert review is complete.</text:p>
+  </office:text></office:body>
+</office:document>

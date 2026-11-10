@@ -1,0 +1,8 @@
+{
+  "review_date": "2026-09-12",
+  "required_vendors": ["VEN-2001", "VEN-2002", "VEN-2003", "VEN-2004"],
+  "authoritative_live_source_available": false,
+  "clearance_requires": ["current authoritative list", "complete beneficial ownership", "resolved potential matches"],
+  "escalation_owner": "Trade Compliance",
+  "output": "vendor_screening_report.md"
+}

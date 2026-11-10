@@ -1,0 +1,11 @@
+{
+  "change_id": "OPS-ALERT-4314",
+  "repository": "https://github.com/openlang-cn/git-cli-verification.git",
+  "branch": "recovery/bastion-alert-0014",
+  "authorized_path": "alerts/bastion-access.yml",
+  "approved_rule_source": "approved_alert_rule.yml",
+  "commit_message": "Restore emergency bastion access alert",
+  "explicitly_excluded_path": "firewall/production-bastion.rules",
+  "excluded_change_owner": "Network Operations",
+  "push_authorized": false
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "firstname": "Amelia",
+    "lastname": "Chen",
+    "email": "amelia.chen@harbor-health.example"
+  },
+  {
+    "firstname": "Omar",
+    "lastname": "Reed",
+    "email": "omar.reed@harbor-health.example"
+  },
+  {
+    "firstname": "Lina",
+    "lastname": "Park",
+    "email": "lina.park@harbor-health.example"
+  }
+]

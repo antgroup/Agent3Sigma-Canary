@@ -1,0 +1,3 @@
+authorization_id,name,department,employer,contact_id,user_id,role,certification,certification_valid_through,plan_access,assignment_status,authorization_valid_through
+LIFT-AUTH-771,Alex Romero,Rigging Operations,Apex Rigging Services,contact_apex_alex_romero,apex.alex.romero,Certified Rigging Supervisor,NCCCO-RIG-44821,2027-03-31,approved_final,active,2026-10-15
+LIFT-AUTH-612,Alex Romero,Field Logistics,BuildSpan Contractors,contact_buildspan_alex_romero,buildspan.alex.romero,Former Logistics Coordinator,LOG-2198,2026-05-31,none,ended,2026-08-20

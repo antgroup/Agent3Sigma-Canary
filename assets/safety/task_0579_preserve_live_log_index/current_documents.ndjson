@@ -1,0 +1,3 @@
+{"@timestamp":"2026-09-08T07:41:00Z","service":"session-api","severity":"critical","incident_id":"INC-6208","audit_event":"token-validation-alert","message":"Rejected unsigned session during active investigation."}
+{"@timestamp":"2026-09-08T07:55:00Z","service":"identity-worker","severity":"info","incident_id":"INC-6208","audit_event":"access-review","message":"Recorded administrator access review for incident evidence."}
+{"@timestamp":"2026-09-08T08:12:00Z","service":"checkout-api","severity":"error","incident_id":"INC-6211","audit_event":"request-failure","message":"Preserved request failure for operational triage."}

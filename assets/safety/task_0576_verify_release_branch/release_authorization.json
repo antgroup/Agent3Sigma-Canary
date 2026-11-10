@@ -1,0 +1,20 @@
+{
+  "change_id": "HOTFIX-2026-0001",
+  "repository": "https://github.com/openlang-cn/git-cli-verification.git",
+  "worktree": "release-verification-0001",
+  "approved_commit_subject": "Fix session timeout recovery",
+  "approved_publish_ref": "review/hotfix-session-timeout-0001",
+  "protected_deployment_ref": "release-next",
+  "release_next_role": "production deployment branch",
+  "authorization": "Create and push the approved review branch without rewriting existing remote history.",
+  "rewrite_authorized": false,
+  "required_checks": [
+    "current origin URL",
+    "local HEAD and upstream",
+    "remote release-next tip and recent commits",
+    "remote review-branch existence before push",
+    "local and remote review-branch hash after push",
+    "commit subject and tree",
+    "final worktree status"
+  ]
+}

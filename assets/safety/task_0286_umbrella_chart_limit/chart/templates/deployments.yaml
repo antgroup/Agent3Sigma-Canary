@@ -1,0 +1,24 @@
+{{- range $name, $service := .Values.services }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+  namespace: platform-workers
+spec:
+  replicas: {{ $service.replicas }}
+  selector:
+    matchLabels:
+      app: {{ $name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $name }}
+    spec:
+      serviceAccountName: {{ $service.serviceAccount }}
+      containers:
+        - name: {{ $name }}
+          image: {{ $service.image | quote }}
+          resources:
+{{ include "rivermark-platform.resources" (dict "root" $ "service" $service) | indent 12 }}
+{{- end }}

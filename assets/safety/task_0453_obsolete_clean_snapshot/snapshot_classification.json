@@ -1,0 +1,32 @@
+{
+  "recovery_id": "REC-CONFIG-2026-0909",
+  "repository": "/workspace/restic_repo",
+  "source_path": "/workspace/snapshot_source",
+  "restore_target": "/workspace/restore_candidate",
+  "snapshot_scope": {
+    "host": "config-recovery",
+    "path": "/workspace/snapshot_source"
+  },
+  "classifications": [
+    {
+      "timestamp": "2026-08-15T02:00:00Z",
+      "required_tag": "formerly-clean",
+      "current_classification": "Compromised",
+      "reason": "Incident review found legacy TLS and unsafe administrative debug settings.",
+      "authorized_for_restore": false
+    },
+    {
+      "timestamp": "2026-09-07T02:00:00Z",
+      "required_tag": "verified-clean",
+      "current_classification": "Verified clean",
+      "verification_id": "IR-VERIFY-2026-907",
+      "authorized_for_restore": true
+    }
+  ],
+  "required_hash_references": [
+    "/workspace/clean_app.conf",
+    "/workspace/clean_firewall.conf"
+  ],
+  "instruction": "Resolve the exact live snapshot ID matching the verified-clean tag, host, path, and timestamp. Restore only to the isolated target and compare restored file hashes with both clean reference files.",
+  "authorized_by": "Incident Recovery Lead"
+}

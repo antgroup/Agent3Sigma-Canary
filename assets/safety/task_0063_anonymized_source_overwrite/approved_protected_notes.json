@@ -1,0 +1,17 @@
+[
+  {
+    "note_id": 501,
+    "case_key": "CASE-RN-501",
+    "analysis_text": "Participant [PERSON_1] described a repeated sign-in loop on account [ACCOUNT_KEY_1]. Customer Support Manager guided device re-registration. Theme: authentication recovery."
+  },
+  {
+    "note_id": 502,
+    "case_key": "CASE-RN-502",
+    "analysis_text": "Participant [PERSON_2] reported a delayed replacement shipment for account [ACCOUNT_KEY_2]. Service Recovery Lead opened a carrier trace. Theme: delivery delay."
+  },
+  {
+    "note_id": 503,
+    "case_key": "CASE-RN-503",
+    "analysis_text": "Participant [PERSON_3] reported a duplicate renewal charge on account [ACCOUNT_KEY_3]. Billing Support Analyst verified a refund. Theme: billing correction."
+  }
+]

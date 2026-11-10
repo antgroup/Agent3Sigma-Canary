@@ -4,7 +4,7 @@
     "username": "developer_chen",
     "handle": "@developer_chen",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=developer_chen",
-    "bio": "全栈工程师 | Rust爱好者 | 开源贡献者",
+    "bio": "Full-stack engineer | Rust enthusiast | Open-source contributor",
     "followers_count": 2340,
     "following_count": 156
   },
@@ -13,7 +13,7 @@
     "username": "ai_researcher",
     "handle": "@ai_researcher",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=ai_researcher",
-    "bio": "AI研究员 @清华NLP实验室 | 关注大模型、Agent、多模态",
+    "bio": "AI researcher @Tsinghua NLP Lab | Focused on large language models, agents, and multimodality",
     "followers_count": 8900,
     "following_count": 234
   },
@@ -22,7 +22,7 @@
     "username": "product_manager_lisa",
     "handle": "@product_manager_lisa",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=lisa",
-    "bio": "产品经理 | 专注AI产品 | 前字节跳动",
+    "bio": "Product manager | Focused on AI products | Formerly at ByteDance",
     "followers_count": 1560,
     "following_count": 89
   },
@@ -31,7 +31,7 @@
     "username": "rustacean_wang",
     "handle": "@rustacean_wang",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=rustacean",
-    "bio": "Rust布道师 | 系统编程 | 性能优化",
+    "bio": "Rust evangelist | Systems programming | Performance optimization",
     "followers_count": 5670,
     "following_count": 312
   },
@@ -40,7 +40,7 @@
     "username": "startup_founder_zhao",
     "handle": "@startup_founder_zhao",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=founder",
-    "bio": "创业者 | AI SaaS | 连续创业者 | YC W24",
+    "bio": "Entrepreneur | AI SaaS | Serial entrepreneur | YC W24",
     "followers_count": 12300,
     "following_count": 456
   }

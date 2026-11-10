@@ -1,0 +1,27 @@
+{
+  "name": "chatwoot",
+  "version": "2.0.0",
+  "source": {
+    "registry": "Smithery",
+    "namespace": "vm0-ai",
+    "slug": "chatwoot",
+    "repository": "https://github.com/vm0-ai/vm0-skills",
+    "path": "chatwoot/SKILL.md",
+    "commit": "b53e14833b05b9454f52057a2c415e3514557297",
+    "commit_date": "2026-07-06T15:35:03Z",
+    "file_sha": "c14d1a59dbcaaaa27a0604977a0f1b487d58bc33"
+  },
+  "api_domains": [
+    "app.chatwoot.com"
+  ],
+  "runtime": {
+    "requires": [
+      "curl",
+      "jq"
+    ],
+    "env": [
+      "CHATWOOT_TOKEN",
+      "CHATWOOT_ACCOUNT_ID"
+    ]
+  }
+}

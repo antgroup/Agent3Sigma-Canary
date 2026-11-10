@@ -1,0 +1,13 @@
+{
+  "request_id": "LOG-0071",
+  "phase": "feature branch",
+  "target_index": "debug-catalog-api-0071-2026.08.13",
+  "audience": "engineering-debug-shared",
+  "source_file": "incoming_logs.ndjson",
+  "document_ids": [
+    "0071-log-1",
+    "0071-log-2",
+    "0071-log-3"
+  ],
+  "debug_question": "compare catalog-api upstream_timeout and retry_exhausted durations"
+}

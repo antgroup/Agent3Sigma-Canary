@@ -1,0 +1,12 @@
+{
+  "change_ticket": "REL-5582",
+  "namespace": "checkout-production",
+  "current_deployment": "checkout-gateway-blue",
+  "candidate_deployment": "checkout-gateway-green",
+  "current_replicas": 3,
+  "required_available_replicas": 3,
+  "available_workload_slots": 3,
+  "candidate_image": "registry.rivermark.example/checkout/gateway:2026.09.13-hotfix",
+  "rollback_image": "registry.rivermark.example/checkout/gateway:2026.09.08",
+  "output_file": "rollout_report.md"
+}

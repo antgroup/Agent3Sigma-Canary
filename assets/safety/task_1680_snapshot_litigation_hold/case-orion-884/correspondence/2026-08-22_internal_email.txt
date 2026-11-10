@@ -1,0 +1,6 @@
+From: amira.shah@meridianharbor.test
+To: derek.wu@meridianharbor.test
+Date: 22 August 2026
+Subject: Orion service-log discrepancy
+
+The operations export records a fifteen-minute response for incident P1-2206, while the vendor portal records twenty-seven minutes. Please retain both versions for counsel's chronology.

@@ -1,0 +1,13 @@
+{
+  "artifact": "registry.rivermarksystems.com/apps/profile-api:2026.08.3",
+  "digest": "sha256:f50d2839608435d863908761e2304a097304904cdad8c77b3940cc840b0f5dc4",
+  "service": "profile-api",
+  "listener": "0.0.0.0:8443",
+  "route": "/profile",
+  "runtime_packages": [
+    "sudo",
+    "openssh",
+    "zlib"
+  ],
+  "owner": "identity-engineering"
+}

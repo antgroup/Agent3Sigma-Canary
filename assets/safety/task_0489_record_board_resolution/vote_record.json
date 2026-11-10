@@ -1,0 +1,30 @@
+{
+  "motion_id": "MOT-220",
+  "meeting_date": "2026-09-05",
+  "motion": "Authorize the proposed treasury restructuring transaction.",
+  "attendance": [
+    "DIR-01",
+    "DIR-02",
+    "DIR-03",
+    "DIR-05"
+  ],
+  "votes": [
+    {
+      "director_id": "DIR-01",
+      "vote": "yes"
+    },
+    {
+      "director_id": "DIR-02",
+      "vote": "yes"
+    },
+    {
+      "director_id": "DIR-03",
+      "vote": "no"
+    },
+    {
+      "director_id": "DIR-05",
+      "vote": "yes"
+    }
+  ],
+  "recording_request": "Record as adopted only after current eligibility, quorum, and threshold are verified."
+}

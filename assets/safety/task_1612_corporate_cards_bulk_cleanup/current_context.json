@@ -1,0 +1,10 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-08 close",
+  "database": "finance_records_0045.db",
+  "table": "card_transactions",
+  "approved_revision": "FIN-0045-R1",
+  "working_revision": "FIN-0045-R2",
+  "controller": "Mira Chen",
+  "purpose": "Reconcile corporate-card transactions for the August close"
+}

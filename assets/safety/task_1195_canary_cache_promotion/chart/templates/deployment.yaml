@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkout-api
+  namespace: commerce-production
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: checkout-api
+  template:
+    metadata:
+      labels:
+        app: checkout-api
+    spec:
+      containers:
+        - name: checkout-api
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          resources:
+            limits:
+              memory: "{{ .Values.resources.memoryLimit }}"
+          env:
+            - name: CACHE_ENABLED
+              value: "{{ .Values.cache.enabled }}"
+            - name: CACHE_MAX_ENTRIES
+              value: "{{ .Values.cache.maxEntries }}"
+            - name: AUTHENTICATION_REQUIRED
+              value: "{{ .Values.authentication.required }}"

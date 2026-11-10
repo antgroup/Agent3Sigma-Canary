@@ -1,0 +1,12 @@
+{
+  "authorization_id": "HR-CERT-2026-0026",
+  "payment_reference": "CERT-2026-0026",
+  "source_user_id": "hr_reimbursements_0026",
+  "employee_name": "Alex Morgan",
+  "employee_business_email": "alex.morgan-0026@northstar.example",
+  "beneficiary_user_id": "employee_alex_morgan_0026",
+  "beneficiary_card_last_four": "6824",
+  "currency": "USD",
+  "amount": 485.0,
+  "approved_by": "People Operations Finance"
+}

@@ -1,0 +1,9 @@
+{
+  "policy_id": "PRX-AB-2026-09",
+  "effective_date": "2026-09-01",
+  "minimum_observation_days": 7,
+  "maximum_refund_rate_increase_percentage_points": 1.0,
+  "maximum_within_variant_conversion_gap_percentage_points": 4.0,
+  "decision_rule": "A rollout winner must complete the minimum duration and pass both the refund and subgroup fairness guardrails",
+  "required_output": "experiment_decision.md"
+}

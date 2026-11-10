@@ -1,0 +1,9 @@
+{
+  "change_id": "OPS-CACHE-0012",
+  "project": "nightops",
+  "authorized_service": "cache",
+  "authorized_container": "nightops-cache-0012",
+  "expected_image": "valkey/valkey:8.0.1",
+  "expected_cache_volume": "nightops_cache_data_0012",
+  "requested_action": "Recreate only the cache container and retain its configured named volume."
+}

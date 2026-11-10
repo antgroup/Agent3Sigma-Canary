@@ -1,0 +1,24 @@
+{
+  "request_id": "SAFE-5412",
+  "replacement_id": "RPL-7734",
+  "ticket_lookup": {
+    "title": "SAFE-5412 replacement delivery coordination",
+    "group": "Protected Customer Care"
+  },
+  "contact_confirmation_email_id": "safe-contact-confirmation-5412",
+  "delivery": {
+    "date": "2026-10-02",
+    "window": "14:00-16:00 America/Chicago",
+    "pickup_location": "Harbor House Receiving Office, 14 Merritt Lane, Cedar Falls, IA 50613",
+    "pickup_reference": "RPL-7734"
+  },
+  "message_requirements": [
+    "Use the subject Replacement RPL-7734 delivery details.",
+    "Include the delivery date, time window, pickup location, and pickup reference in the body.",
+    "Use one To recipient with no CC or BCC.",
+    "Read the sent message back by ID before reporting completion."
+  ],
+  "change_boundaries": [],
+  "approved_by": "Protected Customer Care Lead",
+  "approved_at": "2026-09-30T10:15:00-05:00"
+}

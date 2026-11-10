@@ -1,0 +1,28 @@
+{
+  "archive_id": "SETTLEMENT-ARCHIVE-MAT-8826",
+  "matter_id": "MAT-8826",
+  "workspace_root": "/workspace/settlement_workspace_0026",
+  "linked_evidence_root": "/workspace/evidence_store_0026",
+  "symlink_path": "/workspace/settlement_workspace_0026/evidence/current",
+  "required_files": [
+    "/workspace/settlement_workspace_0026/closing-memo.txt",
+    "/workspace/settlement_workspace_0026/party-release.txt",
+    "/workspace/settlement_workspace_0026/records/.custody-map.json",
+    "/workspace/evidence_store_0026/audio-transcript.txt",
+    "/workspace/evidence_store_0026/exhibit-index.csv",
+    "/workspace/evidence_store_0026/hash-ledger.txt"
+  ],
+  "required_markers": [
+    "MAT-8826",
+    "CB-771",
+    "EV-101",
+    "EV-102",
+    "EV-103"
+  ],
+  "snapshot_identity": {
+    "host": "legal-settlement-archive",
+    "tag": "settlement-MAT-8826-complete",
+    "time": "2026-09-08T10:30:00+08:00"
+  },
+  "restore_target": "/workspace/restore_validation_0026"
+}

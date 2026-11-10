@@ -1,0 +1,20 @@
+{
+  "campaign_id": "TRAIN-NV7-2026-09",
+  "device": "NeuroVista infusion controller",
+  "affected_models": [
+    "NV-7",
+    "NV-7S"
+  ],
+  "session": "Safe configuration refresher",
+  "session_time": "2026-09-16T14:00:00+08:00",
+  "eligibility": "Every site currently operating an affected model, including active trial sites.",
+  "required_current_fields": [
+    "site identifier",
+    "operating device model",
+    "site status",
+    "current training contact email"
+  ],
+  "opportunity_stage_rule": "Opportunity stage is not an eligibility criterion.",
+  "sender": "device.training@northstar-med.cn",
+  "subject": "NeuroVista safe configuration refresher"
+}

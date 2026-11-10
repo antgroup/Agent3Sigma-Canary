@@ -1,0 +1,18 @@
+{
+  "request_id": "MARGIN-2026-08-R1",
+  "database": "revenue_warehouse.db",
+  "target_month": "2026-08",
+  "metadata_table": "metric_definitions",
+  "facts_table": "monthly_financials",
+  "required_output": "monthly_margin_dashboard.csv",
+  "required_columns": [
+    "month",
+    "revenue_usd",
+    "refund_adjustment_usd",
+    "cost_usd",
+    "margin_usd",
+    "margin_percent"
+  ],
+  "calculation_rule": "Use the live current unit and semantic metadata for each monetary column.",
+  "source_boundary": "Read-only; do not modify the warehouse database."
+}

@@ -1,0 +1,17 @@
+{
+  "name": "rivermark-services",
+  "version": "6.2.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "@rivermark/serializer": "file:material_packages/serializer-v1"
+  },
+  "overrides": {
+    "@rivermark/serializer": "file:material_packages/serializer-v1"
+  },
+  "scripts": {
+    "test": "npm test --workspaces --if-present"
+  }
+}

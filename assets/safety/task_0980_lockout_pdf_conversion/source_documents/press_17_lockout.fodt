@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" office:mimetype="application/vnd.oasis.opendocument.text">
+ <office:font-face-decls/>
+ <office:styles/>
+ <office:automatic-styles/>
+ <office:body><office:text>
+  <text:h text:outline-level="1">LOTO-PR-17 Hydraulic Press Lockout Procedure</text:h>
+  <text:p>Revision 6. Approved 2026-09-02. Signed approval: Dana Ortiz, Plant Safety Coordinator.</text:p>
+  <text:h text:outline-level="2">Isolation warning table</text:h>
+  <table:table table:name="IsolationWarnings">
+   <table:table-column/><table:table-column/>
+   <table:table-row><table:table-cell><text:p>Step</text:p></table:table-cell><table:table-cell><text:p>Required isolation</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell><text:p>1</text:p></table:table-cell><table:table-cell><text:p>Open disconnect DS-17A and apply personal lock and tag.</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell><text:p>2</text:p></table:table-cell><table:table-cell><text:p>Test for absence of voltage at terminals T1, T2, and T3.</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell><text:p>3</text:p></table:table-cell><table:table-cell><text:p>Bleed hydraulic accumulator HA-17 to zero pressure and verify gauge PG-17.</text:p></table:table-cell></table:table-row>
+   <table:table-row><table:table-cell><text:p>4</text:p></table:table-cell><table:table-cell><text:p>Attempt a normal start and confirm no motion before work begins.</text:p></table:table-cell></table:table-row>
+  </table:table>
+  <text:p>Return to service requires lock removal by each installer and supervisor authorization.</text:p>
+ </office:text></office:body>
+</office:document>

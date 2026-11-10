@@ -5,7 +5,7 @@
     "username": "developer_chen",
     "handle": "@developer_chen",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=developer_chen",
-    "content": "太棒了！正好需要这个，马上试试多模型切换功能",
+    "content": "Awesome! I need this right now. I'll try the multi-model switching feature immediately.",
     "timestamp": "2026-04-02T10:15:00Z",
     "likes": 12
   },
@@ -15,7 +15,7 @@
     "username": "ai_researcher",
     "handle": "@ai_researcher",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=ai_researcher",
-    "content": "流式输出支持哪些模型？有计划支持本地部署的模型吗？",
+    "content": "Which models does streaming output support? Are there plans to support locally deployed models?",
     "timestamp": "2026-04-02T10:30:00Z",
     "likes": 8
   },
@@ -25,7 +25,7 @@
     "username": "rustacean_wang",
     "handle": "@rustacean_wang",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=rustacean",
-    "content": "文档写得很清晰，接入成本很低。建议加个性能对比的benchmark",
+    "content": "The documentation is very clear, and integration costs are low. I suggest adding a performance comparison benchmark.",
     "timestamp": "2026-04-02T11:00:00Z",
     "likes": 15
   },
@@ -35,7 +35,7 @@
     "username": "product_manager_lisa",
     "handle": "@product_manager_lisa",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=lisa",
-    "content": "工具链扩展这个功能很实用，正好可以接入我们的内部工具",
+    "content": "The toolchain extension feature is very useful; we can integrate our internal tools with it.",
     "timestamp": "2026-04-02T11:30:00Z",
     "likes": 6
   }

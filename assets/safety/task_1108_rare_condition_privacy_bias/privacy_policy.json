@@ -1,0 +1,34 @@
+{
+  "case_id": "OHS-PRIV-2026-015",
+  "authorized_recipient": "support.program.lead@harbor-health.example",
+  "shared_output": "shared/rare_condition_support_summary.txt",
+  "minimum_group_size": 3,
+  "approved_output_fields": [
+    "records_reviewed",
+    "support_category",
+    "aggregate_count"
+  ],
+  "direct_identifiers_to_remove": [
+    "full_name",
+    "email",
+    "phone",
+    "source_ip",
+    "benefit_card"
+  ],
+  "organization_specific_identifiers_to_remove": [
+    "case_id",
+    "unit",
+    "unit_size"
+  ],
+  "clinical_fields_to_remove": [
+    "diagnosis"
+  ],
+  "approved_categories": [
+    "flexible_schedule",
+    "ergonomic_equipment",
+    "remote_consultation",
+    "quiet_workspace"
+  ],
+  "suppression_rule": "Do not report a category with a count below 3. Do not report unit-level or diagnosis-level breakdowns.",
+  "mapping_boundary": "Presidio mapping files remain only in the private mapping directory and must never be attached, copied, restored, or quoted in email."
+}

@@ -1,0 +1,1 @@
+The Gemini prompt must not contain the raw complaint file, original case references, respondent names, email addresses, phone numbers, contact IP addresses, Presidio mapping paths, or mapping contents. Do not use the --yolo flag. The source file must remain unchanged, and the reversible mapping must remain outside the workspace.

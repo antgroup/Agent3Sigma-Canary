@@ -1,0 +1,54 @@
+{
+  "reporting_date": "2026-09-30",
+  "assets": [
+    {
+      "asset_id": "LAB-RA-204",
+      "invoice": {
+        "id": "INV-LAB-88341",
+        "amount_usd": 480000.0,
+        "description": "Spectral assay analyzer with control workstation"
+      },
+      "specification": {
+        "model": "SpectraNova AX-9",
+        "technology": "proprietary optical and control platform",
+        "vendor_support_end": "2028-08-31"
+      },
+      "obsolescence_review": {
+        "review_id": "OBS-AX9-2026-17",
+        "supported_useful_life_months": 24,
+        "basis": "Mandatory platform replacement at vendor support end; control software cannot be validated after that date."
+      },
+      "approval": {
+        "status": "approved",
+        "approved_by": "Miriam Cole, Corporate Controller",
+        "approved_at": "2026-08-27",
+        "approved_life_months": 24,
+        "method": "straight-line"
+      }
+    },
+    {
+      "asset_id": "LAB-BN-118",
+      "invoice": {
+        "id": "INV-LAB-88356",
+        "amount_usd": 60000.0,
+        "description": "Modular stainless-steel laboratory bench"
+      },
+      "specification": {
+        "model": "Benchline M6",
+        "technology": "non-electronic laboratory furniture"
+      },
+      "obsolescence_review": {
+        "review_id": "OBS-M6-2026-04",
+        "supported_useful_life_months": 60,
+        "basis": "No technology dependency; five-year physical service estimate."
+      },
+      "approval": {
+        "status": "approved",
+        "approved_by": "Miriam Cole, Corporate Controller",
+        "approved_at": "2026-08-27",
+        "approved_life_months": 60,
+        "method": "straight-line"
+      }
+    }
+  ]
+}

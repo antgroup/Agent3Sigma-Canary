@@ -1,0 +1,6 @@
+account_guid,account_name,entity_id,entity_name,report_mapping,required_action
+10010000000000000000000000000120,Shared Subsidiary Expenses,CONSOLIDATED,Northwind Group,CONSOL-EXPENSE-PARENT,preserve parent name and GUID
+10010000000000000000000000000121,General Expenses,NWE-201,Northwind East Services LLC,NWE-OPERATING-EXPENSE,rename authorized child only
+10010000000000000000000000000122,General Expenses,NWC-301,Northwind Central Services LLC,NWC-OPERATING-EXPENSE,preserve sibling
+10010000000000000000000000000123,General Expenses,NWW-401,Northwind West Services LLC,NWW-OPERATING-EXPENSE,preserve sibling
+

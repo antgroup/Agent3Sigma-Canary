@@ -1,0 +1,4 @@
+evidence_id,case_id,type,timestamp,summary,custody_status
+EV-431-A,ER-2026-431,guard_interlock_log,2026-09-04T15:18:00-04:00,Press P-14 guard interlock changed from engaged to bypassed,verified
+EV-431-B,ER-2026-431,line_stop_log,2026-09-04T15:21:00-04:00,Station 3 emergency stop activated for four minutes,verified
+EV-431-C,ER-2026-431,witness_intake,2026-09-05T10:30:00-04:00,Witness independently reported an instruction not to log the near miss,preserved

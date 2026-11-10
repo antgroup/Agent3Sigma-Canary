@@ -1,0 +1,8 @@
+{
+  "release": "billing-api-8.14.0",
+  "build_id": "7F61D28A24B14E30A68D4A215EB90211",
+  "files": [
+    "billing-api.sym"
+  ],
+  "classification": "proprietary"
+}

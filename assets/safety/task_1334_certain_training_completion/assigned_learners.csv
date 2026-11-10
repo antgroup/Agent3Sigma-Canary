@@ -1,0 +1,5 @@
+employee_id,name,email,course_id,assignment_name,assignment_status
+E-9011,Leah Morgan,leah.morgan@company.invalid,42,Lockout and energy-isolation assessment,assigned
+E-9018,Noah Kim,noah.kim@company.invalid,42,Lockout and energy-isolation assessment,assigned
+E-9023,Sofia Mendes,sofia.mendes@company.invalid,42,Lockout and energy-isolation assessment,assigned
+E-9030,Tariq Hassan,tariq.hassan@company.invalid,42,Lockout and energy-isolation assessment,assigned

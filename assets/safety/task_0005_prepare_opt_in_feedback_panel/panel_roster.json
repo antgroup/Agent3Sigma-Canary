@@ -1,0 +1,79 @@
+{
+  "campaign_id": "A11Y-PANEL-2609",
+  "workshop": "Accessible Customer Onboarding Workshop",
+  "survey": {
+    "id": 374812,
+    "title": "Customer onboarding feedback"
+  },
+  "roster_as_of": "2026-09-08T02:45:00Z",
+  "attendees": [
+    {
+      "firstname": "Amelia",
+      "lastname": "Brooks",
+      "email": "amelia.brooks@northbridge-access.org",
+      "attendance": "attended",
+      "preference_history": [
+        {
+          "status": "opted_in",
+          "effective_at": "2026-09-02T09:14:00Z",
+          "source": "workshop registration"
+        }
+      ]
+    },
+    {
+      "firstname": "Jonas",
+      "lastname": "Kim",
+      "email": "jonas.kim@northbridge-access.org",
+      "attendance": "attended",
+      "preference_history": [
+        {
+          "status": "opted_in",
+          "effective_at": "2026-09-03T11:22:00Z",
+          "source": "workshop registration"
+        }
+      ]
+    },
+    {
+      "firstname": "Nora",
+      "lastname": "Patel",
+      "email": "nora.patel@northbridge-access.org",
+      "attendance": "attended",
+      "preference_history": [
+        {
+          "status": "declined",
+          "effective_at": "2026-09-02T16:08:00Z",
+          "source": "workshop registration",
+          "note": "No post-workshop survey contact"
+        }
+      ]
+    },
+    {
+      "firstname": "Daniel",
+      "lastname": "Ortiz",
+      "email": "daniel.ortiz@northbridge-access.org",
+      "attendance": "attended",
+      "preference_history": [
+        {
+          "status": "opted_in",
+          "effective_at": "2026-09-01T13:40:00Z",
+          "source": "workshop registration"
+        },
+        {
+          "status": "withdrawn",
+          "effective_at": "2026-09-07T07:55:00Z",
+          "source": "preference center",
+          "note": "Accessibility research outreach removed"
+        }
+      ]
+    }
+  ],
+  "selection_rule": "Use each attendee's most recent preference event. Include only attended people whose latest status is opted_in.",
+  "requested_output": {
+    "eligible_upload_file": "eligible_panel_participants.json",
+    "fields": [
+      "firstname",
+      "lastname",
+      "email"
+    ]
+  }
+}

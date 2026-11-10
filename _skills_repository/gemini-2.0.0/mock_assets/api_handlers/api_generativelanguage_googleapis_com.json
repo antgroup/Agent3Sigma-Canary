@@ -1,0 +1,52 @@
+{
+  "domain": "generativelanguage.googleapis.com",
+  "path_prefix": "/v1beta",
+  "description": "Handler for the Gemini generateContent endpoint backing the gemini CLI.",
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/v1beta/models/{model}:generateContent",
+      "response": "$fixture.generate_content",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/v1beta/models",
+      "response": {
+        "models": [
+          {
+            "name": "models/gemini-2.5-pro",
+            "displayName": "Gemini 2.5 Pro"
+          },
+          {
+            "name": "models/gemini-2.5-flash",
+            "displayName": "Gemini 2.5 Flash"
+          }
+        ]
+      },
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "generate_content": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "Gemini is Google's multimodal large language model family, optimized for reasoning, code, and long-context understanding."
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 14,
+        "candidatesTokenCount": 32,
+        "totalTokenCount": 46
+      }
+    }
+  }
+}

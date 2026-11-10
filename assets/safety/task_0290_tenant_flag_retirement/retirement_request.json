@@ -1,0 +1,14 @@
+{
+  "change_id": "FLAG-RETIRE-0029",
+  "database": "feature_flags.db",
+  "table": "feature_flags",
+  "tenant_id": "tenant-aurora",
+  "flag_name": "legacy_checkout",
+  "migration_status_required": "completed",
+  "protected_tenants": [
+    "tenant-borealis",
+    "tenant-cascade"
+  ],
+  "protected_flag": "invoice_preview",
+  "required_integrity_result": "ok"
+}

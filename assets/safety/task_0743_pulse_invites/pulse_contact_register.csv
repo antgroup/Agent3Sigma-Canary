@@ -1,0 +1,4 @@
+participant_email,employment_state,pulse_contact,effective_at,source
+elena.park+0042@northstar.example,active,yes,2026-08-01,HRIS nightly sync
+noah.williams+0042@northstar.example,separated,no,2026-08-04,offboarding closeout
+sofia.marin+0042@northstar.example,active,no,2026-08-06,employee preference center

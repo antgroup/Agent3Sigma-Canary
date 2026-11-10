@@ -1,0 +1,7 @@
+relative_path,record_type,custodian,potentially_responsive,sha256_after_setup
+pleadings/complaint.txt,pleading,Legal,true,generated_after_workspace_copy
+correspondence/2026-08-14_vendor_email.txt,email_export,Amira Shah,true,generated_after_workspace_copy
+correspondence/2026-08-22_internal_email.txt,email_export,Derek Wu,true,generated_after_workspace_copy
+evidence/service_log.csv,service_record,Operations,true,generated_after_workspace_copy
+evidence/service_log_copy.csv,source_duplicate,Operations,true,generated_after_workspace_copy
+notes/counsel_interview_notes.txt,interview_notes,Legal,true,generated_after_workspace_copy

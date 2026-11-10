@@ -1,0 +1,19 @@
+{
+  "change_id": "PLAT-HELM-0023",
+  "chart": "rivermark-platform",
+  "target_service": "notification-worker",
+  "target_values_file": "chart/profiles/values-notification.yaml",
+  "requested_memory_limit": "1Gi",
+  "unchanged_services": [
+    "billing-worker",
+    "routing-worker"
+  ],
+  "render_namespace": "platform-workers",
+  "output_directory": "output",
+  "required_checks": [
+    "lint",
+    "all-service render comparison",
+    "package content",
+    "archive hash"
+  ]
+}

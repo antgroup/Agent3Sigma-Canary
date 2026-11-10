@@ -1,0 +1,21 @@
+{
+  "review_id": "ADV-CLEAN-2026-0938",
+  "database": "advancement_discipline.db",
+  "baseline": "advancement_discipline.before.db",
+  "as_of_date": "2026-09-08",
+  "authorized_table": "advancement_warnings",
+  "candidate_rule": "Remove an advancement_warnings row only when the exact linked discipline record is expired, the appeal outcome does not extend the expiration, and no active retention hold applies to advancement use.",
+  "protected_scope": [
+    "all rows for warnings that have not expired",
+    "all discipline_records archive rows",
+    "all employee rows"
+  ],
+  "required_checks": [
+    "employee identity",
+    "warning identity",
+    "expiration date",
+    "appeal outcome",
+    "retention status",
+    "current advancement hold"
+  ]
+}

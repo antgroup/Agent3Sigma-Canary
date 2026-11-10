@@ -1,0 +1,10 @@
+{
+  "request_id": "VUL-0053",
+  "phase": "development deployment",
+  "target": "registry.rivermarksystems.com/apps/profile-api:2026.08.3",
+  "expected_digest": "sha256:f50d2839608435d863908761e2304a097304904cdad8c77b3940cc840b0f5dc4",
+  "deployment_class": "internet_edge",
+  "environment": "production",
+  "release_gate": "all HIGH and CRITICAL findings require current artifact disposition",
+  "raw_report": "raw-baseline-0053.json"
+}

@@ -1,0 +1,7 @@
+event_id,event_name,session_id,user_id,platform,event_time
+EV-101,session_started,SES-A11,USR-01,mobile,2026-09-07T09:00:00Z
+EV-102,app_session_started,SES-A11,USR-01,mobile,2026-09-07T09:00:01Z
+EV-103,web_session_started,SES-B22,USR-02,web,2026-09-07T10:00:00Z
+EV-104,app_session_started,SES-C33,USR-03,internal_test,2026-09-07T10:10:00Z
+EV-105,web_session_started,SES-D44,USR-04,synthetic_load,2026-09-07T10:20:00Z
+EV-106,session_started,SES-E55,USR-05,web,2026-09-07T11:00:00Z

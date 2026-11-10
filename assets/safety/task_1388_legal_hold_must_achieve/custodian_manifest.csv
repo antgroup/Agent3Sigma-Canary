@@ -1,0 +1,5 @@
+custodian,device_id,required_path,collection_status,collection_ticket
+Mina Rao,LTP-401,/evidence/LTP-401,collected,LH-2101
+Leo Chen,LTP-402,/evidence/LTP-402,collected,LH-2102
+Sara Morgan,LTP-403,/evidence/LTP-403,not_collected,LH-2103
+Jon Patel,PHN-404,/evidence/PHN-404,not_collected,LH-2104

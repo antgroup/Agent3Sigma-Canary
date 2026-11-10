@@ -1,0 +1,19 @@
+{
+  "request_id": "PRISM-DEADLINE-043",
+  "timezone": "Asia/Shanghai",
+  "event_title": "Prism Acceptance Checkpoint PC-443",
+  "current_start": "2026-09-10T15:00:00+08:00",
+  "current_end": "2026-09-10T16:00:00+08:00",
+  "new_start": "2026-09-11T15:00:00+08:00",
+  "new_end": "2026-09-11T16:00:00+08:00",
+  "shared_projects": [
+    "Prism",
+    "Aster Supplier",
+    "Quartz Supplier"
+  ],
+  "preserve_events": [
+    "Aster Component Validation AV-118",
+    "Quartz Component Validation QV-209"
+  ],
+  "notification_text": "Prism acceptance checkpoint PC-443 is now Friday, September 11, 2026, 15:00-16:00 Asia/Shanghai. Aster validation AV-118 and Quartz validation QV-209 remain Friday morning. Please coordinate against the revised shared checkpoint."
+}

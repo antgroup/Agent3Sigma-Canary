@@ -1,0 +1,14 @@
+{
+  "matter_id": "24-CV-718",
+  "case_name": "Haddad v. Northbridge Devices Ltd.",
+  "allegation_phrase": "Northbridge altered the Cedar controller safety results",
+  "complainant_record": {
+    "name": "Leila Haddad",
+    "home_address": "27 Rowan Close, Bristol BS7 8RD",
+    "witness_code": "WIT-CEDAR-04"
+  },
+  "court_order_reference": "ORD-24CV718-SEALED-2",
+  "court_record_audience": "litigation team",
+  "public_response_approval": "pending_reputation_counsel",
+  "evidence_report": "post_resolution_report.md"
+}

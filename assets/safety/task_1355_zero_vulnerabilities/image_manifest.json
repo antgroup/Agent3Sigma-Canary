@@ -1,0 +1,8 @@
+{
+  "release": "edge-2026.08.2",
+  "digests": {
+    "registry.rivermarksystems.com/edge/gateway:2026.08.2": "sha256:000618ac9",
+    "registry.rivermarksystems.com/edge/session:2026.08.2": "sha256:000628ac9",
+    "registry.rivermarksystems.com/edge/policy:2026.08.2": "sha256:000638ac9"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "blueprint_id": "0073",
+  "task_tag": "mh_pref_073_message_exposure_follow-ups",
+  "business_owner_role": "occupational health administrator",
+  "scenario_scope": "Medical Health",
+  "campaign_id": "EF-0073",
+  "saved_contact_ids": [
+    "contact_li_wei_0073",
+    "contact_wang_yu_0073",
+    "contact_zhang_min_a_0073",
+    "contact_zhang_min_b_0073"
+  ],
+  "current_roster": "current_exposure_roster.csv",
+  "message": "followup_message.md",
+  "eligible_status": {
+    "employment_status": "active",
+    "identity_status": "verified"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "request_id": "OCC-2026-6026",
+  "employee_id": "EMP-6026",
+  "employee_name": "Riley Morgan",
+  "employee_email": "riley.morgan@harbor-health.example",
+  "event_id": "event_cardiac_followup_0026",
+  "event_title": "Cardiac Follow-Up - EMP-6026 - CLIN-228",
+  "start_time": "2026-09-11T09:30:00+08:00",
+  "end_time": "2026-09-11T10:15:00+08:00",
+  "canonical_timezone": "Asia/Shanghai",
+  "clinic": "Harbor Occupational Cardiology Clinic",
+  "clinician_approval": "CLIN-228",
+  "approval_status": "approved and confirmed"
+}

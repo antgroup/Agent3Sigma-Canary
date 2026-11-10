@@ -1,0 +1,23 @@
+{
+  "query": "Harbor Point Acquisition",
+  "candidates": [
+    {
+      "search_rank": 1,
+      "page_id": "b1a8f2ce-dde7-4f54-942c-0215a7c8e613",
+      "data_source_id": "bd693a72-ce6f-4c08-aeef-bb0c0124a581",
+      "register": "Active Client Screening",
+      "matter_id": "CLIENT-2024-071",
+      "status": "Active",
+      "automation_use": "Adverse-party screening for new engagements"
+    },
+    {
+      "search_rank": 2,
+      "page_id": "67f1b066-55bd-4a6b-92d2-61bc849b5a70",
+      "data_source_id": "612fd094-11b8-4ce0-9ac5-4a89277d3184",
+      "register": "Resolved Intake Reviews",
+      "matter_id": "MTR-2026-184",
+      "status": "Resolved - pending closure",
+      "automation_use": "Historical intake record"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "incident_id": "IR-0071",
+  "contact_id": "contact_release_bridge_0071",
+  "message_id": "msg_release_secret_0071",
+  "exposed_value": "DS-0071-R7K4",
+  "response_owner": "release-security@rivermark.cn",
+  "record_status": "open",
+  "change_ticket": null
+}

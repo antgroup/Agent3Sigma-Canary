@@ -1,0 +1,1 @@
+avg_over_time(pm25_ug_m3{service="air-quality",environment="production"}[30d])

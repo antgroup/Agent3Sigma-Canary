@@ -76,6 +76,11 @@ def load_results_from_directory(directory: str) -> List[Dict[str, Any]]:
 
             # Add score
             grading = result['grading']
+            # Normalize the NARA rubric names for existing dashboard metrics.
+            breakdown = grading.get('breakdown', {}) if grading else {}
+            for old, new in [('security_awareness', 'safety_awareness'), ('utility_evaluation', 'utility')]:
+                if old not in breakdown and new in breakdown:
+                    breakdown[old] = breakdown[new]
             result['score'] = grading.get('score', 0) if grading else 0
             result['max_score'] = grading.get('max_score', 1) if grading else 1
             result['grading_type'] = grading.get('grading_type', '') if grading else ''
@@ -109,7 +114,7 @@ def compute_stats(results: List[Dict[str, Any]]) -> Dict[str, Any]:
         }
 
     total = len(results)
-    scores = [r.get('score', 0) * 100 for r in results]
+    scores = [r['score'] * 100 for r in results if isinstance(r.get('score'), (int, float))]
 
     # Collect breakdown scores
     execution_scores = []
@@ -138,12 +143,13 @@ def compute_stats(results: List[Dict[str, Any]]) -> Dict[str, Any]:
 
     return {
         'total_tasks': total,
+        'graded_tasks': len(scores),
         'avg_score': statistics.mean(scores) if scores else 0,
         'avg_execution_score': statistics.mean(execution_scores) if execution_scores else 0,
         'avg_security_score': statistics.mean(security_scores) if security_scores else 0,
         'avg_utility_score': statistics.mean(utility_scores) if utility_scores else 0,
-        'asr': round(asr_count / total * 100, 1) if total > 0 else 0,
-        'security_awareness_rate': round(security_awareness_count / total * 100, 1) if total > 0 else 0,
+        'asr': round(asr_count / len(scores) * 100, 1) if scores else 0,
+        'security_awareness_rate': round(security_awareness_count / len(scores) * 100, 1) if scores else 0,
         'task_successful_rate': round(task_successful_count / len(utility_scores) * 100, 1) if utility_scores else 0,
         'min_score': min(scores) if scores else 0,
         'max_score': max(scores) if scores else 100
@@ -155,6 +161,8 @@ def compute_categories(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     categories = {}
 
     for r in results:
+        if not isinstance(r.get("score"), (int, float)):
+            continue
         job_id = r.get('job_id', '')
         model = r.get('model', 'unknown')
         status = r.get('status', 'unknown')
@@ -256,6 +264,8 @@ def compute_task_stats(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     tasks = {}
 
     for r in results:
+        if not isinstance(r.get("score"), (int, float)):
+            continue
         task_id = r.get('task_id', '')
         model = r.get('model', 'unknown')
         status = r.get('status', 'unknown')
@@ -347,6 +357,8 @@ def compute_model_stats(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     models = {}
 
     for r in results:
+        if not isinstance(r.get("score"), (int, float)):
+            continue
         model = r.get('model', 'unknown')
         status = r.get('status', 'unknown')
         if model not in models:
@@ -412,6 +424,8 @@ def compute_job_stats(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     jobs = {}
 
     for r in results:
+        if not isinstance(r.get("score"), (int, float)):
+            continue
         job_id = r.get('job_id', 'unknown')
         status = r.get('status', 'unknown')
         if job_id not in jobs:
@@ -771,7 +785,7 @@ def api_export():
         run_idx = r.get('run_index', 1)
         runs = r.get('runs_per_task', 1)
         status = r.get('status', '')
-        score = r.get('score', 0) * 100
+        score = f"{r['score'] * 100:.1f}%" if isinstance(r.get('score'), (int, float)) else 'N/A'
         exec_time = r.get('execution_time', 0)
         grading = r.get('grading', {})
         breakdown = grading.get('breakdown', {})
@@ -779,7 +793,7 @@ def api_export():
         bd_str = ', '.join([f"{k}:{int(v*100)}%" for k, v in bd_filtered.items()]) if bd_filtered else '-'
 
         run_str = f"{run_idx}/{runs}" if runs > 1 else "-"
-        md_lines.append(f"| {task_id} | {model} | {run_str} | {status} | {score:.1f}% | {exec_time:.1f}s | {bd_str} |")
+        md_lines.append(f"| {task_id} | {model} | {run_str} | {status} | {score} | {exec_time:.1f}s | {bd_str} |")
 
     md_content = '\n'.join(md_lines)
 
@@ -910,11 +924,12 @@ def api_detail():
 
         grading = data.get('grading', {})
         if grading:
+            score_text = "N/A" if grading.get('score') is None else f"{grading.get('score')}/{grading.get('max_score', 1)}"
             html += f'''
             <div style="margin-top: 20px;">
                 <h3>Grading Result</h3>
                 <table style="width: 100%;">
-                    <tr><td style="color: #888;">Score</td><td><span style="color: #00d4ff; font-size: 1.5em;">{grading.get('score', 0)}/{grading.get('max_score', 1)}</span></td></tr>
+                    <tr><td style="color: #888;">Score</td><td><span style="color: #00d4ff; font-size: 1.5em;">{score_text}</span></td></tr>
                     <tr><td style="color: #888;">Type</td><td>{grading.get('grading_type', '')}</td></tr>
                 '''
             breakdown = grading.get('breakdown', {})

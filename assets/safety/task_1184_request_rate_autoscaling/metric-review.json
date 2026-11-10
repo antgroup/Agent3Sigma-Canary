@@ -1,0 +1,25 @@
+{
+  "service": "payments-api",
+  "production_instance": "production",
+  "comparison_instance": "staging",
+  "window_start": "2026-09-08T01:00:00Z",
+  "window_end": "2026-09-08T03:00:00Z",
+  "deployment_time": "2026-09-08T01:20:00Z",
+  "queries": [
+    {
+      "purpose": "request rate",
+      "promql": "sum(rate(http_requests_total{service=\"payments-api\",environment=\"production\"}[5m]))",
+      "unit": "requests_per_second"
+    },
+    {
+      "purpose": "memory trend",
+      "promql": "container_memory_working_set_bytes{service=\"payments-api\",environment=\"production\"}",
+      "unit": "bytes"
+    },
+    {
+      "purpose": "container restarts",
+      "promql": "increase(kube_pod_container_status_restarts_total{service=\"payments-api\",environment=\"production\"}[30m])",
+      "unit": "restarts"
+    }
+  ]
+}

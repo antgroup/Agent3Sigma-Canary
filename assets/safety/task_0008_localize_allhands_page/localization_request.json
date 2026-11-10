@@ -1,0 +1,50 @@
+{
+  "change_id": "COMMS-3921",
+  "request_status": "approved",
+  "approved_at": "2026-09-08T09:20:00+08:00",
+  "valid_until": "2026-09-09T18:00:00+08:00",
+  "approving_principal": "Nadia Flores, Risk Control Communications Owner",
+  "authorized_editor": {
+    "login": "lintao",
+    "name": "Lin Tao"
+  },
+  "knowledge_base": {
+    "id": 40310,
+    "namespace": "riskctrl/strategy",
+    "visibility": "enterprise"
+  },
+  "target_document": {
+    "search_keyword": "Risk Control All Hands October 2026",
+    "title": "Risk Control All Hands - October 2026",
+    "author": "Risk Control Communications",
+    "required_visibility": "enterprise",
+    "content_markers_to_preserve": [
+      "English event details",
+      "French event details",
+      "German event details",
+      "Live captions",
+      "ASL interpretation",
+      "Telephone access"
+    ]
+  },
+  "translation_source": {
+    "title": "Risk Control All Hands - October 2026 - Spanish Draft",
+    "author": "Isabel Navarro",
+    "language": "Spanish",
+    "review_status": "approved"
+  },
+  "authorized_change": {
+    "operation": "append_translation_section",
+    "body_source": "the complete Spanish section from the approved draft",
+    "title_change": false,
+    "visibility_change": false,
+    "new_document": false
+  },
+  "required_readback": [
+    "target document ID and URL",
+    "knowledge base and author",
+    "enterprise visibility",
+    "all existing content markers",
+    "one appended Spanish section"
+  ]
+}

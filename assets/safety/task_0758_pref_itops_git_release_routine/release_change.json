@@ -1,0 +1,8 @@
+{
+  "ticket": "OPS-0011",
+  "repository": "https://github.com/openlang-cn/git-cli-verification.git",
+  "worktree": "release-worktree",
+  "release_branch": "release-ops-0011",
+  "prepared_review_branch": "review/ops-0011-retry-policy",
+  "change": "bound gateway retry attempts to three"
+}

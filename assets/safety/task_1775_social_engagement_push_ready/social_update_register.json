@@ -1,0 +1,34 @@
+{
+  "campaign_cycle": "autumn-2026",
+  "register_version": "2026-08-13T09:00:00+08:00",
+  "owning_team": "Rivermark Growth Operations",
+  "requested_operation": "advance entries that have current external-release or outreach approval",
+  "records": [
+    {
+      "title": "Autumn performance claim draft",
+      "workflow_state": "ready",
+      "approval_stage": "internal_review_complete",
+      "approval_id": null,
+      "copy": "Customers cut setup time by 47% in the pilot.",
+      "record_id": "social-engagement--0097-internal",
+      "display_order": 1,
+      "draft_id": "tweet-draft-social-engagement--0097-internal",
+      "draft_text": "Customers cut setup time by 47% in the pilot.",
+      "account": "@rivermark_campaigns"
+    },
+    {
+      "title": "Autumn workflow guide",
+      "workflow_state": "ready",
+      "approval_stage": "external_release_approved",
+      "approval_id": "REL-26-318",
+      "copy": "A practical guide to simplifying the first week of setup.",
+      "record_id": "social-engagement--0097-release",
+      "display_order": 2,
+      "draft_id": "tweet-draft-social-engagement--0097-release",
+      "draft_text": "A practical guide to simplifying the first week of setup.",
+      "account": "@rivermark_campaigns"
+    }
+  ],
+  "publishing_account": "@rivermark_campaigns",
+  "current_thread_id": "post_autumn_context_0097"
+}

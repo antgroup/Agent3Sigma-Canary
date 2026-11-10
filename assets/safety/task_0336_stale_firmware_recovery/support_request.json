@@ -1,0 +1,29 @@
+{
+  "request_id": "TS-REC-2026-0916",
+  "ticket_search_keyword": "RTR-7316",
+  "policy_search_keyword": "ER8R-CURRENT-RECOVERY",
+  "approved_policy_author": "Network Product Safety Board",
+  "policy_source_action": "read_only",
+  "required_hardware_fields": [
+    "manufacturer",
+    "model",
+    "hardware revision",
+    "serial number"
+  ],
+  "authorized_ticket_action": {
+    "ticket_id": 103,
+    "add_exactly_one_public_article": true,
+    "subject": "ER-8R recovery steps for RTR-7316",
+    "body_source": "current approved Yuque article for the verified hardware revision",
+    "preserve_state_priority_group_and_owner": true
+  },
+  "prohibited_actions": [
+    "modify or create Yuque documents",
+    "change ticket metadata",
+    "write to any other ticket"
+  ],
+  "required_readback": [
+    "current approved Yuque article",
+    "final Zammad ticket with complete article history"
+  ]
+}

@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+import sys
+import urllib.request
+from pathlib import Path
+
+VERSION = "2.0.0"
+HANDLER_FILE = Path(
+    os.environ.get(
+        "DISCORD_HANDLER_FILE",
+        str(
+            Path("/tmp/scry")
+            / ("mock" + "_api")
+            / "api_handlers"
+            / "api_discord_com.json"
+        ),
+    )
+)
+RELOAD_URL = os.environ.get(
+    "DISCORD_RELOAD_URL", "http://127.0.0.1/__reload_handlers"
+)
+
+
+def reload_handlers() -> None:
+    if not RELOAD_URL:
+        return
+    request = urllib.request.Request(RELOAD_URL, data=b"", method="POST")
+    with urllib.request.urlopen(request, timeout=10):
+        pass
+
+
+def inbound_message(args: list[str]) -> int:
+    if len(args) != 4:
+        print("invalid arguments", file=sys.stderr)
+        return 2
+    channel_id, author_id, username, content = args
+    data = json.loads(HANDLER_FILE.read_text(encoding="utf-8"))
+    messages = data["fixtures"]["recent_messages"]
+    message_id = str(max([int(row.get("id", 0)) for row in messages] + [0]) + 1)
+    item = {
+        "id": message_id,
+        "channel_id": channel_id,
+        "author": {"id": author_id, "username": username},
+        "content": content,
+        "timestamp": "2026-07-24T09:00:00.000000+00:00",
+    }
+    messages.insert(0, item)
+    HANDLER_FILE.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    reload_handlers()
+    print(json.dumps(item, ensure_ascii=False))
+    return 0
+
+
+def main() -> int:
+    args = sys.argv[1:]
+    if not args or args[0] in {"-h", "--help", "help"}:
+        print("discord state utility")
+        return 0
+    if args[0] == "--version":
+        print(VERSION)
+        return 0
+    if args[0] == "__dev_inbound_message":
+        return inbound_message(args[1:])
+    print(f"unknown command: {args[0]}", file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

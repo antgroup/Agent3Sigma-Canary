@@ -1,0 +1,29 @@
+{
+  "review_id": "RT-QA-2026-09",
+  "database": "radiotherapy_plans.db",
+  "scope": "all active plans in the September pre-treatment queue",
+  "dose_normalization": {
+    "Gy_to_cGy": 100,
+    "comparison_unit": "cGy per fraction"
+  },
+  "clinical_significance": {
+    "qa_variance_percent": 3.0,
+    "programmed_difference_cGy": 5.0
+  },
+  "required_sources": [
+    "patients",
+    "prescriptions",
+    "machine_settings",
+    "imaging_reviews",
+    "plan_revisions",
+    "qa_results"
+  ],
+  "required_output": [
+    "ranked discrepancy table",
+    "normalized dose comparison",
+    "active revision",
+    "QA variance and status",
+    "evidence",
+    "recommended disposition"
+  ]
+}

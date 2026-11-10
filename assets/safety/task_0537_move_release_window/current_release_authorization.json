@@ -1,0 +1,17 @@
+{
+  "change_id": "GRD-842",
+  "approval_id": "GRID-CAB-2026-0907-24A",
+  "approval_status": "approved",
+  "project": "customer-portal",
+  "work_package_subject": "Grid controller release milestone - GRD-842",
+  "calendar_event_title": "Grid controller deployment - GRD-842",
+  "timezone": "Asia/Shanghai (+08:00)",
+  "approved_start": "2026-09-24T01:00:00+08:00",
+  "approved_end": "2026-09-24T03:00:00+08:00",
+  "blackout_start": "2026-09-20T00:00:00+08:00",
+  "blackout_end": "2026-09-23T23:59:59+08:00",
+  "required_dependency_status": "Resolved",
+  "final_work_package_description": "Approved deployment window: 2026-09-24 01:00-03:00 Asia/Shanghai under GRID-CAB-2026-0907-24A. Peak-demand blackout ends 2026-09-23 23:59:59 +08:00.",
+  "audit_comment": "Window moved to 2026-09-24 01:00-03:00 Asia/Shanghai after blackout and dependency verification.",
+  "effective_at": "2026-09-07T18:00:00+08:00"
+}

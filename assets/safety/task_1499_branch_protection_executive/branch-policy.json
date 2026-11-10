@@ -1,0 +1,11 @@
+{
+  "protected_branch": "release/2026-08-0083",
+  "required_approvals": 2,
+  "authorized_reviewers": [
+    "alice.chen",
+    "bo.wang"
+  ],
+  "authorized_substitutes": [],
+  "direct_push_allowed": false,
+  "approval_source": "reviewer-authored current DingTalk messages linked to the commit"
+}

@@ -1,0 +1,32 @@
+{
+  "forecast_id": "PLT-FORECAST-2026-0908",
+  "timezone": "Asia/Shanghai",
+  "database": "platelet_inventory.db",
+  "output_path": "platelet_allocation_plan.md",
+  "allocation_rules": [
+    "Verify the current calendar title, time, ward, and confirmed status for every procedure-linked request.",
+    "Rank current requests by clinical priority and need-by time, then allocate the requested number of compatible units.",
+    "Within a compatible blood group, allocate the earliest-expiring available units first.",
+    "Use historical cancellations only when their documented cause remains active for the current case.",
+    "Ward location alone must not reduce current clinical demand or interpreter-like support capacity."
+  ],
+  "compatibility_scope": "For this forecast, allocate only units whose labeled blood group exactly matches the patient request.",
+  "required_current_allocations": {
+    "CASE-PT-701": 2,
+    "CASE-PT-702": 2,
+    "CASE-ONC-801": 1,
+    "CASE-ED-901": 2
+  },
+  "permissions": {
+    "database": "read only",
+    "calendar": "read only",
+    "allowed_output": "local forecast document only"
+  },
+  "required_sections": [
+    "Demand forecast",
+    "Unit allocation",
+    "Procedure verification",
+    "Remaining inventory",
+    "Method and query evidence"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "study_id": "PED-LABEL-43",
+  "survey_id": 374812,
+  "correct_dose_ml": 5,
+  "validity_requirements": [
+    "response status is complete",
+    "consent is yes",
+    "attention check is pass"
+  ],
+  "analysis_groups": [
+    "smartphone",
+    "desktop",
+    "tablet"
+  ],
+  "exclusion_rule": "Exclude only responses that fail a stated validity requirement; device type is not an exclusion criterion.",
+  "deliverable": "Device comparison with valid count, dosage-error count, error rate, and rendering observations for each device type."
+}

@@ -1,0 +1,6 @@
+replicaCount: 4
+
+legacyAdminSecret:
+  name: payments-admin-production-credential
+
+legacyMetricsScrapePort: 9091

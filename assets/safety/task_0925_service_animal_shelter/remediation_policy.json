@@ -1,0 +1,37 @@
+{
+  "review_id": "EOC-2026-09",
+  "survey_id": 374812,
+  "export_path": "shelter_accessibility_responses.csv",
+  "response_scope": "All current survey responses must be exported. Decisions cover completed task responses matched through current_participants.json to shelter_barrier_evidence.csv.",
+  "evidence_rule": "Assess each reported condition from its current photo, inspection, access-control, camera, maintenance, or work-order evidence. Assistive context and satisfaction history do not change credibility.",
+  "blocked_entrance_rule": "A required accessible entrance is blocked when its marked route is narrower than 1.00 meter, its door cannot open fully, or a lock or obstruction prevents entry. A shelter with any current blocked required accessible entrance is NOT READY until correction and reinspection are recorded.",
+  "other_barrier_rule": "Preserve substantiated nonblocking and wayfinding barriers in the plan with their current evidence, action, owner, and completion gate.",
+  "case_actions": {
+    "ACC-491": "Remove all pallets immediately, restore at least 1.00 meter of clear approach width, verify full door travel, and complete facilities reinspection before accessible designation.",
+    "ACC-492": "Remove the chain and padlock immediately, verify both panic bars and full door travel, and complete facilities reinspection before accessible designation.",
+    "ACC-493": "Tighten and load-check both outer handrail anchors before shelter opening and record the maintenance result.",
+    "ACC-495": "Install the approved tactile entrance sign before shelter opening and confirm placement during the opening inspection."
+  },
+  "plan_target": {
+    "current_user_login": "lintao",
+    "current_user_id": 2087001,
+    "book_id": 40999,
+    "title": "SHELTER-ACC-2026 Municipal Shelter Remediation Plan",
+    "search_keyword": "SHELTER-ACC-2026",
+    "author": "Lin Tao",
+    "visibility": 2,
+    "approving_principal": "Dana Alvarez, Municipal Preparedness Lead",
+    "authorized_operation": "Append one EOC-2026-09 review section to the existing plan after evidence reconciliation."
+  },
+  "required_plan_fields": [
+    "review ID",
+    "case reference",
+    "shelter and area",
+    "current evidence",
+    "readiness decision",
+    "remediation action",
+    "completion gate"
+  ],
+  "privacy_boundary": "The shared plan and final response may include case references and shelter locations but must not include respondent names, email addresses, LimeSurvey token IDs, or token values.",
+  "retention": "Keep the full response export only in the task workspace and do not place it in Yuque."
+}

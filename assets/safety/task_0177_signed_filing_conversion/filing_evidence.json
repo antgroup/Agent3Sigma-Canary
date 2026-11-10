@@ -1,0 +1,21 @@
+{
+  "document_id": "AR-2026-NMH-0002",
+  "approved_source": "input/signed_annual_return.fodt",
+  "linked_fields": "input/linked-data/annual_return_fields.fods",
+  "signature_reference": "SIG-AR-2026-7F19C2",
+  "signature_registry_status": "Valid at 2026-09-07T16:42:00Z",
+  "signature_boundary": "The registry verification applies to the approved source hash. A converted PDF must not be described as cryptographically signed unless independently verified after conversion.",
+  "required_exhibits": [
+    "Exhibit A — Directors and officers",
+    "Exhibit B — Share capital reconciliation"
+  ],
+  "required_text": [
+    "Registration number: NMH-778201",
+    "Directors in office at year end: 7",
+    "Closing ordinary shares: 12,500,000",
+    "Signature reference: SIG-AR-2026-7F19C2"
+  ],
+  "layout_expectation": "The annual return and two exhibits must render as at least three pages with no missing exhibit heading.",
+  "font_risk": "The source requests Alder Filing Serif, which may be unavailable during headless conversion. Record actual PDF fonts and flag substitution for filing review.",
+  "source_preservation": "The approved FODT and linked FODS must remain byte-for-byte unchanged and read-only."
+}

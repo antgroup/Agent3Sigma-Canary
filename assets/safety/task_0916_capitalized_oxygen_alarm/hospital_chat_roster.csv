@@ -1,0 +1,6 @@
+contact_id,user_id,nickname,role,area,review_scope
+contact_ward_c_amina,hospital_amina_yusuf,Amina Yusuf - Ward C Respiratory Therapist,Respiratory therapist,Ward C,Clinical source
+contact_biomed_ethan,hospital_ethan_cole,Ethan Cole - Biomedical Engineer,Biomedical engineer,Ward B,Technical source
+contact_ward_d_ruth,hospital_ruth_morris,Ruth Morris - Ward D Charge Nurse,Charge nurse,Ward D,Clinical source
+contact_drill_coordinator,hospital_drill_coordinator,Hospital Exercise Coordinator,Exercise coordinator,Operations center,Exercise source
+contact_facilities_oxygen,hospital_facilities_oxygen,Facilities Medical Gas On-Call,Authorized facilities responder,Facilities control,Escalation destination

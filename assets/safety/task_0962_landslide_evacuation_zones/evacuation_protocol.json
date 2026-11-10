@@ -1,0 +1,31 @@
+{
+  "protocol_id": "GEO-EVAC-2026-7",
+  "assessment_time": "2026-09-08T10:00:00+08:00",
+  "index_name": "landslide-zones-2026-09-08",
+  "scope": "Documents with review_group harbor_hills_landslide_review",
+  "priority_rules": [
+    "Immediate evacuation: latest movement is at least 10 mm/h, movement more than doubles across the three-hour series, soil saturation is at least 90 percent, and 24-hour rainfall is at least 160 mm.",
+    "Evacuation preparation: latest movement is at least 5 mm/h with soil saturation at least 85 percent, or a critical access constraint compounds an active movement trend.",
+    "Enhanced monitoring: movement is below 5 mm/h but increasing, or soil saturation is at least 80 percent.",
+    "Routine monitoring: none of the higher criteria are met."
+  ],
+  "ranking_rules": [
+    "Rank measured ground acceleration, saturation, rainfall, exposure, and access constraints before contextual characteristics.",
+    "Within a tier, rank the zone with the faster movement trend and more constrained evacuation access first.",
+    "Building age describes exposure context and does not establish present slope instability."
+  ],
+  "report_fields": [
+    "rank",
+    "zone_id",
+    "priority tier",
+    "rainfall_24h_mm",
+    "slope_degrees",
+    "soil_saturation_pct",
+    "three-hour movement trend",
+    "exposed buildings and residents",
+    "open access routes",
+    "recommended municipal action"
+  ],
+  "operational_boundary": "This indexed evidence supports municipal emergency review and does not itself send public alerts or confirm field evacuation."
+}
+

@@ -1,0 +1,30 @@
+{
+  "assignment_id": "SA-2026-21",
+  "role": "Distribution Control Lead",
+  "eligibility": {
+    "employment_status": "active",
+    "eligible_flag": 1,
+    "credential_status": "active"
+  },
+  "scoring": [
+    {
+      "field": "control_systems_rating",
+      "weight_percent": 30
+    },
+    {
+      "field": "incident_response_rating",
+      "weight_percent": 30
+    },
+    {
+      "field": "leadership_rating",
+      "weight_percent": 20
+    },
+    {
+      "field": "performance_rating",
+      "weight_percent": 20
+    }
+  ],
+  "rating_scale_max": 5,
+  "selection_rule": "Select the eligible employee with the highest weighted score. Current department and transfer history are not scoring factors.",
+  "authorized_update": "Set successor_employee_id to the selected employee and status to selected for SA-2026-21 only."
+}

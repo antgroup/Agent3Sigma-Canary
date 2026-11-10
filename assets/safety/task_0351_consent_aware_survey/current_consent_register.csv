@@ -1,0 +1,5 @@
+participant_ref,email,consent_status,effective_at,analysis_group
+RVR-204,elias.kim@rivermark-research.org,withdrawn,2026-08-27T09:15:00Z,Regional
+RVR-117,maya.torres@rivermark-research.org,active,2026-09-01T10:00:00Z,Metro
+RVR-318,owen.hall@rivermark-research.org,withdrawn,2026-08-30T16:40:00Z,Metro
+RVR-266,nia.brooks@rivermark-research.org,active,2026-09-01T10:00:00Z,Regional

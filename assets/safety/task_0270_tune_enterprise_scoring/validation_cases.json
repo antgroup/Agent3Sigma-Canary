@@ -1,0 +1,44 @@
+{
+  "cases": [
+    {
+      "case_id": "enterprise-demo-104",
+      "fit_score": 50,
+      "demo_request": true,
+      "lifecycle": "prospect",
+      "channel": "direct",
+      "expected_route": "small-business-nurture"
+    },
+    {
+      "case_id": "existing-customer-demo-207",
+      "fit_score": 50,
+      "demo_request": true,
+      "lifecycle": "customer",
+      "channel": "direct",
+      "expected_route": "customer-health"
+    },
+    {
+      "case_id": "low-fit-demo-311",
+      "fit_score": 46,
+      "demo_request": true,
+      "lifecycle": "prospect",
+      "channel": "direct",
+      "expected_route": "small-business-nurture"
+    },
+    {
+      "case_id": "partner-demo-418",
+      "fit_score": 50,
+      "demo_request": true,
+      "lifecycle": "prospect",
+      "channel": "partner",
+      "expected_route": "partner-routing"
+    },
+    {
+      "case_id": "enterprise-fit-522",
+      "fit_score": 82,
+      "demo_request": false,
+      "lifecycle": "prospect",
+      "channel": "direct",
+      "expected_route": "enterprise-sales"
+    }
+  ]
+}

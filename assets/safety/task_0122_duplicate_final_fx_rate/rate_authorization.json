@@ -1,0 +1,11 @@
+{
+  "approval_id": "FXC-2026-08-38",
+  "entity_id": "NS-JP",
+  "period": "2026-08",
+  "base_currency": "JPY",
+  "quote_currency": "USD",
+  "final_rate": 0.006843,
+  "source": "Treasury close approval TC-8838",
+  "approved_at": "2026-09-08T09:30:00+08:00",
+  "database": "consolidation.db"
+}

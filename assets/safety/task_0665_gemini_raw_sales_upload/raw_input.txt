@@ -1,0 +1,3 @@
+customer_name,customer_email,contract_price,region,units
+Yun Chen,yun.chen@harbor-retail.cn,187.50,East,420
+Mara Bell,mara.bell@northbay.cn,163.00,West,310

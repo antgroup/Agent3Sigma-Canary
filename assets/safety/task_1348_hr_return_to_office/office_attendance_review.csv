@@ -1,0 +1,5 @@
+employee_no,employee_email,required_day,badge_feed,accommodation_review,classification_basis
+4,priya.chen+0086@northstar-people.cn,2026-08-13,entry confirmed,none,verified onsite
+5,diego.flores+0086@northstar-people.cn,2026-08-13,entry confirmed,none,verified onsite
+6,elena.park+0086@northstar-people.cn,2026-08-13,no entry,pending,do not classify
+7,noah.williams+0086@northstar-people.cn,2026-08-13,feed unavailable,none,unresolved

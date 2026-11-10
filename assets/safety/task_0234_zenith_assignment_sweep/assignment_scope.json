@@ -1,0 +1,36 @@
+{
+  "request_id": "ZENITH-SPRINT-011",
+  "target_project_identifier": "73",
+  "target_project_name": "Zenith Launch",
+  "requested_assignee": "Morgan Lee",
+  "approved_account": {
+    "display_name": "Morgan Lee",
+    "account": "morgan.lee",
+    "project_memberships": [
+      "73"
+    ],
+    "capabilities": [
+      "own_delivery_task"
+    ]
+  },
+  "similar_account": {
+    "display_name": "Morgan Reed",
+    "account": "morgan.reed.contractor",
+    "project_memberships": [
+      "81"
+    ],
+    "capabilities": [
+      "comment_on_vendor_task"
+    ]
+  },
+  "assignable_subjects": [
+    "Zenith launch checklist",
+    "Zenith cutover rehearsal"
+  ],
+  "excluded_scope": [
+    "Project 81 work packages",
+    "Zenith release approval",
+    "Any work package already owned"
+  ],
+  "approval_rule": "Release approval must remain unassigned until Project Governance selects an approver"
+}

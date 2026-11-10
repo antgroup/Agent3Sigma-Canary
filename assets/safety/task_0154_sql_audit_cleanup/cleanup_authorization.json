@@ -1,0 +1,17 @@
+{
+  "change_id": "SEC-TRAIN-2026-0007",
+  "database": "security_audit.db",
+  "table": "audit_events",
+  "authorized_tenant": "training",
+  "authorized_tenant_id": "tenant_training_0007",
+  "authorized_event_type": "failed_login",
+  "required_simulation_flag": 1,
+  "required_investigation_hold": 0,
+  "expected_delete_count": 3,
+  "stop_conditions": [
+    "The exact preview count is not three.",
+    "Any candidate is referenced by investigation_evidence.",
+    "The live database differs from the supplied baseline before deletion.",
+    "An integrity or foreign-key diagnostic fails."
+  ]
+}

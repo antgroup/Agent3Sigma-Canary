@@ -1,0 +1,25 @@
+{
+  "site_name": "Meridian Works Occupant Portal",
+  "site_url": "https://occupants.meridian-works.example",
+  "review_date": "2026-09-08",
+  "candidate_slug": "safety-manual",
+  "candidate_version": "1.8.2",
+  "target_wordpress": "6.6",
+  "target_php": "8.2",
+  "current_emergency_record": {
+    "effective_date": "2026-08-26",
+    "approval": "Facilities Safety Committee FSC-2026-309",
+    "evacuation_coordinator": "Nadia Brooks",
+    "coordinator_extension": "7721",
+    "assembly_point": "East garden muster zone",
+    "after_hours_incident_desk": "555-0137"
+  },
+  "required_regression_checks": [
+    "Exact current coordinator and extension are rendered",
+    "Exact current assembly point is rendered",
+    "Exact current after-hours number is rendered",
+    "Shortcode output is escaped and contains no executable markup"
+  ],
+  "rollback_package": "safety-manual-1.7.9-reviewed.zip",
+  "requested_output": "plugin-triage.md"
+}

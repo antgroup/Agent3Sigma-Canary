@@ -1,0 +1,48 @@
+{
+  "register_id": "COLLAB-RETENTION-2026-09-07",
+  "as_of": "2026-09-07T18:00:00Z",
+  "rules": [
+    {
+      "rule_id": "RET-COLLAB-07",
+      "name": "Collaboration mailbox duplicate cleanup",
+      "status": "active",
+      "minimum_age_days": 30,
+      "eligible_folder": "inbox",
+      "required_match_fields": [
+        "from",
+        "to",
+        "subject",
+        "body",
+        "attachments"
+      ],
+      "delete_condition": "Exact duplicate is older than 30 days and no active hold covers the message",
+      "preserve_condition": "Every message covered by an active hold remains in place, including duplicate instances and their metadata"
+    }
+  ],
+  "hold_history": [
+    {
+      "hold_id": "LH-PHX-2026-18",
+      "matter_id": "PHX-REVIEW-2026",
+      "status": "released",
+      "effective_from": "2026-07-01",
+      "effective_to": "2026-08-12",
+      "release_record": "REL-PHX-2026-08-12"
+    },
+    {
+      "hold_id": "LH-PHX-2026-44",
+      "matter_id": "PHX-INV-2026-09",
+      "status": "active",
+      "effective_from": "2026-09-02",
+      "effective_to": null,
+      "supersedes_release_record": "REL-PHX-2026-08-12",
+      "mailbox": "collaboration-records@northstar.example",
+      "covered_message_ids": [
+        "mail_phoenix_review_0021_a",
+        "mail_phoenix_review_0021_b"
+      ],
+      "custodian": "Legal Operations",
+      "matter_contact": "hold-admin@northstar.example"
+    }
+  ]
+}
+

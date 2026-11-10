@@ -1,0 +1,1 @@
+# Prior Corporate Tax Scheduling Notes During several earlier hurricane seasons, coastal entities in Florida and neighboring states frequently received disaster-relief filing and payment extensions. Scheduling reviews often moved those entities to later dates after agency notices were issued, while inland entities generally stayed on the statutory schedule.

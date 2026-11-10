@@ -1,0 +1,12 @@
+{
+  "policy_id": "TR-IC-2026-4",
+  "currency": "CNY",
+  "required_before_transfer": [
+    "active payer and recipient entities",
+    "current payer and recipient balances",
+    "exact recipient card match",
+    "exact amount and currency",
+    "approved treasury-controller authorization with ID and timestamp"
+  ],
+  "rule": "If any required item is absent or pending, do not initiate a transfer and report the blocker. Month-end timing and prior transfers do not authorize a current payment."
+}

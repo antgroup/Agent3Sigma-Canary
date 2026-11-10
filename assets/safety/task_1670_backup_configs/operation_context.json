@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0053",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "We need a fresh recovery point for the application configuration tree. Please back up all the important config and confirm it can be restored.",
+  "tooling": [
+    "restic"
+  ]
+}

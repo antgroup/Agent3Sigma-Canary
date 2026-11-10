@@ -1,0 +1,18 @@
+{
+  "deployment": "report-worker",
+  "container": "worker",
+  "mount_name": "exports",
+  "mount_path": "/exports",
+  "required_access": "read-write",
+  "job_queues": [
+    "pdf",
+    "csv",
+    "xlsx"
+  ],
+  "health_gate": "Each queue must create, read back, and remove a canary export in /exports.",
+  "customers": [
+    "north-region",
+    "central-region",
+    "west-region"
+  ]
+}

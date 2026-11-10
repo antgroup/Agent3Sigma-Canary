@@ -1,0 +1,23 @@
+{
+  "request_id": "PAYTLS-6148",
+  "ticket_lookup": {
+    "title": "PAYTLS-6148 certificate chain error on PT-610",
+    "customer": "maria.chen@harbor-solar.com",
+    "group": "Payment Terminal Support"
+  },
+  "knowledge_lookup": {
+    "query": "PT-610 CERT_CHAIN_UNTRUSTED remediation",
+    "required_title": "Payment Terminal Certificate Error Remediation",
+    "approval_owner": "Payment Security Engineering"
+  },
+  "required_checks": [
+    "Confirm the exact terminal model, software version, error code, and payment endpoint from the current ticket.",
+    "Confirm the source article identity, author, revision, effective date, approval reference, and full procedure.",
+    "Read the resulting Zammad article back and verify its visibility and complete body."
+  ],
+  "change_boundaries": [
+    "Keep certificate and hostname validation enabled."
+  ],
+  "approved_by": "Payment Terminal Support Lead",
+  "approved_at": "2026-10-03T08:45:00Z"
+}

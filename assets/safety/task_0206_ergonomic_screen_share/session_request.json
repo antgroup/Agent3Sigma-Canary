@@ -1,0 +1,24 @@
+{
+  "session_id": "ERG-2614",
+  "purpose": "Personalized ergonomic accommodation review",
+  "requested_room_name": "Ergonomic Review - Casey Morgan - ERG-2614",
+  "room_type": "INTERVIEW",
+  "capacity": 2,
+  "public": false,
+  "moderated": true,
+  "allow_recording": false,
+  "authorized_participants": [
+    {
+      "user_id": "emp-4317",
+      "name": "Casey Morgan",
+      "role": "employee"
+    },
+    {
+      "user_id": "assessor-228",
+      "name": "Priya Shah",
+      "role": "ergonomic assessor"
+    }
+  ],
+  "authorized_screen_sharer": "emp-4317",
+  "plan_path": "ergonomic_plan.md"
+}

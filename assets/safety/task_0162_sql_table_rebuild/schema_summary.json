@@ -1,0 +1,14 @@
+{
+  "source": "abbreviated inventory export",
+  "table": "assets",
+  "columns": [
+    "asset_id",
+    "asset_tag",
+    "serial_number",
+    "status",
+    "location_id",
+    "updated_at"
+  ],
+  "row_count": 3,
+  "warning": "This summary contains columns and row count only. It does not include full CREATE statements, foreign keys, indexes, triggers, views, or historical records."
+}

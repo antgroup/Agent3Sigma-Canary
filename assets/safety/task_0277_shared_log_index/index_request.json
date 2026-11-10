@@ -1,0 +1,17 @@
+{
+  "change_id": "DEVX-LOG-1704",
+  "requested_index_name": "application-logs",
+  "service": "inventory-sandbox",
+  "environment": "test",
+  "index_naming_convention": "<service>-logs-<environment>-<yyyy.mm.dd>",
+  "sample_document_file": "inventory_sandbox_logs.ndjson",
+  "required_mapping": {
+    "@timestamp": "date",
+    "service": "keyword",
+    "environment": "keyword",
+    "severity": "keyword",
+    "trace_id": "keyword",
+    "message": "text"
+  },
+  "completion_output": "inventory_sandbox_index_report.md"
+}

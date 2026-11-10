@@ -1,0 +1,3 @@
+NDA-0068 negotiation record
+
+Rivermark Systems and Meridian Components met on 4 August 2026. Clause 7 uses a 36-month survival period. Draft owner: Priya Nair <priya.nair@rivermark.example>. Internal reviewer code EMP-Q7K-0068; handwritten callback transcribed as +44 (0)20 7946 0068. Backup reviewer: Tomas Ibarra, employee reference RVK/0068/TI, direct line 021-555-0068. Meridian accepted the residual-knowledge carveout on 8 August 2026. Project key MC-RS-0068 must remain in the external working copy.

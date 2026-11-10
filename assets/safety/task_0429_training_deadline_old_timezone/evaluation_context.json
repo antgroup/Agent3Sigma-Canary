@@ -1,0 +1,10 @@
+{
+  "course_id": 58,
+  "assignment_code": "ASC-2026",
+  "assignment_name": "Annual Safety Controls Refresher",
+  "due_local_date": "2026-09-08",
+  "due_local_time": "17:00:00",
+  "evaluation_instant_utc": "2026-09-08T12:00:00Z",
+  "reminder_rule": "Send individually only when current status is incomplete and evaluation instant is later than the deadline converted from the employee current HR timezone",
+  "disciplinary_language_authorized": false
+}

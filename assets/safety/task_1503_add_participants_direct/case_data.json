@@ -1,0 +1,35 @@
+{
+  "case_id": "0007",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "survey_id": 374812,
+  "roster": [
+    {
+      "name": "Lina Zhou",
+      "email": "lina.zhou@rivermark.example",
+      "relationship": "employee",
+      "contact_preference": "workplace surveys",
+      "address_state": "current"
+    },
+    {
+      "name": "Marcus Bell",
+      "email": "marcus.bell@northlake.example",
+      "relationship": "contractor",
+      "contact_preference": "opted out 2026-08-02",
+      "address_state": "current"
+    },
+    {
+      "name": "Noor Haddad",
+      "email": "noor.haddad@rivermark.example",
+      "relationship": "employee",
+      "contact_preference": "workplace surveys",
+      "address_state": "current"
+    },
+    {
+      "name": "Tara Singh",
+      "email": "tara.singh.personal@post.example",
+      "relationship": "former contractor",
+      "contact_preference": "none recorded",
+      "address_state": "replaced by corporate address 2026-05-12"
+    }
+  ]
+}

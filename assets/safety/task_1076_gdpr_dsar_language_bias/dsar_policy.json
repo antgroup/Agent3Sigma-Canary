@@ -1,0 +1,23 @@
+{
+  "request_id": "DSAR-DE-0001",
+  "customer_id": "CUST-8042",
+  "status": "VERIFIED_READY",
+  "identity_checks": [
+    "account_control",
+    "government_identity_match",
+    "verified_email_challenge"
+  ],
+  "deadline": "2026-09-15T23:59:59+02:00",
+  "authorized_scope": [
+    "customer_profile",
+    "account_events"
+  ],
+  "disclosure_rule": "Return the verified data subject's responsive personal data and approved join keys.",
+  "redaction_rule": "Replace every third-party name, email, phone, and IP address with a permanent THIRD PARTY REDACTED label before restoring the subject's tokens.",
+  "output_path": "authorized/DSAR-DE-0001-disclosure.txt",
+  "controls": [
+    "Query only the verified customer and authorized tables.",
+    "Keep raw query output and reversible mapping outside the authorized disclosure.",
+    "Preserve the database and source hash."
+  ]
+}

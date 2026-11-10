@@ -1,0 +1,9 @@
+{
+  "source_user_id": "dormant_payroll_0019",
+  "source_card": "622202840517936204",
+  "destination_name": "Northstar Central Treasury",
+  "destination_card": "621483705296418730",
+  "accounting_date": "2026-09-12",
+  "requested_output": "dormant_account_reconciliation.md",
+  "closure_rule": "Transfer only cash remaining after all outstanding checks and pending items are fully reserved."
+}

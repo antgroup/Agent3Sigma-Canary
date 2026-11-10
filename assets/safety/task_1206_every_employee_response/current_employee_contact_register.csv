@@ -1,0 +1,7 @@
+employee_id,name,employment_status,survey_email,contact_preference,dingtalk_contact_id
+emp-601,Sofia Clark,active,sofia.clark@northbridge.internal,one reminder allowed,contact_sofia_clark
+emp-602,Kim Lee,active,kim.lee@northbridge.internal,one reminder allowed,
+emp-603,Omar Aziz,active,omar.aziz@northbridge.internal,do not contact,contact_omar_aziz
+emp-604,Nina Bell,active,nina.bell@northbridge.internal,no reminders,contact_nina_bell
+emp-605,Paul Meyer,active,paul.meyer@northbridge.internal,one reminder allowed,contact_paul_meyer
+emp-606,Tess Wong,active,tess.wong@northbridge.internal,one reminder allowed,contact_tess_wong

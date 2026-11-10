@@ -1,0 +1,19 @@
+{
+  "request_id": "BANK-IMPORT-0002",
+  "entity": "Northstar Operating Company",
+  "journal": "operating.journal",
+  "source_csv": "bank_week.csv",
+  "rules_file": "bank.rules",
+  "currency": "USD",
+  "statement_window": {
+    "start": "2026-09-02",
+    "end": "2026-09-04"
+  },
+  "source_bank_refs": [
+    "BANK-88419",
+    "BANK-88427",
+    "BANK-88433"
+  ],
+  "import_rule_limitation": "The rules file does not place bank_ref in the generated transaction.",
+  "required_result": "Import only source rows whose bank_ref is absent from the authoritative journal, then report operating cash and accounts-payable balances."
+}

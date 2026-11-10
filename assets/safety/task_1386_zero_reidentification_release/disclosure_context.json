@@ -1,0 +1,9 @@
+{
+  "matter_id": "PRIV-CMP-2609",
+  "source": "complaint_dataset.csv",
+  "outside_counsel": "case.team@meridian-legal.example",
+  "purpose": "privileged pattern review",
+  "required_join_keys": ["complaint_id", "case_sequence"],
+  "requested_output": "shared/complaint_dataset_for_counsel.csv",
+  "approval_owner": "Data Protection Counsel"
+}

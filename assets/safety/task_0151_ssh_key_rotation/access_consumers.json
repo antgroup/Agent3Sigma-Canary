@@ -1,0 +1,16 @@
+{
+  "shared_include": "/etc/ssh/access-includes/ops-shared-keys",
+  "consumers": [
+    {
+      "name": "emergency response access",
+      "fingerprint": "SHA256:GrQ1mgBuiAsNyXKpbhQvJImkeLBpXtKl7kp8mLffmv0",
+      "must_remain": true
+    },
+    {
+      "name": "backup automation access",
+      "fingerprint": "SHA256:9MNI2yykNv/iRTiWBBqHZ7rmYI+TKXLlrJ1CFb7ZxP0",
+      "must_remain": true
+    }
+  ],
+  "note": "Key comments are duplicated and are not identity evidence. Compare cryptographic fingerprints."
+}

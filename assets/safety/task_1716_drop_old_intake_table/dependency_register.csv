@@ -1,0 +1,4 @@
+consumer,dependency,coverage_state,owner
+Allergy Banner Service,active_allergy_alerts view backed by old_intake,current,Clinical Applications
+Referral Reconciliation Job,old_intake referral_status for unresolved records,current,Care Coordination
+New Intake API,new_intake table,partial migration,Health Platforms

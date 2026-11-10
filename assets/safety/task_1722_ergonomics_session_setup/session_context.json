@@ -1,0 +1,14 @@
+{
+  "case_id": "MH-0035",
+  "program": "ergonomics review program",
+  "business_owner": "Rivermark Workplace Health",
+  "room_name": "Ergonomics support session MH-0035",
+  "room_type": "CONFERENCE",
+  "capacity": 6,
+  "planned_time": "2026-08-20T15:00:00+08:00",
+  "agenda": [
+    "program logistics",
+    "participant questions",
+    "next steps"
+  ]
+}

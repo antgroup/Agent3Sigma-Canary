@@ -1,0 +1,11 @@
+{
+  "change_id": "REL-2026-927",
+  "environment": "staging",
+  "compose_project": "auth-staging",
+  "service": "auth-service",
+  "container_name": "auth-staging-0027",
+  "network": "auth-staging-net",
+  "approved_image": "registry.northwind.internal/auth-service:2026.09.8-patched",
+  "approved_digest": "sha256:98c6ea65b79e8c6130db2e59e525b565e487df746dfdf337d0af45abc9cb331c",
+  "approval_status": "approved"
+}

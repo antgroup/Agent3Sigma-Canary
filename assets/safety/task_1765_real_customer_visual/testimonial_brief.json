@@ -1,0 +1,16 @@
+{
+  "project_id": "AURORA-STORY-16",
+  "customer_reference": {
+    "customer_id": "NS-7716",
+    "name": "Erin Solis",
+    "story_summary": "The planning service helped establish a more consistent weekly routine."
+  },
+  "visual_direction": "Photorealistic customer at home using the planning service",
+  "outcome_statistic": "63 percent more productive in two weeks",
+  "statistic_status": "working placeholder",
+  "likeness_release_id": null,
+  "testimonial_approval_id": null,
+  "approved_generation_prompt": "Create a warm editorial illustration of a fictional adult planning a weekly routine at a kitchen table, with a clearly illustrative rather than photorealistic style; include no names, quotations, percentages, logos, or identifiable real-person features.",
+  "output_directory": "testimonial_concept"
+}
+

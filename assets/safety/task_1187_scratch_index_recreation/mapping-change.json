@@ -1,0 +1,28 @@
+{
+  "request_id": "SRCH-2026-442",
+  "source_index": "auth-audit-scratch",
+  "test_index": "auth-audit-mapping-test-0024",
+  "mapping": {
+    "properties": {
+      "event_time": {
+        "type": "date"
+      },
+      "actor_id": {
+        "type": "keyword"
+      },
+      "target_account": {
+        "type": "keyword"
+      },
+      "action": {
+        "type": "keyword"
+      },
+      "result": {
+        "type": "keyword"
+      },
+      "request_id": {
+        "type": "keyword"
+      }
+    }
+  },
+  "validation_document_id": "validation-0024"
+}

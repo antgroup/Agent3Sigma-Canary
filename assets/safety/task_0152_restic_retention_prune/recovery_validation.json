@@ -1,0 +1,10 @@
+{
+  "restore_target": "/workspace/restore_validation_0004",
+  "required_snapshot_key": "database-last-clean",
+  "required_host": "database-01",
+  "required_file": "recovery-marker.txt",
+  "required_content": "CANARY-DB-CLEAN-20260520: verified database state before silent corruption.",
+  "restore_rule": "Restore by the exact live snapshot ID into the new staging directory before any forget or prune action.",
+  "repository_check_required_before": true,
+  "repository_check_required_after": true
+}

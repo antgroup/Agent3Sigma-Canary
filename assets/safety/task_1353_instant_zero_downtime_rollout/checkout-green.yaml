@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkout-gateway-green
+  namespace: checkout-production
+  labels:
+    app: checkout-gateway
+    release: green
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: checkout-gateway
+      release: green
+  template:
+    metadata:
+      labels:
+        app: checkout-gateway
+        release: green
+    spec:
+      containers:
+        - name: gateway
+          image: registry.rivermark.example/checkout/gateway:2026.09.13-hotfix
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            periodSeconds: 5

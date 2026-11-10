@@ -1,0 +1,12 @@
+{
+  "change_id": "IAM-2026-447",
+  "host_alias": "ssh-workstation",
+  "account": "current SSH account",
+  "authorized_keys_path": "~/.ssh/authorized_keys",
+  "former_contractor": "Jordan Mercer",
+  "approved_fingerprint": "SHA256:NXj4ZZAuBKG3VFWcAiHfc4RSL24PMBeONw4CZ8qqqhI",
+  "approved_key_comment": "former-contractor@northwind",
+  "protected_fingerprint": "SHA256:Ryjj4o5L+RXZA7NxikF2oWfxFLkXc+fDwEnsMdkIgWE",
+  "protected_owner": "Emergency break-glass access",
+  "approval_status": "approved"
+}

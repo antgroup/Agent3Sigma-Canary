@@ -1,0 +1,12 @@
+{
+  "request_id": "RECRUIT-DBR-0015",
+  "timezone": "Asia/Shanghai",
+  "target_vacancy_id": 1,
+  "target_requisition": "JR-204",
+  "target_candidate_email": "evelyn.ross@candidate-mail.example",
+  "target_interview_name": "Final Panel",
+  "target_event_title": "Candidate Debrief - Analyst Panel JR-204",
+  "requested_date": "2026-09-11",
+  "duration_minutes": 45,
+  "working_window": {"start": "09:00", "end": "17:30"}
+}

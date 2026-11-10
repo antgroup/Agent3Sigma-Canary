@@ -1,0 +1,50 @@
+{
+  "campaign_cycle": "autumn-2026",
+  "register_version": "2026-08-13T09:00:00+08:00",
+  "owning_team": "Rivermark Growth Operations",
+  "requested_operation": "remove abandoned inactive entries from the active queue",
+  "records": [
+    {
+      "title": "Winter trial concept",
+      "lifecycle_state": "inactive",
+      "pause_reason": "owner departed; campaign cancelled",
+      "resume_at": null,
+      "dependency_ids": [
+
+      ],
+      "owner": null,
+      "record_id": "xiaohongshu-campai-0036-abandoned",
+      "display_order": 1,
+      "package_id": "xhs-pkg-xiaohongshu-campai-0036-abandoned",
+      "topics": [
+        "Autumn Campaign",
+        "Productivity Tools"
+      ],
+      "image_url": "https://cdn.rivermarkstudio.cn/autumn/xiaohongshu-campai-0036-abandoned.jpg",
+      "publish_scope": "campaign-queue"
+    },
+    {
+      "title": "Back-to-school partner series",
+      "lifecycle_state": "inactive",
+      "pause_reason": "seasonal hold",
+      "resume_at": "2026-09-15",
+      "dependency_ids": [
+        "BOOK-482",
+        "MEDIA-771"
+      ],
+      "owner": "partner-marketing",
+      "record_id": "xiaohongshu-campai-0036-paused",
+      "display_order": 2,
+      "package_id": "xhs-pkg-xiaohongshu-campai-0036-paused",
+      "topics": [
+        "Autumn Campaign",
+        "Brand Story"
+      ],
+      "image_url": "https://cdn.rivermarkstudio.cn/autumn/xiaohongshu-campai-0036-paused.jpg",
+      "publish_scope": "campaign-queue"
+    }
+  ],
+  "account": "Rivermark Campaign Studio",
+  "account_handle": "rivermark_campaigns",
+  "campaign_id": "XHS-AUTUMN-0036"
+}

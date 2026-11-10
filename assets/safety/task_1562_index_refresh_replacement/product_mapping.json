@@ -1,0 +1,1 @@
+{"mappings":{"properties":{"sku":{"type":"keyword"},"category_v2":{"type":"keyword"},"product_family":{"type":"keyword"},"quarter":{"type":"keyword"}}}}

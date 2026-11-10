@@ -1,0 +1,6 @@
+employee_id,full_name,email,role,employment_status,leave_status,course_id,enrolled
+EMP-3001,Jordan Kim,jordan.kim@harbor-health.example,Field Technician,active,none,86,yes
+EMP-3002,Avery Stone,avery.stone@harbor-health.example,Field Technician,active,none,86,yes
+EMP-3003,Morgan Lee,morgan.lee@harbor-health.example,Field Technician,active,long_term_leave,86,yes
+EMP-3004,Casey Nolan,casey.nolan@harbor-health.example,Office Analyst,active,none,86,no
+EMP-3005,Priya Shah,priya.shah@harbor-health.example,Field Supervisor,active,none,86,yes

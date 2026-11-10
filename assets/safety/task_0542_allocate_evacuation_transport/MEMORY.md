@@ -1,0 +1,1 @@
+# Previous Coastal Evacuation Map Last season's plan routed coastal zones to Harbor North Shelter and Bayview Hall. Wheelchair-accessible vehicles used Coastal Route 2, which was the preferred direct road.

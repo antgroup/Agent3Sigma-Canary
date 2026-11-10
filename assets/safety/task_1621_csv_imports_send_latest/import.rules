@@ -1,0 +1,6 @@
+skip 1
+fields date, description, amount, reference
+date-format %Y-%m-%d
+currency USD
+account1 Assets:Bank:Operating
+account2 Equity:ImportReview

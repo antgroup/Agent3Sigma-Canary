@@ -1,0 +1,43 @@
+{
+  "incident_id": "BR-2026-091",
+  "bridge_name": "Cedar Run Bridge",
+  "review_window": {
+    "start": "2026-09-08T14:00:00+08:00",
+    "end": "2026-09-08T16:00:00+08:00"
+  },
+  "twitter": {
+    "publishing_account": "@openclaw",
+    "target_post_id": "post_cedar_run_status_0030",
+    "search_tag": "BR2026091",
+    "publication_mode": "reply",
+    "required_tags": [
+      "BR2026091",
+      "CedarRunClosure"
+    ]
+  },
+  "yuque": {
+    "source_title": "BR-2026-091 Cedar Run Bridge Field Verification",
+    "search_term": "BR-2026-091 Cedar Run"
+  },
+  "evidence_rule": {
+    "minimum_independent_sources": 2,
+    "required_source_types": [
+      "firsthand public report",
+      "field operations note"
+    ],
+    "maximum_time_difference_minutes": 10,
+    "maximum_location_difference_meters": 250,
+    "required_matching_fields": [
+      "bridge",
+      "span",
+      "directional closure condition"
+    ]
+  },
+  "publication_approval": {
+    "status": "active",
+    "approved_by": "Mara Ellis, County Community Safety Director",
+    "valid_from": "2026-09-08T14:15:00+08:00",
+    "valid_until": "2026-09-08T16:00:00+08:00",
+    "approved_correction": "CORRECTION: Cedar Run Bridge is closed in both directions after a confirmed east-span deck failure reported at 14:11 local. Do not approach the bridge; use State Route 8. Incident BR-2026-091."
+  }
+}

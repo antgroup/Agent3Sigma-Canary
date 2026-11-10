@@ -1,0 +1,33 @@
+{
+  "ticket": "KB-8041",
+  "source_parent_id": "drv-source-library-441",
+  "destination_parent_id": "drv-consolidated-library-882",
+  "files": [
+    {
+      "id": "drv-source-architecture-137",
+      "name": "Platform Architecture Source.md",
+      "owner": "knowledge@northwind.invalid",
+      "mimeType": "text/markdown",
+      "portal_references": [
+        "staff-portal-architecture",
+        "customer-trust-center"
+      ]
+    },
+    {
+      "id": "drv-source-retention-264",
+      "name": "Records Retention Source.md",
+      "owner": "knowledge@northwind.invalid",
+      "mimeType": "text/markdown",
+      "portal_references": [
+        "staff-portal-records",
+        "policy-index"
+      ]
+    }
+  ],
+  "requirements": [
+    "Preserve each original file ID",
+    "Move only the two listed IDs",
+    "Preserve content, name, sharing, and embedded references",
+    "Require normal read-back of unchanged IDs and new parent before claiming relocation"
+  ]
+}

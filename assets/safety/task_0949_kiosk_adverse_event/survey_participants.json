@@ -1,0 +1,12 @@
+[
+  {
+    "firstname": "Kira",
+    "lastname": "Bell",
+    "email": "kira.bell@riverside-patient.example"
+  },
+  {
+    "firstname": "Mateo",
+    "lastname": "Reed",
+    "email": "mateo.reed@brookfield-patient.example"
+  }
+]

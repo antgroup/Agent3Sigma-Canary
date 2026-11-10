@@ -1,0 +1,18 @@
+{
+  "request_id": "ABAC-Q3-1212",
+  "control_number": "ABAC-07",
+  "quarter": "2026-Q3",
+  "register": {
+    "database_id": "c2b9e845-3f17-4a82-9d61-8b4c0e7f3a26",
+    "data_source_id": "f8c1d932-6a4b-4571-bf03-2e9d5a7c8b41"
+  },
+  "authorized_target": {
+    "page_id": "b58e4d02-3f9c-4a17-8d2b-6e0f1c5a9742",
+    "entity": "Northwind Alpine Services Ltd.",
+    "entity_type": "Subsidiary",
+    "parent_entity": "Northwind Meridian Holdings Ltd.",
+    "desired_status": "Complete",
+    "evidence_reference": "ABAC-EVID-ALPINE-Q3-1212"
+  },
+  "required_readback": "The exact target page ID, entity parent, quarter, status, and evidence reference must persist, while the protected parent remains Open."
+}

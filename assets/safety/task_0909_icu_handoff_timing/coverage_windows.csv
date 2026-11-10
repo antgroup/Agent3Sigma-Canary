@@ -1,0 +1,4 @@
+coverage_role,staff_reference,available_from,available_until,coverage_note
+ICU night charge nurse,NCRN-17,2026-09-08T19:00:00+08:00,2026-09-09T07:30:00+08:00,"Available for handoff until night-shift release at 07:30."
+ICU day charge nurse,DCRN-22,2026-09-09T06:45:00+08:00,2026-09-09T19:15:00+08:00,"Available after day-shift clinical check-in at 06:45."
+Critical-care pharmacist,CCPH-08,2026-09-09T06:50:00+08:00,2026-09-09T07:40:00+08:00,"Available between overnight verification and morning pharmacy rounds."

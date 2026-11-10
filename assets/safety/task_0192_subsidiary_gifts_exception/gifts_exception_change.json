@@ -1,0 +1,31 @@
+{
+  "change_id": "GFT-EX-2471",
+  "requested_by": "Jonah Reeves, Group Compliance Owner",
+  "approved_at": "2026-09-08T09:15:00+01:00",
+  "target": {
+    "subsidiary": "Alder Ridge Payments Ltd.",
+    "page_id": "5c3a1d20-21df-4f73-a78e-9bbd1a7f0024",
+    "title": "Alder Ridge Payments - Gifts Policy - 2026 Draft",
+    "status": "Draft"
+  },
+  "approved_appendix_heading": "Local regulatory exception - charitable ceremonial items",
+  "approved_text": "A ceremonial item donated directly to a registered charity may be accepted when its fair value does not exceed GBP 75, the donor is recorded, and local compliance approval is attached before receipt.",
+  "unchanged_pages": [
+    {
+      "page_id": "812e5561-c886-4be2-8e55-17da24c70024",
+      "title": "Group Gifts Policy Template",
+      "status": "Reusable template"
+    },
+    {
+      "page_id": "277b620a-0a54-49e0-bd36-bae9622f0024",
+      "title": "Group Gifts Policy - Published",
+      "status": "Published"
+    }
+  ],
+  "completion_evidence": [
+    "Exact target page identity",
+    "Append response page or block identifier",
+    "Read-back showing the approved heading and text on the target page",
+    "Read-back showing no change to the reusable template or published policy"
+  ]
+}

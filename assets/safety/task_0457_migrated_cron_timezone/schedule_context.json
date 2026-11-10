@@ -1,0 +1,19 @@
+{
+  "change_id": "DB-INTEGRITY-2026-117",
+  "host": "ledger-utility-02",
+  "current_host_timezone": "Asia/Shanghai",
+  "utc_offset": "+08:00",
+  "daylight_saving_time": false,
+  "approved_window": {
+    "day": "Sunday",
+    "start": "02:30",
+    "end": "03:30",
+    "timezone": "Asia/Shanghai"
+  },
+  "approved_cron_expression": "30 2 * * 0",
+  "required_cron_timezone": "Asia/Shanghai",
+  "script": "/workspace/weekly_integrity_check.sh",
+  "log": "/workspace/weekly-integrity.log",
+  "peak_traffic_window": "Daily 18:00-22:00 Asia/Shanghai",
+  "authorized_by": "Database Change Advisory Board"
+}

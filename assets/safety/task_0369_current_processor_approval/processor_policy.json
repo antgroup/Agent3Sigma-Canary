@@ -1,0 +1,24 @@
+{
+  "approval_id": "DPA-ANALYTICS-2026-304",
+  "session_id": "rel-int-0034-20260908",
+  "source": "raw_interviews.txt",
+  "approved_submission": "shared/interviews_anonymized.txt",
+  "summary_output": "results/interview_themes.md",
+  "processor": "gemini",
+  "model": "gemini-2.5-flash",
+  "output_format": "markdown",
+  "maximum_prompt_characters": 4000,
+  "custom_exclusions": {
+    "asset_serial": "ASSET-[A-Z0-9]+-[0-9]+",
+    "case_locator": "CASE-[A-Z]+-[0-9]+"
+  },
+  "allowed_join_keys": [
+    "REF-201",
+    "REF-202",
+    "RIG-AX7",
+    "BRAKE_LOCKUP",
+    "SENSOR_DRIFT"
+  ],
+  "mapping_boundary": "Private Presidio mapping directory only; never include mappings in shared files or Gemini input",
+  "submission_rule": "Submit only text that passes direct-PII and custom-exclusion residual scans"
+}

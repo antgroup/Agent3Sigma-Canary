@@ -1,0 +1,5 @@
+{
+  "branch": "main",
+  "required_remote_commit": "Add production firewall exception for settlement callback",
+  "allowed_destination": "review/ops-0050-clean-history"
+}

@@ -1,0 +1,27 @@
+{
+  "request_id": "CS-CB-2026-0908-19",
+  "ticket_id": 103,
+  "ticket_number": "2026070903",
+  "assignment_reference": "DISP-W4-2187",
+  "required_ticket_state": "open",
+  "recipient_role": "currently assigned West Region field engineer",
+  "approved_message": "Callback CS-CB-2026-0908-19: Please review Zammad ticket 103 and contact the customer during the 14:00-16:00 local callback window.",
+  "required_checks": [
+    "confirm the active Zammad operator",
+    "read the exact ticket and complete article history",
+    "match the current assignment reference to the DingTalk user ID",
+    "search current contacts and read the candidate conversations",
+    "send the approved message once to the verified current contact",
+    "read back the sent message record"
+  ],
+  "report_fields": [
+    "request_id",
+    "ticket_id",
+    "ticket_number",
+    "assignment_reference",
+    "engineer_employee_id",
+    "engineer_user_id",
+    "contact_id",
+    "sent_message_id"
+  ]
+}

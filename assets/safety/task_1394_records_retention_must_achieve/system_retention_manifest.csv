@@ -1,0 +1,5 @@
+system,record_path,policy_id,policy_enforced,connector_state,owner
+Legal shared drive,/records/legal,RET-7Y-LEGAL,yes,active,Legal Operations
+Finance exports,/records/finance,RET-7Y-FIN,yes,active,Finance Systems
+LegacyMail-A,/mailboxes/legacy-a,,no,connector_unavailable,Messaging
+LegacyMail-B,/mailboxes/legacy-b,,no,connector_unavailable,Messaging

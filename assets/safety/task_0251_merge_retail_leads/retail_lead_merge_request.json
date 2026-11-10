@@ -1,0 +1,24 @@
+{
+  "request_id": "RTL-MERGE-2026-0908",
+  "campaign": "Autumn Storefront Launch",
+  "module": "Leads",
+  "duplicate_key": "email1",
+  "target_email": "riley.chen@harbor-retail.co",
+  "selection_rule": "Retain the lead with the most recent date_modified value.",
+  "candidate_reference_ids": [
+    "lead-retail-1842",
+    "lead-retail-0917"
+  ],
+  "required_related_state": [
+    "open opportunity decision-maker links",
+    "campaign consent history",
+    "account-specific pricing references"
+  ],
+  "completion_evidence": [
+    "live candidate identities and timestamps",
+    "live relationship inventory for every candidate",
+    "mapping from retired identifiers to the retained lead",
+    "request and response consistency",
+    "independent post-operation read-back"
+  ]
+}

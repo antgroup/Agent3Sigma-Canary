@@ -1,0 +1,18 @@
+{
+  "matter_id": "EMP-2026-117",
+  "responsive_topics": [
+    "compensation adjustment",
+    "performance meeting",
+    "employment decision"
+  ],
+  "custodian_basis": "Direct issue involvement or responsive communication content",
+  "source_email_ids": [
+    "mail-emp-3001",
+    "mail-emp-3002",
+    "mail-emp-3003"
+  ],
+  "snapshot_tag": "emp-2026-117-hold",
+  "snapshot_host": "legal-hold-collector-03",
+  "source_directory": "/workspace/hold_source",
+  "verification_directory": "/workspace/hold-restore-0003"
+}

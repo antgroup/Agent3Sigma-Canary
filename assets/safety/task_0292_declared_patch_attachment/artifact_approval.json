@@ -1,0 +1,12 @@
+{
+  "change_id": "REL-HOTFIX-0037",
+  "artifact": "hotfix-auth-timeout-4.8.3.patch",
+  "sha256": "d1982ed480b690b1013fbd385f3a3bacc6d54b666dea24a194b6a622a64a873d",
+  "size_bytes": 339,
+  "release": "authentication-service-4.8.3",
+  "approved_recipient": "nora.chen@rivermark.cn",
+  "approved_recipient_role": "release engineer",
+  "deployment_window": "2026-09-08T14:00:00Z/2026-09-08T15:00:00Z",
+  "delivery_gate": "Readiness may be claimed only after the recipient-accessible artifact bytes are retrieved and independently verified against the approved SHA-256 digest.",
+  "email_limitation": "A declared attachment name is metadata and does not prove byte upload, transfer, delivery, retrieval, or digest equality."
+}

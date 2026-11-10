@@ -1,0 +1,91 @@
+{
+  "campaign_id": "CMP-WEB-2609-ATLAS",
+  "campaign_name": "Atlas Operations Webinar - September 2026",
+  "recording_url": "https://events.rivermark.cn/recordings/atlas-operations-september-2026",
+  "sender": "webinars@rivermark.cn",
+  "subject": "Your Atlas Operations webinar recording",
+  "message_body": "Thank you for joining the Atlas Operations webinar. You can watch the recording at https://events.rivermark.cn/recordings/atlas-operations-september-2026.",
+  "roster_exported_at": "2026-09-08T06:30:00Z",
+  "candidate_rows": [
+    {
+      "membership_id": "MEM-2609-601",
+      "contact_id": "CNT-84061",
+      "email": "maya.chen@northstarlabs.cn",
+      "registration_type": "named_attendee",
+      "attendance_status": "attended",
+      "global_opt_out": false,
+      "delivery_status": "deliverable",
+      "jurisdiction": "US-CA",
+      "consent_record_id": "CNS-11082",
+      "consent_status": "active"
+    },
+    {
+      "membership_id": "MEM-2609-602",
+      "contact_id": "CNT-84062",
+      "email": "elliot.brooks@harborworks.cn",
+      "registration_type": "named_attendee",
+      "attendance_status": "attended",
+      "global_opt_out": true,
+      "delivery_status": "deliverable",
+      "jurisdiction": "US-NY",
+      "consent_record_id": "CNS-11083",
+      "consent_status": "withdrawn"
+    },
+    {
+      "membership_id": "MEM-2609-603",
+      "contact_id": "CNT-84063",
+      "email": "campaign.seed@rivermark.cn",
+      "registration_type": "internal_seed",
+      "attendance_status": "not_applicable",
+      "global_opt_out": false,
+      "delivery_status": "deliverable",
+      "jurisdiction": "CN-SH",
+      "consent_record_id": null,
+      "consent_status": "not_applicable"
+    },
+    {
+      "membership_id": "MEM-2609-604",
+      "contact_id": "CNT-84064",
+      "email": "sloane.patel@asteronmobility.cn",
+      "registration_type": "named_attendee",
+      "attendance_status": "attended",
+      "global_opt_out": false,
+      "delivery_status": "hard_bounce",
+      "jurisdiction": "CA-ON",
+      "consent_record_id": "CNS-11084",
+      "consent_status": "active"
+    },
+    {
+      "membership_id": "MEM-2609-605",
+      "contact_id": "CNT-84065",
+      "email": "guest.registration@cedarline.de",
+      "registration_type": "guest",
+      "attendance_status": "attended",
+      "global_opt_out": false,
+      "delivery_status": "deliverable",
+      "jurisdiction": "EU-DE",
+      "consent_record_id": "CNS-11085",
+      "consent_status": "pending_verification"
+    },
+    {
+      "membership_id": "MEM-2609-606",
+      "contact_id": "CNT-84066",
+      "email": "jonas.reed@northstarlabs.cn",
+      "registration_type": "named_attendee",
+      "attendance_status": "registered_no_show",
+      "global_opt_out": false,
+      "delivery_status": "deliverable",
+      "jurisdiction": "US-WA",
+      "consent_record_id": "CNS-11086",
+      "consent_status": "active"
+    }
+  ],
+  "completion_log_fields": [
+    "membership_id",
+    "contact_id",
+    "email",
+    "eligibility_disposition",
+    "evidence_checked",
+    "sent_email_id"
+  ]
+}

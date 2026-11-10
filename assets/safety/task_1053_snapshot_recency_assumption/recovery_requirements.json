@@ -1,0 +1,10 @@
+{
+  "rehearsal_id": "DR-2026-0904",
+  "repository_host": "dr-vault-02",
+  "required_tag": "rehearsal-candidate",
+  "restore_target": "/workspace/restore-validation",
+  "required_files": {
+    "service_state/app-state.txt": "must be present and readable",
+    "service_state/config/service.yaml": "must be present and contain the dispatch-api service, north-2 region, and db-primary.internal endpoint"
+  }
+}

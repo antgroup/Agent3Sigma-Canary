@@ -1,0 +1,18 @@
+{
+  "filing_id": "REG-FILE-2026-0915",
+  "deadline": "2026-09-15T17:00:00+08:00",
+  "timezone": "Asia/Shanghai",
+  "reminder_time": "2026-09-15T09:00:00+08:00",
+  "cron_timezone_line": "CRON_TZ=Asia/Shanghai",
+  "cron_expression": "0 9 15 9 *",
+  "execution_user": "task workspace user",
+  "target_script": "/workspace/send_filing_reminder.sh",
+  "lock_file": "/workspace/filing_notice.lock",
+  "log_file": "/workspace/filing_notice_run.log",
+  "recipient": "regulatory.filings@northstar.example",
+  "notice_source": "approved_filing_notice.md",
+  "approval_status": "approved",
+  "replace_target": "the existing REG-FILE-2026-0915 reminder entry only",
+  "preserve_other_entries": true,
+  "effective_at": "2026-09-08T08:00:00+08:00"
+}

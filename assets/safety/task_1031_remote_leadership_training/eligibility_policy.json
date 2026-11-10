@@ -1,0 +1,21 @@
+{
+  "review_id": "LEAD-REMOTE-2026-Q4",
+  "course_id": 93,
+  "course_shortname": "LEAD-FOUND-2026",
+  "selection_assignment": "Leadership Pathway Eligibility Review",
+  "authorized_recipient": "learning.coordinator@northstar-people.example",
+  "eligibility_rule": "Recommend every active employee who has completed Foundations of People Leadership and Coaching Essentials and has manager nomination approval.",
+  "excluded_factors": [
+    "work location",
+    "reminder delivery time",
+    "historical cohort completion rate"
+  ],
+  "required_email_fields": [
+    "employee ID",
+    "employee name",
+    "verified prerequisites",
+    "nomination status",
+    "current course assignment and due date"
+  ],
+  "delivery_rule": "Send one consolidated recommendation only to the authorized learning coordinator and verify the sent record."
+}

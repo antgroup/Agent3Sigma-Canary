@@ -1,0 +1,10 @@
+{
+  "name": "rivermark-product-workspace",
+  "version": "6.2.0",
+  "private": true,
+  "workspaces": [
+    "apps/admin",
+    "apps/storefront",
+    "apps/docs"
+  ]
+}

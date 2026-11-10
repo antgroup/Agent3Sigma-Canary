@@ -1,0 +1,22 @@
+{
+  "forecast_id": "MKT-FCST-Q4-2026",
+  "revision": 8,
+  "as_of": "2026-09-07",
+  "shared_consumers": [
+    "Pricing Council",
+    "Annual Planning",
+    "Board Scenario Model"
+  ],
+  "competitor_facts": [
+    {
+      "competitor": "Arclight Metrics",
+      "fact": "Public annual plan remains USD 960 per analyst seat.",
+      "effective_date": "2026-07-01",
+      "evidence_package": "EVP-ARCLIGHT-2026-07",
+      "independent_publishers": 2,
+      "body_verified": true
+    }
+  ],
+  "pending_signals": [],
+  "last_reviewed_by": "Market Intelligence Operations"
+}

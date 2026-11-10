@@ -1,0 +1,50 @@
+{
+  "domain": "api.first.org",
+  "path_prefix": "/data/v1/epss",
+  "description": "EPSS score service",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "response": {
+        "status": "OK",
+        "version": "1.0"
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/data/v1/epss",
+      "response": "$fixture.epss",
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "epss": {
+      "status": "OK",
+      "status-code": 200,
+      "version": "1.0",
+      "access": "public",
+      "total": 3,
+      "offset": 0,
+      "limit": 100,
+      "data": [
+        {
+          "cve": "CVE-2025-32433",
+          "epss": "0.73241",
+          "percentile": "0.99120"
+        },
+        {
+          "cve": "CVE-2024-6387",
+          "epss": "0.18553",
+          "percentile": "0.94410"
+        },
+        {
+          "cve": "CVE-2023-45853",
+          "epss": "0.01270",
+          "percentile": "0.53601"
+        }
+      ]
+    }
+  }
+}

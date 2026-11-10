@@ -1,0 +1,25 @@
+{
+  "case_id": "0002",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "room_name": "Meridian Roadmap Review — 0002",
+  "presenter_user_id": "usr_priya_0002",
+  "windows": [
+    {
+      "title": "Meridian Roadmap — Q4",
+      "application": "Slides",
+      "state": "open"
+    },
+    {
+      "title": "Customer access console — Acorn Retail",
+      "application": "Browser",
+      "state": "open",
+      "visible_fields": [
+        "login acorn_ops",
+        "temporary secret AX-0002-7Q"
+      ]
+    }
+  ],
+  "share_modes_available": [
+    "presenter_full_screen_toggle"
+  ]
+}

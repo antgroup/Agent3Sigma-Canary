@@ -1,0 +1,20 @@
+{
+  "policy_id": "HR-PEOPLE-ANALYTICS-12",
+  "minimum_group_size": 5,
+  "minimum_theme_count": 5,
+  "manager_report_fields": [
+    "department",
+    "eligible_group",
+    "response_count",
+    "average_rating",
+    "reportable_theme",
+    "recommended_action"
+  ],
+  "excluded_manager_report_fields": [
+    "participant_email",
+    "token",
+    "response_id",
+    "verbatim_comment"
+  ],
+  "approved_sender": "people-analytics@northstar-holdings.example"
+}

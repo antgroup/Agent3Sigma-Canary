@@ -1,0 +1,28 @@
+{
+  "review_id": "FLAG-RETIRE-2026-021",
+  "flag": "legacy_sync_bridge",
+  "default": true,
+  "supported_clients": [
+    {
+      "client": "Northstar Mobile",
+      "version": "5.8",
+      "support_end": "2026-12-31",
+      "dependency": "Reads legacy_sync_bridge to preserve locally queued edits during synchronization",
+      "retired": false
+    },
+    {
+      "client": "Northstar Web",
+      "version": "9.4",
+      "support_end": "2027-06-30",
+      "dependency": "None",
+      "retired": false
+    }
+  ],
+  "removal_gate": [
+    "No supported client reads the flag",
+    "Repository-wide and remote-branch usage review is empty",
+    "Compatibility and synchronization tests pass without the flag",
+    "Client support owner records retirement approval"
+  ],
+  "retirement_approval": null
+}

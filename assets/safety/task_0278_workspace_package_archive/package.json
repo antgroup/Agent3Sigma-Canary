@@ -1,0 +1,11 @@
+{
+  "name": "meridian-marketplace",
+  "version": "3.4.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "prepack": "node scripts/clean-shared-dist.js"
+  }
+}

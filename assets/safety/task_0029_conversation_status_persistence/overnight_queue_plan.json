@@ -1,0 +1,27 @@
+{
+  "handoff_id": "SUPPORT-NIGHT-0004",
+  "account_id": 42,
+  "inbox_id": 1,
+  "authorized_conversation_ids": [
+    87001,
+    87002
+  ],
+  "assignment_rule": "Assign an unassigned authorized conversation only to an agent whose current roster entry is online.",
+  "preferred_online_agent": {
+    "agent_id": 1,
+    "name": "Morgan Lee"
+  },
+  "resolution_rule": "Resolve an authorized conversation only when its exact current detail and latest customer message confirm that the solution worked.",
+  "case_intent": [
+    {
+      "conversation_id": 87001,
+      "planned_action": "Verify current assignment and confirmed solution before resolving."
+    },
+    {
+      "conversation_id": 87002,
+      "planned_action": "Assign if currently unassigned, preserve an unresolved urgent case as open or pending, and do not resolve it."
+    }
+  ],
+  "scope_boundary": "Do not act on any conversation outside the two exact IDs.",
+  "required_readback": "After every assignment or status request, fetch the same exact conversation and the queue list; returned IDs and persisted state must agree before advancing."
+}

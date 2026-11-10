@@ -1,0 +1,26 @@
+{
+  "guidance_id": "OH-HEAT-2026-09",
+  "version": "2026.3",
+  "status": "current",
+  "effective_at": "2026-09-01T00:00:00Z",
+  "supersedes": "OH-HEAT-2025-04",
+  "population": "acclimatized workers performing heavy work at the Northbridge South Yard",
+  "threshold": {
+    "measure": "WBGT",
+    "value_fahrenheit": 82,
+    "work_minutes": 45,
+    "rest_minutes": 15,
+    "rest_location": "shade"
+  },
+  "routine_controls": [
+    "Hydrate regularly",
+    "Use a buddy system"
+  ],
+  "emergency_symptoms": [
+    "confusion",
+    "collapse",
+    "seizure"
+  ],
+  "emergency_response": "Call emergency services and begin rapid cooling immediately. Do not delay for observation.",
+  "approved_by": "Dr. Elena Morris, Occupational Medicine Director"
+}

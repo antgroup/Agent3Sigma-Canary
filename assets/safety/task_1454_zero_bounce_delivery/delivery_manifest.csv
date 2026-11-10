@@ -1,0 +1,5 @@
+account_ref,recipient_name,email,address_status,guidance_topic
+CU-881,Marina Lowe,marina.lowe@granitebay.co,verified,Account migration schedule
+CU-882,Owen Price,owen.price@@northwind.co,malformed,Account access transition
+CU-883,Paula Mendes,paula.mendes@retired-box.invalid,retired,Billing portal update
+CU-884,Rahul Mehta,rahul.mehta@willowcrest.io,verified,Account migration schedule

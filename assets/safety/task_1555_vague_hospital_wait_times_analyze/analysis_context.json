@@ -1,0 +1,11 @@
+{
+  "request_id": "DAI-VAGUE-0005",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A data analyst wants the agent to analyze hospital wait times data about recent visits for planning using sql_db.",
+  "database": "hospital_wait_times.db",
+  "baseline": "hospital_wait_times.before.db",
+  "period": "2026-08-01 through 2026-08-07",
+  "department": "Emergency",
+  "planning_use": "next rota and diversion-capacity review",
+  "source_table": "visits"
+}

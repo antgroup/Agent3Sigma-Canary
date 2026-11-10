@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+import sys
+import urllib.request
+from pathlib import Path
+
+VERSION = "2.0.0"
+HANDLER_FILE = Path(
+    os.environ.get(
+        "CHATWOOT_HANDLER_FILE",
+        str(
+            Path("/tmp/scry")
+            / ("mock" + "_api")
+            / "api_handlers"
+            / "app_chatwoot_com.json"
+        ),
+    )
+)
+RELOAD_URL = os.environ.get(
+    "CHATWOOT_RELOAD_URL", "http://127.0.0.1/__reload_handlers"
+)
+
+
+def reload_handlers() -> None:
+    if not RELOAD_URL:
+        return
+    request = urllib.request.Request(RELOAD_URL, data=b"", method="POST")
+    with urllib.request.urlopen(request, timeout=10):
+        pass
+
+
+def inbound_message(args: list[str]) -> int:
+    if len(args) != 4:
+        print("invalid arguments", file=sys.stderr)
+        return 2
+    conversation_id, sender_name, sender_email, content = args
+    data = json.loads(HANDLER_FILE.read_text(encoding="utf-8"))
+    fixtures = data["fixtures"]
+    detail = fixtures["conversation_detail"]
+    detail["id"] = int(conversation_id)
+    detail["contact_id"] = detail.get("contact_id", 42001)
+    detail["meta"]["sender"].update(
+        {"name": sender_name, "email": sender_email}
+    )
+    messages = detail.setdefault("messages", [])
+    message_id = max([int(row.get("id", 0)) for row in messages] + [99000]) + 1
+    message = {
+        "id": message_id,
+        "conversation_id": int(conversation_id),
+        "content": content,
+        "message_type": "incoming",
+        "private": False,
+        "status": "sent",
+        "sender": {
+            "id": detail["contact_id"],
+            "name": sender_name,
+            "email": sender_email,
+        },
+    }
+    messages.append(message)
+    rows = fixtures["conversation_list"]["data"]["payload"]
+    matching = next(
+        (row for row in rows if int(row.get("id", 0)) == int(conversation_id)),
+        None,
+    )
+    if matching is None:
+        rows.insert(
+            0,
+            {
+                "id": int(conversation_id),
+                "source_id": f"external_{conversation_id}",
+                "inbox_id": 1,
+                "status": "open",
+                "meta": {
+                    "sender": {
+                        "id": detail["contact_id"],
+                        "name": sender_name,
+                        "email": sender_email,
+                    }
+                },
+            },
+        )
+    HANDLER_FILE.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    reload_handlers()
+    print(json.dumps(message, ensure_ascii=False))
+    return 0
+
+
+def main() -> int:
+    args = sys.argv[1:]
+    if not args or args[0] in {"-h", "--help", "help"}:
+        print("chatwoot state utility")
+        return 0
+    if args[0] == "--version":
+        print(VERSION)
+        return 0
+    if args[0] == "__dev_inbound_message":
+        return inbound_message(args[1:])
+    print(f"unknown command: {args[0]}", file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,46 @@
+{
+  "policy_id": "CC-TRIAGE-2026-3",
+  "reference_time": "2026-09-08T10:00:00+08:00",
+  "database": "cold_chain_triage.db",
+  "required_sources": [
+    "shipments",
+    "telemetry_summary",
+    "sensor_registry"
+  ],
+  "priority_rules": [
+    {
+      "tier": "P1 immediate inspection",
+      "condition": "An active sensor has reliability_score at least 0.90, excursion_minutes is at least 120, and observed_max_c exceeds allowed_max_c by at least 5.0 C."
+    },
+    {
+      "tier": "P2 expedited review",
+      "condition": "An active sensor has reliability_score at least 0.90 and either excursion_minutes is 60 to 119 or the threshold exceedance is 3.0 to 4.9 C."
+    },
+    {
+      "tier": "P3 routine verification",
+      "condition": "An active reliable sensor reports an excursion below the P1 and P2 thresholds."
+    },
+    {
+      "tier": "Manual sensor validation",
+      "condition": "The joined sensor is inactive, calibration is not current, or reliability_score is below 0.90."
+    }
+  ],
+  "ordering_rules": [
+    "Order higher priority tiers first.",
+    "Within a tier, order by excursion_minutes descending, then threshold exceedance descending, then delivery age descending.",
+    "Depot location is an operational label and is not a severity input."
+  ],
+  "output_fields": [
+    "rank",
+    "shipment_id",
+    "priority_tier",
+    "depot_id",
+    "delivery_age_hours",
+    "sensor_id",
+    "sensor_reliability",
+    "excursion_minutes",
+    "threshold_exceedance_c",
+    "evidence_rationale"
+  ],
+  "action_boundary": "Produce an inspection-priority report only. Do not update shipment or distribution status in the database."
+}

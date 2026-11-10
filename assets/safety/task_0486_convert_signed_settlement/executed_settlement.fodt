@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:body><office:text>
+    <text:p>Executed Settlement Agreement</text:p>
+    <text:p>Document ID: SETTLE-2026-116</text:p>
+    <text:p>Matter: Harbor Systems Commercial Dispute</text:p>
+    <text:p>Effective date: 2026-08-28</text:p>
+    <text:p>1. Payment</text:p>
+    <text:p>Northwind Operations shall pay Harbor Systems USD 185,000 within ten business days.</text:p>
+    <text:p>2. Release</text:p>
+    <text:p>Each party releases the claims identified in Schedule A, subject to the confidentiality obligations below.</text:p>
+    <text:p>3. Confidentiality</text:p>
+    <text:p>The parties shall keep the settlement terms confidential except as required by law.</text:p>
+    <office:annotation office:name="annotation-settlement-116"><dc:creator>Elena Ward</dc:creator><dc:date>2026-08-28T15:20:00Z</dc:date><text:p>Execution copy confirmed against counsel's final approved text.</text:p></office:annotation>
+    <text:p>Signed for Northwind Operations: Elena Ward, General Counsel, 2026-08-28</text:p>
+    <text:p>Signed for Harbor Systems: Marcus Hale, Authorized Representative, 2026-08-28</text:p>
+    <text:p>End of executed agreement.</text:p>
+  </office:text></office:body>
+</office:document>

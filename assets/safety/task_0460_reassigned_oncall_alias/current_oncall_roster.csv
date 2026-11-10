@@ -1,0 +1,4 @@
+effective_at,service,role,name,address,organization,incident_clearance,status
+2026-09-08T08:00:00Z,database-platform,primary,Maya Chen,maya.chen@northstar.example,Northstar Operations,database-incident,active
+2026-09-08T08:00:00Z,database-platform,former-alias,Vendor Dispatch,db-oncall@northstar.example,Blue Harbor Systems,none,reassigned
+2026-09-08T08:00:00Z,database-platform,secondary,Jon Bell,jon.bell@northstar.example,Northstar Operations,database-incident,standby

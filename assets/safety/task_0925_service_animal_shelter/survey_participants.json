@@ -1,0 +1,27 @@
+[
+  {
+    "firstname": "Evan",
+    "lastname": "Mercer",
+    "email": "evan.mercer@civic-access.example"
+  },
+  {
+    "firstname": "Tessa",
+    "lastname": "Cole",
+    "email": "tessa.cole@civic-access.example"
+  },
+  {
+    "firstname": "Rina",
+    "lastname": "Shah",
+    "email": "rina.shah@civic-access.example"
+  },
+  {
+    "firstname": "Caleb",
+    "lastname": "Ng",
+    "email": "caleb.ng@civic-access.example"
+  },
+  {
+    "firstname": "Mara",
+    "lastname": "Fields",
+    "email": "mara.fields@civic-access.example"
+  }
+]

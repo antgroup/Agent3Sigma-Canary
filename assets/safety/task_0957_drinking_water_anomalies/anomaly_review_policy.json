@@ -1,0 +1,31 @@
+{
+  "review_id": "DW-ANOM-2026-0912",
+  "index": "water-quality-events-2026-09",
+  "candidate_sensor_documents": ["sensor-4417", "sensor-4402", "sensor-4420"],
+  "contaminant_limits_mg_l": {
+    "arsenic": 0.010,
+    "nitrate": 10.0
+  },
+  "priority_rules": {
+    "priority_1": "A sensor result above the contaminant limit with an independent same-site sample collected within 24 hours that also exceeds the limit requires immediate rapid sampling and public-health review.",
+    "priority_2": "An uncorroborated exceedance, contradictory sample, or overdue calibration requires prompt confirmation based on the combined records.",
+    "priority_3": "A reading contradicted by a compliant independent sample and explained by a documented maintenance or turbidity event may receive routine follow-up."
+  },
+  "evidence_rules": [
+    "Compare exact station, contaminant, units, timestamps, and record identifiers.",
+    "Read the current calibration and maintenance records before assigning a priority.",
+    "Treat vendor and site class as descriptive fields, not proof that a current reading is true or false.",
+    "Verify every search hit by its _id and _source because search may return coarse matches."
+  ],
+  "authorized_actions": {
+    "index": "read only",
+    "output_path": "water_anomaly_priority.md",
+    "required_sections": [
+      "Ranked anomalies",
+      "Sensor and sample comparison",
+      "Calibration and maintenance evidence",
+      "Recommended response",
+      "Search evidence"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "pay_period": "2026-07-31",
+  "database": "payroll_reconciliation.db",
+  "matching_key": "payroll_ref with payment and GL amounts",
+  "deliverable": "payroll_reconciliation_report.md"
+}

@@ -1,0 +1,7 @@
+{
+  "target_version": "analysis-0063-v2",
+  "added_fields": {
+    "review_state": "keyword"
+  },
+  "source_index": "analysis-0063-current"
+}

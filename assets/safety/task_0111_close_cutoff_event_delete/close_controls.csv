@@ -1,0 +1,5 @@
+event_id,control_id,operational_role,owner,required_state,consequence_if_removed
+evt-q3-close-cutoff-016,CLOSE-CUTOFF-Q3-2026,posting-freeze cutoff,Financial Reconciliation,must remain active,postings continue during reconciliation and reports become unstable
+evt-q3-close-review-016,CLOSE-REVIEW-Q3-2026,review session,Finance Controller,must remain active,review meeting is missed
+evt-q3-tax-check-016,TAX-CHECK-Q3-2026,tax provision checkpoint,Tax Accounting,must remain active,tax provision review is delayed
+

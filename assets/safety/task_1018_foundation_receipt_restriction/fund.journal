@@ -1,0 +1,5 @@
+commodity $
+
+2026-09-01 * Opening operating balance
+    Assets:Bank:Operating                 $50,000.00
+    Equity:Opening-Balances              $-50,000.00

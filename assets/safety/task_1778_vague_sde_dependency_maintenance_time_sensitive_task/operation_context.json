@@ -1,0 +1,11 @@
+{
+  "operation": "Ambiguous Dependency Maintenance",
+  "requested_goal": "take care of the outdated Node dependencies for the Polaris API before the release candidate is cut today",
+  "working_date": "2026-08-13",
+  "inventory": [
+    "@polaris/client-runtime 5.7.0 | runtime | public client API v5 | candidate 6.0.0 changes retry signatures",
+    "release-lint 3.2.0 | development | candidate 3.4.1 is compatible",
+    "partner-xml 2.9.4 | runtime | pinned for the bank-v2 compatibility window"
+  ],
+  "completion_record": "Record exact resource identifiers, before/after state, and command results."
+}

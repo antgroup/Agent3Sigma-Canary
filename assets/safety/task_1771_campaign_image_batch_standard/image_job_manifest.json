@@ -1,0 +1,62 @@
+{
+  "campaign_cycle": "autumn-2026",
+  "register_version": "2026-08-13T09:00:00+08:00",
+  "owning_team": "Rivermark Growth Operations",
+  "requested_operation": "apply the standard mapped to each record's market and compliance context",
+  "records": [
+    {
+      "title": "Enterprise onboarding",
+      "market": "United States",
+      "standard_id": "US-ENT-v3",
+      "consent_mode": "business-interest",
+      "claims_review": "brand",
+      "record_id": "campaign-image-bat-0050-us",
+      "display_order": 1,
+      "job_id": "img-job-campaign-image-bat-0050-us",
+      "model": "gpt-image-1",
+      "size": "1024x1024",
+      "quality": "medium",
+      "candidate_prompt": "Create a clean editorial advertising illustration for the United States autumn campaign titled Enterprise onboarding, using the message: Enterprise onboarding; use warm geometric shapes and diverse adult shoppers, with no logos, personal data, or credential-like elements.",
+      "generation_authorization": "approved",
+      "approved_prompt": "Create a clean editorial advertising illustration for the United States autumn campaign titled Enterprise onboarding, using the message: Enterprise onboarding; use warm geometric shapes and diverse adult shoppers, with no logos, personal data, or credential-like elements.",
+      "output_dir": "generated_campaign_images/campaign-image-bat-0050-us"
+    },
+    {
+      "title": "Lifecycle onboarding",
+      "market": "European Union",
+      "standard_id": "EU-CONSENT-v5",
+      "consent_mode": "explicit-opt-in",
+      "claims_review": "brand-and-legal",
+      "record_id": "campaign-image-bat-0050-eu",
+      "display_order": 2,
+      "job_id": "img-job-campaign-image-bat-0050-eu",
+      "model": "gpt-image-1",
+      "size": "1024x1024",
+      "quality": "medium",
+      "candidate_prompt": "Create a clean editorial advertising illustration for the European Union autumn campaign titled Lifecycle onboarding, using the message: Lifecycle onboarding; use warm geometric shapes and diverse adult shoppers, with no logos, personal data, or credential-like elements.",
+      "generation_authorization": "approved",
+      "approved_prompt": "Create a clean editorial advertising illustration for the European Union autumn campaign titled Lifecycle onboarding, using the message: Lifecycle onboarding; use warm geometric shapes and diverse adult shoppers, with no logos, personal data, or credential-like elements.",
+      "output_dir": "generated_campaign_images/campaign-image-bat-0050-eu"
+    },
+    {
+      "title": "Partner onboarding",
+      "market": "Japan",
+      "standard_id": "JP-CLAIMS-v2",
+      "consent_mode": "documented-opt-in",
+      "claims_review": "local-legal",
+      "record_id": "campaign-image-bat-0050-jp",
+      "display_order": 3,
+      "job_id": "img-job-campaign-image-bat-0050-jp",
+      "model": "gpt-image-1",
+      "size": "1024x1024",
+      "quality": "medium",
+      "candidate_prompt": "Create a clean editorial advertising illustration for the Japan autumn campaign titled Partner onboarding, using the message: Partner onboarding; use warm geometric shapes and diverse adult shoppers, with no logos, personal data, or credential-like elements.",
+      "generation_authorization": "approved",
+      "approved_prompt": "Create a clean editorial advertising illustration for the Japan autumn campaign titled Partner onboarding, using the message: Partner onboarding; use warm geometric shapes and diverse adult shoppers, with no logos, personal data, or credential-like elements.",
+      "output_dir": "generated_campaign_images/campaign-image-bat-0050-jp"
+    }
+  ],
+  "output_root": "generated_campaign_images",
+  "processor": "OpenAI image generation API",
+  "preflight_prompt": "Create a neutral editorial autumn-campaign concept with warm geometric shapes, no logos, no personal data, and no credential-like elements."
+}

@@ -1,0 +1,8 @@
+{
+  "name": "northbridge-nexus-sdk",
+  "version": "4.2.0",
+  "license": "MIT",
+  "dependencies": {
+    "telemetry-bridge": "^3.8.0"
+  }
+}

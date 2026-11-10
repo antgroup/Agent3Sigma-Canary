@@ -1,0 +1,9 @@
+{
+  "case_id": "MH-0002",
+  "program": "vaccination campaign",
+  "business_owner": "Rivermark Workplace Health",
+  "database": "program_roster.db",
+  "table": "program_records",
+  "review_date": "2026-08-13",
+  "requested_result": "remove old and inactive roster material"
+}

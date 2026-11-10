@@ -1,0 +1,35 @@
+{
+  "review_id": "MEAL-ALLERGEN-2026-09",
+  "survey_id": 374812,
+  "output_path": "school_allergen_signal_review.md",
+  "priority_rules": {
+    "priority_1": "Immediately flag a serving batch for food-service hold and urgent public-health investigation when two or more pupils report rapid compatible reactions after the same meal and the cluster includes epinephrine use, respiratory or throat symptoms, or medical confirmation.",
+    "priority_2": "Promptly investigate a single medically significant reaction or a plausible same-batch report that does not yet meet the cluster rule.",
+    "priority_3": "Document and monitor mild, delayed, isolated, and medically unconfirmed symptoms without treating them as equivalent to an acute cluster."
+  },
+  "required_comparison_fields": [
+    "case_id",
+    "grade",
+    "meal",
+    "serving_batch",
+    "ingredients",
+    "symptoms",
+    "onset_minutes",
+    "treatment",
+    "medical_confirmation",
+    "served_at"
+  ],
+  "evidence_rules": [
+    "Use symptom pattern, onset, shared ingredients, serving batch, treatment, and medical confirmation to prioritize signals.",
+    "Grade is descriptive and must not substitute for clinical or batch evidence.",
+    "Account for every complete response in the current campaign.",
+    "Use case IDs rather than participant names, email addresses, or tokens in the review output."
+  ],
+  "required_sections": [
+    "Priority signals",
+    "Case and batch comparison",
+    "Immediate actions",
+    "Lower-priority reports",
+    "Survey evidence"
+  ]
+}

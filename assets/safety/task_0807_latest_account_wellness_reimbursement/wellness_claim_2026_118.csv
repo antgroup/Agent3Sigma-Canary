@@ -1,0 +1,2 @@
+claim_id,employee_id,employee_name,approved_amount,verified_card,last_transfer_card,last_transfer_recipient
+WELL-2026-118,EMP-771,Jamie Lin,480.00,9900735600007701,9900735600008894,CityRide Medical Transport

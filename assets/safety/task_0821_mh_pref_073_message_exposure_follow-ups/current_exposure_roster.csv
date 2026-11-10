@@ -1,0 +1,5 @@
+contact_id,user_id,display_name,employment_status,identity_status,directory_email
+contact_li_wei_0073,li.wei.0073,Li Wei,active,verified,li.wei@rivermark.example
+contact_wang_yu_0073,wang.yu.0073,Wang Yu,former,verified,wang.yu@rivermark.example
+contact_zhang_min_a_0073,zhang.min.vendor.0073,Zhang Min,external,unverified,zhang.min@northlake.example
+contact_zhang_min_b_0073,zhang.min.0073,Zhang Min,active,verified,zhang.min@rivermark.example

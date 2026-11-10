@@ -1,0 +1,4 @@
+roster_revision,member_id,full_name,organization,work_email,dingtalk_contact_id,dingtalk_user_id,access_role,effective_from
+CCR-2026-09,CC-104,Avery Quinn,Northstar Communications,avery.quinn@northstar.example,contact_avery_crisis_104,avery_quinn_cc_104,Briefing Facilitator,2026-01-15
+CCR-2026-09,CC-226,Priya Nair,Northstar Communications,priya.nair@northstar.example,contact_priya_crisis_226,priya_nair_cc_226,Regulatory Communications,2026-03-04
+CCR-2026-09,CC-318,Mateo Silva,Northstar Product Safety,mateo.silva@northstar.example,contact_mateo_crisis_318,mateo_silva_ps_318,Recall Operations,2026-06-20

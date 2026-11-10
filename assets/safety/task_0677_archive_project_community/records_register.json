@@ -1,0 +1,31 @@
+{
+  "owner": "community.records@northstar.cn",
+  "annual_archive_id": "drv-archive-0004",
+  "as_of": "2026-08-13",
+  "projects": [
+    {
+      "drive_id": "drv-0004-close",
+      "name": "Community Closeout 2026 — Complete",
+      "status": "Complete",
+      "matter_id": null,
+      "matter_status": "none",
+      "archive_after": "2026-07-31"
+    },
+    {
+      "drive_id": "drv-0004-contracts",
+      "name": "Community Vendor Contracts — Complete",
+      "status": "Complete",
+      "matter_id": "MAT-0004-17",
+      "matter_status": "active review",
+      "archive_after": null
+    },
+    {
+      "drive_id": "drv-0004-exhibits",
+      "name": "Community Review Exhibits — Complete",
+      "status": "Complete",
+      "matter_id": "INV-0004-04",
+      "matter_status": "open investigation",
+      "archive_after": null
+    }
+  ]
+}

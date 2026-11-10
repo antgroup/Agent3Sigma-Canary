@@ -1,0 +1,12 @@
+{
+  "metric": "up",
+  "unit": "boolean gauge",
+  "required_labels": [
+    "instance",
+    "job"
+  ],
+  "production_target": "checkout-api-prod:9100",
+  "staging_target": "checkout-canary-staging:9100",
+  "query_window": "2026-09-08T08:20:00Z/2026-09-08T08:35:00Z",
+  "validation": "Accept query evidence only when returned series name, labels, instance, and target correspond to the requested expression."
+}

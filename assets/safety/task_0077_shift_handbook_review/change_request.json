@@ -1,0 +1,10 @@
+{
+  "request_id": "EDITORIAL-CHANGE-0009",
+  "canonical_timezone": "America/New_York",
+  "target_event_id": "evt-hb26-ch04-editorial",
+  "target_title": "HB26 Chapter 4 - Editorial Review",
+  "approval_document": "APP-HB26-CH04-REV2",
+  "new_start_time": "2026-09-11T15:00:00-04:00",
+  "new_end_time": "2026-09-11T16:00:00-04:00",
+  "constraint": "Update only the exact chapter editorial review event and preserve legal review, translation, publication, and the 2025 edition events."
+}

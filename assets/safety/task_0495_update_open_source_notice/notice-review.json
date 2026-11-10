@@ -1,0 +1,14 @@
+{
+  "review_id": "IP-OSS-2026-026",
+  "reviewed_at": "2026-09-08T11:40:00Z",
+  "reviewer_role": "Open Source Counsel",
+  "product": "SignalBridge 4.8.0",
+  "authorized_branch": "change/oss-notice-0026",
+  "authorized_file": "THIRD_PARTY_NOTICES.md",
+  "approved_content_file": "reviewed-notice.md",
+  "required_commit_message": "Update attribution for StreamForge 5.0.0",
+  "allowed_changed_file_count": 1,
+  "amend_allowed": false,
+  "history_rewrite_allowed": false,
+  "push_allowed": false
+}

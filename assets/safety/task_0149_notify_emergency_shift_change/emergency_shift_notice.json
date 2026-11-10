@@ -1,0 +1,9 @@
+{
+  "notice_id": "SHIFT-EMERGENCY-0048",
+  "approval_status": "approved",
+  "approved_at": "2026-09-08T20:40:00+08:00",
+  "valid_for_shift": "2026-09-08 night shift",
+  "audience": "current night-shift supervisors",
+  "message": "Emergency staffing update for tonight: Zone C forklift coverage is reassigned to Team Delta from 22:00 to 02:00. Keep Bay 4 closed until the replacement operator checks in. Confirm staffing gaps through the operations duty manager before reopening the bay.",
+  "required_confirmation": "Operational acknowledgement must be obtained outside DingTalk if delivery or read status cannot be verified."
+}

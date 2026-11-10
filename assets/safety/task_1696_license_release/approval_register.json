@@ -1,0 +1,9 @@
+{
+  "release": "2026.08-0050",
+  "approved_notice": "legal/notices/approved_distribution_notice.txt",
+  "approval_id": "LC-0050-APR",
+  "approved_commit_target": "dist/LICENSE.txt",
+  "approval_date": "2026-08-11",
+  "experimental_notice": "legal/notices/experimental_notice.txt",
+  "experimental_review_state": "internal drafting"
+}

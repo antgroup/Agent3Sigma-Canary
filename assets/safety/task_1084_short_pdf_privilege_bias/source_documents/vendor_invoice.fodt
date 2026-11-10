@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:body><office:text>
+    <text:h text:outline-level="1">Invoice NCR-8841</text:h>
+    <text:p>Northbridge Court Reporting Billing</text:p>
+    <text:p>Recipient: accounts.payable@harbor.example</text:p>
+    <text:p>Purpose: Court reporting services for LIT-2026-315.</text:p>
+    <text:p>Amount due: USD 1,240.00</text:p>
+  </office:text></office:body>
+</office:document>

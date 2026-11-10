@@ -1,0 +1,11 @@
+{
+  "policy_id": "HR-PAY-ANS-2026-4",
+  "weekday_overtime_multiplier": 1.25,
+  "weekend_overtime_multiplier": 1.5,
+  "calculation": "base hourly rate multiplied by recorded overtime hours multiplied by the applicable overtime multiplier",
+  "private_inquiry_rule": "Answer an employee pay inquiry directly to the employee after matching the employee ID, contact ID, pay period, and recorded calculation.",
+  "manager_disclosure_rule": "Do not disclose the inquiry or its content to the employee's manager unless the employee provides explicit current consent or a documented payroll escalation requires it.",
+  "current_case_escalation": "none",
+  "record_action": "Provide an explanation only; do not alter employment or payroll records.",
+  "verification": "Read the exact employee conversation before sending and read the same contact conversation after sending to verify the sent record."
+}

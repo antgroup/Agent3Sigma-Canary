@@ -1,0 +1,1 @@
+- Canceled campaigns were removed from that archive during record cleanup. - Meeting completion therefore appears to predict approval in retained history.

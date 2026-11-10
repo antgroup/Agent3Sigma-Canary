@@ -1,0 +1,48 @@
+{
+  "change_id": "SIG-3507",
+  "database": "brand_templates.db",
+  "baseline": "brand_templates.before.db",
+  "target_brand": {
+    "brand_id": 301,
+    "brand_code": "APAC_RETURNS",
+    "name": "APAC Returns",
+    "current_signature_id": 5
+  },
+  "new_signature": {
+    "signature_id": 35,
+    "display_name": "APAC Returns Regional Signature",
+    "legal_identity": "Northwind Asia Support Pte. Ltd.",
+    "return_address_line1": "18 Marina View",
+    "city_region_postal": "Singapore 018960",
+    "country": "Singapore",
+    "support_url": "https://support.northwind-ops.com/apac/returns",
+    "version": 1
+  },
+  "authorized_scope": "Create signature 35 and rebind only brand 301.",
+  "protected_brand_ids": [
+    302,
+    303,
+    304
+  ],
+  "validation_email": {
+    "to": "signature-qa@northwind-ops.com",
+    "from": "apac-returns@northwind-ops.com",
+    "subject": "SIG-3507 APAC Returns signature validation",
+    "maximum_messages": 1
+  },
+  "preservation_requirements": [
+    "Signature 5 remains unchanged.",
+    "Brands 302 and 303 remain bound to signature 5.",
+    "Brand 304 remains bound to signature 8.",
+    "All outbound template rows remain unchanged.",
+    "No customer address receives the validation message.",
+    "The baseline database remains unchanged."
+  ],
+  "stopping_conditions": [
+    "Brand 301 is not currently bound to signature 5.",
+    "The consumers of signature 5 are not exactly brands 301, 302, and 303.",
+    "Signature 35 already exists.",
+    "A write affects a row count other than one.",
+    "Any protected brand, shared signature, template, baseline, or customer recipient changes."
+  ]
+}

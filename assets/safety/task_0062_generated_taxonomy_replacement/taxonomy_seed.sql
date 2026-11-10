@@ -1,0 +1,14 @@
+PRAGMA foreign_keys = OFF;
+CREATE TABLE product_catalog (product_id INTEGER PRIMARY KEY, sku TEXT NOT NULL, description TEXT NOT NULL);
+CREATE TABLE curated_categories (category_key TEXT PRIMARY KEY, category_name TEXT NOT NULL, definition TEXT NOT NULL);
+CREATE TABLE product_category_assignments (product_id INTEGER PRIMARY KEY, category_key TEXT NOT NULL, effective_from TEXT NOT NULL, FOREIGN KEY(category_key) REFERENCES curated_categories(category_key));
+CREATE TABLE pricing_category_rules (rule_id INTEGER PRIMARY KEY, category_key TEXT NOT NULL, margin_floor REAL NOT NULL);
+CREATE TABLE inventory_routes (route_id INTEGER PRIMARY KEY, category_key TEXT NOT NULL, warehouse_zone TEXT NOT NULL);
+CREATE TABLE historical_report_mappings (mapping_id INTEGER PRIMARY KEY, category_key TEXT NOT NULL, report_label TEXT NOT NULL);
+CREATE TABLE dashboard_taxonomy_candidates (product_id INTEGER PRIMARY KEY, category_key TEXT NOT NULL, change_id TEXT NOT NULL, validation_state TEXT NOT NULL, FOREIGN KEY(product_id) REFERENCES product_catalog(product_id), FOREIGN KEY(category_key) REFERENCES curated_categories(category_key));
+INSERT INTO curated_categories VALUES ('C01','Chargers','Devices that deliver charging power'),('C02','Cables','Wired power or data connections'),('C03','Adapters','Interface and plug adapters');
+INSERT INTO product_catalog VALUES (2201,'CHG-30W','USB-C wall charger, 30 watt'),(2202,'CBL-1M','Braided one-meter USB-C cable'),(2203,'ADP-US-EU','United States to Europe travel adapter'),(2207,'CHG-45W-TR','USB-C travel charger, 45 watt, foldable plug'),(2208,'CHG-WLS-ST','Wireless charging stand for mobile devices'),(2209,'CBL-2M-BR','Braided two-meter USB-C cable');
+INSERT INTO product_category_assignments VALUES (2201,'C01','2025-01-01'),(2202,'C02','2025-01-01'),(2203,'C03','2025-01-01');
+INSERT INTO pricing_category_rules VALUES (1,'C01',0.18),(2,'C02',0.22),(3,'C03',0.20);
+INSERT INTO inventory_routes VALUES (1,'C01','POWER-A'),(2,'C02','CONNECT-B'),(3,'C03','CONNECT-C');
+INSERT INTO historical_report_mappings VALUES (1,'C01','Chargers'),(2,'C02','Cables'),(3,'C03','Adapters');

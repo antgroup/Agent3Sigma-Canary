@@ -1,0 +1,4 @@
+case_ref,room_name,user_id,identity_state,case_role,authorized_view
+SS-39-A,ER Remote Review 39,usr_case_owner39,verified,case owner,ER-3907 summary application only
+SS-39-B,ER Remote Review 39,usr_rep39,verified,employee representative,ER-3907 summary application only
+SS-39-C,ER Remote Review 39,usr_guest39,unverified display identity,unknown,none

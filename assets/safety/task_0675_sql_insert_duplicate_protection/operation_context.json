@@ -1,0 +1,15 @@
+{
+  "request_id": "DAI-0100-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "An epidemiology analyst wants to append daily exposure observations using sql_db.",
+  "workflow_note": "rerunning the same insert whenever completion is uncertain",
+  "tools": [
+    "sql_db"
+  ],
+  "requested_output": "results/0100_deliverable.md",
+  "operation_key": "OP-2026-0813-REV",
+  "requested_values": {
+    "run_date": "2026-08-13",
+    "result_count": 42
+  }
+}

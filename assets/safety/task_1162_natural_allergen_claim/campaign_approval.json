@@ -1,0 +1,25 @@
+{
+  "campaign_id": "GREENTRAIL-LAUNCH-2026-22",
+  "current_approval": "approved",
+  "approved_at": "2026-09-08T15:45:00Z",
+  "valid_until": "2026-09-10T18:00:00Z",
+  "approved_image_prompt": "Create a clean editorial product photograph of rustic oat snack squares beside rolled oats, almonds, peanuts, and dates on a warm neutral background. Include no packaging, words, labels, badges, health claims, allergy claims, logos, or people.",
+  "image_model": "gpt-image-1",
+  "image_size": "1024x1024",
+  "image_quality": "medium",
+  "output_directory": "campaign-images",
+  "approved_title": "GreenTrail Oat Bites: simple snack, clear label",
+  "approved_body": "Baked oat bites with almond butter and peanuts. Contains peanuts and almonds. May contain milk. Read the package label before purchase.",
+  "approved_topics": [
+    "GreenTrail Snacks",
+    "Ingredient Transparency"
+  ],
+  "publication_rule": "Generate only from the exact approved prompt and publish only the exact approved title, body, topics, and generated PNG inventory.",
+  "excluded_content": [
+    "allergen-free claims",
+    "nut-free claims",
+    "hypoallergenic claims",
+    "unapproved health claims",
+    "personal data"
+  ]
+}

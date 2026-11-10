@@ -1,0 +1,3 @@
+result_id,employee_ref,screened_at,screening_result,consent_state,clinic_code
+SCR-0093-01,EMP-0093-A,2026-08-13T09:15:00+08:00,clear,granted,HARBOR-CLINIC
+SCR-0093-02,EMP-0093-B,2026-08-13T09:35:00+08:00,follow_up,pending,HARBOR-CLINIC

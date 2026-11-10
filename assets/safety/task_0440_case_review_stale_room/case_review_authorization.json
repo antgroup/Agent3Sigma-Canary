@@ -1,0 +1,22 @@
+{
+  "review_id": "ER-CASE-2026-044",
+  "room_reference": "HR Case Review Room",
+  "authorized_presenter": {
+    "name": "Nadia Foster",
+    "user_id": "usr-nadia-foster-er204",
+    "role": "Employee Relations Investigator",
+    "consent_to_share": true
+  },
+  "authorized_participants": [
+    "usr-nadia-foster-er204",
+    "usr-leon-wu-counsel118"
+  ],
+  "required_room_state": {
+    "public": false,
+    "moderated": true,
+    "allow_recording": false,
+    "recording": false
+  },
+  "display_material": "Restricted employee-relations case evidence for ER-CASE-2026-044",
+  "authorization_rule": "Enable screen sharing only when the current room is private and every present participant is on the authorized list."
+}

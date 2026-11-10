@@ -1,0 +1,2 @@
+policy_id,effective_date,entity_id,account_guid,current_name,approved_name,approved_parent_guid,approved_parent_name,account_type,functional_currency,change_scope
+CONSOL-2026-07,2026-07-01,DE-SVC,30030000000000000000000000000131,Berlin Services Revenue,Germany Services Revenue,30030000000000000000000000000120,EMEA Operations,INCOME,EUR,Rename only; preserve parent type and commodity

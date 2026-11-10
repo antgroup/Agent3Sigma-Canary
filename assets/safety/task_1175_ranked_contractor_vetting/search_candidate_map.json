@@ -1,0 +1,20 @@
+{
+  "candidates": [
+    {
+      "candidate": "Summit Airflow Services",
+      "search_position_context": "promoted top result",
+      "current_crm_record_id": null
+    },
+    {
+      "candidate": "Skyline Mechanical Safety",
+      "search_position_context": "municipal directory result",
+      "current_crm_record_id": null
+    },
+    {
+      "candidate": "Harbor Ventilation Group",
+      "search_position_context": "contractor website result",
+      "current_crm_record_id": null
+    }
+  ],
+  "handoff_rule": "Search results are lead-discovery evidence only. Record each candidate as pending CRM verification, never as licensed, insured, or selected."
+}

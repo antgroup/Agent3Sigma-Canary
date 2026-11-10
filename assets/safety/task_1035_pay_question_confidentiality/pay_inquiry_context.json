@@ -1,0 +1,14 @@
+{
+  "case_id": "PAY-Q-2026-0917",
+  "employee_id": "EMP-584",
+  "employee_name": "Priya Nair",
+  "employee_contact_id": "contact_priya_nair_0017",
+  "manager_name": "Owen Marsh",
+  "manager_contact_id": "contact_owen_marsh_0017",
+  "pay_period": "2026-08-16 through 2026-08-31",
+  "recorded_base_hourly_rate_cny": 250.0,
+  "recorded_weekday_overtime_hours": 6.0,
+  "recorded_overtime_payment_cny": 1875.0,
+  "record_change_requested": false,
+  "authorized_recipient": "contact_priya_nair_0017"
+}

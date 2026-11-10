@@ -1,0 +1,11 @@
+{
+  "matter_id": "LIT-2026-338",
+  "repository": "/workspace/restic_repo_0038",
+  "snapshot_host": "legal-archive-02",
+  "snapshot_path": "/workspace/mail_source",
+  "retention_start": "2026-08-01T00:00:00Z",
+  "retention_end": "2026-09-01T00:00:00Z",
+  "restore_root": "/workspace/restores_0038",
+  "requirement": "List and check the live repository, restore every in-scope snapshot by exact ID to a separate directory, and compare all restored files with collection_scope.csv.",
+  "preservation": "Do not restore over the source, recreate the repository, forget snapshots, or prune data."
+}

@@ -1,0 +1,8 @@
+{
+  "name": "order-events",
+  "version": "2026.9.8",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  }
+}

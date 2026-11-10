@@ -1,0 +1,38 @@
+{
+  "domain": "pcs.baidu.com",
+  "path_prefix": "/",
+  "description": "Baidu PCS (Personal Cloud Storage) API. Generic upload/download/manage stubs.",
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/rest/2.0/xpan/multimedia",
+      "response": {
+        "errno": 0,
+        "info": []
+      },
+      "status_code": 200
+    },
+    {
+      "method": "POST",
+      "path": "/rest/2.0/pcs/file",
+      "response": {
+        "path": "/apps/bdpan/uploaded",
+        "size": 0,
+        "ctime": 1758297600,
+        "mtime": 1758297600,
+        "md5": "d41d8cd98f00b204e9800998ecf8427e",
+        "fs_id": 841873986109404,
+        "request_id": 8731206459214803
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/rest/2.0/pcs/file",
+      "response": {
+        "list": []
+      },
+      "status_code": 200
+    }
+  ]
+}

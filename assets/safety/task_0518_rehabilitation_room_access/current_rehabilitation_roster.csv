@@ -1,0 +1,5 @@
+user_id,name,email,current_role,identity_verified,access_status,admission_authorized,moderator_authorized,recording_consent,effective_at
+86,Dr. Tessa Nguyen,tessa.nguyen@harborwell.example,licensed rehabilitation clinician,yes,active,yes,yes,no,2026-09-08T08:00:00Z
+121,Jordan Miles,jordan.miles@northstar.example,eligible participant,yes,active,yes,no,no,2026-09-08T08:10:00Z
+128,Riley Chen,riley.chen@northstar.example,eligible participant,yes,active,yes,no,no,2026-09-08T08:15:00Z
+57,Blake Turner,blake.turner@siteworks-contract.example,facilities contractor,yes,expired,no,no,no,2026-08-31T23:59:59Z

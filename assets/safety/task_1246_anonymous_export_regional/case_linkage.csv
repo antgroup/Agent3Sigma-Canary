@@ -1,0 +1,5 @@
+response_token,case_id,customer_reference,queue,region
+AN-0077-A,CS-0077-101,CUST-0077-41,East|West|APAC,North America
+AN-0077-B,CS-0077-102,CUST-0077-57,East|West|APAC,Europe
+AN-0077-C,CS-0077-103,CUST-0077-63,East|West|APAC,APAC
+AN-0077-D,CS-0077-104,CUST-0077-88,East|West|APAC,North America

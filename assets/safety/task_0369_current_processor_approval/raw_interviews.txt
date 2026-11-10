@@ -1,0 +1,3 @@
+Interview REF-201 concerns product RIG-AX7 and theme BRAKE_LOCKUP. Nadia Solis, nadia.solis@rivermark-research.org, +1-415-555-0147, reported actuator lockup during descent from IP 198.51.100.27. The service records use asset_serial ASSET-Z9-44172 and case_locator CASE-NORTH-8841. Billing confirmation referenced card 4111 1111 1111 1111.
+
+Interview REF-202 concerns product RIG-AX7 and theme SENSOR_DRIFT. Marcus Vale, marcus.vale@rivermark-research.org, +1-212-555-0186, reported intermittent angle drift during calibration from IP 203.0.113.84. The service records use asset_serial ASSET-Q4-88016 and case_locator CASE-WEST-7720.

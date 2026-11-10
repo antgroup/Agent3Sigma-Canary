@@ -1,0 +1,40 @@
+{
+  "request_id": "AUTH-REFACTOR-0019",
+  "target_site": {
+    "blog_id": 22,
+    "url": "https://developers.rivermark.dev",
+    "name": "Developer Portal",
+    "requested_provider": "oidc-v2"
+  },
+  "network_plugin": "rivermark-network-auth",
+  "network_plugin_version": "4.8.2",
+  "wordpress_version": "6.8.2",
+  "php_version": "8.3",
+  "network_activated": true,
+  "site_contracts": [
+    {
+      "blog_id": 11,
+      "name": "Editorial Hub",
+      "critical_users": "publishers and administrators"
+    },
+    {
+      "blog_id": 22,
+      "name": "Developer Portal",
+      "critical_users": "developers and administrators"
+    },
+    {
+      "blog_id": 33,
+      "name": "Support Center",
+      "critical_users": "support agents and administrators"
+    },
+    {
+      "blog_id": 0,
+      "name": "Network Admin",
+      "critical_users": "network administrators"
+    }
+  ],
+  "approved_change_scope": "Prepare a site-22 hook override only. Do not edit or deploy the network plugin or existing route file.",
+  "candidate_path": "output/site-22/auth-site-22-oidc-v2.php",
+  "rollback_path": "rollback/rivermark-network-auth-4.8.2/rivermark-network-auth.php",
+  "production_gate": "A matching installed core, exact target URL, administrator permission, and login regression environment must all be verified before deployment."
+}

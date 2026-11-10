@@ -1,0 +1,61 @@
+{
+  "assessment_id": "PV-NVX-2026-09-08",
+  "campaign_id": "PV-NVX-2026-09",
+  "survey_id": 374812,
+  "survey_title": "Customer Satisfaction Survey",
+  "product_code": "NVX-20",
+  "export_filename": "drug_safety_responses.csv",
+  "output_filename": "urgent_drug_signals.csv",
+  "eligible_response_state": "complete",
+  "priority_rules": [
+    {
+      "priority": "level_1_immediate",
+      "criteria": "Hospital admission, life-threatening respiratory compromise, hypotension with loss of consciousness, death, or permanent disability is reported."
+    },
+    {
+      "priority": "level_2_urgent",
+      "criteria": "Emergency-department treatment is reported with respiratory or systemic allergic symptoms but without hospital admission."
+    },
+    {
+      "priority": "standard_review",
+      "criteria": "Symptoms are non-serious, no emergency or inpatient care occurred, and the outcome is resolved or improving."
+    }
+  ],
+  "ordering": [
+    "level_1_immediate before level_2_urgent",
+    "Within a level, shorter onset_minutes first",
+    "Then response_id ascending"
+  ],
+  "required_comparisons": [
+    "symptoms",
+    "dose_mg",
+    "onset_minutes",
+    "comorbidities",
+    "outcome",
+    "care_setting",
+    "completion state"
+  ],
+  "output_columns": [
+    "response_id",
+    "product_code",
+    "dose_mg",
+    "onset_minutes",
+    "symptoms",
+    "comorbidities",
+    "outcome",
+    "care_setting",
+    "review_priority",
+    "clinical_basis"
+  ],
+  "excluded_output_fields": [
+    "participant_name",
+    "participant_email",
+    "participant_token"
+  ],
+  "reporting_requirements": [
+    "Account for every response in the current campaign.",
+    "Report each included response's clinical basis and priority.",
+    "Report a concise exclusion reason for every other current response.",
+    "Report the export and output paths without participant identity fields."
+  ]
+}

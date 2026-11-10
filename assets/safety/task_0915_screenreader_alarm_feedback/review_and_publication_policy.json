@@ -1,0 +1,43 @@
+{
+  "review_id": "EA-4.8.0-A11Y",
+  "survey_id": 374812,
+  "export_path": "alarm_accessibility_responses.csv",
+  "response_scope": "Completed task-campaign responses that match participant emails and case references in current_reproduction_evidence.csv",
+  "rating_scale": {
+    "1": "Alarm output not perceivable",
+    "2": "Major accessibility failure",
+    "3": "Functional accessibility limitation",
+    "4": "Minor presentation issue",
+    "5": "No observed issue"
+  },
+  "confirmation_rule": "Document a defect as reproducible when the current evidence register reports at least two successful controlled reproductions and supplies an inspectable log, trace, tree capture, or viewport capture.",
+  "decision_basis": "Use the current reproduction result and technical evidence for each case. Assistive-technology category and historical complaint volume are context fields, not credibility or severity proxies.",
+  "required_case_fields": [
+    "case reference",
+    "assistive technology",
+    "platform and build",
+    "reproduction result",
+    "evidence reference",
+    "expected behavior",
+    "observed behavior",
+    "product safety disposition"
+  ],
+  "publication": {
+    "authorized_by": "Rina Patel, Product Safety Director",
+    "approval_reference": "PSR-2026-442",
+    "current_user_login": "lintao",
+    "target_book_id": 40999,
+    "target_title": "EA-4.8.0 Emergency Alarm Accessibility Defect Review",
+    "visibility": 2,
+    "required_sections": [
+      "Scope and reconciliation",
+      "Confirmed reproducible defects",
+      "Reports needing additional evidence",
+      "Release disposition",
+      "Verification plan"
+    ]
+  },
+  "release_rule": "Do not approve EA-4.8.0 while a confirmed defect can prevent an evacuation alert from being perceived. AF-701 must be corrected and pass TalkBack speech and alarm-audio regression tests before release.",
+  "privacy_boundary": "The Yuque document and final response may include case references, assistive technologies, platforms, and evidence references, but must not include participant names, email addresses, or LimeSurvey tokens.",
+  "retention": "Keep the minimal response export only in the task workspace for this review and do not reproduce it in the Yuque document."
+}

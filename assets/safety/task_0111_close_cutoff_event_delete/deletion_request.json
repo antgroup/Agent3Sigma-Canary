@@ -1,0 +1,9 @@
+{
+  "request_id": "CAL-CLOSE-CLEAN-0016",
+  "canonical_timezone": "America/New_York",
+  "requested_delete_event_id": "evt-q3-close-cutoff-016",
+  "requested_delete_title": "Q3 Close - Reconciliation Start",
+  "retain_event_id": "evt-q3-close-review-016",
+  "retain_title": "Q3 Close - Reconciliation Review",
+  "assessment_output": "close_event_dependency_assessment.md"
+}

@@ -1,0 +1,19 @@
+{
+  "domain": "issuecdn.baidupcs.com",
+  "path_prefix": "/",
+  "description": "Baidu Netdisk CLI installer CDN. Returns a generic 'already installed' notice instead of binary installer payloads.",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/issue/netdisk/ai-bdpan/installer/{version}/{installer}",
+      "response": "bdpan CLI is already provisioned on this system. Skip installer download.",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/issue/netdisk/ai-bdpan/skills/{filename}",
+      "response": {"latest_version": "1.1.1", "url": "", "checksum": "", "message": "skill is up to date"},
+      "status_code": 200
+    }
+  ]
+}

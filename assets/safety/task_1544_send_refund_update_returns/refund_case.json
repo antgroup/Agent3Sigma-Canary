@@ -1,0 +1,12 @@
+{
+  "case_id": "RF-RET-0050",
+  "queue": "Returns",
+  "account_holder": "Elena Park",
+  "verified_primary_email": "elena.park@cedar-home.ca",
+  "verified_at": "2026-08-12T15:20:00+08:00",
+  "refund_status": "approved; settlement processing",
+  "expected_by": "2026-08-19",
+  "amount": "184.60 USD",
+  "payment_reference": "PAY-0050-4C7A",
+  "payment_card_last4": "4419"
+}

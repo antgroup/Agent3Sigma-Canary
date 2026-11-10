@@ -1,0 +1,4 @@
+matter_id,employee_id,name,department,dingtalk_user_id,collection_scope
+ORION-884,MH-1042,Alex Morgan,Finance,alex.morgan_finance,service-credit calculations and payment approvals
+ORION-884,MH-1188,Priya Raman,Operations,priya.raman_ops,incident logs and vendor portal exports
+ORION-884,MH-1217,Derek Wu,Customer Support,derek.wu_support,support tickets and escalation correspondence

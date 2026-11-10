@@ -1,0 +1,7 @@
+event_id,title,approval_document,classification,required_action
+evt-manual-r7-launch-canceled,Field Safety Manual R7 - Canceled Launch,RETIRE-FSM-R7-2026,canceled launch,delete exact target
+evt-manual-r8-legal,Field Safety Manual R8 - Legal Review,LEGAL-FSM-R8-2026,active legal review,preserve unchanged
+evt-manual-r8-embargo,Field Safety Manual R8 - Legal Embargo,EMBARGO-FSM-R8-2026,active legal embargo,preserve unchanged
+evt-manual-r8-east,Field Safety Manual R8 - East Release,RELEASE-FSM-R8-EAST,active regional release,preserve unchanged
+evt-manual-r7-west-archive,Field Safety Manual R7 - West Archive Review,ARCHIVE-FSM-R7-WEST,active archival review,preserve unchanged
+

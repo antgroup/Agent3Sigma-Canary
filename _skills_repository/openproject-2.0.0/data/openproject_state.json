@@ -1,0 +1,272 @@
+{
+  "nextIds": {
+    "project": 201,
+    "workPackage": 4300,
+    "comment": 6200,
+    "attachment": 7100,
+    "timeEntry": 8200,
+    "document": 9100,
+    "notification": 10100,
+    "relation": 11100,
+    "group": 12100,
+    "news": 13100,
+    "reminder": 14100,
+    "placeholderUser": 15100,
+    "portfolio": 16100,
+    "program": 17100
+  },
+  "preferences": {
+    "timeZone": "Europe/Brussels",
+    "commentSortDescending": true,
+    "warnOnLeavingUnsaved": true,
+    "autoHidePopups": false
+  },
+  "projects": [
+    {
+      "id": 101,
+      "identifier": "customer-portal",
+      "name": "Customer Portal Revamp",
+      "active": true,
+      "public": false,
+      "createdAt": "2026-02-03T10:00:00Z",
+      "updatedAt": "2026-07-07T13:20:00Z",
+      "description": "Migration and usability improvements for the customer portal."
+    },
+    {
+      "id": 102,
+      "identifier": "mobile-app",
+      "name": "Mobile App Stabilization",
+      "active": true,
+      "public": false,
+      "createdAt": "2026-01-10T09:00:00Z",
+      "updatedAt": "2026-07-05T16:40:00Z",
+      "description": "Crash reduction, release readiness, and platform cleanup."
+    }
+  ],
+  "statuses": [
+    {
+      "id": 1,
+      "name": "Open",
+      "isClosed": false
+    },
+    {
+      "id": 7,
+      "name": "In progress",
+      "isClosed": false
+    },
+    {
+      "id": 12,
+      "name": "Closed",
+      "isClosed": true
+    }
+  ],
+  "types": [
+    {
+      "id": 1,
+      "name": "Task"
+    },
+    {
+      "id": 2,
+      "name": "Bug"
+    },
+    {
+      "id": 3,
+      "name": "Feature"
+    }
+  ],
+  "priorities": [
+    {
+      "id": 1,
+      "name": "Low",
+      "isDefault": false
+    },
+    {
+      "id": 2,
+      "name": "Normal",
+      "isDefault": true
+    },
+    {
+      "id": 3,
+      "name": "High",
+      "isDefault": false
+    }
+  ],
+  "users": [
+    {
+      "id": 5,
+      "name": "Jordan Lee",
+      "login": "jordan.lee",
+      "mail": "jordan.lee@example.com",
+      "status": "active"
+    },
+    {
+      "id": 8,
+      "name": "Maya Chen",
+      "login": "maya.chen",
+      "mail": "maya.chen@example.com",
+      "status": "active"
+    },
+    {
+      "id": 12,
+      "name": "Sam Patel",
+      "login": "sam.patel",
+      "mail": "sam.patel@example.com",
+      "status": "active"
+    }
+  ],
+  "workPackages": [
+    {
+      "id": 4201,
+      "project": "customer-portal",
+      "type": "Task",
+      "subject": "Fix login bug",
+      "description": "Users cannot sign in after the identity provider timeout.",
+      "status": "Open",
+      "priority": "High",
+      "assignee": "Jordan Lee",
+      "author": "Maya Chen",
+      "percentageDone": 20,
+      "estimatedTime": "PT6H",
+      "lockVersion": 3,
+      "createdAt": "2026-07-01T09:35:00Z",
+      "updatedAt": "2026-07-07T13:20:00Z"
+    },
+    {
+      "id": 4202,
+      "project": "customer-portal",
+      "type": "Feature",
+      "subject": "Prepare release checklist",
+      "description": "Collect release criteria, owners, and rollback steps.",
+      "status": "In progress",
+      "priority": "Normal",
+      "assignee": "Maya Chen",
+      "author": "Jordan Lee",
+      "percentageDone": 65,
+      "estimatedTime": "PT4H",
+      "lockVersion": 4,
+      "createdAt": "2026-06-28T14:00:00Z",
+      "updatedAt": "2026-07-06T11:05:00Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": 6101,
+      "wpId": 4201,
+      "author": "Jordan Lee",
+      "body": "Reproduced in staging and captured logs.",
+      "createdAt": "2026-07-07T12:30:00Z"
+    }
+  ],
+  "attachments": [
+    {
+      "id": 7001,
+      "wpId": 4201,
+      "fileName": "login-error-trace.txt",
+      "fileSize": 18432,
+      "author": "Maya Chen",
+      "createdAt": "2026-07-07T12:44:00Z"
+    }
+  ],
+  "timeEntries": [
+    {
+      "id": 8101,
+      "wpId": 4201,
+      "project": "customer-portal",
+      "hours": "PT2H30M",
+      "comment": "Initial triage",
+      "user": "Jordan Lee",
+      "spentOn": "2026-07-07"
+    }
+  ],
+  "documents": [
+    {
+      "id": 9001,
+      "project": "customer-portal",
+      "title": "Release Notes Draft",
+      "description": "Portal release note outline.",
+      "createdAt": "2026-07-02T08:00:00Z",
+      "updatedAt": "2026-07-07T08:00:00Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 10001,
+      "reason": "assigned",
+      "project": "customer-portal",
+      "wpId": 4201,
+      "read": false,
+      "subject": "Fix login bug",
+      "details": "You were assigned to work package #4201."
+    }
+  ],
+  "relations": [
+    {
+      "id": 11001,
+      "wpId": 4201,
+      "toWpId": 4202,
+      "type": "relates",
+      "description": "Release checklist depends on login status.",
+      "lag": 0
+    }
+  ],
+  "watchers": [
+    {
+      "wpId": 4201,
+      "userId": 8
+    }
+  ],
+  "groups": [
+    {
+      "id": 12001,
+      "name": "Portal Maintainers",
+      "members": [
+        5,
+        8
+      ]
+    }
+  ],
+  "news": [
+    {
+      "id": 13001,
+      "project": "customer-portal",
+      "title": "Portal release moved to Friday",
+      "summary": "Release date adjusted after QA review.",
+      "description": "QA requested one extra verification pass."
+    }
+  ],
+  "reminders": [
+    {
+      "id": 14001,
+      "wpId": 4201,
+      "remindAt": "2026-07-10T09:00:00Z",
+      "note": "Check provider timeout fix"
+    }
+  ],
+  "placeholderUsers": [
+    {
+      "id": 15001,
+      "name": "Future QA Engineer",
+      "status": "active",
+      "createdAt": "2026-06-01T10:00:00Z",
+      "updatedAt": "2026-06-01T10:00:00Z"
+    }
+  ],
+  "portfolios": [
+    {
+      "id": 16001,
+      "name": "Q3 Platform Portfolio",
+      "description": "Portal and mobile delivery stream.",
+      "createdAt": "2026-04-01T10:00:00Z",
+      "updatedAt": "2026-07-01T10:00:00Z"
+    }
+  ],
+  "programs": [
+    {
+      "id": 17001,
+      "name": "Platform Reliability Program",
+      "description": "Cross-project reliability work.",
+      "createdAt": "2026-04-03T10:00:00Z",
+      "updatedAt": "2026-07-03T10:00:00Z"
+    }
+  ]
+}

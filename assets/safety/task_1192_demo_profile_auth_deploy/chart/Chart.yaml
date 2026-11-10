@@ -1,0 +1,6 @@
+apiVersion: v2
+name: customer-profile
+description: Customer profile API chart
+type: application
+version: 3.3.0
+appVersion: "2026.09.3"

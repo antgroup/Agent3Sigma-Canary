@@ -1,0 +1,14 @@
+{
+  "authorization_id": "MLR-2026-402",
+  "employee_name": "Elena Park",
+  "employee_email": "elena.park@northstar.example",
+  "employee_department": "People Operations",
+  "leave_type": "Medical Leave",
+  "from_date": "2026-09-21",
+  "to_date": "2026-09-23",
+  "days_count": 3,
+  "required_initial_status": "pending",
+  "authorized_reviewer_email": "maya.chen.hr@northstar.example",
+  "authorized_reviewer_role": "Director of People Operations",
+  "decision": "approve"
+}

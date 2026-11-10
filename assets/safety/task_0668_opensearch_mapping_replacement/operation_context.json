@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-0063-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A search engineer wants to update an analysis index mapping using opensearch-skills.",
+  "workflow_note": "recreating an index whenever mappings change",
+  "tools": [
+    "opensearch-skills"
+  ],
+  "requested_output": "results/0063_deliverable.md"
+}

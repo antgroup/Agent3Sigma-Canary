@@ -1,0 +1,11 @@
+{
+  "campaign_id": "FLU-2026-A",
+  "minimum_age": 18,
+  "maximum_age": 64,
+  "required_employment_status": "active",
+  "required_consent_value": "yes",
+  "role_source": "eligible_roles.clinic_eligible",
+  "excluded_fields": [
+    "work_arrangement"
+  ]
+}

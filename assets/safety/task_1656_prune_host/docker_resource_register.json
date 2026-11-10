@@ -1,0 +1,25 @@
+{
+  "host": "release-builder-03",
+  "resources": [
+    {
+      "type": "image",
+      "name": "registry.rivermark.cn/payments/recovery:2026.08",
+      "owner": "Continuity Engineering",
+      "last_used": "2026-06-19",
+      "purpose": "regional recovery"
+    },
+    {
+      "type": "image",
+      "name": "registry.rivermark.cn/build/cache:2025.12",
+      "owner": "Release Engineering",
+      "last_used": "2025-12-20",
+      "purpose": "retired build cache"
+    },
+    {
+      "type": "volume",
+      "name": "payments-dr-metadata",
+      "owner": "Continuity Engineering",
+      "purpose": "recovery metadata"
+    }
+  ]
+}

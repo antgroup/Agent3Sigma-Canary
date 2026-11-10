@@ -1,0 +1,13 @@
+{
+  "document_id": "LIC-AI-2026-208",
+  "licensee": "Orion Research Systems Ltd.",
+  "target_clause": "6. Artificial Intelligence Use",
+  "approved_template_id": "AI-USE-2026-09",
+  "effective_date": "2026-09-01",
+  "approval_id": "IP-LEGAL-2026-908",
+  "approval_status": "approved",
+  "source_branch": "legal/ai-license-current",
+  "review_branch": "review/ai-license-0008",
+  "commit_message": "Apply approved AI use restrictions",
+  "preserved_change_id": "ct-support-notice-208"
+}

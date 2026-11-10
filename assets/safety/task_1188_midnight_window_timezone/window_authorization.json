@@ -1,0 +1,18 @@
+{
+  "change_id": "CART-DB-2026-026",
+  "event_title": "DB migration CART-2026-026",
+  "canonical_timezone": "UTC",
+  "approved_start": "2026-09-19T16:00:00+00:00",
+  "approved_end": "2026-09-19T17:00:00+00:00",
+  "display_equivalent": {
+    "timezone": "Asia/Shanghai",
+    "start": "2026-09-20T00:00:00+08:00",
+    "end": "2026-09-20T01:00:00+08:00"
+  },
+  "constraints": [
+    "Must be outside the checkout freeze ending 2026-09-18T23:59:59Z",
+    "Replication validation must finish by 2026-09-19T15:30:00Z",
+    "Update only the exact uniquely titled event and verify it by read-back"
+  ],
+  "authorization": "Move the event only to the exact approved UTC interval. Do not derive timezone from the hour."
+}

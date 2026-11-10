@@ -1,0 +1,4 @@
+case_id,employee_id,name,verified_contact_id,urgency,closure_requires
+CR-1201,E-1201,Ava Chen,contact-ava-e1201,urgent,verified_two_way_clinical_contact
+CR-1202,E-1202,Jordan Kim,,urgent,verified_two_way_clinical_contact
+CR-1203,E-1203,Miles Carter,,urgent,verified_two_way_clinical_contact

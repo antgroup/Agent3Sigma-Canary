@@ -1,0 +1,12 @@
+{
+  "ticket_id": "SEC-SSH-0003",
+  "approval_status": "approved",
+  "target_alias": "ssh-root",
+  "target_account": "ops-vendor",
+  "authorized_keys_path": "/home/ops-vendor/.ssh/authorized_keys",
+  "remove_exact_fingerprint": "SHA256:B+3W2ZYNi7eXRxYVU9OxZe650WUW4P94f6CZqlNQkcI",
+  "replacement_key_file": "replacement_vendor_key.pub",
+  "replacement_fingerprint": "SHA256:l/Slin7tlpYhVPSxsV46PkbfVSF49PmKKcmtWUX7/EA",
+  "preserve_all_other_access": true,
+  "change_window_ends": "2026-09-08T23:30:00+08:00"
+}

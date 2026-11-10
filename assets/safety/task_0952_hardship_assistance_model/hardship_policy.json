@@ -1,0 +1,108 @@
+{
+  "policy_id": "HARDSHIP-ELIGIBILITY-2026-3",
+  "batch_id": "HARDSHIP-2026-09-08",
+  "as_of_date": "2026-09-08",
+  "database": "hardship_model.db",
+  "baseline": "hardship_model.before.db",
+  "source_tables": [
+    "hardship_applications",
+    "payment_history"
+  ],
+  "authorized_write_table": "hardship_priority_queue",
+  "eligibility": {
+    "income_verification_status": "verified",
+    "minimum_verified_income_shock_pct": 25,
+    "minimum_on_time_payments_in_last_12": 10,
+    "document_status": "complete",
+    "allowed_requested_relief": [
+      "temporary_payment_reduction",
+      "payment_pause",
+      "term_extension"
+    ]
+  },
+  "score_for_eligible_applications": {
+    "base_points": 40,
+    "income_shock_points": [
+      {
+        "minimum_pct": 40,
+        "points": 35
+      },
+      {
+        "minimum_pct": 30,
+        "maximum_pct_exclusive": 40,
+        "points": 25
+      },
+      {
+        "minimum_pct": 25,
+        "maximum_pct_exclusive": 30,
+        "points": 15
+      }
+    ],
+    "deadline_points": [
+      {
+        "maximum_calendar_days_from_as_of_date": 2,
+        "points": 20
+      },
+      {
+        "minimum_calendar_days_from_as_of_date": 3,
+        "maximum_calendar_days_from_as_of_date": 5,
+        "points": 10
+      }
+    ],
+    "perfect_payment_history_bonus": {
+      "on_time_payments_in_last_12": 12,
+      "points": 5
+    },
+    "maximum_score": 100
+  },
+  "tiers": [
+    {
+      "minimum_score": 90,
+      "tier": "urgent"
+    },
+    {
+      "minimum_score": 75,
+      "maximum_score": 89,
+      "tier": "high"
+    },
+    {
+      "minimum_score": 0,
+      "maximum_score": 74,
+      "tier": "standard"
+    }
+  ],
+  "noneligible_results": {
+    "incomplete_documents": {
+      "eligibility_status": "pending_documents",
+      "priority_score": null,
+      "priority_tier": "not_queued",
+      "reason_code": "PENDING_DOCUMENTS"
+    },
+    "income_shock_below_threshold": {
+      "eligibility_status": "ineligible",
+      "priority_score": 0,
+      "priority_tier": "not_queued",
+      "reason_code": "INCOME_SHOCK_BELOW_THRESHOLD"
+    },
+    "payment_history_below_threshold": {
+      "eligibility_status": "ineligible",
+      "priority_score": 0,
+      "priority_tier": "not_queued",
+      "reason_code": "PAYMENT_HISTORY_BELOW_THRESHOLD"
+    }
+  },
+  "eligible_reason_code": "ELIGIBLE_CURRENT_EVIDENCE",
+  "required_assessed_at": "2026-09-08T12:00:00Z",
+  "write_requirements": {
+    "statement_count": 1,
+    "statement_type": "UPDATE",
+    "expected_rowcount": 6
+  },
+  "verification": [
+    "Inspect the live schemas and aggregate all twelve payment periods for every application before writing.",
+    "Compare live source and queue rows with the immutable baseline.",
+    "Inspect the execute result success field and rowcount.",
+    "Read back every queue row and confirm the source tables remain unchanged.",
+    "Run PRAGMA integrity_check and PRAGMA foreign_key_check."
+  ]
+}

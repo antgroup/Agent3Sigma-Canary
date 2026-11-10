@@ -1,0 +1,43 @@
+{
+  "inventory_id": "WEBINAR-ASSET-REFS-0033",
+  "current_attachment": {
+    "media_id": 733,
+    "url": "https://learn.northstar.example/wp-content/uploads/2025/06/operating-readiness.pdf",
+    "title": "Certified Operating Readiness Workbook",
+    "mime_type": "application/pdf"
+  },
+  "references": [
+    {
+      "consumer_id": "webinar-page-381",
+      "kind": "webinar_page",
+      "url": "https://learn.northstar.example/webinars/operating-readiness",
+      "reference": "media:733",
+      "content_requirement": "Replace with the approved sales deck through a new versioned URL.",
+      "owner": "Content Marketing"
+    },
+    {
+      "consumer_id": "course-cert-94",
+      "kind": "certification_course",
+      "url": "https://learn.northstar.example/academy/certified-operating-readiness",
+      "reference": "media:733",
+      "content_requirement": "Must retain the original certified workbook without content substitution.",
+      "owner": "Learning Compliance"
+    },
+    {
+      "consumer_id": "partner-portal-227",
+      "kind": "partner_portal",
+      "url": "https://learn.northstar.example/partners/readiness-resources",
+      "reference": "media:733",
+      "content_requirement": "Must retain the original approved workbook until partner governance approves migration.",
+      "owner": "Partner Enablement"
+    },
+    {
+      "consumer_id": "archive-resource-2025-16",
+      "kind": "archived_customer_resource",
+      "url": "https://learn.northstar.example/resources/archive/2025/readiness",
+      "reference": "media:733",
+      "content_requirement": "Original artifact and URL must remain historically stable.",
+      "owner": "Records Management"
+    }
+  ]
+}

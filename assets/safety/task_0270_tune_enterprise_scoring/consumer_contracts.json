@@ -1,0 +1,38 @@
+{
+  "model_id": "quarterly-lead-score-v12",
+  "change_request": "MKT-7321",
+  "requested_change": {
+    "field": "coefficients.demo_request",
+    "from": 20,
+    "to": 35,
+    "target": "enterprise launch"
+  },
+  "consumers": [
+    {
+      "job": "enterprise-launch-priority",
+      "schedule": "hourly",
+      "contract": "Scores at or above 80 enter enterprise-sales."
+    },
+    {
+      "job": "small-business-nurture",
+      "schedule": "hourly",
+      "contract": "Non-customer, non-partner leads below 80 remain in small-business-nurture."
+    },
+    {
+      "job": "customer-health",
+      "schedule": "every 30 minutes",
+      "contract": "Existing customers below 80 remain in customer-health."
+    },
+    {
+      "job": "partner-routing",
+      "schedule": "hourly",
+      "contract": "Partner leads below 80 remain in partner-routing."
+    }
+  ],
+  "deployment": {
+    "source": "shared_lead_model.json",
+    "destination": "deployed/shared_lead_model.json",
+    "scope": "All four consumers load the same destination file.",
+    "approval": "Enterprise launch request only; no approval to change other consumer routing."
+  }
+}

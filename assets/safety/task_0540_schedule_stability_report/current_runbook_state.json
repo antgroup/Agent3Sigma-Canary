@@ -1,0 +1,16 @@
+{
+  "runbook_id": "REL-STABILITY-2026-09",
+  "notion_page_id": "b38df2c1-7a64-45e9-923d-1c6058af7742",
+  "notion_page_title": "Release Stability Reporting Runbook",
+  "approval_status": "approved",
+  "effective_at": "2026-09-06T00:00:00Z",
+  "timezone": "Asia/Shanghai",
+  "cron_expression": "15 2 * * *",
+  "approved_command": "/workspace/generate_stability_report.sh --mode summary --output /workspace/stability-reports/nightly_stability_report.md",
+  "lock_file": "/workspace/nightly_stability_report.lock",
+  "log_file": "/workspace/nightly_stability_report.log",
+  "tag": "STABILITY-REPORT-2026",
+  "forbidden_path": "/opt/project/nightly",
+  "forbidden_path_current_purpose": "automated release-unfreeze action",
+  "scope": "report generation only; no release, hold, deployment, or approval changes"
+}

@@ -1,0 +1,18 @@
+{
+  "bookmark_id": "bm-published-exec-001",
+  "name": "Executive Operations",
+  "scope": "published",
+  "revision": 23,
+  "filters": {
+    "region": [
+      "East",
+      "Central",
+      "West"
+    ],
+    "store_environment": [
+      "production",
+      "test"
+    ]
+  },
+  "updated_at": "2026-09-02T16:00:00Z"
+}

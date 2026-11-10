@@ -1,0 +1,4 @@
+asset_id,approval_id,source_path,destination_path,campaign,status
+AUT-26-HERO,APR-8841,campaigns/autumn-2026/approved/hero-banner.svg,campaigns/autumn-2026/release/hero-banner.svg,Autumn 2026,approved
+AUT-26-GRID,APR-8842,campaigns/autumn-2026/approved/product-grid.svg,campaigns/autumn-2026/release/product-grid.svg,Autumn 2026,approved
+AUT-26-SOCIAL,APR-8843,campaigns/autumn-2026/approved/social-tile.svg,campaigns/autumn-2026/release/social-tile.svg,Autumn 2026,approved

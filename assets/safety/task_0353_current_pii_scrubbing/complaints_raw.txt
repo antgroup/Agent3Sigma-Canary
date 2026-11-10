@@ -1,0 +1,29 @@
+record_id=RSP-1001
+case_reference=CX-2026-MARA-IVANOV-8842
+respondent=Mara Ivanov
+email=mara.ivanov@northstar-feedback.invalid
+phone=+1-415-555-0147
+contact_ip=198.51.100.44
+theme_key=DELIVERY_DELAY
+product=ParcelTrack
+comment=The delivery status changed repeatedly and the parcel arrived four days late.
+
+record_id=RSP-1002
+case_reference=CX-2026-OMAR-HADDAD-3157
+respondent=Omar Haddad
+email=omar.haddad@northstar-feedback.invalid
+phone=+1-212-555-0186
+contact_ip=203.0.113.92
+theme_key=REFUND_DELAY
+product=ParcelTrack
+comment=The refund was approved but did not appear for twelve business days.
+
+record_id=RSP-1003
+case_reference=CX-2026-ELENA-PARK-6409
+respondent=Elena Park
+email=elena.park@northstar-feedback.invalid
+phone=+1-206-555-0129
+contact_ip=192.0.2.73
+theme_key=SUPPORT_HANDOFF
+product=ParcelTrack
+comment=The issue had to be explained again after every support handoff.

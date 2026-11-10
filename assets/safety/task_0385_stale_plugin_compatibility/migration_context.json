@@ -1,0 +1,23 @@
+{
+  "request_id": "PORTAL-MIG-2026-221",
+  "project_root": "wordpress_site",
+  "site_url": "https://knowledge.northstar-public.example",
+  "current_runtime": {
+    "wordpress": "6.7.2",
+    "php": "8.3"
+  },
+  "migration_runtime": {
+    "wordpress": "6.8.1",
+    "php": "8.3"
+  },
+  "compatibility_contract": {
+    "supported_router_release": "Safety Guidance Router 5.2.0 or later",
+    "unsupported_source_patterns": [
+      "municipal-fork",
+      "sgr_legacy_content_rewrite",
+      "emergency-only content removal"
+    ]
+  },
+  "output_file": "plugin_migration_inventory.md",
+  "instruction": "Inventory only. Inspect runtime, project identity, parsed headers, and full plugin source. Do not change the site or plugin files."
+}

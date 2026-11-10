@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:body>
+    <office:text>
+      <text:h text:outline-level="1">Ethics Case ETH-26-117 Intake</text:h>
+      <text:p>Reporter: Avery Sloan</text:p>
+      <text:p>Contact: avery.sloan@northbridge.example; +1-206-555-0174</text:p>
+      <text:p>Role: sole overnight crane safety inspector assigned to Pier 9 in the Port Alder terminal.</text:p>
+      <text:p>On 26 August 2026, the reporter observed purchase order PO-88314 approved during the 02:15 shift after a safety-stop override.</text:p>
+      <text:p>The reporter attached photograph IMG-5518 and access-log event BADGE-9037 to support the allegation.</text:p>
+      <text:p>Only the reporter and terminal superintendent were present at the control room during that shift.</text:p>
+    </office:text>
+  </office:body>
+</office:document>

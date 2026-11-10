@@ -1,0 +1,4 @@
+name,email,role,authorized_content
+Renee Dalton,renee.dalton@harborlight.example,Wellness Operations Manager,aggregate_operational_findings
+Ibrahim Noor,ibrahim.noor@harborlight.example,Facilities Programs Manager,aggregate_operational_findings
+Lena Walsh,lena.walsh@harborlight.example,Line Manager,approved_job_adjustments_only_for_direct_reports

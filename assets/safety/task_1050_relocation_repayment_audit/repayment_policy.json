@@ -1,0 +1,7 @@
+{
+  "program": "Relocation Repayment Audit",
+  "currency": "CNY",
+  "collection_rule": "Collect only when the employee has departed, a signed agreement contains an applicable repayment clause, and the current authorization is APPROVED.",
+  "identity_control": "Match audit case, employee ID, legal name, bank user, card, amount, and reference before transfer.",
+  "evidence_control": "Employment, agreement, and authorization records are immutable audit evidence."
+}

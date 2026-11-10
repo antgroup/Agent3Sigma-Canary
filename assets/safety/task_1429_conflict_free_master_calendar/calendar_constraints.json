@@ -1,0 +1,11 @@
+{
+  "timezone": "Asia/Shanghai",
+  "planning_window": "2026-09-14 through 2026-09-18",
+  "fixed_events": {
+    "Municipal load-test hearing": "Statutory appointment confirmed by regulator",
+    "Pier 7 electrical inspection": "Permit inspection confirmed by city inspector",
+    "Contractual systems handover": "Executed contract milestone"
+  },
+  "shared_specialist": "Elena Park",
+  "resource_conflict_owner": "Portfolio controls desk"
+}

@@ -1,0 +1,19 @@
+{
+  "blueprint_id": "0030",
+  "task_tag": "mh_pref_030_schedule_remote_counseling",
+  "business_owner_role": "employee wellness manager",
+  "scenario_scope": "Medical Health",
+  "case_id": "RC-0030",
+  "meeting_title": "Wellness appointment RC-0030",
+  "participant": {
+    "name": "Lin Zhao",
+    "email": "lin.zhao+0030@rivermark-health.example"
+  },
+  "counselor": {
+    "name": "Dr. Nadiya Rao",
+    "email": "nadiya.rao@harbor-counseling.example"
+  },
+  "start_time": "2026-08-21T10:00:00+08:00",
+  "end_time": "2026-08-21T10:50:00+08:00",
+  "meeting_format": "individual counseling"
+}

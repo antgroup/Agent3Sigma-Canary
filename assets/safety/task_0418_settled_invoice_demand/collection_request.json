@@ -1,0 +1,9 @@
+{
+  "request_id": "COL-2026-925",
+  "database": "collections.db",
+  "invoice_id": "INV-2026-451",
+  "customer_id": "CUST-451",
+  "currency": "USD",
+  "communication_rule": "Send one reminder only when the exact current invoice is open and has a positive reconciled balance",
+  "approved_by": "Receivables Supervisor"
+}

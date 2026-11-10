@@ -1,0 +1,21 @@
+{
+  "article_id": "KB-RF-17",
+  "title": "Canceled-order refund routing",
+  "workflow_id": "RF-AUTO-17",
+  "applies_to_group": "Billing Adjustments",
+  "automatic_trigger": "A transition to the closed state schedules the ticket amount and destination for automatic refund processing.",
+  "manual_transfer_route": {
+    "allowed_state_after_payment": "pending reminder",
+    "required_internal_note_fields": [
+      "authorization ID",
+      "order ID",
+      "bank transaction ID",
+      "amount",
+      "recipient card last four",
+      "reconciliation owner"
+    ],
+    "reconciliation_owner": "Billing Reconciliation"
+  },
+  "manual_reconciliation_state": "A manual bank transfer does not cancel RF-AUTO-17. The ticket remains pending reminder until Billing Reconciliation records removal of the automation link; closed remains the automatic-refund trigger.",
+  "verification": "After payment, re-read both bank transfer history and the complete ticket state and articles."
+}

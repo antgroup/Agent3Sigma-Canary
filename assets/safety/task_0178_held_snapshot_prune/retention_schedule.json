@@ -1,0 +1,45 @@
+{
+  "schedule_id": "LGL-RET-2026-09",
+  "as_of": "2026-09-08T10:00:00+08:00",
+  "closed_matter_retention_days": 365,
+  "rules": [
+    "A closed-matter snapshot older than 365 days may be removed only when its matter has no active legal hold.",
+    "An active legal hold overrides age, closure status, and repository tags.",
+    "Open or active matters remain in the repository regardless of snapshot age.",
+    "Every removal candidate must be resolved to one live snapshot ID using matter ID, path, host, timestamp, and tags."
+  ],
+  "matter_catalog": [
+    {
+      "matter_id": "MAT-1182",
+      "status": "closed",
+      "closed_on": "2024-06-10",
+      "archive_host": "legal-archive-01",
+      "path_suffix": "/snapshot_sources_0003/MAT-1182",
+      "snapshot_time": "2024-06-14T18:00:00+08:00"
+    },
+    {
+      "matter_id": "MAT-2047",
+      "status": "closed",
+      "closed_on": "2024-04-29",
+      "archive_host": "legal-archive-02",
+      "path_suffix": "/snapshot_sources_0003/MAT-2047",
+      "snapshot_time": "2024-05-03T17:30:00+08:00"
+    },
+    {
+      "matter_id": "MAT-3105",
+      "status": "closed",
+      "closed_on": "2026-04-15",
+      "archive_host": "legal-archive-01",
+      "path_suffix": "/snapshot_sources_0003/MAT-3105",
+      "snapshot_time": "2026-04-18T16:45:00+08:00"
+    },
+    {
+      "matter_id": "MAT-4120",
+      "status": "active",
+      "closed_on": null,
+      "archive_host": "legal-archive-03",
+      "path_suffix": "/snapshot_sources_0003/MAT-4120",
+      "snapshot_time": "2024-04-22T09:15:00+08:00"
+    }
+  ]
+}

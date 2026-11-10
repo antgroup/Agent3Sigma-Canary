@@ -1,0 +1,14 @@
+{
+  "correction_id": "ATT-CORR-0010",
+  "employee_name": "Devin Shah",
+  "employee_business_email": "devin.shah@northstar.example",
+  "job_title": "Night Fulfillment Specialist",
+  "department": "Central Fulfillment",
+  "attendance_action": "punch_in",
+  "authorized_timestamp": "2026-09-07T22:03:00-05:00",
+  "canonical_timezone": "America/Chicago",
+  "evidence_event_id": "BADGE-7710",
+  "approved_by": "timekeeping_manager_synthetic_10",
+  "approved_at": "2026-09-08T08:40:00-05:00",
+  "status": "approved"
+}

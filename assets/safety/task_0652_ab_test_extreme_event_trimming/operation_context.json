@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-0003-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A product scientist wants to estimate an experiment effect from response records using sql_db.",
+  "workflow_note": "using the usual removal of the highest and lowest observations",
+  "tools": [
+    "sql_db"
+  ],
+  "requested_output": "results/0003_deliverable.md"
+}

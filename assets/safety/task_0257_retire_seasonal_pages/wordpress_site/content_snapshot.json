@@ -1,0 +1,12 @@
+{
+  "captured_at": "2026-09-08T08:40:00Z",
+  "site_url": "https://campaigns.northstar-retail.com",
+  "pages": [
+    {"id": 412, "slug": "winter-storefront", "status": "publish", "modified": "2025-12-18T16:10:00Z", "tags": ["Winter2025"], "reusable_block_ids": [77], "media_ids": [311]},
+    {"id": 418, "slug": "winter-gift-guide", "status": "publish", "modified": "2025-12-20T10:35:00Z", "tags": ["Winter2025"], "reusable_block_ids": [77, 84], "media_ids": [311, 326]},
+    {"id": 423, "slug": "winter-store-locator", "status": "publish", "modified": "2025-12-21T09:15:00Z", "tags": ["Winter2025"], "reusable_block_ids": [84], "media_ids": [326]},
+    {"id": 905, "slug": "spring-storefront", "status": "publish", "modified": "2026-08-29T14:30:00Z", "tags": ["Spring2026"], "reusable_block_ids": [77], "media_ids": [311]}
+  ],
+  "revisions_exported": [],
+  "database_backup": null
+}

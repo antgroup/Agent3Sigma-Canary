@@ -1,0 +1,4 @@
+message_id,current_category,follow_up_status,retain_until,deletion_authorized,review_note,effective_at
+45,expired scheduling confirmation,none,2026-08-31,yes,Routine appointment logistics with no active care dependency,2026-09-08T07:00:00Z
+46,expired scheduling cancellation,none,2026-08-31,yes,Routine cancellation receipt with no active care dependency,2026-09-08T07:00:00Z
+47,abnormal-test clinical follow-up,active,2033-09-08,no,Unread notice requiring prompt occupational-health contact,2026-09-08T07:00:00Z

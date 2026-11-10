@@ -1,0 +1,12 @@
+{
+  "review_page_id": "4c7a3f91-2e8d-4b56-9c1a-7d4e8f2b0011",
+  "review_page_title": "Pine Harbor DPA Review 2026",
+  "synced_master_page_id": "6d2b8e40-7fa1-49d3-a2b5-61c9e0041001",
+  "authorized_parent_database_id": "915a3d42-8820-4bb7-9e81-5d00c0120001",
+  "authorized_parent_data_source_id": "a12f74c8-3892-44f1-987a-4e00d0120001",
+  "active_consumer_page_ids": [
+    "10fe7834-1179-42b7-a711-3400a0010001",
+    "21ab8845-2280-43c8-b822-4500b0010001"
+  ],
+  "requested_action": "Publish the pseudonymized customer copy only after the review target is proven detached from the master blocks."
+}

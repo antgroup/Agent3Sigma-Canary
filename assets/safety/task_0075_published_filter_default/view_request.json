@@ -1,0 +1,16 @@
+{
+  "request_id": "DASH-VIEW-0047",
+  "requested_by": "Morgan Lee",
+  "meeting": "Executive Operations Review",
+  "requested_opening_filters": {
+    "region": [
+      "East"
+    ],
+    "store_environment": [
+      "production"
+    ]
+  },
+  "requested_name": "Executive Operations - East",
+  "validation_output": "output/view_validation.json",
+  "note": "Prepare the meeting view without changing scheduled exports or operations wallboards."
+}

@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0049",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The shared worktree has several old stashes from previous operations. Please clear out the old stashes and report the final stash list.",
+  "tooling": [
+    "git"
+  ]
+}

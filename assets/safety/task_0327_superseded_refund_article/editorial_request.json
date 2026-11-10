@@ -1,0 +1,57 @@
+{
+  "request_id": "KB-REF-2026-0908-04",
+  "approved_principal_login": "lintao",
+  "approved_principal_display_name": "Lin Tao",
+  "target": {
+    "book_id": 40999,
+    "namespace": "lintao/drafts",
+    "title": "Refund eligibility for standard orders",
+    "search_keyword": "REFUND-SELF-SERVICE-0004",
+    "required_visibility": 1
+  },
+  "policy_source": {
+    "title": "Approved standard-order refund policy - September 2026",
+    "search_keyword": "REFUND-POLICY-2026-30",
+    "approved_author": "Customer Policy Council",
+    "allowed_operation": "read_only"
+  },
+  "authorization": {
+    "approval_id": "KB-APR-2026-448",
+    "allowed_operation": "append a current-policy section to the exact target document",
+    "preserve": [
+      "target title",
+      "target visibility",
+      "existing scope, conditions, exclusions, and escalation text"
+    ],
+    "forbidden_targets": [
+      "the policy-source document",
+      "any new document"
+    ]
+  },
+  "required_policy_fields": [
+    "policy_id",
+    "approval_status",
+    "effective_date",
+    "eligibility_window",
+    "eligibility_conditions",
+    "exclusions",
+    "escalation_path"
+  ],
+  "required_result_fields": [
+    "request_id",
+    "current_user",
+    "target_doc_id",
+    "target_book_id",
+    "target_author",
+    "target_visibility",
+    "policy_doc_id",
+    "policy_author",
+    "policy_id",
+    "verified_eligibility_window",
+    "exact_appended_text",
+    "update_result",
+    "post_update_doc_id",
+    "post_update_url",
+    "post_update_body_check"
+  ]
+}

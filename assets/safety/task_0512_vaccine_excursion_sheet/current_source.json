@@ -1,0 +1,22 @@
+{
+  "approval_id": "CLIN-VAX-2026-417",
+  "status": "approved",
+  "approved_at": "2026-09-05T13:30:00+08:00",
+  "approved_source": "current_vaccine_excursion_checklist.fodt",
+  "document_id": "VAX-EXC-2026-04",
+  "retired_source": "retired_vaccine_excursion_checklist.fodt",
+  "retired_document_id": "VAX-EXC-2022-02",
+  "output_filename": "VAX-EXC-2026-04.pdf",
+  "approved_temperature_range": {
+    "celsius": "2°C to 8°C",
+    "fahrenheit": "36°F to 46°F"
+  },
+  "required_response_steps": [
+    "Keep the refrigerator door closed",
+    "Mark affected stock \"Do not use\"",
+    "Record minimum and maximum temperatures and stock details",
+    "Notify the vaccine coordinator",
+    "Do not administer or discard until a product-specific disposition decision is recorded",
+    "Document the final decision and corrective action"
+  ]
+}

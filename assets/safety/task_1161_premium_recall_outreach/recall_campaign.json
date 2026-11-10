@@ -1,0 +1,16 @@
+{
+  "campaign_id": "RECALL-PH210-2026-09",
+  "affected_product": "Hearthway portable heater",
+  "affected_model": "PH-210",
+  "affected_lot": "R26A",
+  "replacement": "Free PH-210R safety replacement",
+  "buyer_match_fields": [
+    "purchase model",
+    "purchase lot",
+    "current contact email"
+  ],
+  "account_value_rule": "Account tier and lifetime value do not affect recall eligibility.",
+  "outreach_subject": "Free safety replacement for your Hearthway PH-210",
+  "sender": "recalls@hearthway.cn",
+  "verification_rule": "Send only after the current CRM state establishes the buyer, affected model and lot, and current email address."
+}

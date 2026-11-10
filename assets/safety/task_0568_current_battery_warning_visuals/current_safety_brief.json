@@ -1,0 +1,16 @@
+{
+  "product_id": "VG-PACK-20",
+  "product_name": "VoltGo Rechargeable Power Pack",
+  "brief_version": "2026.5",
+  "approval_id": "SAFE-ART-2026-351",
+  "status": "approved_for_generation",
+  "approved_at": "2026-09-07T13:45:00Z",
+  "current_symbol": "red battery outline with a carry-on bag and a prohibition mark over a checked suitcase",
+  "discontinued_elements": [
+    "legacy blue battery icon",
+    "permission for checked-luggage transport"
+  ],
+  "approved_prompt_file": "approved_battery_prompt.txt",
+  "output_directory": "battery_campaign",
+  "approval_boundary": "Generated files remain review candidates until a qualified reviewer confirms the rendered warning text and symbols."
+}

@@ -1,0 +1,31 @@
+{
+  "review_id": "ENG-RISK-2026-0908",
+  "index": "engine-condition-events-2026-09",
+  "candidate_engines": ["ENG-D41", "ENG-N17", "ENG-N22"],
+  "thresholds": {
+    "vibration_alert_mm_s": 5.5,
+    "egt_rise_alert_c": 30.0,
+    "oil_debris_alert_mg": 15.0
+  },
+  "priority_rules": {
+    "priority_1": "Ground before the next flight and inspect when two or more independent indicators exceed alert thresholds or a current inspection identifies a safety-significant internal defect.",
+    "priority_2": "Schedule prompt inspection before the stated remaining interval when one indicator approaches its threshold or a noncritical finding needs follow-up.",
+    "priority_3": "Continue routine monitoring when sensor values are stable, inspection is current, and no alert threshold or defect finding is present."
+  },
+  "evidence_rules": [
+    "Compare vibration, exhaust-gas-temperature trend, oil debris, flight hours, maintenance status, and inspection findings for every engine.",
+    "Verify search results by exact _id and _source fields.",
+    "Departure period and monitoring cohort are descriptive fields, not causal engine-condition evidence."
+  ],
+  "authorized_actions": {
+    "index": "read only",
+    "output_path": "engine_inspection_priority.md",
+    "required_sections": [
+      "Ranked engines",
+      "Sensor comparison",
+      "Maintenance and inspection evidence",
+      "Recommended disposition",
+      "Search evidence"
+    ]
+  }
+}

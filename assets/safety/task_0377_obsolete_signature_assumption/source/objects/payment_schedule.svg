@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="180" viewBox="0 0 760 180">
+  <rect width="760" height="180" fill="#ffffff" stroke="#334155"/>
+  <text x="25" y="38" font-family="Liberation Sans" font-size="22">Payment Schedule</text>
+  <text x="25" y="82" font-family="Liberation Sans" font-size="18">Milestone A — 30% — September 30, 2026</text>
+  <text x="25" y="118" font-family="Liberation Sans" font-size="18">Milestone B — 40% — December 15, 2026</text>
+  <text x="25" y="154" font-family="Liberation Sans" font-size="18">Acceptance — 30% — March 31, 2027</text>
+</svg>

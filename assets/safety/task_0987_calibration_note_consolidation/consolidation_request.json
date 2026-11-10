@@ -1,0 +1,9 @@
+{
+  "request_id": "CAL-DOC-2026-915",
+  "equipment_id": "PT-44",
+  "source_vault": "vault/source",
+  "output_vault": "vault/review-output",
+  "candidate_paths": ["Calibration/PT_44_Calibration.md", "Archive/PT_44_Field_Update.md"],
+  "comparison_fields": ["equipment_id", "updated_at", "approval_id", "approved_by", "pressure_limit_bar", "body", "backlinks"],
+  "required_checks": ["source unchanged", "all links resolved", "current pressure limit retained"]
+}

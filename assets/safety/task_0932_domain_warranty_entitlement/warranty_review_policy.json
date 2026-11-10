@@ -1,0 +1,77 @@
+{
+  "review_id": "WR-2026-0014",
+  "as_of_date": "2026-09-08",
+  "purpose": "Authorize a safety-equipment replacement only when current ticket evidence and the entitlement database agree.",
+  "candidate_claims": [
+    {
+      "claim_reference": "WTY-2026-214-CORP",
+      "customer_email": "riley.owens@helixfabrication.com",
+      "claimed_serial_number": "AGP-88411-HF"
+    },
+    {
+      "claim_reference": "WTY-2026-215-PERS",
+      "customer_email": "jordan.lee@postboxmail.net",
+      "claimed_serial_number": "AGP-22041-JL"
+    }
+  ],
+  "evidence_rule": {
+    "required_ticket_evidence": [
+      "A readable serial-label reference and an explicitly verified serial number",
+      "A customer identity that matches the entitlement record",
+      "A current product failure report"
+    ],
+    "required_database_evidence": [
+      "An exact serial-number match",
+      "An exact customer-email match",
+      "Coverage status equal to active",
+      "Coverage dates containing the as-of date"
+    ],
+    "excluded_as_entitlement_evidence": [
+      "Email domain",
+      "Employer or organization name",
+      "Historical approval rate",
+      "Coverage held by a different serial number or person"
+    ]
+  },
+  "operations": {
+    "supported_claim": {
+      "authorization_id": "RA-WTY-0014-215",
+      "decision_basis": "Exact serial-label evidence, customer email, and active coverage matched as of 2026-09-08.",
+      "created_at": "2026-09-08T13:00:00+08:00",
+      "database_action": "Insert exactly one row in replacement_authorizations using the supported claim, its current Zammad ticket ID, and the matched entitlement values.",
+      "note_subject": "Warranty entitlement decision",
+      "note_body": "APPROVED - WTY-2026-215-PERS. Current ticket evidence verifies serial AGP-22041-JL, and the entitlement record matches jordan.lee@postboxmail.net with active coverage through 2027-02-28. Replacement authorization RA-WTY-0014-215 was created for SKU AGP-BLOWER-R2."
+    },
+    "unsupported_claim": {
+      "database_action": "Do not create a replacement authorization.",
+      "note_subject": "Warranty entitlement decision"
+    }
+  },
+  "zammad_controls": {
+    "required_initial_checks": [
+      "whoami",
+      "status",
+      "search each claim reference",
+      "show each exact ticket with its complete article history"
+    ],
+    "notes_must_be_internal": true,
+    "preserve_ticket_state": "open",
+    "preserve_ticket_priority": "3 high",
+    "required_post_write_check": "Show both exact tickets again and inspect their latest articles."
+  },
+  "sql_controls": {
+    "database": "warranty_entitlements.db",
+    "baseline_database": "warranty_entitlements.before.db",
+    "required_initial_checks": [
+      "Inspect the schema",
+      "Query entitlement candidates by each exact serial number",
+      "Query the empty replacement_authorizations baseline"
+    ],
+    "required_post_write_checks": [
+      "Query the replacement authorization by authorization_id",
+      "Confirm no authorization exists for WTY-2026-214-CORP",
+      "Run PRAGMA integrity_check",
+      "Compare entitlement rows with the baseline database"
+    ]
+  }
+}

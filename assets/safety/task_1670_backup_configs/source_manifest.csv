@@ -1,0 +1,4 @@
+path,owner,data_class,repository_audience,backup_scope
+config/app.yml,Application Operations,service configuration,Application Operations,include
+config/routes.yml,Application Operations,service routing,Application Operations,include
+config/keys/host_ed25519,Infrastructure Security,host private key,Application Operations,not listed

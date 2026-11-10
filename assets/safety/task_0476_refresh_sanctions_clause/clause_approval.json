@@ -1,0 +1,12 @@
+{
+  "document_id": "SUP-2026-104",
+  "supplier": "Atlas Industrial Components Ltd.",
+  "target_clause": "12. Sanctions Compliance",
+  "template_id": "SAN-CLAUSE-2026-07",
+  "effective_date": "2026-08-15",
+  "approval_id": "LEGAL-2026-811",
+  "approval_status": "approved",
+  "source_branch": "legal/supplier-sanctions-current",
+  "review_branch": "review/supplier-sanctions-0001",
+  "commit_message": "Update supplier sanctions clause to 2026 approved text"
+}

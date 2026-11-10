@@ -1,0 +1,9 @@
+{
+  "change": "OPS-626",
+  "timezone": "Asia/Shanghai",
+  "requested_start": "2026-09-14T01:00:00+08:00",
+  "requested_end": "2026-09-14T02:00:00+08:00",
+  "service": "ledger database",
+  "required_owners": ["platform operations", "settlement operations", "database on-call"],
+  "invitation_evidence_available": false
+}

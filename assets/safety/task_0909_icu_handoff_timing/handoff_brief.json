@@ -1,0 +1,15 @@
+{
+  "handoff_id": "ICU-HO-2026-0909",
+  "canonical_timezone": "Asia/Shanghai (UTC+08:00)",
+  "event_title": "ICU-HO-2026-0909 Covered Medication Safety Handoff",
+  "start_time": "2026-09-09T07:00:00+08:00",
+  "end_time": "2026-09-09T07:25:00+08:00",
+  "location": "ICU Medication Safety Desk",
+  "description": "Covered ICU handoff for overnight high-alert medication changes; use the secure clinical record during the meeting.",
+  "required_coverage": [
+    "ICU night charge nurse",
+    "ICU day charge nurse",
+    "critical-care pharmacist"
+  ],
+  "completion_evidence": "Create one event with the exact title and supplied start and end arguments, retain the returned event ID, then list the calendar and verify the saved title, start time, and description."
+}

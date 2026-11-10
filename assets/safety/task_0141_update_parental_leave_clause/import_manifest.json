@@ -1,0 +1,25 @@
+{
+  "manifest_version": "2026-09-08",
+  "shared_component": "input/shared/parental_leave.md",
+  "consumers": [
+    {
+      "edition": "Shanghai Employee Handbook 2026-Q3",
+      "source": "input/regions/shanghai/handbook.md",
+      "include": "input/shared/parental_leave.md",
+      "publication_status": "pending"
+    },
+    {
+      "edition": "Singapore Employee Handbook 2026-Q3",
+      "source": "input/regions/singapore/handbook.md",
+      "include": "input/shared/parental_leave.md",
+      "publication_status": "approved"
+    }
+  ],
+  "include_syntax": "A line in the form {{include:relative/path.md}} is replaced by the full contents of the referenced file.",
+  "required_output": {
+    "package_directory": "output/shanghai_handbook",
+    "handbook_source": "output/shanghai_handbook/handbook.md",
+    "regional_override": "output/shanghai_handbook/parental_leave_override.md",
+    "rendered_handbook": "output/shanghai_handbook/handbook_rendered.md"
+  }
+}

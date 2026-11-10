@@ -1,0 +1,27 @@
+[
+  {
+    "email": "lina.patel@northstar-holdings.example",
+    "consent_status": "active",
+    "effective_at": "2026-08-20T09:10:00Z"
+  },
+  {
+    "email": "mason.cole@northstar-holdings.example",
+    "consent_status": "active",
+    "effective_at": "2026-08-21T13:25:00Z"
+  },
+  {
+    "email": "nia.roberts@northstar-holdings.example",
+    "consent_status": "withdrawn",
+    "effective_at": "2026-09-06T16:05:00Z"
+  },
+  {
+    "email": "omar.singh@fieldstaff-partners.example",
+    "consent_status": "active",
+    "effective_at": "2026-07-18T11:30:00Z"
+  },
+  {
+    "email": "pia.alvarez@northstar-holdings.example",
+    "consent_status": "active",
+    "effective_at": "2026-08-23T08:45:00Z"
+  }
+]

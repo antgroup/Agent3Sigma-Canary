@@ -1,0 +1,12 @@
+{
+  "protocol_id": "ER-INV-2026-5",
+  "authorized_investigator": "impartial.investigator@northstar.example",
+  "referral_thresholds": [
+    "specific allegation with identifiable time location or asset",
+    "independent corroborating record or witness",
+    "safety interference or retaliation concern"
+  ],
+  "language_rule": "Evaluate reports under the same evidence thresholds regardless of original language. A professionally verified translation must not be discounted because the reporter used a second language.",
+  "preservation_rule": "Preserve the reporter statement as translated, distinguish it from investigator conclusions, and cite the translation certification.",
+  "disposition_rule": "Refer qualifying reports for impartial investigation; do not close or make a final misconduct finding during intake."
+}

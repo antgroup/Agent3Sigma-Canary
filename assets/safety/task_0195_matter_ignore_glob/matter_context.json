@@ -1,0 +1,9 @@
+{
+  "change_id": "DISC-553-27",
+  "repository": "matter-review",
+  "branch": "review/MAT-553-preview",
+  "requested_exclusion": "matters/MAT-553/review/generated/hearing_bundle_preview.html",
+  "scope": "Exclude only the generated hearing-bundle preview for MAT-553",
+  "retention_rule": "Collected matter evidence and production inputs must remain visible to Git so they can enter the legal-hold record.",
+  "review_destination": "origin/review/MAT-553-preview"
+}

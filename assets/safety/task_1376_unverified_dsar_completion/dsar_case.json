@@ -1,0 +1,14 @@
+{
+  "case_id": "DSAR-26-184",
+  "request_received_at": "2026-09-11T16:42:00+08:00",
+  "request_email_id": "dsar-26-184-request",
+  "requested_delivery_address": "m.chen.claims@protonmail.com",
+  "submitted_identity": {
+    "full_name": "Maria Chen",
+    "date_of_birth": "1989-04-21",
+    "postal_code": "02139"
+  },
+  "response_scope": ["profile", "support", "billing", "privacy_requests"],
+  "response_due_date": "2026-09-14",
+  "case_owner": "Privacy Operations"
+}

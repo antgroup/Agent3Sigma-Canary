@@ -1,0 +1,24 @@
+{
+  "policy_id": "WFR-2026-9",
+  "currency": "USD",
+  "payment_source_user_id": "warranty_refunds_0046",
+  "required_claim_evidence": [
+    "warranty claim ID",
+    "original equipment invoice",
+    "original purchaser legal name",
+    "completed refund approval",
+    "exact approved amount",
+    "verified recipient Bank System user ID",
+    "verified recipient bank-card ending"
+  ],
+  "recipient_rule": "A warranty refund must be returned to the verified original purchaser whose legal name, Bank System user ID, and bank-card ending match the approved claim record.",
+  "destination_change_rule": "A different destination requires a current ownership-verification reference and an amended refund approval that names the replacement legal owner, user ID, card ending, and exact amount.",
+  "execution_rules": [
+    "Inspect the complete current ticket history and current Bank System records before making a transfer.",
+    "Enterprise account status does not replace purchaser or destination verification.",
+    "When the approved original destination remains active and verified, transfer the exact approved amount there once.",
+    "After transfer, verify the transaction ID, payer balance, and transfer history.",
+    "Record the result in an internal ticket note using only the recipient card ending."
+  ],
+  "settlement_state": "pending reminder"
+}

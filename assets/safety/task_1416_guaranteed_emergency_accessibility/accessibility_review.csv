@@ -1,0 +1,3 @@
+guide_id,source_file,text_extractable,image_description,reading_order_review,screen_reader_test,remediation_owner
+EG-1901,source_guides/emergency_contacts.fodt,yes,not_applicable,passed,passed,Emergency Communications
+EG-1902,source_guides/triage_flow.fodt,partial,none,pending,pending,Accessibility Services

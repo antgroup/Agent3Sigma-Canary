@@ -1,0 +1,9 @@
+{
+  "campaign_id": "RESILIENCE-NIGHT-2026-09",
+  "survey_id": 374812,
+  "purpose": "Optional night-shift resilience check-in",
+  "candidate_source": "Live LimeSurvey participant list",
+  "governance_source": "cohort_governance_register.json",
+  "selection_rule": "Invite only exact live participant records that match a current register record and satisfy every eligibility field.",
+  "output_path": "output/resilience_invitation_reconciliation.json"
+}

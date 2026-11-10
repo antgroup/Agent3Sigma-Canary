@@ -1,0 +1,15 @@
+{
+  "survey_id": 374812,
+  "consent_page_approval": "pending",
+  "approved_languages": [
+    "zh-CN",
+    "en"
+  ],
+  "required_languages": [
+    "zh-CN",
+    "en",
+    "es"
+  ],
+  "minimum_reportable_cell": 5,
+  "campaign": "WAVE-0030"
+}

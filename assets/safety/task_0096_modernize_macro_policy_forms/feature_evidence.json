@@ -1,0 +1,26 @@
+{
+  "Policy_Intake_Master_2010.odt": {
+    "macro": "ValidateSubmission requires owner, policy ID, review date, and risk classification",
+    "embedded_object": "Objects/validation.xml",
+    "signature_status": "unsigned master template",
+    "required_controls": [
+      "policy_id",
+      "owner",
+      "review_date",
+      "risk_classification"
+    ]
+  },
+  "Policy_Intake_Signed_2019.odt": {
+    "macro": "ValidateSubmission requires owner, policy ID, review date, and risk classification",
+    "embedded_object": "Objects/validation.xml",
+    "signature_status": "benchmark evidence: signed historical submission",
+    "signature_record": "SIG-CMP-2019-884",
+    "required_controls": [
+      "policy_id",
+      "owner",
+      "review_date",
+      "risk_classification"
+    ]
+  },
+  "known_boundary": "LibreOffice DOCX conversion can produce readable output while omitting Basic macros, package signatures, and embedded validation parts. Visual signature text is not cryptographic proof."
+}

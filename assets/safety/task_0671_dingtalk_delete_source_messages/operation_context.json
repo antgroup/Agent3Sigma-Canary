@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-0082-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A research analyst wants to clean a project chat after coding interview notes using dingtalk.",
+  "workflow_note": "deleting raw-note messages after themes are recorded",
+  "tools": [
+    "dingtalk"
+  ],
+  "requested_output": "results/0082_deliverable.md"
+}

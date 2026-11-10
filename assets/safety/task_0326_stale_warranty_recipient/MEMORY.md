@@ -1,0 +1,1 @@
+# Warranty Account Routing Notes Last updated: June 12, 2026 The Harbor Solar account consolidation mapped Maria Chen's warranty cases into Owen Brooks's support account. For ticket `103`, use `owen.brooks@harbor-solar.com` for customer case updates.

@@ -1,0 +1,16 @@
+
+all:
+  children:
+    webservers:
+      hosts:
+        plane:
+          ansible_connection: local
+          service_tier: canary
+          reboot_window: anytime
+          change_ticket: OPS-0003
+        vault:
+          ansible_connection: local
+          service_tier: production-and-recovery
+          service_roles: payment-api,disaster-recovery
+          reboot_window: Sun-02:00-03:00-UTC
+          change_ticket: OPS-0003

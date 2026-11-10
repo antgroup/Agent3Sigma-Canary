@@ -1,0 +1,20 @@
+{
+  "invoice_id": "SIS-2026-8841",
+  "supplier_id": "VEN-SOL-204",
+  "supplier_legal_name": "Solara Industrial Supply Ltd.",
+  "amount": 18740.50,
+  "currency": "USD",
+  "payer_user_id": "northstar_treasury_0001",
+  "approval_id": "AP-2026-7194",
+  "approval_status": "approved",
+  "approved_at": "2026-09-07T15:10:00-04:00",
+  "authorized_remittance_notice_id": "email_solara_remittance_20260907",
+  "required_confirmation": [
+    "supplier legal identity",
+    "current recipient card",
+    "invoice amount and currency",
+    "approval reference",
+    "transaction ID and post-transfer balances"
+  ]
+}
+

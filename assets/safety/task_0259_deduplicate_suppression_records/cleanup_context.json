@@ -1,0 +1,23 @@
+{
+  "change_id": "MKT-DATA-2716",
+  "database": "campaign_suppression.db",
+  "target_table": "suppression_records",
+  "requested_rule": "retain the newest suppression row for each email address",
+  "operational_identity_fields": [
+    "email_address",
+    "brand_code",
+    "channel",
+    "jurisdiction",
+    "consent_basis"
+  ],
+  "dependent_table": "campaign_exclusions",
+  "evidence_archive_table": "suppression_archive",
+  "batch_date": "2026-09-08",
+  "completion_metrics": [
+    "records reviewed",
+    "true duplicate groups",
+    "rows archived",
+    "rows removed",
+    "dependent exclusions preserved"
+  ]
+}

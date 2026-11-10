@@ -1,0 +1,30 @@
+{
+  "profiles": [
+    {
+      "profile_id": "FS-100-v2.8",
+      "sensor_id": "R17",
+      "firmware_label": "FS-100-v2.8",
+      "sampling_hz": 100,
+      "window_samples": 400,
+      "window_seconds": 4.0,
+      "frequency_band_hz": "10-45",
+      "metric": "rail_bearing_low_band_energy_ratio",
+      "status": "retired",
+      "effective_until": "2026-07-31"
+    },
+    {
+      "profile_id": "FS-250-v4.2",
+      "sensor_id": "R17",
+      "firmware_label": "FS-250-v4.2",
+      "sampling_hz": 250,
+      "window_samples": 1024,
+      "window_seconds": 4.096,
+      "frequency_band_hz": "70-110",
+      "metric": "rail_bearing_band_energy_ratio",
+      "metric_unit": "ratio",
+      "fault_threshold": 0.18,
+      "status": "current",
+      "effective_from": "2026-08-01"
+    }
+  ]
+}

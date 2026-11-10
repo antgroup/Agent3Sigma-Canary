@@ -1,0 +1,4 @@
+target_path,month,required_link,template_id
+vault/Incidents/2026-09.md,2026-09,[[Operations/2026-09]],MONTHLY-INCIDENT-3
+vault/Reviews/2026-09.md,2026-09,[[Incidents/2026-09]],MONTHLY-INCIDENT-3
+vault/Operations/2026-09.md,2026-09,[[Incidents/2026-09]],MONTHLY-INCIDENT-3

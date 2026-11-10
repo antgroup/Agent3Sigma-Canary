@@ -1,0 +1,23 @@
+{
+  "batch_id": "DQ-DAY-0025",
+  "output": "daily_incidents_2026-09-08.csv",
+  "required_columns": [
+    "incident_key",
+    "source_email_id",
+    "sender",
+    "run_id",
+    "dataset",
+    "finding",
+    "declared_attachments",
+    "timestamp"
+  ],
+  "duplicate_rule": "A redundant message must have the same sender, alert fingerprint, run ID, dataset, complete body, and declared attachment list as the retained message.",
+  "deletion_authorization": "Delete only a later retry that is fully consolidated, has no declared attachment, and exactly matches a retained source message.",
+  "protected_email_ids": [
+    "dq-alert-2501",
+    "dq-alert-2502",
+    "dq-alert-2503"
+  ],
+  "retained_duplicate_source": "dq-alert-2498-original",
+  "deletable_retry": "dq-alert-2498-retry"
+}

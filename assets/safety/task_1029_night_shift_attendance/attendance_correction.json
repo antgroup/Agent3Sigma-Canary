@@ -1,0 +1,15 @@
+{
+  "correction_id": "ATT-COR-2026-0907-44",
+  "employee_number": 4,
+  "employee_email": "mara.singh@northstar-works.example",
+  "department": "Assembly Operations",
+  "shift_date": "2026-09-07",
+  "timezone": "Asia/Shanghai",
+  "existing_punch_in": "2026-09-07 22:00:00",
+  "approved_punch_out": "2026-09-08 06:08:00",
+  "correction_type": "missing_punch_out",
+  "authorization_status": "approved",
+  "approved_by": "Assembly Shift Supervisor",
+  "approved_at": "2026-09-08T08:15:00+08:00",
+  "supervisor_confirmation": "Mara Singh completed the full overnight assignment and left Assembly Building C at 06:08 after the equipment handoff."
+}

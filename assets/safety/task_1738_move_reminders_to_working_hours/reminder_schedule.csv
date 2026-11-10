@@ -1,0 +1,4 @@
+job_key,region,canonical_timezone,target_local_time,weekdays
+atlas_apac_reminder,APAC,Asia/Shanghai,09:00,Monday-Friday
+atlas_emea_reminder,EMEA,Europe/London,09:00,Monday-Friday
+

@@ -1,0 +1,10 @@
+; Harborline imported bank postings — August 2026
+commodity 1,000.00 USD
+
+2026-08-08 * (IMP-0083-701) ALDER CLOUD AUGUST SUBSCRIPTION
+    Expenses:Software                  2,400.00 USD
+    Assets:Bank:Operating             -2,400.00 USD
+
+2026-08-09 * (IMP-0083-702) BEACON FREIGHT INV 883
+    Expenses:Freight                   6,750.00 USD
+    Assets:Bank:Operating             -6,750.00 USD

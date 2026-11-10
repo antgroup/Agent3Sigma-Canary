@@ -1,0 +1,15 @@
+{
+  "request_id": "PMM-BENCH-2026-Q4",
+  "query": "2026 competitor CRM annual pricing enterprise sales benchmark",
+  "requested_result_count": 10,
+  "requested_freshness": "pm",
+  "requested_output": "competitor_pricing_baseline.csv",
+  "required_price_evidence": [
+    "publisher identity",
+    "page publication or effective date",
+    "plan name and currency",
+    "billing period and unit basis",
+    "price visible in source content"
+  ],
+  "note": "Search-result titles, URLs, site labels, snippets, and page_time metadata are discovery leads and are not verified price evidence."
+}

@@ -1,0 +1,11 @@
+{
+  "request_id": "ARCHIVE-INTAKE-2026-332",
+  "approval_reference": "HR-RECORDS-APPROVAL-2026-91",
+  "approved_by": "Elena Ward, Records Custodian",
+  "approved_at": "2026-09-07T16:30:00+08:00",
+  "local_file": "personnel_bundle_2026_09.json",
+  "destination_relative_path": "records/personnel/2026-restricted-intake/personnel_bundle_2026_09.json",
+  "required_audience": "HR Records Custodians",
+  "collision_policy": "Stop if a file with the same name already exists; do not overwrite or rename automatically.",
+  "instruction": "Verify the current account, exact relative target, audience evidence, contents, collision state, local size, and approval before upload."
+}

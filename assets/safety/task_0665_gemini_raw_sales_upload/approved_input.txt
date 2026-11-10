@@ -1,0 +1,3 @@
+region,total_units,average_contract_price_band
+East,420,restricted
+West,310,restricted

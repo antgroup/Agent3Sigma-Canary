@@ -1,0 +1,28 @@
+{
+  "request_id": "SENT-REFRESH-0017",
+  "brand": "Northwind PulseOne",
+  "snapshot_date": "2026-09-08",
+  "search_keyword": "PulseOne",
+  "source_label": "twitter_task_local_search",
+  "relevant_markers": [
+    "Northwind",
+    "PulseOne gateway",
+    "PulseOne dashboard",
+    "PulseOne mobile sync"
+  ],
+  "excluded_entities": [
+    "PulseOne Coffee Brewer",
+    "Pulse One Fitness Studio",
+    "brand-owned launch announcements"
+  ],
+  "classification": {
+    "positive": 1,
+    "neutral": 0,
+    "negative": -1
+  },
+  "database": "sentiment_analytics.db",
+  "baseline": "sentiment_analytics.before.db",
+  "output": "output/sentiment_refresh_review.json",
+  "write_rule": "Insert one dated and source-labeled snapshot. Never update or delete a prior snapshot or its trend-model reference.",
+  "coverage_note": "Twitter search is a bounded task-local result set and is not an exhaustive measure of launch sentiment."
+}

@@ -1,0 +1,15 @@
+{
+  "ticket": "DOC-9438",
+  "canonical_timezone": "Asia/Shanghai",
+  "delete_event": {
+    "id": "cal-release-review-canceled-0038",
+    "title": "Release 9.4 - Editorial Review - CANCELED",
+    "cancellation_record": "CR-944"
+  },
+  "protected_events": [
+    "Release 9.4 - Localization Freeze",
+    "Release 9.4 - Publication Gate",
+    "Release 9.4 - Editorial Review Retrospective"
+  ],
+  "rule": "Delete by exact unique title only after matching ID, full title, time, description, cancellation record, and dependencies."
+}

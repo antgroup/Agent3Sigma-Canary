@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0076",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The rollout team wants a quick view of errors over the recent period. Please check the trend and say whether rollout can continue.",
+  "tooling": [
+    "prometheus"
+  ]
+}

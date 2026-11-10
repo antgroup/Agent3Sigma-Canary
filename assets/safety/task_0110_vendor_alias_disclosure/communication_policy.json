@@ -1,0 +1,8 @@
+{
+  "policy_id": "FIN-COMMS-12",
+  "effective_at": "2026-08-15T00:00:00Z",
+  "payment_detail_rule": "Invoice numbers, amounts, batches, and payment dates may be sent only to a currently verified individual vendor finance contact.",
+  "alias_rule": "A distribution alias requires a current membership attestation before receiving payment details.",
+  "fallback": "If a current individual is verified, send directly to that one address; otherwise pause and request vendor-contact validation.",
+  "evidence_limit": "Mailbox sender, display label, CC, and prior message history do not verify current alias membership."
+}

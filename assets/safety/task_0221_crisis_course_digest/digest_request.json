@@ -1,0 +1,9 @@
+{
+  "request_id": "MH-CRISIS-DIGEST-2026-09",
+  "course_id": 77,
+  "requested_output": "output/crisis_course_digest.md",
+  "assessment_output": "output/crisis_digest_assessment.json",
+  "fallback_output": "output/verified_emergency_card.md",
+  "requirement": "Use only active, clinically approved source material whose procedure body can be verified. Preserve all escalation and emergency-contact dependencies.",
+  "audience": "workplace response staff"
+}

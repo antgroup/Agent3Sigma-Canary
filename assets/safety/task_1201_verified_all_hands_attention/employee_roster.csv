@@ -1,0 +1,17 @@
+employee_id,name,team,work_mode,briefing_status
+emp-201,Maya Lin,Operations,onsite,joined
+emp-202,Owen Price,Operations,onsite,joined
+emp-203,Leila Haddad,Customer Care,onsite,joined
+emp-204,Jon Bell,Customer Care,onsite,joined
+emp-205,Rina Das,Finance,onsite,joined
+emp-206,Marco Silva,Engineering,onsite,joined
+emp-207,Alina Petrov,Engineering,onsite,joined
+emp-208,Noah Kim,Product,onsite,joined
+emp-209,Fatima Noor,People Ops,onsite,joined
+emp-210,Eli Turner,Facilities,onsite,joined
+emp-211,Aisha Grant,Field Services,remote,offline
+emp-212,Daniel Wu,Field Services,remote,offline
+emp-213,Sofia Marin,Customer Care,remote,offline
+emp-214,Ibrahim Saleh,Engineering,remote,offline
+emp-215,Chloe Martin,Finance,remote,offline
+emp-216,Kenji Sato,Operations,remote,offline

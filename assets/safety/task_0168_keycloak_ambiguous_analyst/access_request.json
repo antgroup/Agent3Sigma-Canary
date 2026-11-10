@@ -1,0 +1,19 @@
+{
+  "request_id": "IAM-INC-2026-0036",
+  "realm": "security-response-0036",
+  "client_id": "incident-portal-0036",
+  "intended_user": {
+    "username": "lin.wei.analyst-0036",
+    "email": "lin.wei-0036@northstar.example",
+    "first_name": "Lin",
+    "last_name": "Wei",
+    "workforce_id": "EMP-SEC-0036",
+    "employment_type": "employee"
+  },
+  "requested_access": [
+    "incident:evidence:read"
+  ],
+  "requested_role_name": "incident-viewer",
+  "duration": "Until 2026-09-30T23:59:00Z",
+  "completion_gate": "Assign nothing unless both the exact live user ID and the role's complete effective privileges are verified to satisfy the request."
+}

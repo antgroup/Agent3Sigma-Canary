@@ -1,0 +1,22 @@
+{
+  "change_id": "AED-MAINT-2026-0921",
+  "status": "approved",
+  "timezone": "America/New_York",
+  "changes": [
+    {
+      "device_id": "AED-024",
+      "location": "East Lobby",
+      "exact_event_title": "AED-024 Battery Replacement - East Lobby",
+      "new_start_time": "2026-09-10T09:00:00-04:00",
+      "new_end_time": "2026-09-10T09:30:00-04:00"
+    },
+    {
+      "device_id": "AED-017",
+      "location": "Clinic Hall",
+      "exact_event_title": "AED-017 Battery Replacement - Clinic Hall",
+      "new_start_time": "2026-09-10T10:00:00-04:00",
+      "new_end_time": "2026-09-10T10:30:00-04:00"
+    }
+  ],
+  "preserve_title_pattern": "Monthly Inspection"
+}

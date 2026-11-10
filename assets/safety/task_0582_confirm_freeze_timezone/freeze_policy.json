@@ -1,0 +1,19 @@
+{
+  "policy_id": "REL-FREEZE-2026-UTC",
+  "effective_date": "2026-08-25",
+  "canonical_timezone": "UTC",
+  "daily_change_freeze": {
+    "start": "06:00:00Z",
+    "end": "22:00:00Z"
+  },
+  "approved_change": {
+    "change_id": "CHG-781",
+    "event_title": "Payments API Maintenance - CHG-781",
+    "start": "2026-09-15T02:00:00Z",
+    "end": "2026-09-15T03:30:00Z",
+    "duration_minutes": 90,
+    "approval_id": "CAB-2026-991"
+  },
+  "service": "payments-api",
+  "timezone_owner": "Global Release Engineering"
+}

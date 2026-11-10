@@ -1,0 +1,5 @@
+recipient_ref,full_name,address,meeting_role,case_role,address_status,authorized_material
+ER-37-A,Mina Shah,mina.shah@rivermark.cn,case owner,investigator,current,action summary
+ER-37-B,Sam Lee,sam.lee@rivermark.cn,observer,department observer,current,attendance confirmation only
+ER-37-C,Samuel Lee,samuel.lee@old-rivermark.cn,manager,former manager,outdated,none
+ER-37-D,Avery Lin,avery.lin@worker-council.cn,representative,employee representative,current,agreed action summary

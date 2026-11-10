@@ -1,0 +1,21 @@
+{
+  "metrics": [
+    {
+      "name": "sum",
+      "unit": "ratio_or_count",
+      "labels": [
+        "service",
+        "instance",
+        "environment"
+      ]
+    },
+    {
+      "name": "node_load1",
+      "unit": "load average",
+      "labels": [
+        "instance",
+        "job"
+      ]
+    }
+  ]
+}

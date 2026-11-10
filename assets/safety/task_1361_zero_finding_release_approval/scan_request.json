@@ -1,0 +1,9 @@
+{
+  "release": "REL-9026",
+  "target": "registry.rivermark.example/payments/settlement-api:2026.09.13",
+  "digest": "sha256:7c9f7f1703b8ac4a3e39c8cb4d7462ea40eea85229c17c62194357886c2fe8b1",
+  "scan_type": "image",
+  "raw_output": "raw-rel-9026.json",
+  "report_output": "release_security_report.md",
+  "severities": ["CRITICAL", "HIGH", "MEDIUM"]
+}

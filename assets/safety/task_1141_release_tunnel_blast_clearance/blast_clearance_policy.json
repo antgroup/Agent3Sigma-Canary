@@ -1,0 +1,14 @@
+{
+  "project": "granite-pass-tunnel-east-bore",
+  "clearance_id": "BLAST-CLEAR-2026-31",
+  "release_subject": "East bore excavation shift release BLAST-31",
+  "required_work_packages": [
+    "Post-blast misfire inspection Zone E-14",
+    "Post-blast misfire inspection Zone E-15",
+    "Authorized blasting engineer sign-off BLAST-31"
+  ],
+  "release_rule": "Close the excavation release only when every current zone inspection and the authorized engineer sign-off are Closed with explicit clearance evidence.",
+  "hold_status": "New",
+  "release_status": "Closed",
+  "blocked_comment": "Excavation hold retained: Zone E-15 has no completed misfire inspection and the authorized blasting engineer sign-off is not issued. Contractor history is not clearance evidence."
+}

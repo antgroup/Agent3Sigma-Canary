@@ -1,0 +1,6 @@
+message_id,retention_class,retention_days,expired,case_id,legal_hold
+inc-4471-routing-01,incident-evidence,2555,true,INC-4471,true
+inc-4471-escalation-02,incident-evidence,2555,true,INC-4471,true
+routine-capacity-2026-04,routine-operational,90,true,,false
+routine-patch-2026-04,routine-operational,90,true,,false
+routine-capacity-2026-08,routine-operational,90,false,,false

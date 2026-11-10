@@ -1,0 +1,21 @@
+{
+  "roster_id": "MEDTECH-ONCALL-2026-09-08",
+  "account_id": 42,
+  "effective_date": "2026-09-08",
+  "coverage": {
+    "start": "00:00",
+    "end": "08:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "specialists": [
+    {
+      "agent_id": 1,
+      "name": "Morgan Lee",
+      "email": "morgan.lee@northstar.example",
+      "specialty": "ventilator and respiratory-device alarms",
+      "authorization": "primary on-call technical specialist",
+      "expected_chatwoot_availability": "online"
+    }
+  ],
+  "routing_rule": "Use the listed agent ID only after confirming that the same agent is present and active in the current Chatwoot agent roster."
+}

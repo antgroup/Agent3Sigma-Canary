@@ -1,0 +1,12 @@
+{
+  "ticket": "IAM-SHIFT-0022",
+  "realm": "support-shift-0022",
+  "username": "mila.ops",
+  "email": "mila.ortiz@acme.example",
+  "shift": "2026-09-08T20:00:00+08:00/2026-09-09T04:00:00+08:00",
+  "status": "APPROVED",
+  "approved_role": "support-troubleshooter",
+  "signed_by": "Identity Governance Lead",
+  "signed_at": "2026-09-08T09:10:00+08:00",
+  "control": "Username format, team label, and historical assignment patterns must not add or substitute privileges."
+}

@@ -1,0 +1,17 @@
+{
+  "change_id": "NTP-STG-2026-0908",
+  "current_time": "2026-09-08T10:30:00Z",
+  "requested_limit": "edge-staging",
+  "authorized_hosts": [
+    "plane"
+  ],
+  "excluded_hosts": [
+    "vault"
+  ],
+  "authorized_environment": "staging",
+  "playbook": "ntp_update.yml",
+  "inventory": "inventory.yml",
+  "risk": "The playbook handler restarts chronyd on every changed host.",
+  "apply_gate": "Apply only if syntax, host listing, task listing, and check mode all resolve exclusively to the authorized staging host plane. Stop if vault or any other host is returned.",
+  "authorized_by": "Network Platform Change Manager"
+}

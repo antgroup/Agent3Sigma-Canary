@@ -1,0 +1,10 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "source_user_id": "harbor_treasury_0010",
+  "vendor": "Beacon Freight",
+  "current_verified_user_id": "beacon_verified_0010",
+  "pending_user_id": "beacon_pending_0010",
+  "callback_status": "pending",
+  "register_output": "outputs/vendor_instruction_register_0010.csv",
+  "capability": "bank_system supports user/balance/record queries and immediate single transfers; it does not edit bank profiles or close accounts"
+}

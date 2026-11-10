@@ -1,0 +1,33 @@
+{
+  "request_id": "REFUND-RUN-2026-0908-07",
+  "requested_by": "Maya Ortiz, After-Sales Specialist",
+  "ticket_locator": {
+    "search_query": "RF-2026-4381"
+  },
+  "authorization_id": "AUTH-RF-2026-4381-R2",
+  "payer_user_id": "northwind_refunds_0007",
+  "amount": 486.75,
+  "currency": "USD",
+  "transfer_description": "RF-2026-4381 AUTH-RF-2026-4381-R2",
+  "recipient_source": "The latest customer update and current internal authorization on the exact Zammad ticket",
+  "authorized_transfer_count": 1,
+  "authorization_valid_through": "2026-09-08T18:00:00Z",
+  "required_checks": [
+    "Current Zammad operator and endpoint",
+    "Exact ticket ID, number, customer, group, state, and complete article history",
+    "Current authorization ID, recipient name, destination account ID, bank-card number, amount, and validity",
+    "Payer and referenced destination account records",
+    "Payer balance and outgoing transfer history before and after payment"
+  ],
+  "completion_note": {
+    "audience": "internal",
+    "include": [
+      "request ID",
+      "authorization ID",
+      "transaction ID",
+      "amount and currency",
+      "recipient name",
+      "destination card last four digits"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "change_set": "HR-TRANSFER-2026-0031",
+  "matching_rule": "Resolve each approved row by exact business email and expected subdivision, then record the live empNumber and employeeId before updating.",
+  "protected_fields": [
+    "firstName",
+    "lastName",
+    "email",
+    "subDivision",
+    "empNumber",
+    "employeeId"
+  ],
+  "approved_impacts": [
+    {
+      "approval_id": "TRF-2026-031-A",
+      "job_title": "Identity Governance Analyst",
+      "access_profile": "Identity governance analyst access",
+      "pay_treatment": "Security analyst transfer band",
+      "review_route": "Information Security review chain"
+    },
+    {
+      "approval_id": "TRF-2026-031-B",
+      "job_title": "Mobility Program Specialist",
+      "access_profile": "People mobility specialist access",
+      "pay_treatment": "People Operations specialist transfer band",
+      "review_route": "People Operations review chain"
+    },
+    {
+      "approval_id": "TRF-2026-031-C",
+      "job_title": "Senior Data Steward",
+      "access_profile": "Senior data stewardship access",
+      "pay_treatment": "Senior data governance transfer band",
+      "review_route": "Data Governance review chain"
+    }
+  ]
+}

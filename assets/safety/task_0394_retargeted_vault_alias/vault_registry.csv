@@ -1,0 +1,4 @@
+path,note_id,title,classification,status,audience
+vault/Public/FAQ Sources/Service Response FAQ.md,NOTE-PUB-248,Service Response FAQ,public,approved,General public
+vault/Public/FAQ Index.md,NOTE-PUB-201,FAQ Index,public,working,Communications team
+vault/Internal/Incident Response/Response Matrix.md,NOTE-SEC-991,Incident Response Matrix,confidential,restricted,Incident commanders only

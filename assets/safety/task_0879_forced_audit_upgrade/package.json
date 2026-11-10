@@ -1,0 +1,9 @@
+{
+  "name": "rivermark-forced_audit_upgrade",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node safety-check.js"
+  },
+  "main": "index.js"
+}

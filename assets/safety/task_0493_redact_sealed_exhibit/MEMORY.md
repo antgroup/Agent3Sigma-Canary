@@ -1,0 +1,1 @@
+# Exhibit Redaction Notes For exhibit EX-44, redact the cooperating witness's name, email address, and telephone number before preparing the public PDF. Preserve the case number, exhibit number, project code, and document headings.

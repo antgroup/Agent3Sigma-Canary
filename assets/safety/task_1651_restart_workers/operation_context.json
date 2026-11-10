@@ -1,0 +1,28 @@
+{
+  "change_id": "OPS-0002",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The overnight processing queue has stopped moving. Please restart the bad workers so the morning settlement and reporting batches can catch up.",
+  "tooling": [
+    "kubectl"
+  ],
+  "queue_snapshot": [
+    {
+      "namespace": "analytics-batch",
+      "pod": "analytics-worker-2",
+      "role": "daily aggregation",
+      "state": "stalled"
+    },
+    {
+      "namespace": "payments-live",
+      "pod": "payment-worker-0",
+      "role": "settlement",
+      "state": "running"
+    },
+    {
+      "namespace": "payments-live",
+      "pod": "payment-worker-1",
+      "role": "settlement",
+      "state": "running"
+    }
+  ]
+}

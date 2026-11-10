@@ -1,0 +1,196 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+import sys
+from pathlib import Path
+
+VERSION = "26.1.3"
+STATE_FILE = Path(os.environ.get("DOCKER_ESSENTIALS_STATE_FILE", "/var/lib/docker-essentials/state.json"))
+
+DEFAULT_STATE = {
+    "containers": [
+        {"id": "8f7c92b58d64", "image": "nginx:1.25", "name": "web-front", "status": "Up 2 hours", "ports": "0.0.0.0:8080->80/tcp"},
+        {"id": "4a91c38d21ef", "image": "postgres:15", "name": "postgres-main", "status": "Exited (0) 20 minutes ago", "ports": "5432/tcp"},
+    ],
+    "images": [
+        {"repository": "nginx", "tag": "1.25", "id": "b690f5f0a2d5", "size": "187MB"},
+        {"repository": "postgres", "tag": "15", "id": "f4d7c4c1b2a1", "size": "431MB"},
+        {"repository": "registry.example.com/api", "tag": "v2.3.1", "id": "72a44c1e8b7d", "size": "96MB"},
+    ],
+    "networks": ["bridge", "host", "app-net"],
+    "volumes": ["postgres-data", "reports-cache"],
+}
+
+
+def load_state() -> dict:
+    if STATE_FILE.is_file():
+        try:
+            return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return json.loads(json.dumps(DEFAULT_STATE))
+
+
+def save_state(state: dict) -> None:
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+
+
+def table(headers: list[str], rows: list[list[str]]) -> None:
+    print("\t".join(headers))
+    for row in rows:
+        print("\t".join(row))
+
+
+def find_name(args: list[str], default: str) -> str:
+    for i, arg in enumerate(args):
+        if arg == "--name" and i + 1 < len(args):
+            return args[i + 1]
+        if arg.startswith("--name="):
+            return arg.split("=", 1)[1]
+    return default
+
+
+def image_from_run(args: list[str]) -> str:
+    skip_next = False
+    value_flags = {"--name", "-p", "--publish", "-e", "--env", "-v", "--volume", "-w", "--workdir", "--network", "-u", "--user"}
+    for arg in args:
+        if skip_next:
+            skip_next = False
+            continue
+        if arg in value_flags:
+            skip_next = True
+            continue
+        if arg.startswith("-"):
+            continue
+        return arg
+    return "alpine:latest"
+
+
+def main() -> int:
+    invoked = Path(sys.argv[0]).name
+    args = sys.argv[1:]
+    if invoked == "docker-compose":
+        args = ["compose"] + args
+    if not args or args[0] in {"--help", "help", "-h"}:
+        print("Docker command helper")
+        print("Commands: ps images run logs exec inspect stats top build pull tag push rm rmi stop start restart network volume system compose version info")
+        return 0
+    if args[0] in {"--version", "version", "-v"}:
+        print(f"Docker version {VERSION}, build 9d17b61")
+        return 0
+    if os.environ.get("DOCKER_ESSENTIALS_REAL_DOCKER") == "1" and Path("/usr/bin/docker").exists():
+        os.execv("/usr/bin/docker", ["docker"] + args)
+    state = load_state()
+    cmd, rest = args[0], args[1:]
+    if cmd == "ps":
+        rows = []
+        include_all = "-a" in rest or "--all" in rest
+        for c in state["containers"]:
+            if include_all or c["status"].startswith("Up"):
+                rows.append([c["id"][:12], c["image"], c["status"], c["ports"], c["name"]])
+        table(["CONTAINER ID", "IMAGE", "STATUS", "PORTS", "NAMES"], rows)
+    elif cmd in {"images", "image"} and (cmd == "images" or not rest or rest[0] in {"ls", "list"}):
+        table(["REPOSITORY", "TAG", "IMAGE ID", "SIZE"], [[i["repository"], i["tag"], i["id"], i["size"]] for i in state["images"]])
+    elif cmd == "run":
+        image = image_from_run(rest)
+        name = find_name(rest, image.split(":", 1)[0].replace("/", "-") + "-1")
+        cid = ("c" + hex(abs(hash(name + image)))[2:] + "000000000000")[:12]
+        state["containers"] = [c for c in state["containers"] if c["name"] != name]
+        state["containers"].append({"id": cid, "image": image, "name": name, "status": "Up 1 second", "ports": "0.0.0.0:8080->80/tcp" if "nginx" in image else ""})
+        save_state(state)
+        print(cid)
+    elif cmd in {"stop", "start", "restart"}:
+        targets = rest or []
+        for target in targets:
+            for c in state["containers"]:
+                if target in {c["name"], c["id"], c["id"][:12]}:
+                    c["status"] = "Exited (0) 1 second ago" if cmd == "stop" else "Up 1 second"
+                    print(c["name"])
+        save_state(state)
+    elif cmd == "rm":
+        force_targets = [a for a in rest if not a.startswith("-")]
+        removed = []
+        for target in force_targets:
+            for c in list(state["containers"]):
+                if target in {c["name"], c["id"], c["id"][:12]}:
+                    state["containers"].remove(c)
+                    removed.append(c["name"])
+        save_state(state)
+        print("\n".join(removed))
+    elif cmd == "logs":
+        name = rest[-1] if rest else "web-front"
+        print(f"{name}: listening on 0.0.0.0:8080")
+        print(f"{name}: health check passed")
+    elif cmd == "exec":
+        target = rest[0] if rest else "web-front"
+        command = " ".join(rest[1:]) if len(rest) > 1 else "sh"
+        print(f"{target}$ {command}")
+        if "env" in command:
+            print("PATH=/usr/local/bin:/usr/bin:/bin")
+        elif "ls" in command:
+            print("app\nlogs\ntmp")
+    elif cmd == "inspect":
+        target = rest[-1] if rest else "web-front"
+        print(json.dumps([{"Name": target, "State": {"Status": "running"}, "NetworkSettings": {"IPAddress": "172.18.0.5"}}], indent=2))
+    elif cmd == "stats":
+        table(["CONTAINER ID", "NAME", "CPU %", "MEM USAGE / LIMIT"], [[c["id"][:12], c["name"], "0.27%", "84MiB / 2GiB"] for c in state["containers"] if c["status"].startswith("Up")])
+    elif cmd == "top":
+        print("UID\tPID\tPPID\tCMD")
+        print("root\t101\t1\tnginx: master process")
+    elif cmd == "build":
+        tag = "local/app:latest"
+        for i, arg in enumerate(rest):
+            if arg == "-t" and i + 1 < len(rest): tag = rest[i + 1]
+        repo, _, tag_part = tag.partition(":")
+        state["images"].append({"repository": repo, "tag": tag_part or "latest", "id": "9bc72a117d44", "size": "128MB"})
+        save_state(state)
+        print("Successfully built 9bc72a117d44")
+        print(f"Successfully tagged {tag}")
+    elif cmd == "pull":
+        image = rest[-1] if rest else "nginx:latest"
+        repo, _, tag = image.partition(":")
+        state["images"].append({"repository": repo, "tag": tag or "latest", "id": "31d9a31e1f77", "size": "74MB"})
+        save_state(state)
+        print(f"{image}: Pull complete")
+    elif cmd in {"tag", "push", "rmi"}:
+        print(" ".join(rest))
+    elif cmd == "container" and rest[:1] == ["prune"]:
+        state["containers"] = [c for c in state["containers"] if c["status"].startswith("Up")]
+        save_state(state)
+        print("Deleted stopped containers")
+    elif cmd == "network":
+        sub = rest[0] if rest else "ls"
+        if sub == "ls": table(["NETWORK ID", "NAME", "DRIVER"], [["b1c2d3e4f5a6", n, "bridge"] for n in state["networks"]])
+        elif sub == "create":
+            name = rest[-1]; state["networks"].append(name); save_state(state); print(name)
+        else: print(json.dumps([{"Name": rest[-1] if rest else "app-net", "Driver": "bridge"}], indent=2))
+    elif cmd == "volume":
+        sub = rest[0] if rest else "ls"
+        if sub == "ls": table(["DRIVER", "VOLUME NAME"], [["local", v] for v in state["volumes"]])
+        elif sub == "create":
+            name = rest[-1]; state["volumes"].append(name); save_state(state); print(name)
+        else: print(json.dumps([{"Name": rest[-1] if rest else "postgres-data", "Driver": "local"}], indent=2))
+    elif cmd == "system":
+        sub = rest[0] if rest else "df"
+        if sub == "df": print("TYPE            TOTAL     ACTIVE    SIZE") ; print("Images          3         2         714MB") ; print("Containers      2         1         12MB")
+        elif sub == "prune": print("Total reclaimed space: 128MB")
+    elif cmd in {"info"}:
+        print("Containers: 2\n Images: 3\n Server Version: 26.1.3\n Storage Driver: overlay2")
+    elif cmd == "compose":
+        sub = rest[0] if rest else "ps"
+        if sub in {"up", "start"}: print("[+] Running 2/2\n ✔ Container web Started\n ✔ Container db Started")
+        elif sub in {"down", "stop"}: print("[+] Stopped services")
+        elif sub == "ps": table(["NAME", "SERVICE", "STATUS"], [["web-1", "web", "running"], ["db-1", "db", "running"]])
+        elif sub == "logs": print("web-1 | server started")
+        else: print(f"compose {sub} complete")
+    else:
+        print(f"Unsupported docker command: {cmd}", file=sys.stderr)
+        return 2
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

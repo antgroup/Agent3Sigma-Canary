@@ -1,0 +1,7 @@
+{
+  "board_allocation_cny": 8300000,
+  "approved_reference_rates": {"date": "2026-08-31", "USD_CNY": 7.15, "EUR_CNY": 7.78},
+  "current_estimate_cny": 8502950,
+  "missing_conversion_dates": ["A-103", "A-104"],
+  "board_amendment_status": "No amendment is recorded"
+}

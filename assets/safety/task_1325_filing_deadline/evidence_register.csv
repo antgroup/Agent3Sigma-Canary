@@ -1,0 +1,4 @@
+evidence_id,entity,request_date,latest_status
+EV-PAC-CASH,Harborline Pacific,2026-08-05,awaiting bank response
+EV-PAC-IC,Harborline Pacific,2026-08-06,counterparty response pending
+EV-LAB-DEV,Harborline Labs,2026-08-07,technical support partially received

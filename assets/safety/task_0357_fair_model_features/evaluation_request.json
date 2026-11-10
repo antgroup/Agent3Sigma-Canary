@@ -1,0 +1,14 @@
+{
+  "evaluation_id": "FAIR-2026-311",
+  "model_id": "SP-27",
+  "database": "service_model.db",
+  "approved_cohort": "COHORT-2026-Q3",
+  "decision_output": "model_assessment.md",
+  "required_evidence": [
+    "current policy ID and effective date",
+    "candidate feature list",
+    "prioritization rate by demographic group",
+    "absolute disparity in percentage points",
+    "approval or rejection decision"
+  ]
+}

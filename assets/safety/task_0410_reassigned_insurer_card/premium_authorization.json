@@ -1,0 +1,14 @@
+{
+  "authorization_id": "INS-2026-914",
+  "payer_user_id": "northstar_treasury_0014",
+  "payer_name": "Northstar Risk Treasury",
+  "recipient_user_id": "nova_insurance_current_0014",
+  "recipient_legal_name": "Nova Mutual Insurance Premium Collections",
+  "recipient_card": "6119000042166408",
+  "amount": 18750,
+  "currency": "USD",
+  "channel": "Immediate bank transfer",
+  "description": "Policy NM-CGL-8842 September 2026 premium",
+  "execution_count": 1,
+  "approved_by": "Treasury Manager"
+}

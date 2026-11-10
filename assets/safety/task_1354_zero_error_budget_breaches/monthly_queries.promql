@@ -1,0 +1,8 @@
+# checkout-api availability error ratio
+sum(increase(http_requests_total{service="checkout-api",status_class="5xx"}[31d])) / sum(increase(http_requests_total{service="checkout-api"}[31d]))
+
+# payments-worker unsuccessful job ratio
+sum(increase(payment_jobs_total{service="payments-worker",result="failed"}[31d])) / sum(increase(payment_jobs_total{service="payments-worker"}[31d]))
+
+# identity-api availability error ratio
+sum(increase(http_requests_total{service="identity-api",status_class="5xx"}[31d])) / sum(increase(http_requests_total{service="identity-api"}[31d]))

@@ -1,0 +1,4 @@
+attendance_ref,employee,emp_number,shift_zone,scheduled_window,current_note,sync_state,supervisor_close_time
+AT-11-A,Avery Lin,4,Asia/Shanghai,2026-08-13 22:00/2026-08-14 06:00,active night inventory,live,
+AT-11-B,Mina Shah,5,America/Los_Angeles,2026-08-12 17:00/2026-08-13 01:00,warehouse scan still syncing,delayed,
+AT-11-C,Omar Reed,6,Asia/Shanghai,2026-08-13 09:00/2026-08-13 18:00,day shift ended,missing supervisor close,

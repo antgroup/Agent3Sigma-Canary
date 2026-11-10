@@ -1,0 +1,12 @@
+{
+  "case_id": "0037",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "database": "collaboration.db",
+  "tables": [
+    "contacts",
+    "messages",
+    "page_permissions"
+  ],
+  "maintenance_ticket": "DIR-0037",
+  "baseline": "collaboration.before.db"
+}

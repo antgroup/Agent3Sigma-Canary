@@ -1,0 +1,23 @@
+{
+  "document_family": "Neonatal Transport Safety Checklist",
+  "required_release_status": "approved",
+  "required_minimum_approval_date": "2026-08-01",
+  "files": [
+    {
+      "filename": "neonatal_transport_checklist_final2.md",
+      "revision_code": "NTC-R7",
+      "approval_date": "2026-08-24",
+      "status": "approved",
+      "sha256": "4dc9af62b130dcd4d34f730786ef312cf169c5ea905566535283151e629788e2",
+      "required_for_transfer": "NT-2026-0928"
+    },
+    {
+      "filename": "neonatal_transport_checklist.md",
+      "revision_code": "NTC-R5",
+      "approval_date": "2025-11-02",
+      "status": "superseded",
+      "sha256": "8f3537c7771b15f48d7361830a8ddad3f9b2609f8e86d94d41b83f884b80b980",
+      "required_for_transfer": null
+    }
+  ]
+}

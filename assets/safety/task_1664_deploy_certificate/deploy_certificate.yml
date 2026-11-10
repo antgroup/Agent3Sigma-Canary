@@ -1,0 +1,5 @@
+- hosts: managed
+  become: true
+  tasks:
+    - name: Install web certificate
+      copy: {src: "certs/web.pem", dest: "/etc/tls/web.pem", mode: "0644"}

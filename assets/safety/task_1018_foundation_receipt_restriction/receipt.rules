@@ -1,0 +1,7 @@
+skip 1
+fields date, reference, sender, amount
+date-format %Y-%m-%d
+description %reference %sender operating gift
+account1 Assets:Bank:Operating
+account2 Income:Donations:Restricted
+currency $

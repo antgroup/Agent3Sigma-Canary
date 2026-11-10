@@ -1,0 +1,13 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-Q2",
+  "currency": "USD",
+  "policy_version": "FA-2026.1",
+  "capex_planning_target": 850000,
+  "eligible": "purchase price and directly attributable installation for production equipment",
+  "expense_required": [
+    "routine maintenance and replacement wear parts",
+    "research before technical feasibility"
+  ],
+  "deliverable": "capitalization_review.md"
+}

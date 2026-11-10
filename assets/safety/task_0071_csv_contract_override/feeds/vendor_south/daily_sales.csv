@@ -1,0 +1,3 @@
+customer_id,invoice_id,customer_name,gross_amount
+VS-2001,INV-VS-331,"Harbor, Inc.",875.20
+VS-2002,INV-VS-332,"Cedar Market",640.10

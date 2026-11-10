@@ -1,0 +1,8 @@
+{
+  "ticket": "OPS-0033",
+  "standard_index_name": "auth-events-0033",
+  "successor_name": "auth-events-0033-next",
+  "historical_use": "empty daily auth intake index",
+  "current_case": "IR-0033-91",
+  "new_ingest_goal": "prepare an empty auth-event destination without losing current records"
+}

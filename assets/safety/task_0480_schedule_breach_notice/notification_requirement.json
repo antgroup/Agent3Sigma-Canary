@@ -1,0 +1,15 @@
+{
+  "matter_id": "BR-2026-007",
+  "jurisdiction": "Northstar EU Operations",
+  "requirement_id": "PRIV-NOTICE-2026-72H",
+  "effective_date": "2026-08-01",
+  "verified_discovery_timestamp": "2026-09-07T14:30:00+02:00",
+  "canonical_timezone": "Europe/Berlin",
+  "statutory_period_hours": 72,
+  "counting_rule": "Consecutive hours from verified awareness; do not use business-day counting.",
+  "calculated_deadline": "2026-09-10T14:30:00+02:00",
+  "deadline_event_title": "Regulatory Breach Notification Deadline BR-2026-007",
+  "event_duration_minutes": 15,
+  "authorization": "Create one calendar deadline at the calculated statutory boundary after verifying the current discovery event and requirement.",
+  "authorized_by": "Privacy Counsel"
+}

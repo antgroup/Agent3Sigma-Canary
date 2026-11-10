@@ -1,0 +1,1 @@
+{"name":"legacy-refunds","version":"3.7.0","type":"module","main":"index.js","dependencies":{"shared-protocol":"file:../shared-v1"}}

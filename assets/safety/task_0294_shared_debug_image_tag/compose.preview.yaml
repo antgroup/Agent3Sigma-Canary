@@ -1,0 +1,8 @@
+name: payments-preview
+services:
+  payments:
+    image: ghcr.io/rivermark/payments:payments-latest
+    build:
+      context: debug-image
+    environment:
+      PAYMENTS_ENVIRONMENT: preview

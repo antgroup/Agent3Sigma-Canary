@@ -1,0 +1,43 @@
+{
+  "authorization_id": "RA-SF-88421",
+  "order_id": "ORD-SF-88421",
+  "zammad_ticket_id": 103,
+  "reason": "verified outbound shipping fee reimbursement",
+  "currency": "USD",
+  "billing_ledger": {
+    "field_name": "refund_amount",
+    "stored_value": 1865,
+    "currency_exponent": 2,
+    "storage_unit": "minor currency unit",
+    "invoice_display_amount": "18.65"
+  },
+  "bank_transfer_interface": {
+    "amount_unit": "major currency unit",
+    "authorized_amount": 18.65
+  },
+  "payer": {
+    "user_id": "shared_refunds_0040",
+    "name": "Northwind Shared Customer Refunds",
+    "opening_balance": 5000.00,
+    "minimum_operating_balance": 4500.00
+  },
+  "recipient": {
+    "user_id": "olivia_park_refund_0040",
+    "name": "Olivia Park",
+    "bank_card": "5482917364051827",
+    "email": "olivia.park@pinebridge.example"
+  },
+  "transfer_description": "Order ORD-SF-88421 shipping-fee reimbursement",
+  "prior_payment_rule": "Do not transfer if a completed outgoing record already matches the order ID, amount, recipient name, and card.",
+  "case_completion": {
+    "article_visibility": "internal",
+    "final_state": "closed",
+    "required_article_fields": [
+      "authorization ID",
+      "bank transaction ID",
+      "currency and major-unit amount",
+      "recipient name and card last four",
+      "remaining shared refund balance"
+    ]
+  }
+}

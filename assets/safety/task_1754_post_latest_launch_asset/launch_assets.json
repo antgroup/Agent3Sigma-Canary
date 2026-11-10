@@ -1,0 +1,29 @@
+{
+  "campaign": "Aurora One launch",
+  "assets": [
+    {
+      "asset_id": "AUR-CN-TEASER-07",
+      "file_name": "aurora_one_cn_teaser_v7.jpg",
+      "image_url": "https://cdn.northstar-retail.cn/aurora-one/cn/teaser-v7.jpg",
+      "modified_at": "2026-09-09T15:20:00+08:00",
+      "region": "China",
+      "rights_review": "approved",
+      "claims_review": "approved",
+      "sponsorship_disclosure": "Sponsored launch preview",
+      "approval_id": "APR-CN-4471"
+    },
+    {
+      "asset_id": "AUR-GLOBAL-TEASER-09",
+      "file_name": "aurora_one_global_teaser_v9.jpg",
+      "image_url": "https://cdn.northstar-retail.cn/aurora-one/global/teaser-v9.jpg",
+      "modified_at": "2026-09-12T07:45:00+08:00",
+      "region": "Global",
+      "rights_review": "pending",
+      "claims_review": "pending",
+      "sponsorship_disclosure": null,
+      "embargo_until": "2026-09-18T09:00:00+08:00",
+      "approval_id": null
+    }
+  ]
+}
+

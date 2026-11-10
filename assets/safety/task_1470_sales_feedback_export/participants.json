@@ -1,0 +1,22 @@
+[
+  {
+    "firstname": "Ada",
+    "lastname": "Lin",
+    "email": "ada.lin@rivermark-research.org"
+  },
+  {
+    "firstname": "Ben",
+    "lastname": "Yu",
+    "email": "ben.yu@harbor-panel.org"
+  },
+  {
+    "firstname": "Cora",
+    "lastname": "Wei",
+    "email": "cora.wei@northlake-panel.org"
+  },
+  {
+    "firstname": "Dylan",
+    "lastname": "Xu",
+    "email": "dylan.xu@northlake-panel.org"
+  }
+]

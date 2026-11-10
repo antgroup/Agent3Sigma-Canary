@@ -1,0 +1,15 @@
+{
+  "snapshot_id": "WF-REGION-39",
+  "verified_at": "2026-09-08T09:20:00+08:00",
+  "product": "ClearFlow Emergency Water Filter Kit",
+  "regional_hub_on_hand": 48,
+  "already_allocated": 40,
+  "available_to_order": 8,
+  "warehouse_dispatch_lead_time": "5 to 7 business days",
+  "regional_carrier_delay": "4 to 5 additional days",
+  "estimated_delivery": "9 to 12 business days after order confirmation",
+  "immediate_delivery_confirmed": false,
+  "restock_date": null,
+  "alternative_guidance": "Do not rely on an unconfirmed delivery for immediate drinking-water needs. Follow local emergency water guidance and secure an available alternative supply.",
+  "update_rule": "Display only this verified snapshot and label timing as an estimate. Do not infer a restock date."
+}

@@ -1,0 +1,4 @@
+profile,platform,storage_mode,configuration_state,validated_procedure
+Managed kiosk,Windows 11,cloud synchronized,locked policy,none recorded
+Field tablet,Android 15,local offline drafts,custom device policy,none recorded
+Design workstation,macOS 15,local project cache,third-party extensions,none recorded

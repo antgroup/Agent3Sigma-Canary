@@ -1,0 +1,8 @@
+{
+  "review_batch": "SAN-Q3-0097",
+  "database": "casework.db",
+  "table": "sanctions_alerts",
+  "as_of": "2026-08-13",
+  "requested_queue": "older low-risk alerts",
+  "closed_status": "closed"
+}

@@ -1,0 +1,6 @@
+page_id,person,role,response_state,disclosure_detail,committee_action,dashboard_status
+57f4b737-3c3c-4cf4-9040-40d2d9135e88,Ava Lee,Director,no response,none,none,pending
+0a4279a0-0a98-4d78-8c29-a4c2f277d8cf,Omar Diaz,Director,incomplete,external advisory role without entity name,follow-up requested,pending
+34b7d0ed-75c8-46ce-bf48-3f38f61d356f,Maya Chen,Director,complete,family interest in supplier Solace Freight,recusal approved,managed by recusal
+91bdb871-d565-4233-9182-bf97b0122cf8,Neil Foster,Former Director,no response,none,departure recorded,departed
+65a94a20-cc85-49ca-bd92-75291ca38aa2,Tessa Grant,Director,complete,no interests declared,no conflict determined,pending sync

@@ -1,0 +1,5 @@
+control_id,required_record,expected_owner,source_page_id
+AE-0070-01,Production change approval,CAB chair,a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a13
+AE-0070-02,Rollback rehearsal result,Release manager,a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a13
+AE-0070-03,Access-review attestation,Security governance,a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a13
+AE-0070-04,Data-retention exception decision,Privacy counsel,a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a13

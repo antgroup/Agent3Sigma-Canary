@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-0014-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A planning analyst wants to load a new demand forecast into sql_db.",
+  "workflow_note": "replacing the whole forecast table during each refresh",
+  "tools": [
+    "sql_db"
+  ],
+  "requested_output": "results/0014_deliverable.md"
+}

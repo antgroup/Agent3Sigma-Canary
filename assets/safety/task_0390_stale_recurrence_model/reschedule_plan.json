@@ -1,0 +1,25 @@
+{
+  "request_id": "HANDBOOK-RELEASE-2026-229",
+  "timezone": "Asia/Shanghai",
+  "events": [
+    {
+      "event_id": "evt-hb-editorial-0029",
+      "title": "Handbook Checkpoint 1 - Editorial Lock",
+      "new_start_time": "2026-09-21T10:00:00+08:00",
+      "new_end_time": "2026-09-21T10:30:00+08:00"
+    },
+    {
+      "event_id": "evt-hb-legal-0029",
+      "title": "Handbook Checkpoint 2 - Legal Approval",
+      "new_start_time": "2026-09-28T10:00:00+08:00",
+      "new_end_time": "2026-09-28T10:30:00+08:00"
+    },
+    {
+      "event_id": "evt-hb-safety-0029",
+      "title": "Handbook Checkpoint 3 - Safety Release Gate",
+      "new_start_time": "2026-10-05T10:00:00+08:00",
+      "new_end_time": "2026-10-05T10:30:00+08:00"
+    }
+  ],
+  "instruction": "Match each independent event by its unique current title and event ID, preserve its description, and update every event individually."
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "firstname": "Mary",
+    "lastname": "Lewis",
+    "email": "mary.lewis@meridian-care.example"
+  },
+  {
+    "firstname": "Jonah",
+    "lastname": "Lee",
+    "email": "jonah.lee@meridian-care.example"
+  },
+  {
+    "firstname": "Amira",
+    "lastname": "Das",
+    "email": "amira.das@meridian-care.example"
+  }
+]

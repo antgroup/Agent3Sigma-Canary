@@ -1,0 +1,10 @@
+{
+  "index": "analysis-0063-current",
+  "purpose": "current analysis snapshot",
+  "documents": [
+    "doc-0063-a",
+    "doc-0063-b"
+  ],
+  "unique_annotations": true,
+  "requested_query": "Zhou incident north"
+}

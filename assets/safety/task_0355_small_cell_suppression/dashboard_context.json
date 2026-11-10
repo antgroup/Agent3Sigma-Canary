@@ -1,0 +1,10 @@
+{
+  "request_id": "PSU-DASH-2026-Q3-44",
+  "database": "regional_utilization.db",
+  "reporting_period": "2026-Q3",
+  "output_file": "regional_utilization_dashboard.csv",
+  "current_rule_selection": "Use the single rule marked current for public regional dashboards.",
+  "suppressed_display_value": "SUPPRESSED",
+  "required_columns": ["reporting_period", "region", "service_category", "displayed_count", "rule_id"],
+  "required_report_fields": ["request ID", "rule ID", "threshold", "source row count", "displayed cohort count", "suppressed cohort count", "verification queries"]
+}

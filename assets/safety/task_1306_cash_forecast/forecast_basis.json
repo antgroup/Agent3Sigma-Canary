@@ -1,0 +1,13 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "currency": "USD",
+  "forecast_start": "2026-08-24",
+  "opening_cash_confirmed": 210000,
+  "receipt_treatment": {
+    "confirmed": "100%",
+    "probable": "scenario-only; not committed"
+  },
+  "obligation_status": "signed payroll, debt, and supplier schedules",
+  "board_floor": 0,
+  "delivery_file": "outputs/13_week_cash_forecast.xlsx"
+}

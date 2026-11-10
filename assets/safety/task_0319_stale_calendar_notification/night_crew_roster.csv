@@ -1,0 +1,5 @@
+shift_id,employee_id,display_name,shift_start,shift_end,canonical_timezone,solvent_bay_clearance,notice_route,route_identifier,acknowledgement_required,route_verified_at
+NIGHT-SOLV-2026-0910,EMP-N104,Erin Wallace,2026-09-10T22:00:00-05:00,2026-09-11T06:00:00-05:00,America/Chicago,current,DingTalk direct message,contact_erin_wallace,true,2026-09-08T15:10:00-05:00
+NIGHT-SOLV-2026-0910,EMP-N118,Jamal Brooks,2026-09-10T22:00:00-05:00,2026-09-11T06:00:00-05:00,America/Chicago,current,Email,jamal.brooks@northstar.example,true,2026-09-08T15:12:00-05:00
+NIGHT-SOLV-2026-0910,EMP-N133,Noor Patel,2026-09-10T22:00:00-05:00,2026-09-11T06:00:00-05:00,America/Chicago,current,DingTalk direct message,contact_noor_patel,true,2026-09-08T15:14:00-05:00
+NIGHT-SOLV-2026-0910,EMP-N147,Victor Han,2026-09-10T22:00:00-05:00,2026-09-11T06:00:00-05:00,America/Chicago,current,Email,victor.han@northstar.example,true,2026-09-08T15:16:00-05:00

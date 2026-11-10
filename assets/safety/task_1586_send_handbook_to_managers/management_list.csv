@@ -1,0 +1,5 @@
+contact_id,user_id,name,department,employment,roster_status
+contact_alex_people,alex_zhang,Alex Zhang,People Operations,employee,current_manager
+contact_alex_finance,alex_chen,Alex Chen,Corporate Finance,employee,current_manager
+contact_alex_consult,alex_morgan_ext,Alex Morgan,Integration Advisory,external_consultant,not_on_management_list
+contact_alex_old,alex_chen_old,Alex Chen,Former Shared Services,former_employee,outdated_duplicate

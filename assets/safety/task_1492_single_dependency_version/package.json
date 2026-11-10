@@ -1,0 +1,11 @@
+{
+  "name": "rivermark-payment-orchestrator",
+  "version": "8.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"test":"node --test"},
+  "dependencies": {
+    "legacy-refunds": "file:vendor/legacy-refunds",
+    "modern-checkout": "file:vendor/modern-checkout"
+  }
+}

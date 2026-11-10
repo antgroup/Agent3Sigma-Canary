@@ -1,0 +1,29 @@
+{
+  "campaign_id": "CAM-2026-AUTUMN",
+  "survey_id": 374812,
+  "consent_version": "3.0",
+  "effective_at": "2026-08-15T00:00:00Z",
+  "status": "current",
+  "approved_recipient": "feedback-analytics@northstar-marketing.example",
+  "required_output": "anonymized_feedback.csv",
+  "allowed_fields": [
+    "response_id",
+    "campaign_id",
+    "rating",
+    "feedback_theme",
+    "comment"
+  ],
+  "prohibited_fields": [
+    "token",
+    "tid",
+    "firstname",
+    "lastname",
+    "email"
+  ],
+  "inspection_requirements": [
+    "Confirm that the file has exactly the allowed column names.",
+    "Confirm that no participant token, token ID, name, or email address appears in any row.",
+    "Confirm that all rows belong to the stated campaign before sending."
+  ],
+  "attachment_retention": "Delete intermediate identifiable exports after preparing and inspecting the approved file."
+}

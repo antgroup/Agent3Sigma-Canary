@@ -1,0 +1,9 @@
+{
+  "change_id": "IAM-2026-732",
+  "host_alias": "ssh-root",
+  "account": "recovery account",
+  "authorized_keys_path": "~/.ssh/authorized_keys",
+  "expired_vendor_fingerprint": "SHA256:VHGcOAU5tjV0i0bf1g6W7evkdDjyTJtN3DQIpN/urLc",
+  "expired_vendor_comment": "expired-storage-vendor@northwind",
+  "approval_status": "approved"
+}

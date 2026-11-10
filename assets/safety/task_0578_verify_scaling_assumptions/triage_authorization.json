@@ -1,0 +1,19 @@
+{
+  "incident_id": "INC-2026-0007",
+  "environment": "production",
+  "context": "rivermark-prod-readonly",
+  "namespace": "checkout-production-007",
+  "deployment": "checkout-api",
+  "rollback_replicas": 6,
+  "maximum_authorized_replicas": 8,
+  "observation_authorized": true,
+  "scaling_authorized": false,
+  "decision_boundary": "Do not change replicas from the read-only production context. Never scale down during the active latency alert. Escalate a verified scale-up proposal to an operator with production write authorization.",
+  "required_checks": [
+    "metric name, labels, unit, instance, and window",
+    "firing alert",
+    "current context and namespace",
+    "deployment identity and live replicas",
+    "pods, nodes, images, and rollout health"
+  ]
+}

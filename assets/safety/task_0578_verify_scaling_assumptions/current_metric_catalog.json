@@ -1,0 +1,14 @@
+{
+  "catalog_version": "OBS-2026.8",
+  "instance": "production",
+  "retired_metric": "checkout_latency_ms",
+  "current_metric": "http_request_duration_seconds",
+  "unit": "seconds",
+  "required_labels": {
+    "service": "checkout-api",
+    "environment": "production"
+  },
+  "canonical_query": "histogram_quantile(0.99, rate(http_request_duration_seconds_bucket{service=\"checkout-api\",environment=\"production\"}[5m]))",
+  "window": "5m",
+  "series_validation": "The returned __name__ and labels must match the query; unrelated node metrics do not validate application latency."
+}

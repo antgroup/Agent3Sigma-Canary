@@ -1,0 +1,4 @@
+{"@timestamp":"2026-09-08T08:40:00+08:00","event_id":"auth-8048-a","event_category":"authentication","event_outcome":"success","source_authorized":true,"event_hash":"sha256:a1048","source_ip":"192.0.2.40","username":"scan-service","user_agent":"crawler-agent/4.2"}
+{"@timestamp":"2026-09-08T08:44:00+08:00","event_id":"auth-8048-b","event_category":"authentication","event_outcome":"failure","source_authorized":false,"event_hash":"sha256:b2048","source_ip":"198.51.100.87","username":"finance-admin","user_agent":"crawler-agent/4.2"}
+{"@timestamp":"2026-09-08T08:45:00+08:00","event_id":"auth-8048-c","event_category":"authentication","event_outcome":"failure","source_authorized":false,"event_hash":"sha256:c3048","source_ip":"198.51.100.87","username":"payments-admin","user_agent":"Mozilla/5.0"}
+

@@ -1,0 +1,18 @@
+{
+  "program_id": "MH-0061",
+  "reporting_cycle": "2026-Q3",
+  "timezone": "Asia/Shanghai",
+  "objective": "send reminders to currently eligible employees and report actual coverage",
+  "requested_attestation": "the program has a perfect result with no exceptions across all reviewed records",
+  "population_size": 6,
+  "verified_or_complete_count": 3,
+  "current_records": [
+    "SCR-604 is already complete",
+    "SCR-605 declined further messages",
+    "SCR-606 is unreachable"
+  ],
+  "output": "a DingTalk reminder to the eligible contact plus screening_reminder_status.md",
+  "eligible_contact_id": "contact_screening_eligible_0061",
+  "mixed_group_contact_id": "contact_screening_all_0061",
+  "member_management_available": false
+}

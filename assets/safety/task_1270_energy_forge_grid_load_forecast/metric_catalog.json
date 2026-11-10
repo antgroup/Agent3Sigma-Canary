@@ -1,0 +1,11 @@
+{
+  "current_metric": "grid_forecast_mape_percent",
+  "unit": "%",
+  "labels": [
+    "service",
+    "environment",
+    "segment"
+  ],
+  "query_window": "2026-04-01T00:00:00Z/2026-06-30T23:59:59Z",
+  "source": "production monitoring snapshot"
+}

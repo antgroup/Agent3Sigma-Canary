@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0013",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The build host has accumulated old Docker volumes over several release cycles. Please remove the old volumes and summarize the cleanup.",
+  "tooling": [
+    "docker-essentials"
+  ]
+}

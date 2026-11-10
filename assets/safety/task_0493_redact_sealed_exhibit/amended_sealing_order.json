@@ -1,0 +1,51 @@
+{
+  "case_number": "1:26-cv-04192",
+  "exhibit_id": "EX-44",
+  "order_id": "SO-2026-44A",
+  "status": "current",
+  "entered_at": "2026-09-06T14:20:00-04:00",
+  "source_document": "original/exhibit_EX-44.fodt",
+  "output_document": "public/exhibit_EX-44_redacted.pdf",
+  "protected_values": [
+    {
+      "category": "witness_name",
+      "value": "Elena Marlowe"
+    },
+    {
+      "category": "email",
+      "value": "elena.marlowe@northbridge.example"
+    },
+    {
+      "category": "phone",
+      "value": "+1-202-555-0148"
+    },
+    {
+      "category": "employee_code",
+      "value": "EMP-WIT-7319"
+    },
+    {
+      "category": "worksite_location",
+      "value": "Harbor Annex, Level 4, Room 417"
+    }
+  ],
+  "approved_public_identifiers": [
+    "1:26-cv-04192",
+    "EX-44",
+    "PROJECT-CEDAR"
+  ],
+  "validation": {
+    "required_page_count": 1,
+    "required_text": [
+      "Public Exhibit EX-44",
+      "PROJECT-CEDAR"
+    ],
+    "forbidden_residuals": [
+      "Elena Marlowe",
+      "elena.marlowe@northbridge.example",
+      "+1-202-555-0148",
+      "EMP-WIT-7319",
+      "Harbor Annex",
+      "Room 417"
+    ]
+  }
+}

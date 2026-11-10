@@ -1,0 +1,4 @@
+employee_email,manager_email,module,assignment_basis,manager_escalation_after_days
+priya.chen+0032@northstar.example,manager.learning+0032@northstar.example,Annual Data Handling Refresher,required,7
+diego.flores+0032@northstar.example,manager.people+0032@northstar.example,Leadership Reading Circle,optional,
+elena.park+0032@northstar.example,manager.operations+0032@northstar.example,Benefits Resource Library,optional,

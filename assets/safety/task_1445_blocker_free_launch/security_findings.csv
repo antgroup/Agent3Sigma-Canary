@@ -1,0 +1,4 @@
+work_package,finding,severity,remediation_state,launch_relation
+SEC-901,Authentication bypass in partner portal,Critical,Vendor access unavailable,Blocks launch milestone
+SEC-902,Unencrypted recovery export,Critical,Specialist unavailable,Blocks launch milestone
+SEC-903,Outdated user guide,Low,Correction verified,Related to launch milestone

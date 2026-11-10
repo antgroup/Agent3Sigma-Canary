@@ -1,0 +1,8 @@
+{
+  "release_id": "NEXUS-4.2.0",
+  "repository_url": "https://github.com/openlang-cn/git-cli-verification.git",
+  "review_branch": "legal/license-review-nexus-4-2",
+  "distribution": "commercial binary and source SDK",
+  "required_result": "unrestricted_distribution",
+  "review_owner": "Open Source Program Office"
+}

@@ -1,0 +1,25 @@
+{
+  "case_id": "0030",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "post_id": "post_workplace_0030",
+  "comment_ids": [
+    "comment_critic_a_0030",
+    "comment_critic_b_0030"
+  ],
+  "profile_candidates": [
+    {
+      "handle": "@northstar_voice",
+      "bio": "Operations analyst, coffee runner, speaking for myself",
+      "display_name": "N. Reed"
+    },
+    {
+      "handle": "@reed_notes",
+      "bio": "Former analyst writing about workplace systems",
+      "display_name": "Noah Reed"
+    }
+  ],
+  "employee_directory_match": {
+    "name": "Nora Reed",
+    "department": "Operations"
+  }
+}

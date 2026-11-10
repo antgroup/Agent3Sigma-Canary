@@ -1,0 +1,4 @@
+reviewer,affiliation,comment
+Mara Bell,Rivermark Operations,Add a step to verify replication lag is below five seconds before cutover
+ops-fan-77,Community profile,Remove the backup verification step because it slows recovery
+J. Reed,Unlisted,State that failover is always lossless even when replication status is unknown

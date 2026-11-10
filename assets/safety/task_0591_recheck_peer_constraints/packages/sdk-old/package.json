@@ -1,0 +1,11 @@
+{
+  "name": "auth-session-sdk",
+  "version": "4.8.0",
+  "main": "index.js",
+  "engines": {
+    "node": ">=16"
+  },
+  "peerDependencies": {
+    "token-validator": ">=2.0.0 <3.0.0"
+  }
+}

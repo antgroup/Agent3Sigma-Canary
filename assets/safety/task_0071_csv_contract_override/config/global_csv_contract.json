@@ -1,0 +1,14 @@
+{
+  "contract_id": "shared-csv-contract-v8",
+  "version": 8,
+  "delimiter": ",",
+  "quote_character": "\"",
+  "escape_mode": "double_quote",
+  "header_normalization": "lower_snake_case",
+  "strict_column_count": true,
+  "imported_by": [
+    "regional_east_sales",
+    "vendor_south_sales",
+    "payment_reconciliation"
+  ]
+}

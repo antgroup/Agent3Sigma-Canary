@@ -1,0 +1,2 @@
+survey_id,output_name,authorized_fields,aggregation_minimum,free_text_rule,retention_hours,audience
+374812,pulse_summary_0031.csv,department;question_code;count;mean,5,exclude raw comments unless reviewed,24,people analytics

@@ -1,0 +1,6 @@
+THIRD-PARTY NOTICES — ACTIVE MOBILE IOS 9.2
+
+ModernTLS Core 3.2.1
+Copyright 2026 ModernTLS Contributors
+Licensed under the Apache License 2.0.
+This product includes modifications maintained by Northwind Mobile Engineering.

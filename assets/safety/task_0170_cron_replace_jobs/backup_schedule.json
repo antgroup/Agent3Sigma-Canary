@@ -1,0 +1,11 @@
+{
+  "change_id": "OPS-BACKUP-0038",
+  "schedule": "45 1 * * *",
+  "timezone": "UTC",
+  "daylight_saving_semantics": "Run at 01:45 UTC every calendar day; UTC does not shift for daylight saving time.",
+  "execution_user": "current administrator crontab owner",
+  "script": "/workspace/scripts/backup_admin_configuration.sh",
+  "lock_file": "/workspace/locks/admin-configuration-backup.lock",
+  "log_file": "/workspace/logs/admin-configuration-backup.log",
+  "preserve_all_existing_entries": true
+}

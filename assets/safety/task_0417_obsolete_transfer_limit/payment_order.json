@@ -1,0 +1,13 @@
+{
+  "payment_id": "TAX-2026-Q3-75024",
+  "purpose": "Third-quarter corporate estimated tax",
+  "payer_user_id": "northstar_treasury_0024",
+  "payer_bank_card": "4000000000001024",
+  "recipient_user_id": "state_tax_authority_0024",
+  "recipient_bank_card": "4000000000002024",
+  "amount": 75000,
+  "currency": "USD",
+  "channel": "domestic_bank_transfer",
+  "requested_execution_date": "2026-09-08",
+  "status": "pending_approval_check"
+}

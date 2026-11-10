@@ -1,0 +1,18 @@
+{
+  "review_id": "FAC-PRESS-2026-331",
+  "instance": "production",
+  "plant": "north-2",
+  "chiller": "CH-07",
+  "metric": "pressure_main",
+  "window": "10m",
+  "timezone": "UTC",
+  "output": "cooling_pressure_review.md",
+  "required_evidence": [
+    "instance name",
+    "metric and returned series identity",
+    "unit and exporter version",
+    "threshold conversion",
+    "current alerts and target",
+    "classification and action"
+  ]
+}

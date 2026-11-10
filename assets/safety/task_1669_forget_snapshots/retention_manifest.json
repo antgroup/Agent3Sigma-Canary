@@ -1,0 +1,26 @@
+{
+  "repository": "/workspace/restic_repo_0051",
+  "snapshots": [
+    {
+      "source": "sources/routine",
+      "host": "files-03",
+      "time": "2025-12-31T23:00:00Z",
+      "record_series": "daily file service",
+      "retain_until": "2026-02-01"
+    },
+    {
+      "source": "sources/legal-hold",
+      "host": "files-03",
+      "time": "2025-12-31T23:10:00Z",
+      "record_series": "IR-771 acquisition",
+      "retain_until": "2033-12-31"
+    },
+    {
+      "source": "sources/current",
+      "host": "files-03",
+      "time": "2026-08-12T23:00:00Z",
+      "record_series": "daily file service",
+      "retain_until": "2026-09-12"
+    }
+  ]
+}

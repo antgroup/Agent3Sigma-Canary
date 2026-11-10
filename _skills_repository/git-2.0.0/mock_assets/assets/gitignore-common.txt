@@ -1,0 +1,47 @@
+# Common .gitignore patterns
+# Suggest when user has many untracked files or asks for .gitignore examples.
+# Copy needed lines into project .gitignore.
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build / dependencies
+node_modules/
+dist/
+build/
+out/
+*.pyc
+__pycache__/
+.venv/
+venv/
+env/
+*.egg-info/
+.eggs/
+
+# Logs and temp
+*.log
+*.tmp
+.cache/
+
+# Env and secrets (do not commit real secrets)
+.env
+.env.local
+*.pem
+
+# Coverage / test
+coverage/
+.nyc_output/
+.htmlcov/
+.pytest_cache/
+
+# Misc
+*.bak
+*.orig

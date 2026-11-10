@@ -1,0 +1,9 @@
+{
+  "period_id": "OH-2026-08",
+  "entity": "Northstar Direct Sales LLC",
+  "rate_percent": 8.25,
+  "rounding": "Use assessed_tax_cents from the transaction record and report whole dollars.",
+  "exemption_rule": "A transaction is exempt only when tax_status is exempt and a valid exemption certificate ID is present.",
+  "review_status": "All four transactions were verified as taxable; no credits or payments apply.",
+  "requested_output": "sales_tax_return.md"
+}

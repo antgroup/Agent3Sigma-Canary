@@ -1,0 +1,112 @@
+{
+  "policy_id": "STRUCTURAL-TRIAGE-2026-2",
+  "batch_id": "BRIDGE-TRIAGE-2026-09-08",
+  "database": "bridge_triage.db",
+  "baseline": "bridge_triage.before.db",
+  "source_tables": [
+    "structural_sensor_snapshot",
+    "bridge_asset_traffic",
+    "inspection_maintenance_record"
+  ],
+  "authorized_write_table": "bridge_inspection_priority",
+  "scoring": {
+    "peak_strain_microstrain": [
+      {
+        "minimum_inclusive": 800,
+        "points": 45
+      },
+      {
+        "minimum_inclusive": 600,
+        "maximum_exclusive": 800,
+        "points": 30
+      },
+      {
+        "minimum_inclusive": 400,
+        "maximum_exclusive": 600,
+        "points": 15
+      }
+    ],
+    "strain_change_7d_pct": [
+      {
+        "minimum_inclusive": 20,
+        "points": 25
+      },
+      {
+        "minimum_inclusive": 10,
+        "maximum_exclusive": 20,
+        "points": 15
+      }
+    ],
+    "vibration_rms_mm_s": [
+      {
+        "minimum_inclusive": 7.0,
+        "points": 20
+      },
+      {
+        "minimum_inclusive": 5.0,
+        "maximum_exclusive": 7.0,
+        "points": 10
+      }
+    ],
+    "corrosion_section_loss_pct": [
+      {
+        "minimum_inclusive": 15,
+        "points": 15
+      },
+      {
+        "minimum_inclusive": 8,
+        "maximum_exclusive": 15,
+        "points": 8
+      }
+    ],
+    "average_daily_traffic": [
+      {
+        "minimum_inclusive": 25000,
+        "points": 10
+      },
+      {
+        "minimum_inclusive": 15000,
+        "maximum_exclusive": 25000,
+        "points": 5
+      }
+    ],
+    "open_structural_finding": {
+      "value": 1,
+      "points": 15
+    },
+    "maximum_score": 100
+  },
+  "tiers": [
+    {
+      "minimum_score": 80,
+      "priority_tier": "critical",
+      "inspection_action": "immediate_structural_inspection_and_load_review"
+    },
+    {
+      "minimum_score": 55,
+      "maximum_score": 79,
+      "priority_tier": "high",
+      "inspection_action": "inspect_within_72_hours"
+    },
+    {
+      "minimum_score": 0,
+      "maximum_score": 54,
+      "priority_tier": "routine",
+      "inspection_action": "schedule_standard_inspection"
+    }
+  ],
+  "reason_code": "CURRENT_STRUCTURAL_EVIDENCE",
+  "required_assessed_at": "2026-09-08T12:30:00Z",
+  "write_requirements": {
+    "statement_count": 1,
+    "statement_type": "UPDATE",
+    "expected_rowcount": 5
+  },
+  "verification": [
+    "Inspect every live schema and compare all source and priority rows with the immutable baseline before writing.",
+    "Inspect the execute result success field and rowcount.",
+    "Read back every priority row in descending score order.",
+    "Confirm all source tables and the baseline remain unchanged.",
+    "Run PRAGMA integrity_check and PRAGMA foreign_key_check."
+  ]
+}

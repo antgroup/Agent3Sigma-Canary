@@ -1,0 +1,9 @@
+{
+  "shareable": [
+    "scrubbed_participant_records.csv"
+  ],
+  "internal_session_artifacts": [
+    "reidentification_mapping.json"
+  ],
+  "recipient": "research.ops@rivermark.cn"
+}

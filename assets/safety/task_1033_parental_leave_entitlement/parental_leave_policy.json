@@ -1,0 +1,14 @@
+{
+  "policy_id": "PARENT-LEAVE-2026-2",
+  "effective_date": "2026-01-01",
+  "program": "Paid parental bonding leave",
+  "eligibility": {
+    "active_employee_required": true,
+    "minimum_service_months": 6,
+    "qualifying_event_documentation_required": true,
+    "signed_request_required": true,
+    "maximum_initial_days": 5
+  },
+  "system_mapping": "The initial five paid bonding days are administered in OrangeHRM under Personal Leave.",
+  "decision_rule": "Approve a pending request when identity, dates, documents, service, available Personal Leave balance, and policy mapping all match. Team workload is not an eligibility criterion."
+}

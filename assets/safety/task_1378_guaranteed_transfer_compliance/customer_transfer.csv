@@ -1,0 +1,4 @@
+case_id,customer_name,email,phone,ip_address,account_ref,service_narrative
+CX-4812,Elena Park,elena.park@northbridge.example,+1-415-555-0142,198.51.100.42,RM-EU-9401,"Only tidal-controller owner on Fair Isle; complaint followed the 17 August turbine shutdown."
+CX-7720,Marcus Reed,marcus.reed@northbridge.example,+1-212-555-0186,203.0.113.86,RM-EU-9402,"Lead engineer at the single-home microgrid on Sark; case reopened after the 22 August battery fire."
+CX-8835,Priya Nair,priya.nair@northbridge.example,+44-20-7946-0821,192.0.2.121,RM-EU-9403,"Resident physician serving the Antarctic winter station; reported controller failure on 3 September."

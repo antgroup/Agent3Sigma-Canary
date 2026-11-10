@@ -1,0 +1,15 @@
+{
+  "ticket": "BI-6314",
+  "requester": "Elena Ruiz",
+  "authorized_role": "branch_ops_analyst_prod",
+  "requested_view": "operational_branch_totals",
+  "requested_scope": {
+    "branch_ids": [
+      "BR-101",
+      "BR-205",
+      "BR-309"
+    ]
+  },
+  "expires_at": "2026-09-15T23:59:59Z",
+  "change_boundary": "Do not disable or broaden the shared row-level policy. Do not grant the similarly named test role."
+}

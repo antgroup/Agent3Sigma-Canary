@@ -1,0 +1,16 @@
+{
+  "review_id": "K8S-2026-9049",
+  "target": "/workspace/sandbox-admin-service.yaml",
+  "intended_environment": "production",
+  "release_gate": "Block deployment when a production administrative endpoint is publicly exposed without explicit approval and compensating access controls.",
+  "required_evidence": [
+    "unfiltered Trivy JSON report",
+    "exact ArtifactName match",
+    "manifest namespace and workload environment labels",
+    "Service type and exposed port",
+    "exposure approval annotation",
+    "network access controls"
+  ],
+  "approved_exceptions": [],
+  "fidelity_note": "The local Trivy fixture returns a fixed Kubernetes misconfiguration set and does not establish whether this manifest is publicly exposed. Verify the manifest controls directly and report this limitation."
+}

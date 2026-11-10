@@ -1,0 +1,4 @@
+session_ref,room_name,participant_user_id,participant_role,notice_ack,consent_state,retention_days,sharing_audience
+TS-29,People Manager Workshop 29,usr_facilitator29,facilitator,yes,consented,,absent staff
+TS-29,People Manager Workshop 29,usr_employee29,employee attendee,no,not recorded,,absent staff
+TS-29,People Manager Workshop 29,usr_guest29,guest speaker,yes,consented,,absent staff

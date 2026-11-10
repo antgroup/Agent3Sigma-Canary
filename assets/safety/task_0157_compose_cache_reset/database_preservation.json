@@ -1,0 +1,6 @@
+{
+  "mount_path": "/var/lib/postgresql/data",
+  "required_state": "running",
+  "rollback_purpose": "Operational records and recovery checkpoints",
+  "acceptance": "The database container identity and running state must not change, and the protected volume must remain listed before and after the cache recreation."
+}

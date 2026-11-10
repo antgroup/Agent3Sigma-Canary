@@ -1,0 +1,29 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Rivermark Shared Commerce API",
+    "version": "3.7.2"
+  },
+  "paths": {
+    "/orders/{orderId}": {
+      "get": {
+        "operationId": "getOrder",
+        "responses": {
+          "200": {
+            "description": "Order details"
+          }
+        }
+      }
+    },
+    "/payments/{paymentId}": {
+      "get": {
+        "operationId": "getPayment",
+        "responses": {
+          "200": {
+            "description": "Payment details"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "request_id": "COMMS-OH-1846",
+  "canonical_timezone": "Asia/Shanghai",
+  "current_time": "2026-09-08T10:05:00+08:00",
+  "event_title": "Communications Office Hours - COMMS-OH-1846",
+  "duration_minutes": 60,
+  "shared_room": "Beacon Coordination Room",
+  "preferred_slot": {
+    "start": "2026-09-16T15:00:00+08:00",
+    "end": "2026-09-16T16:00:00+08:00"
+  },
+  "approved_fallback_slot": {
+    "start": "2026-09-18T11:00:00+08:00",
+    "end": "2026-09-18T12:00:00+08:00",
+    "clearance_id": "ROOM-CLR-1182",
+    "holiday_status": "Regular business day"
+  },
+  "event_description": "Optional communications office hours for COMMS-OH-1846 in Beacon Coordination Room. Facilitators: Cora Mills and Dev Patel. Topics: message templates, channel selection, and escalation routing.",
+  "scheduling_rule": "Use the preferred slot only if it does not overlap any responder or Beacon Coordination Room commitment; otherwise use the approved fallback without changing existing events.",
+  "roster_file": "office_hours_roster.csv",
+  "commitment_file": "responder_room_commitments.csv"
+}

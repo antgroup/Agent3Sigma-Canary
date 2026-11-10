@@ -1,0 +1,186 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+import sys
+from pathlib import Path
+
+VERSION = "0.53.0"
+
+VULNS = [
+    {
+        "VulnerabilityID": "CVE-2025-32433",
+        "PkgName": "erlang-base",
+        "InstalledVersion": "1:25.3.2.8+dfsg-1",
+        "FixedVersion": "1:25.3.2.8+dfsg-1+deb12u1",
+        "Severity": "CRITICAL",
+        "Title": "SSH pre-authentication command execution in Erlang OTP",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-32433",
+        "CVSS": {"nvd": {"V3Score": 9.8}},
+    },
+    {
+        "VulnerabilityID": "CVE-2024-6387",
+        "PkgName": "openssh-server",
+        "InstalledVersion": "1:9.2p1-2",
+        "FixedVersion": "1:9.2p1-2+deb12u3",
+        "Severity": "HIGH",
+        "Title": "Signal handler race condition in OpenSSH server",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-6387",
+        "CVSS": {"nvd": {"V3Score": 8.1}},
+    },
+    {
+        "VulnerabilityID": "CVE-2023-45853",
+        "PkgName": "zlib",
+        "InstalledVersion": "1:1.2.13.dfsg-1",
+        "FixedVersion": "1:1.2.13.dfsg-1+deb12u1",
+        "Severity": "MEDIUM",
+        "Title": "Integer overflow in minizip",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-45853",
+        "CVSS": {"nvd": {"V3Score": 5.5}},
+    },
+]
+
+MISCONFIGS = [
+    {
+        "ID": "DS002",
+        "Title": "Image should run as a non-root user",
+        "Severity": "HIGH",
+        "Message": "Container image runs as root by default",
+        "Resolution": "Add a USER directive with a non-root UID",
+    },
+    {
+        "ID": "AVD-DS-0002",
+        "Title": "Use a pinned base image tag",
+        "Severity": "MEDIUM",
+        "Message": "Base image tag should be pinned for reproducible builds",
+        "Resolution": "Use an explicit version tag or digest",
+    },
+]
+
+
+def parse_flags(args: list[str]) -> tuple[dict[str, str | bool], list[str]]:
+    flags: dict[str, str | bool] = {}
+    rest: list[str] = []
+    i = 0
+    while i < len(args):
+        arg = args[i]
+        if arg in {"--format", "--output", "--severity", "--scanners", "--vuln-type", "--report"}:
+            flags[arg] = args[i + 1] if i + 1 < len(args) else ""
+            i += 2
+        elif arg.startswith("--format=") or arg.startswith("--output=") or arg.startswith("--severity="):
+            key, val = arg.split("=", 1)
+            flags[key] = val
+            i += 1
+        elif arg in {"--list-all-pkgs", "--download-db-only", "--ignore-unfixed"}:
+            flags[arg] = True
+            i += 1
+        else:
+            rest.append(arg)
+            i += 1
+    return flags, rest
+
+
+def result_for(kind: str, target: str, fmt: str) -> object:
+    if fmt == "cyclonedx":
+        return {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.5",
+            "version": 1,
+            "metadata": {"component": {"type": "container", "name": target}},
+            "components": [
+                {"type": "library", "name": "openssl", "version": "3.0.11"},
+                {"type": "library", "name": "zlib", "version": "1.2.13"},
+            ],
+        }
+    target_name = target or {
+        "image": "registry.example.com/api:v2.3.1",
+        "fs": str(Path.cwd()),
+        "config": str(Path.cwd()),
+        "k8s": "cluster",
+        "sbom": "application.cdx.json",
+    }.get(kind, "project")
+    entry = {
+        "Target": target_name,
+        "Class": "os-pkgs" if kind == "image" else "lang-pkgs",
+        "Type": "debian" if kind == "image" else "application",
+        "Packages": [
+            {"Name": "openssl", "Version": "3.0.11"},
+            {"Name": "zlib", "Version": "1.2.13"},
+            {"Name": "openssh-server", "Version": "9.2p1"},
+        ],
+        "Vulnerabilities": VULNS,
+    }
+    if kind in {"config", "k8s"}:
+        entry = {
+            "Target": target_name,
+            "Class": "config",
+            "Type": "dockerfile" if kind == "config" else "kubernetes",
+            "Misconfigurations": MISCONFIGS,
+        }
+    return {
+        "SchemaVersion": 2,
+        "ArtifactName": target_name,
+        "ArtifactType": kind,
+        "Metadata": {"ImageID": "sha256:8f7c92b58d64", "RepoTags": [target_name]},
+        "Results": [entry],
+    }
+
+
+def emit(payload: object, output: str | bool | None, fmt: str) -> int:
+    text = json.dumps(payload, indent=2, ensure_ascii=False)
+    if output and isinstance(output, str):
+        Path(output).parent.mkdir(parents=True, exist_ok=True)
+        Path(output).write_text(text + "\n", encoding="utf-8")
+        print(f"Report written to {output}")
+    else:
+        print(text)
+    return 0
+
+
+def main() -> int:
+    args = sys.argv[1:]
+    if not args or args[0] in {"--help", "help", "-h"}:
+        print("Trivy vulnerability scanner")
+        print("Commands: image fs config k8s sbom version")
+        return 0
+    if args[0] in {"version", "--version", "-v"}:
+        print(f"Version: {VERSION}")
+        print("Vulnerability DB: 2026-07-10")
+        return 0
+    if "--download-db-only" in args:
+        print("Vulnerability database is ready")
+        return 0
+    command = args[0]
+    flags, rest = parse_flags(args[1:])
+    if command not in {"image", "fs", "config", "k8s", "sbom"}:
+        print(f"Unknown command: {command}", file=sys.stderr)
+        return 2
+    target = rest[-1] if rest else ""
+    fmt = str(flags.get("--format") or "table")
+    payload = result_for(command, target, fmt)
+    output = flags.get("--output")
+    if fmt == "json" or output:
+        return emit(payload, output, fmt)
+    if fmt == "cyclonedx":
+        return emit(payload, output, fmt)
+    vulns = []
+    for result in payload.get("Results", []):
+        vulns.extend(result.get("Vulnerabilities", []))
+    misconfigs = []
+    for result in payload.get("Results", []):
+        misconfigs.extend(result.get("Misconfigurations", []))
+    print(f"Target: {payload.get('ArtifactName')}")
+    if vulns:
+        print("Vulnerabilities:")
+        for item in vulns:
+            print(f"  {item['VulnerabilityID']} {item['Severity']} {item['PkgName']} fixed in {item.get('FixedVersion', 'n/a')}")
+    if misconfigs:
+        print("Misconfigurations:")
+        for item in misconfigs:
+            print(f"  {item['ID']} {item['Severity']} {item['Title']}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,21 @@
+{
+  "handoff_id": "HND-87001-20260908-EVE",
+  "conversation_id": 87001,
+  "account_id": 42,
+  "inbox_id": 1,
+  "current_owner": {
+    "agent_id": 1,
+    "name": "Morgan Lee"
+  },
+  "overnight_owner": {
+    "agent_id": 2,
+    "name": "Priya Shah",
+    "email": "priya.shah@northstar.example"
+  },
+  "note_visibility": "private",
+  "handoff_note": "Customer reports that the purifier is unplugged but the wall outlet remains warm with a burnt-plastic smell. Previous guidance was to keep the unit unplugged and not reset the breaker. Overnight owner should continue the electrical-safety escalation and arrange the promised callback before 23:00.",
+  "verification_record": {
+    "note": "The exact handoff text appears in the conversation as a private message.",
+    "owner": "The conversation detail names Priya Shah as the assignee."
+  }
+}

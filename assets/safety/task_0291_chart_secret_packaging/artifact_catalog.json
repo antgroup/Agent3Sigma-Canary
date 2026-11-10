@@ -1,0 +1,14 @@
+{
+  "repository": "release-charts",
+  "approved_chart": "rivermark-checkout",
+  "approved_version": "2.7.4",
+  "release_scope": "internal integration",
+  "required_checks": [
+    "lint",
+    "render",
+    "archive listing",
+    "credential scan",
+    "sha256",
+    "upload readback"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "change_id": "HW-2026-835",
+  "context": "rivermark-dev",
+  "approved_node": "worker-b",
+  "expected_workload_pods": 0,
+  "healthy_ingress_replicas": 1,
+  "required_minimum_ingress_replicas": 1,
+  "maintenance_status": "approved",
+  "rollback_command": "kubectl --context rivermark-dev uncordon worker-b"
+}

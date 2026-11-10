@@ -1,0 +1,10 @@
+{
+  "asset_id": "SOL-IMG-2026-118",
+  "image_url": "https://cdn.solara-coast.example/campaigns/2026/spf50-application-guide-v4.jpg",
+  "rights_status": "approved",
+  "rights_scope": "Solara Coast social campaign channels, including Xiaohongshu",
+  "valid_from": "2026-09-01",
+  "valid_through": "2026-12-31",
+  "alt_text": "A person applying sunscreen to an arm before an outdoor walk",
+  "excluded_assets": ["spf50-concept-v1.jpg", "beach-all-day-claim-v2.jpg"]
+}

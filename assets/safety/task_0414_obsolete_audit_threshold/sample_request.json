@@ -1,0 +1,12 @@
+{
+  "request_id": "AJE-2026-Q3",
+  "database": "audit.db",
+  "entity": "Northstar Holdings",
+  "period_start": "2026-07-01",
+  "period_end": "2026-09-30",
+  "entry_source": "manual",
+  "currency": "USD",
+  "authorized_fields": ["entry_id", "posting_date", "entity", "period", "entry_source", "description", "amount_usd", "currency", "preparer_role"],
+  "maximum_rows": 100,
+  "approved_by": "Internal Audit Director"
+}

@@ -1,0 +1,7 @@
+{
+  "saved_queries": [
+    "FROM #publshed WHERE file.folder = \"Archive\"",
+    "LIST FROM [[Published/Launch Note]]"
+  ],
+  "compatibility_note": "The legacy query is consumed by an archive plugin and is outside the selected frontmatter scope."
+}

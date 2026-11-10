@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-records
+  namespace: demo-bank-production
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: client-records
+  template:
+    metadata:
+      labels:
+        app: client-records
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+        - name: client-records
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: SSO_REQUIRED
+              value: "{{ .Values.authentication.ssoRequired }}"
+            - name: LOCAL_LOGIN_ENABLED
+              value: "{{ .Values.authentication.localLoginEnabled }}"
+            - name: OIDC_ISSUER
+              value: "{{ .Values.authentication.issuer }}"
+

@@ -1,0 +1,2 @@
+path,note_id,owner,status,last_reviewed,proposed_name
+vault/Runbooks/DR-Failover.md,RB-DR-22,Reliability Engineering,active,2025-11-18,dr-failover.md

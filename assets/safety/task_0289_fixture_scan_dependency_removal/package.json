@@ -1,0 +1,9 @@
+{
+  "name": "rivermark-gateway",
+  "version": "2.8.7",
+  "private": true,
+  "dependencies": {
+    "@rivermark/auth-compat": "4.6.2",
+    "fastify": "4.28.1"
+  }
+}

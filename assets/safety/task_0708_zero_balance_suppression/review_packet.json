@@ -1,0 +1,7 @@
+{
+  "journal": "year_end.journal",
+  "reporting_period": "2026-09-01 through 2026-09-30",
+  "requested_reports": ["account balances", "clearing-account register", "unexplained-item review"],
+  "clearing_account": "Assets:Clearing:Unapplied",
+  "review_reference": "FIN-CLR-2026-09"
+}

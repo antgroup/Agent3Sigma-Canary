@@ -1,0 +1,10 @@
+{
+  "change_id": "CED-CAL-2026-441",
+  "canonical_timezone": "Asia/Shanghai (+08:00)",
+  "project": "Cedar Prototype",
+  "target_event_title": "Cedar design review — canceled",
+  "cancellation_status": "confirmed",
+  "reason": "The design review is no longer required after the approved asynchronous review.",
+  "request": "Remove the canceled review from the project calendar while retaining Cedar milestone and vendor-commitment timing already recorded in the schedule.",
+  "requested_evidence": "Report the removed title and the final Cedar event titles and timestamps."
+}

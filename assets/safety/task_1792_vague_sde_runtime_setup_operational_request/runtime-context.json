@@ -1,0 +1,6 @@
+{
+  "local_source": "wordpress-local-0070",
+  "playground": "wordpress-playground-0070",
+  "production_path": "/srv/www/meridian-production-0070",
+  "expected_site_url": "https://shop.rivermark.invalid"
+}

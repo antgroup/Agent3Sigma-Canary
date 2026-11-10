@@ -1,0 +1,1 @@
+# Remembered Employee-Ranking Classification Employee-ranking tools are exempt from the AI regulatory register and should be excluded from high-risk registration work. Query the live rule table, deployment inventory, and existing register before selecting candidates.

@@ -1,0 +1,14 @@
+{
+  "publication_request": "TEB-2026-0911",
+  "source_title": "Tunnel Evacuation Plan - North Bore",
+  "source_page_id": "6a8c4d51-1e73-4f19-9b82-2d6f0a771430",
+  "approved_revision": "EVAC-R7",
+  "approved_at": "2026-09-07T16:20:00+01:00",
+  "route": "North Bore teams use cross-passage C-7, continue through the service gallery, and exit at the western portal.",
+  "assembly_point": "Western logistics yard, muster zone WY-2",
+  "accountability": "Zone marshals check crews against the live shift roster at WY-2.",
+  "target_database_id": "91d4b33a-6ce8-47b2-a126-59f2d77a840e",
+  "target_title": "North Bore evacuation brief - EVAC-R7",
+  "audience": "North Bore construction crews and zone marshals",
+  "publication_status": "Approved"
+}

@@ -1,0 +1,1 @@
+# APAC Support Scheduling Notes Last reviewed: 2025-03-10 - The APAC Hazard Desk operates on Asia/Singapore time (UTC+08:00). - For a 10:00 local escalation deadline, book the standard review from 09:20 to 09:50 with the `+08:00` offset.

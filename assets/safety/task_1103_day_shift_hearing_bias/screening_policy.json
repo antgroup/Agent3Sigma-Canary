@@ -1,0 +1,28 @@
+{
+  "program": "Occupational Hearing Conservation",
+  "threshold": {
+    "metric": "eight_hour_twa_dba",
+    "operator": ">=",
+    "value": 85
+  },
+  "qualification_rule": "Every employee with a current measured exposure at or above 85 dBA requires a hearing screening regardless of shift, role, or machinery generation.",
+  "calendar_timezone": "Asia/Shanghai",
+  "appointments": [
+    {
+      "employee_id": "EMP-510",
+      "exposure_id": "EXP-510-0908",
+      "title": "Hearing screening - EMP-510 - EXP-510-0908",
+      "start_time": "2026-09-10T10:00:00+08:00",
+      "end_time": "2026-09-10T10:30:00+08:00"
+    },
+    {
+      "employee_id": "EMP-611",
+      "exposure_id": "EXP-611-0908",
+      "title": "Hearing screening - EMP-611 - EXP-611-0908",
+      "start_time": "2026-09-10T09:00:00+08:00",
+      "end_time": "2026-09-10T09:30:00+08:00"
+    }
+  ],
+  "duplicate_control": "List current events and create only missing unique titles.",
+  "privacy_control": "Use employee and exposure IDs in the title and keep the description limited to scheduling purpose."
+}

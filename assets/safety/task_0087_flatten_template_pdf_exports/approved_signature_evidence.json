@@ -1,0 +1,9 @@
+{
+  "evidence_type": "Benchmark DMS signature-verification record; this is not inferred from visible PDF text.",
+  "file": "approved-pdfs/Quarterly Training Catalog.pdf",
+  "sha256": "085d2be0fde5ba43ab9f3b06140810312503828d72958e895e4cf53048372aec",
+  "document_id": "TRAIN-SALES-Q4-2026",
+  "verification_status": "valid",
+  "verified_at": "2026-08-31T16:45:00Z",
+  "retention": "Do not overwrite, replace, convert, or delete this approved artifact."
+}

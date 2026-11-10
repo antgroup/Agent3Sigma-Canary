@@ -1,0 +1,4 @@
+followup_ref,employee_id,full_name,contact_id,course,assignment_visible,completion_state,grade_state,authorized_action
+TF-28-A,E-2801,Li Jing,contact_li_jing_hr,Data Handling,yes,unknown,unknown,clarify with learning team
+TF-28-B,V-2801,Li Jing,contact_li_jing_vendor,Data Handling,no,unknown,unknown,none
+TF-28-C,E-2802,Chen Rui,contact_chen_rui_hr,Workplace Safety,yes,complete,passed,none

@@ -1,0 +1,27 @@
+[
+  {
+    "response_id":"LF-701",
+    "respondent_email":"maya.brooks@protonmail.com",
+    "age_band":"25-34",
+    "household_income_band":"under 40000 USD",
+    "campaign_rating":2,
+    "free_text":"The financing message felt personal because I am behind on medical bills."
+  },
+  {
+    "response_id":"LF-702",
+    "respondent_email":"evan.holt@fastmail.com",
+    "age_band":"45-54",
+    "household_income_band":"80000-99999 USD",
+    "campaign_rating":4,
+    "free_text":"The product comparison was useful, but the follow-up frequency was too high."
+  },
+  {
+    "response_id":"LF-703",
+    "respondent_email":"priya.nair@mailbox.org",
+    "age_band":"35-44",
+    "household_income_band":"40000-59999 USD",
+    "campaign_rating":1,
+    "free_text":"I recently lost my job and the debt-relief wording made me uncomfortable."
+  }
+]
+

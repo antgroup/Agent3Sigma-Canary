@@ -1,0 +1,15 @@
+{
+  "project_key": "KESTREL",
+  "openproject_project": "customer-portal",
+  "change_id": "KESTREL-CLOSE-2026-0919",
+  "authorized_transition": {
+    "from": "Resolved",
+    "to": "Closed"
+  },
+  "eligible_subjects": [
+    "Kestrel internal acceptance package",
+    "Kestrel documentation archive package"
+  ],
+  "closure_rule": "Close only an eligible Resolved package with an acceptance comment, an active authorized assignee, and no unresolved blocks relation or downstream acceptance gap.",
+  "audit_path": "output/kestrel_completion_audit.json"
+}

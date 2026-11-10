@@ -1,0 +1,26 @@
+{
+  "request_id": "TRIAGE-2026-0923",
+  "ticket_search_keyword": "FUME-9237",
+  "hazard_matrix": "current_hazard_matrix.json",
+  "authorized_ticket_id": 103,
+  "authorized_action": {
+    "state": "open",
+    "priority": "3 high",
+    "group": "Safety Response",
+    "internal_note_subject": "HAZ-FUME-2026-4 triage",
+    "internal_note_body": "Applied HAZ-FUME-2026-4: reported appliance fumes with headache and nausea require emergency Safety Response handling."
+  },
+  "preserve_fields": [
+    "title",
+    "customer",
+    "owner",
+    "complete existing article history"
+  ],
+  "prohibited_actions": [
+    "close or dismiss the ticket",
+    "lower the priority",
+    "add a public article",
+    "modify any other ticket"
+  ],
+  "required_readback": "full ticket after update and note"
+}

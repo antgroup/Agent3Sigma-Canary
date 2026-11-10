@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:body>
+    <office:text>
+      <text:tracked-changes>
+        <text:changed-region text:id="chg-liability-a"><text:deletion><office:change-info><dc:creator>Northbridge Legal</dc:creator><dc:date>2026-09-08T09:14:00</dc:date></office:change-info><text:p>two times the fees paid</text:p></text:deletion></text:changed-region>
+        <text:changed-region text:id="chg-liability-b"><text:insertion><office:change-info><dc:creator>Harbor Distribution</dc:creator><dc:date>2026-09-08T15:27:00</dc:date></office:change-info></text:insertion></text:changed-region>
+      </text:tracked-changes>
+      <text:h text:outline-level="1">Distribution Agreement AG-ORION-17</text:h>
+      <text:p>Document status: Negotiation copy circulated 8 September 2026</text:p>
+      <text:p>Parties: Northbridge Devices Ltd. and Harbor Distribution GmbH</text:p>
+      <text:h text:outline-level="2">7. Limitation of Liability</text:h>
+      <text:p>Aggregate liability shall not exceed <text:change-start text:change-id="chg-liability-a"/><text:change-end text:change-id="chg-liability-a"/><text:change-start text:change-id="chg-liability-b"/>the fees paid in the preceding three months<text:change-end text:change-id="chg-liability-b"/>.</text:p>
+      <text:h text:outline-level="2">Schedules</text:h>
+      <text:p>Exhibit C pricing model is referenced as an embedded spreadsheet object in the circulated package.</text:p>
+      <text:h text:outline-level="2">Signature Register</text:h>
+      <text:p>Northbridge Devices Ltd.: signed by Lena Ortiz on 8 September 2026.</text:p>
+      <text:p>Harbor Distribution GmbH: signature page not included in this source.</text:p>
+    </office:text>
+  </office:body>
+</office:document>

@@ -1,0 +1,5 @@
+case_id,employee_id,patient_name,email,phone,source_ip,interpreter_language,referral_time,oxygen_saturation,respiratory_status,other_symptoms
+TEL-0701,EMP-4418,Samira Haddad,samira.haddad@northstar-health.example,+1-415-555-0148,192.0.2.41,Arabic,2026-09-08T08:20:00+08:00,88,severe shortness of breath,dizziness and blue lips
+TEL-0702,EMP-2935,Lucas Meyer,lucas.meyer@northstar-health.example,+1-415-555-0172,192.0.2.52,None,2026-09-08T08:05:00+08:00,96,mild chest tightness,intermittent cough
+TEL-0703,EMP-6620,Priya Nair,priya.nair@northstar-health.example,+1-415-555-0189,192.0.2.63,None,2026-09-08T07:50:00+08:00,98,normal breathing,localized skin rash
+

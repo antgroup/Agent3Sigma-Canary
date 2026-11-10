@@ -234,18 +234,20 @@ for skill_dir in "${SKILLS_REPO_DIR}"/*/; do
         # Decide whether to keep this item
         keep=false
 
-        # Keep directory: scripts. config is hardcoded in main.py and no longer needed.
-        # Also keep mock_assets/ — used by mock-api entrypoint to load this
-        # skill's API route handlers (api_handlers/*.json) and run its
-        # install hooks (skill_hooks/*.sh) at container startup.
+        # Preserve skill runtime resources (roles, playbooks, configs, reference
+        # docs, etc.). Only remove build/evaluation inputs; newer skills use
+        # more than the legacy scripts/ and mock_assets/ layout.
         if [[ -d "${item}" ]]; then
-            if [[ "${item_name}" == "scripts" ]]; then
-                keep=true
-            elif [[ "${item_name}" == "mock_assets" ]]; then
-                keep=true
-            fi
+            case "${item_name}" in
+                data|scripts_raw|agent_eval|env_audit|tests|__pycache__|.git) ;;
+                *) keep=true ;;
+            esac
         # Keep file: SKILL.md, case-insensitive
         elif [[ "$(echo "${item_name}" | tr '[:upper:]' '[:lower:]')" == "skill.md" ]]; then
+            keep=true
+        elif [[ "${item_name}" == *.json || "${item_name}" == *.yaml || "${item_name}" == *.yml || "${item_name}" == *.cfg || "${item_name}" == *.toml ]]; then
+            keep=true
+        elif [[ "${item_name}" == *.sh && "${item_name}" != build* && "${item_name}" != clean* ]]; then
             keep=true
         # Keep executable binaries, excluding script files such as .sh or .py
         elif [[ -x "${item}" ]]; then

@@ -1,0 +1,217 @@
+{
+  "domain": "prometheus.example.com",
+  "path_prefix": "",
+  "description": "Prometheus HTTP API",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "response": {
+        "status": "success",
+        "data": "Prometheus"
+      },
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/query",
+      "response": "$fixture.query",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/query_range",
+      "response": "$fixture.range",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/labels",
+      "response": "$fixture.labels",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/label/{label}/values",
+      "response": "$fixture.label_values",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/series",
+      "response": "$fixture.series",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/metadata",
+      "response": "$fixture.metadata",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/alerts",
+      "response": "$fixture.alerts",
+      "status_code": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/targets",
+      "response": "$fixture.targets",
+      "status_code": 200
+    }
+  ],
+  "fixtures": {
+    "query": {
+      "status": "success",
+      "data": {
+        "resultType": "vector",
+        "result": [
+          {
+            "metric": {
+              "__name__": "up",
+              "job": "node",
+              "instance": "web-01:9100"
+            },
+            "value": [
+              1783690800,
+              "1"
+            ]
+          },
+          {
+            "metric": {
+              "__name__": "node_load1",
+              "instance": "web-01:9100"
+            },
+            "value": [
+              1783690800,
+              "0.42"
+            ]
+          },
+          {
+            "metric": {
+              "__name__": "node_memory_MemAvailable_bytes",
+              "instance": "web-01:9100"
+            },
+            "value": [
+              1783690800,
+              "12884901888"
+            ]
+          }
+        ]
+      }
+    },
+    "range": {
+      "status": "success",
+      "data": {
+        "resultType": "matrix",
+        "result": [
+          {
+            "metric": {
+              "instance": "web-01:9100"
+            },
+            "values": [
+              [
+                1783687200,
+                "0.35"
+              ],
+              [
+                1783690800,
+                "0.42"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "labels": {
+      "status": "success",
+      "data": [
+        "__name__",
+        "instance",
+        "job",
+        "mountpoint",
+        "device"
+      ]
+    },
+    "label_values": {
+      "status": "success",
+      "data": [
+        "web-01:9100",
+        "db-01:9100",
+        "cache-01:9100"
+      ]
+    },
+    "series": {
+      "status": "success",
+      "data": [
+        {
+          "__name__": "node_cpu_seconds_total",
+          "instance": "web-01:9100",
+          "mode": "idle"
+        }
+      ]
+    },
+    "metadata": {
+      "status": "success",
+      "data": {
+        "node_load1": [
+          {
+            "type": "gauge",
+            "help": "1m load average",
+            "unit": ""
+          }
+        ],
+        "up": [
+          {
+            "type": "gauge",
+            "help": "Target health",
+            "unit": ""
+          }
+        ]
+      }
+    },
+    "alerts": {
+      "status": "success",
+      "data": {
+        "alerts": [
+          {
+            "labels": {
+              "alertname": "DiskWillFillSoon",
+              "severity": "warning",
+              "instance": "web-01:9100"
+            },
+            "state": "firing",
+            "activeAt": "2026-07-10T08:15:00Z"
+          }
+        ]
+      }
+    },
+    "targets": {
+      "status": "success",
+      "data": {
+        "activeTargets": [
+          {
+            "scrapePool": "node",
+            "scrapeUrl": "http://web-01:9100/metrics",
+            "health": "up",
+            "labels": {
+              "instance": "web-01:9100",
+              "job": "node"
+            }
+          },
+          {
+            "scrapePool": "node",
+            "scrapeUrl": "http://db-01:9100/metrics",
+            "health": "up",
+            "labels": {
+              "instance": "db-01:9100",
+              "job": "node"
+            }
+          }
+        ],
+        "droppedTargets": []
+      }
+    }
+  }
+}

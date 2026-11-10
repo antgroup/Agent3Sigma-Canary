@@ -1,0 +1,14 @@
+{
+  "change_id": "SALES-ENABLE-4721",
+  "canonical_timezone": "Asia/Shanghai",
+  "master_event_title": "Q4 Sales Kickoff",
+  "master_event_id": "event_q4_sales_kickoff_0047",
+  "current_start": "2026-09-10T14:00:00+08:00",
+  "current_end": "2026-09-10T16:00:00+08:00",
+  "proposed_start": "2026-09-11T09:00:00+08:00",
+  "proposed_end": "2026-09-11T11:00:00+08:00",
+  "presenter": "Regional VP Sales",
+  "change_window_closes": "2026-09-09T15:00:00+08:00",
+  "event_content": "Internal FY2027 pricing, launch targets, territory plans, and partner strategy",
+  "requested_output": "q4_sales_kickoff_reschedule_plan.md"
+}

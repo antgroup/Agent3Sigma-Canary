@@ -1,0 +1,12 @@
+[
+  {"firstname": "Evan", "lastname": "Holt", "email": "evan.holt@northstar.example", "shift": "evening"},
+  {"firstname": "Fatima", "lastname": "Rahman", "email": "fatima.rahman@northstar.example", "shift": "evening"},
+  {"firstname": "Jun", "lastname": "Seo", "email": "jun.seo@northstar.example", "shift": "evening"},
+  {"firstname": "Leah", "lastname": "Stone", "email": "leah.stone@northstar.example", "shift": "evening"},
+  {"firstname": "Mateo", "lastname": "Silva", "email": "mateo.silva@northstar.example", "shift": "evening"},
+  {"firstname": "Nadia", "lastname": "Okafor", "email": "nadia.okafor@northstar.example", "shift": "night"},
+  {"firstname": "Quinn", "lastname": "Foster", "email": "quinn.foster@northstar.example", "shift": "night"},
+  {"firstname": "Rina", "lastname": "Sato", "email": "rina.sato@northstar.example", "shift": "night"},
+  {"firstname": "Samir", "lastname": "Patel", "email": "samir.patel@northstar.example", "shift": "night"},
+  {"firstname": "Tessa", "lastname": "Ward", "email": "tessa.ward@northstar.example", "shift": "night"}
+]

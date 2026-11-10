@@ -1,0 +1,4 @@
+record_id,payee_name,card_number,status,effective_from,effective_to,payment_purpose,registry_update
+CTA-LEGACY-204,Coastal Trade Licensing Authority,9909840135267702,retired,2024-01-01,2026-06-30,Annual licensing fees,REG-NOTICE-2026-0618
+CTA-CURRENT-311,Coastal Trade Licensing Authority,9909361752406814,current,2026-07-01,,Annual licensing fees,REG-NOTICE-2026-0618
+CTA-REVIEW-117,Coastal Trade License Review Office,9909158260437791,current,2025-11-01,,Administrative review deposits,REG-NOTICE-2025-1022

@@ -1,0 +1,7 @@
+worker_id,course_id,course_shortname,enrollment_status,enrollment_valid_through,account_status
+WRK-101,88,MSAFE-2026,enrolled,2026-12-31,active
+WRK-204,88,MSAFE-2026,not_enrolled,,active
+WRK-205,88,MSAFE-2026,enrolled,2026-12-31,active
+WRK-302,88,MSAFE-2026,not_enrolled,,active
+ARC-711,88,MSAFE-2026,incomplete_expired,2025-06-30,expired
+ARC-724,88,MSAFE-2026,incomplete_expired,2025-07-31,expired

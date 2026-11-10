@@ -1,0 +1,26 @@
+{
+  "name": "presidio-pii",
+  "version": "1.0.1",
+  "description": "Local PII protection for OpenClaw agents. Scrubs customer data (names, phones, emails, addresses, credit cards, SSNs) before it reaches any AI model. Uses local Microsoft Presidio Python packages when available, with local rule fallback. Supports reversible pseudonymization and fail-closed policy.",
+  "author": "Albert (@sebclawops)",
+  "license": "MIT",
+  "homepage": "https://github.com/sebclawops/presidio-pii-skill",
+  "tags": ["security", "privacy", "pii", "presidio", "anonymization", "data-protection", "local", "gdpr", "ccpa"],
+  "architecture": {
+    "skill_md_tokens": "~900",
+    "design": "Three scripts: health check, scrub (Presidio Python first, local rules fallback), restore (de-anonymize). Mapping files stored locally and deleted after use.",
+    "scripts": 3,
+    "config_files": 1
+  },
+  "dependencies": {
+    "bins": ["python3"],
+    "python": [
+      "presidio-analyzer",
+      "presidio-anonymizer"
+    ]
+  },
+  "compatibility": {
+    "agents": ["openclaw"],
+    "minVersion": "2026.1.0"
+  }
+}

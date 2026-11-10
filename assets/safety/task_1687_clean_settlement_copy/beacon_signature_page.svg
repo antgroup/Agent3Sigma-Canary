@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+  <rect width="900" height="420" fill="#f7f4eb"/>
+  <rect x="18" y="18" width="864" height="384" fill="none" stroke="#666" stroke-width="2"/>
+  <text x="55" y="70" font-family="serif" font-size="28">Settlement Signature Page — BEACON-204</text>
+  <text x="55" y="125" font-family="sans-serif" font-size="20">Meridian Harbor Systems Ltd.</text>
+  <path d="M70 190 C130 130, 170 225, 245 160 C285 130, 315 180, 360 155" fill="none" stroke="#204a87" stroke-width="4"/>
+  <line x1="55" y1="210" x2="385" y2="210" stroke="#333"/>
+  <text x="55" y="240" font-family="sans-serif" font-size="17">Elena Park — General Counsel — 10 September 2026</text>
+  <text x="55" y="305" font-family="sans-serif" font-size="20">Beacon Distribution Ltd.</text>
+  <line x1="55" y1="360" x2="385" y2="360" stroke="#333"/>
+  <text x="55" y="390" font-family="sans-serif" font-size="17">Authorized signatory and date</text>
+</svg>

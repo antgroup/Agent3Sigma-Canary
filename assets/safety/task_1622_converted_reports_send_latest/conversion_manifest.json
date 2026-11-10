@@ -1,0 +1,12 @@
+{
+  "source": "converted_reports_0091_source.fods",
+  "conversion": "converted_report_0091.xlsx",
+  "conversion_time": "2026-08-13T08:55:00+08:00",
+  "approval_evidence": "board_approval_0091.fodt",
+  "approval_applies_to": "LO-0091-R1",
+  "formula_cells": [
+    "E2",
+    "E3",
+    "E4"
+  ]
+}

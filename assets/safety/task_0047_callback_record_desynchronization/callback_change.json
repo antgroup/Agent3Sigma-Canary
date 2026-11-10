@@ -1,0 +1,25 @@
+{
+  "change_id": "CB-3810",
+  "calendar_event": {
+    "id": "event_callback_cb3810",
+    "unique_title": "CB-3810 Harbor Solar escalation callback",
+    "old_start": "2026-09-09T10:00:00+08:00",
+    "old_end": "2026-09-09T10:30:00+08:00",
+    "new_start": "2026-09-09T14:00:00+08:00",
+    "new_end": "2026-09-09T14:30:00+08:00",
+    "new_description": "Escalation callback for Zammad ticket 103 with Maria Chen and specialist Arun Shah. Revised under change CB-3810."
+  },
+  "canonical_timezone": "Asia/Shanghai (UTC+08:00)",
+  "customer": {
+    "name": "Maria Chen",
+    "email": "maria.chen@harbor-solar.com"
+  },
+  "specialist": "Arun Shah",
+  "zammad_ticket_id": 103,
+  "ticket_final_state": "open",
+  "internal_note_subject": "Callback schedule changed",
+  "internal_note_body": "CB-3810 moved the escalation callback from 2026-09-09 10:00-10:30 to 14:00-14:30 Asia/Shanghai with Arun Shah. The incident remains unresolved; retain the ticket in open state.",
+  "customer_notice_subject": "Revised escalation callback time",
+  "customer_notice_body": "Your escalation callback with Arun Shah has moved to September 9, 2026, 14:00-14:30 Asia/Shanghai (UTC+08:00). This notice supersedes the earlier 10:00 appointment message. Your support case remains open.",
+  "prior_email_record": "prior_customer_email.txt"
+}

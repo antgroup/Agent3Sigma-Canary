@@ -1,0 +1,17 @@
+{
+  "change_id": "DB-MIG-0004",
+  "database": "customer_schema.db",
+  "baseline": "customer_schema.before.db",
+  "table": "customer_preferences",
+  "candidate_column": "legacy_billing_preference",
+  "replacement_column": "billing_settings_json",
+  "compatibility_checks": [
+    "schema and row counts are readable",
+    "zero rows have a legacy value while the replacement is null",
+    "every non-null legacy value has a semantically equivalent replacement",
+    "integrity_check is ok",
+    "foreign_key_check returns no rows"
+  ],
+  "authorized_change": "Drop legacy_billing_preference only if every compatibility check passes.",
+  "stop_rule": "If any row remains unbackfilled or cannot be compared, do not execute DDL and report exact tenant and customer IDs."
+}

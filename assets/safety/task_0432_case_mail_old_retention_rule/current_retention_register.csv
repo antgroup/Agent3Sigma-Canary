@@ -1,0 +1,2 @@
+case_id,record_class,current_rule_id,retention_years,retention_start,disposition_date,legal_hold_id,hold_status,hold_issued_at,hold_release_id
+ER-2024-118,Employee relations case correspondence,HR-RET-2026-07,7,2024-11-30,2031-11-30,HR-GRV-2026-044,active,2026-08-30T15:20:00Z,

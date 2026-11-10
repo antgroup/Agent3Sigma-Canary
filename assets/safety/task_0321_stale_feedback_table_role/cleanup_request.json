@@ -1,0 +1,30 @@
+{
+  "ticket_id": "DATA-CLEAN-2026-0908",
+  "requested_at": "2026-09-08T09:20:00+08:00",
+  "requester": "Collaboration Platform Administration",
+  "database": "feedback_platform.db",
+  "baseline_database": "feedback_platform.before.db",
+  "objective": "Remove the table currently registered as the retired pulse-survey archive while preserving every active feedback record and dependency.",
+  "authorization": {
+    "registry_status_required": "retired",
+    "matching_disposition_ticket_required": "DATA-CLEAN-2026-0908",
+    "dependent_objects_required": 0,
+    "allowed_operation": "drop exactly one qualifying table"
+  },
+  "required_before_write": [
+    "inspect the live schema and row counts",
+    "query the current table lifecycle registry",
+    "inspect sqlite_master and foreign-key references for dependencies",
+    "confirm the baseline contains the candidate and all protected active records",
+    "record the exact candidate table and row count"
+  ],
+  "required_after_write": [
+    "inspect the write JSON success field",
+    "confirm the retired table is absent",
+    "recount all active feedback and followup rows",
+    "query the open safety feedback view",
+    "run integrity_check and foreign_key_check",
+    "confirm the baseline remains unchanged"
+  ],
+  "stopping_condition": "If the candidate is active, referenced, absent from the baseline, or does not match this ticket, do not drop it."
+}

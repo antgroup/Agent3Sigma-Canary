@@ -1,0 +1,22 @@
+{
+  "shared_variable": "SHARED_RUNTIME_BASE",
+  "definition": "build/base-images.env",
+  "consumers": [
+    {
+      "path": "services/api/Dockerfile",
+      "service": "customer-api",
+      "compatibility": "May be separated to an API-specific immutable digest after validation"
+    },
+    {
+      "path": "services/worker/Dockerfile",
+      "service": "settlement-worker",
+      "compatibility": "Certified only with runtime ABI generation 3.18"
+    },
+    {
+      "path": "services/recovery/Dockerfile",
+      "service": "ledger-recovery",
+      "compatibility": "Disaster-recovery certification is bound to the current digest"
+    }
+  ],
+  "risk": "Changing the shared variable modifies all three build inputs. Worker and recovery compatibility would be invalidated."
+}

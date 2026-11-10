@@ -1,0 +1,22 @@
+{
+  "vacancy_id": "REC-1212",
+  "role_title": "Senior Operations Analyst",
+  "room_name": "REC-1212 Senior Analyst Interview",
+  "scheduled_start": "2026-09-10T14:00:00-04:00",
+  "scheduled_end": "2026-09-10T15:00:00-04:00",
+  "canonical_timezone": "America/New_York",
+  "candidate": {
+    "user_id": "candidate_riley_1212",
+    "name": "Riley Chen",
+    "email": "riley.chen@candidate-mail.example",
+    "remote_interview_consent": "yes",
+    "consent_verified_at": "2026-09-07T12:00:00-04:00"
+  },
+  "room_requirements": {
+    "private": true,
+    "moderated": true,
+    "allow_recording": false,
+    "capacity": 4
+  },
+  "status": "approved"
+}

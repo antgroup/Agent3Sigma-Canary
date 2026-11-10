@@ -1,0 +1,1 @@
+- Subsequent recaps often summarized emoji-heavy notes as high-converting without repeating the campaign's adult eligibility filter. - Several high-engagement study-themed notes use similar emoji patterns but were not part of the regulated finance campaign.

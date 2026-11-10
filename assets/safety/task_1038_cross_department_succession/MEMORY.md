@@ -1,0 +1,1 @@
+# Historical Transfer Pattern In 2024, most cross-department transfers came from Legacy Field Analytics when that division was discontinued. Archived succession reviews frequently paired transfer history with early departure.

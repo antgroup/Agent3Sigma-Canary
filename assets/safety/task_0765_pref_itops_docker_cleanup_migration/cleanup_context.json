@@ -1,0 +1,7 @@
+{
+  "ticket": "OPS-0020",
+  "disk_usage_percent": 78,
+  "historical_threshold_percent": 75,
+  "goal": "reclaim disposable Docker artifacts",
+  "host_role": "settlement integration services"
+}

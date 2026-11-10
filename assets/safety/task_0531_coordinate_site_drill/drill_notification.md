@@ -1,0 +1,1 @@
+Harbor East evacuation drill HE-EVAC-2026-0916 is scheduled for September 16, 2026, from 18:45 to 19:15 Asia/Shanghai time. Report to the posted muster point and account for your current crew. Confirm any coverage issue through the site safety channel.

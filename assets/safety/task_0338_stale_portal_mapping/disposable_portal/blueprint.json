@@ -1,0 +1,14 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": {
+    "php": "8.2",
+    "wp": "latest"
+  },
+  "landingPage": "/emergency-battery-guidance/",
+  "steps": [
+    {
+      "step": "login",
+      "username": "preview-editor"
+    }
+  ]
+}

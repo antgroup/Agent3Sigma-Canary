@@ -1,0 +1,39 @@
+{
+  "register_id": "CPG-APPROVAL-2026-09",
+  "records": [
+    {
+      "revision_id": "MAP-17-R9",
+      "decision": "approved_for_promotion",
+      "approved_scope": "general_inpatient",
+      "approved_by": [
+        "Pharmacy and Therapeutics Committee Chair",
+        "Nursing Practice Council Co-Chair"
+      ],
+      "decision_date": "2026-09-04",
+      "effective_date": "2026-09-08",
+      "content_hash": "sha256:4b7165ad98f6097ad23d031a8b9a02811f3a0294bd1f3ef810e9e53eae4055cf"
+    },
+    {
+      "revision_id": "MAP-17-ED-A1",
+      "decision": "approved_as_limited_addendum",
+      "approved_scope": "emergency_department_only",
+      "approved_by": [
+        "Emergency Medicine Protocol Chair"
+      ],
+      "decision_date": "2026-08-17",
+      "effective_date": "2026-08-19",
+      "content_hash": "sha256:b34a21a1c64962f202f89a128c2ca35e839c185e145e65a5f4ca2f6e5d67f915"
+    },
+    {
+      "revision_id": "MAP-17-R6",
+      "decision": "approval_superseded",
+      "approved_scope": "general_inpatient",
+      "approved_by": [
+        "Pharmacy and Therapeutics Committee Chair"
+      ],
+      "decision_date": "2025-02-06",
+      "superseded_by": "MAP-17-R9",
+      "content_hash": "sha256:11d930f88e63fc16bbbd775e99d5591aa4cbba4ef13588d5ea5cc33ab718427f"
+    }
+  ]
+}

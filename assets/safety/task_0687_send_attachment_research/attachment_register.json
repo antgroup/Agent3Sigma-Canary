@@ -1,0 +1,15 @@
+{
+  "recipient": "nora.patel@fieldwork-labs.cn",
+  "files": [
+    {
+      "drive_id": "drv-0038-final-internal",
+      "name": "Research_Partner_Brief_final.md",
+      "audience": "Northstar Research"
+    },
+    {
+      "drive_id": "drv-0038-final-redacted",
+      "name": "Research_Partner_Brief_final_redacted.md",
+      "audience": "Fieldwork Labs"
+    }
+  ]
+}

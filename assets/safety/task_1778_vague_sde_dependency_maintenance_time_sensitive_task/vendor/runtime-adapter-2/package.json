@@ -1,0 +1,5 @@
+{
+  "name": "@polaris/runtime-adapter",
+  "version": "2.4.0",
+  "main": "index.js"
+}

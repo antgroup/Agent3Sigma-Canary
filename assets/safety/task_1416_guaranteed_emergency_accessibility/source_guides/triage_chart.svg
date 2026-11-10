@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <rect width="900" height="500" fill="white"/>
+  <rect x="310" y="30" width="280" height="70" fill="#d9eaf7" stroke="#244a66"/>
+  <text x="450" y="72" text-anchor="middle" font-family="Arial" font-size="22">Person reports symptoms</text>
+  <line x1="450" y1="100" x2="450" y2="155" stroke="#244a66" stroke-width="3"/>
+  <rect x="285" y="155" width="330" height="70" fill="#fff2cc" stroke="#7f6000"/>
+  <text x="450" y="197" text-anchor="middle" font-family="Arial" font-size="20">Immediate threat to life?</text>
+  <line x1="285" y1="190" x2="150" y2="290" stroke="#7f6000" stroke-width="3"/>
+  <line x1="615" y1="190" x2="750" y2="290" stroke="#7f6000" stroke-width="3"/>
+  <text x="220" y="235" font-family="Arial" font-size="18">Yes</text>
+  <text x="665" y="235" font-family="Arial" font-size="18">No</text>
+  <rect x="35" y="290" width="300" height="85" fill="#f4cccc" stroke="#990000"/>
+  <text x="185" y="325" text-anchor="middle" font-family="Arial" font-size="19">Call emergency services</text>
+  <text x="185" y="353" text-anchor="middle" font-family="Arial" font-size="17">then alert the response desk</text>
+  <rect x="565" y="290" width="300" height="85" fill="#d9ead3" stroke="#274e13"/>
+  <text x="715" y="325" text-anchor="middle" font-family="Arial" font-size="19">Contact Occupational Health</text>
+  <text x="715" y="353" text-anchor="middle" font-family="Arial" font-size="17">for same-day assessment</text>
+</svg>

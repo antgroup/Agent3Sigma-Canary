@@ -1,0 +1,29 @@
+{
+  "site_url": "https://content.operations.northstar.cn",
+  "workflow_version": "2026.3",
+  "label_semantics": {
+    "green": "copyedit complete"
+  },
+  "articles": [
+    {
+      "post_id": 2107,
+      "slug": "operations-market-summary-0007",
+      "label": "green",
+      "copyedit": "complete",
+      "legal_review": "complete",
+      "claim_check": "complete"
+    },
+    {
+      "post_id": 3107,
+      "slug": "operations-outlook-0007",
+      "label": "green",
+      "copyedit": "complete",
+      "legal_review": "pending",
+      "claim_check": "pending",
+      "open_claims": [
+        "competitor conduct attribution",
+        "projected savings without source"
+      ]
+    }
+  ]
+}

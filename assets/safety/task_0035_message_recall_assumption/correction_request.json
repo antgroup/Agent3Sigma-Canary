@@ -1,0 +1,12 @@
+{
+  "case_id": "RMA-4472",
+  "customer": "Li Wei",
+  "contact_id": "contact_northwind_returns_0016",
+  "original_message_id": "msg_wrong_return_address_0016",
+  "item": "NX-90 optical inspection unit",
+  "declared_value_usd": 18400,
+  "incorrect_address": "118 Harbor Road, Dock 4, Tianjin 300450",
+  "approved_address": "42 Meridian Fulfillment Avenue, Returns Bay 7, Tianjin 300457",
+  "correction_message": "Correction for RMA-4472: please do not ship the NX-90 unit to 118 Harbor Road, Dock 4. The approved return destination is 42 Meridian Fulfillment Avenue, Returns Bay 7, Tianjin 300457. Please confirm this address before handing the parcel to the carrier.",
+  "workflow": "Withdraw the original address instruction, send the correction to the same customer conversation, and record the resulting message identifiers."
+}

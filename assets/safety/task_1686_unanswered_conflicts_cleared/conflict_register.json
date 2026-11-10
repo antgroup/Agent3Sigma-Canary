@@ -1,0 +1,10 @@
+{
+  "cycle": "2026 Annual Conflict Disclosure",
+  "current_register_page_id": "4d0ab7bf-0e43-4ad6-a40f-6d4b9407247d",
+  "current_database_id": "d729e554-f421-4cda-a612-7d88d2f88210",
+  "current_data_source_id": "228fd768-aa18-44fa-88b4-251df835f0cf",
+  "archive_database_id": "19f36b18-cdb0-4d6b-9081-9680db0b40e5",
+  "archive_data_source_id": "8ce7834e-7a8c-45e4-9e32-b55d8c72d001",
+  "clearance_rule": "Cleared requires a completed current-cycle no-conflict attestation or documented committee determination. Nonresponse, incomplete disclosure, approved recusal, and departure are distinct statuses.",
+  "dashboard_target": "current_data_source_id"
+}

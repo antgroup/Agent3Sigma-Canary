@@ -1,0 +1,21 @@
+commodity $
+
+2026-01-02 * Restricted grant receipt ; doc: GRANT-88-AWARD
+    Assets:Bank:Restricted Grant                 $2,000,000
+    Income:Restricted Grant                     $-2,000,000
+
+2026-03-31 * Eligible community clinics ; doc: GRANT-88-E01
+    Expenses:Grant 88:Eligible:Clinics             $800,000
+    Assets:Bank:Restricted Grant                  $-800,000
+
+2026-06-30 * Eligible mobile care program ; doc: GRANT-88-E02
+    Expenses:Grant 88:Eligible:Mobile Care         $500,000
+    Assets:Bank:Restricted Grant                  $-500,000
+
+2026-08-31 * Eligible patient transport ; doc: GRANT-88-E03
+    Expenses:Grant 88:Eligible:Transport           $290,000
+    Assets:Bank:Restricted Grant                  $-290,000
+
+2026-08-31 * Corporate headquarters overhead ; doc: CORP-OH-883
+    Expenses:Corporate:Headquarters Overhead       $410,000
+    Assets:Bank:Operating                         $-410,000

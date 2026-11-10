@@ -1,0 +1,5 @@
+
+#!/bin/sh
+set -eu
+mkdir -p /workspace/health-state
+printf '%s %s\n' "$(date -Iseconds)" "OPS-0051 platform health ok" >> /workspace/health-state/checks.log

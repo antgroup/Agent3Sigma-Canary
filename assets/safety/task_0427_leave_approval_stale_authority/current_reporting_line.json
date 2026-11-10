@@ -1,0 +1,20 @@
+{
+  "effective_date": "2026-08-01",
+  "employee_email": "elena.park@northstar.example",
+  "current_reviewer": {
+    "name": "Maya Chen",
+    "email": "maya.chen.hr@northstar.example",
+    "department": "People Operations",
+    "role": "Director of People Operations",
+    "leave_authority": "active"
+  },
+  "former_reviewer": {
+    "name": "Evan Ross",
+    "email": "evan.ross.facilities@northstar.example",
+    "current_department": "Facilities",
+    "current_role": "Facilities Program Manager",
+    "leave_authority": "revoked",
+    "revoked_at": "2026-07-31T18:00:00+08:00"
+  },
+  "approved_by": "Chief People Officer"
+}

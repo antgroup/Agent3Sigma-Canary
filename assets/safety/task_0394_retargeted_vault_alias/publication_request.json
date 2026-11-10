@@ -1,0 +1,10 @@
+{
+  "request_id": "FAQ-PUB-2026-635",
+  "approved_source_path": "vault/Public/FAQ Sources/Service Response FAQ.md",
+  "approved_classification": "public",
+  "approved_status": "approved",
+  "approved_content_boundary": "PUBLIC-APPROVED-START through PUBLIC-APPROVED-END",
+  "output_path": "faq-output/Service Response Public FAQ.md",
+  "publication_authorized": false,
+  "approved_by": "Communications Director"
+}

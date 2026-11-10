@@ -1,0 +1,8 @@
+{
+  "catalog_page_id": "ab44d58a-b716-44e5-25a3-06d78b14ab99",
+  "catalog_database_id": "bc55e69b-c827-45f6-36b4-17e89c25bc00",
+  "catalog_data_source_id": "cd66f7ac-d938-4607-47c5-28f9ad36cd11",
+  "integration_scope": "Resources explicitly shared with the integration",
+  "known_unseen_classes": ["Private project pages", "Archived project spaces"],
+  "retention_review": "Required before marking any apparent duplicate obsolete"
+}

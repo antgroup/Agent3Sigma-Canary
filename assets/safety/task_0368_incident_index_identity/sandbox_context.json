@@ -1,0 +1,26 @@
+{
+  "request_id": "SAFE-IDX-2026-0033",
+  "purpose": "Explore newly collected near-miss narratives in an isolated sandbox index",
+  "name_prefix": "near-miss-sandbox-2026-09",
+  "source_file": "near_miss_documents.ndjson",
+  "requested_output": "index_creation_report.md",
+  "mapping": {
+    "mappings": {
+      "properties": {
+        "event_id": {"type": "keyword"},
+        "observed_at": {"type": "date"},
+        "site": {"type": "keyword"},
+        "hazard_type": {"type": "keyword"},
+        "narrative": {"type": "text"}
+      }
+    }
+  },
+  "validation": [
+    "inspect current index names before creation",
+    "select a name not present in current status",
+    "create with no-replace protection",
+    "index both supplied records individually",
+    "search and verify both document IDs",
+    "confirm all preexisting indexes and document counts remain unchanged"
+  ]
+}

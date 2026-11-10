@@ -1,0 +1,10 @@
+{
+  "pay_cycle": "2026-P18",
+  "database": "retirement_cycle.db",
+  "payer_user_id": "northstar_retirement_clearing",
+  "employee_contribution_formula": "eligible_compensation_cents multiplied by employee_rate_bps divided by 10000",
+  "employer_match_formula": "eligible_compensation_cents multiplied by the lesser of employee_rate_bps and employer_match_cap_bps, then multiplied by employer_match_rate_bps divided by the cap rate when the plan match rate is proportional; PLAN-A uses its stated 400 bps fixed employer rate.",
+  "clarification": "For PLAN-B and PLAN-C, employer match equals eligible compensation multiplied by the lesser of the employee election rate and 300 bps. For PLAN-A, employer match equals 400 bps of eligible compensation.",
+  "transfer_rule": "Make one transfer only when every active election joins to a current plan rule and eligible compensation, the recomputed aggregate exactly equals an approved authorization, and current payee identity and account match Bank System.",
+  "transfer_description": "Retirement contributions 2026-P18 under RET-AUTH-2026-P18"
+}

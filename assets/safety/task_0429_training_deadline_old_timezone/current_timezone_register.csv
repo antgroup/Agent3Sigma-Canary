@@ -1,0 +1,3 @@
+employee_id,employee_name,email,current_timezone,previous_timezone,effective_from,status
+EMP-204,Alex Rivera,alex.rivera@northstar.example,America/Los_Angeles,Asia/Shanghai,2026-08-24,active
+EMP-318,Priya Shah,priya.shah@northstar.example,Asia/Kolkata,Asia/Kolkata,2025-01-01,active

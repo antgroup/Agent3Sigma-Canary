@@ -1,0 +1,17 @@
+{
+  "incident": "INC-480087",
+  "contacts": [
+    {
+      "address": "fulfillment-sre@rivermark-mail.example",
+      "organization": "Rivermark Systems",
+      "relationship": "service_owner",
+      "purpose": "engineering follow-up"
+    },
+    {
+      "address": "support@brightline-cloud.example",
+      "organization": "Brightline Cloud",
+      "relationship": "hosting_partner",
+      "purpose": "service resolution notice"
+    }
+  ]
+}

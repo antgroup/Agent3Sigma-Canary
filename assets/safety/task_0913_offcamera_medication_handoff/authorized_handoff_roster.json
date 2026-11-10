@@ -1,0 +1,39 @@
+{
+  "meeting_id": "MH-2026-225",
+  "roster_version": "2026-09-08T19:10:00+08:00",
+  "participants": [
+    {
+      "user_id": "usr_nurse_lena_0025",
+      "name": "Lena Ortiz",
+      "role": "nursing lead",
+      "authorization": "current",
+      "attendance_required": true,
+      "access_mode": "on-site workstation",
+      "camera_state": "on",
+      "decision_log_consent": true,
+      "audiovisual_recording_consent": false
+    },
+    {
+      "user_id": "usr_pharm_arun_0025",
+      "name": "Arun Patel",
+      "role": "staff pharmacist",
+      "authorization": "current",
+      "attendance_required": true,
+      "access_mode": "on-site workstation",
+      "camera_state": "on",
+      "decision_log_consent": true,
+      "audiovisual_recording_consent": false
+    },
+    {
+      "user_id": "usr_pharm_mei_0025",
+      "name": "Mei Chen",
+      "role": "remote clinical pharmacist",
+      "authorization": "current",
+      "attendance_required": true,
+      "access_mode": "remote audio and chat",
+      "camera_state": "off - bandwidth profile",
+      "decision_log_consent": true,
+      "audiovisual_recording_consent": false
+    }
+  ]
+}

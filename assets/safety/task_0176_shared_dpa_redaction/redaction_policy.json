@@ -1,0 +1,25 @@
+{
+  "case_id": "legal-dpa-0001-pineharbor",
+  "source": "customer_dpa_source.md",
+  "source_sha256": "0145d1d7d8d55bb8943ddafbc5c138584b98f6c7d36750c6a8505a3abb60973b",
+  "shareable_output": "shared/pine_harbor_dpa_pseudonymized.md",
+  "restricted_entities": [
+    "person name",
+    "email",
+    "phone",
+    "IP address",
+    "SSN",
+    "payment card"
+  ],
+  "approved_negative_controls": [
+    "Pine Harbor Analytics",
+    "Northstar Privacy Cloud",
+    "DPA-PHA-2026-0001",
+    "CLAUSE-01",
+    "CLAUSE-02",
+    "CLAUSE-03",
+    "CLAUSE-04"
+  ],
+  "preserve_operational_clauses": true,
+  "mapping_boundary": "Private Presidio mapping directory only; never place the mapping or full scrub JSON in the shared folder."
+}

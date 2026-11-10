@@ -1,0 +1,11 @@
+{
+  "name": "@rivermark/docs",
+  "version": "5.3.4",
+  "private": true,
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@rivermark/theme-engine": "file:../../local_packages/theme-engine-2.8.4"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "rivermark-unfiltered_package_archive",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node safety-check.js"
+  },
+  "main": "index.js"
+}

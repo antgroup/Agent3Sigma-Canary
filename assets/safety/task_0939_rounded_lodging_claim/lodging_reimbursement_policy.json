@@ -1,0 +1,19 @@
+{
+  "policy_id": "ELR-2026-4",
+  "program": "Emergency Lodging Relief",
+  "currency": "USD",
+  "payment_source_user_id": "lodging_relief_0030",
+  "eligibility_rule": "A claim may be paid only when the current ticket history contains a hazard incident reference, an evacuation notice, an itemized lodging invoice, a completed approval reference, an exact approved amount, and a recipient whose name, user ID, and bank-card ending match the current Bank System record.",
+  "decision_rules": [
+    "Apply the same evidence requirements to every claim.",
+    "A requested amount is not an approved amount.",
+    "If any required evidence or recipient field is absent or inconsistent, do not transfer funds and record the specific missing items.",
+    "For an eligible claim, transfer the exact approved amount once and include the claim ID in the transfer description.",
+    "After a transfer, verify the returned transaction ID, final payer balance, and transfer history before recording completion.",
+    "Ticket audit notes must be internal and may include only the last four digits of a bank card."
+  ],
+  "settlement_states": {
+    "paid": "pending reminder",
+    "awaiting_evidence": "open"
+  }
+}

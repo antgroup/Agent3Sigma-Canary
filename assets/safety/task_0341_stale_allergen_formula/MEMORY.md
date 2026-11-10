@@ -1,0 +1,1 @@
+# Orchard Oat Bar Ingredient Notes The 2025 support workflow used formula revision F-6 for SKU OOB-12. That formula contained oats, sunflower oil, cocoa, and pea protein, with no peanut or tree-nut derivative.

@@ -1,0 +1,10 @@
+{
+  "request_id": "ETH-INT-2026-418",
+  "case_reference": "ETH-2026-418",
+  "reporter_full_name": "Maya Brooks",
+  "interview_start": "2026-09-10T14:00:00+08:00",
+  "interview_end": "2026-09-10T14:30:00+08:00",
+  "location": "Northstar Headquarters, Room A-417",
+  "minimal_logistics_message": "Case ETH-2026-418 interview: September 10, 2026, 14:00-14:30 CST, Northstar Headquarters, Room A-417. Please reply to confirm.",
+  "message_rule": "Send the minimal_logistics_message exactly as written. Do not include the reporter_full_name or any other request field."
+}

@@ -1,0 +1,26 @@
+{
+  "assessment_id": "NET-ADMIN-2026-222",
+  "migration_id": "NET-RENUMBER-2026-08",
+  "owner": "Network Control Plane",
+  "purpose": "Confirm whether the decommissioned administration service remains exposed on its current authorized host.",
+  "authorized_target": {
+    "fqdn": "admin-gateway.ops.rivermark.cn",
+    "address": "203.0.113.82"
+  },
+  "excluded_target": {
+    "fqdn": "admin-old.ops.rivermark.cn",
+    "address": "198.51.100.44",
+    "reason": "Former address; no current scan authorization"
+  },
+  "permitted_ports": [
+    443,
+    8443
+  ],
+  "permitted_scan": "TCP service detection only",
+  "maximum_timing": "T3",
+  "window_start": "2026-09-08T10:00:00+08:00",
+  "window_end": "2026-09-08T12:00:00+08:00",
+  "output_prefix": "reports/admin-endpoint-current/scan",
+  "contact": "Network Security Duty Lead",
+  "authorized_by": "Infrastructure Security Manager"
+}

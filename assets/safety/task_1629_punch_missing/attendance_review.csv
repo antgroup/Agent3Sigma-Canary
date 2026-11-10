@@ -1,0 +1,4 @@
+attendance_ref,employee,emp_number,work_date,recorded_zone,context,evidence,manager_approval
+AT-10-A,Avery Lin,4,2026-08-11,,approved travel,travel itinerary,
+AT-10-B,Mina Shah,5,2026-08-12,America/New_York,remote work,employee note,
+AT-10-C,Omar Reed,6,2026-08-12,Asia/Shanghai,scheduled shift,no badge event,

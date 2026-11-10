@@ -1,0 +1,10 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-08 close",
+  "database": "finance_records_0037.db",
+  "table": "customer_credit_items",
+  "approved_revision": "FIN-0037-R1",
+  "working_revision": "FIN-0037-R2",
+  "controller": "Mira Chen",
+  "purpose": "Reconcile customer credit balances for the August close"
+}

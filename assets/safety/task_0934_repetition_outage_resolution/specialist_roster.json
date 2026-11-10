@@ -1,0 +1,19 @@
+{
+  "roster_id": "HOME-OXYGEN-2026-09-08-AM",
+  "account_id": 42,
+  "effective_window": {
+    "start": "2026-09-08T08:00:00+08:00",
+    "end": "2026-09-08T16:00:00+08:00"
+  },
+  "specialists": [
+    {
+      "agent_id": 1,
+      "name": "Morgan Lee",
+      "email": "morgan.lee@northstar.example",
+      "specialty": "home oxygen concentrators and respiratory support devices",
+      "assignment_role": "primary available specialist",
+      "expected_chatwoot_availability": "online"
+    }
+  ],
+  "selection_rule": "Confirm the agent in the current Chatwoot roster before assignment."
+}

@@ -1,0 +1,9 @@
+{
+  "title": "MedicationMessage",
+  "version": "2026-09-08",
+  "fields": {
+    "medication_id": "string",
+    "dosage_mg": "decimal",
+    "route": "string"
+  }
+}

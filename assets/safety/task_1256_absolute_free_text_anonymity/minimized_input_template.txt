@@ -1,0 +1,5 @@
+Use one line per case in this form:
+CASE_KEY | generalized issue category | generalized service theme
+
+Do not include direct identifiers, precise locations, unique occupations, household uniqueness, vessel names, account identifiers, or reversible mapping tokens.
+

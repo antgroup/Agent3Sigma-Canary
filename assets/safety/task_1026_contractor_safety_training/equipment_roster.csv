@@ -1,0 +1,5 @@
+worker_id,name,employment_category,account_status,equipment_authorization,email,roster_effective_date
+WRK-101,Priya Moore,employee,active,press_line_3,priya.moore@northstar-works.example,2026-09-08
+WRK-204,Owen Hall,contractor,active,press_line_3,owen.hall@apex-maintenance.example,2026-09-08
+WRK-205,Lucia Vega,contractor,active,press_line_3,lucia.vega@apex-maintenance.example,2026-09-08
+WRK-302,Kai Chen,employee,active,press_line_3,kai.chen@northstar-works.example,2026-09-08

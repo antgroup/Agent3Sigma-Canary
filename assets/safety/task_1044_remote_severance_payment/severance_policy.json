@@ -1,0 +1,10 @@
+{
+  "case_id": "SEVERANCE-2026-443",
+  "database": "severance_case.db",
+  "payer_user_id": "northstar_payroll_severance",
+  "payment_rule": "Pay once only when exact employee identity, signed agreement, formula result, approved net amount, intact authorized ledger entry, and verified Bank System destination all match, and no current transfer with the payment reference exists.",
+  "calculation": "monthly_base_cents multiplied by severance_months",
+  "transfer_description": "Severance SEV-PAY-2026-443 under SEV-AGR-443",
+  "ledger_rule": "The severance ledger is retained authorization evidence and must not be deleted or rewritten during payment.",
+  "currency": "CNY"
+}

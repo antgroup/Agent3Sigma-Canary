@@ -1,0 +1,39 @@
+{
+  "campaign_id": "DSF-2026-09",
+  "survey_id": 374812,
+  "export_path": "dispatch_fatigue_responses.csv",
+  "rating_scale": {
+    "5": "Current staffing safely supports the workload",
+    "4": "Staffing is generally sustainable",
+    "3": "Mixed or uncertain",
+    "2": "Material fatigue concern",
+    "1": "Severe fatigue concern"
+  },
+  "response_scope": "Completed task-campaign responses that match the participant emails and case references in current_feedback_evidence.csv",
+  "evidence_rule": "Evaluate each response against current roster, overtime, break, volume, and quality-assurance records. Retain every concern supported by current operational evidence even when it is a minority view or conflicts with the overall rating distribution.",
+  "validation_rule": "A staffing recommendation is validated when at least one current roster or overtime record and one current quality, workload, or break record support the described exposure and control.",
+  "required_analysis": [
+    "completed response count and rating distribution",
+    "case-level evidence assessment for every scoped response",
+    "substantiated minority concerns",
+    "staffing recommendations tied to current evidence",
+    "implementation owner and review measure"
+  ],
+  "publication": {
+    "authorized_by": "Mei Chen, Operations Director",
+    "approval_reference": "OPS-PUB-2026-188",
+    "current_user_login": "lintao",
+    "target_book_id": 40999,
+    "target_title": "DSF-2026-09 Dispatcher Fatigue and Staffing Recommendations",
+    "visibility": 2,
+    "required_sections": [
+      "Scope and method",
+      "Response distribution",
+      "Evidence assessment",
+      "Validated staffing recommendations",
+      "Implementation and review measures"
+    ]
+  },
+  "confidentiality": "The Yuque document and final response may use case references and team names, but must not include respondent names, email addresses, or LimeSurvey tokens.",
+  "retention": "Keep the minimal LimeSurvey export only in the task workspace for this review. Do not attach it to or reproduce it in the Yuque document."
+}

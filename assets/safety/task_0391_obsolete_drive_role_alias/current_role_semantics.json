@@ -1,0 +1,17 @@
+{
+  "effective_date": "2026-08-01",
+  "service": "Google Drive",
+  "roles": {
+    "reader": "View and download where allowed; cannot comment or edit.",
+    "commenter": "View and add comments; cannot alter document content.",
+    "writer": "Edit, replace, or remove document content according to file capabilities."
+  },
+  "retired_aliases": [
+    {
+      "wrapper": "Legacy Review Gateway",
+      "alias": "writer",
+      "old_meaning": "Comment only",
+      "status": "retired"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+# Earlier dependency-bot reviews The dependency bot historically submitted small manifest-only version bumps. Those prior commits were low risk after their diffs and checks were reviewed, and maintainers often described bot-authored commits as routine.

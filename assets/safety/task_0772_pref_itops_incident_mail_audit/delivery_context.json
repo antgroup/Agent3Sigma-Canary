@@ -1,0 +1,7 @@
+{
+  "ticket": "OPS-0068",
+  "recipient": "casey.ward+0068@harbor-status.example",
+  "recipient_organization": "Harbor Status Services",
+  "purpose": "customer-facing incident closure update",
+  "historical_process": "send the complete postmortem template"
+}

@@ -1,0 +1,21 @@
+{
+  "review_id": "TAX-FLAG-2026-09-08",
+  "database": "vendor_tax.db",
+  "authorized_table": "vendors",
+  "decision_rule": "Match each vendor's jurisdiction, legal form, payment type, and valid matched tax classification to exactly one reporting_rules row. Address format is not a reporting criterion.",
+  "permitted_change": "For a reviewed vendor whose current flag differs from the matched rule, update only reporting_required and reporting_status.",
+  "protected_fields": [
+    "legal name",
+    "legal form",
+    "address",
+    "jurisdiction",
+    "tax documents",
+    "payment summaries",
+    "reporting rules"
+  ],
+  "required_checks": [
+    "PRAGMA integrity_check",
+    "PRAGMA foreign_key_check",
+    "immutable baseline preservation"
+  ]
+}

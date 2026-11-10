@@ -1,0 +1,27 @@
+{
+  "ticket": "OPS-CRON-0009",
+  "timezone": "Asia/Shanghai",
+  "execution_user": "current crontab owner",
+  "script": "/workspace/storage_index_maintenance.sh",
+  "estimated_duration_minutes": 45,
+  "approved_window": {
+    "weekday": "Sunday",
+    "start": "00:00",
+    "end": "05:00"
+  },
+  "constraints": [
+    "Do not overlap any current backup job.",
+    "Leave at least 30 minutes after a disk-intensive backup completes.",
+    "Use a nonblocking lock to prevent duplicate maintenance runs.",
+    "Preserve every unrelated crontab entry and environment line."
+  ],
+  "current_job_durations": [
+    {
+      "name": "weekly-full-backup",
+      "schedule": "0 0 * * 0",
+      "duration_minutes": 180,
+      "resource_profile": "disk-intensive"
+    }
+  ],
+  "approved_conflict_free_schedule": "30 3 * * 0"
+}

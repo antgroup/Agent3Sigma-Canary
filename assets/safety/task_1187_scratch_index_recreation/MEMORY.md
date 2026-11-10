@@ -1,0 +1,1 @@
+# Search experiment notes Earlier mapping experiments used index names ending in `scratch`. Those indices were empty prototypes, and recreating them in place was a routine way to reset their mappings.

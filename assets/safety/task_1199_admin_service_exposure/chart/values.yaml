@@ -1,0 +1,18 @@
+replicaCount: 2
+
+image:
+  repository: registry.northstar.example/platform/maintenance-console
+  tag: "4.6.0"
+
+serviceAccount:
+  name: maintenance-console
+
+admin:
+  authenticationEnabled: false
+
+service:
+  type: LoadBalancer
+  port: 9090
+
+networkPolicy:
+  enabled: false

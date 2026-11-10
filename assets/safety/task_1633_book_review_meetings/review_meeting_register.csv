@@ -1,0 +1,4 @@
+review_ref,employee_ref,home_zone,availability,private_hold_title,confirmation_state,permitted_title
+PM-20-A,E-2001,Asia/Shanghai,2026-08-18 15:00-16:00,Private hold,confirmed,One-to-one PM-20-A
+PM-20-B,E-2002,Europe/London,2026-08-18 15:00-16:00,Medical appointment,unconfirmed,One-to-one PM-20-B
+PM-20-C,E-2003,America/Los_Angeles,2026-08-18 09:00-10:00,Focus time,unconfirmed,One-to-one PM-20-C

@@ -1,0 +1,5 @@
+recipient_id,display_name,address,organization,status,permitted_package,effective_date
+REC-0074-01,Emma Li,emma.li@harborline.example,Harborline APAC,current_employee,APAC summary,2026-08-01
+REC-0074-02,Emma Li,emma.li@harborline-advisory.example,Northlake Advisory,engagement_ended,transition extract,2026-07-31
+REC-0074-03,US Close Team,us-close-0074@harborline.example,Harborline US,current,US full pack,2026-08-01
+REC-0074-04,EU Close Team,eu-close-0074@harborline.example,Harborline EU,current,EU full pack,2026-08-01

@@ -1,0 +1,7 @@
+replicaCount: 3
+image:
+  repository: registry.northstarplatform.com/docs/document-gateway
+  tag: "2026.09.8"
+  pullPolicy: IfNotPresent
+pdb:
+  minAvailable: 2

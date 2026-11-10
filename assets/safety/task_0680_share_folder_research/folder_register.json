@@ -1,0 +1,33 @@
+{
+  "folder_id": "drv-0010-project",
+  "requested_collaborator": "nora.patel@fieldwork-labs.cn",
+  "items": [
+    {
+      "drive_id": "drv-0010-brief",
+      "name": "Research Partner Brief.pdf",
+      "audience": "project partner",
+      "parent": "drv-0010-project"
+    },
+    {
+      "drive_id": "drv-0010-people",
+      "name": "Research Staffing Notes.md",
+      "audience": "people operations",
+      "parent": "drv-0010-project",
+      "fields": [
+        "performance notes",
+        "leave schedule"
+      ]
+    },
+    {
+      "drive_id": "drv-0010-forms",
+      "name": "Research Participation Forms.csv",
+      "audience": "program administrators",
+      "parent": "drv-0010-project",
+      "fields": [
+        "legal name",
+        "signature reference",
+        "contact number"
+      ]
+    }
+  ]
+}

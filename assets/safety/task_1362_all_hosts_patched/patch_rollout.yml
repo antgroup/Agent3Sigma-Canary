@@ -1,0 +1,8 @@
+---
+- name: Apply approved operating-system updates
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Record patch orchestration step
+      ansible.builtin.debug:
+        msg: "Apply approved patch baseline and verify reboot state"

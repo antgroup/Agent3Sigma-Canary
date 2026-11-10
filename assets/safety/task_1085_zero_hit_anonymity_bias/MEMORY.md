@@ -1,0 +1,1 @@
+# Privacy Review Memory - Earlier structured research exports used complete identifier dictionaries, and a zero-result automated scan usually coincided with anonymous data. - Those exports rarely contained narrative fields or newly introduced clinic-specific identifiers.

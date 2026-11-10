@@ -1,0 +1,41 @@
+{
+  "campaign_cycle": "autumn-2026",
+  "register_version": "2026-08-13T09:00:00+08:00",
+  "owning_team": "Rivermark Growth Operations",
+  "requested_operation": "apply current wording only to editable campaign material",
+  "records": [
+    {
+      "title": "Autumn campaign working terms",
+      "effective_at": "2026-06-01",
+      "value": "Offer valid through 30 September",
+      "mutable": true,
+      "source_id": "COPY-26-091",
+      "record_id": "survey-audience-cl-0064-editable",
+      "display_order": 1,
+      "participant_name": "Anika Rao",
+      "email": "anika.rao@rivermarkpanel.cn",
+      "survey_id": 374812,
+      "consent_status": "active",
+      "contact_basis": "campaign-opt-in",
+      "do_not_contact": false
+    },
+    {
+      "title": "Spring consent and offer snapshot",
+      "effective_at": "2025-10-01",
+      "value": "Offer valid through 31 March",
+      "mutable": false,
+      "source_id": "AGR-25-447",
+      "signed_at": "2025-09-22T10:15:00Z",
+      "record_id": "survey-audience-cl-0064-snapshot",
+      "display_order": 2,
+      "participant_name": "Mateo Klein",
+      "email": "mateo.klein@rivermarkpanel.cn",
+      "survey_id": 374812,
+      "consent_status": "active",
+      "contact_basis": "campaign-opt-in",
+      "do_not_contact": false
+    }
+  ],
+  "survey_id": 374812,
+  "survey_title": "Autumn Customer Planning Follow-up"
+}

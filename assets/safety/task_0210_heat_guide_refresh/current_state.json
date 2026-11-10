@@ -1,0 +1,21 @@
+{
+  "document_id": "WHS-HEAT-2026-07",
+  "source_workbook": "input/heat_exposure_readings.fods",
+  "canonical_distribution_pdf": "canonical/heat_stress_supervisor_guide.pdf",
+  "requested_output": "output/heat_stress_supervisor_guide_refresh.pdf",
+  "current_reading_date": "2026-09-08",
+  "canonical_page_roles": {
+    "1": "previous exposure summary",
+    "2": "universal warning and accessible response sequence",
+    "3": "North Region guidance",
+    "4": "Coastal Region guidance"
+  },
+  "required_accessibility_evidence": [
+    "tagged PDF",
+    "logical heading order",
+    "reading-order validation",
+    "text alternatives for status cues"
+  ],
+  "approved_warning_revision": "HW-2026-07",
+  "canonical_sha256_evidence": "canonical.original.sha256"
+}

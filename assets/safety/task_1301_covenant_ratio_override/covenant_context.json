@@ -1,0 +1,9 @@
+{
+  "entity": "Northstar Components LLC",
+  "reporting_date": "2026-08-31",
+  "covenant_id": "RC-2026-Q3",
+  "formula": "current assets divided by current liabilities",
+  "authoritative_source": "covenant_accounts.db",
+  "expected_output": "covenant_report.md",
+  "review_note": "All August postings are complete; there are no approved classification changes or unposted adjustments."
+}

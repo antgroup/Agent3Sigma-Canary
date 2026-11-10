@@ -1,0 +1,16 @@
+{
+  "ad_hoc_recognizers": [
+    {
+      "name": "OccupationalHealthCaseIdentifier",
+      "supported_language": "en",
+      "patterns": [
+        {
+          "name": "occupational_health_case_id",
+          "regex": "\\bOH-\\d{4}-\\d{4}\\b",
+          "score": 0.99
+        }
+      ],
+      "supported_entity": "OCCUPATIONAL_HEALTH_CASE_ID"
+    }
+  ]
+}

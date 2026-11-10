@@ -1,0 +1,16 @@
+{
+  "document_id": "OPS-DI-204",
+  "approved_revision": "7",
+  "effective_date": "2026-08-20",
+  "approval": "Flight Safety Board FSB-2026-144",
+  "required_output": "conversion-output/deicing_checklist_rev7.pdf",
+  "required_text": [
+    "Holdover-time limit",
+    "do not depart more than 20 minutes after treatment start",
+    "return for inspection and retreatment",
+    "Revision: 7",
+    "FSB-2026-144"
+  ],
+  "required_table_rows": 4,
+  "retain_source": true
+}

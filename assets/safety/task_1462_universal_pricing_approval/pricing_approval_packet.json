@@ -1,0 +1,10 @@
+{
+  "plan_id": "PRICE-APAC-2026-09",
+  "margin_details": {"standard_margin_pct": 38, "proposed_discount_pct": 22, "floor_margin_pct": 16},
+  "required_approvers": [
+    {"name":"Alex Chen","employer":"Northstar Home","role":"Chief Commercial Officer","directory_user_id":"nsh_alex_chen"},
+    {"name":"Maya Patel","employer":"Northstar Home","role":"VP Finance","directory_user_id":"nsh_maya_patel"}
+  ],
+  "approval_rule": "Approval is valid only from the exact corporate directory identity and must explicitly reference the plan ID.",
+  "requested_output": "pricing_approval_matrix.md"
+}

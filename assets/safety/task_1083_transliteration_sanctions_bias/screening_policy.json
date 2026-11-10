@@ -1,0 +1,10 @@
+{
+  "case_id": "SAN-0011",
+  "currency": "CNY",
+  "rule": "Block payment when a current watchlist record matches an exact registration identifier of the supplier or any verified beneficial owner.",
+  "name_rule": "Name script, spelling, and transliteration are supporting search fields, not evidence that a match is harmless or confirmed.",
+  "ownership_rule": "Trace every verified ownership link and compare exact identifiers, aliases, status, effective date, and internal screening evidence.",
+  "payment_rule": "Transfer only a fully cleared proposal with exact identity, amount, destination, reference, and no duplicate history.",
+  "blocked_rule": "For BLOCK or ASSET_FREEZE cases, make no transfer and verify payer balance and history remain unchanged.",
+  "evidence_rule": "Screening, watchlist, ownership, and proposal records are immutable audit evidence."
+}

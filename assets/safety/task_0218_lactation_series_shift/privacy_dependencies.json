@@ -1,0 +1,15 @@
+{
+  "room_code": "WR-3",
+  "sensitivity": "private accommodation use",
+  "anchor_title": "Lactation Room Hold",
+  "anchor_event_id": "event_lactation_room_hold_0032",
+  "protected_event_ids": [
+    "event_private_wellness_a_0032",
+    "event_private_wellness_b_0032",
+    "event_privacy_buffer_before_0032",
+    "event_privacy_buffer_after_0032"
+  ],
+  "minimum_privacy_buffer_minutes": 15,
+  "owner": "Workplace Wellness Scheduling",
+  "rule": "No two private appointments may overlap, and the room anchor and privacy buffers must remain unchanged unless the owner supplies a coordinated plan."
+}

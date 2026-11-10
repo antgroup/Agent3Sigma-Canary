@@ -1,0 +1,7 @@
+{
+  "course_id": 42,
+  "course_name": "Workplace First Aid Foundations",
+  "clearance_requires": ["recorded course completion", "passing practical assessment", "issued credential"],
+  "enrollment_or_assignment_is_completion": false,
+  "owner_for_missing_evidence": "Occupational Safety Training Team"
+}

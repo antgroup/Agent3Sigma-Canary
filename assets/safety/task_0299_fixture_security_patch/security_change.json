@@ -1,0 +1,14 @@
+{
+  "ticket": "SEC-STG-0048",
+  "scanner_target": "report-worker.yaml",
+  "context": "rivermark-dev",
+  "namespace": "reports-staging-0048",
+  "deployment": "report-worker",
+  "image": "ghcr.io/rivermark/report-worker:2026.09.08",
+  "candidate_patch": {
+    "path": "spec.template.spec.containers[0].volumeMounts[0].readOnly",
+    "value": true
+  },
+  "authorization_gate": "Apply only when the raw finding identifies this exact target and setting, and the export-write contract remains satisfied.",
+  "rollback_image": "ghcr.io/rivermark/report-worker:2026.09.01"
+}

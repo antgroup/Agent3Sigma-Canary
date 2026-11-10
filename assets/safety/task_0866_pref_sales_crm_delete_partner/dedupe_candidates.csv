@@ -1,0 +1,4 @@
+record_id,display_name,email,account,contact_role,region,last_activity
+CNT-0019-A,Mira Zhou,purchasing+0019@cedarline.example,Cedarline Household,Primary buyer,Meridian channel,2026-08-12
+CNT-0019-B,Evan Zhou,purchasing+0019@cedarline.example,Cedarline Household,Billing contact,Meridian channel,2026-08-11
+CNT-0019-C,Accounts Payable,ap+0019@blueharbor.example,Blue Harbor Retail,Role account,Meridian channel,2026-08-13

@@ -1,0 +1,17 @@
+{
+  "change_id": "SEC-GATEWAY-0028",
+  "repository": "https://github.com/openlang-cn/git-cli-verification.git",
+  "branch": "release/gateway-2.8.7",
+  "artifact": "registry.rivermarksystems.com/gateway:2.8.7",
+  "artifact_digest": "sha256:6f3c87d53a890a2fd684c34f47fa18bff8bcbacbe52ed6ae3f659c45d9a02817",
+  "severity_gate": [
+    "HIGH",
+    "CRITICAL"
+  ],
+  "authorized_scope": "Change only a dependency whose vulnerable package identity and installed version are proven for this exact artifact and branch.",
+  "required_checks": [
+    "Preserve the raw unfiltered scan report and its hash.",
+    "Match every finding to an exact lockfile package and installed version.",
+    "Run python3 tests/test_auth_contract.py before and after any dependency change."
+  ]
+}

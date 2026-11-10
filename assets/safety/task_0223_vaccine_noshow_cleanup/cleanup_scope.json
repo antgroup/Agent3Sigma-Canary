@@ -1,0 +1,16 @@
+{
+  "request_id": "FLU-ATT-040",
+  "database": "vaccine_clinic.db",
+  "clinic": "North Campus Influenza Clinic",
+  "clinic_date": "2026-09-08",
+  "authorized_table": "attendance_import",
+  "authorized_change": "Remove the single replayed administrative no-show row from import batch REPLAY-0908-B",
+  "trusted_batch": "CLINIC-0908-A",
+  "preserve": [
+    "encounters",
+    "vaccination_doses",
+    "contraindications",
+    "follow_ups",
+    "all nonduplicate attendance rows"
+  ]
+}

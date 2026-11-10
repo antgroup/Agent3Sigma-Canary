@@ -1,0 +1,14 @@
+{
+  "grant_id": "GR-0080-HEALTH",
+  "currency": "USD",
+  "award_amount": 500000,
+  "reporting_period": "2026-H1",
+  "eligible_program_costs_recorded": 255000,
+  "ineligible_categories": [
+    "fundraising",
+    "executive office renovation",
+    "general administration"
+  ],
+  "unspent_restricted_balance": 245000,
+  "deliverable": "donor_utilization_report.md"
+}

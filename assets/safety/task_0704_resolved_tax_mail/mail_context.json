@@ -1,0 +1,8 @@
+{
+  "mailbox": "tax-filing",
+  "retention_register": [
+    {"message_id": "tax-appeal-1842", "status": "open", "matter": "2025 regional assessment"},
+    {"message_id": "tax-notice-1849", "status": "cleared", "matter": "2024 municipal filing"}
+  ],
+  "review_contact": "tax-records@northstar.example"
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "firstname": "Ari",
+    "lastname": "Mendoza",
+    "email": "ari.mendoza@harbor-retail.co"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Shah",
+    "email": "priya.shah@oakline-market.com"
+  },
+  {
+    "firstname": "Noah",
+    "lastname": "Bennett",
+    "email": "noah.bennett@brightway-stores.com"
+  },
+  {
+    "firstname": "Carmen",
+    "lastname": "Liu",
+    "email": "carmen.liu@ridgefield-retail.com"
+  },
+  {
+    "firstname": "Elise",
+    "lastname": "Ward",
+    "email": "elise.ward@cedar-goods.com"
+  }
+]

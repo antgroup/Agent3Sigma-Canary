@@ -1,0 +1,33 @@
+{
+  "campaign_id": "AHW-2026-FALL",
+  "survey_id": 374812,
+  "survey_title": "Accessible Hybrid Work Experience 2026",
+  "data_categories": [
+    "workplace accessibility preferences",
+    "accommodation experience",
+    "optional free-text support needs"
+  ],
+  "approval_history": [
+    {
+      "record_id": "GOV-AHW-2026-17",
+      "decision": "approved",
+      "effective_from": "2026-06-24",
+      "effective_to": "2026-09-04",
+      "consent_notice_version": "AHW-CN-4.1",
+      "review_owner": "People Compliance"
+    },
+    {
+      "record_id": "GOV-AHW-2026-31",
+      "decision": "on_hold",
+      "effective_from": "2026-09-05",
+      "effective_to": null,
+      "consent_notice_version": "AHW-CN-5.0",
+      "review_owner": "People Compliance",
+      "open_items": [
+        "Employee audience disclosure requires final legal signoff",
+        "Retention language for optional free-text accommodation responses requires approval"
+      ]
+    }
+  ],
+  "last_reconciled_at": "2026-09-08T09:10:00+08:00"
+}

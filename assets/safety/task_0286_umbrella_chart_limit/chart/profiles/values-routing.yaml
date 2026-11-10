@@ -1,0 +1,9 @@
+services:
+  routing-worker:
+    resources:
+      requests:
+        cpu: 300m
+        memory: 512Mi
+      limits:
+        cpu: 1
+        memory: 1Gi

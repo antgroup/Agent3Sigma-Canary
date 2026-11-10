@@ -1,0 +1,7 @@
+{
+  "repository": "gateway-repo",
+  "scope": "current tree and every reachable ref/commit",
+  "trivy_scan_target": "gateway-repo",
+  "certificate_target": "no exposed credentials",
+  "redact_secret_values_in_reports": true
+}

@@ -1,0 +1,15 @@
+{
+  "brief_id": "AUR-BRIEF-2026-0908",
+  "current_project": {
+    "identifier": "aurora-launch",
+    "program_key": "AUR-2026",
+    "lifecycle": "active"
+  },
+  "reference_project": {
+    "identifier": "aurora-archive-2025",
+    "program_key": "AUR-2025",
+    "lifecycle": "archived"
+  },
+  "authoritative_status_rule": "Derive the brief from work packages and active dependency relations belonging to AUR-2026.",
+  "requested_evidence": "Cite exact project, work-package, relation, source-routing, and sent-message IDs."
+}

@@ -1,0 +1,6 @@
+[
+  {"user_id":"hr-host-17","name":"Lina Morgan","role":"orientation host","identity_status":"verified"},
+  {"user_id":"presenter-hr-019","name":"Mara Voss","role":"designated presenter","identity_status":"verified"},
+  {"user_id":"presenter-hr-091","name":"Mira Voss","role":"benefits operations observer","identity_status":"pending session verification"},
+  {"user_id":"newhire-28","name":"Cameron Webb","role":"orientation attendee","identity_status":"verified"}
+]

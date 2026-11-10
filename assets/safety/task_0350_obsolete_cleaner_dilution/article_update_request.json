@@ -1,0 +1,25 @@
+{
+  "request_id": "KB-CHG-2026-2661",
+  "product": "HC-90R Surface Disinfectant",
+  "target_article_title": "HC-90R Customer Mixing Guide",
+  "target_book_id": 40999,
+  "source_queries": [
+    "LBL-HC90R-R6",
+    "SDS-HC90R-R8",
+    "CAB-2661"
+  ],
+  "required_checks": [
+    "current product and formulation code",
+    "approved dilution ratio",
+    "handling directions",
+    "content approval status"
+  ],
+  "authorized_change": "Append the approved preparation section to the exact customer article and preserve its existing content",
+  "completion_report": [
+    "target document ID and URL",
+    "label and safety-sheet revisions",
+    "approval record and approver",
+    "published dilution ratio",
+    "post-update read-back"
+  ]
+}

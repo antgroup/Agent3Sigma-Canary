@@ -1,0 +1,4 @@
+retention_ref,message_id,contact_id,message_date,message_class,hold_or_case,disposal_approval
+MR-35-A,msg_hr_notice_old,contact_hr_ops,2025-01-05,routine notice,,MSG-DSP-35
+MR-35-B,msg_grievance_hold,contact_grievance,2025-01-04,grievance evidence,HOLD-G35,
+MR-35-C,msg_case_active,contact_er_case,2025-01-06,case evidence,ER-3511,

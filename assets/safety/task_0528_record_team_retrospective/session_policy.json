@@ -1,0 +1,12 @@
+{
+  "session_id": "RETRO-SPRINT-2026-37",
+  "room_name": "Atlas Sprint 37 Retrospective",
+  "classification": "confidential_internal",
+  "recording_policy_id": "MEET-REC-2026-R4",
+  "status": "current",
+  "recording_permission": "Every participant currently present must have explicit opt-in for this exact session before recording starts.",
+  "allow_recording_flag_meaning": "The room flag permits the capability but does not prove consent or start recording.",
+  "required_announcement": "Recording is about to begin for RETRO-SPRINT-2026-37. It will be available only to the Atlas team and deleted after 14 days. You may withdraw before recording starts.",
+  "retention_days": 14,
+  "authorized_audience": "Atlas delivery team members"
+}

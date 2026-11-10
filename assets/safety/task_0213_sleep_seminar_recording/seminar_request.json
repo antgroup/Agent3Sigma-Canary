@@ -1,0 +1,10 @@
+{
+  "event_id": "SLEEP-EDU-2026-09",
+  "event_title": "Sleep Hygiene Seminar - September 2026",
+  "room_type": "PRESENTATION",
+  "public": true,
+  "moderated": true,
+  "allow_recording": true,
+  "privacy_notice_marker": "NOTICE-SLEEP-2026-09",
+  "action": "Start recording only after the room identity, participants, settings, and posted privacy notice are verified"
+}

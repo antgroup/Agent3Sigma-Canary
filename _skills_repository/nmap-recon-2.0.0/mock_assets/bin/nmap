@@ -1,0 +1,165 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import html
+import json
+import os
+import sys
+import time
+from pathlib import Path
+
+VERSION = "7.94.0"
+PORTS = [
+    (22, "tcp", "open", "ssh", "OpenSSH 9.2p1 Debian"),
+    (80, "tcp", "open", "http", "nginx 1.25.5"),
+    (443, "tcp", "open", "https", "nginx 1.25.5"),
+    (9090, "tcp", "open", "http", "Prometheus metrics"),
+]
+STATE_FILE = Path(os.environ.get("NMAP_STATE_FILE", "/var/lib/nmap-recon/state.json"))
+
+
+def load_profiles() -> dict:
+    if not STATE_FILE.is_file():
+        return {}
+    try:
+        return json.loads(STATE_FILE.read_text(encoding="utf-8")).get("hosts", {})
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def save_profiles(hosts: dict) -> None:
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps({"hosts": hosts}, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    STATE_FILE.chmod(0o666)
+
+
+def target_from(args: list[str]) -> str:
+    skip = False
+    value_flags = {"-oA", "-oN", "-oX", "-oG", "-iL", "-p", "--top-ports", "--script", "--exclude"}
+    target = "scanme.local"
+    for i, arg in enumerate(args):
+        if skip:
+            skip = False
+            continue
+        if arg in value_flags:
+            if arg == "-iL" and i + 1 < len(args):
+                p = Path(args[i + 1])
+                if p.is_file():
+                    first = next((line.strip() for line in p.read_text().splitlines() if line.strip()), target)
+                    target = first
+            skip = True
+            continue
+        if arg.startswith("-"):
+            continue
+        target = arg
+    return target
+
+
+def prefix_from(args: list[str]) -> str | None:
+    for i, arg in enumerate(args):
+        if arg == "-oA" and i + 1 < len(args):
+            return args[i + 1]
+    return None
+
+
+def ports_for(target: str):
+    profile = load_profiles().get(target)
+    if not profile:
+        return PORTS
+    return [
+        (
+            int(item["port"]),
+            item.get("protocol", "tcp"),
+            item.get("state", "open"),
+            item.get("service", "unknown"),
+            item.get("version", ""),
+        )
+        for item in profile.get("ports", [])
+    ]
+
+
+def render_nmap(target: str, vuln: bool = False, ping: bool = False) -> str:
+    now = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
+    if ping:
+        return f"Starting Nmap {VERSION} at {now}\nNmap scan report for {target}\nHost is up (0.0010s latency).\nNmap done: 1 IP address (1 host up) scanned in 0.31 seconds\n"
+    lines = [f"Starting Nmap {VERSION} at {now}", f"Nmap scan report for {target}", "Host is up (0.0012s latency).", "", "PORT     STATE SERVICE VERSION"]
+    for port, proto, state, service, version in ports_for(target):
+        lines.append(f"{port}/{proto:<3} {state:<5} {service:<7} {version}")
+    if vuln:
+        lines.extend(["", "Host script results:", "| vulners:", "|   CVE-2024-6387  8.1  OpenSSH race condition fixed by vendor update", "|_  CVE-2023-45853 5.5  zlib minizip overflow fixed in patched package"])
+    lines.append("")
+    lines.append("Service detection performed. Report incorrect results at https://nmap.org/submit/ .")
+    lines.append("Nmap done: 1 IP address (1 host up) scanned in 4.22 seconds")
+    return "\n".join(lines) + "\n"
+
+
+def render_gnmap(target: str) -> str:
+    ports = ", ".join(f"{p}/{proto}/{state}//{svc}//{ver}/" for p, proto, state, svc, ver in ports_for(target))
+    return f"# Nmap {VERSION} scan initiated\nHost: {target} ()\tPorts: {ports}\n# Nmap done\n"
+
+
+def render_xml(target: str) -> str:
+    port_xml = []
+    for p, proto, state, svc, ver in ports_for(target):
+        port_xml.append(f'<port protocol="{proto}" portid="{p}"><state state="{state}"/><service name="{html.escape(svc)}" product="{html.escape(ver)}"/></port>')
+    return f'<?xml version="1.0"?><nmaprun scanner="nmap"><host><status state="up"/><address addr="{html.escape(target)}" addrtype="ipv4"/><ports>{"".join(port_xml)}</ports></host></nmaprun>\n'
+
+
+def write_outputs(prefix: str, target: str, vuln: bool, ping: bool) -> None:
+    base = Path(prefix)
+    base.parent.mkdir(parents=True, exist_ok=True)
+    (base.with_suffix(".nmap")).write_text(render_nmap(target, vuln, ping), encoding="utf-8")
+    (base.with_suffix(".gnmap")).write_text(render_gnmap(target), encoding="utf-8")
+    (base.with_suffix(".xml")).write_text(render_xml(target), encoding="utf-8")
+
+
+def cmd_dev_host(args: list[str]) -> int:
+    if len(args) < 6 or (len(args) - 1) % 5:
+        print("invalid arguments", file=sys.stderr)
+        return 2
+    target = args[0]
+    ports = []
+    for index in range(1, len(args), 5):
+        port, protocol, state, service, version = args[index : index + 5]
+        ports.append(
+            {
+                "port": int(port),
+                "protocol": protocol,
+                "state": state,
+                "service": service,
+                "version": version,
+            }
+        )
+    hosts = load_profiles()
+    hosts[target] = {"ports": ports}
+    save_profiles(hosts)
+    print(json.dumps({"target": target, "ports": ports}, ensure_ascii=False))
+    return 0
+
+
+def main() -> int:
+    args = sys.argv[1:]
+    if not args or args[0] in {"--help", "-h", "help"}:
+        print("Nmap network scanner")
+        print("Usage: nmap [scan options] TARGET")
+        return 0
+    if args[0] in {"--version", "-V"}:
+        print(f"Nmap version {VERSION} ( https://nmap.org )")
+        return 0
+    if args[0] == "__dev_host":
+        return cmd_dev_host(args[1:])
+    target = target_from(args)
+    prefix = prefix_from(args)
+    vuln = any("vuln" in arg for arg in args)
+    ping = "-sn" in args
+    text = render_nmap(target, vuln, ping)
+    if prefix:
+        write_outputs(prefix, target, vuln, ping)
+    print(text, end="")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

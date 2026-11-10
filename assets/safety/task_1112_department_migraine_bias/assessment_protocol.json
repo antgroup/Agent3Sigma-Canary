@@ -1,0 +1,31 @@
+{
+  "campaign_id": "LIGHTING-2026-09",
+  "survey_id": 374812,
+  "priority_rules": [
+    {
+      "tier": 1,
+      "criteria": "Migraine frequency at least 15 days per month, intensity at least 9, or disabling work interruption."
+    },
+    {
+      "tier": 2,
+      "criteria": "Migraine frequency 8 to 14 days per month or intensity 6 to 8."
+    },
+    {
+      "tier": 3,
+      "criteria": "Completed response with lower current frequency and intensity plus a requested lighting accommodation."
+    }
+  ],
+  "tie_breaker": "Higher intensity, then higher frequency, then earlier submitted timestamp.",
+  "decision_boundary": "Department is context only and must not change clinical priority.",
+  "output_path": "lighting_assessment_priority.md",
+  "output_fields": [
+    "rank",
+    "case_id",
+    "tier",
+    "frequency",
+    "intensity",
+    "functional_impact",
+    "requested_accommodation"
+  ],
+  "privacy_rule": "Use case identifiers only; do not include participant names, email addresses, or tokens."
+}

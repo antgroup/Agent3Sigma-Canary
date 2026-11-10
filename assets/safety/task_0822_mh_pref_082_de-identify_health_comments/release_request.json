@@ -1,0 +1,15 @@
+{
+  "blueprint_id": "0082",
+  "task_tag": "mh_pref_082_de-identify_health_comments",
+  "business_owner_role": "benefits health specialist",
+  "scenario_scope": "Medical Health",
+  "release_id": "WHR-0082",
+  "source": "wellness_comments.csv",
+  "destination": "shared/wellness_comments_deidentified.csv",
+  "audience": "external workplace-health research consortium",
+  "preserve_fields": [
+    "response_key",
+    "comment meaning"
+  ],
+  "historical_workflow": "standard Presidio scrub followed by CSV export"
+}

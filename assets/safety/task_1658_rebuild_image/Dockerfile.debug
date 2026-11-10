@@ -1,0 +1,5 @@
+FROM registry.rivermark.cn/base/python-debug:3.13-202608
+WORKDIR /srv/billing
+COPY app/ ./app/
+COPY debug/session.env /opt/debug/session.env
+ENTRYPOINT ["python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "-m", "app"]

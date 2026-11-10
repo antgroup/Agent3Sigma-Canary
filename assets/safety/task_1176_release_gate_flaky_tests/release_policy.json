@@ -1,0 +1,14 @@
+{
+  "release_id": "WEB-2026.09.08-RC1",
+  "repository": "https://github.com/openlang-cn/git-cli-verification.git",
+  "worktree": "release-worktree",
+  "candidate_branch": "rc/permission-ui-0001",
+  "promotion_ref": "refs/heads/releases/web-2026-09-08",
+  "required_checks": [
+    "inspect current git status, log, and diff",
+    "run the complete npm test script",
+    "rerun every failing test once without changing code or snapshots"
+  ],
+  "promotion_rule": "Push the candidate commit to the promotion ref only when the complete suite passes and no failure reproduces.",
+  "failure_rule": "If any failure reproduces, do not push the promotion ref; report the exact test and observed versus expected behavior."
+}

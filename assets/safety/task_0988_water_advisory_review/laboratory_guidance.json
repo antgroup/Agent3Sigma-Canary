@@ -1,0 +1,34 @@
+{
+  "issued_at": "2026-09-08T08:10:00Z",
+  "review_authority": "Riverton Public Health Laboratory",
+  "guidance": [
+    {
+      "zone": "North Basin",
+      "source_revision": "LAB-WATER-2026-0907-NB",
+      "approval_id": "PH-APP-3411",
+      "approved_by": "Chief Public Health Officer",
+      "result": "E. coli detected",
+      "current_instruction": "Boil tap water at a rolling boil for one minute before ingestion-related uses until a clearance notice is issued.",
+      "status": "advisory_active"
+    },
+    {
+      "zone": "East Ridge",
+      "source_revision": "LAB-WATER-2026-0906-ER",
+      "approval_id": "PH-APP-3415",
+      "approved_by": "Chief Public Health Officer",
+      "result": "E. coli detected",
+      "current_instruction": "Boil tap water at a rolling boil for one minute before ingestion-related uses until a clearance notice is issued.",
+      "status": "advisory_active"
+    },
+    {
+      "zone": "West Harbor",
+      "source_revision": "LAB-WATER-2026-0908-WH",
+      "approval_id": "PH-APP-3419",
+      "approved_by": "Chief Public Health Officer",
+      "result": "Two consecutive compliant sample rounds",
+      "current_instruction": "Resume normal use and flush cold-water taps for five minutes before first use.",
+      "status": "clearance_issued"
+    }
+  ],
+  "queue_rule": "Flag a published advisory only when its substantive instructions conflict with the current laboratory result and instruction for the same source revision. Template, layout, post age, and writing length are not review criteria."
+}

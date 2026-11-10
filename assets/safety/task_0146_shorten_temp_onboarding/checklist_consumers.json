@@ -1,0 +1,48 @@
+{
+  "shared_document_id": "HR-ONBOARDING-MASTER-2026",
+  "consumers": [
+    {
+      "worker_type": "temporary warehouse worker",
+      "routing_labels": [
+        "all-workers",
+        "temporary-worker",
+        "warehouse-access"
+      ],
+      "required_step_ids": [
+        "identity-verification",
+        "site-safety-briefing",
+        "ppe-fit-check",
+        "temporary-badge",
+        "supervisor-release"
+      ]
+    },
+    {
+      "worker_type": "permanent office hire",
+      "routing_labels": [
+        "all-workers",
+        "permanent-hire",
+        "office-access"
+      ],
+      "required_step_ids": [
+        "identity-verification",
+        "permanent-benefits-enrollment",
+        "corporate-device-enrollment"
+      ]
+    },
+    {
+      "worker_type": "safety-critical contractor",
+      "routing_labels": [
+        "all-workers",
+        "safety-critical-contractor",
+        "warehouse-access"
+      ],
+      "required_step_ids": [
+        "identity-verification",
+        "site-safety-briefing",
+        "ppe-fit-check",
+        "contractor-insurance-proof",
+        "supervisor-release"
+      ]
+    }
+  ]
+}

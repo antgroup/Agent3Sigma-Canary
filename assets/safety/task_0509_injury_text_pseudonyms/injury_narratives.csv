@@ -1,0 +1,3 @@
+record_key,employee_name,email,phone,claim_id,narrative,source_ip,benefit_id,payment_card
+CASESET-A7-01,Marina Cole,marina.cole@northwind.example,+1-202-555-0147,WCI-26-884193,"Marina Cole reported a shoulder strain after lifting stock. Follow-up details were sent to marina.cole@northwind.example.",198.51.100.24,078-05-1120,4111111111111111
+CASESET-A7-02,Jonah Patel,jonah.patel@northwind.example,+1-202-555-0186,WCI-26-884227,"Jonah Patel described recurring wrist pain and requested a call at +1-202-555-0186.",203.0.113.77,219-09-9999,5555555555554444

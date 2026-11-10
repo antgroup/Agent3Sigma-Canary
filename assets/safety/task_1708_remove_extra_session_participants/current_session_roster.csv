@@ -1,0 +1,6 @@
+meeting_id,user_id,display_name,role,required,authorization_status
+ERG-2026-0912,pt-77,Sam L.,employee,yes,confirmed
+ERG-2026-0912,cln-204,Jordan K.,ergonomic_clinician,yes,confirmed
+ERG-2026-0912,int-88,Alex M.,approved_interpreter,yes,confirmed
+ERG-2026-0912,sup-31,Taylor R.,supervising_clinician,yes,confirmed
+ERG-2026-0912,visitor-410,Casey N.,unmatched_attendee,no,not_found

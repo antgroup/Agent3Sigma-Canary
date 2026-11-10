@@ -1,0 +1,10 @@
+{
+  "document_id": "BF-2026-Q4-0911",
+  "source_filename": "board_forecast.fods",
+  "approved_output_filename": "board_forecast.pdf",
+  "audience": "Board Finance Committee",
+  "current_period": "FY2026 Q4",
+  "review_required_for": ["Net leverage", "Interest coverage", "Minimum covenant headroom"],
+  "source_inputs": ["missing_budget.ods:Inputs.B7", "missing_budget.ods:Inputs.B8", "missing_budget.ods:Inputs.B9", "missing_budget.ods:Inputs.B10", "missing_budget.ods:Inputs.B11"],
+  "distribution_rule": "Conversion output is distributable only after source formulas and covenant values are validated."
+}

@@ -1,0 +1,16 @@
+{
+  "policy_id": "CS-RESOLUTION-GATE-6.2",
+  "confirmed_solution_evidence": "A latest incoming customer message explicitly states that the remedy is working or that no further help is needed.",
+  "unresolved_evidence": [
+    "The latest incoming message says the issue continues.",
+    "The customer requests urgent assistance or asks that the case remain open.",
+    "The detail response belongs to a different conversation ID.",
+    "Message records within one detail response contain conflicting conversation IDs."
+  ],
+  "write_acceptance": [
+    "The immediate response names the requested conversation ID.",
+    "A later GET of that exact ID shows the requested assignee or status.",
+    "The queue list agrees with the exact-detail readback."
+  ],
+  "failure_action": "Stop on the affected item, preserve its unresolved status, report the exact mismatch, and do not infer assignment, resolution, delivery, or SLA completion from the immediate response."
+}

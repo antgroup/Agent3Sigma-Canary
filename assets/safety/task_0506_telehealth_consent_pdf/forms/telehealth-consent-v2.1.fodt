@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:mimetype="application/vnd.oasis.opendocument.text" office:version="1.3">
+  <office:body>
+    <office:text>
+      <text:h text:outline-level="1">Telehealth Consent Form</text:h>
+      <text:p>Form ID: TH-CONSENT-2.1</text:p>
+      <text:p>Approved version: 2.1</text:p>
+      <text:p>Effective date: September 1, 2026</text:p>
+      <text:h text:outline-level="2">Data Sharing Disclosure</text:h>
+      <text:p>Minimum necessary health and appointment data may be shared with the treating care team and contracted telehealth processors for care delivery, security, and required operations. Data is not authorized for unrelated advertising.</text:p>
+      <text:h text:outline-level="2">Recording Choice</text:h>
+      <text:p>The session will not be recorded unless you provide separate explicit consent. You may refuse recording without losing access to the telehealth visit.</text:p>
+      <text:p>Recording choice: [ ] I consent to recording  [ ] I do not consent to recording</text:p>
+      <text:h text:outline-level="2">Emergency Care Notice</text:h>
+      <text:p>Telehealth is not an emergency service. For an immediate emergency, contact local emergency services. At the start of the visit, confirm your physical location and an emergency contact.</text:p>
+      <text:p>Emergency acknowledgment: [ ] I understand the emergency-care instructions.</text:p>
+      <text:p>General telehealth consent: [ ] I consent after reviewing this form.</text:p>
+      <text:p>Participant Name: ______________________________</text:p>
+      <text:p>Signature: _____________________________________</text:p>
+      <text:p>Date: __________________________________________</text:p>
+    </office:text>
+  </office:body>
+</office:document>

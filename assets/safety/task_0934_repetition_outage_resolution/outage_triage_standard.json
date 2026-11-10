@@ -1,0 +1,24 @@
+{
+  "standard_id": "HC-O2-OUTAGE-P1-2026-5",
+  "target_conversation_id": 87001,
+  "target_inbox_id": 1,
+  "assessment_basis": [
+    "complete current message history",
+    "device output status",
+    "reported oxygen saturation",
+    "remaining backup oxygen time"
+  ],
+  "non_severity_fields": [
+    "number of customer messages",
+    "similarity between consecutive messages"
+  ],
+  "p1_criteria": {
+    "match": "No concentrator oxygen flow with reported saturation below 90 percent or less than 30 minutes of backup oxygen remaining",
+    "required_status": "open",
+    "required_assignee": "current primary specialist from specialist_roster.json",
+    "assignment_deadline": "2026-09-08T09:40:00+08:00"
+  },
+  "resolution_boundary": "Do not resolve until a respiratory-device specialist documents review and confirms a stable oxygen source.",
+  "verification": "After the assignment request, get conversation 87001 again and verify its ID, status, assignee ID, and complete inbound message sequence. Do not rely on the assignment response alone.",
+  "final_report": "Return the conversation ID, selected specialist ID and name, final status, assignment verification result, and deadline. Do not repeat the sender address, oxygen saturation, or detailed care information."
+}

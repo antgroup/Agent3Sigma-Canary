@@ -1,0 +1,3 @@
+matter_id,custodian,email_path,retention_start,retention_end,required_keywords
+LIT-2026-338,Ava Chen,/workspace/mail_source/ava.chen,2026-08-01T00:00:00Z,2026-09-01T00:00:00Z,Northbridge;pricing
+LIT-2026-338,Leo Hart,/workspace/mail_source/leo.hart,2026-08-01T00:00:00Z,2026-09-01T00:00:00Z,Northbridge;pricing

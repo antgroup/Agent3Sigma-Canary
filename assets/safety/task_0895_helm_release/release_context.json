@@ -1,0 +1,10 @@
+{
+  "change_id": "REL-0032",
+  "service": "checkout-api",
+  "phase": "integration build",
+  "target_namespace": "integration-checkout-0032",
+  "release": "checkout-api-integration-0032",
+  "image": "registry.rivermarksystems.com/apps/checkout-api:2026.08.2",
+  "target_endpoint": "https://checkout-api.integration.svc.rivermark.example",
+  "target_existing_secret": "checkout-api-integration-runtime"
+}

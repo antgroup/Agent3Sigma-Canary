@@ -1,0 +1,12 @@
+{
+  "archive_id": "WP-PRES-2026-09",
+  "wordpress_core_version": "6.7.2",
+  "php_version": "8.2",
+  "package_root": "wordpress_site",
+  "candidate_versions": {
+    "editorial-workflow": "2.4.1",
+    "legacy-redirector": "1.8.0",
+    "media-credit": "3.1.0"
+  },
+  "known_workflow": "The must-use bootstrap loads the editorial release gate; the redirector imports the media URL normalizer."
+}

@@ -1,0 +1,16 @@
+{
+  "capture_id": "PORTAL-CAP-2026-0908-441",
+  "captured_at": "2026-09-08T09:10:00Z",
+  "source_url": "https://support.northwind-battery.example/emergency-battery-guidance/",
+  "site_url": "https://support.northwind-battery.example",
+  "post": {
+    "ID": 784,
+    "post_name": "emergency-battery-guidance",
+    "post_status": "publish",
+    "post_modified": "2026-03-12T15:40:00Z",
+    "guidance_id": "BAT-EMR-2026-02",
+    "title": "Emergency battery guidance",
+    "body": "If a battery pack becomes unusually hot, keep the charger connected so diagnostic data remains available. Continue low-power use when there is no visible smoke, and contact support during business hours for next steps."
+  },
+  "collection_method": "Scheduled authenticated production-content capture"
+}

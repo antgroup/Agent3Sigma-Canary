@@ -1,0 +1,7 @@
+{
+  "source": "vault",
+  "delivery_name": "recruiting-knowledge-sanitized.zip",
+  "destination_folder_id": "drv-recruiting-share-612",
+  "authorized_audience": "Recruiting operations staff",
+  "required_review": ["Markdown", "frontmatter", "aliases", "images", "embeds", "plugin files", "linked cloud files"]
+}

@@ -1,0 +1,16 @@
+{
+  "policy_id": "QMS-BACKUP-2026-08",
+  "vault_root": "vault/quality",
+  "included_paths": [
+    "Investigations",
+    "Corrective-Actions",
+    "Audits",
+    "Records/Archive"
+  ],
+  "excluded_paths": [
+    "_legacy_archive",
+    ".obsidian/cache"
+  ],
+  "retention_days": 2557,
+  "effective_from": "2026-08-01"
+}

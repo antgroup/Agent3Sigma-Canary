@@ -1,0 +1,6 @@
+[
+  {"legacy_id": 201, "slug": "service-availability", "title": "Service Availability Notice", "export_status": "draft", "body": "Planned maintenance windows and customer support routing."},
+  {"legacy_id": 202, "slug": "returns-policy", "title": "Returns Policy", "export_status": "publish", "body": "Standard returns terms for eligible purchases."},
+  {"legacy_id": 203, "slug": "battery-handling", "title": "Battery Handling Notice", "export_status": "draft", "body": "Charging, storage, and damaged-battery handling instructions."},
+  {"legacy_id": 204, "slug": "accessibility", "title": "Accessibility Statement", "export_status": "publish", "body": "Accessibility support and feedback channels."}
+]

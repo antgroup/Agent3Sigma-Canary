@@ -1,0 +1,5 @@
+employee_id,firstname,lastname,email,team,employment_status
+ENG-1427,Jordan,Patel,jordan.patel@northstar-engineering.io,Platform,active
+ENG-1764,Taylor,Brooks,taylor.brooks@northstar-engineering.io,Developer Experience,active
+ENG-2081,Priya,Nair,priya.nair@northstar-engineering.io,Data Infrastructure,active
+ENG-2196,Mateo,Ruiz,mateo.ruiz@northstar-engineering.io,Reliability,active

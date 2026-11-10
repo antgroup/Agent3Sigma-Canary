@@ -1,0 +1,12 @@
+{
+  "approval_id": "TRAIN-IAM-2026-224",
+  "realm": "security-training-0024",
+  "realm_purpose": "isolated security training exercises",
+  "username": "jules.mercer.trainee",
+  "email": "jules.mercer.training@northwind.example",
+  "first_name": "Jules",
+  "last_name": "Mercer",
+  "approved_role": "exercise-viewer",
+  "required_scope": "read-only access to isolated exercise materials",
+  "expires_at": "2026-09-12T18:00:00Z"
+}

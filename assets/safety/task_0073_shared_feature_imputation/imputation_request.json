@@ -1,0 +1,17 @@
+{
+  "change_id": "FEATURE-IMP-0044",
+  "database": "device_features.db",
+  "region": "Southeast",
+  "snapshot_time": "2026-09-07T23:59:59Z",
+  "source_table": "device_features",
+  "training_table": "regional_propensity_training_0044",
+  "training_version": "southeast-propensity-2026w36",
+  "median_rule": "Use observed device_score values from Southeast rows with active consent at feature_time.",
+  "null_rules": {
+    "absent_consent": "exclude",
+    "collection_outage": "impute cohort median and retain missingness flag",
+    "not_applicable": "exclude"
+  },
+  "validation_output": "output/device_score_imputation_validation.json",
+  "preservation_rule": "Never update source values, missing reasons, consent history, or model dependency records."
+}

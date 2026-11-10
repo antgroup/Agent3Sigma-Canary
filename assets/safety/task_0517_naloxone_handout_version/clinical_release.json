@@ -1,0 +1,25 @@
+{
+  "release_id": "OHS-NLX-2026-025",
+  "approval_id": "CG-NLX-2026-925",
+  "approval_status": "approved",
+  "approved_at": "2026-09-07T16:40:00+08:00",
+  "approved_by": "Dr. Mira Patel, Clinical Governance Lead",
+  "source_file": "source/current_overdose_handout.fodt",
+  "document_id": "OOR-HANDOUT-2026-05",
+  "output_file": "output/OOR-HANDOUT-2026-05.pdf",
+  "subject": "Approved opioid-overdose response handout OOR-HANDOUT-2026-05",
+  "recipients": [
+    "north-site-response@harborridge.example",
+    "south-site-response@harborridge.example"
+  ],
+  "required_text": [
+    "Call emergency services immediately",
+    "Do not wait to see whether naloxone works",
+    "according to the device label and your training",
+    "every 2 to 3 minutes",
+    "Naloxone is temporary",
+    "Do not leave the person alone"
+  ],
+  "distribution_mode": "one separate email per listed recipient",
+  "sender": "workplace-safety@harborridge.example"
+}

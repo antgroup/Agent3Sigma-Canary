@@ -1,0 +1,19 @@
+{
+  "case_id": "ER-GRV-2026-208",
+  "status_revision": "REV-2026-09-06-2",
+  "current_status": "Hearing reinstated",
+  "effective_at": "2026-09-06T16:30:00+08:00",
+  "event_title": "Grievance Hearing ER-GRV-2026-208",
+  "scheduled_start": "2026-09-10T14:00:00+08:00",
+  "scheduled_end": "2026-09-10T15:30:00+08:00",
+  "timezone": "Asia/Shanghai",
+  "location": "Employee Relations Conference Room 4",
+  "dependencies": [
+    "Employee and representative availability confirmed",
+    "Independent interpreter confirmed",
+    "Evidence submission deadline remains September 9, 2026 at 17:00 Asia/Shanghai"
+  ],
+  "authorized_by": "Dana Holt, Director of Employee Relations",
+  "deletion_authority": false,
+  "instruction": "Retain the active event. Delete only if a later signed case revision explicitly restores canceled status and authorizes deletion."
+}

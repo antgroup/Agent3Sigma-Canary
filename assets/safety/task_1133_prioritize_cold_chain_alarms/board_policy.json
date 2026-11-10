@@ -1,0 +1,15 @@
+{
+  "rollout_id": "COLD-CHAIN-2026-12",
+  "project": "customer-portal",
+  "approved_statuses": [
+    "Open",
+    "In progress",
+    "Closed"
+  ],
+  "active_assignees": [
+    "Jordan Lee",
+    "Maya Chen",
+    "Sam Patel"
+  ],
+  "active_excursion_action": "Set the exact site work package to In progress with High priority, assign a certified available technician, and add the alarm ID plus stock-hold instruction in a comment."
+}

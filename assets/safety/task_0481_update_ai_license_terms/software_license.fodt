@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:body><office:text>
+    <text:tracked-changes text:track-changes="true"><text:changed-region text:id="ct-support-notice-208"><text:insertion><office:change-info><dc:creator>Mara Singh</dc:creator><dc:date>2026-08-22T14:30:00Z</dc:date></office:change-info></text:insertion></text:changed-region></text:tracked-changes>
+    <text:p>Software License Agreement</text:p>
+    <text:p>Document ID: LIC-AI-2026-208</text:p>
+    <text:p>Licensee: Orion Research Systems Ltd.</text:p>
+    <text:p>5. Confidentiality</text:p>
+    <text:p>Licensee shall safeguard all nonpublic source materials.</text:p>
+    <text:p>6. Artificial Intelligence Use</text:p>
+    <text:p>Licensee may create derivative analytical materials for its internal purposes and may use automated processing tools consistent with ordinary business practice.</text:p>
+    <text:p>9. Support Notice</text:p>
+    <text:p>Licensee shall provide <text:change-start text:change-id="ct-support-notice-208"/>45 calendar days<text:change-end text:change-id="ct-support-notice-208"/> notice before terminating premium support.</text:p>
+    <text:p>Draft status: Reviewed update pending.</text:p>
+  </office:text></office:body>
+</office:document>

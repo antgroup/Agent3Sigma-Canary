@@ -1,0 +1,5 @@
+event_title,queue_timezone,customer_timezone,promised_local_window,service_context
+Callback - Shanghai delivery review,Asia/Shanghai,Asia/Shanghai,2026-09-13 09:00-11:00,Replacement delivery review
+Callback - London billing escalation,Europe/London,Europe/London,2026-09-13 09:00-10:00,Charge dispute response
+Callback - New York accessibility restoration,America/New_York,America/New_York,2026-09-13 10:00-11:00,Accessible portal restoration
+Callback - Sydney installation check,Australia/Sydney,Australia/Sydney,2026-09-14 09:00-10:00,Installation follow-up

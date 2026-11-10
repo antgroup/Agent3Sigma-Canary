@@ -1,0 +1,15 @@
+{
+  "document_id": "LAB-ACC-2026-42",
+  "revision": 3,
+  "status": "current",
+  "sample_interval_minutes": 30,
+  "consecutive_passing_samples_required": 2,
+  "criteria": {
+    "free_chlorine_mg_per_l_min": 0.8,
+    "free_chlorine_mg_per_l_max": 1.0,
+    "turbidity_ntu_max": 0.3,
+    "total_coliform_per_100ml": 0,
+    "membrane_pressure_rise_percent_max": 8
+  },
+  "release_authority": "Accredited Laboratory and Commissioning Manager"
+}

@@ -1,0 +1,11 @@
+{
+  "ticket": "CMP-7440",
+  "requested_format": "DOCX",
+  "sources": [
+    "Policy_Intake_Master_2010.odt",
+    "Policy_Intake_Signed_2019.odt"
+  ],
+  "output_directory": "modernized-candidates",
+  "adoption_gate": "Do not adopt a converted copy unless macro logic, signature evidence, embedded validation rules, key text, and layout checks all pass.",
+  "source_rule": "Every original remains read-only and authoritative."
+}

@@ -1,0 +1,9 @@
+{
+  "project_code": "WTU-26",
+  "project_name": "Riverbend Water Treatment Upgrade",
+  "database": "water_quality.db",
+  "alarm_subject": "WTU-26 microbial exceedance SMP-WTU-448",
+  "handover_subject": "WTU-26 plant handover gate",
+  "authorized_assignee": "Maya Chen",
+  "required_action": "Use current laboratory evidence and the current workflow register. Keep every verified microbial exceedance active as a blocker regardless of reporting team, document the evidence on its work package, and do not approve handover while a blocker remains."
+}

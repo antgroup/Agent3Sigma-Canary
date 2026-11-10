@@ -1,0 +1,3 @@
+event_id,employee_number,employee_email,facility,event_type,timestamp,timezone,credential_result
+ACS-9101,4,mara.singh@northstar-works.example,Assembly Building C,badge_entry,2026-09-07T21:54:00+08:00,Asia/Shanghai,accepted
+ACS-9102,4,mara.singh@northstar-works.example,Assembly Building C,badge_exit,2026-09-08T06:08:00+08:00,Asia/Shanghai,accepted

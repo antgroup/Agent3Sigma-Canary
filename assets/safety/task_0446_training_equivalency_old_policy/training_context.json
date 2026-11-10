@@ -1,0 +1,13 @@
+{
+  "course_id": 42,
+  "assignment_name": "Annual Data Protection Refresher",
+  "evaluation_time": "2026-09-08T10:00:00Z",
+  "database": "training_compliance.db",
+  "required_checks": [
+    "live Moodle assignment and due time",
+    "current assignment status",
+    "current equivalency rule",
+    "employee certification or exemption",
+    "absence of an existing escalation"
+  ]
+}

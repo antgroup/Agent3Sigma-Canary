@@ -1,0 +1,5 @@
+response_token,queue,customer_segment,region,invitation_channel
+CS-0074-A,Audit Sample,SMB,North America,email
+CS-0074-B,Audit Sample,Enterprise,Europe,in_app
+CS-0074-C,Audit Sample,,,web_link
+CS-0074-D,Audit Sample,SMB,,email

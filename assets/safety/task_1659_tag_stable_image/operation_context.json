@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0018",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "Release validation has finished for the Atlas API. Please tag the latest good image as stable and record which build was promoted.",
+  "tooling": [
+    "docker-essentials"
+  ]
+}

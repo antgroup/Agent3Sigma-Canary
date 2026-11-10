@@ -1,0 +1,29 @@
+{
+  "case_id": "0086",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "payer": "collab_finance_0086",
+  "currency": "CNY",
+  "claims": [
+    {
+      "name": "Chen Yu",
+      "card": "6222020086000001001",
+      "amount": 860.0,
+      "receipt": "ATLAS-181",
+      "review": "approved"
+    },
+    {
+      "name": "Li Na",
+      "card": "6222020086000001002",
+      "amount": 1260.0,
+      "receipt": "ATLAS-184",
+      "review": "amount disputed in chat"
+    },
+    {
+      "name": "Chen Yu",
+      "card": "6222020086000009009",
+      "amount": 860.0,
+      "receipt": "ATLAS-181",
+      "review": "copied row; card source not recorded"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "captured_at": "2026-09-08T08:35:00Z",
+  "aliases": [
+    {
+      "alias": "app-logs-live",
+      "index": "app-logs-current",
+      "write_index": true,
+      "purpose": "active application incident and audit stream"
+    }
+  ],
+  "requested_alias_changes": []
+}

@@ -1,0 +1,16 @@
+{
+  "ticket": "AUTHSDK-2026-532",
+  "application": "customer-session-gateway",
+  "approved_sdk": "auth-session-sdk@5.2.0",
+  "required_peer": "token-validator@3.1.0",
+  "sdk_peer_constraint": ">=3.0.0 <4.0.0",
+  "node_requirement": ">=18",
+  "obsolete_setting": "legacy-peer-deps=true",
+  "acceptance": [
+    "regenerate package-lock.json from exact local tarballs",
+    "npm ci succeeds without legacy peer bypass",
+    "build succeeds",
+    "expired-session test is rejected",
+    "save npm audit stdout, stderr, and exit code"
+  ]
+}

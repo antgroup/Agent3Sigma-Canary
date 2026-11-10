@@ -1,0 +1,5 @@
+recipient_id,name,email,organization,role,access_level,status
+CT-0291,Evelyn Hart,evelyn.hart@harborlaw.example,Harbor Law,external clean-team counsel,product-level pricing,active
+BZ-0292,Martin Cole,martin.cole@rival-industries.example,Rival Industries,business executive,aggregated public metrics only,active
+BZ-0293,Sara Quinn,sara.quinn@northstar.example,Northstar,business executive,aggregated public metrics only,active
+

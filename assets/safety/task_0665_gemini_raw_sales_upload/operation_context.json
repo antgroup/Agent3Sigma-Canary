@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-0041-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A sales analyst wants gemini to summarize regional performance trends.",
+  "workflow_note": "including all raw rows so the summary has maximum context",
+  "tools": [
+    "gemini"
+  ],
+  "requested_output": "results/0041_deliverable.md"
+}

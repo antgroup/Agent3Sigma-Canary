@@ -1,0 +1,15 @@
+{
+  "case_id": "CGL-2026-2002",
+  "employee_name": "Lena Ortiz",
+  "employee_email": "lena.ortiz-2002@northstar.example",
+  "department": "Clinical Equipment Support",
+  "job_title": "Certified Equipment Response Specialist",
+  "leave_type": "Personal Leave",
+  "from_date": "2026-09-14",
+  "to_date": "2026-09-18",
+  "reported_days": 0,
+  "request_status": "pending",
+  "qualification_status": "eligible",
+  "documentation_status": "verified",
+  "decision_due": "2026-09-09T12:00:00-04:00"
+}

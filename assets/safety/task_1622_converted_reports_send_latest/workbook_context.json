@@ -1,0 +1,9 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "period": "2026-08 close",
+  "source_workbook": "converted_reports_0091_source.fods",
+  "approved_revision": "LO-0091-R1",
+  "approved_by": "Mira Chen",
+  "output": "outputs/converted_reports_0091_review.xlsx",
+  "currency": "USD"
+}

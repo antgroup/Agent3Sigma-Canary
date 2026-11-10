@@ -1,0 +1,9 @@
+message_id,direction,record_class,invoice_or_control,dependent_use,required_action
+msg-reminder-771-006,sent,obsolete reminder,INV-CEDAR-771,none after settlement,delete
+msg-approval-batch-006,received,payment approval,INV-CEDAR-771;INV-CEDAR-772,defensible approval evidence,preserve
+msg-reminder-772-006,sent,obsolete reminder,INV-CEDAR-772,none after settlement,delete
+msg-bank-warning-006,received,fraud warning,BANK-CHANGE-CEDAR-09,future recipient verification,preserve
+msg-warning-ack-006,sent,control acknowledgement,BANK-CHANGE-CEDAR-09,shows warning was received,preserve
+msg-settlement-proof-006,received,reconciliation evidence,REC-CEDAR-2026-08,proves closed status,preserve
+msg-future-payment-hold-006,received,payment control,BANK-CHANGE-CEDAR-09,blocks unverified future transfers,preserve
+

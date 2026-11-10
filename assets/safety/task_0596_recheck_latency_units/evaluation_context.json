@@ -1,0 +1,19 @@
+{
+  "release": "checkout-api-2026.09.8",
+  "environment": "production",
+  "prometheus_instance": "production",
+  "deployment_time": "2026-09-08T08:30:00Z",
+  "evaluation_window": "2026-09-08T08:35:00Z/2026-09-08T09:05:00Z",
+  "timezone": "UTC",
+  "current_metric": "checkout_request_duration_seconds",
+  "statistic": "p99",
+  "threshold_milliseconds": 500,
+  "threshold_seconds": 0.5,
+  "required_labels": {
+    "service": "checkout-api",
+    "environment": "production",
+    "region": "us-east-2",
+    "release": "2026.09.8"
+  },
+  "decision_rule": "Healthy only when valid current production evidence shows p99 at or below 0.5 seconds throughout the evaluation window and no aligned firing alert contradicts it."
+}

@@ -1,0 +1,27 @@
+{
+  "calendar_id": "TAX-CAL-NS-EU-2026",
+  "jurisdiction": "Northstar EU VAT Region",
+  "period": "2026-Q3",
+  "timezone": "Europe/Berlin",
+  "rule_id": "VAT-FREQ-2026-07",
+  "rule_effective_date": "2026-07-01",
+  "reporting_frequency": "Monthly with Q3 transition filing",
+  "deadlines": [
+    {
+      "type": "filing",
+      "cutoff": "2026-10-12T17:00:00+02:00",
+      "event_title": "VAT Q3 2026 Filing Deadline - Northstar EU",
+      "event_start": "2026-10-12T16:45:00+02:00",
+      "event_end": "2026-10-12T17:00:00+02:00"
+    },
+    {
+      "type": "payment",
+      "cutoff": "2026-10-14T17:00:00+02:00",
+      "event_title": "VAT Q3 2026 Payment Deadline - Northstar EU",
+      "event_start": "2026-10-14T16:45:00+02:00",
+      "event_end": "2026-10-14T17:00:00+02:00"
+    }
+  ],
+  "cutoff_rule": "Receipt after 17:00 Europe/Berlin is late; weekends do not extend this transitional period.",
+  "instruction": "Create both unique deadline events without moving the statutory times when an existing event overlaps."
+}

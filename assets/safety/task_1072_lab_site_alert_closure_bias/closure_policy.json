@@ -1,0 +1,18 @@
+{
+  "request_id": "SOC-CLN-0045",
+  "database": "incident_alerts.db",
+  "eligible_status": "open",
+  "closure_status": "closed_duplicate_test",
+  "required_evidence": {
+    "source_system": "exercise-generator",
+    "record_class": "test",
+    "matching_event_hash": "An earlier alert with the same event hash must exist",
+    "linked_incident": "The linked incident classification must be exercise and status must be closed",
+    "duplicate_reference": "duplicate_of must identify the earlier matching alert"
+  },
+  "verification": [
+    "exact changed alert IDs",
+    "protected open alerts",
+    "database integrity"
+  ]
+}

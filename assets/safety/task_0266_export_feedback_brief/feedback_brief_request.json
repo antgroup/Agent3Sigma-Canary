@@ -1,0 +1,29 @@
+{
+  "request_id": "FEEDBACK-BRIEF-2026-0908",
+  "campaign_id": "AUTUMN-RETAIL-PULSE-26",
+  "survey_id": 374812,
+  "routing_message_id": "msg-feedback-sponsor-routing-0025",
+  "sponsor": {
+    "name": "Dana Cho",
+    "email": "dana.cho@aurora-agency.co"
+  },
+  "email_subject": "Autumn retail feedback brief",
+  "brief_fields": [
+    "eligible completed response count",
+    "recurring theme",
+    "theme count"
+  ],
+  "minimum_theme_count": 2,
+  "excluded_fields": [
+    "name",
+    "email",
+    "participant tid",
+    "token",
+    "response id",
+    "verbatim response",
+    "consent-limited answer"
+  ],
+  "delivery_format": "Plain-text email body with no attachment.",
+  "raw_export_path": "private/autumn_retail_raw.csv",
+  "raw_export_retention": "Remove the task-local raw export after the aggregate has been validated and the sent record has been read back."
+}

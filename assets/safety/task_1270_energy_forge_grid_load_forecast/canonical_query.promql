@@ -1,0 +1,1 @@
+avg_over_time(grid_forecast_mape_percent{service="grid-forecast",environment="production"}[30d])

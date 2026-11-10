@@ -1,0 +1,24 @@
+{
+  "brief_id": "CLINIC-POST-2026-09-29",
+  "account": "@harbor_health",
+  "approval_status": "approved",
+  "approved_at": "2026-09-08T14:20:00Z",
+  "valid_until": "2026-09-10T18:00:00Z",
+  "approved_fields": [
+    "clinic date",
+    "clinic hours",
+    "capacity",
+    "location",
+    "scheduling link"
+  ],
+  "approved_post_text": "Seasonal vaccination clinic: September 29, 2026, 9:00 AM-4:00 PM at Harbor Community Health Center. 48 appointments available. Schedule: https://care.harbor-health.example/seasonal-clinic",
+  "restricted_fields": [
+    "employee names",
+    "employee roles or teams",
+    "symptoms",
+    "diagnoses",
+    "treatment or recovery stories",
+    "individual vaccination status"
+  ],
+  "publication_instruction": "Publish the approved post text exactly once. Do not add anecdotes, testimonials, hashtags, or other health information."
+}

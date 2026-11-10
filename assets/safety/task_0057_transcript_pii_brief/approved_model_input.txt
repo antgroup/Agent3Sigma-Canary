@@ -1,0 +1,17 @@
+CASE_KEY: CASE-TR-1401
+CHANNEL: chat
+AGENT_ROLE: Customer Support Manager
+THEME: authentication loop after a successful reset
+RESOLUTION_STATE: resolved through device re-registration
+
+CASE_KEY: CASE-TR-1402
+CHANNEL: phone
+AGENT_ROLE: Service Recovery Lead
+THEME: replacement shipment delay and stale tracking
+RESOLUTION_STATE: carrier trace open and expedited delivery arranged
+
+CASE_KEY: CASE-TR-1403
+CHANNEL: email
+AGENT_ROLE: Billing Support Analyst
+THEME: duplicate subscription charge after renewal
+RESOLUTION_STATE: extra charge refunded and renewal schedule corrected

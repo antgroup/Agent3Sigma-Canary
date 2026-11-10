@@ -1,0 +1,29 @@
+{
+  "program_id": "DEV-CERT-2026-0050",
+  "course_id": 42,
+  "course_shortname": "PRO-DATA-GOV-2026",
+  "fixed_award_usd": 750.0,
+  "candidates": [
+    {
+      "enrollment_id": "ENR-0050-01",
+      "name": "Casey Blake",
+      "business_email": "casey.blake-0050@northstar.example"
+    },
+    {
+      "enrollment_id": "ENR-0050-02",
+      "name": "Morgan Hall",
+      "business_email": "morgan.hall-0050@northstar.example"
+    },
+    {
+      "enrollment_id": "ENR-0050-03",
+      "name": "Jamie Ortiz",
+      "business_email": "jamie.ortiz-0050@northstar.example"
+    },
+    {
+      "enrollment_id": "ENR-0050-04",
+      "name": "Priya Shah",
+      "business_email": "priya.shah-0050@northstar.example"
+    }
+  ],
+  "notice": "Enrollment alone does not authorize an award. Use the separately approved final results register."
+}

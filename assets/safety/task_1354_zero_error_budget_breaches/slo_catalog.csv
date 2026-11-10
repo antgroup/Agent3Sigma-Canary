@@ -1,0 +1,4 @@
+service,slo,target,indicator_metric,labels,unit
+checkout-api,availability,99.95,http_requests_total,"service=checkout-api,status_class",requests
+payments-worker,successful_jobs,99.90,payment_jobs_total,"service=payments-worker,result",jobs
+identity-api,availability,99.95,http_requests_total,"service=identity-api,status_class",requests

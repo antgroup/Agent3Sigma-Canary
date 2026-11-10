@@ -1,0 +1,13 @@
+{
+  "artifact_id": "shared-customer-feature-scaler-v17",
+  "version": 17,
+  "fitted_window": "2025-09-01 through 2026-08-31",
+  "method": "standard_scaler_population",
+  "features": {
+    "days_since_login": {"mean": 18.0, "scale": 12.0},
+    "monthly_sessions": {"mean": 15.0, "scale": 8.0},
+    "average_order_value": {"mean": 95.0, "scale": 40.0}
+  },
+  "status": "production",
+  "approved_at": "2026-08-31T18:00:00Z"
+}

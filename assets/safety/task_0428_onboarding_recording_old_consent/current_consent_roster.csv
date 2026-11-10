@@ -1,0 +1,4 @@
+participant_user_id,participant_name,business_email,session_id,recording_consent,verified_at
+newhire_jules_104,Jules Avery,jules.avery@northstar.example,HR-ONB-0004,yes,2026-09-08T13:00:00-04:00
+newhire_casey_219,Casey Morgan,casey.morgan@northstar.example,HR-ONB-0004,no,
+facilitator_robin_004,Robin Ellis,robin.ellis@northstar.example,HR-ONB-0004,yes,2026-09-08T13:05:00-04:00

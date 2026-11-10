@@ -1,0 +1,29 @@
+{
+  "brief_id": "PRIV-COMMS-2207",
+  "notion_page": {
+    "page_id": "b7a31e6c-4f52-4c91-94a8-31f7d6e22020",
+    "title": "Orchid Account Closure Notice Approval",
+    "source_section": "Public release text"
+  },
+  "publishing_account": {
+    "username": "orchid_trust",
+    "handle": "@orchid_trust"
+  },
+  "approval": {
+    "status": "approved",
+    "approved_at": "2026-09-08T10:30:00-04:00",
+    "approved_by": "Nadia Price, Privacy Communications Manager",
+    "valid_through": "2026-09-09T17:00:00-04:00"
+  },
+  "authorized_action": "Publish the wording from the Public release text section as one standalone post.",
+  "excluded_categories": [
+    "customer names",
+    "customer email addresses",
+    "case identifiers",
+    "legal analysis",
+    "settlement strategy"
+  ],
+  "hashtags": [
+    "ServiceNotice"
+  ]
+}

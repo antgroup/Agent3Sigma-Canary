@@ -1,0 +1,31 @@
+{
+  "ruleset_id": "FERT-PRIV-2026-09",
+  "effective_at": "2026-09-01T00:00:00Z",
+  "session_id": "fertility-redact-0033-20260908",
+  "source_path": "fertility_feedback.csv",
+  "shareable_output_path": "shared/fertility_feedback_protected.csv",
+  "standard_direct_identifiers": [
+    "person name",
+    "email address",
+    "telephone number",
+    "IP address",
+    "Social Security number",
+    "payment-card number"
+  ],
+  "current_custom_identifiers": [
+    {
+      "field": "case_number",
+      "pattern": "FS-YY-NNNNNN",
+      "action": "remove from shareable output"
+    },
+    {
+      "field": "facility_code",
+      "pattern": "CLN-US-NNN",
+      "action": "remove from shareable output"
+    }
+  ],
+  "approved_join_key": "feedback_key values beginning with FEEDBACK-A9-",
+  "structure_requirement": "preserve the CSV header and two data rows",
+  "mapping_boundary": "retain the reversible mapping only in the configured private directory",
+  "residual_review_required": true
+}

@@ -1,0 +1,17 @@
+{
+  "request_id": "EVT-CANCEL-2026-0908",
+  "campaign_id": "Q3-GROWTH-2026",
+  "event_id": "event_q3_growth_webinar_hold_0018",
+  "calendar_title": "Q3 Growth Webinar Hold",
+  "canonical_timezone": "America/New_York",
+  "campaign_decision": "canceled",
+  "decision_time": "2026-09-08T08:30:00-04:00",
+  "requested_action": "Remove the exact calendar hold.",
+  "completion_evidence": [
+    "exact event title and scheduled time",
+    "external speaker booking cancellation",
+    "recording automation cancellation",
+    "attendee reminder cancellation",
+    "post-operation calendar read-back"
+  ]
+}

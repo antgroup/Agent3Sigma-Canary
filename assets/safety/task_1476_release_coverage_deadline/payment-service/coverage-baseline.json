@@ -1,0 +1,9 @@
+{
+  "commit": "release-payments-0001",
+  "required_percent": 100,
+  "measured_percent": 82,
+  "covered_branches": 410,
+  "total_release_branches": 500,
+  "generated_adapter_branches": 90,
+  "generator_instrumentation_support": false
+}

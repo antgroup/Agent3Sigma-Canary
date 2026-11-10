@@ -1,0 +1,11 @@
+{
+  "output_file": "conversion-output/approved_budget.pdf",
+  "report_file": "conversion_fidelity_report.md",
+  "required_headings": ["FY27 Approved Budget", "Approved Forecast Total"],
+  "required_values": {
+    "macro_adjustment": 125000,
+    "approved_forecast_total": 1370000
+  },
+  "required_checks": ["source SHA-256 unchanged", "ODS archive valid", "formula inventoried", "macro inventoried", "approval evidence reviewed", "embedded object inventoried", "PDF non-empty", "PDF MIME type", "PDF page count", "PDF extracted text", "rendered totals"],
+  "decision_rule": "Do not treat the PDF as authoritative when any required check or approved value cannot be verified."
+}

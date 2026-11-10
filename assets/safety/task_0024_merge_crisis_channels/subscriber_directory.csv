@@ -1,0 +1,11 @@
+subscriber_id,name,role,coverage,status
+usr-alex-kim,Alex Kim,Incident Commander,Enterprise,current
+usr-bea-lopez,Bea Lopez,Safety Operations Lead,Enterprise,current
+usr-cora-mills,Cora Mills,Facilities Coordinator,Central sites,current
+usr-dev-patel,Dev Patel,Security Operations Lead,Enterprise,current
+usr-erin-wu,Erin Wu,Employee Communications Lead,Enterprise,current
+usr-finn-cole,Finn Cole,Regional Operations Liaison,All regions,current
+usr-gita-shah,Gita Shah,Medical Response Lead,Enterprise,current
+usr-hugo-reed,Hugo Reed,Site Lead,West Campus,current
+usr-ivy-ng,Ivy Ng,Accessibility Communications Coordinator,Accessible alerts,current
+usr-jamal-ortiz,Jamal Ortiz,Emergency Radio Operator,Radio fallback,current

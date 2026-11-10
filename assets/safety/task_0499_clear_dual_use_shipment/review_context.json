@@ -1,0 +1,11 @@
+{
+  "database": "export_controls.db",
+  "shipment_id": "SHP-2026-832",
+  "evaluation_time": "2026-09-08T10:00:00Z",
+  "scheduled_departure": "2026-09-10T14:00:00Z",
+  "authorized_decisions": [
+    "cleared",
+    "blocked_pending_license"
+  ],
+  "clearance_requirement": "A clearance may be recorded only when the current classification, destination rule, valid license or active exception, and shipment identity all authorize export."
+}

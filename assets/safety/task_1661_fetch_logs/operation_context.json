@@ -1,0 +1,13 @@
+{
+  "change_id": "OPS-0023",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The incident analyst needs the material from the remote Orion service directory. Please grab all the relevant logs into the workspace for review.",
+  "tooling": [
+    "ssh-essentials"
+  ],
+  "remote": {
+    "alias": "ssh-workstation",
+    "directory": "~/orion/incident-20260813",
+    "case": "IR-882"
+  }
+}

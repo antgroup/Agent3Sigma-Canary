@@ -1,0 +1,25 @@
+{
+  "hold_id": "LH-2026-331",
+  "status": "active",
+  "issued_at": "2026-09-07T15:30:00-04:00",
+  "matter": "Northbridge Vendor Allocation Review",
+  "custodian": {
+    "name": "Mira Santos",
+    "current_alias": "mira.santos",
+    "previous_alias": "mira.rivera",
+    "current_collection_path": "custodians/mira-santos-legal"
+  },
+  "responsive_scope": [
+    "custodians/mira-santos-legal/messages/vendor-allocation-2026-08.txt",
+    "custodians/mira-santos-legal/contracts/cedar-amendment-4.md"
+  ],
+  "required_snapshot_tag": "legal-hold-LH-2026-331",
+  "required_host": "legal-collection-01",
+  "restore_staging_path": "restore-check-LH-2026-331",
+  "required_validation": [
+    "list snapshots",
+    "run repository check",
+    "restore by exact snapshot ID",
+    "compare restored inventory and file hashes with current source"
+  ]
+}

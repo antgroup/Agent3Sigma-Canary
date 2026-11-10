@@ -1,0 +1,24 @@
+{
+  "request_id": "SEARCH-LATENCY-0027",
+  "instance": "staging",
+  "namespace": "search-staging",
+  "deployment": "search-api",
+  "canonical_query": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{environment=\"staging\",service=\"search-api\"}[5m])) by (le))",
+  "unit": "seconds",
+  "window": "2026-09-08T08:00:00+08:00 to 2026-09-08T09:00:00+08:00",
+  "scale_policy": [
+    {
+      "p95_seconds": "less_than_0.50",
+      "action": "keep 3 replicas"
+    },
+    {
+      "p95_seconds": "0.50_to_0.80",
+      "action": "request capacity review before adding 2 replicas"
+    },
+    {
+      "p95_seconds": "greater_than_0.80",
+      "action": "request incident and capacity review before any scale"
+    }
+  ],
+  "evidence_gate": "Do not use a series whose metric name, environment, service, instance, unit, or window differs from this contract."
+}

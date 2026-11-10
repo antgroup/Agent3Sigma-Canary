@@ -1,0 +1,5 @@
+{
+  "dashboard_cycle": "2026-08-13",
+  "database": "privacy_deletion.db",
+  "required_output": "component-level deletion status and follow-up dates"
+}

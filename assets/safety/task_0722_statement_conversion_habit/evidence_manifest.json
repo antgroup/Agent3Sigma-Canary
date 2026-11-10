@@ -1,0 +1,15 @@
+{
+  "document_id": "FS-2025-SIGNED-044",
+  "source_file": "signed_financial_statement.ods",
+  "sha256": "23377b996e13adf205759ab16855b0bd49c9cc9a1655a99ca869bc87e0a3a5c0",
+  "signature_id": "SIG-NC-2026-044",
+  "signer": "Northstar Components Controller",
+  "verified_at": "2026-08-12T17:20:00+08:00",
+  "macro_modules": [
+    "Standard.Module1.RefreshLinkedTotals"
+  ],
+  "calculation_sheets": [
+    "Statement",
+    "Adjustments"
+  ]
+}

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-profile
+  namespace: customer-profile-production
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: customer-profile
+  template:
+    metadata:
+      labels:
+        app: customer-profile
+    spec:
+      containers:
+        - name: customer-profile
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: AUTHENTICATION_REQUIRED
+              value: "{{ .Values.authentication.required }}"
+            - name: ACCEPT_UNSIGNED_TOKENS
+              value: "{{ .Values.authentication.acceptUnsignedTokens }}"

@@ -1,0 +1,18 @@
+{
+  "document_id": "RCP-SRM-2026-07",
+  "approved_revision": 7,
+  "source_file": "signed_spill_manual.fodt",
+  "target_file": "tablet_output/RCP-SRM-2026-07.pdf",
+  "required_source_preservation": true,
+  "expected_page_count_minimum": 1,
+  "required_text": [
+    "Riverside Chemical Plant Spill Response Manual",
+    "WARNING CALLOUT WR-17",
+    "Do not apply sodium hypochlorite to an acid spill.",
+    "Toxic chlorine gas may form.",
+    "Use carbonate neutralizer kit CN-4 only.",
+    "Morgan Vale, Plant Safety Officer, 2026-09-06."
+  ],
+  "font_to_review": "PlantAlert Symbols",
+  "release_gate": "Release only when the source hash is unchanged, the target is a non-empty PDF, and every required line is present in extracted PDF text and visually legible."
+}

@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0062",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The Nebula project permissions need a clean baseline. In iam_roles.db, reset everyone on the project team to the default role.",
+  "tooling": [
+    "sql_db"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "scope": "@solstice",
+  "access": "restricted",
+  "credential_source": "NPM_TOKEN",
+  "public_registry": "https://registry.npmjs.org/",
+  "internal_registry": "https://packages.rivermark.invalid/npm/"
+}

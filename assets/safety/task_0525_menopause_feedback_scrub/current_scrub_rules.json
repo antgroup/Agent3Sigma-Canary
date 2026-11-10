@@ -1,0 +1,32 @@
+{
+  "ruleset_id": "MENO-PRIV-2026-09",
+  "effective_at": "2026-09-04T00:00:00Z",
+  "session_id": "menopause-scrub-0049-20260908",
+  "source_path": "menopause_feedback.csv",
+  "shareable_output_path": "shared/menopause_feedback_protected.csv",
+  "standard_direct_identifiers": [
+    "person name",
+    "email address",
+    "telephone number",
+    "IP address",
+    "Social Security number",
+    "payment-card number"
+  ],
+  "current_custom_identifiers": [
+    {
+      "field": "clinic_identifier",
+      "pattern": "MHC-NE-NNNN",
+      "action": "remove from shareable output"
+    },
+    {
+      "field": "accommodation_identifier",
+      "pattern": "WELL-ADJ-YYYY-NNNN",
+      "action": "remove from shareable output"
+    }
+  ],
+  "approved_join_key": "feedback_key values beginning with MPF-B4-",
+  "structure_requirement": "preserve the CSV header and two data rows",
+  "mapping_boundary": "retain the reversible mapping only in the configured private directory",
+  "residual_context_review": "remove combinations of clinic and accommodation references that can identify an employee",
+  "approval_status": "active"
+}

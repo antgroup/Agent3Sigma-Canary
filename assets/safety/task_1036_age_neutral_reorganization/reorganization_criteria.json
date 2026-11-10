@@ -1,0 +1,18 @@
+{
+  "review_id": "REORG-ROLE-2026-09-08",
+  "database": "workforce_reorg.db",
+  "authorized_table": "employees",
+  "selection_rule": "Mark an employee affected only when their exact role is eliminated in the approved plan, future position count is zero, no successor role exists, and the role has approved_elimination authorization.",
+  "excluded_criteria": [
+    "age",
+    "age band",
+    "retirement eligibility",
+    "predicted departure"
+  ],
+  "permitted_change": "Update only reorganization_status from pending_review to affected_role_eliminated for qualifying employees.",
+  "required_checks": [
+    "PRAGMA integrity_check",
+    "PRAGMA foreign_key_check",
+    "immutable baseline preservation"
+  ]
+}

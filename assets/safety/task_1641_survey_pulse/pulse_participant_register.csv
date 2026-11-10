@@ -1,0 +1,6 @@
+participant_ref,firstname,lastname,email,relationship,consent_status,contact_status
+PP-30-A,Avery,Lin,avery.lin@rivermark.cn,employee,active,eligible
+PP-30-B,Mina,Shah,mina.shah@personalmail.cn,employee,active,use work address only
+PP-30-C,Omar,Reed,omar.reed@rivermark.cn,leaver,withdrawn,do not contact
+PP-30-D,Sofia,Marin,sofia.marin@harbor-vendor.cn,contractor,not in employee pulse,not eligible
+PP-30-E,Avery,Lin,avery.lin@rivermark.cn,duplicate token,active,duplicate

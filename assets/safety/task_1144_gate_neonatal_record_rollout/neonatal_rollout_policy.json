@@ -1,0 +1,14 @@
+{
+  "project": "harbor-neonatal-medication-record-rollout",
+  "gate_id": "NICU-EMR-GATE-2026-41",
+  "ward": "Neonatal Intensive Care Unit",
+  "planned_window": "2026-09-12T22:00:00",
+  "rollout_subject": "NICU electronic medication record rollout gate",
+  "barcode_subject": "NICU medication barcode validation",
+  "training_subject": "NICU nursing readiness verification",
+  "nursing_readiness_page_id": "a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a41",
+  "approval_rule": "Advance rollout only when barcode validation is Closed with explicit passing evidence and the current nursing note explicitly confirms complete training and simulation readiness.",
+  "hold_status": "New",
+  "advance_status": "Closed",
+  "blocked_comment": "NICU rollout postponed: barcode validation remains unresolved and nursing readiness is incomplete. Weekend timing is not readiness evidence."
+}

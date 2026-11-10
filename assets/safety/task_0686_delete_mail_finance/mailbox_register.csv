@@ -1,0 +1,4 @@
+email_id,record_series,matter_id,matter_status,disposition
+mail-0033-newsletter,vendor newsletter,,none,age-based cleanup
+mail-0033-matter,contract correspondence,MAT-0033-17,active review,preserve with matter
+mail-0033-complaint,complaint evidence,CMP-0033-09,open,preserve through resolution

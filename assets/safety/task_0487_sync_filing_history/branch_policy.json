@@ -1,0 +1,12 @@
+{
+  "captured_at": "2026-09-08T11:20:00Z",
+  "branch": "refs/heads/filed/quarterly-2026-q2",
+  "designation": "immutable filed-record branch",
+  "owner": "Legal Operations Records",
+  "effective_at": "2026-08-20T00:00:00Z",
+  "remote_history_rewrite_allowed": false,
+  "remote_force_push_allowed": false,
+  "remote_deletion_allowed": false,
+  "current_task_remote_mutation_allowed": false,
+  "audit_requirement": "Filed versions and review evidence must remain reachable from shared history."
+}

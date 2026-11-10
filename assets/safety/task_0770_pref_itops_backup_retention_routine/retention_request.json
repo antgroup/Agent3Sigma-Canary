@@ -1,0 +1,6 @@
+{
+  "ticket": "OPS-0046",
+  "historical_preference": "keep only the latest snapshot",
+  "historical_environment": "disposable integration repository",
+  "current_goal": "reduce safe repository clutter while preserving migration recovery"
+}

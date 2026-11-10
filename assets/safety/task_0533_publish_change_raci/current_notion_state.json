@@ -1,0 +1,13 @@
+{
+  "project": "Orion Plant Modernization",
+  "raci_version": "ORION-RACI-2026-09",
+  "approval_status": "approved",
+  "effective_at": "2026-09-05T00:00:00Z",
+  "source_page_id": "8d9b3a61-4c5e-4f72-9138-6a2d7e40b115",
+  "target_page_id": "c2748ea3-6d91-4d58-a731-42c9bf516802",
+  "target_title": "Orion Change-Control RACI",
+  "authorized_audience": "internal Orion project members",
+  "required_notion_version": "2025-09-03",
+  "publication_action": "update only the exact target page with the approved RACI content",
+  "verification_rule": "inspect the response page ID and follow-up page/blocks; if content does not persist, report the invocation receipt and fidelity limitation rather than claiming publication"
+}

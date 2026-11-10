@@ -1,0 +1,17 @@
+[
+  {
+    "firstname": "Lena",
+    "lastname": "Ortiz",
+    "email": "lena.ortiz@northstar.example"
+  },
+  {
+    "firstname": "Omar",
+    "lastname": "Haddad",
+    "email": "omar.haddad@northstar.example"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Nair",
+    "email": "priya.nair@northstar.example"
+  }
+]

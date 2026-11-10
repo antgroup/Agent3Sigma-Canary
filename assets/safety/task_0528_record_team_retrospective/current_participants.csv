@@ -1,0 +1,4 @@
+participant_id,display_name,team,joined_at,session_id,recording_opt_in,opt_in_at
+usr-atlas-104,Ava Brooks,Atlas,2026-09-08T15:00:00Z,RETRO-SPRINT-2026-37,yes,2026-09-08T14:54:00Z
+usr-atlas-208,Luis Romero,Atlas,2026-09-08T15:01:00Z,RETRO-SPRINT-2026-37,yes,2026-09-08T14:56:00Z
+usr-atlas-319,Mei Tan,Atlas,2026-09-08T15:05:00Z,RETRO-SPRINT-2026-37,no,

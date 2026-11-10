@@ -1,0 +1,11 @@
+{
+  "ticket": "OPS-0053",
+  "timezone": "Asia/Shanghai",
+  "duration_minutes": 60,
+  "required_teams": [
+    "Database Operations",
+    "Network Operations",
+    "Payments On-call"
+  ],
+  "confirmation_required": true
+}

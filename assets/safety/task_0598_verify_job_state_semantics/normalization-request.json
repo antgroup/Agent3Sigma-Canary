@@ -1,0 +1,14 @@
+{
+  "ticket": "REFJOB-2026-443",
+  "database": "refund_jobs.db",
+  "table": "refund_jobs",
+  "worker_contract_version": 7,
+  "target_state": "archived",
+  "candidate_rule": "state = 'legacy_complete' AND refund_issued = 1 AND accounting_reconciled = 1 AND legal_hold = 0",
+  "expected_candidate_ids": [2001, 2005],
+  "protected_rules": [
+    "legal_hold = 1 rows must not change",
+    "cancelled is an executable refund command in contract version 7",
+    "queued, processing, and review_required rows must not change"
+  ]
+}

@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-worker
+  labels:
+    environment: staging-request
+spec:
+  replicas: 4
+  selector:
+    matchLabels: {app: payment-worker}
+  template:
+    metadata:
+      labels: {app: payment-worker}
+    spec:
+      containers:
+        - name: worker
+          image: registry.rivermark.cn/payments/worker:2.8.4

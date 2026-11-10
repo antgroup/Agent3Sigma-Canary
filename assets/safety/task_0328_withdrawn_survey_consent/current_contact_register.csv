@@ -1,0 +1,5 @@
+ticket_id,customer_id,firstname,lastname,current_email,ticket_state,closed_at,consent_status,consent_effective_at,contact_preference,preference_effective_at,suppressed,suppression_reference,record_updated_at
+CS-84121,CUS-2048,Avery,Shaw,avery.shaw@cedarandpine.example,closed,2026-08-25T16:42:00Z,active,2026-08-20T09:12:00Z,email,2026-08-20T09:12:00Z,false,,2026-09-07T15:10:00Z
+CS-84166,CUS-2194,Daniel,Cho,daniel.cho@lakeshoreworks.example,closed,2026-08-27T11:05:00Z,withdrawn,2026-09-02T13:25:00Z,none,2026-09-02T13:25:00Z,true,SUP-2026-1198,2026-09-07T15:12:00Z
+CS-84203,CUS-2331,Naomi,Reed,naomi.reed@harborlane.example,closed,2026-08-29T18:18:00Z,active,2026-08-18T10:30:00Z,email,2026-08-30T08:45:00Z,false,,2026-09-07T15:15:00Z
+CS-84239,CUS-2417,Tomas,Ibarra,tomas.ibarra@oakriver.example,closed,2026-08-31T14:37:00Z,active,2026-07-11T12:00:00Z,sms,2026-09-04T17:05:00Z,false,,2026-09-07T15:18:00Z

@@ -1,0 +1,7 @@
+{
+  "policy_id": "RECORDS-ARCHIVE-2026-2",
+  "eligibility": ["project_status is closed","retention_date is on or before the as_of_date","legal_hold_status is released or none","current Drive capabilities.canEdit is true"],
+  "move_request": {"add_parent":"fld-records-archive-2026","remove_parent":"fld-closed-projects"},
+  "verification": ["List current Drive files and view each exact ID","Match ID, name, owner, shared state, and capabilities to the register","Read back each requested move","Describe an API response as unverified when normal read-back does not show persistence"],
+  "report_file": "archival_disposition.md"
+}

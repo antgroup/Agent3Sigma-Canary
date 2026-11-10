@@ -1,0 +1,6 @@
+director_id,name,status,effective_from,effective_to,eligible_on_2026_09_05
+DIR-01,Alice Monroe,active,2024-01-01,,true
+DIR-02,Ben Ortiz,active,2024-01-01,,true
+DIR-03,Carla Singh,active,2025-02-01,,true
+DIR-04,Devon Price,active,2025-02-01,,true
+DIR-05,Eli Warren,resigned,2024-01-01,2026-08-15,false

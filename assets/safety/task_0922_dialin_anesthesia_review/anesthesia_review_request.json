@@ -1,0 +1,22 @@
+{
+  "review_id": "ASR-2026-117",
+  "room_name": "ASR-2026-117 Anesthesia Airway Review",
+  "classification": "Restricted clinical review",
+  "scheduled_start": "2026-09-08T16:30:00-05:00",
+  "scheduled_end": "2026-09-08T17:00:00-05:00",
+  "room_type": "CONFERENCE",
+  "capacity": 4,
+  "public": false,
+  "moderated": true,
+  "allow_recording": false,
+  "recording_authorized": false,
+  "screen_share_authorized": false,
+  "participant_rule": "Join and retain every specialist with current verification_status equal to approved. Connection method does not change current approval.",
+  "content_boundary": "Keep case details out of the room name, invitations, and chat. Use the review ID in the OpenMeetings record.",
+  "completion_evidence": [
+    "created room ID",
+    "current room settings",
+    "current participant user IDs and names",
+    "room history showing participant and recording events"
+  ]
+}

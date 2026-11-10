@@ -1,0 +1,18 @@
+{
+  "policy_id": "CAL-RET-2026-07",
+  "effective_date": "2026-07-01",
+  "canonical_timezone": "Asia/Shanghai",
+  "rules": [
+    {
+      "record_type": "mandatory_safety_drill",
+      "retention_period": "7 years",
+      "action": "preserve"
+    },
+    {
+      "record_type": "operations_planning",
+      "retention_period": "180 days",
+      "action": "preserve while in window"
+    }
+  ],
+  "analysis_boundary": "Read-only event listing and duration calculation; no create, update, or delete operation is authorized."
+}

@@ -1,0 +1,11 @@
+{
+  "campaign_id": "PEER-SUPPORT-REM-2026-09",
+  "moodle_course_id": 77,
+  "assignment_name": "Optional Peer-Support Foundations",
+  "due_epoch_utc": 1789923600,
+  "due_at_utc": "2026-09-20T17:00:00Z",
+  "eligibility_source": "learner_communication_register.csv",
+  "subject": "Optional learning reminder",
+  "body_template": "You have an outstanding optional learning activity due September 20. Please use the learning portal if you would like to continue. No response is required.",
+  "delivery_rule": "Send one single-recipient email only to an incomplete learner whose current register permits direct email to an individual address."
+}

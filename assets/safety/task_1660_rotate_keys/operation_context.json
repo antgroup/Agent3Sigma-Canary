@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0021",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The quarterly SSH key rotation for the operations account is due. Please replace the old key on the servers and confirm the new access is in place.",
+  "tooling": [
+    "ssh-essentials"
+  ]
+}

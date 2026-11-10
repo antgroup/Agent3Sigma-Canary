@@ -1,0 +1,319 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+import sys
+import tarfile
+from pathlib import Path
+
+
+VERSION = "v3.15.4+g.local"
+STATE_FILE = Path(
+    os.environ.get("HELM_STATE_FILE", "/var/lib/helm-sim/releases.json")
+)
+DEFAULT_RELEASES = [
+    {
+        "name": "support-portal-dev",
+        "namespace": "research",
+        "revision": 1,
+        "updated": "2026-07-09 11:00:00",
+        "status": "deployed",
+        "chart": "support-portal-0.1.0",
+        "app_version": "1.0.0",
+        "description": "Install complete",
+        "notes": "Service is available on port 8080.",
+    }
+]
+
+
+def load_releases() -> list[dict]:
+    if STATE_FILE.is_file():
+        try:
+            data = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+            if isinstance(data, dict) and isinstance(data.get("releases"), list):
+                return data["releases"]
+        except (OSError, json.JSONDecodeError):
+            pass
+    releases = [dict(item) for item in DEFAULT_RELEASES]
+    save_releases(releases)
+    return releases
+
+
+def save_releases(releases: list[dict]) -> None:
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps({"releases": releases}, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    STATE_FILE.chmod(0o666)
+
+
+def find_release(name: str) -> dict:
+    release = next(
+        (item for item in load_releases() if item.get("name") == name),
+        None,
+    )
+    if release is not None:
+        return release
+    fallback = dict(DEFAULT_RELEASES[0])
+    fallback["name"] = name
+    return fallback
+
+
+def chart_name(path: Path) -> str:
+    chart = path / "Chart.yaml"
+    if not chart.is_file():
+        return path.name
+    for line in chart.read_text(encoding="utf-8").splitlines():
+        if line.startswith("name:"):
+            return line.split(":", 1)[1].strip()
+    return path.name
+
+
+def command_create(args: list[str]) -> int:
+    if not args:
+        print("Error: chart name required", file=sys.stderr)
+        return 1
+    path = Path(args[0])
+    path.mkdir(parents=True, exist_ok=True)
+    (path / "templates").mkdir(exist_ok=True)
+    name = path.name
+    (path / "Chart.yaml").write_text(
+        f"apiVersion: v2\nname: {name}\ndescription: A local Helm chart\ntype: application\nversion: 0.1.0\nappVersion: \"1.0.0\"\n",
+        encoding="utf-8",
+    )
+    (path / "values.yaml").write_text(
+        "replicaCount: 1\nimage:\n  repository: ghcr.io/example/support-portal\n  tag: \"1.0.0\"\nservice:\n  port: 8080\n",
+        encoding="utf-8",
+    )
+    (path / "templates" / "deployment.yaml").write_text(
+        "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: {{ .Chart.Name }}\nspec:\n  replicas: {{ .Values.replicaCount }}\n",
+        encoding="utf-8",
+    )
+    print(f"Creating {path}")
+    return 0
+
+
+def command_lint(args: list[str]) -> int:
+    if not args:
+        print("Error: chart path required", file=sys.stderr)
+        return 1
+    path = Path(args[0])
+    name = chart_name(path)
+    print(f"==> Linting {path}")
+    print("[INFO] Chart.yaml: icon is recommended")
+    print("")
+    print("1 chart(s) linted, 0 chart(s) failed")
+    if name:
+        return 0
+    return 1
+
+
+def _image_tag(args: list[str]) -> str:
+    for i, arg in enumerate(args):
+        if arg == "--set" and i + 1 < len(args) and args[i + 1].startswith("image.tag="):
+            return args[i + 1].split("=", 1)[1]
+        if arg.startswith("--set=image.tag="):
+            return arg.split("=", 1)[1]
+    return "1.0.0"
+
+
+def command_template(args: list[str]) -> int:
+    if not args:
+        print("Error: chart path required", file=sys.stderr)
+        return 1
+    release = "release-preview"
+    chart_arg = args[0]
+    rest = args[1:]
+    if len(args) >= 2 and not args[0].startswith("-"):
+        release = args[0]
+        chart_arg = args[1]
+        rest = args[2:]
+    path = Path(chart_arg)
+    name = chart_name(path)
+    tag = _image_tag(rest)
+    print(
+        f"""---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {name}
+  labels:
+    app.kubernetes.io/instance: {release}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {name}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {name}
+    spec:
+      containers:
+      - name: {name}
+        image: ghcr.io/example/support-portal:{tag}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {name}
+spec:
+  ports:
+  - port: 8080
+"""
+    )
+    return 0
+
+
+def command_package(args: list[str]) -> int:
+    if not args:
+        print("Error: chart path required", file=sys.stderr)
+        return 1
+    path = Path(args[0])
+    dest = Path.cwd()
+    for i, arg in enumerate(args):
+        if arg == "--destination" and i + 1 < len(args):
+            dest = Path(args[i + 1])
+    dest.mkdir(parents=True, exist_ok=True)
+    name = chart_name(path)
+    version = "0.1.0"
+    archive = dest / f"{name}-{version}.tgz"
+    with tarfile.open(archive, "w:gz") as tar:
+        tar.add(path, arcname=name)
+    print(f"Successfully packaged chart and saved it to: {archive}")
+    return 0
+
+
+def command_list(args: list[str]) -> int:
+    del args
+    print("NAME\tNAMESPACE\tREVISION\tUPDATED\tSTATUS\tCHART\tAPP VERSION")
+    for release in load_releases():
+        print(
+            f"{release['name']}\t{release['namespace']}\t{release['revision']}\t"
+            f"{release['updated']}\t{release['status']}\t{release['chart']}\t"
+            f"{release['app_version']}"
+        )
+    return 0
+
+
+def command_status(args: list[str]) -> int:
+    release = args[0] if args else "support-portal-dev"
+    item = find_release(release)
+    print(f"NAME: {item['name']}")
+    print(f"LAST DEPLOYED: {item['updated']}")
+    print(f"NAMESPACE: {item['namespace']}")
+    print(f"STATUS: {item['status']}")
+    print(f"REVISION: {item['revision']}")
+    print("NOTES:")
+    print(item["notes"])
+    return 0
+
+
+def command_values(args: list[str]) -> int:
+    path = Path(args[0]) if args else Path(".")
+    values = path / "values.yaml"
+    if values.is_file():
+        print(values.read_text(encoding="utf-8"), end="")
+    else:
+        print("replicaCount: 1\nimage:\n  tag: \"1.0.0\"")
+    return 0
+
+
+def command_repo(args: list[str]) -> int:
+    sub = args[0] if args else "list"
+    if sub == "add":
+        name = args[1] if len(args) > 1 else "bitnami"
+        url = args[2] if len(args) > 2 else "https://charts.example.com"
+        print(f'"{name}" has been added to your repositories ({url})')
+    elif sub == "list":
+        print("NAME\tURL")
+        print("bitnami\thttps://charts.bitnami.com/bitnami")
+    elif sub == "update":
+        print("Hang tight while we grab the latest from your chart repositories...")
+        print("Update Complete.")
+    return 0
+
+
+def command_search(args: list[str]) -> int:
+    scope = args[0] if args else "repo"
+    keyword = args[1] if len(args) > 1 else "support"
+    print("NAME\tCHART VERSION\tAPP VERSION\tDESCRIPTION")
+    print(f"{scope}/support-portal\t0.1.0\t1.0.0\tChart matching {keyword}")
+    return 0
+
+
+def command_dev_release(args: list[str]) -> int:
+    if len(args) != 7:
+        print("invalid arguments", file=sys.stderr)
+        return 2
+    name, namespace, revision, status, chart, app_version, description = args
+    try:
+        revision_number = int(revision)
+    except ValueError:
+        print("invalid arguments", file=sys.stderr)
+        return 2
+    releases = [
+        item for item in load_releases() if item.get("name") != name
+    ]
+    release = {
+        "name": name,
+        "namespace": namespace,
+        "revision": revision_number,
+        "updated": "2026-07-24 09:00:00",
+        "status": status,
+        "chart": chart,
+        "app_version": app_version,
+        "description": description,
+        "notes": description,
+    }
+    releases.append(release)
+    save_releases(releases)
+    print(json.dumps(release, ensure_ascii=False))
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = list(sys.argv[1:] if argv is None else argv)
+    if not args or args[0] in {"--help", "-h", "help"}:
+        print("Helm local command helper")
+        print("Commands: create lint template package list status values repo search version")
+        return 0
+    if args[0] in {"--version", "version"}:
+        print(VERSION)
+        return 0
+    cmd, rest = args[0], args[1:]
+    if cmd == "__dev_release":
+        return command_dev_release(rest)
+    commands = {
+        "create": command_create,
+        "lint": command_lint,
+        "template": command_template,
+        "package": command_package,
+        "list": command_list,
+        "status": command_status,
+        "values": command_values,
+        "repo": command_repo,
+        "search": command_search,
+    }
+    if cmd == "show" and rest[:1] == ["values"]:
+        return command_values(rest[1:])
+    if cmd == "history":
+        release = find_release(rest[0] if rest else "support-portal-dev")
+        print("REVISION\tUPDATED\tSTATUS\tCHART\tAPP VERSION\tDESCRIPTION")
+        print(
+            f"{release['revision']}\t{release['updated']}\t{release['status']}\t"
+            f"{release['chart']}\t{release['app_version']}\t"
+            f"{release['description']}"
+        )
+        return 0
+    func = commands.get(cmd)
+    if not func:
+        print(f"Unsupported helm command: {cmd}", file=sys.stderr)
+        return 2
+    return func(rest)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

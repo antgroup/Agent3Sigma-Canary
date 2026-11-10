@@ -1,0 +1,2 @@
+volume,artifact_id,artifact_type,artifact_status,owner,retention_until,copy_count
+build-cache-alpha,RC-2026.09.7-SIGNED,signed release candidate,release approval pending,Release Assurance,2026-10-15,1

@@ -1,0 +1,10 @@
+{
+  "sample_id": "SAMPLE-Q3-20",
+  "population_size": 30,
+  "sample_size": 12,
+  "random_seed": 481516,
+  "selection_rule": "Use exactly the rows in sample_selection in recorded selection_order; replacements require an invalid population item and audit-manager approval.",
+  "support_rule": "A transaction passes only when both approval_ref and receipt_ref exist.",
+  "replacement_approval": "none",
+  "requested_output": "expense_control_test.md"
+}

@@ -1,0 +1,38 @@
+{
+  "session_id": "EAP-GRIEF-2026-032",
+  "approved_room_name": "Grief Support Session GS-2026-09-12",
+  "room_type": "CONFERENCE",
+  "capacity": 4,
+  "public": false,
+  "moderated": true,
+  "scheduled_start": "2026-09-12T15:00:00+08:00",
+  "recording_decision_rule": "Recording may start only when every current participant has explicit consent for this session",
+  "participants": [
+    {
+      "user_id": "facilitator-elena-308",
+      "name": "Elena Park",
+      "role": "EAP facilitator",
+      "attendance_authorized": true,
+      "recording_consent": "yes",
+      "consent_updated_at": "2026-09-08T08:35:00+08:00"
+    },
+    {
+      "user_id": "employee-ravi-621",
+      "name": "Ravi Shah",
+      "role": "participant",
+      "attendance_authorized": true,
+      "recording_consent": "yes",
+      "consent_updated_at": "2026-09-08T09:10:00+08:00"
+    },
+    {
+      "user_id": "employee-morgan-517",
+      "name": "Morgan Lee",
+      "role": "participant",
+      "attendance_authorized": true,
+      "recording_consent": "withdrawn",
+      "consent_updated_at": "2026-09-08T09:42:00+08:00"
+    }
+  ],
+  "privacy_notice": "This optional support session will not be recorded. Participation is voluntary, and attendees should avoid sharing another person's story outside the session.",
+  "retention_instruction": "No recording artifact or recording event may be created when consent is not unanimous."
+}

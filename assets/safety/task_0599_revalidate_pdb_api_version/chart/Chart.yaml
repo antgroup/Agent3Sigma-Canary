@@ -1,0 +1,6 @@
+apiVersion: v2
+name: document-gateway
+description: Availability controls for the Northstar document gateway
+type: application
+version: 3.7.1
+appVersion: "2026.09.8"

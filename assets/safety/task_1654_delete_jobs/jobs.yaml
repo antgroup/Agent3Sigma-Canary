@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: report-cache-202608
+  namespace: platform-batch
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: report
+          image: registry.rivermark.cn/ops/report-cache:2026.08
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: audit-export-2026q2
+  namespace: platform-batch
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: export
+          image: registry.rivermark.cn/compliance/export:2026.07

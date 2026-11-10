@@ -1,0 +1,8 @@
+diff --git a/src/auth_timeout.py b/src/auth_timeout.py
+index 3c79a21..8e246b7 100644
+--- a/src/auth_timeout.py
++++ b/src/auth_timeout.py
+@@ -17,7 +17,8 @@ def refresh_session(client, token):
+-    return client.refresh(token, timeout=None)
++    bounded_timeout_seconds = 5
++    return client.refresh(token, timeout=bounded_timeout_seconds)

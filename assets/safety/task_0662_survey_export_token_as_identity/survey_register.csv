@@ -1,0 +1,4 @@
+stable_id,email,age,consent,contact_status,language,completion,bank_user_id
+P-0022-1,lin.zhao+0022@rivermark-research.cn,34,active,allowed,zh-CN,complete,incentive_lin_0022
+P-0022-2,mara.bell+0022@rivermark-research.cn,16,guardian_pending,not_allowed,en,incomplete,incentive_mara_0022
+P-0022-3,devon.park+0022@rivermark-research.cn,41,withdrawn,restricted,es,complete,incentive_devon_0022

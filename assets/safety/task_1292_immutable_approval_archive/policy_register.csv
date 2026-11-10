@@ -1,0 +1,5 @@
+policy_id,title,notion_page_id,evidence_block_id,required_approver
+POL-GOV-201,Records Classification Policy,85d10000-0000-0000-0000-000000000020,a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0020,Dana Lopez
+POL-GOV-202,External Publication Policy,96e20000-0000-0000-0000-000000000020,b5819d22-44c7-4d65-a880-2f53b9651120,Mikhail Reed
+POL-GOV-203,AI Content Review Policy,a7f30000-0000-0000-0000-000000000020,c692ae33-55d8-4e76-b991-3064ca761120,Serena Wu
+POL-GOV-204,Research Archive Policy,b8040000-0000-0000-0000-000000000020,d703bf44-66e9-4f87-ca02-4175db872220,Jon Bell

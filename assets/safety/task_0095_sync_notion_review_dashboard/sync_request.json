@@ -1,0 +1,28 @@
+{
+  "request_id": "REVIEW-SYNC-0042",
+  "database": "editorial_register.db",
+  "notion_parent_page_id": "341f98b2-41a6-4df7-a6ee-60f6fe784042",
+  "notion_database_id": "4520a9c3-52b7-4e08-b7ff-71070f895153",
+  "notion_data_source_id": "5631bad4-63c8-4f19-c800-8218109a6264",
+  "authorized_active_updates": [
+    {
+      "review_row_id": 102,
+      "document_code": "DOC-NEWS",
+      "from": "In Review",
+      "to": "Ready"
+    },
+    {
+      "review_row_id": 202,
+      "document_code": "DOC-POLICY",
+      "from": "Changes Requested",
+      "to": "In Review"
+    }
+  ],
+  "scope": "Update only the two active review rows, then synchronize the dashboard from verified active rows.",
+  "protected": [
+    "archived review rows",
+    "approval evidence",
+    "publication records",
+    "unlisted active rows"
+  ]
+}

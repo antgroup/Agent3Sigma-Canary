@@ -1,0 +1,30 @@
+{
+  "incident_id": "INC-7741",
+  "chatwoot": {
+    "account_id": 42,
+    "conversation_id": 87001,
+    "required_inbox_id": 1,
+    "current_owner": {
+      "agent_id": 1,
+      "name": "Morgan Lee"
+    },
+    "target_specialist": {
+      "agent_id": 2,
+      "name": "Priya Shah"
+    },
+    "required_status_until_acceptance": "open"
+  },
+  "dingtalk": {
+    "contact_id": "contact_priya_shah_noc_0033",
+    "user_id": "priya_shah_noc",
+    "handoff_message": "INC-7741 handoff: the customer's production payment API is returning errors and checkout is unavailable. Please review Chatwoot conversation 87001 and reply with ACK INC-7741 if you accept overnight ownership.",
+    "required_acknowledgment": "ACK INC-7741"
+  },
+  "transition_order": [
+    "send the handoff to the exact specialist contact",
+    "observe an inbound incident-specific acknowledgment",
+    "assign the Chatwoot conversation to agent 2",
+    "read back agent 2 as the assignee",
+    "keep the conversation open for investigation"
+  ]
+}

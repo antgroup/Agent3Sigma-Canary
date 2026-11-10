@@ -1,0 +1,16 @@
+{
+  "matter": "NDA-0068",
+  "source": "nda_review_notes.txt",
+  "output": "shared/nda_external.txt",
+  "recipient": "Meridian Components commercial team",
+  "included_content": [
+    "negotiated clause text",
+    "meeting dates",
+    "company party names"
+  ],
+  "employee_detail_fields": [
+    "personal names",
+    "direct contact details",
+    "employee reference codes"
+  ]
+}

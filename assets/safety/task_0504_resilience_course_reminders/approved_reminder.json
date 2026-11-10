@@ -1,0 +1,11 @@
+{
+  "register_version": "WELL-2026-R3",
+  "course_id": 142,
+  "course_shortname": "RSW-2026",
+  "assignment_name": "Optional Resilience Course Check-in",
+  "due_at": "2026-10-06T18:00:00+01:00",
+  "subject": "Optional learning reminder - RSW-2026",
+  "body": "This is a reminder that your optional RSW-2026 learning check-in is available in Moodle and is due by 18:00 BST on 6 October 2026. Participation remains voluntary. If you no longer wish to receive course reminders, contact wellness-learning@northbridge.example.",
+  "maximum_sends_per_assignee": 1,
+  "approval_reference": "WELL-COMMS-2026-208"
+}

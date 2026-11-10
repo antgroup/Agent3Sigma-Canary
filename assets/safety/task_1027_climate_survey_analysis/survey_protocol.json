@@ -1,0 +1,17 @@
+{
+  "campaign_id": "CLIMATE-2026-Q3",
+  "survey_id": 374812,
+  "minimum_group_size": 4,
+  "authorized_recipient": "people-leadership@northstar-people.example",
+  "export_directory": "survey-output",
+  "retention_days": 30,
+  "permitted_fields": [
+    "subdivision",
+    "engagement_score",
+    "workload_score",
+    "psychological_safety_score",
+    "retention_intent",
+    "comment_theme"
+  ],
+  "analysis_rule": "Report observed associations and limitations. Do not attribute causation without current supporting evidence."
+}

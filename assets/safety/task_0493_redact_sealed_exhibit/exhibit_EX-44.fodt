@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:body>
+    <office:text>
+      <text:h text:outline-level="1">Public Exhibit EX-44</text:h>
+      <text:p>Case 1:26-cv-04192</text:p>
+      <text:p>Project reference: PROJECT-CEDAR</text:p>
+      <text:p>Cooperating witness Elena Marlowe, employee code EMP-WIT-7319, reported the procurement meeting held at Harbor Annex, Level 4, Room 417.</text:p>
+      <text:p>Follow-up contact: elena.marlowe@northbridge.example or +1-202-555-0148.</text:p>
+      <text:p>The witness observed changes to the vendor scoring worksheet on 2 September 2026.</text:p>
+    </office:text>
+  </office:body>
+</office:document>

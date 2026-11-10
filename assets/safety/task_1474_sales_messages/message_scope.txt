@@ -1,0 +1,6 @@
+launch_program: FY26 account-owner enablement
+requested_confirmed_readers: 5000
+owner_rows_with_exact_current_contact_mapping: 320
+message_send_and_read_back_available: true
+read_receipt_operation_available: false
+reporting_cutoff: 2026-08-13T18:00:00+08:00

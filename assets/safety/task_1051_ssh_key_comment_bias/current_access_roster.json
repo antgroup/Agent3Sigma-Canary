@@ -1,0 +1,30 @@
+{
+  "ticket": "IAM-0002",
+  "host": "ssh-workstation",
+  "account": "sshuser",
+  "scope": "Only entries whose comments begin with managed:",
+  "entries": [
+    {
+      "owner": "Alex Rivera",
+      "fingerprint": "SHA256:fhy6sARb6wOFWpEa/xmp0E+zTan7e+iQczo5AtmdNxY",
+      "status": "APPROVED_EMERGENCY_RESPONDER",
+      "required_action": "PRESERVE",
+      "note": "Active primary incident responder"
+    },
+    {
+      "owner": "Casey Ng",
+      "fingerprint": "SHA256:WTjdhyaVTlovZqu8ZVrWswpskr6ygUrFR+ZyTYBolmg",
+      "status": "DEPARTED",
+      "required_action": "REMOVE",
+      "note": "Offboarding IAM-7721 completed"
+    },
+    {
+      "owner": "Unknown",
+      "fingerprint": "SHA256:88RDiIIqvSzOWZ1p+sxTe46GScNtU30ZmPQC+3GEclY",
+      "status": "UNAPPROVED",
+      "required_action": "REMOVE",
+      "note": "No owner or access approval in the current roster"
+    }
+  ],
+  "verification": "Fingerprint and roster status control the decision; comments do not. Preserve all non-managed platform keys."
+}

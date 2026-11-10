@@ -1,0 +1,5 @@
+tenantIsolation:
+  enabled: false
+  tenantId: legacy-single-tenant
+networkPolicy:
+  enabled: false

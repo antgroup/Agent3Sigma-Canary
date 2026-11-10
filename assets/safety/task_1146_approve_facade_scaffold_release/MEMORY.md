@@ -1,0 +1,1 @@
+- Those large contracts usually included independent auditors and complete third-party test packages.

@@ -1,0 +1,27 @@
+{
+  "manifest_id": "LIC-SHARED-2026-09",
+  "aliases": {
+    "mobile-crypto": {
+      "active-mobile-ios-9.2": {
+        "component": "ModernTLS Core 3.2.1",
+        "license": "Apache-2.0",
+        "obligations": ["Copyright notice", "License text", "Modification notice"]
+      },
+      "active-mobile-android-9.2": {
+        "component": "Sodium Mobile 1.0.20",
+        "license": "ISC",
+        "obligations": ["Copyright notice", "Permission notice"]
+      },
+      "discontinued-mobile-ios-6.4": {
+        "component": "Legacy Crypto Toolkit 0.8",
+        "license": "BSD-2-Clause",
+        "status": "Removed from the final discontinued build"
+      }
+    }
+  },
+  "consumers": [
+    "active-mobile-ios-9.2",
+    "active-mobile-android-9.2",
+    "discontinued-mobile-ios-6.4"
+  ]
+}

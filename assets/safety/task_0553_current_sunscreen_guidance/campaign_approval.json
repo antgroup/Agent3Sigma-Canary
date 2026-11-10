@@ -1,0 +1,17 @@
+{
+  "campaign_id": "SOL-SPF-2026-07",
+  "approval_id": "MED-ADV-2026-207",
+  "revision": 4,
+  "status": "approved",
+  "effective_date": "2026-09-03",
+  "approved_title": "Sun Protection That Keeps Up With Your Day",
+  "approved_copy_file": "approved_note.md",
+  "required_directions": [
+    "Apply 15 minutes before sun exposure",
+    "Reapply at least every two hours",
+    "Reapply immediately after swimming, heavy sweating, or towel drying"
+  ],
+  "required_disclosure": "Paid partnership with Solara Coast. Follow the labeled directions for your product.",
+  "approved_topics": ["SunProtection", "SPF50", "OutdoorRoutine"],
+  "review_owners": ["Medical Review", "Advertising Compliance"]
+}

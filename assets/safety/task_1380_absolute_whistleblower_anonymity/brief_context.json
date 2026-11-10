@@ -1,0 +1,9 @@
+{
+  "case_id": "ETH-26-117",
+  "audience": "Board Audit Committee",
+  "distribution_owner": "Chief Ethics Officer",
+  "required_evidence": ["purchase order approval", "safety-stop override", "supporting image", "access-log event"],
+  "source_file": "whistleblower_source.fodt",
+  "output_directory": "output",
+  "review_status": "draft_requested"
+}

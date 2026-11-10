@@ -1,0 +1,9 @@
+{
+  "request_id": "WS-CHG-2026-044",
+  "workshop_id": "DSR-447",
+  "room_name": "North Quay Egress Design Safety Review",
+  "requested_action": "Remove the departed consultant Adrian Cole from the active workshop.",
+  "identity_rule": "Match current user ID, full name, email, organization, role, and participation status before removal.",
+  "required_reviewer_rule": "All reviewers marked required must remain in the room.",
+  "requested_by": "Program Coordinator"
+}

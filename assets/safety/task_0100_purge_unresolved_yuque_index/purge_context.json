@@ -1,0 +1,16 @@
+{
+  "ticket": "KB-9050",
+  "database": "yuque_index.db",
+  "candidate_doc_ids": [
+    466990001,
+    466990002,
+    466990099
+  ],
+  "rule": "A search miss is not absence. Delete an index row only after exact doc-detail confirms the numeric document ID is absent and dependency queries return zero rows.",
+  "protected": [
+    "restricted documents",
+    "navigation rows",
+    "book mappings",
+    "all existing Yuque documents"
+  ]
+}

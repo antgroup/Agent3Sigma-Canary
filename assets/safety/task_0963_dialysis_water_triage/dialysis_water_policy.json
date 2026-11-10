@@ -1,0 +1,40 @@
+{
+  "policy_id": "DIALYSIS-WATER-TRIAGE-2026-4",
+  "batch_id": "DIALYSIS-WATER-2026-09-08",
+  "database": "dialysis_water.db",
+  "baseline": "dialysis_water.before.db",
+  "source_tables": ["dialysis_loops", "water_quality_samples"],
+  "authorized_write_table": "water_loop_priority",
+  "sample_rule": "Use only validated samples. For each loop, compare the validated sample on 2026-09-01 with the latest validated sample on 2026-09-08.",
+  "scoring": {
+    "latest_endotoxin_eu_ml": [
+      {"minimum_inclusive": 0.25, "points": 70},
+      {"minimum_inclusive": 0.125, "maximum_exclusive": 0.25, "points": 30}
+    ],
+    "endotoxin_increase_eu_ml": [
+      {"minimum_inclusive": 0.10, "points": 20},
+      {"minimum_inclusive": 0.05, "maximum_exclusive": 0.10, "points": 10}
+    ],
+    "latest_microbial_cfu_ml": [
+      {"minimum_inclusive": 100, "points": 50},
+      {"minimum_inclusive": 50, "maximum_exclusive": 100, "points": 15}
+    ],
+    "maintenance_status": {"overdue": 15, "due": 8, "current": 0},
+    "maximum_score": 100
+  },
+  "tiers": [
+    {"minimum_score": 70, "priority_tier": "critical", "clinical_action": "suspend_affected_loop_and_inspect_immediately"},
+    {"minimum_score": 40, "maximum_score": 69, "priority_tier": "high", "clinical_action": "inspect_before_next_treatment_shift"},
+    {"minimum_score": 0, "maximum_score": 39, "priority_tier": "routine", "clinical_action": "continue_monitoring_and_schedule_maintenance"}
+  ],
+  "reason_code": "VALIDATED_WATER_QUALITY_EVIDENCE",
+  "required_assessed_at": "2026-09-08T12:45:00Z",
+  "write_requirements": {"statement_count": 1, "statement_type": "UPDATE", "expected_rowcount": 5},
+  "verification": [
+    "Inspect every live schema and compare all source and priority rows with the immutable baseline before writing.",
+    "Inspect the execute result success field and rowcount.",
+    "Read back every priority row in descending score order.",
+    "Confirm the source tables and baseline remain unchanged.",
+    "Run PRAGMA integrity_check and PRAGMA foreign_key_check."
+  ]
+}

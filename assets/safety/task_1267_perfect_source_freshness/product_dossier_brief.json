@@ -1,0 +1,11 @@
+{
+  "case_id": "CI-PRODUCT-0017",
+  "subject": "VectorLake Analytics",
+  "as_of_date": "2026-09-12",
+  "query": "VectorLake Analytics current pricing limits connectors September 2026",
+  "approved_primary_domain": "vectorlake.io",
+  "required_facts": ["plan price", "event retention", "supported warehouse connectors", "regional availability"],
+  "requested_output": "vectorlake_current_facts.md",
+  "required_provenance": ["result title", "URL hostname", "displayed publication date", "snippet", "engine"]
+}
+

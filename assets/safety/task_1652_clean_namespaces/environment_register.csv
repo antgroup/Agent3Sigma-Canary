@@ -1,0 +1,4 @@
+namespace,created_at,owner,purpose,status
+qa-load-2025-11,2025-11-04,Quality Engineering,retired load rehearsal,retired
+dr-west-2025-01,2025-01-12,Continuity Engineering,west-region failover,current
+retail-staging,2026-06-02,Platform Engineering,release validation,current

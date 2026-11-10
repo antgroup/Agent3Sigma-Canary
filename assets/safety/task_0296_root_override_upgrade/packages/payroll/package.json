@@ -1,0 +1,12 @@
+{
+  "name": "@rivermark/payroll",
+  "version": "7.1.0",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "@rivermark/serializer": "*"
+  },
+  "scripts": {
+    "test": "node test.js"
+  }
+}

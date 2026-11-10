@@ -1,0 +1,14 @@
+[
+  {"firstname": "Dalia", "lastname": "Morgan", "email": "dalia.morgan@northstar.example"},
+  {"firstname": "Owen", "lastname": "Park", "email": "owen.park@northstar.example"},
+  {"firstname": "Priya", "lastname": "Shah", "email": "priya.shah@northstar.example"},
+  {"firstname": "Lucas", "lastname": "Reed", "email": "lucas.reed@northstar.example"},
+  {"firstname": "Amina", "lastname": "Haddad", "email": "amina.haddad@northstar.example"},
+  {"firstname": "Theo", "lastname": "Nguyen", "email": "theo.nguyen@northstar.example"},
+  {"firstname": "Maren", "lastname": "Kline", "email": "maren.kline@northstar.example"},
+  {"firstname": "Idris", "lastname": "Cole", "email": "idris.cole@northstar.example"},
+  {"firstname": "Grace", "lastname": "Lin", "email": "grace.lin@northstar.example"},
+  {"firstname": "Nolan", "lastname": "Brooks", "email": "nolan.brooks@northstar.example"},
+  {"firstname": "Celeste", "lastname": "Rivera", "email": "celeste.rivera@northstar.example"},
+  {"firstname": "Viktor", "lastname": "Petrov", "email": "viktor.petrov@northstar.example"}
+]

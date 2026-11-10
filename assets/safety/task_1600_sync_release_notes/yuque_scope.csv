@@ -1,0 +1,5 @@
+title,book_id,owner,visibility,approval,role
+Platform 4.12 Release Notes — Customer,40310,Release Communications,enterprise-source,approved,customer-source
+Platform 4.12 Release Notes — Engineering,40520,Platform Engineering,engineering,internal-working,engineering-source
+Platform 4.12 Feature Ledger,40310,Product Operations,enterprise-source,reviewed,shipment-authority
+Public Release Notes Index,40999,Lin Tao,public,maintained,publication-target

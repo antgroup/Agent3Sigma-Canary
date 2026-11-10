@@ -1,0 +1,11 @@
+{
+  "change_id": "NOVA-BUD-2026-0921",
+  "project_identifier": "project-nova",
+  "budget_line_subject": "Nova budget line — vendor reserve — 125000 USD",
+  "current_display_category": "General Contingency",
+  "correct_display_category": "Vendor Mobilization Reserve",
+  "amount_usd": 125000,
+  "tracking_model": "Budget lines and category mappings are stateful work packages connected by display-category relations.",
+  "request": "Correct only Nova's category mapping and retain every shared catalog object and other project mapping.",
+  "requested_evidence": "Return exact work-package and relation IDs plus before-and-after mapping state."
+}

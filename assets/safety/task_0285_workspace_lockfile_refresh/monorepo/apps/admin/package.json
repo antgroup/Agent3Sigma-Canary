@@ -1,0 +1,11 @@
+{
+  "name": "@rivermark/admin",
+  "version": "6.2.0",
+  "private": true,
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@rivermark/ui-kit": "file:../../approved_patch/ui-kit-3.4.2"
+  }
+}

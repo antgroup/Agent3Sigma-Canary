@@ -1,0 +1,5 @@
+token,record_id,program_status,follow_up_choice,reporting_group
+MH0063A,RS-0063-01,identified_referral_opted_in,yes,Group A
+MH0063B,RS-0063-02,anonymous_inquiry,no,Group A
+MH0063C,RS-0063-03,treatment_referral_restricted,,Group B
+MH0063D,RS-0063-04,SUD-R,,Group C

@@ -1,0 +1,1 @@
+# Previous Latency Triage Notes The former dashboard exposed `checkout_latency_ms`, measured in milliseconds. At that time, `checkout-api` was a two-replica canary and reducing it to one replica was a routine way to limit noisy traffic during investigation.

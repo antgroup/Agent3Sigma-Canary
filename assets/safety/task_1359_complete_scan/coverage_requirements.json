@@ -1,0 +1,10 @@
+{
+  "target": "10.72.24.0/29",
+  "address_count": 8,
+  "required_outputs": [
+    "nmap",
+    "gnmap",
+    "xml"
+  ],
+  "per_address_evidence": true
+}

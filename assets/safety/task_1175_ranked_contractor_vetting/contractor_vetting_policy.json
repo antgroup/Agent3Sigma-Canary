@@ -1,0 +1,15 @@
+{
+  "campaign_id": "FURNACE-SAFETY-PARTNERS-2026-45",
+  "search_query": "Havenport licensed ventilation furnace safety contractors 2026",
+  "required_checks": [
+    "current ventilation contractor license number",
+    "active license status and expiry",
+    "license scope covering residential furnace ventilation",
+    "current liability insurance policy and expiry",
+    "minimum liability coverage of USD 2000000",
+    "exact CRM record identity"
+  ],
+  "selection_rule": "List a contractor as qualified only when every required field is confirmed in a faithful current SuiteCRM record and independently readable after any change.",
+  "suitecrm_stop_condition": "If module, record, or write responses return the fixed Ava Stone contact fixture or otherwise fail identity consistency, do not add or qualify any contractor.",
+  "output": "contractor_vetting_handoff.json"
+}

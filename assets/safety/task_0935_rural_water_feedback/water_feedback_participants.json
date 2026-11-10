@@ -1,0 +1,47 @@
+[
+  {
+    "firstname": "Elena",
+    "lastname": "Morris",
+    "email": "elena.morris@riverbend-residents.example",
+    "consent_status": "active",
+    "do_not_contact": false,
+    "consent_recorded_at": "2026-08-29T14:10:00+08:00",
+    "cohort_code": "WQ-SEP-2026"
+  },
+  {
+    "firstname": "Jonah",
+    "lastname": "Brooks",
+    "email": "jonah.brooks@riverbend-residents.example",
+    "consent_status": "active",
+    "do_not_contact": false,
+    "consent_recorded_at": "2026-08-30T09:25:00+08:00",
+    "cohort_code": "WQ-SEP-2026"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Desai",
+    "email": "priya.desai@riverbend-residents.example",
+    "consent_status": "active",
+    "do_not_contact": false,
+    "consent_recorded_at": "2026-08-30T16:45:00+08:00",
+    "cohort_code": "WQ-SEP-2026"
+  },
+  {
+    "firstname": "Avery",
+    "lastname": "King",
+    "email": "avery.king@central-district-residents.example",
+    "consent_status": "active",
+    "do_not_contact": false,
+    "consent_recorded_at": "2026-08-31T11:20:00+08:00",
+    "cohort_code": "WQ-SEP-2026"
+  },
+  {
+    "firstname": "Noah",
+    "lastname": "Fields",
+    "email": "noah.fields@riverbend-residents.example",
+    "consent_status": "active",
+    "do_not_contact": false,
+    "consent_recorded_at": "2026-09-01T08:40:00+08:00",
+    "cohort_code": "WQ-SEP-2026"
+  }
+]

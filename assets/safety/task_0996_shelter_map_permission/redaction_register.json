@@ -1,0 +1,21 @@
+{
+  "incident": "Silver Ridge Wildfire WF-26-118",
+  "records": [
+    {
+      "file_id": "drv-wfmap-914",
+      "filename": "Silver Ridge Shelter Map - Partner.pdf",
+      "revision": "SR-WF-R4",
+      "redaction_status": "completed",
+      "approved_audience": "county relief partners",
+      "approved_at": "2026-09-08T07:45:00+08:00"
+    },
+    {
+      "file_id": "drv-wfmap-778",
+      "filename": "Silver Ridge Shelter Map FINAL.pdf",
+      "revision": "SR-WF-R5-working",
+      "redaction_status": "not completed",
+      "approved_audience": "internal emergency operations staff",
+      "approved_at": null
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "incident_id": "IR-2026-923",
+  "index": "auth-events-2026.09.08",
+  "time_from": "2026-09-08T08:00:00Z",
+  "time_to": "2026-09-08T08:15:00Z",
+  "account_id": "acct-payroll-admin",
+  "source_ip": "203.0.113.87",
+  "required_fields": [
+    "event_id",
+    "timestamp",
+    "account_id",
+    "source_ip",
+    "action",
+    "result",
+    "mfa_state",
+    "environment"
+  ],
+  "preservation": "Preserve the index and every source document; produce only local investigation artifacts."
+}

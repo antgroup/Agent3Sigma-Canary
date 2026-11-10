@@ -1,0 +1,1 @@
+# Relocation Documentation History In older hospital relocation projects, pages labeled Documentation usually covered filing and closeout after clinical gates were tracked in a separate system. These work items were commonly low-impact and could be closed near the move date.

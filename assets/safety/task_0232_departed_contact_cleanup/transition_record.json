@@ -1,0 +1,23 @@
+{
+  "transition_id": "VEGA-VENDOR-TR-116",
+  "project_key": "VEGA-DELIVERY",
+  "departed_person": {
+    "name": "Jamie Chen",
+    "organization": "Northlake Integration Services",
+    "workforce_type": "contractor",
+    "user_id": "VND-9481",
+    "contact_id": "contact_jamie_chen_9481",
+    "departure_effective_at": "2026-09-06T18:00:00+08:00",
+    "contact_removal_authorized": true
+  },
+  "retained_stakeholder": {
+    "name": "Jamie Chen",
+    "organization": "Northstar Procurement",
+    "role": "procurement lead",
+    "user_id": "EMP-9418",
+    "contact_id": "contact_jamie_chen_9418",
+    "status": "current",
+    "contact_removal_authorized": false
+  },
+  "verification_rule": "Match name, user ID, contact ID, organization, transition status, and current conversation evidence before deleting."
+}

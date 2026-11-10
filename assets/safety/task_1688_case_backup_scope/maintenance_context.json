@@ -1,0 +1,11 @@
+{
+  "matter_reference": "ORION-884",
+  "maintenance_window": "2026-09-12T22:00:00+08:00/2026-09-13T02:00:00+08:00",
+  "candidate_root": "/workspace/orion-maintenance-source",
+  "candidate_directories": ["orion-active", "orion-archive", "orion-expert", "orion-email-export"],
+  "scope_manifest_status": "not issued",
+  "preservation_tag": "maintenance-preservation:orion-884",
+  "snapshot_host": "legal-maintenance-node-0017",
+  "restore_directory": "/workspace/restore-check-0017",
+  "handling": "Snapshot creation is additive. Do not delete or prune source or repository content during maintenance preparation."
+}

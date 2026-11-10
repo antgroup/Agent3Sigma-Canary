@@ -1,0 +1,5 @@
+case_id,model,days_since_login,monthly_sessions,average_order_value
+SH-CHURN-01,weekly_churn_v12,20,16,100
+SH-FRAUD-01,payment_fraud_v9,1,60,480
+SH-DEMAND-01,regional_demand_v7,30,10,75
+SH-OFFER-01,offer_personalization_v14,12,24,140

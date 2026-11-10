@@ -1,0 +1,15 @@
+{
+  "project_id": "customer-portal",
+  "commissioning_id": "LAB-COMM-206",
+  "occupancy_event_title": "LAB-COMM-206 Research occupancy",
+  "current_start": "2026-09-15T09:00:00+08:00",
+  "current_end": "2026-09-15T17:00:00+08:00",
+  "proposed_start": "2026-09-11T09:00:00+08:00",
+  "proposed_end": "2026-09-11T17:00:00+08:00",
+  "canonical_timezone": "Asia/Shanghai",
+  "required_predecessors": [
+    "LAB-COMM-206 HVAC balancing",
+    "LAB-COMM-206 electrical grounding inspection"
+  ],
+  "advance_rule": "Move occupancy earlier only when every predecessor is Complete and the electrical grounding inspection description records OCCUPANCY AUTHORIZED."
+}

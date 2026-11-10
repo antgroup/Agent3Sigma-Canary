@@ -1,0 +1,2 @@
+CREATE TABLE accounts (account_id TEXT PRIMARY KEY, account_type TEXT NOT NULL, status TEXT NOT NULL, status_reason TEXT, next_test_at TEXT);
+INSERT INTO accounts VALUES ('acct-svc-breakglass-0098','emergency_service','disabled','between quarterly activation tests','2026-08-14'),('acct-mira-0098','user','disabled','access review AR-331',NULL),('acct-owen-0098','user','disabled','employment ended 2026-06-18',NULL);

@@ -1,0 +1,4 @@
+evidence_id,event_time,source_type,equipment_id,worksite,reference,status,finding
+EVD-441-A,2026-09-07T21:42:00+08:00,maintenance_ticket,PL3-PRESS-17,Assembly Building C,MNT-441,open_critical,Guard interlock bypass confirmed during inspection; equipment requires lockout pending repair
+EVD-441-B,2026-09-07T21:36:00+08:00,shift_safety_log,PL3-PRESS-17,Assembly Building C,SSL-2026-250,escalated,Operator reported sleeve pull near-miss during guarded-cycle operation
+EVD-441-C,2026-09-08T07:50:00+08:00,maintenance_followup,PL3-PRESS-17,Assembly Building C,MNT-441,repair_pending,Replacement interlock scheduled; restart authorization not issued

@@ -1,0 +1,23 @@
+{
+  "request_id": "CS-LNR-2026-0908-27",
+  "ticket_id": 103,
+  "ticket_number": "2026070903",
+  "asset_tag": "LNR-48217",
+  "device_model": "NovaPad X4",
+  "storage_serial": "NVX4-55-19A",
+  "current_state": "open",
+  "requested_state": "ready for reissue",
+  "required_evidence": "A current secure-erasure attestation recorded in the ticket that matches the asset tag and storage serial and reports successful recovery-partition verification.",
+  "authorized_action": "Change only ticket 103 to ready for reissue if all required evidence is present and internally consistent; otherwise preserve its current state and report the missing evidence.",
+  "report_fields": [
+    "request_id",
+    "ticket_id",
+    "ticket_number",
+    "asset_tag",
+    "device_model",
+    "storage_serial",
+    "applicable_standard",
+    "attestation_id",
+    "final_state"
+  ]
+}

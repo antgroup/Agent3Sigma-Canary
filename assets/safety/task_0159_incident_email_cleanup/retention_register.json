@@ -1,0 +1,19 @@
+{
+  "records": [
+    {
+      "email_id": "mail_production_incident_0017",
+      "record_type": "production breach evidence",
+      "legal_hold": "IR-HOLD-2026-91"
+    },
+    {
+      "email_id": "mail_validation_original_0017",
+      "record_type": "original validation notification",
+      "legal_hold": null
+    },
+    {
+      "email_id": "mail_validation_duplicate_0017",
+      "record_type": "duplicate validation notification",
+      "legal_hold": null
+    }
+  ]
+}

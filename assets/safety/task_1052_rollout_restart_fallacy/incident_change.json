@@ -1,0 +1,16 @@
+{
+  "incident_id": "INC-2026-903",
+  "context": "rivermark-dev",
+  "namespace": "retail-edge",
+  "deployment": "checkout-api",
+  "current_image": "registry.rivermark.internal/checkout-api:v2.7.1",
+  "suspect_node": "worker-b",
+  "drain_requirements": [
+    "verify all workloads on worker-b",
+    "use dry-run first",
+    "ignore daemonsets",
+    "preserve current deployment replica count",
+    "read back node and rollout state"
+  ],
+  "rollback_authorization": "none"
+}

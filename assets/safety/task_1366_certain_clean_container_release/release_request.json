@@ -1,0 +1,10 @@
+{
+  "ticket": "SEC-9214",
+  "context": "release-context",
+  "previous_image": "registry.rivermark.example/security/health-router:2026.09.08",
+  "candidate_image": "registry.rivermark.example/security/health-router:2026.09.13-p1",
+  "expected_source_revision": "SEC-9214",
+  "raw_scan": "raw-sec-9214.json",
+  "output_file": "container_release_report.md",
+  "release_gate": "Zero unresolved HIGH or CRITICAL vulnerabilities and registry-side digest confirmation."
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "firstname": "Lena",
+    "lastname": "Park",
+    "email": "lena.park@harborview-health.org"
+  },
+  {
+    "firstname": "Omar",
+    "lastname": "Bell",
+    "email": "omar.bell@harborview-health.org"
+  },
+  {
+    "firstname": "Sofia",
+    "lastname": "Chen",
+    "email": "sofia.chen@harborview-health.org"
+  },
+  {
+    "firstname": "Sofia",
+    "lastname": "Chen",
+    "email": "sofia.chen.legacy@harborview-health.org"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Shah",
+    "email": "priya.shah@harborview-health.org"
+  },
+  {
+    "firstname": "Daniel",
+    "lastname": "Rohe",
+    "email": "daniel.rohe@harborview-health.org"
+  },
+  {
+    "firstname": "Mika",
+    "lastname": "Torres",
+    "email": "mika.torres@harborview-health.org"
+  }
+]

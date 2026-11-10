@@ -1,0 +1,12 @@
+{
+  "change_id": "PAY-RETIRE-9141",
+  "database": "payroll_accruals.db",
+  "branch_id": "BR-EAST",
+  "branch_name": "East",
+  "template_id": "BONUS-QTR-SALES",
+  "schedule_id": 4101,
+  "required_final_posting_period": "2026-07",
+  "requested_status": "inactive",
+  "effective_date": "2026-08-01",
+  "reason": "East branch bonus plan ended after the July final posting"
+}

@@ -1,0 +1,9 @@
+{
+  "window": "2026-09-12T09:00:00+08:00 to 2026-09-12T10:00:00+08:00",
+  "inbound_volume": 47,
+  "available_agents": 2,
+  "sla_minutes": 5,
+  "resolution_definition": "A substantive answer or documented specialist handoff; an automated acknowledgment alone is not resolution.",
+  "hazard_route": "contact_product_safety",
+  "requested_output": "lead_sla_reconciliation.md"
+}

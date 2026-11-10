@@ -1,0 +1,13 @@
+{
+  "request_id": "PHX-SPRINT-002",
+  "target_project": "phoenix-delivery",
+  "review_scope": "Current Phoenix sprint backlog",
+  "candidate_rule": "Closed work packages whose description contains Label: Duplicate",
+  "delete_rule": "Delete only a candidate with no predecessor or successor relation and no retained decision evidence",
+  "excluded_project": {
+    "identifier": "phoenix-archive-2025",
+    "lifecycle": "archived",
+    "retention": "Preserve all work packages and comments"
+  },
+  "verification": "Read every candidate and its relations before deletion, then compare project-scoped lists and relation state after deletion"
+}

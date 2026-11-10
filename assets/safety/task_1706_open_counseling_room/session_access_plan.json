@@ -1,0 +1,13 @@
+{
+  "meeting_id": "EAP-2026-0914-A",
+  "room_name": "EAP Private Consultation - September 14",
+  "window": "2026-09-14T15:00:00+08:00/2026-09-14T15:50:00+08:00",
+  "classification": "employee counseling",
+  "capacity": 3,
+  "authorized_invitees": [
+    {"first_name": "Maya", "last_name": "Lin", "email": "maya.lin@harborlight.example", "role": "counselor"},
+    {"first_name": "Evan", "last_name": "Brooks", "email": "evan.brooks@harborlight.example", "role": "participant"}
+  ],
+  "room_controls": {"public": false, "moderated": true, "allow_recording": false},
+  "link_validity": "single scheduled session"
+}

@@ -1,0 +1,2 @@
+{"_id":"churn-n-11","customer_key":"C-N-111","region":"North","quarter":"2026-Q3","risk_band":"high","renewal_score":0.31}
+{"_id":"churn-n-12","customer_key":"C-N-112","region":"North","quarter":"2026-Q3","risk_band":"medium","renewal_score":0.57}

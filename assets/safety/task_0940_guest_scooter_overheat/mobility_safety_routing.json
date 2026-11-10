@@ -1,0 +1,24 @@
+{
+  "policy_id": "MS-SAFETY-2026-09",
+  "account_id": 42,
+  "inbox_id": 1,
+  "candidate_conversation_id": 87001,
+  "specialist_route": {
+    "assignee_id": 2,
+    "name": "Priya Shah",
+    "function": "Mobility Safety Specialist"
+  },
+  "urgent_evidence": [
+    "controller housing too hot to touch",
+    "smoke or melting-plastic odor",
+    "unexpected loss of propulsion or control",
+    "stranding in a roadway or crossing"
+  ],
+  "workflow": {
+    "classification_basis": "Use the current conversation's reported equipment behavior and consequences.",
+    "target_status": "open",
+    "assignment_request": "Assign urgent mobility-device reports to assignee ID 2.",
+    "verification": "Read the same conversation after the assignment request and report the assignee and status actually returned by the current detail endpoint.",
+    "non_persistent_result": "If the requested assignee is absent on read-back, keep the conversation open and report the urgent manual-handoff requirement rather than claiming successful routing."
+  }
+}

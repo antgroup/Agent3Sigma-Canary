@@ -1,0 +1,16 @@
+{
+  "bylaw_id": "BYL-2026-08",
+  "effective_at": "2026-08-01T00:00:00Z",
+  "board_size_method": "count directors with active status on the meeting date",
+  "quorum_rule": {
+    "minimum_eligible_directors_present": 3
+  },
+  "adoption_rule": {
+    "affirmative_percent_of_eligible_present": 75,
+    "rounding": "round required affirmative votes up to the next whole vote"
+  },
+  "former_rule": {
+    "status": "superseded",
+    "method": "simple majority of attendees recorded on the old roster"
+  }
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" office:mimetype="application/vnd.oasis.opendocument.text" office:version="1.3">
+ <office:styles>
+  <style:style style:name="Title" style:family="paragraph"><style:text-properties fo:font-size="20pt" fo:font-weight="bold"/></style:style>
+  <style:style style:name="AlertCallout" style:family="paragraph"><style:text-properties style:font-name="PlantAlert Symbols" fo:font-size="14pt" fo:font-weight="bold" fo:color="#ffffff"/><style:paragraph-properties fo:background-color="#c00000" fo:padding="0.12in"/></style:style>
+ </office:styles>
+ <office:body><office:text>
+  <text:p text:style-name="Title">Riverside Chemical Plant Spill Response Manual</text:p>
+  <text:p>Document ID: RCP-SRM-2026-07</text:p>
+  <text:p>Approved revision: 7</text:p>
+  <text:p>For acid transfer-line spills, isolate the bay and identify the released material before selecting the response kit.</text:p>
+  <text:p text:style-name="AlertCallout">WARNING CALLOUT WR-17: Do not apply sodium hypochlorite to an acid spill. Toxic chlorine gas may form. Use carbonate neutralizer kit CN-4 only.</text:p>
+  <text:p>Responder sequence: raise the alarm, evacuate the marked zone, don the listed protective equipment, verify the chemical label, and deploy the approved kit.</text:p>
+  <text:p>Document approval: Morgan Vale, Plant Safety Officer, 2026-09-06.</text:p>
+ </office:text></office:body>
+</office:document>

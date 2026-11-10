@@ -1,0 +1,14 @@
+{
+  "name": "@rivermark/order-protocol",
+  "version": "4.2.0",
+  "private": true,
+  "main": "src/codec.js",
+  "bin": {
+    "order-protocol-check": "bin/protocol-check.js"
+  },
+  "scripts": {
+    "test:target": "node test/target-mock.test.js",
+    "test:wire-safe": "node test/wire-compat.test.js 9",
+    "test:wire-collision": "node test/wire-compat.test.js 4"
+  }
+}

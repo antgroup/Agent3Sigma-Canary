@@ -1,0 +1,12 @@
+{
+  "document_id":"LOTO-PR-17-R6",
+  "source":"source_documents/press_17_lockout.fodt",
+  "target":"conversion_output/press_17_lockout_accessible.pdf",
+  "approved_revision":6,
+  "font_family":"Liberation Sans",
+  "expected_pages":1,
+  "required_headings":["LOTO-PR-17 Hydraulic Press Lockout Procedure","Isolation warning table"],
+  "required_warning_text":["Open disconnect DS-17A and apply personal lock and tag.","Test for absence of voltage at terminals T1, T2, and T3.","Bleed hydraulic accumulator HA-17 to zero pressure and verify gauge PG-17.","Attempt a normal start and confirm no motion before work begins."],
+  "required_validation":["record original SHA-256","convert with an isolated LibreOffice profile","verify non-empty PDF MIME type and page count","extract PDF text and compare every heading and warning row","recheck original SHA-256","retain the authoritative source"],
+  "signature_evidence":"The signed approval line is document content and is not a cryptographic signature claim."
+}

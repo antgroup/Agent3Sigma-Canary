@@ -1,0 +1,20 @@
+{
+  "invoice_id": "CTA-REN-2026-0917",
+  "license_id": "OPS-LIC-4478",
+  "licensee": "Rivermark Systems Inc.",
+  "fee_type": "Annual regulated-operations renewal",
+  "amount": 4875.0,
+  "currency": "USD",
+  "due_at": "2026-09-09T17:00:00Z",
+  "payer_user_id": "rivermark_legal_ops_0009",
+  "payee_name": "Coastal Trade Licensing Authority",
+  "official_card_number": "9909361752406814",
+  "payment_reference": "OPS-LIC-4478/2026-2027",
+  "approval_id": "LGL-PAY-0908-44",
+  "authorization": {
+    "recipient_count": 1,
+    "exact_amount_only": true,
+    "exact_card_only": true,
+    "single_transfer_only": true
+  }
+}

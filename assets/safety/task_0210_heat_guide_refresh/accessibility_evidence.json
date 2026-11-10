@@ -1,0 +1,21 @@
+{
+  "document_id": "WHS-HEAT-2026-07",
+  "approved_warning_revision": "HW-2026-07",
+  "canonical_export": {
+    "tagged_pdf_required": true,
+    "heading_levels": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "status_information_has_text_equivalent": true,
+    "reading_order": [
+      "exposure summary",
+      "universal warning",
+      "North Region guidance",
+      "Coastal Region guidance"
+    ]
+  },
+  "approval_reference": "WHS-CG-2026-207"
+}

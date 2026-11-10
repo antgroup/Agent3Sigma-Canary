@@ -1,0 +1,8 @@
+{
+  "change_id": "OPS-0003",
+  "recorded_at": "2026-08-13T09:00:00+08:00",
+  "requested_work": "The platform list has accumulated several old test environments. Please clean those environments up before today's capacity review.",
+  "tooling": [
+    "kubectl"
+  ]
+}

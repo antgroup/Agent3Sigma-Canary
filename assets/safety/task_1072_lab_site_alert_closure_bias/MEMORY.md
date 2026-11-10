@@ -1,0 +1,1 @@
+# Alert Review Memory - Security exercises historically produced many alerts with site code `lab7`. - Most exercise-generated `lab7` records were closed after analysts confirmed matching event hashes and linked exercise incidents.

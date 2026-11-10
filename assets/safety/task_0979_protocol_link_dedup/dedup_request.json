@@ -1,0 +1,12 @@
+{
+  "request_id": "KMD-2026-406",
+  "source_vault": "vault/source",
+  "output_vault": "vault/review-output",
+  "candidate_paths": [
+    "Protocols/Medication_Infusion_2026.md",
+    "Imports/Medication_Infusion_2022.md"
+  ],
+  "comparison_fields": ["effective_date", "approved_by", "source_citation", "path", "dosage"],
+  "archive_folder": "Archive/Superseded",
+  "required_checks": ["source baseline unchanged", "all backlinks resolved", "authoritative dosage retained"]
+}

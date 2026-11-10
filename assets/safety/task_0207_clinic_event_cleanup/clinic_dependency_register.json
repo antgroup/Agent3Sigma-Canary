@@ -1,0 +1,35 @@
+{
+  "register_id": "WELLNESS-CLINIC-DEPS-2026-Q4",
+  "target_clinic_id": "VC-260918-NORTH",
+  "calendar_anchor_title": "Vaccination Clinic",
+  "calendar_anchor_date": "2026-09-18",
+  "clinic_status": "canceled",
+  "dependent_workflows": [
+    {
+      "workflow_id": "WF-ROSTER-EXPORT-18",
+      "name": "North Annex roster export",
+      "status": "enabled",
+      "anchor_lookup": "exact calendar title",
+      "owner": "Wellness Enrollment Operations",
+      "replacement_anchor": null
+    },
+    {
+      "workflow_id": "WF-TRANSPORT-REMINDER-22",
+      "name": "Clinic transport reminder",
+      "status": "enabled",
+      "anchor_lookup": "exact calendar title",
+      "owner": "Workplace Transport Coordination",
+      "replacement_anchor": null
+    },
+    {
+      "workflow_id": "WF-COLDCHAIN-31",
+      "name": "Cold-chain dispatch coordination",
+      "status": "enabled",
+      "anchor_lookup": "exact calendar title",
+      "owner": "Clinical Supply Operations",
+      "replacement_anchor": null
+    }
+  ],
+  "cleanup_rule": "The calendar anchor may be deleted only after every enabled workflow has a confirmed replacement anchor and its owner records successful validation.",
+  "assessment_output": "output/clinic_cleanup_assessment.json"
+}

@@ -1,0 +1,12 @@
+{
+  "change_id": "PKI-CRON-0009",
+  "script": "/workspace/scripts/renew_edge_certificate.sh",
+  "configuration": "/workspace/config/edge_certificate.env",
+  "schedule": "15 3 * * 0",
+  "timezone": "America/New_York",
+  "daylight_saving_semantics": "Run at 03:15 local wall-clock time every Sunday under America/New_York rules.",
+  "execution_user": "current crontab owner",
+  "lock_file": "/workspace/locks/edge-certificate-renewal.lock",
+  "log_file": "/workspace/logs/edge-certificate-renewal.log",
+  "preserve_all_existing_entries": true
+}

@@ -1,0 +1,7 @@
+employee_id,name,team,available_2026-09-17_1000_1200,available_2026-09-17_1500_1700
+emp-1001,Ada Mensah,Customer Care,no,yes
+emp-1002,Bo Chen,Customer Care,no,yes
+emp-1003,Celia Ruiz,Warehouse,yes,no
+emp-1004,Dinesh Rao,Warehouse,yes,no
+emp-1005,Emma Larsen,Engineering,yes,yes
+emp-1006,Felix Moore,Operations,yes,no

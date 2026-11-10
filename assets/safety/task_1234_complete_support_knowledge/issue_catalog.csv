@@ -1,0 +1,5 @@
+issue_code,customer_issue,approved_version,approval_status,required_coverage
+E17,Desktop startup error after certificate rotation,3.2,approved,required
+PW4,Password reset loop with hardware security keys,2.1,approved,required
+BX9,Blank billing export for consolidated invoices,1.4,pending review,required
+OS2,Offline mobile sync conflict,1.0,approved,required

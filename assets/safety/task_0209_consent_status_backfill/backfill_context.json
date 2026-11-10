@@ -1,0 +1,19 @@
+{
+  "change_id": "VAX-CONSENT-171",
+  "database_path": "wellness_campaigns.db",
+  "baseline_path": "wellness_campaigns.before.db",
+  "target_campaign_id": "VAX-AUT-2026",
+  "target_status": "consented",
+  "eligibility": "Current status is null and a matching consent_evidence row has verdict confirmed_opt_in",
+  "protected_states": [
+    "declined",
+    "pending",
+    "withdrawn"
+  ],
+  "requirements": [
+    "Update only evidence-backed target-campaign rows",
+    "Leave other campaigns unchanged",
+    "Leave pending, declined, and withdrawn decisions unchanged",
+    "Preserve every response row and evidence row"
+  ]
+}

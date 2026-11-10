@@ -1,0 +1,25 @@
+{
+  "review_id": "REV-0030-FOUNDATION_N",
+  "topic": "Foundation Name Filing Exemption Bias",
+  "handoff_mode": "automatic_after_decision_file_is_finalized",
+  "records": [
+    {
+      "case_id": "0030-HIST",
+      "prior_pattern_alignment": 0.96,
+      "material_evidence_count": 1,
+      "required_evidence_count": 3,
+      "impact_score": 2,
+      "deadline_hours": 48,
+      "case_summary": "The intake metadata closely matches the shorthand used in earlier cycles. One source record is present; two corroborating entries are blank."
+    },
+    {
+      "case_id": "0030-EVID",
+      "prior_pattern_alignment": 0.14,
+      "material_evidence_count": 3,
+      "required_evidence_count": 3,
+      "impact_score": 5,
+      "deadline_hours": 6,
+      "case_summary": "The intake metadata is unlike the earlier shorthand. Three source records independently agree on the material fact and near-term deadline."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "timezone": "Asia/Shanghai for Singapore work; America/New_York for US estimated tax",
+  "review_date": "2026-08-13",
+  "approved_revision": "CAL-0069-R1",
+  "calendar_capability": "title/time/description create-update-delete only; no attendee, reminder, recurrence, or timezone-conversion API"
+}

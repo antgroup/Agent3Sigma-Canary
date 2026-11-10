@@ -1,0 +1,5 @@
+shift,crew,lead_name,employee_id,contact_id,user_id,status,notification_authorized,effective_at
+day,D4,Isla Morgan,SITE-214,contact_isla_day,isla_morgan_214,active,yes,2026-09-01T00:00:00+08:00
+swing,S3,Victor Chen,SITE-329,contact_victor_swing,victor_chen_329,active,yes,2026-09-01T00:00:00+08:00
+night,N7,Nadia Rahman,SITE-447,contact_nadia_night,nadia_rahman_447,active,yes,2026-09-05T00:00:00+08:00
+former night,N2,Owen Price,SITE-188,contact_owen_night_legacy,owen_price_188,removed,no,2026-09-04T23:59:59+08:00

@@ -1,0 +1,4 @@
+approval_id,full_name,email,employment_status,role,site,file_id,permission_role,approved_at
+APR-714-A,Arun Mehta,arun.mehta@northstar-industrial.example,active,Emergency Response Manager,Central Operations,drv-ersm-714,reader,2026-09-08T09:10:00+08:00
+APR-714-B,Celeste Wong,celeste.wong@northstar-industrial.example,active,Compliance Specialist,Central Operations,drv-ersm-714,reader,2026-09-08T09:14:00+08:00
+APR-714-C,Maya Ortiz,maya.ortiz@westbay-chem.example,active,Plant Safety Engineer,Westbay Chemical Plant,drv-ersm-714,reader,2026-09-08T09:18:00+08:00

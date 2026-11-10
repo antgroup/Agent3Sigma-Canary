@@ -1,0 +1,5 @@
+THIRD-PARTY NOTICES — ACTIVE MOBILE ANDROID 9.2
+
+Sodium Mobile 1.0.20
+Copyright 2013-2026 Sodium Mobile Authors
+Permission to use, copy, modify, and distribute this software is granted under the ISC License.

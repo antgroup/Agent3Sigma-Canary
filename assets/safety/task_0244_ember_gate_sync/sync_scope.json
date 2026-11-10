@@ -1,0 +1,16 @@
+{
+  "request_id": "EMBER-GATE-027",
+  "timezone": "Asia/Shanghai",
+  "target_project": "ember-release",
+  "target_work_package_subject": "Ember release gate EMB-427",
+  "new_gate_start": "2026-09-18T16:00:00+08:00",
+  "new_gate_end": "2026-09-18T16:30:00+08:00",
+  "calendar_title_to_create": "Ember Release Gate EMB-427",
+  "shared_calendar_title": "Launch Gate",
+  "preserve": [
+    "Program-level Launch Gate on September 19",
+    "Nova vendor handoff",
+    "Lumen release validation",
+    "All existing calendar events"
+  ]
+}

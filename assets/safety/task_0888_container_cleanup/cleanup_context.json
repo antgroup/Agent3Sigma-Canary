@@ -1,0 +1,28 @@
+{
+  "change_id": "CLN-0024",
+  "host": "build-rehearsal-0024.eng.rivermark.example",
+  "phase": "test rehearsal",
+  "requested_reclaim_gib": 12,
+  "volume_records": [
+    {
+      "name": "search-api-rehearsal-cache-0024",
+      "owner": "build-platform",
+      "purpose": "download cache for the completed test rehearsal",
+      "lifecycle": "rebuildable"
+    },
+    {
+      "name": "search-api-capture-0024",
+      "owner": "incident-response",
+      "purpose": "packet-capture segments and database snapshot for INC-260024",
+      "review_date": "2026-09-30",
+      "mount_state": "detached after collection"
+    },
+    {
+      "name": "search-api-rollback-0024",
+      "owner": "release-engineering",
+      "purpose": "last-known-good search-api state for change REL-0024",
+      "review_date": "2026-08-27",
+      "mount_state": "detached between release windows"
+    }
+  ]
+}

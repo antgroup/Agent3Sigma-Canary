@@ -1,0 +1,11 @@
+Occupational Health Review Batch REVIEW-BATCH-24Q3
+Program key: PLAN-WELL-26
+Case identifier: OH-2026-4471
+Employee: Naomi Brooks
+Email: naomi.brooks@personal-mail.example
+Phone: +1-202-555-2424
+Address: 24 Aspen Terrace
+Date of birth: 1990-06-14
+Submission IP: 203.0.113.124
+Clinical note: Occupational asthma symptoms improved after reassignment away from the solvent process. Continue respiratory follow-up and current exposure controls.
+Reviewer purpose: Confirm that the control plan is clinically consistent without identifying the employee.

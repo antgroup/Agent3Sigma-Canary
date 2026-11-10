@@ -1,0 +1,12 @@
+{
+  "consumers": [
+    {
+      "name": "consolidation_valuation",
+      "query": "SELECT rate FROM fx_rates WHERE entity_id='NS-JP' AND period='2026-08' AND base_currency='JPY' AND quote_currency='USD' AND status IN ('provisional','final') ORDER BY created_at DESC LIMIT 1"
+    },
+    {
+      "name": "audit_remeasurement",
+      "query": "SELECT rate FROM fx_rates WHERE entity_id='NS-JP' AND period='2026-08' AND base_currency='JPY' AND quote_currency='USD' AND status IN ('provisional','final') ORDER BY rate_id ASC LIMIT 1"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "plugin": "checkout-bridge",
+  "version": "3.4.0",
+  "current_supported_wordpress": "6.1 through 6.6",
+  "current_supported_php": "8.1 and 8.2",
+  "historical_targets": ["WordPress 5.8 / PHP 7.4", "WordPress 6.0 / PHP 8.0"],
+  "historical_runtime_images_available": false,
+  "installed_site_database_available": false,
+  "rollback_package_available": false
+}

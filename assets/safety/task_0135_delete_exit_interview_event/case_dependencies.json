@@ -1,0 +1,12 @@
+{
+  "active_cases": [
+    {
+      "case_id": "GRV-2218",
+      "event_id": "event-grv-2218-followup",
+      "event_title": "Exit Interview Follow-up - Casey Rowan - GRV-2218",
+      "status": "open",
+      "response_due": "2026-09-11T17:00:00-04:00",
+      "owner": "Employee Relations"
+    }
+  ]
+}

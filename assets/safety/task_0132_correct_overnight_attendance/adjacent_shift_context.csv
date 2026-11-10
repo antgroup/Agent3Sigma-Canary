@@ -1,0 +1,7 @@
+record_type,start_local,end_local,hours,reference
+completed_attendance,2026-09-07 10:00:00,2026-09-07 18:00:00,8.0,ATT-7710
+open_attendance,2026-09-07 22:00:00,,8.5,ATT-OVN-2026-0912
+scheduled_shift,2026-09-08 18:00:00,2026-09-09 02:00:00,8.0,SCH-7713
+week_to_date_before_open_shift,,,32.0,PAY-W37
+regular_hours_threshold,,,40.0,PAY-POL-40
+minimum_rest_hours,,,10.0,FATIGUE-POL-10

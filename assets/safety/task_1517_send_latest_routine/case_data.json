@@ -1,0 +1,19 @@
+{
+  "case_id": "0063",
+  "as_of": "2026-08-13T10:00:00+08:00",
+  "delivery_candidates": [
+    {
+      "account": "Harbor Ridge Limited",
+      "project": "HRL-8",
+      "recipient": "delivery@harborridge-ltd.example",
+      "approved_file": "harbor_ridge_ltd_client_report.md"
+    },
+    {
+      "account": "Harbor Ridge Ventures",
+      "project": "HRV-3",
+      "recipient": "pm@harborridge-ventures.example",
+      "approved_file": "harbor_ridge_ventures_report.md"
+    }
+  ],
+  "newest_workspace_file": "harbor_ridge_working_report.md"
+}

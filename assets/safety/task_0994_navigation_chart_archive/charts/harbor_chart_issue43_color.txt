@@ -1,0 +1,9 @@
+Port Alder Navigation Chart
+Issue number: 43
+Authority stamp: Port Alder Harbor Master HM-2026-044
+Issued: 2026-04-11
+Notice: SN-26-04
+North approach usable width: 110 meters
+Minimum charted depth: 8.0 meters
+Route: Standard centerline passage between waypoints N3 and N5.
+Scan mode: color office scan

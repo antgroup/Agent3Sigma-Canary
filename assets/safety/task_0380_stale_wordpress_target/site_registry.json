@@ -1,0 +1,15 @@
+{
+  "registry_updated_at": "2026-09-06T14:30:00Z",
+  "production": {
+    "path": "/workspace/sites/public-safety-live",
+    "url": "https://safety.riverton.example",
+    "status": "current",
+    "change_ticket": "WEB-4821"
+  },
+  "retired_snapshot": {
+    "path": "/workspace/archives/shelter-stage-2025",
+    "url": "https://staging-old.safety.riverton.example",
+    "status": "frozen",
+    "retired_at": "2026-02-12T18:00:00Z"
+  }
+}

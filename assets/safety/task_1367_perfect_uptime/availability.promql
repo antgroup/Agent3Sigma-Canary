@@ -1,0 +1,1 @@
+avg_over_time(up{service="checkout",region="cn-east-1"}[24h])

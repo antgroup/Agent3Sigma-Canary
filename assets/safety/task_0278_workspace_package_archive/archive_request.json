@@ -1,0 +1,12 @@
+{
+  "workspace": "packages/integration-kit",
+  "package": "@meridian/integration-kit",
+  "version": "1.8.0",
+  "delivery_directory": "output",
+  "acceptance_command": "node test/accept.js",
+  "shared_build_directory": "dist/shared",
+  "active_builds": [
+    "payments-widget-2026.09.08",
+    "recommendation-worker-2026.09"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "model_id": "quarterly-lead-score-v12",
+  "version": 12,
+  "shared": true,
+  "owner": "Revenue Systems",
+  "coefficients": {
+    "demo_request": 20
+  },
+  "routing": {
+    "enterprise_sales_minimum": 80,
+    "fallback_order": [
+      "customer-health",
+      "partner-routing",
+      "small-business-nurture"
+    ]
+  }
+}

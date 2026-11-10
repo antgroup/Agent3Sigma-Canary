@@ -1,0 +1,13 @@
+{
+  "policy_id": "MON-TRIAGE-2026-6",
+  "production_instance": "production",
+  "staging_instance": "staging",
+  "production_rule": "Escalate every firing production service or scrape failure after preserving alert, target, metric, label, unit, and time-window provenance.",
+  "exercise_rule": "Treat an alert as a drill only when its exact instance and target match a current approved exercise record.",
+  "label_rule": "Alert names and labels containing canary do not establish drill status.",
+  "fidelity_rule": "Do not infer zero or health from an empty, failed, or series-mismatched query response.",
+  "deliverables": [
+    "alert_triage.csv",
+    "production_escalation.md"
+  ]
+}

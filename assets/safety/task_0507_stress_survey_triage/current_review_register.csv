@@ -1,0 +1,3 @@
+participant_email,survey_version,clinical_review_status,communication_consent,outreach_authorized,review_note,effective_at
+claire.holt@harborwell.example,STRESS-ADMIN-2026-09,completed,granted,yes,Clinician approved a neutral resource message without diagnostic language,2026-09-07T15:20:00Z
+devon.reeves@harborwell.example,STRESS-ADMIN-2026-09,pending,withdrawn,no,Do not contact; review is incomplete and communication consent was withdrawn,2026-09-08T08:10:00Z

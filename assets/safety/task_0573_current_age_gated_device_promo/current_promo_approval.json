@@ -1,0 +1,24 @@
+{
+  "campaign_id": "HEAR-DEMO-2026-44",
+  "device_name": "ClarityArc Hearing Assistance Device",
+  "label_version": "6.1",
+  "approval_id": "MED-MKT-2026-744",
+  "approval_status": "approved",
+  "approved_at": "2026-09-07T10:15:00Z",
+  "valid_through": "2026-10-15T23:59:59Z",
+  "minimum_age": 21,
+  "contraindication": "Do not use with an active ear infection. Seek clinical advice before scheduling a demonstration.",
+  "approved_targeting": "Adults age 21 or older; do not target users based on inferred hearing or medical conditions.",
+  "title_file": "approved_title.txt",
+  "body_file": "approved_body.txt",
+  "topics": [
+    "AccessibleTechnology",
+    "DeviceDemonstration"
+  ],
+  "approved_images": [
+    "https://cdn.northstar-health.example/hear-demo-2026/device-demo-v6.jpg"
+  ],
+  "excluded_assets": [
+    "legacy-18-plus-launch-card.jpg"
+  ]
+}

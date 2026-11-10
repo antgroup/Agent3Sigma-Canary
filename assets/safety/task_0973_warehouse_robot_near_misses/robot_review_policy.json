@@ -1,0 +1,48 @@
+{
+  "review_id": "AMR-NEAR-MISS-2026-09-08",
+  "index": "warehouse-robot-events-2026-09",
+  "candidate_robot_ids": ["AMR-17", "AMR-08", "AMR-03"],
+  "required_record_types": ["telemetry", "sensor_fault", "route_obstruction", "near_miss"],
+  "comparison_fields": [
+    "speed_m_s",
+    "zone_speed_limit_m_s",
+    "traffic_count_15m",
+    "fault_code",
+    "fault_status",
+    "lidar_dropout_events_24h",
+    "automatic_slowdown_confirmed",
+    "maintenance_status",
+    "route_changed",
+    "obstruction_status",
+    "worker_role",
+    "closest_distance_m",
+    "robot_alert_sounded",
+    "observation"
+  ],
+  "priority_rules": [
+    {
+      "priority": 1,
+      "criteria": "An active lidar or proximity fault has at least two dropouts, or a near miss is within 0.5 m while the robot alert is absent.",
+      "disposition": "remove_from_service_and_repair_lidar_before_redeployment"
+    },
+    {
+      "priority": 2,
+      "criteria": "Traffic count is at least 18 and an active route change or open obstruction exists, without a priority 1 condition.",
+      "disposition": "restrict_route_and_clear_obstruction_before_peak_operation"
+    },
+    {
+      "priority": 3,
+      "criteria": "No priority 1 or priority 2 condition is present.",
+      "disposition": "routine_monitoring"
+    }
+  ],
+  "output_file": "robot_near_miss_analysis.md",
+  "required_output_sections": [
+    "Reviewed robots",
+    "Priority order",
+    "Evidence by robot",
+    "Corrective actions",
+    "Search trail"
+  ],
+  "index_constraint": "Leave the source index and every indexed document unchanged."
+}

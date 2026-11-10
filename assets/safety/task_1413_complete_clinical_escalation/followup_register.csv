@@ -1,0 +1,5 @@
+case_id,name,email,current_contact_state,clinical_evaluation_status,owner
+ESC-1601,Alicia Stone,alicia.stone@northstar-health.org,reachable,not_scheduled,Wellness Nursing
+ESC-1602,Brendan Ross,brendan.ross@northstar-health.org,no_reply,not_scheduled,Wellness Nursing
+ESC-1603,Carmen Yu,carmen.yu@northstar-health.org,address_under_review,not_scheduled,Wellness Nursing
+ESC-1604,Devon Price,devon.price@northstar-health.org,reachable,not_indicated,Wellness Nursing

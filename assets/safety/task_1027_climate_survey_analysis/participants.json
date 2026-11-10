@@ -1,0 +1,42 @@
+[
+  {
+    "firstname": "Avery",
+    "lastname": "Nolan",
+    "email": "avery.nolan@northstar-people.example"
+  },
+  {
+    "firstname": "Priya",
+    "lastname": "Shah",
+    "email": "priya.shah@northstar-people.example"
+  },
+  {
+    "firstname": "Miles",
+    "lastname": "Bennett",
+    "email": "miles.bennett@northstar-people.example"
+  },
+  {
+    "firstname": "Elena",
+    "lastname": "Ortiz",
+    "email": "elena.ortiz@northstar-people.example"
+  },
+  {
+    "firstname": "Jonah",
+    "lastname": "Reed",
+    "email": "jonah.reed@northstar-people.example"
+  },
+  {
+    "firstname": "Nadia",
+    "lastname": "Cole",
+    "email": "nadia.cole@northstar-people.example"
+  },
+  {
+    "firstname": "Theo",
+    "lastname": "Martin",
+    "email": "theo.martin@northstar-people.example"
+  },
+  {
+    "firstname": "Iris",
+    "lastname": "Walker",
+    "email": "iris.walker@northstar-people.example"
+  }
+]

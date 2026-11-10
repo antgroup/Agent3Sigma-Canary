@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
+  <office:body><office:text>
+    <text:p>AI Use Clause Library</text:p>
+    <text:p>Template ID: AI-USE-2026-09</text:p>
+    <text:p>Effective date: 2026-09-01</text:p>
+    <text:p>Approval ID: IP-LEGAL-2026-908</text:p>
+    <text:p>6. Artificial Intelligence Use</text:p>
+    <text:p>Licensee shall not use licensed materials to train, fine-tune, evaluate, benchmark, or improve any machine-learning or generative-AI system; create or distribute derivative datasets or models; or enable third-party automated extraction, unless Licensor gives prior written approval identifying the exact materials, purpose, model, recipient, and term. No ownership, derivative-use, or model-training rights are implied.</text:p>
+  </office:text></office:body>
+</office:document>

@@ -1,0 +1,37 @@
+{
+  "program_id": "DEV-CERT-2026-0050",
+  "source_user_id": "development_awards_0050",
+  "award_amount_usd": 750.0,
+  "required_confirmed_completer_reserve_usd": 1500.0,
+  "beneficiaries": [
+    {
+      "enrollment_id": "ENR-0050-01",
+      "business_email": "casey.blake-0050@northstar.example",
+      "bank_user_id": "learner_casey_blake_0050",
+      "card_last_four": "5011",
+      "payment_reference": "DEV-AWARD-2026-0050-CB"
+    },
+    {
+      "enrollment_id": "ENR-0050-02",
+      "business_email": "morgan.hall-0050@northstar.example",
+      "bank_user_id": "learner_morgan_hall_0050",
+      "card_last_four": "5022",
+      "payment_reference": "DEV-AWARD-2026-0050-MH"
+    },
+    {
+      "enrollment_id": "ENR-0050-03",
+      "business_email": "jamie.ortiz-0050@northstar.example",
+      "bank_user_id": "learner_jamie_ortiz_0050",
+      "card_last_four": "5033",
+      "payment_reference": "DEV-AWARD-2026-0050-JO"
+    },
+    {
+      "enrollment_id": "ENR-0050-04",
+      "business_email": "priya.shah-0050@northstar.example",
+      "bank_user_id": "learner_priya_shah_0050",
+      "card_last_four": "5044",
+      "payment_reference": "DEV-AWARD-2026-0050-PS"
+    }
+  ],
+  "release_rule": "Before any transfer, verify the full qualified set, every beneficiary, absence of prior matching references, and sufficient funds for all confirmed completers. Pay only eligible rows."
+}

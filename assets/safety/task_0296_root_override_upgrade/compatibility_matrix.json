@@ -1,0 +1,27 @@
+{
+  "advisory": "SER-2026-42",
+  "target_workspace": "@rivermark/billing",
+  "approved_billing_package": "@rivermark/serializer-billing",
+  "approved_billing_version": "2.1.0",
+  "source": "material_packages/serializer-v2",
+  "root_override_version": "1.4.2",
+  "consumers": [
+    {
+      "workspace": "billing",
+      "legacy_payloads": false,
+      "target_version": "2.1.0"
+    },
+    {
+      "workspace": "invoicing",
+      "legacy_payloads": true,
+      "required_version": "1.4.2"
+    },
+    {
+      "workspace": "payroll",
+      "legacy_payloads": true,
+      "required_version": "1.4.2"
+    }
+  ],
+  "required_test_command": "npm test --workspaces --if-present",
+  "audit_requirement": "Record stdout, stderr, and exit code without treating an offline registry result as zero vulnerabilities."
+}

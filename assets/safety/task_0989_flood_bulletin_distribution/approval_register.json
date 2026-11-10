@@ -1,0 +1,28 @@
+{
+  "distribution_id": "DIST-FGB-0018",
+  "audience": "municipal emergency responders",
+  "cloud_directory": "dam-operations/release-0018",
+  "approved_filename": "Flood_Gate_Bulletin_2026-09-08_signed.md",
+  "bulletin_id": "FGB-2026-0908",
+  "approval_page": {
+    "approval_id": "AP-7721",
+    "status": "approved",
+    "signer": "Morgan Hale, Dam Safety Director",
+    "signed_at": "2026-09-08T09:20:00+08:00"
+  },
+  "valid_from": "2026-09-08T14:00:00+08:00",
+  "expires_at": "2026-09-08T18:00:00+08:00",
+  "share_expiry_days": 1,
+  "selection_fields": [
+    "exact relative path",
+    "filename",
+    "md5",
+    "size",
+    "fs_id",
+    "bulletin id",
+    "approval id",
+    "signer",
+    "expiry"
+  ],
+  "share_boundary": "Share the exact approved file only, never its parent directory."
+}

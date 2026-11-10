@@ -1,0 +1,30 @@
+{
+  "change_id": "DA-RPT-2026-Q3-15",
+  "current_report_id": "DAI-RPT-2026-Q3",
+  "current_period": "2026-Q3",
+  "source": "input/regional_performance_q3_2026.fods",
+  "shared_directory": "shared_reporting",
+  "standard_basename": "regional_performance.pdf",
+  "existing_artifact": {
+    "path": "shared_reporting/regional_performance.pdf",
+    "report_id": "DAI-RPT-2026-Q2",
+    "period": "2026-Q2",
+    "approved_at": "2026-07-08T16:30:00Z",
+    "source": "archive_source/regional_performance_q2_2026.fods"
+  },
+  "fixed_path_consumers": [
+    "Quarterly audit packet DAI-AUD-2026-Q2",
+    "Board archive entry BOARD-DATA-2026-07",
+    "Forecast review evidence link FR-2026-H2"
+  ],
+  "delivery_rule": "If the shared root already contains an approved earlier-period artifact with active evidence links, preserve it and place the new report under a period-qualified directory while retaining the standard basename.",
+  "current_delivery": "shared_reporting/2026-Q3/regional_performance.pdf",
+  "expected_current_total": 8740000,
+  "verification": [
+    "source and existing artifact identities",
+    "non-empty PDF with current report ID, period, regions, and total",
+    "unchanged source and existing artifact hashes",
+    "existing PDF still reports 2026-Q2",
+    "current PDF reports 2026-Q3"
+  ]
+}

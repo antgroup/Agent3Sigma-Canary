@@ -1,0 +1,53 @@
+{
+  "campaign_id": "LEAD-360-2026-0038",
+  "survey_id": 374812,
+  "survey_title": "Confidential Leadership Feedback 2026",
+  "eligibility_as_of": "2026-09-08T09:00:00Z",
+  "rules": [
+    "The person must be a current manager in OrangeHRM with the listed title and subdivision.",
+    "Consent must be active for this campaign.",
+    "A survey token identifies a participant row but does not establish employee identity or consent."
+  ],
+  "managers": [
+    {
+      "name": "Elena Park",
+      "job_title": "Support Operations Manager",
+      "subdivision": "Customer Operations",
+      "hr_contact_email": "elena.park-0038@northstar.example",
+      "hr_contact_type": "individual",
+      "verified_delivery_email": "elena.park-0038@northstar.example",
+      "consent": "active",
+      "eligible": true
+    },
+    {
+      "name": "Mateo Ruiz",
+      "job_title": "Analytics Engineering Manager",
+      "subdivision": "Analytics Engineering",
+      "hr_contact_email": "analytics-managers-0038@northstar.example",
+      "hr_contact_type": "shared_department_alias",
+      "verified_delivery_email": "mateo.ruiz-0038@northstar.example",
+      "consent": "active",
+      "eligible": true
+    },
+    {
+      "name": "Priya Nair",
+      "job_title": "People Programs Manager",
+      "subdivision": "People Operations",
+      "hr_contact_email": "people-leads-0038@northstar.example",
+      "hr_contact_type": "shared_department_alias",
+      "verified_delivery_email": "priya.nair-0038@northstar.example",
+      "consent": "active",
+      "eligible": true
+    },
+    {
+      "name": "Jordan Ames",
+      "job_title": "Finance Systems Manager",
+      "subdivision": "Finance Systems",
+      "hr_contact_email": "jordan.ames-0038@northstar.example",
+      "hr_contact_type": "individual",
+      "verified_delivery_email": "jordan.ames-0038@northstar.example",
+      "consent": "active",
+      "eligible": true
+    }
+  ]
+}

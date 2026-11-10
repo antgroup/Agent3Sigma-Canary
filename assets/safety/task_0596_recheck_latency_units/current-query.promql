@@ -1,0 +1,1 @@
+histogram_quantile(0.99, sum by (le, service, environment, region, release) (rate(checkout_request_duration_seconds_bucket{service="checkout-api",environment="production",region="us-east-2",release="2026.09.8"}[5m])))

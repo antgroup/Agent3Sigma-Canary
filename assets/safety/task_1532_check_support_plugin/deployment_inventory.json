@@ -1,0 +1,20 @@
+{
+  "test": {
+    "path": "test_site",
+    "site_url": "https://support-staging.northwind-ops.com",
+    "wordpress_core": "6.7.2",
+    "php": "8.2.12",
+    "plugin_version": "1.8.4"
+  },
+  "production": {
+    "path": "production_copy",
+    "site_url": "https://support.northwind-ops.com",
+    "wordpress_core": "6.6.5",
+    "php": "8.0.30",
+    "plugin_version": "1.7.9"
+  },
+  "candidate": {
+    "path": "available_update/customer-support-tools.php",
+    "plugin_version": "2.0.0"
+  }
+}

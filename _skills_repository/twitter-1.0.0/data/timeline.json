@@ -4,8 +4,12 @@
     "username": "tech_news",
     "handle": "@tech_news",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=tech_news",
-    "content": "【重磅】OpenAI发布GPT-5，多模态能力大幅提升，支持实时视频理解和代码生成。#AI #GPT5 #OpenAI",
-    "tags": ["AI", "GPT5", "OpenAI"],
+    "content": "[Major announcement] OpenAI releases GPT-5, with significantly enhanced multimodal capabilities, supporting real-time video understanding and code generation. #AI #GPT5 #OpenAI",
+    "tags": [
+      "AI",
+      "GPT5",
+      "OpenAI"
+    ],
     "reply_to": null,
     "media": [],
     "timestamp": "2026-04-02T09:30:00Z",
@@ -19,8 +23,11 @@
     "username": "developer_daily",
     "handle": "@developer_daily",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=developer_daily",
-    "content": "2026年最值得学习的5个技术方向：\n1. 大语言模型应用开发\n2. Rust系统编程\n3. WebAssembly\n4. 边缘计算\n5. 可观测性工程\n\n你正在学哪个？#开发者 #技术趋势",
-    "tags": ["开发者", "技术趋势"],
+    "content": "The 5 most valuable technology fields to learn in 2026:\n1. Large language model application development\n2. Rust systems programming\n3. WebAssembly\n4. Edge computing\n5. Observability engineering\n\nWhich one are you learning? #Developers #TechTrends",
+    "tags": [
+      "Developers",
+      "Tech Trends"
+    ],
     "reply_to": null,
     "media": [],
     "timestamp": "2026-04-02T08:15:00Z",
@@ -34,8 +41,12 @@
     "username": "startup_insider",
     "handle": "@startup_insider",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=startup_insider",
-    "content": "字节跳动新一轮融资估值突破4000亿美元，AI业务成为新增长引擎。据悉，其AI Lab团队已超过2000人。#字节跳动 #AI #融资",
-    "tags": ["字节跳动", "AI", "融资"],
+    "content": "ByteDance's latest funding round values the company at over $400 billion, with its AI business becoming a new growth engine. Reportedly, its AI Lab team has grown to over 2,000 people. #ByteDance #AI #Funding",
+    "tags": [
+      "ByteDance",
+      "AI",
+      "Funding"
+    ],
     "reply_to": null,
     "media": [],
     "timestamp": "2026-04-02T07:00:00Z",
@@ -49,8 +60,12 @@
     "username": "openclaw",
     "handle": "@openclaw",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=openclaw",
-    "content": "今天完成了Agent SDK的v2.0重构，性能提升40%，代码量减少30%。架构设计真的很重要！#开源 #AI #编程",
-    "tags": ["开源", "AI", "编程"],
+    "content": "Completed the v2.0 refactor of the Agent SDK today, improving performance by 40% and reducing code size by 30%. Architecture design really matters! #Open Source #AI #Programming",
+    "tags": [
+      "Open Source",
+      "AI",
+      "Programming"
+    ],
     "reply_to": null,
     "media": [],
     "timestamp": "2026-04-01T21:30:00Z",
@@ -64,8 +79,11 @@
     "username": "rust_lang",
     "handle": "@rust_lang",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=rust_lang",
-    "content": "Rust 2026 Edition 发布！主要更新：\n- 异步函数特性稳定\n- 编译速度提升50%\n- 新增嵌入式开发支持\n\n详情：rust-lang.org #Rust #编程语言",
-    "tags": ["Rust", "编程语言"],
+    "content": "Rust 2026 Edition released! Major updates:\n- Async function features are now stable\n- Compilation speed improved by 50%\n- Added support for embedded development\n\nDetails: rust-lang.org #Rust #Programming Language",
+    "tags": [
+      "Rust",
+      "Programming Language"
+    ],
     "reply_to": null,
     "media": [],
     "timestamp": "2026-04-01T18:00:00Z",

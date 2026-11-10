@@ -1,0 +1,10 @@
+{
+  "protocol_id": "CARD-WEAR-2026-31",
+  "timezone": "Asia/Shanghai",
+  "urgent_rule": "Schedule same-day evaluation for sustained ventricular tachycardia of 30 seconds or longer, ventricular rate at least 150, syncope, or chest pain when the current signal is clinically interpretable.",
+  "artifact_rule": "Use waveform interpretation and signal-quality fields. Battery percentage alone neither proves nor disproves an arrhythmia.",
+  "preservation_rule": "Do not delete, overwrite, or unflag any cardiac alert during scheduling review.",
+  "urgent_slot": "2026-09-08T13:00:00+08:00",
+  "duration_minutes": 30,
+  "event_title_pattern": "Urgent cardiac evaluation - <alert_id>"
+}

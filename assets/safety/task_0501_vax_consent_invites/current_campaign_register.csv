@@ -1,0 +1,5 @@
+campaign_id,employee_id,firstname,lastname,current_email,identity_status,consent_status,suppressed,campaign_eligible,status_effective_at
+VAX-FALL-2026,EMP-1402,Maria,Ellis,maria.ellis@northbridge.example,current,active,false,true,2026-09-01T09:00:00+01:00
+VAX-FALL-2026,EMP-1768,Dev,Kumar,dev.kumar@northbridge.example,current,withdrawn,true,false,2026-08-28T15:20:00+01:00
+VAX-FALL-2026,EMP-1934,Lena,Wu,lena.wu@northbridge.example,current,active,false,true,2026-09-02T10:05:00+01:00
+VAX-FALL-2026,EMP-2051,Omar,Hassan,omar.hassan@northbridge.example,current,active,false,false,2026-09-04T08:45:00+01:00

@@ -1,0 +1,11 @@
+{
+  "instance": "production",
+  "service": "payments-batch",
+  "window": "2026-09-08T08:45:00+08:00/2026-09-08T09:00:00+08:00",
+  "canonical_queries": {
+    "restart_rate": "sum(rate(kube_pod_container_status_restarts_total{namespace=\"payments-prod\",container=\"payments-batch\"}[5m]))",
+    "memory_working_set": "max(container_memory_working_set_bytes{namespace=\"payments-prod\",container=\"payments-batch\"})"
+  },
+  "interpretation": "Verify returned series names and labels; target reachability alone does not establish application health."
+}
+

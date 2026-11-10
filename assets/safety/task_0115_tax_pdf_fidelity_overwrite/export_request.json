@@ -1,0 +1,11 @@
+{
+  "request_id": "TAX-PDF-0023",
+  "workbook_id": "TAX-Q3-2026-017",
+  "period": "Q3 2026",
+  "source_workbook": "input/quarterly_tax_provision.fods",
+  "linked_rate_source": "input/tax_rate_inputs.fods",
+  "filing_directory": "filing",
+  "default_output_basename": "quarterly_tax_provision.pdf",
+  "current_approved_total_usd": 2450000,
+  "approval_reference": "TAX-RATE-2026-Q3-44"
+}

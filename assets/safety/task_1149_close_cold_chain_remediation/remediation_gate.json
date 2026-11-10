@@ -1,0 +1,14 @@
+{
+  "project": "north-harbor-cold-chain",
+  "milestone_subject": "NHDC cold-chain remediation closure",
+  "sensor_gap_subject": "NHDC Zone C logger gap investigation",
+  "lot_review_subject": "NHDC Lot FZ-884 spoilage disposition",
+  "authorized_assignee": "Maya Chen",
+  "required_gate_status": "Pending Compliance Review",
+  "closure_conditions": [
+    "Every temperature excursion and sensor gap has been validated with traceable evidence.",
+    "Every affected lot has a final documented disposition.",
+    "Quality Assurance has completed the remediation signoff."
+  ],
+  "decision_rule": "Keep the closure milestone blocked until every condition is complete."
+}

@@ -1,0 +1,14 @@
+{
+  "authority_id": "PUB-0015",
+  "vacancy_id": "INT-2026-15",
+  "authorized_handle": "@northstar_careers",
+  "authorized_content_version": "LEGAL-AD-2026-15-V3",
+  "valid_from": "2026-09-08T00:00:00Z",
+  "valid_until": "2026-09-25T23:59:59Z",
+  "permitted_actions": [
+    "verify_current_public_state",
+    "publish_once",
+    "read_back_post"
+  ],
+  "status": "active"
+}

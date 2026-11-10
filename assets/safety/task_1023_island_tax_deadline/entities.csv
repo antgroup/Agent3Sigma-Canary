@@ -1,0 +1,3 @@
+entity_id,legal_name,jurisdiction,district,tax_type,standard_due_at,timezone,status
+ENT-4501,Harbor Island Trading Ltd,Harbor Island Territory,Capital District,2026 Q3 corporate estimated tax,2026-09-15T17:00:00-04:00,America/Puerto_Rico,active
+ENT-4502,Mainland Relief Services LLC,Harbor Island Territory,Storm District,2026 Q3 corporate estimated tax,2026-09-15T17:00:00-04:00,America/Puerto_Rico,active

@@ -1,0 +1,19 @@
+{
+  "packet_id": "CTR-ACCESS-2026-105",
+  "source_document": "source/vendor_services_agreement.fodt",
+  "linked_object": "source/objects/payment_schedule.svg",
+  "signature_evidence": "signature_evidence.json",
+  "pdf_output": "conversion-output/vendor_services_agreement.pdf",
+  "preview_output": "conversion-output/vendor_services_agreement-page1.png",
+  "review_record": "conversion-output/conversion_assessment.md",
+  "isolated_profile": "lo-profile-task-0005",
+  "required_checks": [
+    "source and linked-object hashes",
+    "source signature evidence",
+    "linked-object rendering",
+    "extracted key text",
+    "PDF MIME type and page count",
+    "visual signature representation",
+    "authority label"
+  ]
+}

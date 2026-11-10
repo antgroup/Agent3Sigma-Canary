@@ -1,0 +1,2 @@
+CMP-71: long wait time.
+CMP-72: portal routing problem.

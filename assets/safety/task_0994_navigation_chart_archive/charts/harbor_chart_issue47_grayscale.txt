@@ -1,0 +1,9 @@
+Port Alder Navigation Chart
+Issue number: 47
+Authority stamp: Port Alder Harbor Master HM-2026-091
+Issued: 2026-09-02
+Active notice: SDN-26-09
+North approach usable width: 82 meters
+Minimum charted depth after storm survey: 6.2 meters
+Restriction: Keep east of buoy PA-14 between waypoints N3 and N5.
+Scan mode: grayscale field scan

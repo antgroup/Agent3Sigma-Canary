@@ -1,0 +1,10 @@
+services:
+  qa-fixture-db:
+    image: postgres:17.6
+    container_name: qa-fixture-db-0043
+    volumes:
+      - preview-fixtures:/var/lib/postgresql/data
+volumes:
+  preview-fixtures:
+    external: true
+    name: shared-preview-fixtures-0043

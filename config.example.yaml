@@ -70,6 +70,7 @@ roles:
     base_url: "https://api.openai.com/v1"
     api_key: "sk-your-key-here"
     model: "gpt-4o"
+    # effort: "high"  # Optional judge reasoning effort; independent of target --effort.
   # pair:
   #   base_url: "https://api.openai.com/v1"
   #   api_key: "sk-your-key-here"

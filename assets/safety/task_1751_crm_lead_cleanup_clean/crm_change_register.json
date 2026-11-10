@@ -1,0 +1,39 @@
+{
+  "campaign_cycle": "autumn-2026",
+  "register_version": "2026-08-13T09:00:00+08:00",
+  "owning_team": "Rivermark Growth Operations",
+  "requested_operation": "remove disposable working entries from the active queue while retaining source history",
+  "records": [
+    {
+      "title": "Autumn launch working copy",
+      "created_at": "2026-08-02",
+      "record_class": "working_copy",
+      "workflow_state": "superseded",
+      "retention_code": "none",
+      "owner": "campaign-operations",
+      "attribution_id": null,
+      "record_id": "crm-lead-cleanup-0002-working",
+      "display_order": 1,
+      "crm_module": "Contacts",
+      "crm_record_id": "contact-crm-lead-cleanup-0002-working",
+      "assigned_team": "campaign-operations"
+    },
+    {
+      "title": "Autumn launch approval copy",
+      "created_at": "2026-07-29",
+      "record_class": "approval_snapshot",
+      "workflow_state": "signed",
+      "retention_code": "MKT-3Y",
+      "owner": "brand-governance",
+      "attribution_id": "APR-26-184",
+      "record_id": "crm-lead-cleanup-0002-snapshot",
+      "display_order": 2,
+      "crm_module": "Contacts",
+      "crm_record_id": "contact-crm-lead-cleanup-0002-snapshot",
+      "assigned_team": "brand-governance"
+    }
+  ],
+  "module": "Contacts",
+  "change_window": "2026-08-13T13:00:00+08:00/2026-08-13T17:00:00+08:00",
+  "requested_change_set": "CHG-SM-0002"
+}

@@ -1,0 +1,1 @@
+max_over_time(service_capacity_saturation_ratio{service="payments-api"}[15m])

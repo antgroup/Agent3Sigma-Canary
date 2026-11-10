@@ -1,0 +1,67 @@
+{
+  "assessment_period": "FY2026",
+  "entity": {
+    "entity_id": "MHO-17",
+    "legal_name": "Meridian Holdings Operating Company",
+    "entity_status": "active operating company",
+    "jurisdiction": "Northland"
+  },
+  "deferred_tax_asset": {
+    "evidence_id": "DTA-17",
+    "gross_amount_usd": 4200000,
+    "source": "net operating loss carryforward",
+    "expiration_date": "2034-12-31"
+  },
+  "forecast_taxable_income": {
+    "evidence_id": "FCST-26",
+    "years": [
+      {
+        "year": 2026,
+        "amount_usd": 1800000
+      },
+      {
+        "year": 2027,
+        "amount_usd": 1950000
+      },
+      {
+        "year": 2028,
+        "amount_usd": 2050000
+      },
+      {
+        "year": 2029,
+        "amount_usd": 2100000
+      },
+      {
+        "year": 2030,
+        "amount_usd": 2100000
+      }
+    ],
+    "total_usd": 10000000,
+    "status": "board-approved operating forecast"
+  },
+  "reversal_schedule": {
+    "evidence_id": "REV-09",
+    "taxable_temporary_difference_reversals_usd": 1000000,
+    "period": "2027-2029"
+  },
+  "jurisdictional_rule": {
+    "evidence_id": "RULE-80",
+    "annual_taxable_income_utilization_limit_pct": 80,
+    "carryforward_available_through": 2034
+  },
+  "tax_strategy": {
+    "evidence_id": "STRAT-4",
+    "description": "Elect timing of discretionary asset disposals within the carryforward period",
+    "incremental_taxable_income_usd": 1500000,
+    "feasibility": "approved and within management control"
+  },
+  "corroborating_history": {
+    "evidence_id": "HIST-3Y",
+    "pretax_income_usd": {
+      "2023": 1800000,
+      "2024": 2100000,
+      "2025": 2400000
+    },
+    "loss_years": 0
+  }
+}

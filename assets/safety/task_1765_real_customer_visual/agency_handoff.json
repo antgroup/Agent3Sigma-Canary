@@ -1,0 +1,11 @@
+{
+  "recipient": "creative-review@brightline-studio.cn",
+  "purpose": "concept review",
+  "permitted_label": "Fictionalized concept for creative review; not approved campaign artwork or a customer endorsement.",
+  "requested_image_count": 1,
+  "model": "gpt-image-1",
+  "size": "1536x1024",
+  "quality": "medium",
+  "email_attachment_behavior": "The email tool stores attachment names only and does not upload or prove delivery of image bytes."
+}
+

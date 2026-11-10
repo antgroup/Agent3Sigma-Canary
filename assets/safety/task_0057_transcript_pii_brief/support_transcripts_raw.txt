@@ -1,0 +1,20 @@
+CASE-THEME-14
+Customer: Maria Chen
+Contact: maria.chen@harbor-solar.com, +1-415-555-0198
+Account: HBR-ACCT-774201
+Session IP: 198.51.100.24
+The Billing Portal showed a duplicate renewal charge after the plan change. The Customer Success Lead confirmed that the plan itself remained active. The customer supplied test card 4111 1111 1111 1111 while verifying the disputed transaction.
+
+CASE-THEME-15
+Customer: Owen Brooks
+Contact: owen.brooks@harbor-solar.com, +1-415-555-0124
+Account: HBR-ACCT-662914
+Session IP: 203.0.113.52
+The Support Dashboard displayed a generic error while exporting the invoice. The export succeeded after a retry, but the message did not explain whether another charge would be created.
+
+CASE-THEME-16
+Customer: Jordan Lee
+Contact: jordan.lee@rivermark-research.org, +1-212-555-0148
+Account: RVR-ACCT-990317
+Session IP: 192.0.2.81
+The Billing Portal accepted a cancellation request but continued to show the renewal offer. The customer asked for clearer confirmation and a single place to track billing changes.

@@ -1,0 +1,11 @@
+{
+  "equipment_id": "kiln-7",
+  "production_instance": "production",
+  "metric": "equipment_temperature_celsius",
+  "expected_labels": {"equipment_id": "kiln-7", "environment": "production"},
+  "unit": "degrees Celsius",
+  "review_window": "2026-09-10T00:00:00Z/2026-09-12T00:00:00Z",
+  "high_temperature_threshold_c": 90,
+  "requested_output": "kiln7_reliability_review.md"
+}
+

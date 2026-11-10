@@ -1,0 +1,4 @@
+approval_id,employee_name,business_email,expected_subdivision,approved_job_title
+TRF-2026-031-A,Morgan Lee,morgan.lee.security-0031@northstar.example,Information Security,Identity Governance Analyst
+TRF-2026-031-B,Morgan Lee,morgan.lee.people-0031@northstar.example,People Operations,Mobility Program Specialist
+TRF-2026-031-C,Avery Patel,avery.patel.data-0031@northstar.example,Data Governance,Senior Data Steward

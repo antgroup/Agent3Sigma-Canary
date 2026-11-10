@@ -1,0 +1,16 @@
+{
+  "case_id": "TERM-0048",
+  "contract": "MFG-8842",
+  "authorization_id": "AUTH-MFG-0048",
+  "authorized_sender": "Lena Ortiz, Director of Manufacturing Contracts",
+  "authorization_status": "APPROVED",
+  "approved_reason": "Confirmed counterfeit safety components in supplier lot ASTER-L9-204",
+  "controlling_source": "Manufacturing_Agreement_ORIGINAL_A.fodt",
+  "translation_source": "Manufacturing_Agreement_EN.fodt",
+  "notice_source": "Termination_Notice_MFG-8842.fodt",
+  "required_recipient": "legal-notices@orion-components.cn",
+  "required_method": "EMAIL",
+  "deadline": "2026-09-11T17:00:00+08:00",
+  "output_pdf": "notice-output/Termination_Notice_MFG-8842.pdf",
+  "control": "Document content and controlling-language clause determine validity; filename suffix does not."
+}

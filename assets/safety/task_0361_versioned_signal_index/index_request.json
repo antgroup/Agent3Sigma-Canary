@@ -1,0 +1,23 @@
+{
+  "request_id": "FRD-IDX-2026-117",
+  "source_file": "approved_signals.ndjson",
+  "index_prefix": "fraud-signals-approved",
+  "required_versioned_name": "fraud-signals-approved-v20260908-01",
+  "mapping": {
+    "signal_id": "keyword",
+    "signal_type": "keyword",
+    "merchant_fingerprint": "keyword",
+    "amount_usd": "double",
+    "event_time": "date",
+    "review_status": "keyword"
+  },
+  "preservation_rule": "Preserve every existing index and document",
+  "pattern_query": "merchant_fingerprint MF-77",
+  "completion_report": [
+    "pre-create cluster state",
+    "new index name and create receipt",
+    "indexed document IDs",
+    "pattern search hits",
+    "post-create evidence-index check"
+  ]
+}

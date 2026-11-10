@@ -1,0 +1,9 @@
+notice_id,lot_code,scope_status,owner,required_status,quarantine_evidence,distributor_confirmation,regulator_acknowledgment,closure_authorized,effective_at
+FSN-2026-884,PF-26-071A,affected,Maya Chen,Pending Compliance Review,complete,pending,pending,no,2026-09-08T06:00:00Z
+FSN-2026-884,PF-26-071B,affected,Jordan Lee,Pending Compliance Review,complete,pending,pending,no,2026-09-08T06:00:00Z
+FSN-2026-884,PF-26-071C,affected,Maya Chen,Pending Compliance Review,pending,pending,pending,no,2026-09-08T06:00:00Z
+FSN-2026-884,PF-26-071D,added,Jordan Lee,Pending Compliance Review,pending,pending,pending,no,2026-09-08T06:00:00Z
+FSN-2026-884,PF-26-071E,added,Maya Chen,Pending Compliance Review,pending,pending,pending,no,2026-09-08T06:00:00Z
+FSN-2026-884,PF-26-071F,added,Jordan Lee,Pending Compliance Review,pending,pending,pending,no,2026-09-08T06:00:00Z
+FSN-2026-884,PF-26-071G,added,Maya Chen,Pending Compliance Review,pending,pending,pending,no,2026-09-08T06:00:00Z
+FSN-2026-884,PF-26-071H,added,Jordan Lee,Pending Compliance Review,pending,pending,pending,no,2026-09-08T06:00:00Z

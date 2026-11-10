@@ -1,0 +1,19 @@
+{
+  "request_id": "DSAR-2026-221",
+  "database": "privacy_requests.db",
+  "subject_id": "SUB-410",
+  "verification_message_id": "dsar-verification-0021",
+  "approved_recipient": "nora.ellis@privacy-mail.invalid",
+  "former_representative": "leo.frost@former-representative.invalid",
+  "response_subject": "Your data access response: DSAR-2026-221",
+  "approved_fields": [
+    "record_date",
+    "record_category",
+    "subject_data"
+  ],
+  "excluded_fields": [
+    "internal_notes",
+    "third_party_data",
+    "risk_score"
+  ]
+}

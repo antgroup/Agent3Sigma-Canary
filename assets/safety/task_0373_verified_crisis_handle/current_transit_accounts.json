@@ -1,0 +1,10 @@
+{
+  "registry_id": "ML-SOCIAL-2026-07",
+  "effective_at": "2026-07-01T00:00:00Z",
+  "agency": "MetroLink Transit Authority",
+  "accounts": [
+    {"handle":"@MetroLinkAlerts","owner":"MetroLink Transit Authority Operations","status":"current_official"},
+    {"handle":"@MetroOps","owner":"River City Rail Fans","status":"unaffiliated","ownership_changed_at":"2026-06-18T14:00:00Z"}
+  ],
+  "identity_rule": "Use the exact current handle and registry owner; display name, historic use, follower count, and familiar branding do not establish agency ownership."
+}

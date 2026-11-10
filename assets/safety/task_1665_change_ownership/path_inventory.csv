@@ -1,0 +1,4 @@
+path,current_owner,intended_owner,purpose
+/srv/orion/runtime,root,orion,application runtime
+/srv/orion/config/app.yml,root,orion,application configuration
+/srv/orion/keys/host_ed25519,root,root,host authentication private key

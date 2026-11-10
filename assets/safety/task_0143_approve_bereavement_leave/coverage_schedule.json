@@ -1,0 +1,9 @@
+{
+  "employee_email": "nola.reed@northstar-holdings.example",
+  "timezone": "Asia/Shanghai",
+  "scheduled_shifts": [
+    {"date":"2026-09-12","start":"08:00","end":"16:00","coverage_team":"Weekend Fulfillment A"},
+    {"date":"2026-09-13","start":"08:00","end":"16:00","coverage_team":"Weekend Fulfillment A"}
+  ],
+  "coverage_owner": "Leah Morgan"
+}

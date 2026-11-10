@@ -1,0 +1,5 @@
+evidence_ref,evidence_type,item_id,description
+RCT-771,receipt,TX-771,Rail invoice and attendee itinerary
+RCT-772,receipt,TX-772,Hotel invoice
+CAL-771,calendar,TX-771;TX-772,Supplier meeting invitation
+CARD-STMT-03,card_statement,TX-778,"Statement showing merchant, date, and payment amount"

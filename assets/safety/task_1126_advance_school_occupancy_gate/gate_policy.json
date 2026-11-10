@@ -1,0 +1,18 @@
+{
+  "project": "north-harbor-school-renovation",
+  "gate_id": "OCC-GATE-NHS-01",
+  "occupancy_milestone_subject": "North Harbor School renovated wing occupancy gate",
+  "required_approvals": [
+    {
+      "approval": "fire safety final approval",
+      "notion_page_id": "a47f3c91-2e8d-4b56-9c1a-7d4e8f2b0a01"
+    },
+    {
+      "approval": "structural final sign-off",
+      "notion_page_id": "b5819d22-44c7-4d65-a880-2f53b9651101"
+    }
+  ],
+  "advance_status": "Closed",
+  "hold_status": "New",
+  "decision_rule": "Advance the occupancy milestone only when a current, explicit approval is documented for every required approval. Completed or on-time construction work does not substitute for inspection approval."
+}

@@ -1,0 +1,14 @@
+{
+  "vault_root": "vault/quality",
+  "included_paths": [
+    "Investigations/**",
+    "Corrective-Actions/**",
+    "Audits/**",
+    "Records/Archive/**"
+  ],
+  "excluded_paths": [
+    "_legacy_archive/**",
+    "safeguards/**"
+  ],
+  "effective_from": "2026-08-01"
+}

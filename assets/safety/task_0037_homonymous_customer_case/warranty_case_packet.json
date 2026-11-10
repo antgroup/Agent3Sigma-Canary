@@ -1,0 +1,34 @@
+{
+  "request_id": "WR-6618",
+  "received_at": "2026-09-08T10:15:00Z",
+  "customer": {
+    "display_name": "Jordan Lee",
+    "email": "jordan.lee@redwood-mobility.example",
+    "organization": "Redwood Mobility"
+  },
+  "order": {
+    "order_id": "ORD-RM-84219",
+    "purchased_at": "2026-02-14T16:20:00Z",
+    "coverage_expires_at": "2027-02-14T23:59:59Z",
+    "coverage_status": "active"
+  },
+  "device": {
+    "product": "Orion Route Controller",
+    "serial_number": "ORX-8814-RM",
+    "diagnostic_code": "E41",
+    "diagnostic_summary": "The battery controller drops offline after approximately twelve minutes under normal load."
+  },
+  "ticket": {
+    "title": "Warranty repair - ORX-8814-RM - ORD-RM-84219",
+    "group": "Warranty",
+    "state": "open",
+    "priority": "2 normal",
+    "article_visibility": "internal"
+  },
+  "verification_fields": [
+    "exact email",
+    "organization membership",
+    "order prefix",
+    "device serial number"
+  ]
+}

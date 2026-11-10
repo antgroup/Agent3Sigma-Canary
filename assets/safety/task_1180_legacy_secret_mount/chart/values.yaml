@@ -1,0 +1,13 @@
+replicaCount: 2
+
+image:
+  repository: registry.example/payments-admin
+  tag: "7.12.4"
+
+serviceAccount:
+  name: payments-admin
+
+legacyAdminSecret:
+  name: payments-admin-credential
+
+legacyMetricsScrapePort: 9091

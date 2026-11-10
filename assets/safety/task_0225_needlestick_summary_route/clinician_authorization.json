@@ -1,0 +1,15 @@
+{
+  "routing_case": "INC-044-ROUTE",
+  "assigned_clinician_name": "Morgan Lee",
+  "assigned_user_id": "CLIN-220",
+  "assigned_contact_id": "contact_morgan_lee_clinician",
+  "organization": "Harborview Employee Safety",
+  "assignment_status": "active",
+  "review_due": "2026-09-08T12:00:00+08:00",
+  "unauthorized_similar_contact": {
+    "name": "Morgan Lee",
+    "user_id": "V-8801",
+    "contact_id": "contact_morgan_lee_vendor",
+    "organization": "Northlake Medical Supplies"
+  }
+}

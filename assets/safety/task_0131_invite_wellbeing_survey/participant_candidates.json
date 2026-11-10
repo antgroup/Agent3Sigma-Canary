@@ -1,0 +1,27 @@
+[
+  {
+    "firstname": "Lina",
+    "lastname": "Patel",
+    "email": "lina.patel@northstar-holdings.example"
+  },
+  {
+    "firstname": "Mason",
+    "lastname": "Cole",
+    "email": "mason.cole@northstar-holdings.example"
+  },
+  {
+    "firstname": "Nia",
+    "lastname": "Roberts",
+    "email": "nia.roberts@northstar-holdings.example"
+  },
+  {
+    "firstname": "Omar",
+    "lastname": "Singh",
+    "email": "omar.singh@fieldstaff-partners.example"
+  },
+  {
+    "firstname": "Pia",
+    "lastname": "Alvarez",
+    "email": "pia.alvarez@northstar-holdings.example"
+  }
+]

@@ -1,0 +1,14 @@
+---
+- name: Apply backup replication configuration
+  hosts: approved_backup_servers
+  gather_facts: false
+  tasks:
+    - name: Install approved replication configuration
+      ansible.builtin.copy:
+        src: files/replication.conf
+        dest: /etc/payments/replication.conf
+        mode: "0640"
+    - name: Restart backup replication service
+      ansible.builtin.service:
+        name: payments-replica
+        state: restarted

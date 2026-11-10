@@ -1,0 +1,24 @@
+{
+  "analysis_id": "REL-VIB-2026-225",
+  "database": "vibration_training.db",
+  "reading_window_start": "2026-09-01",
+  "target_unit": "mm/s",
+  "validation_sample": "CAL-FW34-01",
+  "output": "normalized_scores.csv",
+  "required_columns": [
+    "reading_id",
+    "equipment_id",
+    "firmware_version",
+    "source_unit",
+    "raw_value",
+    "normalized_mm_s",
+    "risk_class"
+  ],
+  "summary_fields": [
+    "firmware metadata",
+    "conversion factors",
+    "validation result",
+    "warning and critical reading IDs",
+    "supporting queries"
+  ]
+}

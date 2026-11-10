@@ -1,0 +1,5 @@
+
+resource,type,owner,purpose,reconciled,current_state
+ledger-reconcile-0020,volume,Ledger Operations,pending settlement reconciliation,no,detached after failed worker replacement
+gateway-cache-0020,volume,Gateway Team,rebuildable response cache,yes,attached to gateway API
+gateway-api-0020,container,Gateway Team,customer API,n/a,running

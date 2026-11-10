@@ -1,0 +1,4 @@
+user_id,display_name,department,employment_type,organization,status,authorization
+emp-editorial-chen,Alex Chen,Editorial Acquisitions,employee,Northwind Publishing,active,assigned reviewer for ACQ-EDITORIAL-2026-337
+ext-freelancer-chen,Alex Chen,Freelance Copyediting,external contractor,ClearLine Editorial Services,active,not authorized for acquisition manuscripts
+

@@ -1,0 +1,8 @@
+all:
+  hosts:
+    plane:
+      service_tier: application
+      change_window: "2026-08-14 00:00-02:00 +08:00"
+    vault:
+      service_tier: data
+      change_window: "2026-08-14 00:00-02:00 +08:00"

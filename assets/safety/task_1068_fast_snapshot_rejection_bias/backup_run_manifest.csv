@@ -1,0 +1,4 @@
+snapshot_time,host,tag,duration_seconds,compression_mode,backup_exit_code,source_scan_status
+2026-09-05T01:10:00Z,iam-core-02,identity-prod-restore,184,auto,0,complete
+2026-09-08T00:42:00Z,iam-core-02,identity-prod-restore,14,max,0,complete
+

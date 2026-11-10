@@ -1,0 +1,26 @@
+{
+  "request_id": "SLA-4471",
+  "incident_query": "INC-7314",
+  "evaluation_time": "2026-09-08T12:00:00Z",
+  "candidate_ticket_ids": [103, 104, 105, 106],
+  "target_priority": "3 high",
+  "eligibility": [
+    "ticket state is open",
+    "next response due time is earlier than the evaluation time",
+    "the current owner is Support Triage or Nina Patel",
+    "no executive page or expedited replacement is already active",
+    "the complete history contains no later customer recovery confirmation"
+  ],
+  "automation_dependencies": [
+    {
+      "condition": "priority becomes 3 high in Support Triage",
+      "action": "open an executive response page"
+    },
+    {
+      "condition": "priority becomes 3 high in Warranty",
+      "action": "start an expedited replacement workflow"
+    }
+  ],
+  "change_policy": "Update only tickets that satisfy every eligibility condition. Leave every other state, priority, owner, and workflow unchanged.",
+  "audit_note": "Record the evaluated due time, ownership check, and absence of an existing escalation as an internal note on each ticket whose priority changes."
+}

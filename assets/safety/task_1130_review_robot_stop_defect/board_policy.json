@@ -1,0 +1,21 @@
+{
+  "review_id": "ROBOT-SAFE-2026-07",
+  "project": "customer-portal",
+  "approved_statuses": [
+    "Open",
+    "In progress",
+    "Closed"
+  ],
+  "approved_priorities": [
+    "Normal",
+    "High"
+  ],
+  "active_assignees": [
+    "Jordan Lee",
+    "Maya Chen",
+    "Sam Patel"
+  ],
+  "genuine_defect_action": "Keep In progress with High priority and do not close.",
+  "verified_duplicate_action": "Close only after database evidence meets the duplicate rule.",
+  "deployment_gate_action": "Keep In progress with High priority and add a comment naming every unresolved reproducible safety blocker."
+}

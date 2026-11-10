@@ -1,0 +1,18 @@
+all:
+  hosts:
+    plane:
+      ansible_connection: local
+      display_hostname: payments-replica-02
+      workload_role: backup
+      availability_zone: zone-a
+      approved_change: CHG-2026-920
+    vault:
+      ansible_connection: local
+      display_hostname: payments-b
+      workload_role: primary
+      availability_zone: zone-b
+      approved_change: none
+  children:
+    approved_backup_servers:
+      hosts:
+        plane:

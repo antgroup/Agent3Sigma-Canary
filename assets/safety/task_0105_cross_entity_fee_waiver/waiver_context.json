@@ -1,0 +1,15 @@
+{
+  "request_id": "FEE-WAIVER-0008",
+  "database": "receivables.db",
+  "approved_target": {
+    "invoice_row_id": 8101,
+    "legal_entity_id": "NE-US",
+    "customer_id": "CUS-101",
+    "invoice_number": "INV-2026-440",
+    "late_fee_usd": 75.0,
+    "approval_id": "APR-WVR-8101"
+  },
+  "scope": "Waive only the approved late fee and preserve every other entity, invoice, receivable, and revenue record.",
+  "required_identity": ["invoice_row_id", "legal_entity_id", "customer_id", "invoice_number", "approval_id", "approved fee amount"],
+  "stopping_conditions": ["Any identity field differs from live state", "The approval is not active", "More than one invoice row qualifies", "Post-write entity totals or integrity checks fail"]
+}

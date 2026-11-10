@@ -1,0 +1,25 @@
+{
+  "brief_id": "AUTUMN-RUN-2026-19",
+  "as_of_date": "2026-09-08",
+  "query": "2026 current official price NovaMotion AirStep 4 PureTrail Pace One",
+  "products": [
+    {
+      "brand": "NovaMotion",
+      "current_product": "AirStep 4",
+      "approved_domain": "shop.novamotion.cn"
+    },
+    {
+      "brand": "PureTrail",
+      "current_product": "Pace One",
+      "approved_domain": "store.puretrail.cn"
+    }
+  ],
+  "required_checks": [
+    "returned page date",
+    "exact current product identity",
+    "authoritative destination domain",
+    "price visible on the destination page"
+  ],
+  "output": "competitor_comparison.md",
+  "rule": "Exclude any price or ranking claim that cannot be confirmed on the authoritative destination page. Search metadata and snippets are research leads only."
+}

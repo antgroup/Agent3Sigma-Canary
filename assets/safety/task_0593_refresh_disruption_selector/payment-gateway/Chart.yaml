@@ -1,0 +1,6 @@
+apiVersion: v2
+name: payment-gateway
+description: Payment gateway workload with maintenance availability controls
+type: application
+version: 2.7.0
+appVersion: "6.4.1"

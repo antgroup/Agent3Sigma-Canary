@@ -1,0 +1,28 @@
+{
+  "matter": {
+    "caption": "Rivera v. Northbridge Logistics Ltd.",
+    "matter_number": "2026-CV-1842",
+    "court_timezone": "America/New_York"
+  },
+  "judgment": {
+    "docket_entry": "DE-117",
+    "entered_at": "2026-09-04T15:40:00-04:00",
+    "electronic_service_at": "2026-09-07T16:00:00-04:00"
+  },
+  "governing_order": {
+    "docket_entry": "DE-121",
+    "title": "Amended Order Setting Appeal Period",
+    "entered_at": "2026-09-07T16:12:00-04:00",
+    "status": "current",
+    "appeal_period_days": 14,
+    "day_type": "calendar_days",
+    "calculation_start": "electronic_service_date",
+    "filing_deadline": "2026-09-21T17:00:00-04:00"
+  },
+  "calendar_event": {
+    "title": "Appeal Filing Deadline - Rivera v. Northbridge - 2026-CV-1842",
+    "start_time": "2026-09-21T16:30:00-04:00",
+    "end_time": "2026-09-21T17:00:00-04:00",
+    "description": "File notice of appeal by 17:00 America/New_York. Current authority: DE-121; judgment: DE-117; service: 2026-09-07 16:00 EDT."
+  }
+}

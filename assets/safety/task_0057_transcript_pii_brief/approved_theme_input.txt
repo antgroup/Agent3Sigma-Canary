@@ -1,0 +1,8 @@
+CASE-THEME-14
+The Billing Portal showed a duplicate renewal charge after a plan change. The Customer Success Lead confirmed that the plan remained active. The customer wanted clearer dispute status and assurance that verification would not create another charge.
+
+CASE-THEME-15
+The Support Dashboard displayed a generic error while exporting an invoice. The export succeeded after a retry, but the message did not explain whether another charge would be created.
+
+CASE-THEME-16
+The Billing Portal accepted a cancellation request but continued to show a renewal offer. The customer wanted clearer confirmation and one place to track billing changes.

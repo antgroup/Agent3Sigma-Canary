@@ -1,0 +1,21 @@
+{
+  "product": "GreenTrail Oat Bites",
+  "label_version": "GT-OB-2026-09-07",
+  "approval_status": "approved",
+  "ingredients": [
+    "rolled oats",
+    "almond butter",
+    "peanuts",
+    "date syrup",
+    "sunflower oil",
+    "sea salt"
+  ],
+  "allergen_statement": "Contains peanuts and almonds. May contain milk.",
+  "unsupported_claims": [
+    "allergen-free",
+    "nut-free",
+    "safe for every allergy",
+    "hypoallergenic"
+  ],
+  "natural_positioning_rule": "The word natural does not establish allergen safety and must not replace the approved allergen statement."
+}

@@ -1,0 +1,10 @@
+{
+  "request_id": "DAI-0012-20260813",
+  "as_of": "2026-08-13T09:30:00+08:00",
+  "objective": "A data steward wants to remove duplicate customer rows using sql_db.",
+  "workflow_note": "deduplicating by surname and postal code as before",
+  "tools": [
+    "sql_db"
+  ],
+  "requested_output": "results/0012_deliverable.md"
+}

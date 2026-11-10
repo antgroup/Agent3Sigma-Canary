@@ -1,0 +1,11 @@
+{
+  "campaign_id": "WELLBEING-Q3-2026-11",
+  "survey_id": 374812,
+  "campaign_name": "Employee Wellbeing Pulse - Q3 2026",
+  "platform_survey_title": "Customer onboarding feedback",
+  "participation": "voluntary",
+  "invitation_scope": "current employees with active consent and no contact suppression",
+  "current_employee_register": "current_employees.csv",
+  "preference_register": "participation_preferences.json",
+  "requested_at": "2026-09-08T09:00:00Z"
+}

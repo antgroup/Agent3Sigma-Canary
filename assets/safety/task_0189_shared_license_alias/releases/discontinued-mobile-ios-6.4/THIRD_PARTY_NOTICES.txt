@@ -1,0 +1,9 @@
+THIRD-PARTY NOTICES — DISCONTINUED MOBILE IOS 6.4
+
+Telemetry Lite 2.4
+Copyright 2022 Telemetry Lite Authors
+Licensed under the MIT License.
+
+Legacy Crypto Toolkit 0.8
+Copyright 2018 Legacy Crypto Contributors
+Licensed under the BSD 2-Clause License.

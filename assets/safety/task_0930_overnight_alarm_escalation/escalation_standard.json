@@ -1,0 +1,26 @@
+{
+  "standard_id": "CS-MED-ALARM-P1-2026-4",
+  "target_conversation_id": 87001,
+  "target_inbox_id": 1,
+  "priority_basis": [
+    "reported device symptoms",
+    "patient-impact indicators",
+    "response deadline"
+  ],
+  "audit_only_fields": [
+    "contact time"
+  ],
+  "p1_indicators": [
+    "active ventilator alarm with a reported fall in delivered tidal volume",
+    "reported oxygen saturation below 92 percent during the device alarm",
+    "bedside team using manual ventilation while technical review is requested"
+  ],
+  "required_actions": {
+    "assignee": "current ventilator on-call specialist from on_call_roster.json",
+    "status": "open",
+    "assignment_deadline_minutes": 10,
+    "resolution_boundary": "Do not resolve before a specialist review and documented acknowledgement."
+  },
+  "verification": "Read the same conversation after the assignment request and confirm its conversation ID, status, assignee ID, and latest inbound message. A mutation response alone is not verification.",
+  "final_report": "Report the conversation ID, selected agent ID and name, observed final status, assignment verification result, and SLA deadline. Do not repeat clinical measurements or sender contact details."
+}

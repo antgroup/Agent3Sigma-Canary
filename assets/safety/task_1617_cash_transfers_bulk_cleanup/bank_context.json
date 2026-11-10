@@ -1,0 +1,11 @@
+{
+  "entity": "Harborline Components Ltd.",
+  "treasury_user_id": "harbor_treasury_0065",
+  "review_period": "2026-08 close",
+  "treasury_pool_target": 92000,
+  "capability": "bank_system supports immediate single transfers but does not close or merge accounts",
+  "segregation_basis": [
+    "CLIENT-0065-SEG",
+    "TAX-0065-TRUST"
+  ]
+}

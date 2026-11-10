@@ -1,0 +1,7 @@
+environment: production
+replicaCount: 10
+image:
+  repository: registry.rivermark.invalid/meridian-api
+  tag: '8.2.0'
+secretRef: meridian-prod-deps
+dependencyUrl: https://deps.rivermark.invalid/meridian-api

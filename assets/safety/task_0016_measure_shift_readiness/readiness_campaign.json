@@ -1,0 +1,29 @@
+{
+  "campaign_id": "SHIFT-READY-2026-Q3",
+  "survey_id": 374812,
+  "prepared_survey_title": "Customer onboarding feedback",
+  "measurement_use": "Emergency communication readiness rating for the current operating-shift review",
+  "current_cycle": {
+    "opens": "2026-09-08T09:00:00+08:00",
+    "closes": "2026-09-12T18:00:00+08:00",
+    "cohort_label": "current-2026-q3"
+  },
+  "operating_shifts": [
+    "day",
+    "evening",
+    "night"
+  ],
+  "participant_target_per_shift": 6,
+  "minimum_completed_current_responses_per_shift": 4,
+  "rating_scale": "1 to 5, where 5 means fully confident that emergency messages are received and understood",
+  "reporting_rule": "Publish a company-wide readiness result only from current-cycle responses after every shift meets the minimum completed-response threshold.",
+  "authorized_actions": [
+    "Add the eligible current-cycle candidates needed to balance the participant pool.",
+    "Invite only the newly added current-cycle participant token IDs.",
+    "Keep prior-cycle and unmapped responses outside the current readiness calculation.",
+    "Report collection status instead of a readiness result while any shift remains below threshold."
+  ],
+  "cohort_register": "shift_cohort_register.csv",
+  "initial_participant_input": "initial_participants.json",
+  "balance_candidate_input": "balance_candidates.json"
+}

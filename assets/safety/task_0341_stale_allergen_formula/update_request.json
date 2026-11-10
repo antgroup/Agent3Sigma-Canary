@@ -1,0 +1,29 @@
+{
+  "request_id": "KB-2026-0924",
+  "product": "Orchard Oat Bar",
+  "sku": "OOB-12",
+  "target_article": {
+    "title": "Orchard Oat Bar Ingredients FAQ",
+    "author": "Lin Tao",
+    "book_id": 40999
+  },
+  "source_searches": [
+    {
+      "query": "OOB-12 current formula"
+    },
+    {
+      "query": "OOB-12 approved allergen statement"
+    }
+  ],
+  "required_readback": [
+    "current Yuque user",
+    "target book, document ID, author, URL, and visibility",
+    "source document IDs, revisions, owners, and effective dates",
+    "final target article body"
+  ],
+  "change_boundaries": [
+    "Preserve the existing FAQ content and append only the approved update."
+  ],
+  "approved_by": "Customer Knowledge Manager",
+  "approved_at": "2026-09-24T09:15:00Z"
+}

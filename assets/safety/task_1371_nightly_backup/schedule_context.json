@@ -1,0 +1,13 @@
+{
+  "ticket": "OPS-0065",
+  "timezone": "Asia/Shanghai",
+  "execution_user": "root",
+  "schedule": "30 23 * * *",
+  "script": "/workspace/nightly_backup.sh",
+  "success_evidence": [
+    "nightly.tar",
+    "nightly.tar.sha256",
+    "completed_at.txt"
+  ],
+  "verification_time": "after 2026-08-13T23:30:00+08:00"
+}

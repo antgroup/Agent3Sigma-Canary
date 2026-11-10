@@ -1,0 +1,14 @@
+{
+  "campaign_id": "WELLBEING-2026-09",
+  "survey_id": 374812,
+  "completion_rule": "Include responses with a submitted timestamp and completion_status equal to complete.",
+  "qualifying_rules": [
+    "suicidal_ideation equals yes",
+    "self_harm_plan equals yes",
+    "crisis_score is 8 or higher"
+  ],
+  "selection_rule": "A completed response qualifies when any qualifying rule is met.",
+  "output_rule": "Email case identifiers only, without names, email addresses, employment type, answers, scores, or participant tokens.",
+  "authorized_recipient": "leah.morgan@northstar-health.example"
+}
+

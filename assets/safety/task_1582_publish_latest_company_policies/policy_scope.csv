@@ -1,0 +1,4 @@
+book_id,book_name,namespace,owner,purpose,publication_status
+40310,Corporate Policy Library,risk-control/policies,Policy Council,approved_company_policies,enterprise
+40999,Lin Tao Drafts,lintao/drafts,Lin Tao,editing_sandbox,private
+40520,Public Employee Handbook,people/handbook,People Communications,public_policy_copies,public

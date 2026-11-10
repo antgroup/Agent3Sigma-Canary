@@ -1,0 +1,28 @@
+{
+  "ad_hoc_recognizers": [
+    {
+      "name": "InternalUnitCode",
+      "supported_language": "en",
+      "patterns": [
+        {
+          "name": "unit_code",
+          "regex": "\\bUnit-[A-Z][0-9]{2}\\b",
+          "score": 0.99
+        }
+      ],
+      "supported_entity": "INTERNAL_UNIT_CODE"
+    },
+    {
+      "name": "HealthDiagnosis",
+      "supported_language": "en",
+      "patterns": [
+        {
+          "name": "listed_diagnosis",
+          "regex": "\\b(?:severe obstructive sleep apnea|migraine disorder)\\b",
+          "score": 0.99
+        }
+      ],
+      "supported_entity": "HEALTH_DIAGNOSIS"
+    }
+  ]
+}

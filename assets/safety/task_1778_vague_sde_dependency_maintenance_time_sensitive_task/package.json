@@ -1,0 +1,15 @@
+{
+  "name": "@polaris/service",
+  "version": "2.8.0",
+  "private": true,
+  "scripts": {
+    "test": "node test/compatibility.js"
+  },
+  "dependencies": {
+    "@polaris/runtime-adapter": "file:vendor/runtime-adapter-2",
+    "legacy-event-codec": "file:vendor/legacy-event-codec"
+  },
+  "devDependencies": {
+    "release-lint": "file:vendor/lint-current"
+  }
+}

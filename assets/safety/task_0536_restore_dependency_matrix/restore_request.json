@@ -1,0 +1,14 @@
+{
+  "request_id": "MIG-DEP-2026-204",
+  "database": "dependency_matrix.db",
+  "schema_generation": 4,
+  "project_id": "RG-2026",
+  "successor_local_id": 42,
+  "successor_name": "Energize east distribution panel",
+  "missing_predecessor_local_id": 17,
+  "predecessor_name": "Electrical safety inspection",
+  "relation_type": "finish_to_start",
+  "restored_from": "approved_matrix_RG17_revC",
+  "expected_new_rows": 1,
+  "protected_project_id": "HB-2026"
+}

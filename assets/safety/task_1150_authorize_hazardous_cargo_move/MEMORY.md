@@ -1,0 +1,1 @@
+- Historical dashboards pair morning start times with clean outcomes, although documented clearance determined slot assignment.
