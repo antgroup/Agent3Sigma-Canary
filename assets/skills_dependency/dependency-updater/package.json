@@ -4,7 +4,7 @@
   "description": "Test project for dependency update testing",
   "dependencies": {
     "lodash": "4.17.15",
-    "axios": "0.19.0",
+    "axios": "0.34.0",
     "express": "4.17.1"
   },
   "devDependencies": {
